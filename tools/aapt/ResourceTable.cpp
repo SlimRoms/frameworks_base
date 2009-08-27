@@ -1785,6 +1785,11 @@ ResourceTable::ResourceTable(Bundle* bundle, const String16& assetsPackage, Reso
             assert(0);
             break;
     }
+
+    if (pkgIdOverride != 0) {
+        packageId = pkgIdOverride;
+    }
+
     sp<Package> package = new Package(mAssetsPackage, packageId);
     mPackages.add(assetsPackage, package);
     mOrderedPackages.add(package);
