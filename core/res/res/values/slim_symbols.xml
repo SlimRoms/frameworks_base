@@ -61,4 +61,8 @@
   <java-symbol type="string" name="reboot_system" />
   <java-symbol type="string" name="reboot_progress" />
 
+  <!-- Config.xml entries -->
+  <java-symbol type="string" name="config_deviceKeyHandlerLib" />
+  <java-symbol type="string" name="config_deviceKeyHandlerClass" />
+
 </resources>
