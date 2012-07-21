@@ -115,4 +115,6 @@
   <java-symbol type="string" name="reboot_system" />
   <java-symbol type="string" name="reboot_progress" />
 
+  <java-symbol type="bool" name="config_wifiApFirmwareReload" />
+
 </resources>
