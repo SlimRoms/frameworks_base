@@ -191,6 +191,22 @@ public class SignalClusterView
 
         mMobileType.setVisibility(
                 !mWifiVisible ? View.VISIBLE : View.GONE);
+
+        updateSettings();
+    }
+
+    private void updateSignalClusterStyle() {
+        if (!mIsAirplaneMode) {
+            mMobileGroup.setVisibility(mSignalClusterStyle !=
+                    SIGNAL_CLUSTER_STYLE_NORMAL ? View.GONE : View.VISIBLE);
+        }
+    }
+
+    private void updateSettings() {
+        ContentResolver resolver = mContext.getContentResolver();
+        mSignalClusterStyle = (Settings.System.getInt(resolver,
+                Settings.System.STATUS_BAR_SIGNAL_TEXT, SIGNAL_CLUSTER_STYLE_NORMAL));
+        updateSignalClusterStyle();
     }
 }
 
