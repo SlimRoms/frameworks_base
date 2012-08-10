@@ -467,6 +467,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     boolean mShowingLockscreen;
     boolean mShowingDream;
     boolean mDreamingLockscreen;
+    boolean mHomePressed;
     boolean mHomeLongPressed;
     boolean mAppSwitchLongPressed;
     Intent mHomeIntent;
@@ -2063,7 +2064,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
         if (DEBUG_INPUT) {
             Log.d(TAG, "interceptKeyTi keyCode=" + keyCode + " down=" + down + " repeatCount="
-                    + repeatCount + " keyguardOn=" + keyguardOn + " canceled=" + canceled);
+                    + repeatCount + " keyguardOn=" + keyguardOn + " mHomePressed=" + mHomePressed
+                    + " canceled=" + canceled);
         }
 
         // If we think we might have a volume down & power key chord on the way
@@ -2098,13 +2100,15 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
             // If we have released the home key, and didn't do anything else
             // while it was pressed, then it is time to go home!
-            if (!down) {
+            if (!down && mHomePressed) {
                 final boolean homeWasLongPressed = mHomeLongPressed;
                 mHomeLongPressed = false;
+                mHomePressed = false;
                 if (!homeWasLongPressed) {
                     if (mRecentAppsPreloaded) {
                         cancelPreloadRecentApps();
                     }
+                    mHomePressed = false;
                     if (!canceled) {
                         // If an incoming call is ringing, HOME is totally disabled.
                         // (The user is already on the InCallScreen at this point,
@@ -2153,7 +2157,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 if (!mRecentAppsPreloaded && mLongPressOnHomeBehavior == KEY_ACTION_APP_SWITCH) {
                     preloadRecentApps();
                 }
-                if (longPress) {
+                if (repeatCount == 0) {
+                    mHomePressed = true;
+                } else if (longPress) {
                     if (!keyguardOn && mLongPressOnHomeBehavior != KEY_ACTION_NOTHING) {
                         performHapticFeedbackLw(null, HapticFeedbackConstants.LONG_PRESS, false);
                         performKeyAction(mLongPressOnHomeBehavior);
@@ -5070,6 +5076,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 pw.println(mForceStatusBarFromKeyguard);
         pw.print(prefix); pw.print("mDismissKeyguard="); pw.print(mDismissKeyguard);
                 pw.print(" mWinDismissingKeyguard="); pw.print(mWinDismissingKeyguard);
+                pw.print(" mHomePressed="); pw.println(mHomePressed);
         pw.print(prefix); pw.print("mAllowLockscreenWhenOn="); pw.print(mAllowLockscreenWhenOn);
                 pw.print(" mLockScreenTimeout="); pw.print(mLockScreenTimeout);
                 pw.print(" mLockScreenTimerActive="); pw.println(mLockScreenTimerActive);
