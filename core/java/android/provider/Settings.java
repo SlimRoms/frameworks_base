@@ -3907,7 +3907,7 @@ public final class Settings {
          * Size of pattern lockscreen
          */
         public static final String LOCK_PATTERN_SIZE =
-            "lock_pattern_size"
+            "lock_pattern_size";
         /**
          * Whether lock pattern will show dots (0 = false, 1 = true)
          * @hide
