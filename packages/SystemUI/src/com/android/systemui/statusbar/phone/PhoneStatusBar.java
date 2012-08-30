@@ -140,6 +140,7 @@ public class PhoneStatusBar extends BaseStatusBar {
     private static final int BRIGHTNESS_CONTROL_LINGER_THRESHOLD = 20;
 
     private boolean mBrightnessControl;
+    private boolean mAutoBrightness;
 
     private static final int NOTIFICATION_PRIORITY_MULTIPLIER = 10; // see NotificationManagerService
     private static final int HIDE_ICONS_BELOW_SCORE = Notification.PRIORITY_LOW * NOTIFICATION_PRIORITY_MULTIPLIER;
