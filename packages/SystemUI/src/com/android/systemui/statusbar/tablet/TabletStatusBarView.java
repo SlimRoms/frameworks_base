@@ -21,7 +21,10 @@ import com.android.systemui.statusbar.BaseStatusBar;
 import com.android.systemui.statusbar.DelegateViewHelper;
 
 import android.content.Context;
+import android.database.ContentObserver;
+import android.graphics.Color;
 import android.os.Handler;
+import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.Slog;
 import android.view.View;
@@ -44,6 +47,15 @@ public class TabletStatusBarView extends FrameLayout {
     public TabletStatusBarView(Context context, AttributeSet attrs) {
         super(context, attrs);
         mDelegateHelper = new DelegateViewHelper(this);
+        
+        mContext.getContentResolver().registerContentObserver(
+                Settings.System.getUriFor(Settings.System.SYSTEMUI_NAVBAR_COLOR), false,
+                new ContentObserver(new Handler()) {
+                    @Override
+                    public void onChange(boolean selfChange) {
+                        updateColor();
+                    }
+                });
     }
 
     public void setDelegateView(View view) {
@@ -74,6 +86,7 @@ public class TabletStatusBarView extends FrameLayout {
         }
         mDelegateHelper.setSourceView(view);
         mDelegateHelper.setInitialTouchRegion(view);
+        updateColor();
     }
 
     @Override
@@ -142,5 +155,16 @@ public class TabletStatusBarView extends FrameLayout {
     public void setIgnoreChildren(int index, View ignore, View panel) {
         mIgnoreChildren[index] = ignore;
         mPanels[index] = panel;
+    }
+
+    private void updateColor() {
+        int color = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.SYSTEMUI_NAVBAR_COLOR,
+                Settings.System.SYSTEMUI_NAVBAR_COLOR_DEF);
+        if (color == -1)
+            color = Settings.System.SYSTEMUI_NAVBAR_COLOR_DEF;
+        // we don't want alpha here
+        color = Color.rgb(Color.red(color), Color.green(color), Color.blue(color));
+        this.setBackgroundColor(color);
     }
 }
