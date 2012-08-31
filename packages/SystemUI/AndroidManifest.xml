@@ -188,5 +188,8 @@
 <!--            <category android:name="android.intent.category.LAUNCHER" />-->
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.android.systemui.statusbar.powerwidget.Torch">
+        </activity>
     </application>
 </manifest>
