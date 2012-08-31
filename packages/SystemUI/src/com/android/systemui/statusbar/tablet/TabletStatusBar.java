@@ -88,6 +88,7 @@ import com.android.systemui.statusbar.policy.NotificationRowLayout;
 import com.android.systemui.statusbar.policy.Prefs;
 
 import java.io.FileDescriptor;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -280,8 +281,7 @@ public class TabletStatusBar extends BaseStatusBar implements
 
         // the battery icon
         //mBatteryController.addIconView((ImageView)mNotificationPanel.findViewById(R.id.battery));
-        //mBatteryController.addLabelView(
-                (TextView)mNotificationPanel.findViewById(R.id.battery_text));
+        //mBatteryController.addLabelView((TextView)mNotificationPanel.findViewById(R.id.battery_text));
 
         if (mHasDockBattery) {
             mDockBatteryController.addIconView((ImageView)mNotificationPanel.findViewById(R.id.dock_battery));
