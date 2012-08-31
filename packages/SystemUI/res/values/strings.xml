@@ -415,5 +415,8 @@
 
     <string name="powerwidget_screen_timeout_toast">Screen timeout set to: %1$d %2$s</string>
 
+    <string name="battery_test">99</string>
+
     <string name="app_killed_message">App killed</string>
+
 </resources>
