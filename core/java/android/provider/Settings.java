@@ -2636,6 +2636,18 @@ public final class Settings {
          */
         public static final String QUIET_HOURS_DIM = "quiet_hours_dim";
 
+		/**
+         * Whether to remove the sound from outgoing notifications during quiet hours.
+         * @hide
+         */
+        public static final String QUIET_HOURS_NOTIFICATIONS = "quiet_hours_notifications";
+
+        /**
+         * Whether to mute phone ringtones during quiet hours.
+         * @hide
+         */
+        public static final String QUIET_HOURS_RINGER = "quiet_hours_ringer";
+
         /**
          * Sets the lockscreen background style
          * @hide
