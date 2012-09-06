@@ -573,7 +573,6 @@ public class LockPatternView extends View {
         if (cell != null) {
 
             // check for gaps in existing pattern
-            Cell fillInGapCell = null;
             final ArrayList<Cell> pattern = mPattern;
             if (!pattern.isEmpty()) {
                 final Cell lastCell = pattern.get(pattern.size() - 1);
@@ -583,21 +582,19 @@ public class LockPatternView extends View {
                 int fillInRow = lastCell.row;
                 int fillInColumn = lastCell.column;
 
-                if (Math.abs(dRow) == 2 && Math.abs(dColumn) != 1) {
-                    fillInRow = lastCell.row + ((dRow > 0) ? 1 : -1);
+                if (!( (dRow!=0) && (dColumn!=0) && (Math.abs(dRow)!=Math.abs(dColumn)) )) {
+                    while (true) {
+                        fillInRow += Integer.signum(dRow);
+                        fillInColumn += Integer.signum(dColumn);
+                        if ( (fillInRow==cell.row) && (fillInColumn==cell.column) ) break;
+                        Cell fillInGapCell = Cell.of(fillInRow, fillInColumn);
+                        if ( !mPatternDrawLookup[fillInGapCell.row][fillInGapCell.column]) {
+                            addCellToPattern(fillInGapCell);
+                          }
+                       }
                 }
-
-                if (Math.abs(dColumn) == 2 && Math.abs(dRow) != 1) {
-                    fillInColumn = lastCell.column + ((dColumn > 0) ? 1 : -1);
-                }
-
-                fillInGapCell = Cell.of(fillInRow, fillInColumn);
             }
 
-            if (fillInGapCell != null &&
-                    !mPatternDrawLookup[fillInGapCell.row][fillInGapCell.column]) {
-                addCellToPattern(fillInGapCell);
-            }
             addCellToPattern(cell);
             if (mEnableHapticFeedback) {
                 performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY,
@@ -613,6 +610,7 @@ public class LockPatternView extends View {
         mPatternDrawLookup[newCell.getRow()][newCell.getColumn()] = true;
         mPattern.add(newCell);
         notifyCellAdded();
+        Log.v("SMASHER816", "("+newCell.column+", "+newCell.row+")");
     }
 
     // helper method to find which cell a point maps to
@@ -644,7 +642,7 @@ public class LockPatternView extends View {
         float hitSize = squareHeight * mHitFactor;
 
         float offset = mPaddingTop + (squareHeight - hitSize) / 2f;
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < PATTERN_SIZE; i++) {
 
             final float hitTop = offset + squareHeight * i;
             if (y >= hitTop && y <= hitTop + hitSize) {
