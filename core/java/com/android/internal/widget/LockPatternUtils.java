@@ -143,7 +143,7 @@ public class LockPatternUtils {
     private DevicePolicyManager mDevicePolicyManager;
     private ILockSettings mLockSettingsService;
     private int mCurrentUserId = 0;
-
+    
     private static int PATTERN_SIZE = 3;
 
     public DevicePolicyManager getDevicePolicyManager() {
@@ -920,23 +920,7 @@ public class LockPatternUtils {
         setBoolean(Settings.Secure.LOCK_PATTERN_TACTILE_FEEDBACK_ENABLED, enabled);
     }
 
-    public void setVisibleDotsEnabled(boolean enabled) {
-        setBoolean(Settings.Secure.LOCK_DOTS_VISIBLE, enabled);
-    }
-
-    public boolean isVisibleDotsEnabled() {
-        return getBoolean(Settings.Secure.LOCK_DOTS_VISIBLE, true);
-    }
-
-    public void setShowErrorPath(boolean enabled) {
-        setBoolean(Settings.Secure.LOCK_SHOW_ERROR_PATH, enabled);
-    }
-
-    public boolean isShowErrorPath() {
-        return getBoolean(Settings.Secure.LOCK_SHOW_ERROR_PATH, true);
-    }
-
-    /**
+	/**
      * @return the pattern lockscreen size
      */
     public int getLockPatternSize() {
@@ -956,8 +940,24 @@ public class LockPatternUtils {
      * This must be called before patternToHash, patternToString, etc
      * will work correctly with a non-standard size
      */
-    public void updateLockPatternSize() {
-        PATTERN_SIZE = getLockPatternSize();
+	public void updateLockPatternSize() {
+		PATTERN_SIZE = getLockPatternSize();
+	}
+
+    public void setVisibleDotsEnabled(boolean enabled) {
+        setBoolean(Settings.Secure.LOCK_DOTS_VISIBLE, enabled);
+    }
+
+    public boolean isVisibleDotsEnabled() {
+        return getBoolean(Settings.Secure.LOCK_DOTS_VISIBLE, true);
+    }
+
+    public void setShowErrorPath(boolean enabled) {
+        setBoolean(Settings.Secure.LOCK_SHOW_ERROR_PATH, enabled);
+    }
+
+    public boolean isShowErrorPath() {
+        return getBoolean(Settings.Secure.LOCK_SHOW_ERROR_PATH, true);
     }
 
     /**
@@ -1230,15 +1230,15 @@ public class LockPatternUtils {
         }
     }
 
-    private int getInteger(String secureSettingKey, int defaultValue) {
+	private int getInteger(String secureSettingKey, int defaultValue) {
         try {
             return getLockSettings().getInteger(secureSettingKey, defaultValue,
-                    getCurrentOrCallingUserId());
+					getCurrentOrCallingUserId());
         } catch (RemoteException re) {
             return defaultValue;
         }
     }
-
+	
     private void setInteger(String secureSettingKey, int value) {
         try {
             getLockSettings().setInteger(secureSettingKey, value, getCurrentOrCallingUserId());

@@ -1403,10 +1403,9 @@ public final class Settings {
         public static final String LOCK_PATTERN_TACTILE_FEEDBACK_ENABLED =
             "lock_pattern_tactile_feedback_enabled";
 
-         /**
+	     /**
          * @deprecated Use {@link android.provider.Settings.Secure#LOCK_PATTERN_SIZE}
          * instead
-         * @hide
          */
         @Deprecated
         public static final String LOCK_PATTERN_SIZE =
@@ -3987,6 +3986,11 @@ public final class Settings {
         public static final String LOCK_PATTERN_TACTILE_FEEDBACK_ENABLED =
             "lock_pattern_tactile_feedback_enabled";
 
+		/**
+         * Size of pattern lockscreen
+         */
+        public static final String LOCK_PATTERN_SIZE =
+            "lock_pattern_size";
         /**
          * Whether lock pattern will show dots (0 = false, 1 = true)
          * @hide
@@ -3998,13 +4002,6 @@ public final class Settings {
          * @hide
          */
         public static final String LOCK_SHOW_ERROR_PATH = "lock_pattern_show_error_path";
-
-        /**
-         * Size of pattern lockscreen
-         * @hide
-         */
-        public static final String LOCK_PATTERN_SIZE = "lock_pattern_size";
-
 
         /**
          * This preference allows the device to be locked given time after screen goes off,
