@@ -133,7 +133,7 @@ public class LockSettingsService extends ILockSettings.Stub {
         writeToDb(key, Long.toString(value), userId);
     }
 
-    @Override
+	@Override
     public void setInteger(String key, int value, int userId) throws RemoteException {
         checkWritePermission(userId);
 
@@ -164,7 +164,7 @@ public class LockSettingsService extends ILockSettings.Stub {
         return TextUtils.isEmpty(value) ? defaultValue : Long.parseLong(value);
     }
 
-    @Override
+	@Override
     public int getInteger(String key, int defaultValue, int userId) throws RemoteException {
         //checkReadPermission(userId);
 

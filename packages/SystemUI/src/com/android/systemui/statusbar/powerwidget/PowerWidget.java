@@ -373,6 +373,15 @@ public class PowerWidget extends FrameLayout {
         boolean hideScrollBar = Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.EXPANDED_HIDE_SCROLLBAR, 0) == 1;
         mScrollView.setHorizontalScrollBarEnabled(!hideScrollBar);
+
+        // set the padding on the linear layout to the size of our scrollbar,
+        // so we don't have them overlap
+        // need to be here for make use of EXPANDED_HIDE_SCROLLBAR, expanding or collapsing
+        // the space used by the scrollbar
+        if (mButtonLayout != null) {
+            mButtonLayout.setPadding(0, 0, 0,
+                    !hideScrollBar ? mScrollView.getVerticalScrollbarWidth() : 0);
+        }
     }
 
     private void updateHapticFeedbackSetting() {
@@ -479,7 +488,8 @@ public class PowerWidget extends FrameLayout {
                 updateVisibility();
             // now check for scrollbar hiding
             } else if(uri.equals(Settings.System.getUriFor(Settings.System.EXPANDED_HIDE_SCROLLBAR))) {
-                updateScrollbar();
+                // Needed to remove scrollview to gain the space of the scrollable area
+                recreateButtonLayout();
             }
 
             if (uri.equals(Settings.System.getUriFor(Settings.System.HAPTIC_FEEDBACK_ENABLED))
