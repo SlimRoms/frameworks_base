@@ -97,6 +97,7 @@ class KeyguardStatusViewManager implements OnClickListener {
     private static final int HELP_MESSAGE_TEXT = 13;
     private static final int OWNER_INFO = 14;
     private static final int BATTERY_INFO = 15;
+    private static final int COLOR_WHITE = 0xFFFFFFFF;
 
     private StatusMode mStatus;
     private String mDateFormatString;
@@ -282,6 +283,7 @@ class KeyguardStatusViewManager implements OnClickListener {
         if (mDigitalClock != null) {
             updateClockAlign();
         }
+        updateColors();
 
         // Required to get Marquee to work.
         final View scrollableViews[] = { mCarrierView, mDateView, mStatus1View, mOwnerInfoView,
@@ -989,7 +991,14 @@ class KeyguardStatusViewManager implements OnClickListener {
                 break;
         }
 
-        setCarrierText(carrierText);
+        String customLabel;
+        customLabel = Settings.System.getString(getContext().getContentResolver(),
+            Settings.System.CUSTOM_CARRIER_LABEL);
+        if(customLabel == null || customLabel.length() == 0)
+            setCarrierText(carrierText);
+        else
+            setCarrierText(customLabel);
+
         setCarrierHelpText(carrierHelpTextId);
         updateEmergencyCallButtonState(mPhoneState);
     }
@@ -1150,6 +1159,74 @@ class KeyguardStatusViewManager implements OnClickListener {
             return spn;
         } else {
             return "";
+        }
+    }
+
+    public void updateColors() {
+        if (DEBUG) Log.d(TAG, "Lets update the colors");
+        ContentResolver resolver = getContext().getContentResolver();
+        int color = Settings.System.getInt(resolver,
+                Settings.System.LOCKSCREEN_CUSTOM_TEXT_COLOR, COLOR_WHITE);
+
+        // carrier view
+        try {
+            mCarrierView.setTextColor(color);
+            if (DEBUG) Log.d(TAG, String.format("Setting mCarrierView text color to %d", color));
+        } catch (NullPointerException ne) {
+            if (DEBUG) ne.printStackTrace();
+        }
+
+        // date view
+        try {
+            mDateView.setTextColor(color);
+            if (DEBUG) Log.d(TAG, String.format("Setting mDateView DATE text color to %d", color));
+        } catch (NullPointerException ne) {
+            if (DEBUG) ne.printStackTrace();
+        }
+
+        // status view
+        try {
+            mStatus1View.setTextColor(color);
+            if (DEBUG) Log.d(TAG, String.format("Setting mStatus1View DATE text color to %d", color));
+        } catch (NullPointerException ne) {
+            if (DEBUG) ne.printStackTrace();
+        }
+
+        // weather view
+        try {
+            mWeatherCity.setTextColor(color);
+            mWeatherCondition.setTextColor(color);
+            mWeatherLowHigh.setTextColor(color);
+            mWeatherTemp.setTextColor(color);
+            mWeatherUpdateTime.setTextColor(color);
+            if (DEBUG) Log.d(TAG, String.format("Setting mWeather text color to %d", color));
+        } catch (NullPointerException ne) {
+            if (DEBUG) ne.printStackTrace();
+        }
+
+        // calendar view
+        try {
+            mCalendarEventTitle.setTextColor(color);
+            mCalendarEventDetails.setTextColor(color);
+            if (DEBUG) Log.d(TAG, String.format("Setting mCalendar text color to %d", color));
+        } catch (NullPointerException ne) {
+            if (DEBUG) ne.printStackTrace();
+        }
+
+        // owner info view
+        try {
+            mOwnerInfoView.setTextColor(color);
+            if (DEBUG) Log.d(TAG, String.format("Setting mOwnerInfoView DATE text color to %d", color));
+        } catch (NullPointerException ne) {
+            if (DEBUG) ne.printStackTrace();
+        }
+
+        // alarm status view
+        try {
+            mAlarmStatusView.setTextColor(color);
+            if (DEBUG) Log.d(TAG, String.format("Setting mAlarmStatusView DATE text color to %d", color));
+        } catch (NullPointerException ne) {
+            if (DEBUG) ne.printStackTrace();
         }
     }
 }

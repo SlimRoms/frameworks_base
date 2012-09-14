@@ -1319,6 +1319,9 @@
   <java-symbol type="layout" name="keyguard_screen_sim_puk_landscape" />
   <java-symbol type="layout" name="keyguard_screen_sim_puk_portrait" />
   <java-symbol type="layout" name="keyguard_screen_tab_unlock" />
+  <java-symbol type="layout" name="keyguard_screen_tab_unlock_centered" />
+  <java-symbol type="layout" name="keyguard_screen_tab_unlock_six_eight" />
+  <java-symbol type="layout" name="keyguard_screen_tab_unlock_six_eight_centered" />
   <java-symbol type="layout" name="keyguard_screen_tab_unlock_land" />
   <java-symbol type="layout" name="keyguard_screen_unlock_landscape" />
   <java-symbol type="layout" name="keyguard_screen_unlock_portrait" />
@@ -3649,6 +3652,7 @@
   <public type="color" name="holo_orange_dark" id="0x01060019" />
   <public type="color" name="holo_purple" id="0x0106001a" />
   <public type="color" name="holo_blue_bright" id="0x0106001b" />
+  <public type="color" name="holo_white_light" id="0x0106001c" />
 
 <!-- ===============================================================
    Resources added in version 16 of the platform (Jelly Bean)

@@ -134,7 +134,7 @@ public class LockPatternView extends View {
     private final Matrix mArrowMatrix = new Matrix();
     private final Matrix mCircleMatrix = new Matrix();
 
-    private static int PATTERN_SIZE = 3;
+	private static int PATTERN_SIZE = 3;
 
     /**
      * Represents a cell in the PATTERN_SIZE X PATTERN_SIZE matrix of the unlock pattern view.
@@ -175,7 +175,7 @@ public class LockPatternView extends View {
             checkRange(row, column);
             return sCells[row][column];
         }
-
+        
         public static void updateSize() {
            sCells = new Cell[PATTERN_SIZE][PATTERN_SIZE];
            for (int i = 0; i < PATTERN_SIZE; i++) {
@@ -326,12 +326,12 @@ public class LockPatternView extends View {
         return mEnableHapticFeedback;
     }
 
-    /**
+	/**
      * @return the current pattern lockscreen size
      */
-    public int getLockPatternSize() {
+	public int getLockPatternSize() {
         return PATTERN_SIZE;
-    }
+	}
 
     /**
      * Set whether the view is in stealth mode.  If true, there will be no
@@ -369,7 +369,7 @@ public class LockPatternView extends View {
         mEnableHapticFeedback = tactileFeedbackEnabled;
     }
 
-    /**
+	/**
      * Set the PATTERN_SIZE size of the lockscreen
      *
      * @param size
@@ -507,9 +507,6 @@ public class LockPatternView extends View {
 
         final int height = h - mPaddingTop - mPaddingBottom;
         mSquareHeight = height / (float)PATTERN_SIZE;
-
-        // Try to set a message size relative to square size
-        mMsgPaint.setTextSize(mSquareHeight / (PATTERN_SIZE*2));
     }
 
     private int resolveMeasured(int measureSpec, int desired)
