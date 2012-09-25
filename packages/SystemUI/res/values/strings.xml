@@ -419,6 +419,9 @@
 
     <string name="app_killed_message">App killed</string>
 
+	<!-- Label in drop down to identify brightness slider -->
+    <string name="brightness_label">Brightness</string>
+
     <string name="recents_kill_all_button_text">Kill all </string>
 
 </resources>

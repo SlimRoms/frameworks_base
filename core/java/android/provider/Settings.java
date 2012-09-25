@@ -3231,6 +3231,11 @@ public final class Settings {
          */
         public static final String NAVIGATION_BAR_HEIGHT_LANDSCAPE = "navigation_bar_height_landscape";
 
+		/**
+         * @hide
+         */
+        public static final String STATUSBAR_TOGGLES_BACKGROUND = "statusbar_toggles_background";
+
         /**
          * Navigation bar height in landscape if the bar is along the side of the device
          * @hide
