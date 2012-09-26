@@ -46,6 +46,7 @@ import java.util.List;
 public class PowerWidget extends FrameLayout {
     private static final String TAG = "PowerWidget";
 
+    ArrayList<LinearLayout> rows = new ArrayList<LinearLayout>();
     public static final String BUTTON_DELIMITER = "|";
 
     private static final String BUTTONS_DEFAULT = PowerButton.BUTTON_WIFI
@@ -65,7 +66,11 @@ public class PowerWidget extends FrameLayout {
                                         );
 
     private static final int LAYOUT_SCROLL_BUTTON_THRESHOLD = 6;
+    public static final int BRIGHTNESS_LOC_TOP = 1;
+    public static final int BRIGHTNESS_LOC_BOTTOM = 2;
+    public static final int BRIGHTNESS_LOC_NONE = 3;
 
+    private int mBrightnessLocation = BRIGHTNESS_LOC_TOP;
     // this is a list of all possible buttons and their corresponding classes
     private static final HashMap<String, Class<? extends PowerButton>> sPossibleButtons =
             new HashMap<String, Class<? extends PowerButton>>();
@@ -108,11 +113,15 @@ public class PowerWidget extends FrameLayout {
     private WidgetBroadcastReceiver mBroadcastReceiver = null;
     private WidgetSettingsObserver mObserver = null;
 
+    View mBrightnessSlider;
     private long[] mShortPressVibePattern;
     private long[] mLongPressVibePattern;
 
     private LinearLayout mButtonLayout;
     private HorizontalScrollView mScrollView;
+
+    private static final LinearLayout.LayoutParams PARAMS_BRIGHTNESS = new LinearLayout.LayoutParams(
+            LayoutParams.MATCH_PARENT, 90);
 
     public PowerWidget(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -206,6 +215,11 @@ public class PowerWidget extends FrameLayout {
         mObserver = new WidgetSettingsObserver(mHandler);
         mObserver.observe();
     }
+    private void addBrightness() {
+        rows.add(new LinearLayout(mContext));
+        rows.get(rows.size() - 1).addView(
+                new BrightnessSlider(mContext).getView(), PARAMS_BRIGHTNESS);
+    }
 
     private boolean loadButton(String key) {
         // first make sure we have a valid button
@@ -216,6 +230,11 @@ public class PowerWidget extends FrameLayout {
         if (mButtons.containsKey(key)) {
             return true;
         }
+
+        if (mBrightnessLocation == BRIGHTNESS_LOC_TOP || 
+			mBrightnessLocation == BRIGHTNESS_LOC_BOTTOM) {
+            addBrightness();
+			}
 
         try {
             // we need to instantiate a new button and add it
@@ -469,6 +488,10 @@ public class PowerWidget extends FrameLayout {
             for(Uri uri : getAllObservedUris()) {
                 resolver.registerContentObserver(uri, false, this);
             }
+			//brightness slider
+            resolver.registerContentObserver(Settings.System
+            .getUriFor(Settings.System.STATUSBAR_TOGGLES_BRIGHTNESS_LOC),
+            false, this);
         }
 
         public void unobserve() {

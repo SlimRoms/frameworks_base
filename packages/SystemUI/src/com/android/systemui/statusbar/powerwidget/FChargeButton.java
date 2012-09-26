@@ -24,24 +24,23 @@ public class FChargeButton extends PowerButton {
     public static final String FAST_CHARGE_FILE = "force_fast_charge";
 	protected boolean on = false;
 
-    public FChargeButton() { mType = BUTTON_FCHARGE; }
+    public FChargeButton() { mType = BUTTON_FCHARGE; on = isFastChargeOn();}
 
     @Override
     protected void updateState(Context context) {
-        if (isFastChargeOn()) {
+        if (on) {
             mIcon = R.drawable.toggle_fcharge;
             mState = STATE_ENABLED;
-			on = true;
         } else {
             mIcon = R.drawable.toggle_fcharge_off;
             mState = STATE_DISABLED;
-			on = false;
         }
     }
 
     @Override
     protected void toggleState(Context context) {
 	try {
+            on = !isFastChargeOn();
             File fastcharge = new File(FAST_CHARGE_DIR, FAST_CHARGE_FILE);
             FileWriter fwriter = new FileWriter(fastcharge);
             BufferedWriter bwriter = new BufferedWriter(fwriter);
@@ -58,12 +57,19 @@ public class FChargeButton extends PowerButton {
         return false;
     }
 
+	public void checkState()
+	{
+	
+	}
+
     public boolean isFastChargeOn() {
         try {
             File fastcharge = new File(FAST_CHARGE_DIR, FAST_CHARGE_FILE);
             FileReader reader = new FileReader(fastcharge);
             BufferedReader breader = new BufferedReader(reader);
-            return (breader.readLine().equals("1"));
+			String line = breader.readLine();
+			breader.close();
+            return (line.equals("1"));
         } catch (IOException e) {
             Log.e("FChargeToggle", "Couldn't read fast_charge file");
             return false;
