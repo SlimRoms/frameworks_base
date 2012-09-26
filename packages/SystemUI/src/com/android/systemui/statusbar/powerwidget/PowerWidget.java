@@ -219,6 +219,7 @@ public class PowerWidget extends FrameLayout {
         rows.add(new LinearLayout(mContext));
         rows.get(rows.size() - 1).addView(
                 new BrightnessSlider(mContext).getView(), PARAMS_BRIGHTNESS);
+		Log.i(TAG, "addBrightness");
     }
 
     private boolean loadButton(String key) {
@@ -230,11 +231,6 @@ public class PowerWidget extends FrameLayout {
         if (mButtons.containsKey(key)) {
             return true;
         }
-
-        if (mBrightnessLocation == BRIGHTNESS_LOC_TOP || 
-			mBrightnessLocation == BRIGHTNESS_LOC_BOTTOM) {
-            addBrightness();
-			}
 
         try {
             // we need to instantiate a new button and add it
@@ -374,6 +370,13 @@ public class PowerWidget extends FrameLayout {
         BUTTON_LAYOUT_PARAMS.width = mContext.getResources().getDisplayMetrics().widthPixels / LAYOUT_SCROLL_BUTTON_THRESHOLD;
     }
 
+	private void addViews() {
+        if (mBrightnessLocation == BRIGHTNESS_LOC_TOP || 
+			mBrightnessLocation == BRIGHTNESS_LOC_BOTTOM) {
+            addBrightness();
+			}
+		Log.i(TAG, "addViews-mBrightnessLocation: " + mBrightnessLocation);
+	}
     private void updateVisibility() {
         // now check if we need to display the widget still
         boolean displayPowerWidget = Settings.System.getInt(mContext.getContentResolver(),
@@ -387,6 +390,12 @@ public class PowerWidget extends FrameLayout {
             param.topMargin = (int) getResources().getDimension(R.dimen.notification_panel_header_and_widget);
             setVisibility(View.VISIBLE);
         }
+		ContentResolver resolver = mContext.getContentResolver();
+        mBrightnessLocation = Settings.System.getInt(resolver,
+                Settings.System.STATUSBAR_TOGGLES_BRIGHTNESS_LOC,
+                BRIGHTNESS_LOC_NONE);
+		Log.i(TAG, "updateVisibility-mBrightnessLocation: " + mBrightnessLocation);
+		addViews();
     }
 
     private void updateScrollbar() {
