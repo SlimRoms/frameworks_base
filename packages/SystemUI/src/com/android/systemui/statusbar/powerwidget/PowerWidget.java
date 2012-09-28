@@ -28,6 +28,7 @@ import android.net.wimax.WimaxHelper;
 import android.os.Handler;
 import android.provider.Settings;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -38,6 +39,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 
 import com.android.systemui.R;
+import com.android.systemui.statusbar.BaseStatusBar;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -100,10 +102,12 @@ public class PowerWidget extends FrameLayout {
         sPossibleButtons.put(PowerButton.BUTTON_LTE, LTEButton.class);
     }
 
+    private boolean useAltButtonLayout = false;
     // this is a list of our currently loaded buttons
     private final HashMap<String, PowerButton> mButtons = new HashMap<String, PowerButton>();
     private final ArrayList<String> mButtonNames = new ArrayList<String>();
 
+    private BaseStatusBar sb;
     private View.OnClickListener mAllButtonClickListener;
     private View.OnLongClickListener mAllButtonLongClickListener;
 
@@ -117,15 +121,20 @@ public class PowerWidget extends FrameLayout {
     private long[] mShortPressVibePattern;
     private long[] mLongPressVibePattern;
 
+    LinearLayout mToggleSpacer;
     private LinearLayout mButtonLayout;
     private HorizontalScrollView mScrollView;
 
     private static final LinearLayout.LayoutParams PARAMS_BRIGHTNESS = new LinearLayout.LayoutParams(
             LayoutParams.MATCH_PARENT, 90);
 
+    private static final LinearLayout.LayoutParams PARAMS_TOGGLE = new LinearLayout.LayoutParams(
+            LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1f);
+
+    private static final LinearLayout.LayoutParams PARAMS_TOGGLE_SCROLL = new LinearLayout.LayoutParams(
+            LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f);
     public PowerWidget(Context context, AttributeSet attrs) {
         super(context, attrs);
-
         mContext = context;
         mHandler = new Handler();
         mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -215,13 +224,94 @@ public class PowerWidget extends FrameLayout {
         mObserver = new WidgetSettingsObserver(mHandler);
         mObserver.observe();
     }
+
     private void addBrightness() {
         rows.add(new LinearLayout(mContext));
         rows.get(rows.size() - 1).addView(
                 new BrightnessSlider(mContext).getView(), PARAMS_BRIGHTNESS);
+        //addView(new BrightnessSlider(mContext).getView(), PARAMS_BRIGHTNESS);
 		Log.i(TAG, "addBrightness");
     }
+    private void addViews() {
+        removeViews();
+        rows = new ArrayList<LinearLayout>();
 
+        if (!useAltButtonLayout) {
+            DisplayMetrics metrics = getContext().getResources()
+                    .getDisplayMetrics();
+            float dp = 10f;
+            int pixels = (int) (metrics.density * dp + 0.5f);
+            this.setPadding(getPaddingLeft(), pixels, getPaddingRight(),
+                    getPaddingBottom());
+        }
+
+        if (mBrightnessLocation == BRIGHTNESS_LOC_TOP)
+            addBrightness();
+
+        if (!useAltButtonLayout) {
+            // we are using switches, and have an uneven number - let's add a
+            // spacer
+            mToggleSpacer = new LinearLayout(mContext);
+            rows.get(rows.size() - 1).addView(mToggleSpacer, PARAMS_TOGGLE);
+        }
+        if (useAltButtonLayout) {
+            LinearLayout togglesRowLayout;
+            HorizontalScrollView toggleScrollView = new HorizontalScrollView(
+                    mContext);
+            // ToggleScrollView.setFillViewport(true);
+            try {
+                togglesRowLayout = rows.get(rows.size() - 1);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                // happens when brightness bar is below buttons
+                togglesRowLayout = new LinearLayout(mContext);
+                rows.add(togglesRowLayout);
+            }
+            togglesRowLayout.setGravity(Gravity.CENTER_HORIZONTAL);
+            toggleScrollView.setHorizontalFadingEdgeEnabled(true);
+            toggleScrollView.addView(togglesRowLayout, PARAMS_TOGGLE);
+            LinearLayout ll = new LinearLayout(mContext);
+            ll.setOrientation(LinearLayout.VERTICAL);
+            ll.setGravity(Gravity.CENTER_HORIZONTAL);
+            ll.addView(toggleScrollView, PARAMS_TOGGLE_SCROLL);
+            rows.remove(rows.size() - 1);
+            rows.add(ll);
+        }
+        if (mBrightnessLocation == BRIGHTNESS_LOC_BOTTOM)
+            addBrightness();
+
+            final int layout_type = Settings.System.getInt(
+                mContext.getContentResolver(),
+                Settings.System.STATUS_BAR_LAYOUT, 0);
+        if (sb != null && layout_type != 2)
+            addSeparator();
+
+        for (LinearLayout row : rows)
+            this.addView(row);
+    }
+
+    private void removeViews() {
+        for (LinearLayout row : rows) {
+            this.removeView(row);
+        }
+    }
+	private void addSeparator() {
+        View sep = new View(mContext);
+        sep.setBackgroundResource(R.drawable.status_bar_hr);
+
+        DisplayMetrics metrics = getContext().getResources()
+                .getDisplayMetrics();
+        float dp = 2f;
+        float fpixels = metrics.density * dp;
+        int pixels = (int) (metrics.density * dp + 0.5f);
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LayoutParams.MATCH_PARENT, pixels);
+
+        sep.setLayoutParams(params);
+
+        rows.add(new LinearLayout(mContext));
+        rows.get(rows.size() - 1).addView(sep);
+    }
     private boolean loadButton(String key) {
         // first make sure we have a valid button
         if (!sPossibleButtons.containsKey(key)) {
@@ -370,13 +460,13 @@ public class PowerWidget extends FrameLayout {
         BUTTON_LAYOUT_PARAMS.width = mContext.getResources().getDisplayMetrics().widthPixels / LAYOUT_SCROLL_BUTTON_THRESHOLD;
     }
 
-	private void addViews() {
+	/*private void addViews() {
         if (mBrightnessLocation == BRIGHTNESS_LOC_TOP || 
 			mBrightnessLocation == BRIGHTNESS_LOC_BOTTOM) {
             addBrightness();
 			}
 		Log.i(TAG, "addViews-mBrightnessLocation: " + mBrightnessLocation);
-	}
+	}*/
     private void updateVisibility() {
         // now check if we need to display the widget still
         boolean displayPowerWidget = Settings.System.getInt(mContext.getContentResolver(),
@@ -390,12 +480,12 @@ public class PowerWidget extends FrameLayout {
             param.topMargin = (int) getResources().getDimension(R.dimen.notification_panel_header_and_widget);
             setVisibility(View.VISIBLE);
         }
-		ContentResolver resolver = mContext.getContentResolver();
+		/*ContentResolver resolver = mContext.getContentResolver();
         mBrightnessLocation = Settings.System.getInt(resolver,
                 Settings.System.STATUSBAR_TOGGLES_BRIGHTNESS_LOC,
                 BRIGHTNESS_LOC_NONE);
 		Log.i(TAG, "updateVisibility-mBrightnessLocation: " + mBrightnessLocation);
-		addViews();
+		addViews();*/
     }
 
     private void updateScrollbar() {
@@ -501,7 +591,18 @@ public class PowerWidget extends FrameLayout {
             resolver.registerContentObserver(Settings.System
             .getUriFor(Settings.System.STATUSBAR_TOGGLES_BRIGHTNESS_LOC),
             false, this);
+			//update settings
+			updateSettings();
+			
         }
+protected void updateSettings() {
+        ContentResolver resolver = mContext.getContentResolver();
+        mBrightnessLocation = Settings.System.getInt(resolver,
+                Settings.System.STATUSBAR_TOGGLES_BRIGHTNESS_LOC,
+                BRIGHTNESS_LOC_NONE);
+
+        addViews();
+    }
 
         public void unobserve() {
             ContentResolver resolver = mContext.getContentResolver();
@@ -540,6 +641,9 @@ public class PowerWidget extends FrameLayout {
 
             // something happened so update the widget
             updateAllButtons();
+			//brightness slider
+			updateSettings();
+			
         }
     }
 }

@@ -3509,8 +3509,13 @@ public final class Settings {
          * @hide
          */
         public static final String STATUSBAR_TOGGLES_BRIGHTNESS_LOC = "statusbar_toggles_brightness_loc";
-
+ 		
 		/**
+         * @hide
+         */
+        public static final String STATUS_BAR_LAYOUT = "statusbar_layout";
+
+        /**
          * whether to hide the kill-all-button on recent switcher
          *
          * @hide
