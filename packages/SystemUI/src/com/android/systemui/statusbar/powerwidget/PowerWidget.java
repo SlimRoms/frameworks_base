@@ -64,7 +64,8 @@ public class PowerWidget extends FrameLayout {
                                         ViewGroup.LayoutParams.MATCH_PARENT  // height = match_parent
                                         );
 
-    private static final LinearLayout.LayoutParams BUTTON_LAYOUT_PARAMS = new LinearLayout.LayoutParams(
+    private static final LinearLayout.LayoutParams 
+BUTTON_LAYOUT_PARAMS = new LinearLayout.LayoutParams(
                                         ViewGroup.LayoutParams.WRAP_CONTENT, // width = wrap_content
                                         ViewGroup.LayoutParams.MATCH_PARENT, // height = match_parent
                                         1.0f                                 // weight = 1
@@ -82,7 +83,7 @@ public class PowerWidget extends FrameLayout {
     public static float WIDGET_HEIGHT = 48;
     public static float BRIGHTNESS_HEIGHT = 60;	
 
-    private int mBrightnessLocation = BRIGHTNESS_LOC_TOP;
+    private int mBrightnessLocation = BRIGHTNESS_LOC_NONE;
     // this is a list of all possible buttons and their corresponding classes
     private static final HashMap<String, Class<? extends PowerButton>> sPossibleButtons =
             new HashMap<String, Class<? extends PowerButton>>();
@@ -433,7 +434,7 @@ public class PowerWidget extends FrameLayout {
             setVisibility(View.VISIBLE);
         } else if(!displayPowerWidget && (mBrightnessLocation != BRIGHTNESS_LOC_NONE)) {
             param.topMargin = (int) getResources().getDimension(R.dimen.notification_panel_header_and_brightness);
-            setVisibility(View.VISIBLE);
+            setVisibility(View.GONE);
         }
 	else {
             param.topMargin = (int) getResources().getDimension(R.dimen.notification_panel_header_widget_and_brightness);
