@@ -46,8 +46,6 @@ import java.util.List;
 
 public class PowerWidget extends FrameLayout {
     private static final String TAG = "PowerWidget";
-
-    ArrayList<LinearLayout> rows = new ArrayList<LinearLayout>();
     public static final String BUTTON_DELIMITER = "|";
 
     private static final String BUTTONS_DEFAULT = PowerButton.BUTTON_WIFI
@@ -64,8 +62,7 @@ public class PowerWidget extends FrameLayout {
                                         ViewGroup.LayoutParams.MATCH_PARENT  // height = match_parent
                                         );
 
-    private static final LinearLayout.LayoutParams 
-BUTTON_LAYOUT_PARAMS = new LinearLayout.LayoutParams(
+    private static final LinearLayout.LayoutParams BUTTON_LAYOUT_PARAMS = new LinearLayout.LayoutParams(
                                         ViewGroup.LayoutParams.WRAP_CONTENT, // width = wrap_content
                                         ViewGroup.LayoutParams.MATCH_PARENT, // height = match_parent
                                         1.0f                                 // weight = 1
@@ -232,14 +229,6 @@ BUTTON_LAYOUT_PARAMS = new LinearLayout.LayoutParams(
         mObserver.observe();
     }
     private void addBrightness(LinearLayout container) {
-	/*
-        rows.add(new LinearLayout(mContext));
-        rows.get(rows.size() - 1).addView(
-                new BrightnessSlider(mContext).getView(), PARAMS_BRIGHTNESS);*/
-	//if (mBrightnessLocation == BRIGHTNESS_LOC_TOP) ROWS_PARAMS.setMargins(0,(int) getResources().getDimension(R.dimen.notification_panel_header_height),0,0);
-	//else ROWS_PARAMS.setMargins(0,(int) getResources().getDimension(R.dimen.notification_panel_header_and_widget),0,0);
-	//addView(new BrightnessSlider(mContext).getView(), WIDGET_LAYOUT_PARAMS);
-	//if (mBrightnessLocation == BRIGHTNESS_LOC_TOP) ROWS_PARAMS.topMargin = 0;
 	ROWS_PARAMS.height = (int) convertDpToPixel(BRIGHTNESS_HEIGHT, mContext);
 	container.addView(new BrightnessSlider(mContext).getView(), ROWS_PARAMS);
     }
@@ -306,9 +295,11 @@ BUTTON_LAYOUT_PARAMS = new LinearLayout.LayoutParams(
 
 	LinearLayout mBrightnessLayout = new LinearLayout(mContext);
 	mBrightnessLayout.setOrientation(LinearLayout.VERTICAL);
-	
+	 boolean displayPowerWidget = Settings.System.getInt(resolver,
+                   Settings.System.EXPANDED_VIEW_WIDGET, 1) == 1;
 
 	 if (mBrightnessLocation == BRIGHTNESS_LOC_TOP) addBrightness(mBrightnessLayout);
+
         // create a linearlayout to hold our buttons
         mButtonLayout = new LinearLayout(mContext);
         mButtonLayout.setOrientation(LinearLayout.HORIZONTAL);
@@ -322,7 +313,7 @@ BUTTON_LAYOUT_PARAMS = new LinearLayout.LayoutParams(
                 mButtonLayout.addView(buttonView, BUTTON_LAYOUT_PARAMS);
             }
         }
-
+        
         // we determine if we're using a horizontal scroll view based on a threshold of button counts
         if (mButtonLayout.getChildCount() > LAYOUT_SCROLL_BUTTON_THRESHOLD) {
             // we need our horizontal scroll view to wrap the linear layout
@@ -333,15 +324,12 @@ BUTTON_LAYOUT_PARAMS = new LinearLayout.LayoutParams(
             mScrollView.setOverScrollMode(View.OVER_SCROLL_NEVER);
             mScrollView.addView(mButtonLayout, WIDGET_LAYOUT_PARAMS);
             updateScrollbar();
-            //addView(mScrollView, WIDGET_LAYOUT_PARAMS);
 	    mBrightnessLayout.addView(mScrollView, ROWS_PARAMS);
 	   
         } else {
             // not needed, just add the linear layout
-            //addView(mButtonLayout, WIDGET_LAYOUT_PARAMS);
 	    mBrightnessLayout.addView(mButtonLayout, ROWS_PARAMS);
         }
-	
 	if (mBrightnessLocation == BRIGHTNESS_LOC_BOTTOM) addBrightness(mBrightnessLayout);
 	addView(mBrightnessLayout, WIDGET_BRIGHTNESS_LAYOUT_PARAMS);
     }
@@ -426,26 +414,17 @@ BUTTON_LAYOUT_PARAMS = new LinearLayout.LayoutParams(
                    Settings.System.EXPANDED_VIEW_WIDGET, 1) == 1;
         View notifScroll = ((ViewGroup) getParent()).findViewById(R.id.scroll);
         MarginLayoutParams param = (MarginLayoutParams) notifScroll.getLayoutParams();
-        if(!displayPowerWidget && (mBrightnessLocation == BRIGHTNESS_LOC_NONE)) {
+        if(!displayPowerWidget) {
             param.topMargin = (int) getResources().getDimension(R.dimen.notification_panel_header_height);
             setVisibility(View.GONE);
         } else if(displayPowerWidget && (mBrightnessLocation == BRIGHTNESS_LOC_NONE)) {
             param.topMargin = (int) getResources().getDimension(R.dimen.notification_panel_header_and_widget);
             setVisibility(View.VISIBLE);
-        } else if(!displayPowerWidget && (mBrightnessLocation != BRIGHTNESS_LOC_NONE)) {
-            param.topMargin = (int) getResources().getDimension(R.dimen.notification_panel_header_and_brightness);
-            setVisibility(View.GONE);
-        }
+        } 
 	else {
             param.topMargin = (int) getResources().getDimension(R.dimen.notification_panel_header_widget_and_brightness);
             setVisibility(View.VISIBLE);
         }
-		/*ContentResolver resolver = mContext.getContentResolver();
-        mBrightnessLocation = Settings.System.getInt(resolver,
-                Settings.System.STATUSBAR_TOGGLES_BRIGHTNESS_LOC,
-                BRIGHTNESS_LOC_NONE);
-		Log.i(TAG, "updateVisibility-mBrightnessLocation: " + mBrightnessLocation);
-		//addViews();*/
     }
 
     private void updateScrollbar() {
