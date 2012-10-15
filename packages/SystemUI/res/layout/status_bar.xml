@@ -91,14 +91,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />
-            <include layout="@layout/battery_cluster_view" 
-                android:id="@+id/battery_cluster"
+            <include layout="@layout/signal_cluster_text_view"
+                android:id="@+id/signal_cluster_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />
-
-            <include layout="@layout/signal_cluster_text_view"
-                android:id="@+id/signal_cluster_text"
+            <include layout="@layout/battery_cluster_view" 
+                android:id="@+id/battery_cluster"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />
