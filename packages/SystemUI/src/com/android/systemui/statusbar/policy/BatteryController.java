@@ -235,6 +235,13 @@ public class BatteryController extends LinearLayout {
                 mBatteryTextOnly.setVisibility(View.GONE);
                 setVisibility(View.GONE);
                 break;
+            case BATTERY_STYLE_CIRCLE:
+                mBatteryText.setVisibility(View.GONE);
+                mBatteryCenterText.setVisibility(View.GONE);
+                mBatteryIcon.setVisibility(View.VISIBLE);
+                mBatteryTextOnly.setVisibility(View.GONE);
+                setVisibility(View.VISIBLE);
+                break;
             default:
                 mBatteryText.setVisibility(View.GONE);
                 mBatteryCenterText.setVisibility(View.GONE);

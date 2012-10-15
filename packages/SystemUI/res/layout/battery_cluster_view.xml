@@ -56,5 +56,13 @@
 			android:text="@string/battery_test"
 			android:singleLine="true"
 			android:visibility="gone" />
+
+        <com.android.systemui.statusbar.policy.CircleBattery
+                android:id="@+id/circle_battery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:gravity="bottom"
+                android:paddingLeft="4dip" />
 	</FrameLayout>
 </com.android.systemui.statusbar.policy.BatteryController>
