@@ -518,13 +518,6 @@ class LockScreen extends LinearLayout implements KeyguardScreen {
                     | Intent.FLAG_ACTIVITY_SINGLE_TOP
                     | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             try {
-                if (mLockPatternUtils.isSecure()) {
-                    mCallback.goToUnlockScreen();
-                }
-            } catch (RemoteException e) {
-                Log.w(TAG, "can't dismiss keyguard on launch");
-            }
-            try {
                 mContext.startActivity(intent);
                 mCallback.goToUnlockScreen();
             } catch (ActivityNotFoundException e) {
