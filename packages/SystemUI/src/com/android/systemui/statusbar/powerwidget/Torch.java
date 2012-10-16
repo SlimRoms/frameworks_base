@@ -254,6 +254,7 @@ public class Torch extends Activity implements SurfaceHolder.Callback {
 
   @Override
   public void surfaceChanged(SurfaceHolder holder, int I, int J, int K) {
+    moveTaskToBack(true);
     Log.d(TAG, "surfaceChanged");
   }
 
