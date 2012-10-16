@@ -45,10 +45,11 @@
         android:visibility="invisible"
         />
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/close_handle_underlap"
+        android:orientation="vertical"
         >
 
         <include layout="@layout/status_bar_expanded_header"
@@ -56,12 +57,10 @@
             android:layout_height="@dimen/notification_panel_header_height"
             />
 
-
-	<com.android.systemui.statusbar.powerwidget.PowerWidget
+        <com.android.systemui.statusbar.powerwidget.PowerWidget
             android:id="@+id/exp_power_stat"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/notification_panel_header_and_brightness"
-		android:layout_marginTop="44dip"
+            android:layout_height="@dimen/notification_panel_widget_height"
         />
 
         <ScrollView
@@ -69,17 +68,25 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fadingEdge="none"
-            android:overScrollMode="ifContentScrolls"
-            android:layout_marginTop="@dimen/notification_panel_header_widget_and_brightness"
+            android:overScrollMode="always"
             >
-            <com.android.systemui.statusbar.policy.NotificationRowLayout
-                android:id="@+id/latestItems"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                systemui:rowHeight="@dimen/notification_row_min_height"
-                />
+                android:orientation="vertical" >
+                <include
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    layout="@layout/quick_toggles" />
+                <com.android.systemui.statusbar.policy.NotificationRowLayout
+                    android:id="@+id/latestItems"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    systemui:rowHeight="@dimen/notification_row_min_height" />
+
+            </LinearLayout>
         </ScrollView>
-    </FrameLayout>
+    </LinearLayout>
 
     <com.android.systemui.statusbar.phone.CloseDragHandle android:id="@+id/close"
         android:layout_width="match_parent"
