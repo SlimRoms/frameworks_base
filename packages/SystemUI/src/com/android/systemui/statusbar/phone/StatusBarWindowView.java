@@ -53,8 +53,8 @@ public class StatusBarWindowView extends FrameLayout
         int maxHeight = getResources().getDimensionPixelSize(R.dimen.notification_row_max_height);
         mExpandHelper = new ExpandHelper(mContext, latestItems, minHeight, maxHeight);
         mExpandHelper.setEventSource(this);
+        mExpandHelper.setScrollView(scroller);
     }
-
     @Override
     public void dispatchWindowFocusChanged(boolean hasFocus) {
         this.setFocusableInTouchMode(hasFocus);
