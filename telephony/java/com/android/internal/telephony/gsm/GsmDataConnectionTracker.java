@@ -2510,6 +2510,7 @@ public final class GsmDataConnectionTracker extends DataConnectionTracker {
                 {
                     if (DBG) log("apn info : " +apn.toString());
                     apnList.add(apn);
+				}
                 if (apn.canHandleType(requestedApnType)) {
                     if (apn.bearer == 0 || apn.bearer == radioTech) {
                         if (DBG) log("apn info : " +apn.toString());
