@@ -70,7 +70,7 @@
             android:layout_width="match_parent"
             android:paddingBottom="4dp"
             android:gravity="center"
-            android:visibility="gone"
+            android:visibility="invisible"
             />
 
         <ScrollView
