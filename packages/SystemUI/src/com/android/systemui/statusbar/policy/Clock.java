@@ -62,6 +62,7 @@ public class Clock extends TextView implements OnClickListener, OnTouchListener 
 	protected Calendar mCalendar;
 	protected String mClockFormatString;
 	protected SimpleDateFormat mClockFormat;
+	protected int mDefaultColor;
 
     public static final int AM_PM_STYLE_NORMAL  = 0;
     public static final int AM_PM_STYLE_SMALL   = 1;

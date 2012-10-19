@@ -25,13 +25,16 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
 import android.provider.CalendarContract;
+import android.text.TextUtils.TruncateAt;
 import android.text.format.DateFormat;
 import android.util.AttributeSet;
+import android.util.Slog;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewParent;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.systemui.R;
@@ -40,6 +43,9 @@ import java.util.Date;
 
 public final class DateView extends LinearLayout implements OnClickListener, OnTouchListener {
     private static final String TAG = "DateView";
+
+    private TextView mDoW;
+    private TextView mDate;
 
     private boolean mAttachedToWindow;
     private boolean mWindowVisible;
@@ -52,7 +58,8 @@ public final class DateView extends LinearLayout implements OnClickListener, OnT
             final String action = intent.getAction();
             if (Intent.ACTION_TIME_TICK.equals(action)
                     || Intent.ACTION_TIME_CHANGED.equals(action)
-                    || Intent.ACTION_TIMEZONE_CHANGED.equals(action)) {
+                    || Intent.ACTION_TIMEZONE_CHANGED.equals(action)
+                    || Intent.ACTION_LOCALE_CHANGED.equals(action)) {
                 updateClock();
             }
         }
@@ -60,8 +67,47 @@ public final class DateView extends LinearLayout implements OnClickListener, OnT
 
     public DateView(Context context, AttributeSet attrs) {
         super(context, attrs);
+
+        // Layout params
+        setOrientation(LinearLayout.VERTICAL);
+
+        // Create the text views
+        mDoW = new TextView(context, attrs);
+        mDoW.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, 0, 1.0f));
+        mDoW.setSingleLine();
+        mDoW.setEllipsize(TruncateAt.END);
+        mDoW.setTextAppearance(context, R.style.TextAppearance_StatusBar_Expanded_Date);
+        mDoW.setIncludeFontPadding(false);
+        mDate = new TextView(context, attrs);
+        mDate.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, 0, 1.0f));
+        mDate.setSingleLine();
+        mDate.setEllipsize(TruncateAt.END);
+        mDate.setTextAppearance(context, R.style.TextAppearance_StatusBar_Expanded_Date);
+        mDate.setIncludeFontPadding(false);
         setOnClickListener(this);
         setOnTouchListener(this);
+
+        mDefaultColor = mDate.getCurrentTextColor();
+
+        // Extract how DoW and Date are distributed in the layout
+        // The format is distributed as %1$s\n%2$s or %2$s\n%1$s but always in
+        // two lines. Otherwise assume DoW = Top and Date = Bottom
+        int positionDoW = 0;
+        int positionDate = 1;
+        try {
+            String format = context.getString(R.string.status_bar_date_formatter);
+            String[] positions = format.split("\n");
+            if (positions.length == 2) {
+                positionDoW = positions[0].indexOf("1") != -1 ? 0 : 1;
+                positionDate = positions[1].indexOf("2") != -1 ? 1 : 0;
+            }
+        } catch (Exception ex) {
+            Slog.w(TAG, "Error extracting DoW and Date positions", ex);
+        }
+
+        // Add the TextViews
+        addView(positionDoW == 0 ? mDoW : mDate);
+        addView(positionDate != 0 ? mDate : mDoW);
     }
 
     @Override
@@ -70,7 +116,7 @@ public final class DateView extends LinearLayout implements OnClickListener, OnT
         mAttachedToWindow = true;
         setUpdates();
     }
-    
+
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
@@ -102,7 +148,16 @@ public final class DateView extends LinearLayout implements OnClickListener, OnT
         Date now = new Date();
         CharSequence dow = DateFormat.format("EEEE", now);
         CharSequence date = DateFormat.getLongDateFormat(context).format(now);
-        setText(context.getString(R.string.status_bar_date_formatter, dow, date));
+        mDoW.setText(dow);
+        mDate.setText(date);
+    }
+
+    public final TextView getDoW() {
+        return mDoW;
+    }
+
+    public final TextView getDate() {
+        return mDate;
     }
 
     private boolean isVisible() {
@@ -130,6 +185,7 @@ public final class DateView extends LinearLayout implements OnClickListener, OnT
                 filter.addAction(Intent.ACTION_TIME_TICK);
                 filter.addAction(Intent.ACTION_TIME_CHANGED);
                 filter.addAction(Intent.ACTION_TIMEZONE_CHANGED);
+                filter.addAction(Intent.ACTION_LOCALE_CHANGED);
                 mContext.registerReceiver(mIntentReceiver, filter, null, null);
                 updateClock();
             } else {
