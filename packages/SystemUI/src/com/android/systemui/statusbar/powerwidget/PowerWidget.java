@@ -452,17 +452,12 @@ public class PowerWidget extends FrameLayout {
         // now check if we need to display the widget still
         boolean displayPowerWidget = Settings.System.getInt(resolver,
                    Settings.System.EXPANDED_VIEW_WIDGET, 1) == 1;
-        View notifScroll = ((ViewGroup) getParent()).findViewById(R.id.scroll);
-        MarginLayoutParams param = (MarginLayoutParams) notifScroll.getLayoutParams();
         if(!displayPowerWidget) {
-            param.topMargin = (int) getResources().getDimension(R.dimen.notification_panel_header_height);
             setVisibility(View.GONE);
         } else if(displayPowerWidget && (mBrightnessLocation == BRIGHTNESS_LOC_NONE)) {
-            param.topMargin = (int) getResources().getDimension(R.dimen.notification_panel_header_and_widget);
             setVisibility(View.VISIBLE);
         } 
 	else {
-            param.topMargin = (int) getResources().getDimension(R.dimen.notification_panel_header_widget_and_brightness);
             setVisibility(View.VISIBLE);
         }
     }
