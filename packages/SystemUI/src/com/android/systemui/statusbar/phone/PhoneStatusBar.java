@@ -144,6 +144,7 @@ public class PhoneStatusBar extends BaseStatusBar {
 
     private boolean mBrightnessControl;
     private boolean mAutoBrightness;
+    private boolean mHighEndGfx;
 
     private static final int NOTIFICATION_PRIORITY_MULTIPLIER = 10; // see NotificationManagerService
     private static final int HIDE_ICONS_BELOW_SCORE = Notification.PRIORITY_LOW * NOTIFICATION_PRIORITY_MULTIPLIER;
@@ -2312,7 +2313,7 @@ public class PhoneStatusBar extends BaseStatusBar {
         final int barh = getCloseViewHeight() + getStatusBarHeight();
         final float frac = saturate((float)(panelh - barh) / (disph - barh));
 
-        if (DIM_BEHIND_EXPANDED_PANEL && ActivityManager.isHighEndGfx(mDisplay)) {
+        if (DIM_BEHIND_EXPANDED_PANEL && mHighEndGfx) {
             // woo, special effects
             final float k = (float)(1f-0.5f*(1f-Math.cos(3.14159f * Math.pow(1f-frac, 2.2f))));
             final int color = ((int)(0xB0 * k)) << 24;
@@ -2789,6 +2790,8 @@ public class PhoneStatusBar extends BaseStatusBar {
                     Settings.System.SCREEN_BRIGHTNESS_MODE), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.EXPANDED_VIEW_WIDGET), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+            	    Settings.System.HIGH_END_GFX_ENABLED), false, this);
         }
 
         @Override
@@ -2872,5 +2875,6 @@ public class PhoneStatusBar extends BaseStatusBar {
                 Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC;
         mBrightnessControl = !autoBrightness && Settings.System.getInt(
                 resolver, Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL, 0) == 1;
+        mHighEndGfx = Settings.System.getInt(resolver,Settings.System.HIGH_END_GFX_ENABLED, 0) != 0;
     }
 }
