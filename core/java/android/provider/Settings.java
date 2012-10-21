@@ -2789,6 +2789,12 @@ public final class Settings {
          */
         public static final String POWER_MENU_AIRPLANEMODE_ENABLED = "power_menu_airplanemode_enabled";
 
+		/**
+         *Whether power menu full screen toggle is enabled
+         * @hide
+         */
+        public static final String POWER_MENU_EXPANDED_DESKTOP_ENABLED = "power_menu_expanded_desktop_enabled";
+
         /**
          * Whether power menu silent toggle is enabled
          * @hide
@@ -2879,6 +2885,12 @@ public final class Settings {
           * @hide
           */
          public static final String VOLUME_KEY_CURSOR_CONTROL = "volume_key_cursor_control";
+
+		 /**
+          * Statusbar State
+ 		  * @hide
+          */
+         public static final String EXPANDED_DESKTOP_STATE = "expanded_desktop_state";
 
         /**
          * Show the pending notification counts as overlays on the status bar

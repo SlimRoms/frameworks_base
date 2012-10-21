@@ -96,6 +96,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
     private Action mSilentModeAction;
     private ToggleAction mAirplaneModeOn;
+	private ToggleAction mExpandDesktopModeOn;
 
     private MyAdapter mAdapter;
 
@@ -114,7 +115,8 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
     private static final String POWER_MENU_SCREENSHOT_ENABLED = "power_menu_screenshot_enabled";
     private static final String POWER_MENU_AIRPLANEMODE_ENABLED = "power_menu_airplanemode_enabled";
     private static final String POWER_MENU_SILENTTOGGLE_ENABLED = "power_menu_silenttoggle_enabled";
-
+    private static final String POWER_MENU_EXPANDED_DESKTOP_ENABLED = "power_menu_expanded_desktop_enabled";
+	
     /**
      * @param context everything needs a context :(
      */
@@ -192,6 +194,28 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         } else {
             mSilentModeAction = new SilentModeTriStateAction(mContext, mAudioManager, mHandler);
         }
+
+        mExpandDesktopModeOn = new ToggleAction(
+                R.drawable.ic_lock_expanded_desktop,
+                R.drawable.ic_lock_expanded_desktop,
+                R.string.global_actions_toggle_expanded_desktop_mode,
+                R.string.global_actions_expanded_desktop_mode_on_status,
+                R.string.global_actions_expanded_desktop_mode_off_status) {
+
+            void onToggle(boolean on) {
+                changeExpandDesktopModeSystemSetting(on);
+            }
+
+            public boolean showDuringKeyguard() {
+                return false;
+            }
+
+            public boolean showBeforeProvisioning() {
+                return false;
+            }
+        };
+        onExpandDesktopModeChanged();
+
         mAirplaneModeOn = new ToggleAction(
                 R.drawable.ic_lock_airplane_mode,
                 R.drawable.ic_lock_airplane_mode_off,
@@ -283,7 +307,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         }
 
         // next: profile
-        // only shown if both system profiles and the menu item is enabled, enabled by default
+        // only shown if both system profiles and the menu item is enabled, disabled by default
         if ((Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.SYSTEM_PROFILES_ENABLED, 1) == 1) &&
                 (Settings.System.getInt(mContext.getContentResolver(),
@@ -325,7 +349,12 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                     }
                 });
         }
-
+        // next: expanded desktop toggle
+        // only shown if enabled, disabled by default
+        if (Settings.System.getInt(mContext.getContentResolver(), POWER_MENU_EXPANDED_DESKTOP_ENABLED, 0) == 1) {
+            mItems.add(mExpandDesktopModeOn);
+        }
+		
         // next: airplane mode - only shown if enabled, enabled by default
         if (Settings.System.getInt(mContext.getContentResolver(), POWER_MENU_AIRPLANEMODE_ENABLED, 1) == 1) {
             mItems.add(mAirplaneModeOn);
@@ -1072,6 +1101,14 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         mAirplaneModeOn.updateState(mAirplaneState);
     }
 
+    private void onExpandDesktopModeChanged() {
+        boolean expandDesktopModeOn = Settings.System.getInt(
+                mContext.getContentResolver(),
+                Settings.System.EXPANDED_DESKTOP_STATE,
+                0) == 1;
+        mExpandDesktopModeOn.updateState(expandDesktopModeOn ? ToggleAction.State.On : ToggleAction.State.Off);
+    }	
+
     /**
      * Change the airplane mode system setting
      */
@@ -1087,6 +1124,16 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         if (!mHasTelephony) {
             mAirplaneState = on ? ToggleAction.State.On : ToggleAction.State.Off;
         }
+    }
+
+    /**
+     * Change the expand desktop mode system setting
+     */
+    private void changeExpandDesktopModeSystemSetting(boolean on) {
+        Settings.System.putInt(
+                mContext.getContentResolver(),
+                Settings.System.EXPANDED_DESKTOP_STATE,
+                on ? 1 : 0);
     }
 
     private IWindowManager getWindowManager() {
