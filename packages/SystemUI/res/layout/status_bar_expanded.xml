@@ -60,7 +60,7 @@
 	<com.android.systemui.statusbar.powerwidget.PowerWidget
             android:id="@+id/exp_power_stat"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/notification_panel_header_and_brightness"
+            android:layout_height="wrap_content"
         />
 
         <TextView
