@@ -1308,6 +1308,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 * DisplayMetrics.DENSITY_DEFAULT
                 / DisplayMetrics.DENSITY_DEVICE;
 
+        // tabletui switch
+        boolean mTabletui = Settings.System.getBoolean(mContext.getContentResolver(), Settings.System.MODE_TABLET_UI, false);
+        if (!mTabletui) 
+      {
         if (shortSizeDp < 600) {
             // 0-599dp: "phone" UI with a separate status & navigation bar
             mHasSystemNavBar = false;
@@ -1327,6 +1331,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             Settings.System.putInt(mContext.getContentResolver(),
                     Settings.System.TABLET_UI, 1);
         }
+    }else {
+          mHasSystemNavBar = true;
+          mNavigationBarCanMove = false;
+         }
 
         if (mHasSystemNavBar) {
             final int showByDefault = mContext.getResources().getBoolean(
