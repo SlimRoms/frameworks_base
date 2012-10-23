@@ -219,7 +219,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="302dip">
+        android:layout_height="422dip">
 
     <!-- CyanogenMod Calendar Panel -->
     <LinearLayout
@@ -314,7 +314,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="12dip"
+            android:layout_marginBottom="102dip"
             android:gravity="center_horizontal"
             android:singleLine="true"
             android:ellipsize="marquee"
