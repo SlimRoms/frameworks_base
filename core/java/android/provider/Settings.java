@@ -2439,6 +2439,22 @@ public final class Settings {
          */
         public static final String WIDGET_BUTTONS_TABLET = "expanded_widget_buttons_tablet";
 
+         /**
+
+         * Statusbar transparency value
+         * from 0% to 100%
+         * @hide
+         */
+        public static final String STATUS_BAR_TRANSPARENCY = "status_bar_transparency";
+
+
+         /**
+         * Navigation bar transparency value
+         * from 0% to 100%
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_TRANSPARENCY = "navigation_bar_transparency";
+
         /**
 
          * Navigation controls to Use
