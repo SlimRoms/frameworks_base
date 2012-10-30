@@ -3492,55 +3492,92 @@ public final class Settings {
          */
         public static final int SYSTEMUI_NAVBAR_COLOR_DEF = 0xFF000000;
 
+
         /**
-         * @hide
-         */
+		* @hide
+		*/
         public static final String SYSTEMUI_NAVRING_1 = "systemui_navring_1";
 
         /**
-         * @hide
-         */
+		* @hide
+		*/
         public static final String SYSTEMUI_NAVRING_2 = "systemui_navring_2";
 
         /**
-         * @hide
-         */
+		* @hide
+		*/
         public static final String SYSTEMUI_NAVRING_3 = "systemui_navring_3";
 
         /**
-         * @hide
-         */
+		* @hide
+		*/
+        public static final String SYSTEMUI_NAVRING_4 = "systemui_navring_4";
+
+        /**
+		* @hide
+		*/
+        public static final String SYSTEMUI_NAVRING_5 = "systemui_navring_5";
+
+        /**
+		* @hide
+		*/
+        public static final String SYSTEMUI_NAVRING_AMOUNT = "systemui_navring_amount";
+
+        /**
+		* @hide
+		*/
         public static final String SYSTEMUI_NAVRING_ASSIST = "assist";
 
         /**
-         * hide
-         */
+		* @hide
+		*/
         public static final String SYSTEMUI_SOFTKEY_REBOOT = "reboot";
-        
+
         /**
-         * hide
-         */
+		* @hide
+		*/
         public static final String SYSTEMUI_SOFTKEY_SCREENSHOT = "screenshot";
-        
+
         /**
-         * hide
-         */
+		* @hide
+		*/
         public static final String SYSTEMUI_SOFTKEY_SCREENOFF = "screenoff";
-        
+
         /**
-         * hide
-         */
+		* @hide
+		*/
+		public static final String SYSTEMUI_SOFTKEY_IME_SWITCHER = "ime_switcher";
+
+        /**
+		* hide
+		*/
+		public static final String SYSTEMUI_SOFTKEY_RING_VIB = "ring_vib";
+
+        /**
+		* hide
+		*/
+		public static final String SYSTEMUI_SOFTKEY_RING_SILENT = "ring_silent";
+
+        /**
+		* hide
+		*/
+		public static final String SYSTEMUI_SOFTKEY_RING_VIB_SILENT = "ring_vib_silent";
+
+        /**
+		* @hide
+		*/
         public static final String SYSTEMUI_SOFTKEY_KILL_PROCESS = "killcurrent";
 
         /**
-         * @hide
-         */
+		* @hide
+		*/
         public static final String SYSTEMUI_NAVRING_OVERRIDE_HOME = "systemui_navring_override_home";
 
         /**
-         * @hide
-         */
+		* @hide
+		*/
         public static final int SYSTEMUI_NAVRING_OVERRIDE_HOME_DEF = 0;
+
 
         /**
          * Holds the text for the Carrier Label. An empty string will bring

@@ -8,7 +8,7 @@
 ** you may not use this file except in compliance with the License.
 ** You may obtain a copy of the License at
 **
-** http://www.apache.org/licenses/LICENSE-2.0
+**     http://www.apache.org/licenses/LICENSE-2.0
 **
 ** Unless required by applicable law or agreed to in writing, software
 ** distributed under the License is distributed on an "AS IS" BASIS,
@@ -44,17 +44,18 @@
                 android:id="@+id/glow_pad_view"
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/navbar_search_panel_height"
+                android:layout_height="400dp"
                 android:layout_alignParentBottom="true"
-                android:layout_gravity="bottom|center_horizontal"
-                android:gravity="top|center_horizontal"
+                android:layout_gravity="bottom|left"
+                android:gravity="top|right"
+                android:layout_marginLeft="-725dip"
 
                 prvandroid:targetDrawables="@array/navbar_search_targets"
                 prvandroid:targetDescriptions="@array/navbar_search_target_descriptions"
                 prvandroid:directionDescriptions="@array/navbar_search_direction_descriptions"
                 prvandroid:handleDrawable="@drawable/navbar_search_handle"
-                prvandroid:outerRingDrawable="@drawable/navbar_search_outerring"
-                prvandroid:outerRadius="@dimen/navbar_search_outerring_radius"
+                prvandroid:outerRingDrawable="@drawable/navbar_search_outerring_left"
+                prvandroid:outerRadius="304dp"
                 prvandroid:innerRadius="@*android:dimen/glowpadview_inner_radius"
                 prvandroid:snapMargin="@dimen/navbar_search_snap_margin"
                 prvandroid:feedbackCount="0"
