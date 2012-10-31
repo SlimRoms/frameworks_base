@@ -1319,9 +1319,7 @@
   <java-symbol type="layout" name="keyguard_screen_sim_puk_landscape" />
   <java-symbol type="layout" name="keyguard_screen_sim_puk_portrait" />
   <java-symbol type="layout" name="keyguard_screen_tab_unlock" />
-  <java-symbol type="layout" name="keyguard_screen_tab_unlock_centered" />
   <java-symbol type="layout" name="keyguard_screen_tab_unlock_six_eight" />
-  <java-symbol type="layout" name="keyguard_screen_tab_unlock_six_eight_centered" />
   <java-symbol type="layout" name="keyguard_screen_tab_unlock_land" />
   <java-symbol type="layout" name="keyguard_screen_unlock_landscape" />
   <java-symbol type="layout" name="keyguard_screen_unlock_portrait" />

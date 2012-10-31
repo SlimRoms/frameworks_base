@@ -87,8 +87,11 @@
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="8dip"
+            android:paddingRight="8dip"
             android:focusable="true"
 
             android:targetDrawables="@array/lockscreen_targets_with_camera"

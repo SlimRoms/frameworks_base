@@ -2781,7 +2781,7 @@ public final class Settings {
          */
         public static final String LOCKSCREEN_ALWAYS_SHOW_BATTERY = "lockscreen_always_show_battery";
 
-        /**
+         /**
          * Where to align the clock on the lockscreen
          * @hide
          */
