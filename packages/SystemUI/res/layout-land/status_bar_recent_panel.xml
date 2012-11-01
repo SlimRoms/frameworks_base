@@ -71,12 +71,12 @@
         </com.android.systemui.recent.RecentsHorizontalScrollView>
 
         <Button android:id="@+id/recents_kill_all_button"
+			android:background="@drawable/recents_button"
             android:layout_gravity="bottom|right"
             android:layout_marginTop="5dp"
             android:layout_marginRight="5dp"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="@string/recents_kill_all_button_text"/>
+            android:layout_width="wrap_content" />
 
     </FrameLayout>
 
@@ -87,3 +87,4 @@
         android:visibility="invisible" />
 
 </com.android.systemui.recent.RecentsPanelView>
+

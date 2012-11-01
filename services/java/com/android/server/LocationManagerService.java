@@ -2133,7 +2133,13 @@ public class LocationManagerService extends ILocationManager.Stub implements Run
 
                 final ConnectivityManager connManager = (ConnectivityManager) context
                         .getSystemService(Context.CONNECTIVITY_SERVICE);
-                final NetworkInfo info = connManager.getActiveNetworkInfo();
+                final NetworkInfo retInfo =
+                        (NetworkInfo) intent.getParcelableExtra(ConnectivityManager.EXTRA_NETWORK_INFO);
+
+                // Pull the latest data. Note we cannot use getActiveNetworkInfo() here as this
+                // broadcast may be for a different mobile type than the current dominant connection,
+                // such as SUPL, and GpsLocationProvider needs to process those.
+                final NetworkInfo info = connManager.getNetworkInfo(retInfo.getType());
 
                 // Notify location providers of current network state
                 synchronized (mLock) {
@@ -2280,13 +2286,12 @@ public class LocationManagerService extends ILocationManager.Stub implements Run
     public void removeTestProvider(String provider) {
         checkMockPermissionsSafe();
         synchronized (mLock) {
-            MockProvider mockProvider = mMockProviders.get(provider);
+            MockProvider mockProvider = mMockProviders.remove(provider);
             if (mockProvider == null) {
                 throw new IllegalArgumentException("Provider \"" + provider + "\" unknown");
             }
             long identity = Binder.clearCallingIdentity();
             removeProvider(mProvidersByName.get(provider));
-            mMockProviders.remove(mockProvider);
             // reinstall real provider if we were mocking GPS or network provider
             if (LocationManager.GPS_PROVIDER.equals(provider) &&
                     mGpsLocationProvider != null) {
