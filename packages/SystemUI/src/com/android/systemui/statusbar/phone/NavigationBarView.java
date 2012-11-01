@@ -938,7 +938,7 @@ public class NavigationBarView extends LinearLayout {
                 Settings.System.SYSTEMUI_NAVBAR_COLOR,
                 Settings.System.SYSTEMUI_NAVBAR_COLOR_DEF);
         this.setBackground(new ColorDrawable(color));
-        float opacity = Settings.System.getFloat(mContext.getContentResolver(), Settings.System.NAVIGATION_BAR_TRANSPARENCY, 0.7f);
-        this.getBackground().setAlpha((int) (opacity * 255));
+        float opacity = Settings.System.getFloat(mContext.getContentResolver(), Settings.System.NAVIGATION_BAR_TRANSPARENCY, 0.0f);
+        this.getBackground().setAlpha((int) ((1-opacity) * 255));
     }
 }

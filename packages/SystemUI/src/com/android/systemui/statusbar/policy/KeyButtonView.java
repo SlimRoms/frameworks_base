@@ -374,7 +374,7 @@ public class KeyButtonView extends ImageView {
                 Settings.System.NAVIGATION_BAR_GLOW_DURATION[0], 10);
         durationSpeedOn = Settings.System.getInt(resolver,
                 Settings.System.NAVIGATION_BAR_GLOW_DURATION[1], 100);
-        BUTTON_QUIESCENT_ALPHA = Settings.System.getFloat(resolver, Settings.System.NAVIGATION_BAR_BUTTON_ALPHA, 0.7f);
+        BUTTON_QUIESCENT_ALPHA = (1-(Settings.System.getFloat(resolver, Settings.System.NAVIGATION_BAR_BUTTON_ALPHA, 0.3f)));
 
         setDrawingAlpha(BUTTON_QUIESCENT_ALPHA);
 

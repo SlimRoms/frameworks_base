@@ -774,8 +774,8 @@ public class PhoneStatusBar extends BaseStatusBar {
     protected void setNavigationBarParams(){
 		if (mNavigationBarView == null) return;
 		ContentResolver resolver = mContext.getContentResolver();
-        float opacity = Settings.System.getFloat(resolver, Settings.System.NAVIGATION_BAR_TRANSPARENCY, 0.7f);
-        mNavigationBarView.getBackground().setAlpha((int) (opacity * 255));
+        float opacity = Settings.System.getFloat(resolver, Settings.System.NAVIGATION_BAR_TRANSPARENCY, 0.0f);
+        mNavigationBarView.getBackground().setAlpha((int) ((1-opacity) * 255));
     }
 
     // For small-screen devices (read: phones) that lack hardware navigation buttons
