@@ -2439,6 +2439,22 @@ public final class Settings {
          */
         public static final String WIDGET_BUTTONS_TABLET = "expanded_widget_buttons_tablet";
 
+         /**
+
+         * Statusbar transparency value
+         * from 0% to 100%
+         * @hide
+         */
+        public static final String STATUS_BAR_TRANSPARENCY = "status_bar_transparency";
+
+
+         /**
+         * Navigation bar transparency value
+         * from 0% to 100%
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_TRANSPARENCY = "navigation_bar_transparency";
+
         /**
 
          * Navigation controls to Use
@@ -2771,7 +2787,7 @@ public final class Settings {
          */
         public static final String LOCKSCREEN_ALWAYS_SHOW_BATTERY = "lockscreen_always_show_battery";
 
-        /**
+         /**
          * Where to align the clock on the lockscreen
          * @hide
          */
@@ -3500,55 +3516,92 @@ public final class Settings {
          */
         public static final int SYSTEMUI_NAVBAR_COLOR_DEF = 0xFF000000;
 
+
         /**
-         * @hide
-         */
+		* @hide
+		*/
         public static final String SYSTEMUI_NAVRING_1 = "systemui_navring_1";
 
         /**
-         * @hide
-         */
+		* @hide
+		*/
         public static final String SYSTEMUI_NAVRING_2 = "systemui_navring_2";
 
         /**
-         * @hide
-         */
+		* @hide
+		*/
         public static final String SYSTEMUI_NAVRING_3 = "systemui_navring_3";
 
         /**
-         * @hide
-         */
+		* @hide
+		*/
+        public static final String SYSTEMUI_NAVRING_4 = "systemui_navring_4";
+
+        /**
+		* @hide
+		*/
+        public static final String SYSTEMUI_NAVRING_5 = "systemui_navring_5";
+
+        /**
+		* @hide
+		*/
+        public static final String SYSTEMUI_NAVRING_AMOUNT = "systemui_navring_amount";
+
+        /**
+		* @hide
+		*/
         public static final String SYSTEMUI_NAVRING_ASSIST = "assist";
 
         /**
-         * hide
-         */
+		* @hide
+		*/
         public static final String SYSTEMUI_SOFTKEY_REBOOT = "reboot";
-        
+
         /**
-         * hide
-         */
+		* @hide
+		*/
         public static final String SYSTEMUI_SOFTKEY_SCREENSHOT = "screenshot";
-        
+
         /**
-         * hide
-         */
+		* @hide
+		*/
         public static final String SYSTEMUI_SOFTKEY_SCREENOFF = "screenoff";
-        
+
         /**
-         * hide
-         */
+		* @hide
+		*/
+		public static final String SYSTEMUI_SOFTKEY_IME_SWITCHER = "ime_switcher";
+
+        /**
+		* hide
+		*/
+		public static final String SYSTEMUI_SOFTKEY_RING_VIB = "ring_vib";
+
+        /**
+		* hide
+		*/
+		public static final String SYSTEMUI_SOFTKEY_RING_SILENT = "ring_silent";
+
+        /**
+		* hide
+		*/
+		public static final String SYSTEMUI_SOFTKEY_RING_VIB_SILENT = "ring_vib_silent";
+
+        /**
+		* @hide
+		*/
         public static final String SYSTEMUI_SOFTKEY_KILL_PROCESS = "killcurrent";
 
         /**
-         * @hide
-         */
+		* @hide
+		*/
         public static final String SYSTEMUI_NAVRING_OVERRIDE_HOME = "systemui_navring_override_home";
 
         /**
-         * @hide
-         */
+		* @hide
+		*/
         public static final int SYSTEMUI_NAVRING_OVERRIDE_HOME_DEF = 0;
+
 
         /**
          * Holds the text for the Carrier Label. An empty string will bring

@@ -41,6 +41,10 @@ import android.content.pm.ActivityInfo;
 import android.content.ServiceConnection;
 import android.database.ContentObserver;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
+import android.graphics.drawable.StateListDrawable;
+import android.media.AudioManager;
+import android.media.ToneGenerator;
 import android.os.Vibrator;
 import android.os.Handler;
 import android.os.IBinder;
@@ -101,6 +105,8 @@ public class SearchPanelView extends FrameLayout implements
     private TargetObserver mTargetObserver;
     private ContentResolver mContentResolver;
     private List<String> targetList;
+    private int mNavRingAmount;
+    private boolean mTabletui;
 
     public SearchPanelView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
@@ -114,9 +120,17 @@ public class SearchPanelView extends FrameLayout implements
 
         mContentResolver = mContext.getContentResolver();
         mTargetObserver = new TargetObserver(new Handler());
-  
-        targetList = Arrays.asList(Settings.System.SYSTEMUI_NAVRING_1, Settings.System.SYSTEMUI_NAVRING_2, Settings.System.SYSTEMUI_NAVRING_3);
-        
+
+        mTabletui = Settings.System.getBoolean(mContext.getContentResolver(),
+                        Settings.System.MODE_TABLET_UI, false);
+
+        mNavRingAmount = Settings.System.getInt(mContext.getContentResolver(),
+                         Settings.System.SYSTEMUI_NAVRING_AMOUNT, 1);
+
+        targetList = Arrays.asList(Settings.System.SYSTEMUI_NAVRING_1, Settings.System.SYSTEMUI_NAVRING_2,
+                                   Settings.System.SYSTEMUI_NAVRING_3, Settings.System.SYSTEMUI_NAVRING_4,
+                                   Settings.System.SYSTEMUI_NAVRING_5);
+
         for (int i = 0; i < targetList.size(); i++) {
             mContentResolver.registerContentObserver(Settings.System.getUriFor(targetList.get(i)), false, mTargetObserver);
         }
@@ -144,17 +158,17 @@ public class SearchPanelView extends FrameLayout implements
         String targetKey;
 
         int targetListOffset;
-        if (screenLayout() == Configuration.SCREENLAYOUT_SIZE_LARGE 
+        if (screenLayout() == Configuration.SCREENLAYOUT_SIZE_LARGE
                 || screenLayout() == Configuration.SCREENLAYOUT_SIZE_XLARGE) {
-            targetListOffset = -1;
+            targetListOffset = 0;
         } else {
-            if (isScreenPortrait() == true) {
-                targetListOffset = -1;
+            if (isScreenPortrait() == true || mTabletui) {
+                targetListOffset = 0;
             } else {
-                targetListOffset = -3;
+                targetListOffset = -2;
             }
         }
-      
+
         if (target <= targetList.size()) {
             targetKey = Settings.System.getString(mContext.getContentResolver(), targetList.get(target + targetListOffset));
         } else {
@@ -176,8 +190,10 @@ public class SearchPanelView extends FrameLayout implements
                     ActivityManager.RECENT_IGNORE_UNAVAILABLE)) {
                 if (task != null && task.origActivity != null &&
                         task.origActivity.equals(component)) {
-                    activityManager.moveTaskToFront(task.id, ActivityManager.MOVE_TASK_WITH_HOME);
+                        if (task.id > 0) {
+                           activityManager.moveTaskToFront(task.id, ActivityManager.MOVE_TASK_WITH_HOME);
                     return true;
+                    }
                 }
             }
 
@@ -185,14 +201,69 @@ public class SearchPanelView extends FrameLayout implements
             Intent intent = new Intent();
             intent.addCategory(Intent.CATEGORY_LAUNCHER);
             intent.setComponent(component);
-            intent.addFlags(Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY
-                    | Intent.FLAG_ACTIVITY_TASK_ON_HOME
+            intent.addFlags(Intent.FLAG_ACTIVITY_TASK_ON_HOME
                     | Intent.FLAG_ACTIVITY_NEW_TASK);
             mContext.startActivity(intent);
             return true;
         } else if (targetKey.equals("screenoff")) {
             vibrate();
             screenOff();
+            return true;
+        } else if (targetKey.equals("ime_switcher")) {
+            vibrate();
+            getContext().sendBroadcast(new Intent("android.settings.SHOW_INPUT_METHOD_PICKER"));
+            return true;
+        } else if (targetKey.equals("ring_vib")) {
+        	AudioManager am = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
+        	if(am != null){
+				if(am.getRingerMode() != AudioManager.RINGER_MODE_VIBRATE) {
+					am.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);		
+				    Vibrator vib = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
+				    if(vib != null){
+					    vib.vibrate(50);
+					}
+				}else{
+					am.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+					ToneGenerator tg = new ToneGenerator(AudioManager.STREAM_NOTIFICATION, (int)(ToneGenerator.MAX_VOLUME * 0.85));
+					if(tg != null){
+						tg.startTone(ToneGenerator.TONE_PROP_BEEP);
+					}
+				}
+			}
+            return true;
+        } else if (targetKey.equals("ring_silent")) {
+        	AudioManager am = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
+        	if(am != null){
+				if(am.getRingerMode() != AudioManager.RINGER_MODE_SILENT) {
+					am.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+				}else{
+					am.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+					ToneGenerator tg = new ToneGenerator(AudioManager.STREAM_NOTIFICATION, (int)(ToneGenerator.MAX_VOLUME * 0.85));
+					if(tg != null){
+						tg.startTone(ToneGenerator.TONE_PROP_BEEP);
+					}
+				}
+			}
+            return true;
+        } else if (targetKey.equals("ring_vib_silent")) {
+        	AudioManager am = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
+        	if(am != null){
+				if(am.getRingerMode() == AudioManager.RINGER_MODE_NORMAL) {
+					am.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);		
+				    Vibrator vib = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
+				    if(vib != null){
+					    vib.vibrate(50);
+					}
+				}else if(am.getRingerMode() == AudioManager.RINGER_MODE_VIBRATE) {
+					am.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+				}else{
+					am.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+					ToneGenerator tg = new ToneGenerator(AudioManager.STREAM_NOTIFICATION, (int)(ToneGenerator.MAX_VOLUME * 0.85));
+					if(tg != null){
+						tg.startTone(ToneGenerator.TONE_PROP_BEEP);
+					}
+				}
+			}
             return true;
         } else if (targetKey.equals("killcurrent")) {
             vibrate();
@@ -268,9 +339,9 @@ public class SearchPanelView extends FrameLayout implements
     }
 
     private void setDrawables() {
-        String target2 = Settings.System.getString(mContext.getContentResolver(), Settings.System.SYSTEMUI_NAVRING_2);
-        if (target2 == null || target2.equals("")) {
-            Settings.System.putString(mContext.getContentResolver(), Settings.System.SYSTEMUI_NAVRING_2, "assist");
+        String target3 = Settings.System.getString(mContext.getContentResolver(), Settings.System.SYSTEMUI_NAVRING_3);
+        if (target3 == null || target3.equals("")) {
+            Settings.System.putString(mContext.getContentResolver(), Settings.System.SYSTEMUI_NAVRING_3, "assist");
         }
 
         // Custom Targets
@@ -280,27 +351,57 @@ public class SearchPanelView extends FrameLayout implements
         int endPosOffset;
 
         if (screenLayout() == Configuration.SCREENLAYOUT_SIZE_XLARGE) {
-            startPosOffset = 1;
-            endPosOffset = 8;
+            startPosOffset = 0;
+            endPosOffset = 11;
         } else if (screenLayout() == Configuration.SCREENLAYOUT_SIZE_LARGE) {
-            startPosOffset = 1;
-            endPosOffset = 4;
-        } else {
-            if (isScreenPortrait() == true) {
-                startPosOffset = 1;
-                endPosOffset = 4;
+            if (mTabletui) {
+                if (mNavRingAmount == 4 || mNavRingAmount == 2) {
+                    startPosOffset = 0;
+                    endPosOffset = 8;
+                } else {
+                    startPosOffset = 0;
+                    endPosOffset = 11;
+                }
             } else {
-                startPosOffset = 3;
-                endPosOffset = 2;
+                if (mNavRingAmount == 4 || mNavRingAmount == 2) {
+                    startPosOffset = 0;
+                    endPosOffset = 1;
+                } else {
+                    startPosOffset = 0;
+                    endPosOffset = 3;
+                }
+            }
+        } else {
+            if (isScreenPortrait() == true || mTabletui) {
+                if (mNavRingAmount == 4 || mNavRingAmount == 2) {
+                startPosOffset = 0;
+                endPosOffset = 1;
+                } else {
+                startPosOffset = 0;
+                endPosOffset = 3;
+                }
+            } else {
+                if (mNavRingAmount == 4 || mNavRingAmount == 2) {
+                startPosOffset = 2;
+                endPosOffset = 0;
+                } else {
+                startPosOffset = 2;
+                endPosOffset = 1;
+                }
             }
         }
 
         List<String> targetActivities = Arrays.asList(Settings.System.getString(
-                                                               mContext.getContentResolver(), targetList.get(0)), 
+
+                                                               mContext.getContentResolver(), targetList.get(0)),
                                                       Settings.System.getString(
-                                                               mContext.getContentResolver(), targetList.get(1)), 
+                                                               mContext.getContentResolver(), targetList.get(1)),
                                                       Settings.System.getString(
-                                                               mContext.getContentResolver(), targetList.get(2)));
+                                                               mContext.getContentResolver(), targetList.get(2)),
+                                                      Settings.System.getString(
+                                                               mContext.getContentResolver(), targetList.get(3)),
+                                                      Settings.System.getString(
+                                                               mContext.getContentResolver(), targetList.get(4)));
 
         // Place Holder Targets
         TargetDrawable cDrawable = new TargetDrawable(mResources, mResources.getDrawable(com.android.internal.R.drawable.ic_lockscreen_camera));
@@ -311,29 +412,51 @@ public class SearchPanelView extends FrameLayout implements
             storedDraw.add(cDrawable);
         }
 
-        // Add User Targets      
+        // Add User Targets
         for (int i = 0; i < targetActivities.size(); i++)
             if (targetActivities.get(i) == null || targetActivities.get(i).equals("") || targetActivities.get(i).equals("none")) {
                 storedDraw.add(cDrawable);
             } else if (targetActivities.get(i).equals("screenshot")) {
-                storedDraw.add(new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_navbar_screenshot)));
+                storedDraw.add(new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_action_screenshot)));
+            } else if (targetActivities.get(i).equals("ime_switcher")) {
+                storedDraw.add(new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_action_ime_switcher)));
+            } else if (targetActivities.get(i).equals("ring_vib")) {
+                storedDraw.add(new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_action_vib)));
+            } else if (targetActivities.get(i).equals("ring_silent")) {
+                storedDraw.add(new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_action_silent)));
+            } else if (targetActivities.get(i).equals("ring_vib_silent")) {
+                storedDraw.add(new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_action_ring_vib_silent)));
             } else if (targetActivities.get(i).equals("killcurrent")) {
-                storedDraw.add(new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_navbar_killtask)));
+                storedDraw.add(new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_action_killtask)));
             } else if (targetActivities.get(i).equals("power")) {
-                storedDraw.add(new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_navbar_power)));
+                storedDraw.add(new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_action_power)));
             } else if (targetActivities.get(i).equals("screenoff")) {
-                storedDraw.add(new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_navbar_power)));
+                storedDraw.add(new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_action_power)));
             } else if (targetActivities.get(i).equals("assist")) {
                 storedDraw.add(new TargetDrawable(mResources, com.android.internal.R.drawable.ic_action_assist_generic));
-            } else if (targetActivities.get(i).startsWith("app:")) {   
+            } else if (targetActivities.get(i).startsWith("app:")) {
                 try {
                     ActivityInfo activityInfo= mPackageManager.getActivityInfo(
-                            ComponentName.unflattenFromString(targetActivities.get(i).substring(4)), 
+                            ComponentName.unflattenFromString(targetActivities.get(i).substring(4)),
                             PackageManager.GET_RECEIVERS);
-                    Drawable activityIcon = activityInfo.loadIcon(mPackageManager);
 
-                    storedDraw.add(new TargetDrawable(mResources, activityIcon));
-            } catch (Exception e) { ///
+                    Drawable activityIcon = activityInfo.loadIcon(mPackageManager);
+                    Drawable iconBg = mResources.getDrawable(R.drawable.ic_navbar_blank);
+                    Drawable iconBgActivated = mResources.getDrawable(R.drawable.ic_navbar_blank_activated);
+
+                    int margin = (int)(iconBg.getIntrinsicHeight() / 3);
+
+                    LayerDrawable icon = new LayerDrawable (new Drawable[] {iconBg, activityIcon});
+                    icon.setLayerInset(1, margin, margin, margin, margin);
+                    LayerDrawable iconActivated = new LayerDrawable (new Drawable[] {iconBgActivated, activityIcon});
+                    iconActivated.setLayerInset(1, margin, margin, margin, margin);
+                    StateListDrawable selector = new StateListDrawable();
+                    selector.addState(new int[] {android.R.attr.state_enabled, -android.R.attr.state_active, -android.R.attr.state_focused}, icon);
+                    selector.addState(new int[] {android.R.attr.state_enabled, android.R.attr.state_active, -android.R.attr.state_focused}, iconActivated);
+                    selector.addState(new int[] {android.R.attr.state_enabled, -android.R.attr.state_active, android.R.attr.state_focused}, iconActivated);
+
+                    storedDraw.add(new TargetDrawable(mResources, selector));
+            } catch (Exception e) {
             }
         }
 
@@ -342,7 +465,7 @@ public class SearchPanelView extends FrameLayout implements
             storedDraw.add(cDrawable);
         }
 
-        mGlowPadView.setTargetResources(storedDraw);  
+        mGlowPadView.setTargetResources(storedDraw);
     }
 
     private void maybeSwapSearchIcon() {
@@ -626,13 +749,13 @@ public class SearchPanelView extends FrameLayout implements
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // TODO Auto-generated method stub
-                if (which == 1 
+                if (which == 1
                         || which == 2
                         || which == 3) {
                         PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
                         pm.reboot((String)item_values[which]);
-                }                    
-            }           
+                }
+            }
         });
         builder.setNegativeButton("Cancel", new Dialog.OnClickListener() {
 
@@ -663,7 +786,7 @@ public class SearchPanelView extends FrameLayout implements
         return mResources.getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
     }
 
-    public class TargetObserver extends ContentObserver {	
+    public class TargetObserver extends ContentObserver {
         public TargetObserver(Handler handler) {
             super(handler);
         }
@@ -678,6 +801,7 @@ public class SearchPanelView extends FrameLayout implements
             super.onChange(selfChange);
             setDrawables();
         }
-    }    
+    }
 
 }
+

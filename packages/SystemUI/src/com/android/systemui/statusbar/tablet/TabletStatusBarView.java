@@ -23,6 +23,7 @@ import com.android.systemui.statusbar.DelegateViewHelper;
 import android.content.Context;
 import android.database.ContentObserver;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.provider.Settings;
 import android.util.AttributeSet;
@@ -161,10 +162,8 @@ public class TabletStatusBarView extends FrameLayout {
         int color = Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.SYSTEMUI_NAVBAR_COLOR,
                 Settings.System.SYSTEMUI_NAVBAR_COLOR_DEF);
-        if (color == -1)
-            color = Settings.System.SYSTEMUI_NAVBAR_COLOR_DEF;
-        // we don't want alpha here
-        color = Color.rgb(Color.red(color), Color.green(color), Color.blue(color));
-        this.setBackgroundColor(color);
+        this.setBackground(new ColorDrawable(color));
+        float opacity = Settings.System.getFloat(mContext.getContentResolver(), Settings.System.NAVIGATION_BAR_TRANSPARENCY, 0.0f);
+        this.getBackground().setAlpha((int) ((1-opacity) * 255));
     }
 }

@@ -30,7 +30,7 @@
 
     <com.android.internal.widget.DigitalClock android:id="@+id/time"
         android:layout_marginTop="@dimen/keyguard_lockscreen_status_line_clockfont_top_margin"
-        android:layout_marginBottom="@dimen/keyguard_lockscreen_status_line_clockfont_bottom_margin"
+        android:layout_marginBottom="12dip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

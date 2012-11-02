@@ -788,7 +788,6 @@ class KeyguardStatusViewManager implements OnClickListener {
             setSpecificMargins(mStatus1View, leftMargin, -1, rightMargin, -1);
         }
     }
-
     private void setSpecificMargins(View view, int left, int top, int right,
             int bottom) {
         MarginLayoutParams params = (MarginLayoutParams) view.getLayoutParams();
