@@ -45,6 +45,7 @@ import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
+import android.net.Uri;
 import android.os.Vibrator;
 import android.os.Handler;
 import android.os.IBinder;
@@ -141,13 +142,20 @@ public class SearchPanelView extends FrameLayout implements
         mBar.animateCollapse(CommandQueue.FLAG_EXCLUDE_SEARCH_PANEL);
         // Launch Assist
         Intent intent = SearchManager.getAssistIntent(mContext);
-        if (intent == null) return;
+		Intent intentNS = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
         try {
             ActivityOptions opts = ActivityOptions.makeCustomAnimation(mContext,
                     R.anim.search_launch_enter, R.anim.search_launch_exit,
                     getHandler(), this);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            mContext.startActivity(intent, opts.toBundle());
+			if (intent != null) {
+	            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    	        mContext.startActivity(intent, opts.toBundle());
+			}else if (intentNS != null){
+	            intentNS.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    	        mContext.startActivity(intentNS, opts.toBundle());
+			}else {
+				return;
+			}
         } catch (ActivityNotFoundException e) {
             Slog.w(TAG, "Activity not found for " + intent.getAction());
             onAnimationStarted();
@@ -536,7 +544,7 @@ public class SearchPanelView extends FrameLayout implements
             setFocusable(true);
             setFocusableInTouchMode(true);
             requestFocus();
-        } else {
+        }  else {
             setVisibility(View.INVISIBLE);
         }
     }
@@ -602,10 +610,6 @@ public class SearchPanelView extends FrameLayout implements
         transitioner.setStartDelay(LayoutTransition.CHANGE_DISAPPEARING, 0);
         transitioner.setAnimator(LayoutTransition.DISAPPEARING, null);
         return transitioner;
-    }
-
-    public boolean isAssistantAvailable() {
-        return SearchManager.getAssistIntent(mContext) != null;
     }
 
     private void screenOff() {
