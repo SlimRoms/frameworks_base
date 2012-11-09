@@ -285,6 +285,10 @@ public class NavigationBarView extends LinearLayout {
                 addButton(navButtonLayout, v, landscape);
                 addLightsOutButton(lightsOut, v, landscape, false);
 
+                if (v.getId() == R.id.back){
+                 mBackIcon = mBackLandIcon = v.getDrawable();
+                }
+
                 if (mNumberOfButtons == 3 && j != (mNumberOfButtons - 1)) {
                     // add separator view here
                     View separator = new View(mContext);
