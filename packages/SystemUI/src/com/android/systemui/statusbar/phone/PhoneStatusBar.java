@@ -16,6 +16,7 @@
 
 package com.android.systemui.statusbar.phone;
 
+
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
 import android.animation.AnimatorListenerAdapter;
@@ -113,8 +114,16 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import java.io.File;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+
+
 public class PhoneStatusBar extends BaseStatusBar {
     static final String TAG = "PhoneStatusBar";
+    
+
     public static final boolean DEBUG = false;
     public static final boolean SPEW = DEBUG;
 
@@ -166,6 +175,8 @@ public class PhoneStatusBar extends BaseStatusBar {
 
     private float mFlingGestureMaxOutputVelocityPx; // how fast can it really go? (should be a little 
                                                     // faster than mSelfCollapseVelocityPx)
+
+	private final String NOTIF_WALLPAPER_IMAGE_PATH = "/data/data/com.android.settings/files/notification_wallpaper.jpg";
 
     PhoneStatusBarPolicy mIconPolicy;
 
@@ -2805,18 +2816,21 @@ public class PhoneStatusBar extends BaseStatusBar {
                     Settings.System.STATUS_BAR_TRANSPARENCY), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
 					Settings.System.NAVIGATION_BAR_TRANSPARENCY), false, this);
+		    resolver.registerContentObserver(Settings.System.getUriFor(
+					Settings.System.NOTIF_WALLPAPER_ALPHA), false, this);
             update();
         }
 
         @Override
         public void onChange(boolean selfChange) {
             updateSettings();
-            update();
+            update();		
         }
         public void update() {
             ContentResolver resolver = mContext.getContentResolver();
             setStatusBarParams(mStatusBarView);
 			setNavigationBarParams();
+			setNotificationWallpaperHelper();
         }
     }
 
@@ -2897,4 +2911,19 @@ public class PhoneStatusBar extends BaseStatusBar {
                 resolver, Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL, 0) == 1;
         mHighEndGfx = Settings.System.getInt(resolver,Settings.System.HIGH_END_GFX_ENABLED, 0) != 0;
     }
-}
+
+    private void setNotificationWallpaperHelper() {
+	    float wallpaperAlpha = Settings.System.getFloat(mContext.getContentResolver(), Settings.System.NOTIF_WALLPAPER_ALPHA, 0.0f);
+        File file = new File(NOTIF_WALLPAPER_IMAGE_PATH);
+
+        if (file.exists()) {
+		    mNotificationPanel.setBackgroundResource(0);
+        } else {
+            mNotificationPanel.setBackgroundResource(R.drawable.notification_panel_bg);
+			Drawable background = mNotificationPanel.getBackground();
+			background.setAlpha((int) ((1-wallpaperAlpha) * 255));
+        }
+    }
+
+
+}	

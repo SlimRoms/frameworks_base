@@ -13,36 +13,48 @@ import android.util.AttributeSet;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
+import com.android.systemui.R;
+import android.database.ContentObserver;
+import android.net.Uri;
+import android.os.Handler;
+import android.content.ContentResolver;
+
 
 class NotificationWallpaper extends FrameLayout {
 
     private final String TAG = "NotificationWallpaperUpdater";
 
-    private final String NOTIF_WALLPAPER_IMAGE_PATH = "/data/data/com.aokp.romcontrol/files/notification_wallpaper.jpg";
+	private final String NOTIF_WALLPAPER_IMAGE_PATH = "/data/data/com.android.settings/files/notification_wallpaper.jpg";
 
     private ImageView mNotificationWallpaperImage;
+    private float wallpaperAlpha;
+
+	Context mContext;
 
     Bitmap bitmapWallpaper;
 
-    float wallpaperAlpha = Settings.System.getFloat(getContext()
-            .getContentResolver(), Settings.System.NOTIF_WALLPAPER_ALPHA, 1.0f);
-
     public NotificationWallpaper(Context context, AttributeSet attrs) {
         super(context);
-
+	mContext = context;
         setNotificationWallpaper();
+	SettingsObserver observer = new SettingsObserver(new Handler());
+        observer.observe();
     }
 
     public void setNotificationWallpaper() {
         File file = new File(NOTIF_WALLPAPER_IMAGE_PATH);
 
         if (file.exists()) {
+		    removeAllViews();
+ 		    wallpaperAlpha = Settings.System.getFloat(getContext()
+         	   .getContentResolver(), Settings.System.NOTIF_WALLPAPER_ALPHA, 0.0f);
+
             mNotificationWallpaperImage = new ImageView(getContext());
             mNotificationWallpaperImage.setScaleType(ScaleType.CENTER);
             addView(mNotificationWallpaperImage, -1, -1);
             bitmapWallpaper = BitmapFactory.decodeFile(NOTIF_WALLPAPER_IMAGE_PATH);
             Drawable d = new BitmapDrawable(getResources(), bitmapWallpaper);
-            d.setAlpha((int) (wallpaperAlpha * 255));
+            d.setAlpha((int) ((1-wallpaperAlpha) * 255));
             mNotificationWallpaperImage.setImageDrawable(d);
         } else {
             removeAllViews();
@@ -56,5 +68,25 @@ class NotificationWallpaper extends FrameLayout {
 
         System.gc();
         super.onDetachedFromWindow();
+    }
+
+class SettingsObserver extends ContentObserver {
+        SettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        void observe() {
+		ContentResolver resolver = mContext.getContentResolver();
+            resolver.registerContentObserver(Settings.System.getUriFor(
+					Settings.System.NOTIF_WALLPAPER_ALPHA), false, this);
+        }
+
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
+		
+    		wallpaperAlpha = Settings.System.getFloat(getContext()
+            .getContentResolver(), Settings.System.NOTIF_WALLPAPER_ALPHA, 0.0f);
+           setNotificationWallpaper();
+        }
     }
 }
