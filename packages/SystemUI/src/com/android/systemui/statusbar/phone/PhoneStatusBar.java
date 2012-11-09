@@ -16,7 +16,6 @@
 
 package com.android.systemui.statusbar.phone;
 
-
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
 import android.animation.AnimatorListenerAdapter;
@@ -124,7 +123,6 @@ import android.graphics.drawable.BitmapDrawable;
 
 public class PhoneStatusBar extends BaseStatusBar {
     static final String TAG = "PhoneStatusBar";
-    
 
     public static final boolean DEBUG = false;
     public static final boolean SPEW = DEBUG;
@@ -178,7 +176,7 @@ public class PhoneStatusBar extends BaseStatusBar {
     private float mFlingGestureMaxOutputVelocityPx; // how fast can it really go? (should be a little 
                                                     // faster than mSelfCollapseVelocityPx)
 
-	private final String NOTIF_WALLPAPER_IMAGE_PATH = "/data/data/com.android.settings/files/notification_wallpaper.jpg";
+    private final String NOTIF_WALLPAPER_IMAGE_PATH = "/data/data/com.android.settings/files/notification_wallpaper.jpg";
 
     PhoneStatusBarPolicy mIconPolicy;
 
@@ -709,9 +707,9 @@ public class PhoneStatusBar extends BaseStatusBar {
         // a bit jarring
         mRecentsPanel.setMinSwipeAlpha(0.03f);
         if (mNavigationBarView != null) {
-        	if (mNavigationBarView.getRecentsButton() !=null) {
-            mNavigationBarView.getRecentsButton().setOnTouchListener(mRecentsPanel);
-        	}
+            if (mNavigationBarView.getRecentsButton() !=null) {
+                mNavigationBarView.getRecentsButton().setOnTouchListener(mRecentsPanel);
+            }
         }
     }
 
@@ -805,18 +803,18 @@ public class PhoneStatusBar extends BaseStatusBar {
         mNavigationBarView.reorient();
         
         if (mNavigationBarView.getRecentsButton() != null){ 
-        	mNavigationBarView.getRecentsButton().setOnClickListener(mRecentsClickListener);
-        	mNavigationBarView.getRecentsButton().setOnTouchListener(mRecentsPanel);
+            mNavigationBarView.getRecentsButton().setOnClickListener(mRecentsClickListener);
+            mNavigationBarView.getRecentsButton().setOnTouchListener(mRecentsPanel);
         }
         if (mNavigationBarView.getHomeButton() != null) {
-        		mNavigationBarView.getHomeButton().setOnTouchListener(mHomeSearchActionListener);
+            mNavigationBarView.getHomeButton().setOnTouchListener(mHomeSearchActionListener);
         }
         updateSearchPanel();
     }
 
     protected void setNavigationBarParams(){
-		if (mNavigationBarView == null) return;
-		ContentResolver resolver = mContext.getContentResolver();
+        if (mNavigationBarView == null) return;
+        ContentResolver resolver = mContext.getContentResolver();
         float opacity = Settings.System.getFloat(resolver, Settings.System.NAVIGATION_BAR_TRANSPARENCY, 0.0f);
         mNavigationBarView.getBackground().setAlpha((int) ((1-opacity) * 255));
     }
@@ -1226,7 +1224,7 @@ public class PhoneStatusBar extends BaseStatusBar {
             clock.setVisibility(show ? View.VISIBLE : View.GONE);
         }
         if (centerClock && cclock != null) {
-        	cclock.setVisibility(show ? View.VISIBLE : View.GONE);
+            cclock.setVisibility(show ? View.VISIBLE : View.GONE);
         }
     }
 
@@ -2674,8 +2672,8 @@ public class PhoneStatusBar extends BaseStatusBar {
             } catch (IOException e) {
                 // we're screwed here fellas
             }
-			setStatusBarParams(mStatusBarView);
-		    setNavigationBarParams();
+            setStatusBarParams(mStatusBarView);
+            setNavigationBarParams();
         } else {
 
             if (mClearButton instanceof TextView) {
@@ -2842,26 +2840,26 @@ public class PhoneStatusBar extends BaseStatusBar {
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.EXPANDED_VIEW_WIDGET), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
-            	    Settings.System.HIGH_END_GFX_ENABLED), false, this);
+                    Settings.System.HIGH_END_GFX_ENABLED), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_TRANSPARENCY), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
-					Settings.System.NAVIGATION_BAR_TRANSPARENCY), false, this);
-		    resolver.registerContentObserver(Settings.System.getUriFor(
-					Settings.System.NOTIF_WALLPAPER_ALPHA), false, this);
+                    Settings.System.NAVIGATION_BAR_TRANSPARENCY), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.NOTIF_WALLPAPER_ALPHA), false, this);
             update();
         }
 
         @Override
         public void onChange(boolean selfChange) {
             updateSettings();
-            update();		
+            update();
         }
         public void update() {
             ContentResolver resolver = mContext.getContentResolver();
             setStatusBarParams(mStatusBarView);
-			setNavigationBarParams();
-			setNotificationWallpaperHelper();
+            setNavigationBarParams();
+            setNotificationWallpaperHelper();
         }
     }
 
@@ -2944,17 +2942,17 @@ public class PhoneStatusBar extends BaseStatusBar {
     }
 
     private void setNotificationWallpaperHelper() {
-	    float wallpaperAlpha = Settings.System.getFloat(mContext.getContentResolver(), Settings.System.NOTIF_WALLPAPER_ALPHA, 0.0f);
+        float wallpaperAlpha = Settings.System.getFloat(mContext.getContentResolver(), Settings.System.NOTIF_WALLPAPER_ALPHA, 0.0f);
         File file = new File(NOTIF_WALLPAPER_IMAGE_PATH);
 
         if (file.exists()) {
-		    mNotificationPanel.setBackgroundResource(0);
+            mNotificationPanel.setBackgroundResource(0);
         } else {
             mNotificationPanel.setBackgroundResource(R.drawable.notification_panel_bg);
-			Drawable background = mNotificationPanel.getBackground();
-			background.setAlpha((int) ((1-wallpaperAlpha) * 255));
+            Drawable background = mNotificationPanel.getBackground();
+            background.setAlpha((int) ((1-wallpaperAlpha) * 255));
         }
     }
 
 
-}	
+}

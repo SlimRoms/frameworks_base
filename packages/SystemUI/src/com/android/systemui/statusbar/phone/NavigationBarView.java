@@ -286,7 +286,7 @@ public class NavigationBarView extends LinearLayout {
                 addLightsOutButton(lightsOut, v, landscape, false);
 
                 if (v.getId() == R.id.back){
-                 mBackIcon = mBackLandIcon = v.getDrawable();
+                    mBackIcon = mBackLandIcon = v.getDrawable();
                 }
 
                 if (mNumberOfButtons == 3 && j != (mNumberOfButtons - 1)) {
