@@ -3335,6 +3335,14 @@ public final class Settings {
         public static final String TABLET_UI = "tablet_ui";
 
         /**
+         * use Alt Activity Resolver Grid
+         * boolean
+         *
+         * @hide
+         */
+        public static final String ACTIVITY_RESOLVER_USE_ALT = "activity_resolver_use_alt";
+
+        /**
          * NFC polling mode configuration key
          *
          * @hide
