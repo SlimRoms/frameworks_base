@@ -24,20 +24,20 @@ class NotificationWallpaper extends FrameLayout {
 
     private final String TAG = "NotificationWallpaperUpdater";
 
-	private final String NOTIF_WALLPAPER_IMAGE_PATH = "/data/data/com.android.settings/files/notification_wallpaper.jpg";
+    private final String NOTIF_WALLPAPER_IMAGE_PATH = "/data/data/com.android.settings/files/notification_wallpaper.jpg";
 
     private ImageView mNotificationWallpaperImage;
     private float wallpaperAlpha;
 
-	Context mContext;
+    Context mContext;
 
     Bitmap bitmapWallpaper;
 
     public NotificationWallpaper(Context context, AttributeSet attrs) {
         super(context);
-	mContext = context;
+        mContext = context;
         setNotificationWallpaper();
-	SettingsObserver observer = new SettingsObserver(new Handler());
+        SettingsObserver observer = new SettingsObserver(new Handler());
         observer.observe();
     }
 
@@ -45,9 +45,9 @@ class NotificationWallpaper extends FrameLayout {
         File file = new File(NOTIF_WALLPAPER_IMAGE_PATH);
 
         if (file.exists()) {
-		    removeAllViews();
- 		    wallpaperAlpha = Settings.System.getFloat(getContext()
-         	   .getContentResolver(), Settings.System.NOTIF_WALLPAPER_ALPHA, 0.0f);
+            removeAllViews();
+            wallpaperAlpha = Settings.System.getFloat(getContext()
+                .getContentResolver(), Settings.System.NOTIF_WALLPAPER_ALPHA, 0.0f);
 
             mNotificationWallpaperImage = new ImageView(getContext());
             mNotificationWallpaperImage.setScaleType(ScaleType.CENTER);
@@ -76,17 +76,17 @@ class SettingsObserver extends ContentObserver {
         }
 
         void observe() {
-		ContentResolver resolver = mContext.getContentResolver();
+            ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.System.getUriFor(
-					Settings.System.NOTIF_WALLPAPER_ALPHA), false, this);
+                    Settings.System.NOTIF_WALLPAPER_ALPHA), false, this);
         }
 
         @Override
         public void onChange(boolean selfChange, Uri uri) {
-		
-    		wallpaperAlpha = Settings.System.getFloat(getContext()
+
+            wallpaperAlpha = Settings.System.getFloat(getContext()
             .getContentResolver(), Settings.System.NOTIF_WALLPAPER_ALPHA, 0.0f);
-           setNotificationWallpaper();
+            setNotificationWallpaper();
         }
     }
 }
