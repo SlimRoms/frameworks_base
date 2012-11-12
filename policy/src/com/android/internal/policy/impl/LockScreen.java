@@ -94,7 +94,6 @@ class LockScreen extends LinearLayout implements KeyguardScreen {
     public static final int LAYOUT_SIX_EIGHT = 1;
 
     private int mLockscreenStyle = LAYOUT_STOCK;
-    private boolean mUnlockKeyDown = false;
 
     private static final int COLOR_WHITE = 0xFFFFFFFF;
 
@@ -770,8 +769,6 @@ class LockScreen extends LinearLayout implements KeyguardScreen {
         if (keyCode == KeyEvent.KEYCODE_BACK
                 || keyCode == KeyEvent.KEYCODE_HOME
                 || keyCode == KeyEvent.KEYCODE_MENU) {
-            // make sure the keydown is from a screen on state
-            mUnlockKeyDown = true;
             event.startTracking();
             return true;
         }
@@ -780,12 +777,8 @@ class LockScreen extends LinearLayout implements KeyguardScreen {
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
-        int flags = event.getFlags();
-        // KeyEvent.FLAG_CANCELED_LONG_PRESS checked so we don't unlock after a longpress
-        if (((keyCode == KeyEvent.KEYCODE_MENU && mEnableMenuKeyInLockScreen) ||
-                (keyCode == KeyEvent.KEYCODE_HOME && mHomeUnlockScreen)) &&
-                mUnlockKeyDown && (flags&KeyEvent.FLAG_CANCELED_LONG_PRESS) == 0) {
-            mUnlockKeyDown = false;
+        if ((keyCode == KeyEvent.KEYCODE_MENU && mEnableMenuKeyInLockScreen) ||
+            (keyCode == KeyEvent.KEYCODE_HOME && mHomeUnlockScreen)) {
             mCallback.goToUnlockScreen();
         }
         return false;
