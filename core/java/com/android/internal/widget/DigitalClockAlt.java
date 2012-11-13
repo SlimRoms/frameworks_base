@@ -184,7 +184,7 @@ public class DigitalClockAlt extends RelativeLayout {
         mSep.setTypeface(sThinFont);
 
         mTimeDisplayMinutes = (TextView) findViewById(R.id.timeDisplayMinutes);
-        mTimeDisplayMinutes.setTypeface(sThinFont);
+        mTimeDisplayMinutes.setTypeface(sBoldFont);
         mAmPm = new AmPm(this, null);
         mCalendar = Calendar.getInstance();
 
