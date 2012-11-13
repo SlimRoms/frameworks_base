@@ -38,6 +38,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.RemoteException;
 import android.os.SystemClock;
+import android.provider.Settings;
 import android.text.Spannable;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
@@ -80,6 +81,7 @@ public class TransportControlView extends FrameLayout implements OnClickListener
     private AudioManager mAudioManager;
     private LockScreenWidgetCallback mWidgetCallbacks;
     private IRemoteControlDisplayWeak mIRCD;
+    private boolean mCirclesLock;
 
     /**
      * The metadata which should be populated into the view once we've been attached
@@ -197,6 +199,10 @@ public class TransportControlView extends FrameLayout implements OnClickListener
         mAudioManager = new AudioManager(mContext);
         mCurrentPlayState = RemoteControlClient.PLAYSTATE_NONE; // until we get a callback
         mIRCD = new IRemoteControlDisplayWeak(mHandler);
+
+        mCirclesLock = Settings.System.getBoolean(
+            context.getContentResolver(),
+            Settings.System.USE_CIRCLES_LOCKSCREEN, false);
     }
 
     private void updateTransportControls(int transportControlFlags) {
@@ -206,15 +212,17 @@ public class TransportControlView extends FrameLayout implements OnClickListener
     @Override
     public void onFinishInflate() {
         super.onFinishInflate();
-        mTrackTitle = (TextView) findViewById(R.id.title);
-        mTrackTitle.setSelected(true); // enable marquee
-        mAlbumArt = (ImageView) findViewById(R.id.albumart);
-        mBtnPrev = (ImageView) findViewById(R.id.btn_prev);
-        mBtnPlay = (ImageView) findViewById(R.id.btn_play);
-        mBtnNext = (ImageView) findViewById(R.id.btn_next);
-        final View buttons[] = { mBtnPrev, mBtnPlay, mBtnNext };
-        for (View view : buttons) {
-            view.setOnClickListener(this);
+        if (!mCirclesLock) {
+            mTrackTitle = (TextView) findViewById(R.id.title);
+            mTrackTitle.setSelected(true); // enable marquee
+            mAlbumArt = (ImageView) findViewById(R.id.albumart);
+            mBtnPrev = (ImageView) findViewById(R.id.btn_prev);
+            mBtnPlay = (ImageView) findViewById(R.id.btn_play);
+            mBtnNext = (ImageView) findViewById(R.id.btn_next);
+            final View buttons[] = { mBtnPrev, mBtnPlay, mBtnNext };
+            for (View view : buttons) {
+                view.setOnClickListener(this);
+            }
         }
     }
 

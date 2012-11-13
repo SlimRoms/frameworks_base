@@ -1412,6 +1412,43 @@ public final class Settings {
         public static final String LOCK_PATTERN_SIZE =
             "lock_pattern_size";
 
+         /**
+         * Whether to show the alt lockscreen layout
+         * @hide
+         */
+        public static final String USE_CIRCLES_LOCKSCREEN = "use_circles_lockscreen";
+
+         /**
+         * Whether to show the alt lockscreen layout
+         * @hide
+         */
+        public static final String USE_BLACKBERRY_LOCKSCREEN = "use_blackberry_lockscreen";
+
+         /**
+         * Sets bg color of alt lockscreen bg
+         * @hide
+         */
+        public static final String CIRCLES_LOCK_BG_COLOR = "circles_lock_bg_color";
+
+         /**
+         * Sets ring color of alt lockscreen
+         * @hide
+         */
+        public static final String CIRCLES_LOCK_RING_COLOR = "circles_lock_ring_color";
+
+         /**
+         * Sets halo color of alt lockscreen
+         * @hide
+         */
+        public static final String CIRCLES_LOCK_HALO_COLOR = "circles_lock_halo_color";
+
+         /**
+         * Sets wave color of alt lockscreen
+         * @hide
+         */
+        public static final String CIRCLES_LOCK_WAVE_COLOR = "circles_lock_wave_color";
+
+
         /**
          * A formatted string of the next alarm that is set, or the empty string
          * if there is no alarm set.
@@ -2299,6 +2336,12 @@ public final class Settings {
         public static final String LOCKSCREEN_VIBRATE_ENABLED = "lockscreen.vibrate_enabled";
 
         /**
+         * Whether the lockscreen vibrate should be enabled.
+         * @hide
+         */
+        public static final String LOCKSCREEN_TRANSPARENT_ENABLED = "lockscreen.transparent_enabled";
+
+        /**
          * Stores values for custom lockscreen targets
          * @hide
          */
@@ -3093,6 +3136,7 @@ public final class Settings {
             POWER_MENU_REBOOT_ENABLED,
             POWER_MENU_PROFILES_ENABLED,
             LOCKSCREEN_VIBRATE_ENABLED,
+            LOCKSCREEN_TRANSPARENT_ENABLED,
         };
 
         // Settings moved to Settings.Secure

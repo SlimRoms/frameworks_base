@@ -114,17 +114,30 @@ public class KeyguardViewManager implements KeyguardWindowController {
         boolean enableScreenRotation =
                 SystemProperties.getBoolean("lockscreen.rot_override",false)
                 || (enableLockScreenRotation && enableAccelerometerRotation);
+
+        boolean enableTransparency = Settings.System.getBoolean(mContext.getContentResolver(),
+                Settings.System.LOCKSCREEN_TRANSPARENT_ENABLED, false);
+
         if (mKeyguardHost == null) {
             if (DEBUG) Log.d(TAG, "keyguard host is null, creating it...");
 
             mKeyguardHost = new KeyguardViewHost(mContext, mCallback);
-
             final int stretch = ViewGroup.LayoutParams.MATCH_PARENT;
-            int flags = WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN
-                    | WindowManager.LayoutParams.FLAG_SHOW_WALLPAPER
-                    | WindowManager.LayoutParams.FLAG_SLIPPERY
-                    /*| WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
-                    | WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR*/ ;
+            int flags;
+
+            if (!enableTransparency) {        
+                    flags = WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN
+                            | WindowManager.LayoutParams.FLAG_SHOW_WALLPAPER
+                            | WindowManager.LayoutParams.FLAG_SLIPPERY
+                            /*| WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+                            | WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR*/ ;
+            }else {
+                    flags = WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN
+                            | WindowManager.LayoutParams.FLAG_SLIPPERY
+                            /*| WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+                            | WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR*/ ;
+            }
+
             if (!mNeedsInput) {
                 flags |= WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM;
             }

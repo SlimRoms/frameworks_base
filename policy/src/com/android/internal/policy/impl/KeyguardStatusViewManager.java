@@ -21,6 +21,7 @@ import com.android.internal.R;
 import com.android.internal.telephony.IccCard;
 import com.android.internal.telephony.IccCard.State;
 import com.android.internal.widget.DigitalClock;
+import com.android.internal.widget.DigitalClockAlt;
 import com.android.internal.widget.LockPatternUtils;
 import com.android.internal.widget.TransportControlView;
 import com.android.internal.policy.impl.KeyguardUpdateMonitor.InfoCallbackImpl;
@@ -38,6 +39,7 @@ import android.content.res.Configuration;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
+import android.graphics.Typeface;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.Settings;
@@ -83,6 +85,8 @@ import libcore.util.MutableInt;
 class KeyguardStatusViewManager implements OnClickListener {
     private static final boolean DEBUG = false;
     private static final String TAG = "KeyguardStatusView";
+    private static final String SYSTEM = "/system/fonts/";
+    private static final String SYSTEM_FONT_TIME_LIGHT = SYSTEM + "AndroidClockMono-Light.ttf";
 
     public static final int LOCK_ICON = 0; // R.drawable.ic_lock_idle_lock;
     public static final int ALARM_ICON = R.drawable.ic_lock_idle_alarm;
@@ -154,6 +158,14 @@ class KeyguardStatusViewManager implements OnClickListener {
     private CharSequence mSpn;
     protected int mPhoneState;
     private DigitalClock mDigitalClock;
+    private DigitalClockAlt mDigitalClockAlt;
+    private boolean mCirclesLock;
+
+    private static final Typeface sLightFont;
+    static {
+        sLightFont = Typeface.createFromFile(SYSTEM_FONT_TIME_LIGHT);
+    }
+
 
     private class TransientTextManager {
         private TextView mTextView;
@@ -232,6 +244,7 @@ class KeyguardStatusViewManager implements OnClickListener {
         mEmergencyCallButton = (Button) findViewById(R.id.emergencyCallButton);
         mEmergencyCallButtonEnabledInScreen = emergencyButtonEnabledInScreen;
         mDigitalClock = (DigitalClock) findViewById(R.id.time);
+        mDigitalClockAlt = (DigitalClockAlt) findViewById(R.id.time_alt);
 
         // Weather panel
         mWeatherPanel = (RelativeLayout) findViewById(R.id.weather_panel);
@@ -268,6 +281,18 @@ class KeyguardStatusViewManager implements OnClickListener {
             mEmergencyCallButton.setText(R.string.lockscreen_emergency_call);
             mEmergencyCallButton.setOnClickListener(this);
             mEmergencyCallButton.setFocusable(false); // touch only!
+        }
+
+        if (mDateView != null) {
+            if (mCirclesLock) {
+                mDateView.setTypeface(sLightFont);
+            }
+        }
+
+        if (mAlarmStatusView != null) {
+            if (mCirclesLock) {
+                mAlarmStatusView.setTypeface(sLightFont);
+            }
         }
 
         mTransientTextManager = new TransientTextManager(mCarrierView);
@@ -683,6 +708,11 @@ class KeyguardStatusViewManager implements OnClickListener {
             mDigitalClock.updateTime();
             updateClockAlign();
         }
+
+        if (mDigitalClockAlt != null) {
+            mDigitalClockAlt.updateTime();
+        }
+
         refreshWeather();
 
         mUpdateMonitor.registerInfoCallback(mInfoCallback);

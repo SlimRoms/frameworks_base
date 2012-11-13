@@ -63,9 +63,12 @@ import com.android.internal.policy.impl.KeyguardUpdateMonitor.InfoCallbackImpl;
 import com.android.internal.policy.impl.KeyguardUpdateMonitor.SimStateCallback;
 import com.android.internal.telephony.IccCard.State;
 import com.android.internal.widget.DigitalClock;
+import com.android.internal.widget.DigitalClockAlt;
 import com.android.internal.widget.LockPatternUtils;
 import com.android.internal.widget.SlidingTab;
 import com.android.internal.widget.WaveView;
+import com.android.internal.widget.multiwaveview.CirclesView;
+import com.android.internal.widget.multiwaveview.BlackBerryView;
 import com.android.internal.widget.multiwaveview.GlowPadView;
 import com.android.internal.widget.multiwaveview.TargetDrawable;
 
@@ -86,6 +89,8 @@ class LockScreen extends LinearLayout implements KeyguardScreen {
     private static final String TAG = "LockScreen";
     private static final String ENABLE_MENU_KEY_FILE = "/data/local/enable_menu_key";
     private static final int WAIT_FOR_ANIMATION_TIMEOUT = 0;
+    private static final int WAIT_FOR_ANIMATION_TIMEOUT_CIRCLE = 500;
+    private static final int WAIT_FOR_ANIMATION_TIMEOUT_BLACKBERRY = 250;
     private static final int STAY_ON_WHILE_GRABBED_TIMEOUT = 30000;
     private static final String ASSIST_ICON_METADATA_NAME =
             "com.android.systemui.action_assist_icon";
@@ -116,12 +121,17 @@ class LockScreen extends LinearLayout implements KeyguardScreen {
     private KeyguardStatusViewManager mStatusViewManager;
     private UnlockWidgetCommonMethods mUnlockWidgetMethods;
     private View mUnlockWidget;
+    private View mCircleUnlockWidget;
+    private View mBlackBerryUnlockWidget;
     private boolean mCameraDisabled;
     private boolean mSearchDisabled;
     // Is there a vibrator
     private final boolean mHasVibrator;
+    private boolean mCirclesLock;
+    private boolean mBlackBerryLock;
 
     private DigitalClock mDigitalClock;
+    private DigitalClockAlt mDigitalClockAlt;
 
     InfoCallbackImpl mInfoCallback = new InfoCallbackImpl() {
 
@@ -288,6 +298,101 @@ class LockScreen extends LinearLayout implements KeyguardScreen {
             mWaveView.setOnTriggerListener(null);
         }
     }
+
+    class BlackBerryViewMethods implements BlackBerryView.OnTriggerListener, UnlockWidgetCommonMethods {
+
+        private final BlackBerryView mBlackBerryView;
+
+        BlackBerryViewMethods(BlackBerryView blackBerryView) {
+            mBlackBerryView = blackBerryView;
+        }
+        /** {@inheritDoc} */
+        public void onTrigger(View v, int whichHandle) {
+            if (whichHandle == BlackBerryView.OnTriggerListener.CENTER_HANDLE) {
+                requestUnlockScreen();
+            }
+        }
+
+        /** {@inheritDoc} */
+        public void onGrabbedStateChange(View v, int grabbedState) {
+            // Don't poke the wake lock when returning to a state where the handle is
+            // not grabbed since that can happen when the system (instead of the user)
+            // cancels the grab.
+            if (grabbedState == BlackBerryView.OnTriggerListener.CENTER_HANDLE) {
+                mCallback.pokeWakelock(STAY_ON_WHILE_GRABBED_TIMEOUT);
+            }
+        }
+
+        public void updateResources() {
+        }
+
+        public View getView() {
+            return mBlackBerryView;
+        }
+        public void reset(boolean animate) {
+            mBlackBerryView.reset();
+        }
+        public void ping() {
+        }
+        public void setEnabled(int resourceId, boolean enabled) {
+            // Not used
+        }
+        public int getTargetPosition(int resourceId) {
+            return -1; // Not supported
+        }
+        public void cleanUp() {
+            mBlackBerryView.setOnTriggerListener(null);
+        }
+    }
+
+    class CirclesViewMethods implements CirclesView.OnTriggerListener, UnlockWidgetCommonMethods {
+        private final CirclesView mCirclesView;
+            CirclesViewMethods(CirclesView circlesView) {
+            mCirclesView = circlesView;
+        }
+        /** {@inheritDoc} */
+        public void onTrigger(View v, int whichHandle) {
+            if (whichHandle == CirclesView.OnTriggerListener.CENTER_HANDLE) {
+                requestUnlockScreen();
+            }
+        }
+        /** {@inheritDoc} */
+        public void onGrabbedStateChange(View v, int grabbedState) {
+            // Don't poke the wake lock when returning to a state where the handle is
+            // not grabbed since that can happen when the system (instead of the user)
+            // cancels the grab.
+            if (grabbedState == CirclesView.OnTriggerListener.CENTER_HANDLE) {
+                mCallback.pokeWakelock(STAY_ON_WHILE_GRABBED_TIMEOUT);
+            }
+        }
+
+        public void updateResources() {
+        }
+
+        public View getView() {
+            return mCirclesView;
+        }
+
+        public void reset(boolean animate) {
+            mCirclesView.reset();
+        }
+
+        public void ping() {
+        }
+
+        public void setEnabled(int resourceId, boolean enabled) {
+            // Not used
+        }
+
+        public int getTargetPosition(int resourceId) {
+            return -1; // Not supported
+        }
+
+        public void cleanUp() {
+            mCirclesView.setOnTriggerListener(null);
+        }
+    }
+    
 
     class GlowPadViewMethods implements GlowPadView.OnTriggerListener,
             UnlockWidgetCommonMethods {
@@ -562,14 +667,23 @@ class LockScreen extends LinearLayout implements KeyguardScreen {
 
         }
     }
-
+    
     private void requestUnlockScreen() {
         // Delay hiding lock screen long enough for animation to finish
+        int timeout;
+        if (mCirclesLock) {
+            timeout = WAIT_FOR_ANIMATION_TIMEOUT_CIRCLE;
+        }else if (mBlackBerryLock) {
+            timeout = WAIT_FOR_ANIMATION_TIMEOUT_BLACKBERRY;
+        }else {
+            timeout = WAIT_FOR_ANIMATION_TIMEOUT;
+        }
+
         postDelayed(new Runnable() {
             public void run() {
                 mCallback.goToUnlockScreen();
             }
-        }, WAIT_FOR_ANIMATION_TIMEOUT);
+        }, timeout);
     }
 
     private void toggleRingMode() {
@@ -618,6 +732,9 @@ class LockScreen extends LinearLayout implements KeyguardScreen {
         mUpdateMonitor = updateMonitor;
         mCallback = callback;
         mLockscreenStyle = Settings.System.getInt(mContext.getContentResolver(), Settings.System.LOCKSCREEN_LAYOUT, LAYOUT_STOCK);
+        mCirclesLock = Settings.System.getBoolean(mContext.getContentResolver(), Settings.System.USE_CIRCLES_LOCKSCREEN, false);
+        mBlackBerryLock = Settings.System.getBoolean(mContext.getContentResolver(), Settings.System.USE_BLACKBERRY_LOCKSCREEN, false);
+
         mSettingsObserver = new SettingsObserver(new Handler());
         mSettingsObserver.observe();
         mEnableMenuKeyInLockScreen = shouldEnableMenuKey();
@@ -636,20 +753,54 @@ class LockScreen extends LinearLayout implements KeyguardScreen {
 
         switch (mLockscreenStyle) {
             case LAYOUT_STOCK:
-                if (landscape)
-                    inflater.inflate(R.layout.keyguard_screen_tab_unlock_land, this,
-                                    true);
-                else
-                    inflater.inflate(R.layout.keyguard_screen_tab_unlock, this,
-                                    true);
+                if (landscape) {
+                   if (mCirclesLock) {
+                      inflater.inflate(R.layout.keyguard_screen_tab_unlock_circles_land, this,
+                                        true);
+                    }else if (mBlackBerryLock) {
+                      inflater.inflate(R.layout.keyguard_screen_tab_unlock_blackberry, this,
+                                        true);
+                    }else {
+                      inflater.inflate(R.layout.keyguard_screen_tab_unlock_land, this,
+                                        true);
+                    }
+                }else {
+                   if (mCirclesLock) {
+                      inflater.inflate(R.layout.keyguard_screen_tab_unlock_circles, this,
+                                        true);
+                    }else if (mBlackBerryLock) {
+                      inflater.inflate(R.layout.keyguard_screen_tab_unlock_blackberry, this,
+                                        true);
+                    }else {
+                      inflater.inflate(R.layout.keyguard_screen_tab_unlock, this,
+                                        true);
+                    }
+                 }
                 break;
             case LAYOUT_SIX_EIGHT:
-                if (landscape)
-                    inflater.inflate(R.layout.keyguard_screen_tab_unlock_land, this,
-                                    true);
-                else
-                    inflater.inflate(R.layout.keyguard_screen_tab_unlock_six_eight, this,
-                                    true);
+                if (landscape) {
+                   if (mCirclesLock) {
+                      inflater.inflate(R.layout.keyguard_screen_tab_unlock_circles_land, this,
+                                        true);
+                    }else if (mBlackBerryLock) {
+                      inflater.inflate(R.layout.keyguard_screen_tab_unlock_blackberry, this,
+                                        true);
+                    }else {
+                      inflater.inflate(R.layout.keyguard_screen_tab_unlock_land, this,
+                                        true);
+                    }
+                }else {
+                   if (mCirclesLock) {
+                      inflater.inflate(R.layout.keyguard_screen_tab_unlock_circles, this,
+                                        true);
+                    }else if (mBlackBerryLock) {
+                      inflater.inflate(R.layout.keyguard_screen_tab_unlock_blackberry, this,
+                                        true);
+                    }else {
+                      inflater.inflate(R.layout.keyguard_screen_tab_unlock_six_eight, this,
+                                        true);
+                    }
+                }
                 break;
         }
 
@@ -667,11 +818,46 @@ class LockScreen extends LinearLayout implements KeyguardScreen {
         mAudioManager = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
         mSilentMode = isSilentMode();
         mUnlockWidget = findViewById(R.id.unlock_widget);
-        mUnlockWidgetMethods = createUnlockMethods(mUnlockWidget);
+        mCircleUnlockWidget = findViewById(R.id.circle_unlock_widget);
+        mBlackBerryUnlockWidget = findViewById(R.id.blackberry_unlock_widget);
+
+        if (mCirclesLock) {
+            mUnlockWidgetMethods = createCircleUnlockMethod(mCircleUnlockWidget);
+        } else if (mBlackBerryLock) {
+            mUnlockWidgetMethods = createBlackBerryUnlockMethod(mBlackBerryUnlockWidget);
+        }else {
+            mUnlockWidgetMethods = createUnlockMethods(mUnlockWidget);
+        }
 
         if (DBG) Log.v(TAG, "*** LockScreen accel is "
                 + (mUnlockWidget.isHardwareAccelerated() ? "on":"off"));
     }
+
+
+    private UnlockWidgetCommonMethods createCircleUnlockMethod(View unlockWidget) {
+         if (unlockWidget instanceof CirclesView) {
+            CirclesView circlesView = (CirclesView) unlockWidget;
+            CirclesViewMethods circlesViewMethods = new CirclesViewMethods(circlesView);
+
+            circlesView.setOnTriggerListener(circlesViewMethods);
+            return circlesViewMethods;
+        } else {
+            throw new IllegalStateException("Unrecognized unlock widget: " + unlockWidget);
+        }
+    }
+
+    private UnlockWidgetCommonMethods createBlackBerryUnlockMethod(View unlockWidget) {
+        if (unlockWidget instanceof BlackBerryView) {
+            BlackBerryView blackBerryView = (BlackBerryView) unlockWidget;
+            BlackBerryViewMethods blackBerryViewMethods = new BlackBerryViewMethods(blackBerryView);
+            blackBerryView.setOnTriggerListener(blackBerryViewMethods);
+            return blackBerryViewMethods;
+        } else {
+            throw new IllegalStateException("Unrecognized unlock widget: " + unlockWidget);
+        }
+    }
+
+
 
     private UnlockWidgetCommonMethods createUnlockMethods(View unlockWidget) {
         if (unlockWidget instanceof SlidingTab) {
@@ -1022,7 +1208,11 @@ class LockScreen extends LinearLayout implements KeyguardScreen {
 
         // digital clock first (see @link com.android.internal.widget.DigitalClock.updateTime())
         try {
-            mDigitalClock.updateTime();
+            if (mCirclesLock) {
+               mDigitalClockAlt.updateTime();
+            } else {
+                mDigitalClock.updateTime();
+            }
         } catch (NullPointerException npe) {
             if (DEBUG) Log.d(TAG, "date update time failed: NullPointerException");
         }
