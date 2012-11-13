@@ -1207,6 +1207,9 @@ class LockScreen extends LinearLayout implements KeyguardScreen {
         int mLockscreenColor = Settings.System.getInt(resolver,
                 Settings.System.LOCKSCREEN_CUSTOM_TEXT_COLOR, COLOR_WHITE);
 
+        boolean mCirclesLock = Settings.System.getBoolean(mContext.getContentResolver(), Settings.System.USE_CIRCLES_LOCKSCREEN, false);
+        boolean mBlackBerryLock = Settings.System.getBoolean(mContext.getContentResolver(), Settings.System.USE_BLACKBERRY_LOCKSCREEN, false);
+
         // digital clock first (see @link com.android.internal.widget.DigitalClock.updateTime())
         try {
             if (mCirclesLock) {
