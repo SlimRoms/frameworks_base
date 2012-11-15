@@ -2360,7 +2360,7 @@ public class PhoneStatusBar extends BaseStatusBar {
         final int barh = getCloseViewHeight() + getStatusBarHeight();
         final float frac = saturate((float)(panelh - barh) / (disph - barh));
 
-        if (ActivityManager.isHighEndGfx(mDisplay) && DIM_BEHIND_EXPANDED_PANEL && mHighEndGfx) {
+        if (DIM_BEHIND_EXPANDED_PANEL && (mHighEndGfx || ActivityManager.isHighEndGfx(mDisplay))) {
             // woo, special effects
             final float k = (float)(1f-0.5f*(1f-Math.cos(3.14159f * Math.pow(1f-frac, 2.2f))));
             final int color = ((int)(0xB0 * k)) << 24;
