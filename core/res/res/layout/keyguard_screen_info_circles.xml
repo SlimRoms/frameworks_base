@@ -249,7 +249,6 @@
 
     </LinearLayout>
 
-
     <TextView
         android:id="@+id/status1"
         android:layout_gravity="center_horizontal"
