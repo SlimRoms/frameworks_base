@@ -1046,7 +1046,7 @@ public class PhoneStatusBar extends BaseStatusBar {
         for (View remove : toRemove) {
             mPile.removeView(remove);
         }
-
+	setNotificationsTransparency();
         for (int i=0; i<toShow.size(); i++) {
             View v = toShow.get(i);
             if (v.getParent() == null) {
@@ -2862,6 +2862,7 @@ public class PhoneStatusBar extends BaseStatusBar {
             setStatusBarParams(mStatusBarView);
             setNavigationBarParams();
             setNotificationWallpaperHelper();
+	    setNotificationsTransparency();
         }
     }
 
@@ -2953,7 +2954,9 @@ public class PhoneStatusBar extends BaseStatusBar {
             Drawable background = mNotificationPanel.getBackground();
             background.setAlpha((int) ((1-wallpaperAlpha) * 255));
         }
+    }
 
+    private void setNotificationsTransparency() {
 	// here tchaari sets the notifications transparency
 	float notifAlpha = Settings.System.getFloat(mContext.getContentResolver(), Settings.System.NOTIF_ALPHA, 0.0f);
 	if (mPile != null) {
