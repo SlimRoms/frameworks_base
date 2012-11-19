@@ -188,6 +188,9 @@ cat include/telephony/ril.h | \
     public static final int DATA_PROFILE_IMS       = 2;
     public static final int DATA_PROFILE_FOTA      = 3;
     public static final int DATA_PROFILE_CBS       = 4;
+    public static final int DATA_PROFILE_MMS       = 5;
+    public static final int DATA_PROFILE_SUPL      = 6;
+    public static final int DATA_PROFILE_HIPRI     = 7;
     public static final int DATA_PROFILE_OEM_BASE  = 1000;
     public static final int DATA_PROFILE_INVALID   = 0xFFFFFFFF;
 
