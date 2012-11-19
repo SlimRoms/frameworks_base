@@ -1081,4 +1081,24 @@
     <!-- Name of that key handler class -->
     <string name="config_deviceKeyHandlerClass" translatable="false"></string>
 
+    <!-- Vibrator pattern to be used as the default for notifications
+         that specify DEFAULT_VIBRATE.
+     -->
+    <integer-array name="config_defaultNotificationVibePattern">
+        <item>0</item>
+        <item>350</item>
+        <item>250</item>
+        <item>350</item>
+    </integer-array>
+
+    <!-- Vibrator pattern to be used as the default for notifications
+         that do not specify vibration but vibrate anyway because the device
+         is in vibrate mode.
+     -->
+    <integer-array name="config_notificationFallbackVibePattern">
+        <item>0</item>
+        <item>100</item>
+        <item>150</item>
+        <item>100</item>
+    </integer-array>
 </resources>

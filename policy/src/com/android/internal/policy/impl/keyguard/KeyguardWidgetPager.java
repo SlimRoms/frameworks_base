@@ -71,6 +71,12 @@ public class KeyguardWidgetPager extends PagedView implements PagedView.PageSwit
     private Callbacks mCallbacks;
 
     private int mWidgetToResetAfterFadeOut;
+    protected boolean mShowingInitialHints = false;
+
+    // A temporary handle to the Add-Widget view
+    private View mAddWidgetView;
+    private int mLastWidthMeasureSpec;
+    private int mLastHeightMeasureSpec;
 
     // Bouncer
     private int mBouncerZoomInOutDuration = 250;
@@ -242,18 +248,18 @@ public class KeyguardWidgetPager extends PagedView implements PagedView.PageSwit
         public void userActivity();
         public void onUserActivityTimeoutChanged();
         public void onAddView(View v);
-        public void onRemoveView(View v);
+        public void onRemoveView(View v, boolean deletePermanently);
+        public void onRemoveViewAnimationCompleted();
     }
 
     public void addWidget(View widget) {
         addWidget(widget, -1);
     }
 
-
-    public void onRemoveView(View v) {
+    public void onRemoveView(View v, final boolean deletePermanently) {
         final int appWidgetId = ((KeyguardWidgetFrame) v).getContentAppWidgetId();
         if (mCallbacks != null) {
-            mCallbacks.onRemoveView(v);
+            mCallbacks.onRemoveView(v, deletePermanently);
         }
         mBackgroundWorkerHandler.post(new Runnable() {
             @Override
@@ -261,6 +267,13 @@ public class KeyguardWidgetPager extends PagedView implements PagedView.PageSwit
                 mLockPatternUtils.removeAppWidget(appWidgetId);
             }
         });
+    }
+
+    @Override
+    public void onRemoveViewAnimationCompleted() {
+        if (mCallbacks != null) {
+            mCallbacks.onRemoveViewAnimationCompleted();
+        }
     }
 
     public void onAddView(View v, final int index) {
@@ -463,12 +476,21 @@ public class KeyguardWidgetPager extends PagedView implements PagedView.PageSwit
     private void updatePageAlphaValues(int screenCenter) {
     }
 
-    public float getAlphaForPage(int screenCenter, int index) {
-        return 1f;
+    public float getAlphaForPage(int screenCenter, int index, boolean showSidePages) {
+        if (showSidePages) {
+            return 1f;
+        } else {
+            return index == mCurrentPage ? 1.0f : 0f;
+        }
     }
 
-    public float getOutlineAlphaForPage(int screenCenter, int index) {
-        return getAlphaForPage(screenCenter, index) * KeyguardWidgetFrame.OUTLINE_ALPHA_MULTIPLIER;
+    public float getOutlineAlphaForPage(int screenCenter, int index, boolean showSidePages) {
+        if (showSidePages) {
+            return getAlphaForPage(screenCenter, index, showSidePages)
+                    * KeyguardWidgetFrame.OUTLINE_ALPHA_MULTIPLIER;
+        } else {
+            return 0f;
+        }
     }
 
     protected boolean isOverScrollChild(int index, float scrollProgress) {
@@ -568,14 +590,14 @@ public class KeyguardWidgetPager extends PagedView implements PagedView.PageSwit
     }
 
     public void showInitialPageHints() {
+        mShowingInitialHints = true;
         int count = getChildCount();
         for (int i = 0; i < count; i++) {
             KeyguardWidgetFrame child = getWidgetPageAt(i);
             if (i != mCurrentPage) {
                 if(Settings.System.getInt(mContext.getContentResolver(),
                         Settings.System.LOCKSCREEN_DISABLE_HINTS, 0) == 0) {
-                    child.fadeFrame(this, true, KeyguardWidgetFrame.OUTLINE_ALPHA_MULTIPLIER,
-                            CHILDREN_OUTLINE_FADE_IN_DURATION);
+                    child.setBackgroundAlpha(KeyguardWidgetFrame.OUTLINE_ALPHA_MULTIPLIER);
                 }
                 child.setContentAlpha(0f);
             } else {
@@ -583,10 +605,6 @@ public class KeyguardWidgetPager extends PagedView implements PagedView.PageSwit
                 child.setContentAlpha(1f);
             }
         }
-    }
-
-    public void showSidePageHints() {
-        animateOutlinesAndSidePages(true, -1);
     }
 
     @Override
@@ -601,12 +619,10 @@ public class KeyguardWidgetPager extends PagedView implements PagedView.PageSwit
         mHasMeasure = false;
     }
 
-    @Override
-    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        super.onLayout(changed, left, top, right, bottom);
-    }
-
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        mLastWidthMeasureSpec = widthMeasureSpec;
+        mLastHeightMeasureSpec = heightMeasureSpec;
+
         int maxChallengeTop = -1;
         View parent = (View) getParent();
         boolean challengeShowing = false;
@@ -667,7 +683,7 @@ public class KeyguardWidgetPager extends PagedView implements PagedView.PageSwit
         for (int i = 0; i < count; i++) {
             float finalContentAlpha;
             if (show) {
-                finalContentAlpha = getAlphaForPage(mScreenCenter, i);
+                finalContentAlpha = getAlphaForPage(mScreenCenter, i, true);
             } else if (!show && i == curPage) {
                 finalContentAlpha = 1f;
             } else {
@@ -679,7 +695,7 @@ public class KeyguardWidgetPager extends PagedView implements PagedView.PageSwit
             ObjectAnimator a = ObjectAnimator.ofPropertyValuesHolder(child, alpha);
             anims.add(a);
 
-            float finalOutlineAlpha = show ? getOutlineAlphaForPage(mScreenCenter, i) : 0f;
+            float finalOutlineAlpha = show ? getOutlineAlphaForPage(mScreenCenter, i, true) : 0f;
             child.fadeFrame(this, show, finalOutlineAlpha, duration);
         }
 
@@ -705,6 +721,7 @@ public class KeyguardWidgetPager extends PagedView implements PagedView.PageSwit
                         frame.resetSize();
                     }
                     mWidgetToResetAfterFadeOut = -1;
+                    mShowingInitialHints = false;
                 }
                 updateWidgetFramesImportantForAccessibility();
             }
@@ -808,6 +825,24 @@ public class KeyguardWidgetPager extends PagedView implements PagedView.PageSwit
             mZoomInOutAnim.setDuration(mBouncerZoomInOutDuration);
             mZoomInOutAnim.setInterpolator(new DecelerateInterpolator(1.5f));
             mZoomInOutAnim.start();
+        }
+    }
+
+    void setAddWidgetEnabled(boolean enabled) {
+        if (mAddWidgetView != null && enabled) {
+            addView(mAddWidgetView, 0);
+            // We need to force measure the PagedView so that the calls to update the scroll
+            // position below work
+            measure(mLastWidthMeasureSpec, mLastHeightMeasureSpec);
+            // Bump up the current page to account for the addition of the new page
+            setCurrentPage(mCurrentPage + 1);
+            mAddWidgetView = null;
+        } else if (mAddWidgetView == null && !enabled) {
+            View addWidget = findViewById(com.android.internal.R.id.keyguard_add_widget);
+            if (addWidget != null) {
+                mAddWidgetView = addWidget;
+                removeView(addWidget);
+            }
         }
     }
 

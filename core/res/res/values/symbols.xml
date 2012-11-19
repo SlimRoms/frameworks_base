@@ -871,6 +871,9 @@
   <java-symbol type="plurals" name="abbrev_num_hours_ago" />
   <java-symbol type="plurals" name="abbrev_num_minutes_ago" />
   <java-symbol type="plurals" name="abbrev_num_seconds_ago" />
+  <java-symbol type="plurals" name="duration_hours" />
+  <java-symbol type="plurals" name="duration_minutes" />
+  <java-symbol type="plurals" name="duration_seconds" />
   <java-symbol type="plurals" name="in_num_days" />
   <java-symbol type="plurals" name="in_num_hours" />
   <java-symbol type="plurals" name="in_num_minutes" />
@@ -1109,6 +1112,7 @@
   <java-symbol type="layout" name="keyguard_multi_user_selector_widget" />
   <java-symbol type="layout" name="sms_short_code_confirmation_dialog" />
   <java-symbol type="layout" name="keyguard_add_widget" />
+  <java-symbol type="layout" name="action_bar_up_container" />
 
   <java-symbol type="anim" name="slide_in_child_bottom" />
   <java-symbol type="anim" name="slide_in_right" />
@@ -1535,6 +1539,8 @@
   <java-symbol type="array" name="radioAttributes" />
   <java-symbol type="array" name="config_oemUsbModeOverride" />
   <java-symbol type="array" name="config_locationProviderPackageNames" />
+  <java-symbol type="array" name="config_defaultNotificationVibePattern" />
+  <java-symbol type="array" name="config_notificationFallbackVibePattern" />
   <java-symbol type="bool" name="config_animateScreenLights" />
   <java-symbol type="bool" name="config_automatic_brightness_available" />
   <java-symbol type="bool" name="config_sf_limitedAlpha" />
