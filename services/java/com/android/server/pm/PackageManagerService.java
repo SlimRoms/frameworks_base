@@ -3985,8 +3985,12 @@ public class PackageManagerService extends IPackageManager.Stub {
         }
         mScanningPath = scanFile;
 
-        if (mFoundPolicyFile) {
-            SELinuxMMAC.assignSeinfoValue(pkg);
+        if (mFoundPolicyFile && !SELinuxMMAC.passInstallPolicyChecks(pkg) &&
+            SystemProperties.getBoolean("persist.mac_enforcing_mode", false)) {
+            Slog.w(TAG, "Installing application package " + pkg.packageName
+                   + " failed due to policy.");
+            mLastScanError = PackageManager.INSTALL_FAILED_POLICY_REJECTED_PERMISSION;
+            return null;
         }
 
         if ((parseFlags&PackageParser.PARSE_IS_SYSTEM) != 0) {
