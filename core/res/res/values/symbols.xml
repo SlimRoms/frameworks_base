@@ -1815,4 +1815,6 @@
   <!-- From PinyinIME(!!!) -->
   <java-symbol type="string" name="inputMethod" />
 
+  <java-symbol type="bool" name="config_forceDisableHardwareKeyboard" />
+
 </resources>
