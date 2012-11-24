@@ -1433,6 +1433,12 @@ public final class Settings {
          * Whether to show the alt lockscreen layout
          * @hide
          */
+        public static final String USE_STOCK_LOCKSCREEN = "use_stock_lockscreen";
+
+         /**
+         * Whether to show the alt lockscreen layout
+         * @hide
+         */
         public static final String USE_CIRCLES_LOCKSCREEN = "use_circles_lockscreen";
 
          /**
@@ -1445,7 +1451,13 @@ public final class Settings {
          * Sets bg color of alt lockscreen bg
          * @hide
          */
-        public static final String CIRCLES_LOCK_BG_COLOR = "circles_lock_bg_color";
+        public static final String BLACKBERRY_LOCK_BG_COLOR = "blackberry_lock_bg_color";
+
+         /**
+         * Sets ring alpha of alt lockscreen
+         * @hide
+         */
+        public static final String BLACKBERRY_LOCK_BG_ALPHA = "blackberry_lock_bg_alpha";
 
          /**
          * Sets ring color of alt lockscreen
@@ -1465,6 +1477,23 @@ public final class Settings {
          */
         public static final String CIRCLES_LOCK_WAVE_COLOR = "circles_lock_wave_color";
 
+         /**
+         * Sets ring alpha of alt lockscreen
+         * @hide
+         */
+        public static final String CIRCLES_LOCK_RING_ALPHA = "circles_lock_ring_alpha";
+
+        /**
+         * Sets halo alpha of alt lockscreen
+         * @hide
+         */
+        public static final String CIRCLES_LOCK_HALO_ALPHA = "circles_lock_halo_alpha";
+
+        /**
+         * Sets wave alpha of alt lockscreen
+         * @hide
+         */
+        public static final String CIRCLES_LOCK_WAVE_ALPHA = "circles_lock_wave_alpha";
 
         /**
          * A formatted string of the next alarm that is set, or the empty string
@@ -2356,7 +2385,7 @@ public final class Settings {
          * Whether the lockscreen vibrate should be enabled.
          * @hide
          */
-        public static final String LOCKSCREEN_TRANSPARENT_ENABLED = "lockscreen.transparent_enabled";
+        public static final String LOCKSCREEN_TRANSPARENT_ENABLED = "lockscreen_transparent_enabled";
 
         /**
          * Stores values for custom lockscreen targets
@@ -2758,10 +2787,34 @@ public final class Settings {
         public static final String LOCKSCREEN_BACKGROUND = "lockscreen_background";
 
         /**
+         * Sets the lockscreen background style array helper
+         * @hide
+         */
+        public static final String LOCKSCREEN_BACKGROUND_VALUE = "lockscreen_background_VALUE";
+
+        /**
+         * Sets the lockscreen background alpha
+         * @hide
+         */
+        public static final String LOCKSCREEN_ALPHA = "lockscreen_alpha";
+
+        /**
          * Sets the lockscreen layout style
          * @hide
          */
         public static final String LOCKSCREEN_LAYOUT = "lockscreen_layout";
+
+        /**
+         * Show the weather on the lock screen
+         * @hide
+         */
+        public static final String LOCKSCREEN_CLOCK = "lockscreen_clock";
+
+        /**
+         * Show the weather on the lock screen
+         * @hide
+         */
+        public static final String LOCKSCREEN_CLOCK_STYLE = "lockscreen_clock_style";
 
         /**
          * Show the weather on the lock screen
@@ -4342,6 +4395,14 @@ public final class Settings {
          */
         public static final String LOCK_BEFORE_UNLOCK =
             "lock_before_unlock";
+
+        /**
+         * Helper to choose custom lockscreen will be shown before a secure
+         * lock screen
+         * @hide
+         */
+        public static final String LOCK_BEFORE_UNLOCK_VALUE =
+            "lock_before_unlock_VALUE";
 
         /**
          * The saved value for WindowManagerService.setForcedDisplaySize().

@@ -18,6 +18,7 @@ package com.android.internal.policy.impl;
 
 import android.app.ActivityManager;
 import android.app.ActivityManagerNative;
+import android.app.WallpaperManager;
 import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
@@ -121,8 +122,6 @@ class LockScreen extends LinearLayout implements KeyguardScreen {
     private KeyguardStatusViewManager mStatusViewManager;
     private UnlockWidgetCommonMethods mUnlockWidgetMethods;
     private View mUnlockWidget;
-    private View mCircleUnlockWidget;
-    private View mBlackBerryUnlockWidget;
     private boolean mCameraDisabled;
     private boolean mSearchDisabled;
     // Is there a vibrator
@@ -818,45 +817,11 @@ class LockScreen extends LinearLayout implements KeyguardScreen {
         mAudioManager = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
         mSilentMode = isSilentMode();
         mUnlockWidget = findViewById(R.id.unlock_widget);
-        mCircleUnlockWidget = findViewById(R.id.circle_unlock_widget);
-        mBlackBerryUnlockWidget = findViewById(R.id.blackberry_unlock_widget);
-
-        if (mCirclesLock) {
-            mUnlockWidgetMethods = createCircleUnlockMethod(mCircleUnlockWidget);
-        } else if (mBlackBerryLock) {
-            mUnlockWidgetMethods = createBlackBerryUnlockMethod(mBlackBerryUnlockWidget);
-        }else {
-            mUnlockWidgetMethods = createUnlockMethods(mUnlockWidget);
-        }
+        mUnlockWidgetMethods = createUnlockMethods(mUnlockWidget);
 
         if (DBG) Log.v(TAG, "*** LockScreen accel is "
                 + (mUnlockWidget.isHardwareAccelerated() ? "on":"off"));
     }
-
-
-    private UnlockWidgetCommonMethods createCircleUnlockMethod(View unlockWidget) {
-         if (unlockWidget instanceof CirclesView) {
-            CirclesView circlesView = (CirclesView) unlockWidget;
-            CirclesViewMethods circlesViewMethods = new CirclesViewMethods(circlesView);
-
-            circlesView.setOnTriggerListener(circlesViewMethods);
-            return circlesViewMethods;
-        } else {
-            throw new IllegalStateException("Unrecognized unlock widget: " + unlockWidget);
-        }
-    }
-
-    private UnlockWidgetCommonMethods createBlackBerryUnlockMethod(View unlockWidget) {
-        if (unlockWidget instanceof BlackBerryView) {
-            BlackBerryView blackBerryView = (BlackBerryView) unlockWidget;
-            BlackBerryViewMethods blackBerryViewMethods = new BlackBerryViewMethods(blackBerryView);
-            blackBerryView.setOnTriggerListener(blackBerryViewMethods);
-            return blackBerryViewMethods;
-        } else {
-            throw new IllegalStateException("Unrecognized unlock widget: " + unlockWidget);
-        }
-    }
-
 
 
     private UnlockWidgetCommonMethods createUnlockMethods(View unlockWidget) {
@@ -872,6 +837,16 @@ class LockScreen extends LinearLayout implements KeyguardScreen {
             SlidingTabMethods slidingTabMethods = new SlidingTabMethods(slidingTabView);
             slidingTabView.setOnTriggerListener(slidingTabMethods);
             return slidingTabMethods;
+        } else if (unlockWidget instanceof CirclesView) {
+            CirclesView circlesView = (CirclesView) unlockWidget;
+            CirclesViewMethods circlesViewMethods = new CirclesViewMethods(circlesView);
+            circlesView.setOnTriggerListener(circlesViewMethods);
+            return circlesViewMethods;
+        } else if (unlockWidget instanceof BlackBerryView) {
+            BlackBerryView blackBerryView = (BlackBerryView) unlockWidget;
+            BlackBerryViewMethods blackBerryViewMethods = new BlackBerryViewMethods(blackBerryView);
+            blackBerryView.setOnTriggerListener(blackBerryViewMethods);
+            return blackBerryViewMethods;
         } else if (unlockWidget instanceof WaveView) {
             WaveView waveView = (WaveView) unlockWidget;
             WaveViewMethods waveViewMethods = new WaveViewMethods(waveView);
@@ -910,10 +885,13 @@ class LockScreen extends LinearLayout implements KeyguardScreen {
 
     static void setBackground(Context context, ViewGroup layout) {
         String lockBack = Settings.System.getString(context.getContentResolver(), Settings.System.LOCKSCREEN_BACKGROUND);
+        int mBgAlpha = (int)((1-(Settings.System.getFloat(context.getContentResolver(),
+                Settings.System.LOCKSCREEN_ALPHA, 0.0f)))*255);
         if (lockBack != null) {
             if (!lockBack.isEmpty()) {
                 try {
                     layout.setBackgroundColor(Integer.parseInt(lockBack));
+                    layout.getBackground().setAlpha(mBgAlpha);
                 } catch(NumberFormatException e) {
                     e.printStackTrace();
                 }
@@ -937,6 +915,7 @@ class LockScreen extends LinearLayout implements KeyguardScreen {
                         String wallpaperFile = settingsContext.getFilesDir() + "/lockwallpaper";
                         Bitmap background = BitmapFactory.decodeFile(wallpaperFile);
                         Drawable d = new BitmapDrawable(context.getResources(), background);
+                        mLockScreenWallpaperImage.setAlpha(mBgAlpha);
                         mLockScreenWallpaperImage.setImageDrawable(d);
                         // add background to lock screen.
                         rlout.addView(flayout,0);
@@ -1208,7 +1187,6 @@ class LockScreen extends LinearLayout implements KeyguardScreen {
                 Settings.System.LOCKSCREEN_CUSTOM_TEXT_COLOR, COLOR_WHITE);
 
         boolean mCirclesLock = Settings.System.getBoolean(mContext.getContentResolver(), Settings.System.USE_CIRCLES_LOCKSCREEN, false);
-        boolean mBlackBerryLock = Settings.System.getBoolean(mContext.getContentResolver(), Settings.System.USE_BLACKBERRY_LOCKSCREEN, false);
 
         // digital clock first (see @link com.android.internal.widget.DigitalClock.updateTime())
         try {

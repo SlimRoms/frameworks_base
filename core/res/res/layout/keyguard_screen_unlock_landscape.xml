@@ -28,60 +28,15 @@
     android:layout_height="match_parent"
     android:rowCount="7">
 
-    <!-- Column 0: Time, date and status -->
-    <com.android.internal.widget.DigitalClock android:id="@+id/time"
-        android:layout_marginTop="8dip"
-        android:layout_marginBottom="12dip"
-        android:layout_gravity="right">
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/keyguard_clock" />
 
-        <!-- Because we can't have multi-tone fonts, we render two TextViews, one on
-        top of the other. Hence the redundant layout... -->
-        <TextView android:id="@+id/timeDisplayBackground"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:ellipsize="none"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="@dimen/keyguard_lockscreen_clock_font_size"
-            android:layout_marginBottom="6dip"
-            android:textColor="@color/lockscreen_clock_background"
-            />
-
-        <TextView android:id="@+id/timeDisplayForeground"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:ellipsize="none"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="@dimen/keyguard_lockscreen_clock_font_size"
-            android:layout_marginBottom="6dip"
-            android:layout_alignLeft="@id/timeDisplayBackground"
-            android:layout_alignTop="@id/timeDisplayBackground"
-            android:textColor="@color/lockscreen_clock_foreground"
-            />
-
-    </com.android.internal.widget.DigitalClock>
-
-    <TextView
-        android:id="@+id/date"
-        android:layout_width="0dip"
-        android:layout_gravity="fill_horizontal"
-        android:gravity="right"
-        android:singleLine="true"
-        android:ellipsize="marquee"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textSize="@dimen/keyguard_lockscreen_status_line_font_size"
-        />
-
-    <TextView
-        android:id="@+id/alarm_status"
-        android:singleLine="true"
-        android:ellipsize="marquee"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textSize="@dimen/keyguard_lockscreen_status_line_font_size"
-        android:layout_gravity="right"
-        android:drawablePadding="4dip"
-        />
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/keyguard_clock_alt" />
 
     <TextView
         android:id="@+id/status1"
@@ -94,7 +49,16 @@
         android:textSize="@dimen/keyguard_lockscreen_status_line_font_size"
         />
 
-    <Space android:layout_gravity="fill" />
+    <TextView
+        android:id="@+id/propertyOf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="@dimen/keyguard_lockscreen_status_line_font_size"
+        android:drawablePadding="4dip"
+        />
 
     <TextView android:id="@+id/carrier"
         android:layout_width="0dip"

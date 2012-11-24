@@ -34,6 +34,11 @@ import android.view.ViewManager;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 
+import android.database.ContentObserver;
+import android.net.Uri;
+import android.os.Handler;
+import android.content.ContentResolver;
+
 import android.graphics.Color;
 
 /**
@@ -79,6 +84,9 @@ public class KeyguardViewManager implements KeyguardWindowController {
         mKeyguardViewProperties = keyguardViewProperties;
 
         mUpdateMonitor = updateMonitor;
+
+        SettingsObserver observer = new SettingsObserver(new Handler());
+        observer.observe();
     }
 
     /**
@@ -125,7 +133,7 @@ public class KeyguardViewManager implements KeyguardWindowController {
             final int stretch = ViewGroup.LayoutParams.MATCH_PARENT;
             int flags;
 
-            if (!enableTransparency) {        
+            if (!enableTransparency) {
                     flags = WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN
                             | WindowManager.LayoutParams.FLAG_SHOW_WALLPAPER
                             | WindowManager.LayoutParams.FLAG_SLIPPERY
@@ -325,5 +333,23 @@ public class KeyguardViewManager implements KeyguardWindowController {
      */
     public synchronized boolean isShowing() {
         return (mKeyguardHost != null && mKeyguardHost.getVisibility() == View.VISIBLE);
+    }
+
+    class SettingsObserver extends ContentObserver {
+            SettingsObserver(Handler handler) {
+              super(handler);
+            }
+
+            void observe() {
+                 ContentResolver resolver = mContext.getContentResolver();
+                      resolver.registerContentObserver(Settings.System.getUriFor(
+                      Settings.System.LOCKSCREEN_TRANSPARENT_ENABLED), false, this);
+            }
+
+            @Override
+            public void onChange(boolean selfChange, Uri uri) {
+                if (mKeyguardHost != null) mViewManager.removeView(mKeyguardHost);
+                mKeyguardHost = null;
+            }
     }
 }

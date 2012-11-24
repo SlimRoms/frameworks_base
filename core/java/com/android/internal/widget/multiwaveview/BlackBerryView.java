@@ -30,6 +30,7 @@ import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import com.android.internal.widget.DrawableHolder;
 import android.os.Vibrator;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -46,8 +47,7 @@ import com.android.internal.R;
 public class BlackBerryView extends View implements ValueAnimator.AnimatorUpdateListener {
     private static final String TAG = "BlackBerryView";
     private static final boolean DBG = false;
-    private static final long VIBRATE_SHORT = 0;  // msec
-    private static final long VIBRATE_LONG = 0;  // msec
+    private static final long VIBRATE = 20;  // msec
 
     // Lock state machine states
     private static final int STATE_RESET_LOCK = 0;
@@ -91,6 +91,8 @@ public class BlackBerryView extends View implements ValueAnimator.AnimatorUpdate
 	private float mRingRadius;
 	private float mHeightHalo;
 	private float mHeightWave;
+    private int mBgAlpha;
+    private int mBgColor;
     private DrawableHolder mUnlockRing;
     private DrawableHolder mUnlockWave;
     private DrawableHolder mUnlockHalo;
@@ -107,6 +109,16 @@ public class BlackBerryView extends View implements ValueAnimator.AnimatorUpdate
         // TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.WaveView);
         // mOrientation = a.getInt(R.styleable.WaveView_orientation, HORIZONTAL);
         // a.recycle();
+
+        mBgColor = Settings.System.getInt(context.getContentResolver(),
+                Settings.System.BLACKBERRY_LOCK_BG_COLOR, 0xFF000000);
+        mBgAlpha = (int)((Settings.System.getFloat(context.getContentResolver(),
+                Settings.System.BLACKBERRY_LOCK_BG_ALPHA, 0.15f))*255);
+
+        if (mBgAlpha == 0) mBgAlpha = 1;
+
+        boolean vibrateEnabled = Settings.System.getInt(context.getContentResolver(),Settings.System.LOCKSCREEN_VIBRATE_ENABLED, 1) == 1;
+        setVibrateEnabled(vibrateEnabled ? VIBRATE > 0 : false);
 
         initDrawables();
     }
@@ -179,6 +191,7 @@ public class BlackBerryView extends View implements ValueAnimator.AnimatorUpdate
         mUnlockRing.setY(mLockCenterY);
         mUnlockRing.setScaleX(dynamicScale);
         mUnlockRing.setScaleY(dynamicScale);
+        mUnlockRing.setColor(mBgColor);
         mUnlockRing.setAlpha(0.0f);
         mDrawables.add(mUnlockRing);
 
@@ -186,13 +199,15 @@ public class BlackBerryView extends View implements ValueAnimator.AnimatorUpdate
         mUnlockWave.setY(mLockCenterY);
         mUnlockWave.setScaleX(dynamicScale);
         mUnlockWave.setScaleY(dynamicScale);
-        mUnlockWave.setAlpha(1.0f);
+        mUnlockWave.setColor(mBgColor);
+        mUnlockWave.setAlpha(mBgAlpha);
         mDrawables.add(mUnlockWave);
 
         mUnlockHalo.setX(mLockCenterX);
         mUnlockHalo.setY(mLockCenterY + (float)(mRingRadius/2));
         mUnlockHalo.setScaleX((float)(dynamicScale*2));
         mUnlockHalo.setScaleY(dynamicScale);
+        mUnlockHalo.setColor(mBgColor);
         mUnlockHalo.setAlpha(0.0f);
         mDrawables.add(mUnlockHalo);
     }
@@ -230,7 +245,7 @@ public class BlackBerryView extends View implements ValueAnimator.AnimatorUpdate
                 // mUnlockWave.setY(mLockCenterY);
                 mUnlockWave.setScaleX(dynamicScale);
                 mUnlockWave.setScaleY(dynamicScale);
-                mUnlockWave.setAlpha(1.0f);
+                mUnlockWave.setAlpha(mBgAlpha);
                 mUnlockWave.addAnimTo(DURATION, 0, "x", mLockCenterX, true);
                 mUnlockWave.addAnimTo(DURATION, 0, "y", mLockCenterY, true);
 
@@ -270,13 +285,13 @@ public class BlackBerryView extends View implements ValueAnimator.AnimatorUpdate
                         mUnlockWave.addAnimTo(0, 0, "y", mouseY - (float)(((mHeightWave/2)+(mHeightHalo/2))*dynamicScale), true);
                         mUnlockWave.addAnimTo(0, 0, "scaleX", dynamicScale, true);
                         mUnlockWave.addAnimTo(0, 0, "scaleY", dynamicScale, true);
-                        mUnlockWave.addAnimTo(0, 0, "alpha", 1.0f, true);
+                        mUnlockWave.addAnimTo(0, 0, "alpha", mBgAlpha, true);
 
                         mUnlockHalo.addAnimTo(0, 0, "x", mouseX, true);
                         mUnlockHalo.addAnimTo(0, 0, "y", mouseY, true);
                         mUnlockHalo.addAnimTo(0, 0, "scaleX", (float)(dynamicScale*2), true);
                         mUnlockHalo.addAnimTo(0, 0, "scaleY", dynamicScale, true);
-                        mUnlockHalo.addAnimTo(0, 0, "alpha", 1.0f, true);
+                        mUnlockHalo.addAnimTo(0, 0, "alpha", mBgAlpha, true);
                     }  else {
                         if (DBG) Log.v(TAG, "up detected, moving to STATE_UNLOCK_ATTEMPT");
                         mLockState = STATE_UNLOCK_ATTEMPT;
@@ -286,13 +301,13 @@ public class BlackBerryView extends View implements ValueAnimator.AnimatorUpdate
                     mUnlockWave.addAnimTo(0, 0, "y", mouseY - (float)(((mHeightWave/2)+(mHeightHalo/2))*dynamicScale), true);
                     mUnlockWave.addAnimTo(0, 0, "scaleX", dynamicScale, true);
                     mUnlockWave.addAnimTo(0, 0, "scaleY", dynamicScale, true);
-                    mUnlockWave.addAnimTo(0, 0, "alpha", 1.0f, true);
+                    mUnlockWave.addAnimTo(0, 0, "alpha", mBgAlpha, true);
 
                     mUnlockHalo.addAnimTo(0, 0, "x", mouseX, true);
                     mUnlockHalo.addAnimTo(0, 0, "y", mouseY, true);
                     mUnlockHalo.addAnimTo(0, 0, "scaleX", (float)(dynamicScale*2), true);
                     mUnlockHalo.addAnimTo(0, 0, "scaleY", dynamicScale, true);
-                    mUnlockHalo.addAnimTo(0, 0, "alpha", 1.0f, true);
+                    mUnlockHalo.addAnimTo(0, 0, "alpha", mBgAlpha, true);
                 }
                 break;
 
@@ -304,13 +319,13 @@ public class BlackBerryView extends View implements ValueAnimator.AnimatorUpdate
                     mUnlockWave.addAnimTo(FINAL_DURATION, 0, "y", mLockCenterY - (float)(mRingRadius*dynamicScale), true);
                     mUnlockWave.addAnimTo(FINAL_DURATION, 0, "scaleX", (float)(dynamicScale*2), false);
                     mUnlockWave.addAnimTo(FINAL_DURATION, 0, "scaleY", dynamicScale, false);
-                    mUnlockWave.addAnimTo(FINAL_DURATION, 0, "alpha", 1.0f, false);
+                    mUnlockWave.addAnimTo(FINAL_DURATION, 0, "alpha", mBgAlpha, false);
 
                     mUnlockHalo.addAnimTo(FINAL_DURATION, 0, "x", mLockCenterX, true);
                     mUnlockHalo.addAnimTo(FINAL_DURATION, 0, "y", mLockCenterY - (float)((mRingRadius-(mHeightHalo/2))*dynamicScale), true);
                     mUnlockHalo.addAnimTo(FINAL_DURATION, 0, "scaleX", dynamicScale, false);
                     mUnlockHalo.addAnimTo(FINAL_DURATION, 0, "scaleY", dynamicScale, false);
-                    mUnlockHalo.addAnimTo(FINAL_DURATION, 0, "alpha", 1.0f, false);
+                    mUnlockHalo.addAnimTo(FINAL_DURATION, 0, "alpha", mBgAlpha, false);
 
                     removeCallbacks(mLockTimerActions);
 
@@ -467,15 +482,24 @@ public class BlackBerryView extends View implements ValueAnimator.AnimatorUpdate
     }
 
     /**
-     * Triggers haptic feedback.
+     * Enable or disable vibrate on touch.
+     *
+     * @param enabled
      */
-    private synchronized void vibrate(long duration) {
-        if (mVibrator == null) {
-            mVibrator = (android.os.Vibrator)
-                    getContext().getSystemService(Context.VIBRATOR_SERVICE);
+    public void setVibrateEnabled(boolean enabled) {
+        if (enabled && mVibrator == null) {
+            mVibrator = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
+        } else {
+            mVibrator = null;
         }
-        mVibrator.vibrate(duration);
     }
+
+    private void vibrate(long duration) {
+        if (mVibrator != null) {
+            mVibrator.vibrate(duration);
+        }
+    }
+
 
     /**
      * Registers a callback to be invoked when the user triggers an event.
@@ -491,7 +515,7 @@ public class BlackBerryView extends View implements ValueAnimator.AnimatorUpdate
      * @param whichHandle the handle that triggered the event.
      */
     private void dispatchTriggerEvent(int whichHandle) {
-        vibrate(VIBRATE_LONG);
+        vibrate(VIBRATE);
         if (mOnTriggerListener != null) {
             mOnTriggerListener.onTrigger(this, whichHandle);
         }

@@ -13,13 +13,13 @@ import static com.android.server.wm.WindowManagerService.H.SET_DIM_PARAMETERS;
 
 import android.content.Context;
 import android.os.SystemClock;
-import android.provider.Settings;
 import android.util.Log;
 import android.util.Slog;
 import android.view.Surface;
 import android.view.WindowManager;
 import android.view.WindowManagerPolicy;
 import android.view.animation.Animation;
+import android.provider.Settings;
 
 import com.android.internal.policy.impl.PhoneWindowManager;
 
@@ -206,13 +206,6 @@ public class WindowAnimator {
         ArrayList<WindowStateAnimator> unForceHiding = null;
         boolean wallpaperInUnForceHiding = false;
 
-        boolean mTransparentLock = Settings.System.getBoolean(mContext.getContentResolver(),
-                Settings.System.LOCKSCREEN_TRANSPARENT_ENABLED, false);
-        boolean mCirclesLock = Settings.System.getBoolean(mContext.getContentResolver(),
-                Settings.System.USE_CIRCLES_LOCKSCREEN, false);
-        boolean mBlackBerryLock = Settings.System.getBoolean(mContext.getContentResolver(),
-                Settings.System.USE_BLACKBERRY_LOCKSCREEN, false);
-
         for (int i = mService.mWindows.size() - 1; i >= 0; i--) {
             WindowState win = mService.mWindows.get(i);
             WindowStateAnimator winAnimator = win.mWinAnimator;
@@ -221,6 +214,8 @@ public class WindowAnimator {
             if (winAnimator.mSurface != null) {
                 final boolean wasAnimating = winAnimator.mWasAnimating;
                 final boolean nowAnimating = winAnimator.stepAnimationLocked(mCurrentTime);
+                boolean mTransparent = Settings.System.getBoolean(mContext.getContentResolver(),
+                     Settings.System.LOCKSCREEN_TRANSPARENT_ENABLED, false);
 
                 if (WindowManagerService.DEBUG_WALLPAPER) {
                     Slog.v(TAG, win + ": wasAnimating=" + wasAnimating +
@@ -293,21 +288,22 @@ public class WindowAnimator {
                         }
                         mService.mFocusMayChange = true;
                     }
-                    if (win.isReadyForDisplay()) {
-                        if (!mTransparentLock && !mCirclesLock && !mBlackBerryLock) {
-                            if (nowAnimating) {
-                                if (winAnimator.mAnimationIsEntrance) {
-                                    mForceHiding = KEYGUARD_ANIMATING_IN;
-                                } else {
-                                    mForceHiding = KEYGUARD_ANIMATING_OUT;
-                                }
+                    if (!mTransparent) {
+                     if (win.isReadyForDisplay()) {
+                        if (nowAnimating) {
+                            if (winAnimator.mAnimationIsEntrance) {
+                                mForceHiding = KEYGUARD_ANIMATING_IN;
                             } else {
-                                mForceHiding = KEYGUARD_SHOWN;
+                                mForceHiding = KEYGUARD_ANIMATING_OUT;
                             }
                         } else {
-                            mForceHiding = KEYGUARD_NOT_SHOWN;
+                            mForceHiding = KEYGUARD_SHOWN;
                         }
-                    }
+                      }
+                     }else {
+                          mForceHiding = KEYGUARD_NOT_SHOWN;
+                     }
+
                     if (WindowManagerService.DEBUG_VISIBILITY) Slog.v(TAG,
                             "Force hide " + mForceHiding
                             + " hasSurface=" + win.mHasSurface

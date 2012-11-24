@@ -67,7 +67,6 @@ import com.android.internal.util.weather.HttpRetriever;
 import com.android.internal.util.weather.WeatherInfo;
 import com.android.internal.util.weather.WeatherXmlParser;
 import com.android.internal.util.weather.YahooPlaceFinder;
-import com.android.internal.widget.LockPatternUtils;
 import com.android.internal.widget.TransportControlView;
 
 import org.w3c.dom.Document;
@@ -111,15 +110,20 @@ class KeyguardStatusViewManager implements OnClickListener {
     // NOTE: These may be null in some LockScreen screens and should protect from NPE
     private TextView mCarrierView;
     private TextView mDateView;
+    private TextView mDateViewAlt;
     private TextView mStatus1View;
     private TextView mOwnerInfoView;
     private TextView mAlarmStatusView;
+    private TextView mAlarmStatusViewAlt;
     private LinearLayout mDateLineView;
+    private LinearLayout mDateLineViewAlt;
     private TransportControlView mTransportView;
     private RelativeLayout mWeatherPanel, mWeatherTempsPanel;
     private TextView mWeatherCity, mWeatherCondition, mWeatherLowHigh, mWeatherTemp, mWeatherUpdateTime;
     private ImageView mWeatherImage;
     private LinearLayout mCalendarPanel;
+    private LinearLayout mClock;
+    private LinearLayout mClockAlt;
     private TextView mCalendarEventTitle, mCalendarEventDetails;
 
     // Top-level container view for above views
@@ -234,15 +238,41 @@ class KeyguardStatusViewManager implements OnClickListener {
         mUpdateMonitor = updateMonitor;
         mCallback = callback;
 
+        final ContentResolver resolver = getContext().getContentResolver();
+        boolean showClock = Settings.System.getInt(resolver,
+                Settings.System.LOCKSCREEN_CLOCK, 1) == 1;
+        boolean clockStyle = Settings.System.getInt(resolver,
+                Settings.System.LOCKSCREEN_CLOCK_STYLE, 0) == 1;
+
+        mClock = (LinearLayout) findViewById(R.id.clock);
+        mClockAlt = (LinearLayout) findViewById(R.id.clock_alt);
+
+        if ((mClock != null) && (mClockAlt != null)) {
+            if (showClock) {
+                if (clockStyle) {
+                     mClock.setVisibility(LinearLayout.GONE);
+                }else {
+                     mClockAlt.setVisibility(LinearLayout.GONE);
+                }
+            }else   {
+                mClock.setVisibility(LinearLayout.GONE);
+                mClockAlt.setVisibility(LinearLayout.GONE);
+            }
+        }
+
         mCarrierView = (TextView) findViewById(R.id.carrier);
         mDateView = (TextView) findViewById(R.id.date);
+        mDateViewAlt = (TextView) findViewById(R.id.date_alt);
         mStatus1View = (TextView) findViewById(R.id.status1);
         mAlarmStatusView = (TextView) findViewById(R.id.alarm_status);
+        mAlarmStatusViewAlt = (TextView) findViewById(R.id.alarm_status_alt);
         mOwnerInfoView = (TextView) findViewById(R.id.propertyOf);
         mDateLineView = (LinearLayout) findViewById(R.id.date_line);
+        mDateLineViewAlt = (LinearLayout) findViewById(R.id.date_line_alt);
         mTransportView = (TransportControlView) findViewById(R.id.transport);
         mEmergencyCallButton = (Button) findViewById(R.id.emergencyCallButton);
         mEmergencyCallButtonEnabledInScreen = emergencyButtonEnabledInScreen;
+
         mDigitalClock = (DigitalClock) findViewById(R.id.time);
         mDigitalClockAlt = (DigitalClockAlt) findViewById(R.id.time_alt);
 
@@ -283,16 +313,16 @@ class KeyguardStatusViewManager implements OnClickListener {
             mEmergencyCallButton.setFocusable(false); // touch only!
         }
 
-        if (mDateView != null) {
-            if (mCirclesLock) {
-                mDateView.setTypeface(sLightFont);
-            }
+        if (mDateViewAlt != null) {
+              mDateViewAlt.setTypeface(sLightFont);
         }
 
-        if (mAlarmStatusView != null) {
-            if (mCirclesLock) {
-                mAlarmStatusView.setTypeface(sLightFont);
-            }
+        if (mAlarmStatusViewAlt != null) {
+               mAlarmStatusViewAlt.setTypeface(sLightFont);
+        }
+
+        if (mOwnerInfoView != null && showClock && clockStyle) {
+               mOwnerInfoView.setTypeface(sLightFont);
         }
 
         mTransientTextManager = new TransientTextManager(mCarrierView);
@@ -305,7 +335,7 @@ class KeyguardStatusViewManager implements OnClickListener {
         updateOwnerInfo();
         refreshWeather();
         refreshCalendar();
-        if (mDigitalClock != null) {
+        if (mDigitalClock != null || mDigitalClockAlt != null) {
             updateClockAlign();
         }
         updateColors();
@@ -711,6 +741,7 @@ class KeyguardStatusViewManager implements OnClickListener {
 
         if (mDigitalClockAlt != null) {
             mDigitalClockAlt.updateTime();
+            updateClockAlign();
         }
 
         refreshWeather();
@@ -759,6 +790,13 @@ class KeyguardStatusViewManager implements OnClickListener {
             mAlarmStatusView.setCompoundDrawablesWithIntrinsicBounds(ALARM_ICON, 0, 0, 0);
             mAlarmStatusView.setVisibility(showAlarm ? View.VISIBLE : View.GONE);
         }
+        if (mAlarmStatusViewAlt != null) {
+            String nextAlarm = mLockPatternUtils.getNextAlarm();
+            boolean showAlarm = mShowingStatus && !TextUtils.isEmpty(nextAlarm);
+            mAlarmStatusViewAlt.setText(nextAlarm);
+            mAlarmStatusViewAlt.setCompoundDrawablesWithIntrinsicBounds(ALARM_ICON, 0, 0, 0);
+            mAlarmStatusViewAlt.setVisibility(showAlarm ? View.VISIBLE : View.GONE);
+        }
     }
 
     private void updateOwnerInfo() {
@@ -784,38 +822,58 @@ class KeyguardStatusViewManager implements OnClickListener {
                 Settings.System.LOCKSCREEN_CLOCK_ALIGN, 2);
         int margin = (int) Math.round(getContext().getResources().getDimension(
                 R.dimen.keyguard_lockscreen_status_line_font_right_margin));
+        boolean showClock = Settings.System.getInt(getContext().getContentResolver(),
+                Settings.System.LOCKSCREEN_CLOCK, 1) == 1;
 
         // Adjust for each layout
         if (config.screenWidthDp >= 600) { // sw600dp
             margin = 0;
         }
 
-        int leftMargin = 0, rightMargin = 0;
+        int leftMargin = 0, rightMargin = 0, topMargin = -1;
         int gravity = Gravity.RIGHT;
 
-        switch (clockAlign) {
-        case 0:
-            gravity = Gravity.LEFT;
-            leftMargin = margin;
-            break;
-        case 1:
-            gravity = Gravity.CENTER;
-            break;
-        case 2:
-            rightMargin = margin;
-            break;
+        if (showClock) {
+            switch (clockAlign) {
+            case 0:
+                gravity = Gravity.LEFT;
+                leftMargin = margin;
+                break;
+            case 1:
+                gravity = Gravity.CENTER;
+                break;
+            case 2:
+                rightMargin = margin;
+                break;
+            }
+        }else {
+                gravity = Gravity.CENTER;
+                topMargin = 30;
         }
 
-        mDigitalClock.setGravity(gravity);
-        setSpecificMargins(mDigitalClock, leftMargin, -1, rightMargin, -1);
-
+        if (mDigitalClock != null) {
+           mDigitalClock.setGravity(gravity);
+           setSpecificMargins(mDigitalClock, leftMargin, -1, rightMargin, -1);
+        }
+        if (mDigitalClockAlt != null) {
+           mDigitalClockAlt.setGravity(gravity);
+           setSpecificMargins(mDigitalClockAlt, leftMargin, -1, rightMargin, -1);
+        }
         if (mDateLineView != null) {
             mDateLineView.setGravity(gravity);
             setSpecificMargins(mDateLineView, leftMargin, -1, rightMargin, -1);
         }
+        if (mDateLineViewAlt != null) {
+            mDateLineViewAlt.setGravity(gravity);
+            setSpecificMargins(mDateLineViewAlt, leftMargin, -1, rightMargin, -1);
+        }
         if (mStatus1View != null) {
             mStatus1View.setGravity(gravity);
-            setSpecificMargins(mStatus1View, leftMargin, -1, rightMargin, -1);
+            setSpecificMargins(mStatus1View, leftMargin, topMargin, rightMargin, -1);
+        }
+        if (mOwnerInfoView != null) {
+            mOwnerInfoView.setGravity(gravity);
+            setSpecificMargins(mOwnerInfoView, leftMargin, -1, rightMargin, -1);
         }
     }
     private void setSpecificMargins(View view, int left, int top, int right,
@@ -908,6 +966,9 @@ class KeyguardStatusViewManager implements OnClickListener {
     void refreshDate() {
         if (mDateView != null) {
             mDateView.setText(DateFormat.format(mDateFormatString, new Date()));
+        }
+        if (mDateViewAlt != null) {
+            mDateViewAlt.setText(DateFormat.format(mDateFormatString, new Date()));
         }
     }
 
@@ -1213,6 +1274,14 @@ class KeyguardStatusViewManager implements OnClickListener {
             if (DEBUG) ne.printStackTrace();
         }
 
+        // date view alt
+        try {
+            mDateViewAlt.setTextColor(color);
+            if (DEBUG) Log.d(TAG, String.format("Setting mDateViewAlt DATE text color to %d", color));
+        } catch (NullPointerException ne) {
+            if (DEBUG) ne.printStackTrace();
+        }
+
         // status view
         try {
             mStatus1View.setTextColor(color);
@@ -1254,6 +1323,14 @@ class KeyguardStatusViewManager implements OnClickListener {
         try {
             mAlarmStatusView.setTextColor(color);
             if (DEBUG) Log.d(TAG, String.format("Setting mAlarmStatusView DATE text color to %d", color));
+        } catch (NullPointerException ne) {
+            if (DEBUG) ne.printStackTrace();
+        }
+
+        // alarm status view alt
+        try {
+            mAlarmStatusViewAlt.setTextColor(color);
+            if (DEBUG) Log.d(TAG, String.format("Setting mAlarmStatusViewAlt DATE text color to %d", color));
         } catch (NullPointerException ne) {
             if (DEBUG) ne.printStackTrace();
         }

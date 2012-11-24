@@ -28,66 +28,15 @@
     android:gravity="center_horizontal"
     android:id="@+id/root">
 
-    <com.android.internal.widget.DigitalClock android:id="@+id/time"
-        android:layout_marginTop="@dimen/keyguard_lockscreen_status_line_clockfont_top_margin"
-        android:layout_marginBottom="12dip"
+    <include
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        layout="@layout/keyguard_clock" />
 
-        <!-- Because we can't have multi-tone fonts, we render two TextViews, one on
-        top of the other. Hence the redundant layout... -->
-        <TextView android:id="@+id/timeDisplayBackground"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:ellipsize="none"
-            android:textSize="@dimen/keyguard_lockscreen_clock_font_size"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/lockscreen_clock_background"
-            />
-
-        <TextView android:id="@+id/timeDisplayForeground"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:ellipsize="none"
-            android:textSize="@dimen/keyguard_lockscreen_clock_font_size"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/lockscreen_clock_foreground"
-            />
-
-    </com.android.internal.widget.DigitalClock>
-
-    <LinearLayout
-        android:id="@+id/date_line"
-        android:orientation="horizontal"
+    <include
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:ellipsize="marquee"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="@dimen/keyguard_lockscreen_status_line_font_size"
-            />
-
-        <TextView
-            android:id="@+id/alarm_status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dip"
-            android:singleLine="true"
-            android:ellipsize="marquee"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="@dimen/keyguard_lockscreen_status_line_font_size"
-            android:drawablePadding="4dip"
-            />
-
-    </LinearLayout>
-
+        android:layout_height="wrap_content"
+        layout="@layout/keyguard_clock_alt" />
 
     <TextView
         android:id="@+id/status1"
@@ -100,7 +49,16 @@
         android:drawablePadding="4dip"
         />
 
-    <Space android:layout_gravity="fill" />
+    <TextView
+        android:id="@+id/propertyOf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="@dimen/keyguard_lockscreen_status_line_font_size"
+        android:drawablePadding="4dip"
+        />
 
     <!-- We need MATCH_PARENT here only to force the size of the parent to be passed to
     the pattern view for it to compute its size. This is an unusual case, caused by
