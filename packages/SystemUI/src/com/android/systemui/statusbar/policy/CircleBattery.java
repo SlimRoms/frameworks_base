@@ -106,8 +106,11 @@ public class CircleBattery extends ImageView {
             batteryStyle = (Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.STATUSBAR_BATTERY_ICON, 0));
 
-            mActivated = (batteryStyle == BatteryController.BATTERY_STYLE_CIRCLE || batteryStyle == BatteryController.BATTERY_STYLE_CIRCLE_PERCENT || batteryStyle == BatteryController.BATTERY_STYLE_DOTTED_CIRCLE_PERCENT);
-            mPercentage = (batteryStyle == BatteryController.BATTERY_STYLE_CIRCLE_PERCENT || batteryStyle == BatteryController.BATTERY_STYLE_DOTTED_CIRCLE_PERCENT);
+            mActivated = (batteryStyle == BatteryController.BATTERY_STYLE_CIRCLE
+                            || batteryStyle == BatteryController.BATTERY_STYLE_CIRCLE_PERCENT
+                            || batteryStyle == BatteryController.BATTERY_STYLE_DOTTED_CIRCLE_PERCENT);
+            mPercentage = (batteryStyle == BatteryController.BATTERY_STYLE_CIRCLE_PERCENT
+                            || batteryStyle == BatteryController.BATTERY_STYLE_DOTTED_CIRCLE_PERCENT);
 
             setVisibility(mActivated ? View.VISIBLE : View.GONE);
             if (mBatteryReceiver != null) {
@@ -260,12 +263,12 @@ public class CircleBattery extends ImageView {
         if (mLevel <= 14) {
             usePaint = mPaintRed;
         }
-	usePaint.setAntiAlias(true);
-	if (batteryStyle == BatteryController.BATTERY_STYLE_DOTTED_CIRCLE_PERCENT)
-	{// change usePaint from solid to dashed
-		usePaint.setPathEffect(new DashPathEffect(new float[]{3,2},0));
-	}
-	else usePaint.setPathEffect(null);
+        usePaint.setAntiAlias(true);
+        if (batteryStyle == BatteryController.BATTERY_STYLE_DOTTED_CIRCLE_PERCENT)
+        {// change usePaint from solid to dashed
+            usePaint.setPathEffect(new DashPathEffect(new float[]{3,2},0));
+        }
+        else usePaint.setPathEffect(null);
 
         mPaintAnim.setColor(usePaint.getColor());
 
@@ -361,8 +364,8 @@ public class CircleBattery extends ImageView {
         final Bitmap measure = BitmapFactory.decodeResource(getResources(),
                 com.android.systemui.R.drawable.stat_sys_wifi_signal_4_fully);
         final int x = measure.getWidth() / 2;
-	mCircleSize = measure.getHeight();
-	/*
+        mCircleSize = measure.getHeight();
+        /*
         mCircleSize = 0;
         for (int y = 0; y < measure.getHeight(); y++) {
             int alpha = Color.alpha(measure.getPixel(x, y));

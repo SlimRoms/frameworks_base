@@ -68,7 +68,8 @@ public class BatteryControllerNotification extends LinearLayout {
     public static final int STYLE_ICON_CENTERED_TEXT = 3;
     public static final int BATTERY_STYLE_CIRCLE         = 4;
     public static final int BATTERY_STYLE_CIRCLE_PERCENT = 5;
-    public static final int STYLE_HIDE = 6;
+    public static final int BATTERY_STYLE_DOTTED_CIRCLE_PERCENT = 6;
+    public static final int STYLE_HIDE = 7;
 
     public BatteryControllerNotification(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -201,23 +202,21 @@ public class BatteryControllerNotification extends LinearLayout {
     }
     
     public void isVisible(boolean show) {
-    	ContentResolver cr = mContext.getContentResolver();
-    	mBatteryEnabled = Settings.System.getInt(cr,
+        ContentResolver cr = mContext.getContentResolver();
+        mBatteryEnabled = Settings.System.getInt(cr,
                 Settings.System.NOTIFICATION_BATTERY_DISPLAY, 0) == 1;
-    	
-    	if (mBatteryEnabled && isAttached) {
-    		if (show) {
-    			updateSettings();
-    		} else {
-    			mBatteryText.setVisibility(View.GONE);
+        
+        if (mBatteryEnabled && isAttached) {
+            if (show) {
+                updateSettings();
+            } else {
+                mBatteryText.setVisibility(View.GONE);
                 mBatteryCenterText.setVisibility(View.GONE);
                 mBatteryIcon.setVisibility(View.GONE);
                 mBatteryTextOnly.setVisibility(View.GONE);
                 setVisibility(View.GONE);
-    		}
-    		
-    	}
-    	
+            }
+        }
     }
 
     private void updateSettings() {
@@ -231,7 +230,7 @@ public class BatteryControllerNotification extends LinearLayout {
                 Settings.System.STATUSBAR_BATTERY_ICON, 0);
 
         if (mBatteryEnabled) {
-        	switch (mBatteryStyle) {
+            switch (mBatteryStyle) {
                 case STYLE_ICON_ONLY:
                     mBatteryCenterText.setVisibility(View.GONE);
                     mBatteryText.setVisibility(View.GONE);
@@ -281,6 +280,13 @@ public class BatteryControllerNotification extends LinearLayout {
                     mBatteryTextOnly.setVisibility(View.GONE);
                     setVisibility(View.VISIBLE);
                     break;
+                case BATTERY_STYLE_DOTTED_CIRCLE_PERCENT:
+                    mBatteryText.setVisibility(View.GONE);
+                    mBatteryCenterText.setVisibility(View.GONE);
+                    mBatteryIcon.setVisibility(View.GONE);
+                    mBatteryTextOnly.setVisibility(View.GONE);
+                    setVisibility(View.VISIBLE);
+                    break;
                 default:
                     mBatteryText.setVisibility(View.GONE);
                     mBatteryCenterText.setVisibility(View.GONE);
@@ -290,7 +296,7 @@ public class BatteryControllerNotification extends LinearLayout {
                     break;
             }
         } else {
-        	mBatteryText.setVisibility(View.GONE);
+            mBatteryText.setVisibility(View.GONE);
             mBatteryCenterText.setVisibility(View.GONE);
             mBatteryIcon.setVisibility(View.GONE);
             mBatteryTextOnly.setVisibility(View.GONE);
