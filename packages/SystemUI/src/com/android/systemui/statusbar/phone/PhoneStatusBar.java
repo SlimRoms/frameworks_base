@@ -41,6 +41,7 @@ import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
+import android.graphics.PorterDuff.Mode;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.NinePatchDrawable;
@@ -606,7 +607,6 @@ public class PhoneStatusBar extends BaseStatusBar {
                     mWifiView.setVisibility(View.GONE);
                 }
             }
-	
         });
 
         // set up the dynamic hide/show of the labels
@@ -1046,7 +1046,7 @@ public class PhoneStatusBar extends BaseStatusBar {
         for (View remove : toRemove) {
             mPile.removeView(remove);
         }
-	setNotificationsTransparency();
+        setNotificationsTransparency();
         for (int i=0; i<toShow.size(); i++) {
             View v = toShow.get(i);
             if (v.getParent() == null) {
@@ -2847,7 +2847,7 @@ public class PhoneStatusBar extends BaseStatusBar {
                     Settings.System.NAVIGATION_BAR_TRANSPARENCY), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.NOTIF_WALLPAPER_ALPHA), false, this);
-	    resolver.registerContentObserver(Settings.System.getUriFor(
+            resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.NOTIF_ALPHA), false, this);
             update();
         }
@@ -2861,8 +2861,8 @@ public class PhoneStatusBar extends BaseStatusBar {
             ContentResolver resolver = mContext.getContentResolver();
             setStatusBarParams(mStatusBarView);
             setNavigationBarParams();
+            setNotificationsTransparency();
             setNotificationWallpaperHelper();
-	    setNotificationsTransparency();
         }
     }
 
@@ -2946,27 +2946,31 @@ public class PhoneStatusBar extends BaseStatusBar {
 
     private void setNotificationWallpaperHelper() {
         float wallpaperAlpha = Settings.System.getFloat(mContext.getContentResolver(), Settings.System.NOTIF_WALLPAPER_ALPHA, 0.0f);
+        String notifiBack = Settings.System.getString(mContext.getContentResolver(), Settings.System.NOTIFICATION_BACKGROUND);
         File file = new File(NOTIF_WALLPAPER_IMAGE_PATH);
-        if (file.exists()) {
-            mNotificationPanel.setBackgroundResource(0);
-        } else {
+        mNotificationPanel.setBackgroundResource(0);
+        if (!file.exists()) {
             mNotificationPanel.setBackgroundResource(R.drawable.notification_panel_bg);
             Drawable background = mNotificationPanel.getBackground();
-            background.setAlpha((int) ((1-wallpaperAlpha) * 255));
+            if (notifiBack != null && !notifiBack.isEmpty()) {
+                background.setColorFilter(null);
+                background.setColorFilter(Integer.parseInt(notifiBack), Mode.SRC_ATOP);
+            }
+         background.setAlpha((int) ((1-wallpaperAlpha) * 255));
         }
     }
 
     private void setNotificationsTransparency() {
-	// here tchaari sets the notifications transparency
-	float notifAlpha = Settings.System.getFloat(mContext.getContentResolver(), Settings.System.NOTIF_ALPHA, 0.0f);
-	if (mPile != null) {
+    // here tchaari sets the notifications transparency
+    float notifAlpha = Settings.System.getFloat(mContext.getContentResolver(), Settings.System.NOTIF_ALPHA, 0.0f);
+    if (mPile != null) {
             int N = mNotificationData.size();
             for (int i=0; i<N; i++) {
               Entry ent = mNotificationData.get(N-i-1);
-	      View expanded = ent.expanded;
-	      if (expanded !=null && expanded.getBackground()!=null) expanded.getBackground().setAlpha((int) ((1-notifAlpha) * 255));
+          View expanded = ent.expanded;
+          if (expanded !=null && expanded.getBackground()!=null) expanded.getBackground().setAlpha((int) ((1-notifAlpha) * 255));
               View large = ent.getLargeView();
-	      if (large != null && large.getBackground()!=null) large.getBackground().setAlpha((int) ((1-notifAlpha) * 255));
+          if (large != null && large.getBackground()!=null) large.getBackground().setAlpha((int) ((1-notifAlpha) * 255));
             }
         }
     }
