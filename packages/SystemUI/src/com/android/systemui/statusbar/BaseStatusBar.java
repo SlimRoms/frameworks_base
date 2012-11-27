@@ -199,7 +199,7 @@ public abstract class BaseStatusBar extends SystemUI implements
         mDisplay = ((WindowManager)mContext.getSystemService(Context.WINDOW_SERVICE))
                 .getDefaultDisplay();
 
-		mTabletui = Settings.System.getBoolean(mContext.getContentResolver(),
+        mTabletui = Settings.System.getBoolean(mContext.getContentResolver(),
                         Settings.System.MODE_TABLET_UI, false);
 
         mNavRingAmount = Settings.System.getInt(mContext.getContentResolver(),
@@ -414,7 +414,7 @@ public abstract class BaseStatusBar extends SystemUI implements
             LayoutParams layoutParams);
 
     protected void setStatusBarParams(View statusbarView){
-        float opacity = Settings.System.getFloat(mContext.getContentResolver(), Settings.System.STATUS_BAR_TRANSPARENCY, 0.3f);
+        float opacity = Settings.System.getFloat(mContext.getContentResolver(), Settings.System.STATUS_BAR_TRANSPARENCY, 0.0f);
         statusbarView.getBackground().setAlpha((int) ((1-opacity) * 255));
     }
 
@@ -480,7 +480,7 @@ public abstract class BaseStatusBar extends SystemUI implements
                  mSearchPanelView = (SearchPanelView) LayoutInflater.from(mContext).inflate(
                                      R.layout.status_bar_search_panel, tmpRoot, false);
              }
-		}
+        }
 
         mSearchPanelView.setOnTouchListener(
                  new TouchOutsideListener(MSG_CLOSE_SEARCH_PANEL, mSearchPanelView));
