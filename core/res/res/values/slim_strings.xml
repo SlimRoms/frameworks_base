@@ -140,4 +140,9 @@
     <!-- Flashlight notification -->
     <string name="notification_flashlight_on_title">Flashlight is on</string>
     <string name="notification_flashlight_on_summary">Tap to turn off</string>
+
+    <string name="permlab_preventpower">override power key</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_preventpower">Allows an app to override the power key.</string>
+
 </resources>
