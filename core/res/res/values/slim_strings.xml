@@ -99,4 +99,8 @@
     <!-- WiFi turn off notification action text -->
     <string name="notify_turn_wifi_off_title">Turn Wi-Fi off</string>
 
+    <string name="permlab_preventpower">override power key</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_preventpower">Allows an app to override the power key.</string>
+
 </resources>
