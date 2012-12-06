@@ -71,7 +71,7 @@ public class KeyguardHostView extends KeyguardViewBase {
     // Found in KeyguardAppWidgetPickActivity.java
     static final int APPWIDGET_HOST_ID = 0x4B455947;
 
-    private final int MAX_WIDGETS = 5;
+    private final int MAX_WIDGETS = 20;
 
     private AppWidgetHost mAppWidgetHost;
     private AppWidgetManager mAppWidgetManager;
@@ -1050,7 +1050,8 @@ public class KeyguardHostView extends KeyguardViewBase {
         // cameras we can't trust.  TODO: plumb safe mode into camera creation code and only
         // inflate system-provided camera?
         if (!mSafeModeEnabled && !cameraDisabledByDpm()
-                && mContext.getResources().getBoolean(R.bool.kg_enable_camera_default_widget)) {
+                && Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.KG_CAMERA_WIDGET, 1) == 1) {
             View cameraWidget =
                     CameraWidgetFrame.create(mContext, mCameraWidgetCallbacks, mActivityLauncher);
             if (cameraWidget != null) {
