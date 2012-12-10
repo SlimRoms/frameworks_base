@@ -1,0 +1,12 @@
+--- telephony/java/com/android/internal/telephony/TelephonyProperties.java
++++ telephony/java/com/android/internal/telephony/TelephonyProperties.java
+@@ -192,4 +192,9 @@
+      * Ignore RIL_UNSOL_NITZ_TIME_RECEIVED completely, used for debugging/testing.
+      */
+     static final String PROPERTY_IGNORE_NITZ = "telephony.test.ignore.nitz";
++
++    /**
++     * Set to true to indicates support for simultaneous voice and data.
++     */
++    static final String PROPERTY_SVDATA = "ro.config.svlte1x";
+ }
