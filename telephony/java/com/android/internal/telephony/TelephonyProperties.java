@@ -194,6 +194,11 @@ public interface TelephonyProperties
     static final String PROPERTY_IGNORE_NITZ = "telephony.test.ignore.nitz";
 
     /**
+     * Set to true to indicates support for simultaneous voice and data.
+     */
+    static final String PROPERTY_SVDATA = "ro.config.svlte1x";
+
+    /**
      * Property to control alpha ID display for proactive commands
      * Type: boolean ( true = alpha display enabled, false = alpha display disabled)
      */
