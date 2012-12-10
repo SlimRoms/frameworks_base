@@ -62,6 +62,10 @@ final class DisplayPowerRequest {
     // visible to the user.
     public boolean blockScreenOn;
 
+    // Slim settings - override config for ElectronBeam on or off
+    public boolean electronBeamOnEnabled;
+    public boolean electronBeamOffEnabled;
+
     public DisplayPowerRequest() {
         screenState = SCREEN_STATE_BRIGHT;
         useProximitySensor = false;
@@ -69,6 +73,8 @@ final class DisplayPowerRequest {
         screenAutoBrightnessAdjustment = 0.0f;
         useAutoBrightness = false;
         blockScreenOn = false;
+        electronBeamOnEnabled = false;
+        electronBeamOffEnabled = false;
     }
 
     public DisplayPowerRequest(DisplayPowerRequest other) {
@@ -82,6 +88,8 @@ final class DisplayPowerRequest {
         screenAutoBrightnessAdjustment = other.screenAutoBrightnessAdjustment;
         useAutoBrightness = other.useAutoBrightness;
         blockScreenOn = other.blockScreenOn;
+        electronBeamOnEnabled = other.electronBeamOnEnabled;
+        electronBeamOffEnabled = other.electronBeamOffEnabled;
     }
 
     @Override
@@ -97,7 +105,9 @@ final class DisplayPowerRequest {
                 && screenBrightness == other.screenBrightness
                 && screenAutoBrightnessAdjustment == other.screenAutoBrightnessAdjustment
                 && useAutoBrightness == other.useAutoBrightness
-                && blockScreenOn == other.blockScreenOn;
+                && blockScreenOn == other.blockScreenOn
+                && electronBeamOnEnabled == other.electronBeamOnEnabled
+                && electronBeamOffEnabled == other.electronBeamOffEnabled;
     }
 
     @Override
@@ -112,6 +122,8 @@ final class DisplayPowerRequest {
                 + ", screenBrightness=" + screenBrightness
                 + ", screenAutoBrightnessAdjustment=" + screenAutoBrightnessAdjustment
                 + ", useAutoBrightness=" + useAutoBrightness
-                + ", blockScreenOn=" + blockScreenOn;
+                + ", blockScreenOn=" + blockScreenOn
+                + ", electronBeamOnEnabled=" + electronBeamOnEnabled
+                + ", electronBeamOffEnabled=" + electronBeamOffEnabled;
     }
 }
