@@ -1816,6 +1816,7 @@
 
   <!-- Config.xml entries -->
   <java-symbol type="integer" name="config_backKillTimeout" />
+  <java-symbol type="bool" name="config_hasRotationLockSwitch" />
 
   <!-- Config Power Menu -->
   <java-symbol type="drawable" name="ic_lock_profile" />
