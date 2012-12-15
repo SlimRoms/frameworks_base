@@ -17,6 +17,7 @@
 package com.android.systemui.statusbar.policy;
 
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -259,6 +260,43 @@ public class Clock extends TextView {
             setVisibility(View.VISIBLE);
         else
             setVisibility(View.GONE);
+    }
+
+    private void collapseStartActivity(Intent what) {
+        // collapse status bar
+        StatusBarManager statusBarManager = (StatusBarManager) getContext().getSystemService(
+                Context.STATUS_BAR_SERVICE);
+        statusBarManager.collapsePanels();
+
+        // dismiss keyguard in case it was active and no passcode set
+        try {
+            ActivityManagerNative.getDefault().dismissKeyguardOnNextActivity();
+        } catch (Exception ex) {
+            // no action needed here
+        }
+
+        // start activity
+        what.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        mContext.startActivity(what);
+    }
+
+    @Override
+    public void onClick(View v) {
+        // start com.android.deskclock/.DeskClock
+        ComponentName clock = new ComponentName("com.android.deskclock",
+                "com.android.deskclock.DeskClock");
+        Intent intent = new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER)
+                .setComponent(clock);
+        collapseStartActivity(intent);
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
+        collapseStartActivity(intent);
+
+        // consume event
+        return true;
     }
 }
 
