@@ -48,7 +48,7 @@ public class InputMethodTile extends QuickSettingsTile {
 
         mDrawable = R.drawable.ic_qs_ime;
 
-        onClick = new OnClickListener() {
+        mOnClick = new OnClickListener() {
 
             @Override
             public void onClick(View v) {

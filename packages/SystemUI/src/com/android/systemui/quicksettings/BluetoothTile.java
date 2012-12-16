@@ -45,7 +45,7 @@ public class BluetoothTile extends QuickSettingsTile implements BluetoothStateCh
         enabled = mBluetoothAdapter.isEnabled();
         connected = mBluetoothAdapter.getConnectionState() == BluetoothAdapter.STATE_CONNECTED;
 
-        onClick = new OnClickListener() {
+        mOnClick = new OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -57,7 +57,7 @@ public class BluetoothTile extends QuickSettingsTile implements BluetoothStateCh
             }
         };
 
-        onLongClick = new OnLongClickListener() {
+        mOnLongClick = new OnLongClickListener() {
 
             @Override
             public boolean onLongClick(View v) {

@@ -40,7 +40,7 @@ public class AirplaneModeTile extends QuickSettingsTile implements NetworkSignal
 
         mLabel = mContext.getString(R.string.quick_settings_airplane_mode_label);
 
-        onClick = new View.OnClickListener() {
+        mOnClick = new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -54,7 +54,7 @@ public class AirplaneModeTile extends QuickSettingsTile implements NetworkSignal
                 mContext.sendBroadcast(intent);
             }
         };
-        onLongClick = new OnLongClickListener() {
+        mOnLongClick = new OnLongClickListener() {
 
             @Override
             public boolean onLongClick(View v) {

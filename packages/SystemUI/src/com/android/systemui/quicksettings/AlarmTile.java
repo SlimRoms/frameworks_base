@@ -50,7 +50,7 @@ public class AlarmTile extends QuickSettingsTile{
             mLabel = nextAlarmTime;
         }
 
-        onClick = new View.OnClickListener() {
+        mOnClick = new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {

@@ -46,7 +46,7 @@ public class MobileNetworkTile extends QuickSettingsTile implements NetworkSigna
             QuickSettingsContainerView container, QuickSettingsController qsc) {
         super(context, inflater, container, qsc);
         mTileLayout = R.layout.quick_settings_tile_rssi;
-        onClick = new View.OnClickListener() {
+        mOnClick = new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -59,7 +59,7 @@ public class MobileNetworkTile extends QuickSettingsTile implements NetworkSigna
                 }
             }
         };
-        onLongClick = new OnLongClickListener() {
+        mOnLongClick = new OnLongClickListener() {
 
             @Override
             public boolean onLongClick(View v) {
