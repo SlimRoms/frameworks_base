@@ -18,12 +18,15 @@ package com.android.systemui.statusbar.phone;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.ArraySet;
 import android.view.View;
@@ -42,6 +45,7 @@ import com.android.systemui.R;
 import com.android.systemui.statusbar.NotificationData;
 import com.android.systemui.statusbar.SignalClusterView;
 import com.android.systemui.statusbar.StatusBarIconView;
+import com.android.systemui.statusbar.policy.Clock;
 import com.android.systemui.tuner.TunerService;
 import com.android.systemui.tuner.TunerService.Tunable;
 
@@ -75,6 +79,12 @@ public class StatusBarIconController implements Tunable {
     private ImageView mMoreIcon;
     private BatteryMeterView mBatteryMeterView;
     private TextView mClock;
+
+    // Center clock
+    private LinearLayout mCenterClockLayout;
+    private TextView mCclock;
+    private boolean mShowClock;
+    private int mClockLocation;
 
     private int mIconSize;
     private int mIconHPadding;
@@ -119,6 +129,8 @@ public class StatusBarIconController implements Tunable {
         mStatusIconsKeyguard = (LinearLayout) keyguardStatusBar.findViewById(R.id.statusIcons);
         mBatteryMeterView = (BatteryMeterView) statusBar.findViewById(R.id.battery);
         mClock = (TextView) statusBar.findViewById(R.id.clock);
+        mCenterClockLayout = (LinearLayout)statusBar.findViewById(R.id.center_clock_layout);
+        mCclock = (TextView) statusBar.findViewById(R.id.center_clock);
         mLinearOutSlowIn = AnimationUtils.loadInterpolator(mContext,
                 android.R.interpolator.linear_out_slow_in);
         mFastOutSlowIn = AnimationUtils.loadInterpolator(mContext,
@@ -247,22 +259,46 @@ public class StatusBarIconController implements Tunable {
 
     public void hideSystemIconArea(boolean animate) {
         animateHide(mSystemIconArea, animate);
+        animateHide(mCenterClockLayout, animate);
     }
 
     public void showSystemIconArea(boolean animate) {
         animateShow(mSystemIconArea, animate);
+        animateShow(mCenterClockLayout, animate);
     }
 
     public void hideNotificationIconArea(boolean animate) {
         animateHide(mNotificationIconArea, animate);
+        animateHide(mCenterClockLayout, animate);
     }
 
     public void showNotificationIconArea(boolean animate) {
         animateShow(mNotificationIconArea, animate);
+        animateShow(mCenterClockLayout, animate);
     }
 
     public void setClockVisibility(boolean visible) {
-        mClock.setVisibility(visible ? View.VISIBLE : View.GONE);
+        ContentResolver resolver = mContext.getContentResolver();
+        boolean showClock = (Settings.System.getIntForUser(
+                resolver, Settings.System.STATUS_BAR_CLOCK, 1,
+                UserHandle.USER_CURRENT) == 1);
+        int clockLocation = Settings.System.getIntForUser(
+                resolver, Settings.System.STATUSBAR_CLOCK_STYLE, 0,
+                UserHandle.USER_CURRENT);
+        if (clockLocation == 0 && mClock != null) {
+            mClock.setVisibility(visible ? (showClock ? View.VISIBLE : View.GONE) : View.GONE);
+        }
+        if (clockLocation == 1 && mCclock != null) {
+            mCclock.setVisibility(visible ? (showClock ? View.VISIBLE : View.GONE) : View.GONE);
+        }
+    }
+
+    public void setClockAndDateStatus(int width, int mode, boolean enabled) {
+        if (mNotificationIcons != null) {
+            mNotificationIcons.setClockAndDateStatus(width, mode, enabled);
+        }
+        mClockLocation = mode;
+        mShowClock = enabled;
     }
 
     public void dump(PrintWriter pw) {
@@ -391,7 +427,7 @@ public class StatusBarIconController implements Tunable {
         mSignalCluster.setIconTint(mIconTint, mDarkIntensity);
         mMoreIcon.setImageTintList(ColorStateList.valueOf(mIconTint));
         mBatteryMeterView.setDarkIntensity(mDarkIntensity);
-        mClock.setTextColor(mIconTint);
+//        mClock.setTextColor(mIconTint);
         applyNotificationIconsTint();
     }
 
