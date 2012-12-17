@@ -381,7 +381,9 @@ public final class Profile implements Parcelable, Comparable {
         builder.append(mScreenLockMode);
         builder.append("</screen-lock-mode>\n");
 
-        mAirplaneMode.getXmlString(builder, context);
+        builder.append("<airplane-mode>");
+        builder.append(mAirplaneMode);
+        builder.append("</airplane-mode>\n");
 
         for (ProfileGroup pGroup : profileGroups.values()) {
             pGroup.getXmlString(builder, context);
