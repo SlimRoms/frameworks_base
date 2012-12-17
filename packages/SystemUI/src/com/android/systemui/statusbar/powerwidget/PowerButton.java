@@ -74,6 +74,7 @@ public abstract class PowerButton {
     protected int mIcon;
     protected int mState;
     protected View mView;
+    public Context mContext;
     protected String mType = BUTTON_UNKNOWN;
 
     private ImageView mIconView;
@@ -138,15 +139,23 @@ public abstract class PowerButton {
         return new ArrayList<Uri>();
     }
 
+    public void afterInit(){
+        /* this method is added for custom buttons where we need some inits after instantiation
+           like creating listeners or observes.
+        */
+    }
+
     protected void setupButton(View view) {
         mView = view;
         if (mView != null) {
+            mContext = mView.getContext();
             mView.setTag(mType);
             mView.setOnClickListener(mClickListener);
             mView.setOnLongClickListener(mLongClickListener);
 
             mIconView = (ImageView) mView.findViewById(R.id.power_widget_button_image);
             mVibrator = (Vibrator) mView.getContext().getSystemService(Context.VIBRATOR_SERVICE);
+            afterInit();
         } else {
             mIconView = null;
         }
