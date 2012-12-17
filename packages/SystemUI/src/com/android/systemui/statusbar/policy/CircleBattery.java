@@ -28,6 +28,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Paint.Align;
 import android.graphics.Rect;
@@ -81,6 +82,7 @@ public class CircleBattery extends ImageView {
     private Paint   mPaintGray;
     private Paint   mPaintSystem;
     private Paint   mPaintRed;
+    private int batteryStyle;
 
     // runnable to invalidate view via mHandler.postDelayed() call
     private final Runnable mInvalidate = new Runnable() {
@@ -106,11 +108,11 @@ public class CircleBattery extends ImageView {
 
         @Override
         public void onChange(boolean selfChange) {
-            int batteryStyle = (Settings.System.getInt(mContext.getContentResolver(),
+            batteryStyle = (Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.STATUS_BAR_BATTERY, 0));
 
-            mActivated = (batteryStyle == BatteryController.BATTERY_STYLE_CIRCLE || batteryStyle == BatteryController.BATTERY_STYLE_CIRCLE_PERCENT);
-            mPercentage = (batteryStyle == BatteryController.BATTERY_STYLE_CIRCLE_PERCENT);
+            mActivated = (batteryStyle == BatteryController.BATTERY_STYLE_CIRCLE || batteryStyle == BatteryController.BATTERY_STYLE_CIRCLE_PERCENT || batteryStyle == BatteryController.BATTERY_STYLE_DOTTED_CIRCLE_PERCENT);
+            mPercentage = (batteryStyle == BatteryController.BATTERY_STYLE_CIRCLE_PERCENT || batteryStyle == BatteryController.BATTERY_STYLE_DOTTED_CIRCLE_PERCENT);
 
             setVisibility(mActivated ? View.VISIBLE : View.GONE);
             if (mBatteryReceiver != null) {
@@ -191,6 +193,8 @@ public class CircleBattery extends ImageView {
         mContext = context;
         mHandler = new Handler();
 
+        batteryStyle = (Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.STATUSBAR_BATTERY_ICON, 0));
         SettingsObserver settingsObserver = new SettingsObserver(mHandler);
         settingsObserver.observe();
         mBatteryReceiver = new BatteryReceiver(mContext);
@@ -258,6 +262,13 @@ public class CircleBattery extends ImageView {
         // turn red at 14% - same level android battery warning appears
         if (level <= 14) {
             usePaint = mPaintRed;
+        }
+        usePaint.setAntiAlias(true);
+        if (batteryStyle == BatteryController.BATTERY_STYLE_DOTTED_CIRCLE_PERCENT) {
+            // change usePaint from solid to dashed
+            usePaint.setPathEffect(new DashPathEffect(new float[]{3,2},0));
+        }else {
+            usePaint.setPathEffect(null);
         }
 
         // pad circle percentage to 100% once it reaches 97%
@@ -336,11 +347,10 @@ public class CircleBattery extends ImageView {
 
         mPaintFont.setTextSize(mCircleSize / 2f);
 
-        float strokeWidth = mCircleSize / 6.5f;
+        float strokeWidth = mCircleSize / 7f;
         mPaintRed.setStrokeWidth(strokeWidth);
         mPaintSystem.setStrokeWidth(strokeWidth);
         mPaintGray.setStrokeWidth(strokeWidth / 3.5f);
-
         // calculate rectangle for drawArc calls
         int pLeft = getPaddingLeft();
         mRectLeft = new RectF(pLeft + strokeWidth / 2.0f, 0 + strokeWidth / 2.0f, mCircleSize
@@ -373,12 +383,13 @@ public class CircleBattery extends ImageView {
                 com.android.systemui.R.drawable.stat_sys_wifi_signal_4_fully);
         final int x = measure.getWidth() / 2;
 
-        mCircleSize = 0;
+        mCircleSize = measure.getHeight();
+        /*mCircleSize = 0;
         for (int y = 0; y < measure.getHeight(); y++) {
             int alpha = Color.alpha(measure.getPixel(x, y));
             if (alpha > 5) {
                 mCircleSize++;
             }
-        }
+        }*/
     }
 }
