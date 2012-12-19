@@ -2799,6 +2799,30 @@ public final class Settings {
         public static final String STATUSBAR_BATTERY_ICON = "statusbar_battery_icon";
 
         /**
+         * Circle battery icon color
+         * in statusbar
+         */
+        public static final String STATUS_BAR_CIRCLE_BATTERY_COLOR = "status_bar_circle_battery_color";
+
+        /**
+         * Circle battery icon text color
+         * in statusbar
+         */
+        public static final String STATUS_BAR_CIRCLE_BATTERY_TEXT_COLOR = "status_bar_circle_battery_text_color";
+
+        /**
+         * Circle battery animation speed during charge
+         * in statusbar
+         */
+        public static final String STATUS_BAR_CIRCLE_BATTERY_ANIMATIONSPEED = "status_bar_circle_battery_animationspeed";
+
+        /**
+         * Circle battery icon reset helper
+         * in statusbar
+         */
+        public static final String STATUS_BAR_CIRCLE_BATTERY_RESET = "status_bar_circle_battery_reset";
+
+        /**
          * AM/PM Style for clock options
          * 0 - Normal AM/PM
          * 1 - Small AM/PM
