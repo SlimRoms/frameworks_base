@@ -16,8 +16,8 @@
 
 package com.android.systemui.quicksettings;
 
+import android.content.ContentResolver;
 import android.content.Context;
-import android.database.ContentObserver;
 import android.net.Uri;
 import android.os.Handler;
 import android.provider.Settings;
@@ -39,8 +39,6 @@ public class AutoRotateTile extends QuickSettingsTile {
             QuickSettingsContainerView container, QuickSettingsController qsc, Handler handler) {
         super(context, inflater, container, qsc);
 
-        new AutoRotationObserver(handler);
-
         mOnClick = new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,6 +53,8 @@ public class AutoRotateTile extends QuickSettingsTile {
                 return true;
             }
         };
+        qsc.registerObservedContent(Settings.System.getUriFor(Settings.System.ACCELEROMETER_ROTATION)
+                , this);
     }
 
     void applyAutoRotationChanges() {
@@ -78,17 +78,8 @@ public class AutoRotateTile extends QuickSettingsTile {
         return !RotationPolicy.isRotationLocked(mContext);
     }
 
-    private class AutoRotationObserver extends ContentObserver {
-        public AutoRotationObserver(Handler handler) {
-            super(handler);
-            mContext.getContentResolver().registerContentObserver(Settings.System.getUriFor(Settings.System.ACCELEROMETER_ROTATION),
-                    false, this);
-        }
-
-        @Override
-        public void onChange(boolean selfChange, Uri uri) {
-            applyAutoRotationChanges();
-        }
+    @Override
+    public void onChangeUri(ContentResolver resolver, Uri uri) {
+        applyAutoRotationChanges();
     }
-
 }

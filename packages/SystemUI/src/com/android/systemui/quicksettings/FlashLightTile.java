@@ -22,7 +22,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.database.ContentObserver;
+import android.net.Uri;
 import android.os.Handler;
 import android.provider.Settings;
 import android.view.LayoutInflater;
@@ -38,8 +38,6 @@ public class FlashLightTile extends QuickSettingsTile {
             QuickSettingsContainerView container,
             QuickSettingsController qsc, Handler handler) {
         super(context, inflater, container, qsc);
-        TorchObserver observer = new TorchObserver(handler);
-        observer.startObserving();
         updateTileState();
         mOnClick = new View.OnClickListener() {
             @Override
@@ -57,6 +55,7 @@ public class FlashLightTile extends QuickSettingsTile {
                 return true;
             }
         };
+        qsc.registerObservedContent(Settings.System.getUriFor(Settings.System.TORCH_STATE), this);
     }
 
     private void updateTileState() {
@@ -71,22 +70,9 @@ public class FlashLightTile extends QuickSettingsTile {
         }
     }
 
-    private class TorchObserver extends ContentObserver {
-        public TorchObserver(Handler handler) {
-            super(handler);
-        }
-
-        @Override
-        public void onChange(boolean selfChange) {
-            updateTileState();
-            updateQuickSettings();
-        }
-
-        public void startObserving() {
-            final ContentResolver cr = mContext.getContentResolver();
-            cr.registerContentObserver(
-                    Settings.System.getUriFor(Settings.System.TORCH_STATE), false, this);
-        }
+    @Override
+    public void onChangeUri(ContentResolver resolver, Uri uri) {
+        updateTileState();
+        updateQuickSettings();
     }
-
 }

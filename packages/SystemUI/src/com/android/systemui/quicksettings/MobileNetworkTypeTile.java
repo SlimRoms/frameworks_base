@@ -133,23 +133,25 @@ public class MobileNetworkTypeTile extends QuickSettingsTile {
                 return true;
             }
         };
+        qsc.registerAction(ACTION_MODIFY_NETWORK_MODE, this);
+    }
 
-        mBroadcastReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                if (intent.getExtras() != null) {
-                    mMode = intent.getExtras().getInt(EXTRA_NETWORK_MODE);
-                    //Update to actual state
-                    mIntendedMode = mMode;
-                }
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        int mode = intent.getIntExtra(EXTRA_NETWORK_MODE, 0);
+        switch(mode){
+        case Phone.NT_MODE_WCDMA_PREF:
+        case Phone.NT_MODE_GSM_UMTS:
+            mDrawable = R.drawable.stat_2g3g_on;
+            break;
+        case Phone.NT_MODE_WCDMA_ONLY:
+            mDrawable = R.drawable.stat_3g_on;
+            break;
+        case Phone.NT_MODE_GSM_ONLY:
+            mDrawable = R.drawable.stat_2g3g_off;
+        }
+        updateQuickSettings();
 
-                //need to clear intermediate states and update the tile
-                mInternalState = networkModeToState();
-                applyNetworkTypeChanges();
-            }
-        };
-
-        mIntentFilter = new IntentFilter(ACTION_NETWORK_MODE_CHANGED);
     }
 
     private void applyNetworkTypeChanges(){
