@@ -540,7 +540,7 @@ static void android_location_GpsLocationProvider_agps_data_conn_closed(JNIEnv* e
         jint agpsType)
 {
     if (!sAGpsInterface) {
-        ALOGE("no AGPS interface in agps_data_conn_open");
+        ALOGE("no AGPS interface in agps_data_conn_closed");
         return;
     }
 #ifdef NEW_QC_GPS
@@ -554,7 +554,7 @@ static void android_location_GpsLocationProvider_agps_data_conn_failed(JNIEnv* e
         jint agpsType)
 {
     if (!sAGpsInterface) {
-        ALOGE("no AGPS interface in agps_data_conn_open");
+        ALOGE("no AGPS interface in agps_data_conn_failed");
         return;
     }
 #ifdef NEW_QC_GPS
@@ -568,7 +568,7 @@ static void android_location_GpsLocationProvider_set_agps_server(JNIEnv* env, jo
         jint type, jstring hostname, jint port)
 {
     if (!sAGpsInterface) {
-        ALOGE("no AGPS interface in agps_data_conn_open");
+        ALOGE("no AGPS interface in set_agps_server");
         return;
     }
     const char *c_hostname = env->GetStringUTFChars(hostname, NULL);
