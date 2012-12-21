@@ -532,6 +532,7 @@
     <string name="quick_settings_mobile_data_on">Mobile data</string>
     <string name="quick_settings_mobile_data_off">Mobile data off</string>
     <string name="quick_settings_reboot">Reboot</string>
+    <string name="quick_settings_sync">Sync</string>
 
     <!-- Title of help text shown when the notification panel is pulled down for the very first time. [CHAR LIMIT=NONE] -->
     <string name="status_bar_help_title">Notifications appear here</string>
