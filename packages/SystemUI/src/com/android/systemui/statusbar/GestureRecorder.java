@@ -227,10 +227,10 @@ public class GestureRecorder {
 
     public void save() {
         synchronized (mGestures) {
+            BufferedWriter w = null;
             try {
-                BufferedWriter w = new BufferedWriter(new FileWriter(mLogfile, /*append=*/ true));
+                w = new BufferedWriter(new FileWriter(mLogfile, /*append=*/ true));
                 w.append(toJsonLocked() + "\n");
-                w.close();
                 mGestures.clear();
                 // If we have a pending gesture, push it back
                 if (mCurrentGesture != null && !mCurrentGesture.isComplete()) {
@@ -242,6 +242,13 @@ public class GestureRecorder {
             } catch (IOException e) {
                 Slog.e(TAG, String.format("Couldn't write gestures to %s", mLogfile), e);
                 mLastSaveLen = -1;
+            } finally {
+                if (w != null) {
+                    try {
+                        w.close();
+                    } catch (IOException ignored) {
+                    }
+                }
             }
         }
     }
