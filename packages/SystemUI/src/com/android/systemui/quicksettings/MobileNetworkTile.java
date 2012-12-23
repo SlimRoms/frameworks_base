@@ -21,13 +21,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import android.net.ConnectivityManager;
 import android.telephony.TelephonyManager;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnLongClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 
 import com.android.systemui.R;
 import com.android.systemui.statusbar.phone.QuickSettingsController;
@@ -46,17 +46,11 @@ public class MobileNetworkTile extends QuickSettingsTile implements NetworkSigna
             QuickSettingsContainerView container, QuickSettingsController qsc) {
         super(context, inflater, container, qsc);
         mTileLayout = R.layout.quick_settings_tile_rssi;
+
         mOnClick = new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                TelephonyManager tm = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
-                ConnectivityManager conMan = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
-                if(tm.getDataState() == TelephonyManager.DATA_DISCONNECTED){
-                    conMan.setMobileDataEnabled(true);
-                }else{
-                    conMan.setMobileDataEnabled(false);
-                }
             }
         };
         mOnLongClick = new OnLongClickListener() {

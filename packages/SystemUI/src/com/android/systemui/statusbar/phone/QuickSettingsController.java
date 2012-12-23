@@ -45,6 +45,7 @@ import com.android.systemui.quicksettings.FlashLightTile;
 import com.android.systemui.quicksettings.GPSTile;
 import com.android.systemui.quicksettings.InputMethodTile;
 import com.android.systemui.quicksettings.MobileNetworkTile;
+import com.android.systemui.quicksettings.MobileDataTile;
 import com.android.systemui.quicksettings.MobileNetworkTypeTile;
 import com.android.systemui.quicksettings.PreferencesTile;
 import com.android.systemui.quicksettings.ProfileTile;
@@ -89,6 +90,7 @@ public class QuickSettingsController {
     public static final String TILE_WIFIAP = "toggleWifiAp";
     public static final String TILE_SCREENTIMEOUT = "toggleScreenTimeout";
     public static final String TILE_MOBILEDATA = "toggleMobileData";
+    public static final String TILE_MOBILENETWORK = "toggleMobileNetwork";
     public static final String TILE_LOCKSCREEN = "toggleLockScreen";
     public static final String TILE_NETWORKMODE = "toggleNetworkMode";
     public static final String TILE_AUTOROTATE = "toggleAutoRotate";
@@ -104,7 +106,7 @@ public class QuickSettingsController {
             + TILE_DELIMITER + TILE_BRIGHTNESS
             + TILE_DELIMITER + TILE_SETTINGS
             + TILE_DELIMITER + TILE_WIFI
-            + TILE_DELIMITER + TILE_MOBILEDATA
+            + TILE_DELIMITER + TILE_MOBILENETWORK
             + TILE_DELIMITER + TILE_BATTERY
             + TILE_DELIMITER + TILE_AIRPLANE
             + TILE_DELIMITER + TILE_BLUETOOTH;
@@ -144,6 +146,7 @@ public class QuickSettingsController {
     public static final int FLASHLIGHT_TILE = 19;
     public static final int WIFIAP_TILE = 20;
     public static final int PROFILE_TILE = 21;
+    public static final int MOBILE_DATA_TILE = 22;
     public static final int USER_TILE = 99;
     private InputMethodTile IMETile;
 
@@ -197,7 +200,7 @@ public class QuickSettingsController {
                 }
             } else if (tile.equals(TILE_SCREENTIMEOUT)) {
                 // Not available yet
-            } else if (tile.equals(TILE_MOBILEDATA)) {
+            } else if (tile.equals(TILE_MOBILENETWORK)) {
                 if(deviceSupportsTelephony()) {
                     mQuickSettings.add(MOBILE_NETWORK_TILE);
                 }
@@ -223,6 +226,10 @@ public class QuickSettingsController {
                 // Not available yet
             } else if (tile.equals(TILE_LTE)) {
                 // Not available yet
+            } else if (tile.equals(TILE_MOBILEDATA)) {
+                if(deviceSupportsTelephony()) {
+                    mQuickSettings.add(MOBILE_DATA_TILE);
+                }
             }
         }
 
@@ -441,6 +448,10 @@ public class QuickSettingsController {
             case PROFILE_TILE:
                 qs = new ProfileTile(mContext, inflater,
                         (QuickSettingsContainerView) mContainerView, this);
+                break;
+            case MOBILE_DATA_TILE:
+                qs = new MobileDataTile(mContext, inflater,
+                        (QuickSettingsContainerView) mContainerView, this, mHandler);
                 break;
             }
             if (qs != null) {
