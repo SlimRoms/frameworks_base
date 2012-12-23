@@ -32,6 +32,14 @@ public class SyncTile extends QuickSettingsTile {
 
     private Object mSyncObserverHandle = null;
     private Handler mHandler;
+    public static QuickSettingsTile mInstance;
+
+    public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
+            QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler) {
+        if (mInstance == null) mInstance = new SyncTile(context, inflater, container, qsc);
+        return mInstance;
+    }
+
     public SyncTile(Context context, LayoutInflater inflater,
             QuickSettingsContainerView container,
             QuickSettingsController qsc) {

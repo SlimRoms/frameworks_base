@@ -16,12 +16,11 @@
 
 package com.android.systemui.quicksettings;
 
-import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.net.wifi.WifiManager;
+import android.os.Handler;
 import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +32,13 @@ import com.android.systemui.statusbar.phone.QuickSettingsController;
 public class WifiAPTile extends QuickSettingsTile {
 
     private static WifiManager mWifiManager;
+    public static QuickSettingsTile mInstance;
+
+    public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
+            QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler) {
+        if (mInstance == null) mInstance = new WifiAPTile(context, inflater, container, qsc);
+        return mInstance;
+    }
 
     public WifiAPTile(Context context, LayoutInflater inflater,
             QuickSettingsContainerView container, QuickSettingsController qsc) {

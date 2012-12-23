@@ -31,6 +31,14 @@ import com.android.systemui.statusbar.phone.QuickSettingsController;
 
 public class TorchTile extends QuickSettingsTile {
 
+    public static QuickSettingsTile mInstance;
+
+    public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
+            QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler) {
+        if (mInstance == null) mInstance = new TorchTile(context, inflater, container, qsc, handler);
+        return mInstance;
+    }
+
     public TorchTile(Context context, LayoutInflater inflater,
             QuickSettingsContainerView container,
             QuickSettingsController qsc, Handler handler) {

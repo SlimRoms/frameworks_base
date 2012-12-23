@@ -17,6 +17,7 @@
 package com.android.systemui.quicksettings;
 
 import android.content.Context;
+import android.os.Handler;
 import android.os.PowerManager;
 import android.os.SystemClock;
 import android.view.LayoutInflater;
@@ -31,6 +32,13 @@ import com.android.systemui.statusbar.phone.QuickSettingsContainerView;
 public class SleepScreenTile extends QuickSettingsTile {
 
     private PowerManager pm;
+    public static QuickSettingsTile mInstance;
+
+    public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
+            QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler) {
+        if (mInstance == null) mInstance = new SleepScreenTile(context, inflater, container, qsc);
+        return mInstance;
+    }
 
     public SleepScreenTile(Context context, LayoutInflater inflater,
             QuickSettingsContainerView container, QuickSettingsController qsc) {

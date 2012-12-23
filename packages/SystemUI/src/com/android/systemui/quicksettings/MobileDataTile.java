@@ -16,12 +16,10 @@
 
 package com.android.systemui.quicksettings;
 
-import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.Uri;
@@ -36,6 +34,13 @@ import com.android.systemui.statusbar.phone.QuickSettingsController;
 import com.android.systemui.statusbar.phone.QuickSettingsContainerView;
 
 public class MobileDataTile extends QuickSettingsTile {
+    public static QuickSettingsTile mInstance;
+
+    public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
+            QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler) {
+        if (mInstance == null) mInstance = new MobileDataTile(context, inflater, container, qsc, handler);
+        return mInstance;
+    }
 
     public MobileDataTile(Context context, LayoutInflater inflater,
             QuickSettingsContainerView container,
