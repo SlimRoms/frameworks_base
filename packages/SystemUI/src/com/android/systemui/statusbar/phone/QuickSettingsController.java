@@ -59,6 +59,7 @@ import com.android.systemui.quicksettings.VibrationModeTile;
 import com.android.systemui.quicksettings.WiFiDisplayTile;
 import com.android.systemui.quicksettings.WiFiTile;
 import com.android.systemui.quicksettings.WifiAPTile;
+import com.android.systemui.quicksettings.RebootTile;
 import com.android.systemui.statusbar.powerwidget.PowerButton;
 
 public class QuickSettingsController {
@@ -100,6 +101,7 @@ public class QuickSettingsController {
     public static final String TILE_LTE = "toggleLte";
     public static final String TILE_WIMAX = "toggleWimax";
     public static final String TILE_PROFILE = "toggleProfile";
+    public static final String TILE_REBOOT = "toggleReboot";
 
     private static final String TILE_DELIMITER = "|";
     private static final String TILES_DEFAULT = TILE_USER
@@ -147,6 +149,7 @@ public class QuickSettingsController {
     public static final int WIFIAP_TILE = 20;
     public static final int PROFILE_TILE = 21;
     public static final int MOBILE_DATA_TILE = 22;
+    public static final int REBOOT_TILE = 23;
     public static final int USER_TILE = 99;
     private InputMethodTile IMETile;
 
@@ -230,6 +233,8 @@ public class QuickSettingsController {
                 if(deviceSupportsTelephony()) {
                     mQuickSettings.add(MOBILE_DATA_TILE);
                 }
+            } else if (tile.equals(TILE_REBOOT)) {
+                mQuickSettings.add(REBOOT_TILE);
             }
         }
 
@@ -452,6 +457,10 @@ public class QuickSettingsController {
             case MOBILE_DATA_TILE:
                 qs = new MobileDataTile(mContext, inflater,
                         (QuickSettingsContainerView) mContainerView, this, mHandler);
+                break;
+            case REBOOT_TILE:
+                qs = new RebootTile(mContext, inflater,
+                        (QuickSettingsContainerView) mContainerView, this);
                 break;
             }
             if (qs != null) {
