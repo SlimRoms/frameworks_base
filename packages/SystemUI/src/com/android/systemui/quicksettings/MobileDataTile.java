@@ -23,8 +23,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.database.ContentObserver;
 import android.net.ConnectivityManager;
+import android.net.Uri;
 import android.os.Handler;
 import android.provider.Settings;
 import android.view.LayoutInflater;
@@ -37,16 +37,10 @@ import com.android.systemui.statusbar.phone.QuickSettingsContainerView;
 
 public class MobileDataTile extends QuickSettingsTile {
 
-    private MobileDataChangedObserver mMobileDataChangedObserver;
-
     public MobileDataTile(Context context, LayoutInflater inflater,
             QuickSettingsContainerView container,
             QuickSettingsController qsc, Handler handler) {
         super(context, inflater, container, qsc);
-
-        // Start observing for changes
-        mMobileDataChangedObserver = new MobileDataChangedObserver(handler);
-        mMobileDataChangedObserver.startObserving();
 
         updateTileState();
 
@@ -76,6 +70,7 @@ public class MobileDataTile extends QuickSettingsTile {
                 return true;
             }
         };
+        qsc.registerObservedContent(Settings.Global.getUriFor(Settings.Global.MOBILE_DATA), this);
     }
 
     boolean deviceSupportsTelephony() {
@@ -95,23 +90,10 @@ public class MobileDataTile extends QuickSettingsTile {
         }
     }
 
-    private class MobileDataChangedObserver extends ContentObserver {
-        public MobileDataChangedObserver(Handler handler) {
-            super(handler);
-        }
-
-        @Override
-        public void onChange(boolean selfChange) {
-            updateTileState();
-            updateQuickSettings();
-        }
-
-        public void startObserving() {
-            final ContentResolver cr = mContext.getContentResolver();
-            cr.registerContentObserver(
-                    Settings.Global.getUriFor(Settings.Global.MOBILE_DATA),
-                    false, this);
-        }
+    @Override
+    public void onChangeUri(ContentResolver resolver, Uri uri) {
+        updateTileState();
+        updateQuickSettings();
     }
 
 }
