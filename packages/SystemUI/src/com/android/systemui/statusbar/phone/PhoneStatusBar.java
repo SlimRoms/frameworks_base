@@ -84,6 +84,7 @@ import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.Animation.AnimationListener;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.FrameLayout;
@@ -352,6 +353,8 @@ public class PhoneStatusBar extends BaseStatusBar {
                     Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.SCREEN_BRIGHTNESS_MODE), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.EXPANDED_VIEW_WIDGET), false, this);
             update();
         }
 
@@ -577,6 +580,7 @@ public class PhoneStatusBar extends BaseStatusBar {
 
         mScrollView = (ScrollView)mStatusBarWindow.findViewById(R.id.scroll);
         mScrollView.setVerticalScrollBarEnabled(false); // less drawing during pulldowns
+        mSettingsButton.setOnLongClickListener(mSettingsLongClickListener);
         if (!mNotificationPanelIsFullScreenWidth) {
             mScrollView.setSystemUiVisibility(
                     View.STATUS_BAR_DISABLE_NOTIFICATION_TICKER |
@@ -2523,6 +2527,56 @@ public class PhoneStatusBar extends BaseStatusBar {
                 startActivityDismissingKeyguard(
                         new Intent(android.provider.Settings.ACTION_SETTINGS), true);
             }
+        }
+    };
+
+    private View.OnLongClickListener mSettingsLongClickListener = new View.OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View v) {
+                if (mPowerWidget.getVisibility() == View.GONE) {
+                        int height = mPowerWidget.getHeight();
+                        Animation anim = AnimationUtils.makeInAnimation(mContext, true);
+                        anim.setDuration(500);
+                        anim.setAnimationListener(new AnimationListener() {
+                                @Override
+                                public void onAnimationStart(Animation animation) {
+                                        mPowerWidget.setVisibility(View.VISIBLE);
+                                        Settings.System.putInt(mContext.getContentResolver(), Settings.System.EXPANDED_VIEW_WIDGET, 1);
+                                }
+                                //stupid android wont compile empty methods so I have to override them to work.... better make them public too!
+                                @Override
+                                public void onAnimationEnd(Animation animation) {
+
+                                }
+                                @Override
+                                public void onAnimationRepeat(Animation animation) {
+
+                                }
+                        });
+                        mPowerWidget.startAnimation(anim);
+                } else {
+                        int height = mPowerWidget.getHeight();
+                        Animation anim = AnimationUtils.makeOutAnimation(mContext, false);
+                        anim.setDuration(500);
+                        anim.setAnimationListener(new AnimationListener() {
+                                @Override
+                                public void onAnimationEnd(Animation animation) {
+                                        mPowerWidget.setVisibility(View.GONE);
+                                        Settings.System.putInt(mContext.getContentResolver(), Settings.System.EXPANDED_VIEW_WIDGET, 0);
+                                }
+                                //stupid android wont compile empty methods so I have to override them to work....
+                                @Override
+                                public void onAnimationStart(Animation animation) {
+
+                                }
+                                @Override
+                                public void onAnimationRepeat(Animation animation) {
+
+                                }
+                        });
+                        mPowerWidget.startAnimation(anim);
+                }
+                return true;
         }
     };
 
