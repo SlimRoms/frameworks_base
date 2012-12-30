@@ -307,6 +307,10 @@ class LockScreen extends LinearLayout implements KeyguardScreen {
 
         }
 
+        public void onTargetChange(View v, int target) {
+
+        }
+
         public void onTrigger(View v, int target) {
             final int resId = mGlowPadView.getResourceIdForTarget(target);
             switch (resId) {

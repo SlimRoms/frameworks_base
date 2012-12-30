@@ -548,4 +548,22 @@
     <string name="status_bar_settings_battery_meter_min_format" translatable="false">
         <xliff:g id="number">%d</xliff:g>
     </string>
+
+    <!--  Target/Action Strings -->
+    <string name="action_home">Home</string>
+    <string name="action_back">Back</string>
+    <string name="action_recents">Recents</string>
+    <string name="action_screenshot">Screenshot</string>
+    <string name="action_menu">Menu</string>
+    <string name="action_ime">Open IME Switcher</string>
+    <string name="action_kill">Kill task</string>
+    <string name="action_power">Power</string>
+    <string name="action_notifications">Notifications</string>
+    <string name="action_none">Empty</string>
+
+    <string name="toggle_ring_vib">Ring/Vib - Toggle</string>
+    <string name="toggle_ring_silent">Ring/Silent - Togle</string>
+    <string name="toggle_ring_vib_silent">Ring/Vib/Silent - Toggle</string>
+    <string name="app_killed_message">App Killed</string>
+
 </resources>
