@@ -242,5 +242,10 @@
                 <category android:name="android.intent.category.DESK_DOCK" />
             </intent-filter>
         </activity>
+
+        <!-- started from Favorite Contact Tile -->
+        <activity
+            android:name=".quicksettings.ContactPickerActivity"/>
+
     </application>
 </manifest>

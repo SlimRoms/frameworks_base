@@ -16,12 +16,10 @@
 
 package com.android.systemui.quicksettings;
 
-import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Handler;
 import android.provider.Settings;
@@ -35,6 +33,13 @@ import com.android.systemui.statusbar.phone.QuickSettingsContainerView;
 public class AlarmTile extends QuickSettingsTile{
 
     private boolean enabled = false;
+    public static QuickSettingsTile mInstance;
+
+    public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
+            QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler) {
+        if (mInstance == null) mInstance = new AlarmTile(context, inflater, container, qsc, handler);
+        return mInstance;
+    }
 
     public AlarmTile(Context context, LayoutInflater inflater,
             QuickSettingsContainerView container,

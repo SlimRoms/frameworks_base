@@ -16,11 +16,9 @@
 
 package com.android.systemui.quicksettings;
 
-import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Handler;
@@ -55,14 +53,20 @@ public class RingerModeTile extends QuickSettingsTile {
     private int mRingerValuesIndex;
 
     private AudioManager mAudioManager;
-    private Handler mHandler;
+    public static QuickSettingsTile mInstance;
+
+    public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
+            QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler) {
+        if (mInstance == null) mInstance = new RingerModeTile(context, inflater, container, qsc);
+        return mInstance;
+    }
 
     public RingerModeTile(Context context, LayoutInflater inflater,
             QuickSettingsContainerView container, QuickSettingsController qsc) {
         super(context, inflater, container, qsc);
 
         mAudioManager = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
-        mHandler = new Handler();
+        new Handler();
 
         // Load the available ringer modes
         updateSettings(mContext.getContentResolver());

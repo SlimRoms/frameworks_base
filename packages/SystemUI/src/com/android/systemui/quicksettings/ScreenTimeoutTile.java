@@ -19,17 +19,14 @@ package com.android.systemui.quicksettings;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.net.Uri;
+import android.os.Handler;
 import android.provider.Settings;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
-import android.widget.Toast;
-
 import com.android.systemui.R;
 import com.android.systemui.statusbar.phone.QuickSettingsController;
 import com.android.systemui.statusbar.phone.QuickSettingsContainerView;
@@ -46,6 +43,13 @@ public class ScreenTimeoutTile extends QuickSettingsTile {
     // cm modes
     private static final int CM_MODE_15_60_300 = 0;
     private static final int CM_MODE_30_120_300 = 1;
+    public static QuickSettingsTile mInstance;
+
+    public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
+            QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler) {
+        if (mInstance == null) mInstance = new ScreenTimeoutTile(context, inflater, container, qsc);
+        return mInstance;
+    }
 
     public ScreenTimeoutTile(Context context,
             LayoutInflater inflater, QuickSettingsContainerView container, QuickSettingsController qsc) {

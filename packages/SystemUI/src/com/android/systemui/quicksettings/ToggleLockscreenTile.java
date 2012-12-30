@@ -20,6 +20,7 @@ import android.app.KeyguardManager;
 import android.app.KeyguardManager.KeyguardLock;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -38,6 +39,13 @@ public class ToggleLockscreenTile extends QuickSettingsTile {
     private final KeyguardManager mKeyguardManager;
     private boolean mDisabledLockscreen = false;
     private SharedPreferences sp;
+    public static QuickSettingsTile mInstance;
+
+    public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
+            QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler) {
+        if (mInstance == null) mInstance = new ToggleLockscreenTile(context, inflater, container, qsc);
+        return mInstance;
+    }
 
     public ToggleLockscreenTile(Context context,
             LayoutInflater inflater, QuickSettingsContainerView container, QuickSettingsController qsc) {

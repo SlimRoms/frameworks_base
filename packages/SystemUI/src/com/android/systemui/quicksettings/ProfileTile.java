@@ -19,11 +19,10 @@ package com.android.systemui.quicksettings;
 import android.app.AlertDialog;
 import android.app.Profile;
 import android.app.ProfileManager;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -38,6 +37,13 @@ import java.util.UUID;
 public class ProfileTile extends QuickSettingsTile {
     private Profile mChosenProfile;
     private ProfileManager mProfileManager;
+    public static QuickSettingsTile mInstance;
+
+    public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
+            QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler) {
+        if (mInstance == null) mInstance = new ProfileTile(context, inflater, container, qsc);
+        return mInstance;
+    }
 
     public ProfileTile(Context context, LayoutInflater inflater,
             QuickSettingsContainerView container,

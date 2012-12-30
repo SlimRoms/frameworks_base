@@ -61,6 +61,7 @@ import com.android.systemui.quicksettings.WiFiDisplayTile;
 import com.android.systemui.quicksettings.WiFiTile;
 import com.android.systemui.quicksettings.WifiAPTile;
 import com.android.systemui.quicksettings.RebootTile;
+import com.android.systemui.quicksettings.FavoriteContactTile;
 import com.android.systemui.statusbar.powerwidget.PowerButton;
 
 public class QuickSettingsController {
@@ -98,6 +99,7 @@ public class QuickSettingsController {
     public static final String TILE_AUTOROTATE = "toggleAutoRotate";
     public static final String TILE_AIRPLANE = "toggleAirplane";
     public static final String TILE_TORCH = "toggleFlashlight";  // Keep old string for compatibility
+    public static final String TILE_FAVCONTACT = "toggleFavoriteContact";
     public static final String TILE_SLEEP = "toggleSleepMode";
     public static final String TILE_LTE = "toggleLte";
     public static final String TILE_WIMAX = "toggleWimax";
@@ -153,7 +155,9 @@ public class QuickSettingsController {
     public static final int SYNC_TILE = 22;
     public static final int NFC_TILE = 23;
     public static final int SCREENTIMEOUT_TILE = 24;
+    public static final int FAV_CONTACT_TILE = 25;
     public static final int USER_TILE = 99;
+
     private InputMethodTile IMETile;
 
     public QuickSettingsController(Context context, QuickSettingsContainerView container, PhoneStatusBar statusBarService) {
@@ -242,6 +246,8 @@ public class QuickSettingsController {
                 }
             } else if (tile.equals(TILE_REBOOT)) {
                 mQuickSettings.add(REBOOT_TILE);
+            } else if (tile.equals(TILE_FAVCONTACT)) {
+                mQuickSettings.add(FAV_CONTACT_TILE);
             }
         }
 
@@ -363,115 +369,119 @@ public class QuickSettingsController {
     void addQuickSettings(LayoutInflater inflater){
         // Load the user configured tiles
         loadTiles();
-
+        FavoriteContactTile.instanceCount = 0;
         // Now add the actual tiles from the loaded list
         for (Integer entry: mQuickSettings) {
             QuickSettingsTile qs = null;
             switch (entry) {
             case WIFI_TILE:
-                qs = new WiFiTile(mContext, inflater,
-                        (QuickSettingsContainerView) mContainerView, this);
+                qs = WiFiTile.getInstance(mContext, inflater,
+                        (QuickSettingsContainerView) mContainerView, this, mHandler);
                 break;
             case MOBILE_NETWORK_TILE:
-                qs = new MobileNetworkTile(mContext, inflater,
-                        (QuickSettingsContainerView) mContainerView, this);
+                qs = MobileNetworkTile.getInstance(mContext, inflater,
+                        (QuickSettingsContainerView) mContainerView, this, mHandler);
                 break;
             case AIRPLANE_MODE_TILE:
-                qs = new AirplaneModeTile(mContext, inflater,
-                        (QuickSettingsContainerView) mContainerView, this);
+                qs = AirplaneModeTile.getInstance(mContext, inflater,
+                        (QuickSettingsContainerView) mContainerView, this, mHandler);
                 break;
             case BLUETOOTH_TILE:
-                qs = new BluetoothTile(mContext, inflater,
-                        (QuickSettingsContainerView) mContainerView, this);
+                qs = BluetoothTile.getInstance(mContext, inflater,
+                        (QuickSettingsContainerView) mContainerView, this, mHandler);
                 break;
             case RINGER_TILE:
-                qs = new RingerModeTile(mContext, inflater,
-                        (QuickSettingsContainerView) mContainerView, this);
+                qs = RingerModeTile.getInstance(mContext, inflater,
+                        (QuickSettingsContainerView) mContainerView, this, mHandler);
                 break;
             case SLEEP_TILE:
-                qs = new SleepScreenTile(mContext, inflater,
-                        (QuickSettingsContainerView) mContainerView, this);
+                qs = SleepScreenTile.getInstance(mContext, inflater,
+                        (QuickSettingsContainerView) mContainerView, this, mHandler);
                 break;
             case TOGGLE_LOCKSCREEN_TILE:
-                qs = new ToggleLockscreenTile(mContext, inflater,
-                        (QuickSettingsContainerView) mContainerView, this);
+                qs = ToggleLockscreenTile.getInstance(mContext, inflater,
+                        (QuickSettingsContainerView) mContainerView, this, mHandler);
                 break;
             case GPS_TILE:
-                qs = new GPSTile(mContext, inflater,
-                        (QuickSettingsContainerView) mContainerView, this);
+                qs = GPSTile.getInstance(mContext, inflater,
+                        (QuickSettingsContainerView) mContainerView, this, mHandler);
                 break;
             case AUTO_ROTATION_TILE:
-                qs = new AutoRotateTile(mContext, inflater,
+                qs = AutoRotateTile.getInstance(mContext, inflater,
                         (QuickSettingsContainerView) mContainerView, this, mHandler);
                 break;
             case BRIGHTNESS_TILE:
-                qs = new BrightnessTile(mContext, inflater,
+                qs = BrightnessTile.getInstance(mContext, inflater,
                         (QuickSettingsContainerView) mContainerView, this, mHandler);
                 break;
             case MOBILE_NETWORK_TYPE_TILE:
-                qs = new MobileNetworkTypeTile(mContext, inflater,
-                        (QuickSettingsContainerView) mContainerView, this);
+                qs = MobileNetworkTypeTile.getInstance(mContext, inflater,
+                        (QuickSettingsContainerView) mContainerView, this, mHandler);
                 break;
             case ALARM_TILE:
-                qs = new AlarmTile(mContext, inflater,
+                qs = AlarmTile.getInstance(mContext, inflater,
                         (QuickSettingsContainerView) mContainerView, this, mHandler);
                 break;
             case BUG_REPORT_TILE:
-                qs = new BugReportTile(mContext, inflater,
+                qs = BugReportTile.getInstance(mContext, inflater,
                         (QuickSettingsContainerView) mContainerView, this, mHandler);
                 break;
             case WIFI_DISPLAY_TILE:
-                qs = new WiFiDisplayTile(mContext, inflater,
-                        (QuickSettingsContainerView) mContainerView, this);
+                qs = WiFiDisplayTile.getInstance(mContext, inflater,
+                        (QuickSettingsContainerView) mContainerView, this, mHandler);
                 break;
             case SETTINGS_TILE:
-                qs = new PreferencesTile(mContext, inflater,
-                        (QuickSettingsContainerView) mContainerView, this);
+                qs = PreferencesTile.getInstance(mContext, inflater,
+                        (QuickSettingsContainerView) mContainerView, this, mHandler);
                 break;
             case BATTERY_TILE:
-                qs = new BatteryTile(mContext, inflater,
-                        (QuickSettingsContainerView) mContainerView, this);
+                qs = BatteryTile.getInstance(mContext, inflater,
+                        (QuickSettingsContainerView) mContainerView, this, mHandler);
                 break;
             case IME_TILE:
-                IMETile = new InputMethodTile(mContext, inflater,
-                        (QuickSettingsContainerView) mContainerView, this);
-                qs = IMETile;
+                qs = InputMethodTile.getInstance(mContext, inflater,
+                        (QuickSettingsContainerView) mContainerView, this, mHandler);
+                IMETile = (InputMethodTile) qs;
                 break;
             case USER_TILE:
-                qs = new UserTile(mContext, inflater,
-                        (QuickSettingsContainerView) mContainerView, this);
+                qs = UserTile.getInstance(mContext, inflater,
+                        (QuickSettingsContainerView) mContainerView, this, mHandler);
                 break;
             case TORCH_TILE:
-                qs = new TorchTile(mContext, inflater,
+                qs = TorchTile.getInstance(mContext, inflater,
+                        (QuickSettingsContainerView) mContainerView, this, mHandler);
+                break;
+            case FAV_CONTACT_TILE:
+                qs = FavoriteContactTile.getInstance(mContext, inflater,
                         (QuickSettingsContainerView) mContainerView, this, mHandler);
                 break;
             case WIFIAP_TILE:
-                qs = new WifiAPTile(mContext, inflater,
-                        (QuickSettingsContainerView) mContainerView, this);
+                qs = WifiAPTile.getInstance(mContext, inflater,
+                        (QuickSettingsContainerView) mContainerView, this, mHandler);
                 break;
             case PROFILE_TILE:
-                qs = new ProfileTile(mContext, inflater,
-                        (QuickSettingsContainerView) mContainerView, this);
+                qs = ProfileTile.getInstance(mContext, inflater,
+                        (QuickSettingsContainerView) mContainerView, this, mHandler);
                 break;
             case MOBILE_DATA_TILE:
-                qs = new MobileDataTile(mContext, inflater,
+                qs = MobileDataTile.getInstance(mContext, inflater,
                         (QuickSettingsContainerView) mContainerView, this, mHandler);
                 break;
             case REBOOT_TILE:
-                qs = new RebootTile(mContext, inflater,
-                        (QuickSettingsContainerView) mContainerView, this);
+                qs = RebootTile.getInstance(mContext, inflater,
+                        (QuickSettingsContainerView) mContainerView, this, mHandler);
                 break;
             case SYNC_TILE:
-                qs = new SyncTile(mContext, inflater,
-                        (QuickSettingsContainerView) mContainerView, this);
+                qs = SyncTile.getInstance(mContext, inflater,
+                        (QuickSettingsContainerView) mContainerView, this, mHandler);
                 break;
             case NFC_TILE:
-                qs = new NfcTile(mContext, inflater,
-                        (QuickSettingsContainerView) mContainerView, this);
+                qs = NfcTile.getInstance(mContext, inflater,
+                        (QuickSettingsContainerView) mContainerView, this, mHandler);
                 break;
             case SCREENTIMEOUT_TILE:
-                qs = new ScreenTimeoutTile(mContext, inflater,
-                        (QuickSettingsContainerView) mContainerView, this);
+                qs = ScreenTimeoutTile.getInstance(mContext, inflater,
+                        (QuickSettingsContainerView) mContainerView, this, mHandler);
                 break;
             }
             if (qs != null) {

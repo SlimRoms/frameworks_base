@@ -18,6 +18,7 @@ package com.android.systemui.quicksettings;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.util.Log;
@@ -56,6 +57,13 @@ public class MobileNetworkTypeTile extends QuickSettingsTile {
     private int mIntendedMode = NO_NETWORK_MODE_YET;
     private int mInternalState = STATE_INTERMEDIATE;
     private int mState;
+    public static QuickSettingsTile mInstance;
+
+    public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
+            QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler) {
+        if (mInstance == null) mInstance = new MobileNetworkTypeTile(context, inflater, container, qsc);
+        return mInstance;
+    }
 
     public MobileNetworkTypeTile(Context context,
             LayoutInflater inflater, QuickSettingsContainerView container,

@@ -16,10 +16,8 @@
 
 package com.android.systemui.quicksettings;
 
-import android.content.BroadcastReceiver;
-import android.content.ComponentName;
-import android.content.ContentResolver;
 import android.content.Context;
+import android.os.Handler;
 import android.os.PowerManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +27,13 @@ import com.android.systemui.statusbar.phone.QuickSettingsController;
 import com.android.systemui.statusbar.phone.QuickSettingsContainerView;
 
 public class RebootTile extends QuickSettingsTile {
+    public static QuickSettingsTile mInstance;
+
+    public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
+            QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler) {
+        if (mInstance == null) mInstance = new RebootTile(context, inflater, container, qsc);
+        return mInstance;
+    }
 
     public RebootTile(Context context, LayoutInflater inflater,
             QuickSettingsContainerView container,

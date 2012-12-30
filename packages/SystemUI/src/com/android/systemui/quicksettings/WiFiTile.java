@@ -18,6 +18,7 @@ package com.android.systemui.quicksettings;
 
 import android.content.Context;
 import android.net.wifi.WifiManager;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnLongClickListener;
@@ -29,6 +30,14 @@ import com.android.systemui.statusbar.policy.NetworkController;
 import com.android.systemui.statusbar.policy.NetworkController.NetworkSignalChangedCallback;
 
 public class WiFiTile extends QuickSettingsTile implements NetworkSignalChangedCallback{
+
+    public static QuickSettingsTile mInstance;
+
+    public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
+            QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler) {
+        if (mInstance == null) mInstance = new WiFiTile(context, inflater, container, qsc);
+        return mInstance;
+    }
 
     public WiFiTile(Context context, LayoutInflater inflater,
             QuickSettingsContainerView container, QuickSettingsController qsc) {

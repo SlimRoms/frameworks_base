@@ -19,6 +19,7 @@ package com.android.systemui.quicksettings;
 import android.content.Context;
 import android.content.Intent;
 import android.nfc.NfcAdapter;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +34,13 @@ public class NfcTile extends QuickSettingsTile {
     private static String TAG = "NfcTile";
     private static NfcAdapter mNfcAdapter;
     private static final int NFC_ADAPTER_UNKNOWN = -100;
+    public static QuickSettingsTile mInstance;
+
+    public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
+            QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler) {
+        if (mInstance == null) mInstance = new NfcTile(context, inflater, container, qsc);
+        return mInstance;
+    }
 
     public NfcTile(Context context, LayoutInflater inflater,
             QuickSettingsContainerView container,
