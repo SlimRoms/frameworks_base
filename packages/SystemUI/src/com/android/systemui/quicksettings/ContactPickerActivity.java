@@ -42,7 +42,6 @@ public class ContactPickerActivity extends Activity {
         super.onCreate(savedInstanceState);
         Bundle os = this.getIntent().getExtras();
         callingTile = os.getInt("hashCode");
-        Log.e("\r\n\r\n --------", "callingTile = "+callingTile+"\r\n\r\n");
         Intent contactPickerIntent = new Intent(Intent.ACTION_PICK, Contacts.CONTENT_URI);
         startActivityForResult(contactPickerIntent, CONTACT_PICKER_RESULT);
     }
@@ -65,8 +64,6 @@ public class ContactPickerActivity extends Activity {
                             SharedPreferences.Editor editor = prefs.edit();
                             editor.putString(callingTile+"", lookup_key); // store selected contact
                             editor.apply();
-                            /*Settings.System.putString(this.getContentResolver(),
-                                Settings.System.QUICK_TOGGLE_FAV_CONTACT, lookup_key);*/
                         }
                     } finally {
                         cursor.close();

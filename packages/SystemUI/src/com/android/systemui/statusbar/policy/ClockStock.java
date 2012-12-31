@@ -20,21 +20,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.res.Resources;
-import android.content.res.TypedArray;
-import android.graphics.Canvas;
-import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.format.DateFormat;
 import android.text.style.CharacterStyle;
-import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
-import android.text.style.RelativeSizeSpan;
-import android.text.style.StyleSpan;
 import android.util.AttributeSet;
-import android.view.View;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -173,7 +164,6 @@ public class ClockStock extends TextView {
                         + "a" + MAGIC2 + format.substring(b + 1);
                 }
             }
-
             mClockFormat = sdf = new SimpleDateFormat(format);
             mClockFormatString = format;
         } else {
