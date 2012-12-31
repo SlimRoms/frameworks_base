@@ -3141,6 +3141,12 @@ public final class Settings {
         public static final String LOCKSCREEN_UNSECURE_USED = "lockscreen_unsecure_used";
 
         /**
+         * Whether to enable lockscreen rotation
+         * @hide
+         */
+        public static final String LOCKSCREEN_AUTO_ROTATE = "lockscreen_auto_rotate";
+
+        /**
          * Show the pending notification counts as overlays on the status bar
          * Whether to enable custom rebindings of the actions performed on
          * certain key press events.
