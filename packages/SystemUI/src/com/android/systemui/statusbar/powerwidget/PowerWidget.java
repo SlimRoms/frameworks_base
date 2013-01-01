@@ -37,6 +37,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
+import android.util.DisplayMetrics;
 
 import com.android.systemui.R;
 
@@ -55,9 +56,13 @@ public class PowerWidget extends FrameLayout {
                              + BUTTON_DELIMITER + PowerButton.BUTTON_GPS
                              + BUTTON_DELIMITER + PowerButton.BUTTON_SOUND;
 
-    private static final FrameLayout.LayoutParams WIDGET_LAYOUT_PARAMS = new FrameLayout.LayoutParams(
+    private static FrameLayout.LayoutParams WIDGET_LAYOUT_PARAMS = new FrameLayout.LayoutParams(
                                         ViewGroup.LayoutParams.MATCH_PARENT, // width = match_parent
                                         ViewGroup.LayoutParams.WRAP_CONTENT  // height = wrap_content
+                                        );
+    private static final FrameLayout.LayoutParams WIDGET_BRIGHTNESS_LAYOUT_PARAMS = new FrameLayout.LayoutParams(
+                                        ViewGroup.LayoutParams.MATCH_PARENT, // width = match_parent
+                                        ViewGroup.LayoutParams.MATCH_PARENT  // height = match_parent
                                         );
 
     private static final LinearLayout.LayoutParams BUTTON_LAYOUT_PARAMS = new LinearLayout.LayoutParams(
@@ -66,7 +71,19 @@ public class PowerWidget extends FrameLayout {
                                         1.0f                                 // weight = 1
                                         );
 
+    private static LinearLayout.LayoutParams ROWS_PARAMS = new LinearLayout.LayoutParams(
+                                        ViewGroup.LayoutParams.MATCH_PARENT, // width = wrap_content
+                                        ViewGroup.LayoutParams.WRAP_CONTENT // height = match_parent
+                                        );
+
     private static final int LAYOUT_SCROLL_BUTTON_THRESHOLD = 6;
+    public static final int BRIGHTNESS_LOC_TOP = 1;
+    public static final int BRIGHTNESS_LOC_BOTTOM = 2;
+    public static final int BRIGHTNESS_LOC_NONE = 3;
+    public static float WIDGET_HEIGHT = 48;
+    public static float BRIGHTNESS_HEIGHT = 44;
+
+    private int mBrightnessLocation = BRIGHTNESS_LOC_NONE;
 
     // this is a list of all possible buttons and their corresponding classes
     private static final HashMap<String, Class<? extends PowerButton>> sPossibleButtons =
@@ -110,11 +127,15 @@ public class PowerWidget extends FrameLayout {
     private WidgetBroadcastReceiver mBroadcastReceiver = null;
     private WidgetSettingsObserver mObserver = null;
 
+    View mBrightnessSlider;
     private long[] mShortPressVibePattern;
     private long[] mLongPressVibePattern;
 
     private LinearLayout mButtonLayout;
-    private HorizontalScrollView mScrollView;
+    private SnappingScrollView mScrollView;
+
+    private static final FrameLayout.LayoutParams PARAMS_BRIGHTNESS = new FrameLayout.LayoutParams(
+            LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
     public PowerWidget(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -128,10 +149,21 @@ public class PowerWidget extends FrameLayout {
         mLongPressVibePattern = getLongIntArray(mContext.getResources(),
                 com.android.internal.R.array.config_longPressVibePattern);
 
+        String dim = getResources().getString(R.dimen.notification_panel_widget_height);
+        WIDGET_HEIGHT = Float.parseFloat(dim.substring(0,dim.length()-3));
+
+        dim = getResources().getString(R.dimen.notification_panel_brightness_height);
+        BRIGHTNESS_HEIGHT = Float.parseFloat(dim.substring(0,dim.length()-3));
+
         // get an initial width
         updateButtonLayoutWidth();
         setupWidget();
+    }
 
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
+        // need change cause of animation updateVisibility();
     }
 
     static long[] getLongIntArray(Resources r, int resid) {
@@ -204,6 +236,11 @@ public class PowerWidget extends FrameLayout {
         mObserver.observe();
     }
 
+    private void addBrightness(LinearLayout container) {
+        ROWS_PARAMS.height = (int) convertDpToPixel(BRIGHTNESS_HEIGHT, mContext);
+        container.addView(new BrightnessSlider(mContext).getView(), ROWS_PARAMS);
+    }
+
     private boolean loadButton(String key) {
         // first make sure we have a valid button
         if (!sPossibleButtons.containsKey(key)) {
@@ -250,14 +287,61 @@ public class PowerWidget extends FrameLayout {
         mButtonNames.clear();
     }
 
+    static class SnappingScrollView extends HorizontalScrollView {
+
+        private boolean mSnapTrigger = false;
+
+        public SnappingScrollView(Context context) {
+            super(context);
+        }
+
+        Runnable mSnapRunnable = new Runnable(){
+            @Override
+            public void run() {
+                int mSelectedItem = ((getScrollX() + (BUTTON_LAYOUT_PARAMS.width / 2)) / BUTTON_LAYOUT_PARAMS.width);
+                int scrollTo = mSelectedItem * BUTTON_LAYOUT_PARAMS.width;
+                smoothScrollTo(scrollTo, 0);
+                mSnapTrigger = false;
+            }
+        };
+
+        @Override
+        protected void onScrollChanged(int l, int t, int oldl, int oldt) {
+            super.onScrollChanged(l, t, oldl, oldt);
+            if (Math.abs(oldl - l) <= 1 && mSnapTrigger) {
+                removeCallbacks(mSnapRunnable);
+                postDelayed(mSnapRunnable, 100);
+            }
+        }
+
+        @Override
+        public boolean onTouchEvent(MotionEvent ev) {
+            int action = ev.getAction();
+            if (action == MotionEvent.ACTION_CANCEL || action == MotionEvent.ACTION_UP) {
+                mSnapTrigger = true;
+            }
+            return super.onTouchEvent(ev);
+        }
+
+    }
+
     private void recreateButtonLayout() {
         removeAllViews();
+
+        mBrightnessLocation = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.STATUSBAR_TOGGLES_BRIGHTNESS_LOC,
+                BRIGHTNESS_LOC_NONE);
+
+        LinearLayout mBrightnessLayout = new LinearLayout(mContext);
+        mBrightnessLayout.setOrientation(LinearLayout.VERTICAL);
+
+        if (mBrightnessLocation == BRIGHTNESS_LOC_TOP) addBrightness(mBrightnessLayout);
 
         // create a linearlayout to hold our buttons
         mButtonLayout = new LinearLayout(mContext);
         mButtonLayout.setOrientation(LinearLayout.HORIZONTAL);
         mButtonLayout.setGravity(Gravity.CENTER_HORIZONTAL);
-
+        ROWS_PARAMS.height = (int) convertDpToPixel(WIDGET_HEIGHT, mContext);
         for (String button : mButtonNames) {
             PowerButton pb = mButtons.get(button);
             if (pb != null) {
@@ -270,23 +354,30 @@ public class PowerWidget extends FrameLayout {
         // we determine if we're using a horizontal scroll view based on a threshold of button counts
         if (mButtonLayout.getChildCount() > LAYOUT_SCROLL_BUTTON_THRESHOLD) {
             // we need our horizontal scroll view to wrap the linear layout
-            mScrollView = new HorizontalScrollView(mContext);
+            mScrollView = new SnappingScrollView(mContext);
             // make the fading edge the size of a button (makes it more noticible that we can scroll
             mScrollView.setFadingEdgeLength(mContext.getResources().getDisplayMetrics().widthPixels / LAYOUT_SCROLL_BUTTON_THRESHOLD);
             mScrollView.setScrollBarStyle(View.SCROLLBARS_INSIDE_INSET);
             mScrollView.setOverScrollMode(View.OVER_SCROLL_NEVER);
-            // set the padding on the linear layout to the size of our scrollbar, so we don't have them overlap
-            mButtonLayout.setPadding(mButtonLayout.getPaddingLeft(),
-                    mButtonLayout.getPaddingTop(),
-                    mButtonLayout.getPaddingRight(),
-                    mScrollView.getVerticalScrollbarWidth());
+
             mScrollView.addView(mButtonLayout, WIDGET_LAYOUT_PARAMS);
             updateScrollbar();
-            addView(mScrollView, WIDGET_LAYOUT_PARAMS);
+            mBrightnessLayout.addView(mScrollView, ROWS_PARAMS);
         } else {
             // not needed, just add the linear layout
-            addView(mButtonLayout, WIDGET_LAYOUT_PARAMS);
+            mBrightnessLayout.addView(mButtonLayout, ROWS_PARAMS);
         }
+
+        if (mBrightnessLocation == BRIGHTNESS_LOC_BOTTOM) addBrightness(mBrightnessLayout);
+        addView(mBrightnessLayout, WIDGET_BRIGHTNESS_LAYOUT_PARAMS);
+
+    }
+
+    public static float convertDpToPixel(float dp,Context context){
+        Resources resources = context.getResources();
+        DisplayMetrics metrics = resources.getDisplayMetrics();
+        float px = dp * (metrics.densityDpi/160f);
+        return px;
     }
 
     public void updateAllButtons() {
@@ -369,6 +460,15 @@ public class PowerWidget extends FrameLayout {
         boolean hideScrollBar = Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.EXPANDED_HIDE_SCROLLBAR, 0) == 1;
         mScrollView.setHorizontalScrollBarEnabled(!hideScrollBar);
+
+        // set the padding on the linear layout to the size of our scrollbar,
+        // so we don't have them overlap
+        // need to be here for make use of EXPANDED_HIDE_SCROLLBAR, expanding or collapsing
+        // the space used by the scrollbar
+        if (mButtonLayout != null) {
+            mButtonLayout.setPadding(0, 0, 0,
+                    !hideScrollBar ? mScrollView.getVerticalScrollbarWidth() : 0);
+        }
     }
 
     private void updateHapticFeedbackSetting() {
@@ -427,6 +527,11 @@ public class PowerWidget extends FrameLayout {
         public void observe() {
             ContentResolver resolver = mContext.getContentResolver();
 
+        // watch for brightness location change
+            resolver.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.STATUSBAR_TOGGLES_BRIGHTNESS_LOC),
+                            false, this);
+
             // watch for display widget
             resolver.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.EXPANDED_VIEW_WIDGET),
@@ -454,6 +559,10 @@ public class PowerWidget extends FrameLayout {
             for(Uri uri : getAllObservedUris()) {
                 resolver.registerContentObserver(uri, false, this);
             }
+            //brightness slider
+            resolver.registerContentObserver(Settings.System
+            .getUriFor(Settings.System.STATUSBAR_TOGGLES_BRIGHTNESS_LOC),
+            false, this);
         }
 
         public void unobserve() {
@@ -478,13 +587,14 @@ public class PowerWidget extends FrameLayout {
                     setVisibility(View.VISIBLE);
                     setScaleX(1f);
                 }
-
             // now check for scrollbar hiding
             } else if(uri.equals(Settings.System.getUriFor(Settings.System.EXPANDED_HIDE_SCROLLBAR))) {
-                updateScrollbar();
-            }
-
-            if (uri.equals(Settings.System.getUriFor(Settings.System.HAPTIC_FEEDBACK_ENABLED))
+                // Needed to remove scrollview to gain the space of the scrollable area
+                recreateButtonLayout();
+            } else if(uri.equals(Settings.System.getUriFor(Settings.System.STATUSBAR_TOGGLES_BRIGHTNESS_LOC))) {
+                // reorganize widgets and Brightness slider
+                recreateButtonLayout();
+            } else if (uri.equals(Settings.System.getUriFor(Settings.System.HAPTIC_FEEDBACK_ENABLED))
                     || uri.equals(Settings.System.getUriFor(Settings.System.EXPANDED_HAPTIC_FEEDBACK))) {
                 updateHapticFeedbackSetting();
             }
