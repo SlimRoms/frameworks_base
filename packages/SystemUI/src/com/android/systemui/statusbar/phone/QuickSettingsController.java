@@ -199,6 +199,7 @@ public class QuickSettingsController {
         // Load the user configured tiles
         loadTiles();
         // reset fav contact instance counter
+        if (!tiles.contains(TILE_FAVCONTACT)) FavoriteContactTile.resetContent(mContext);
         FavoriteContactTile.instanceCount = 0;
         // Split out the tile names and add to the list
         for (String tile : tiles.split("\\|")) {

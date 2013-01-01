@@ -152,4 +152,8 @@ public class FavoriteContactTile extends QuickSettingsTile implements SharedPref
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals(tileID+"")) queryForFavContactInformation();
     }
+
+    public static void resetContent(Context context) {
+        PreferenceManager.getDefaultSharedPreferences(context).edit().clear().apply();
+    }
 }
