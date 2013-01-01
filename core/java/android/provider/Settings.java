@@ -2916,6 +2916,12 @@ public final class Settings {
          */
         public static final String EXPANDED_DESKTOP_STATE = "expanded_desktop_state";
 
+       /**
+        * Whether fcharge is enabled or not if kernel supports it
+        * @hide
+        */
+        public static final String FCHARGE_ENABLED = "fcharge_enabled";
+
         /**
          * Whether to use a separate delay for "slide to unlock" and security
          * lock

@@ -62,6 +62,7 @@ import com.android.systemui.quicksettings.WiFiTile;
 import com.android.systemui.quicksettings.WifiAPTile;
 import com.android.systemui.quicksettings.RebootTile;
 import com.android.systemui.quicksettings.FavoriteContactTile;
+import com.android.systemui.quicksettings.FChargeTile;
 import com.android.systemui.statusbar.powerwidget.PowerButton;
 
 public class QuickSettingsController {
@@ -106,6 +107,7 @@ public class QuickSettingsController {
     public static final String TILE_PROFILE = "toggleProfile";
     public static final String TILE_REBOOT = "toggleReboot";
     public static final String TILE_NFC = "toggleNfc";
+    public static final String TILE_FCHARGE = "toggleFCharge";
 
     private static final String TILE_DELIMITER = "|";
     private static final String TILES_DEFAULT = TILE_USER
@@ -156,6 +158,7 @@ public class QuickSettingsController {
     public static final int NFC_TILE = 23;
     public static final int SCREENTIMEOUT_TILE = 24;
     public static final int FAV_CONTACT_TILE = 25;
+    public static final int FCHARGE_TILE = 26;
     public static final int USER_TILE = 99;
 
     private InputMethodTile IMETile;
@@ -248,6 +251,8 @@ public class QuickSettingsController {
                 mQuickSettings.add(REBOOT_TILE);
             } else if (tile.equals(TILE_FAVCONTACT)) {
                 mQuickSettings.add(FAV_CONTACT_TILE);
+            } else if (tile.equals(TILE_FCHARGE)) {
+                mQuickSettings.add(FCHARGE_TILE);
             }
         }
 
@@ -481,6 +486,10 @@ public class QuickSettingsController {
                 break;
             case SCREENTIMEOUT_TILE:
                 qs = ScreenTimeoutTile.getInstance(mContext, inflater,
+                        (QuickSettingsContainerView) mContainerView, this, mHandler);
+                break;
+            case FCHARGE_TILE:
+                qs = FChargeTile.getInstance(mContext, inflater,
                         (QuickSettingsContainerView) mContainerView, this, mHandler);
                 break;
             }
