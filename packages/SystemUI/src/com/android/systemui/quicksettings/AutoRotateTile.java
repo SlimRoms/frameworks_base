@@ -36,11 +36,12 @@ import com.android.systemui.statusbar.phone.QuickSettingsContainerView;
 public class AutoRotateTile extends QuickSettingsTile {
 
     private static final String TAG = "AutoRotateButton";
-    public static QuickSettingsTile mInstance;
+    public static AutoRotateTile mInstance;
 
     public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
             QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler) {
         if (mInstance == null) mInstance = new AutoRotateTile(context, inflater, container, qsc, handler);
+        else {mInstance.applyAutoRotationChanges(); qsc.registerObservedContent(Settings.System.getUriFor(Settings.System.ACCELEROMETER_ROTATION), mInstance);}
         return mInstance;
     }
 

@@ -327,8 +327,12 @@ public class QuickSettingsController {
     }
 
     public void updateResources() {
-        mContainerView.removeAllViews();
-        setupQuickSettings();
-        mContainerView.requestLayout();
+        /*
+         * this method is supposed to redraw all the tiles if needed
+         * for future need. Commented out for now.
+         * mContainerView.removeAllViews();
+         * setupQuickSettings();
+         * mContainerView.requestLayout();
+         */
     }
 }

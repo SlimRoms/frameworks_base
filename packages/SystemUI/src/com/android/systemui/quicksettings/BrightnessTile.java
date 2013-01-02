@@ -48,11 +48,16 @@ public class BrightnessTile extends QuickSettingsTile implements BrightnessState
     private BrightnessController mBrightnessController;
     private final Handler mHandler;
     private boolean autoBrightness = true;
-    public static QuickSettingsTile mInstance;
+    public static BrightnessTile mInstance;
 
     public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
             QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler) {
         if (mInstance == null) mInstance = new BrightnessTile(context, inflater, container, qsc, handler);
+        else {
+            mInstance.onBrightnessLevelChanged();
+            qsc.registerObservedContent(Settings.System.getUriFor(Settings.System.SCREEN_BRIGHTNESS), mInstance);
+            qsc.registerObservedContent(Settings.System.getUriFor(Settings.System.SCREEN_BRIGHTNESS_MODE), mInstance);
+        }
         return mInstance;
     }
 
