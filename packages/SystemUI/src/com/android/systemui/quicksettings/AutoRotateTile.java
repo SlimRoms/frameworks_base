@@ -18,6 +18,8 @@ package com.android.systemui.quicksettings;
 
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.ComponentName;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
 import android.provider.Settings;
@@ -56,7 +58,11 @@ public class AutoRotateTile extends QuickSettingsTile {
         mOnLongClick = new OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                startSettingsActivity(Settings.ACTION_DISPLAY_SETTINGS);
+                Intent intent = new Intent();
+                intent.setComponent(new ComponentName(
+                        "com.android.settings",
+                        "com.android.settings.Settings$ASSDisplayActivity"));
+                startSettingsActivity(intent);
                 return true;
             }
         };

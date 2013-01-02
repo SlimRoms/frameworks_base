@@ -19,6 +19,8 @@ package com.android.systemui.quicksettings;
 import android.app.KeyguardManager;
 import android.app.KeyguardManager.KeyguardLock;
 import android.content.Context;
+import android.content.ComponentName;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -74,7 +76,11 @@ public class ToggleLockscreenTile extends QuickSettingsTile {
 
             @Override
             public boolean onLongClick(View v) {
-                startSettingsActivity("android.settings.SECURITY_SETTINGS");
+                Intent intent = new Intent();
+                intent.setComponent(new ComponentName(
+                        "com.android.settings",
+                        "com.android.settings.Settings$ASSLockscreenActivity"));
+                startSettingsActivity(intent);
                 return true;
             }
         };
