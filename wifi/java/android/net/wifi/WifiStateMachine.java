@@ -1343,6 +1343,7 @@ public class WifiStateMachine extends StateMachine {
                 Settings.Global.WIFI_COUNTRY_CODE);
         if (countryCode != null && !countryCode.isEmpty()) {
             setCountryCode(countryCode, false);
+            mCountryCode = countryCode;
         } else {
             //use driver default
         }
