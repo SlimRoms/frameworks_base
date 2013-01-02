@@ -34,11 +34,12 @@ import com.android.systemui.statusbar.phone.QuickSettingsController;
 import com.android.systemui.statusbar.phone.QuickSettingsContainerView;
 
 public class MobileDataTile extends QuickSettingsTile {
-    public static QuickSettingsTile mInstance;
+    public static MobileDataTile mInstance;
 
     public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
             QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler) {
         if (mInstance == null) mInstance = new MobileDataTile(context, inflater, container, qsc, handler);
+        else {mInstance.updateTileState(); qsc.registerObservedContent(Settings.Global.getUriFor(Settings.Global.MOBILE_DATA), mInstance);}
         return mInstance;
     }
 
@@ -46,8 +47,6 @@ public class MobileDataTile extends QuickSettingsTile {
             QuickSettingsContainerView container,
             QuickSettingsController qsc, Handler handler) {
         super(context, inflater, container, qsc);
-
-        updateTileState();
 
         mOnClick = new View.OnClickListener() {
 

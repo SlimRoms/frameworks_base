@@ -18,7 +18,6 @@ package com.android.systemui.quicksettings;
 
 import android.content.ContentResolver;
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
 import android.provider.Settings;
@@ -39,7 +38,7 @@ import java.io.IOException;
 
 public class FChargeTile extends QuickSettingsTile {
 
-    public static QuickSettingsTile mInstance;
+    public static FChargeTile mInstance;
 
     public static final String FAST_CHARGE_DIR = "/sys/kernel/fast_charge";
     public static final String FAST_CHARGE_FILE = "force_fast_charge";
@@ -49,6 +48,7 @@ public class FChargeTile extends QuickSettingsTile {
     public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
             QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler) {
         if (mInstance == null) mInstance = new FChargeTile(context, inflater, container, qsc, handler);
+        else {mInstance.updateTileState(); qsc.registerObservedContent(Settings.System.getUriFor(Settings.System.FCHARGE_ENABLED), mInstance);}
         return mInstance;
     }
 
@@ -97,6 +97,8 @@ public class FChargeTile extends QuickSettingsTile {
             BufferedReader breader = new BufferedReader(reader);
             String line = breader.readLine();
             breader.close();
+            Settings.System.putInt(mContext.getContentResolver(),
+                    Settings.System.FCHARGE_ENABLED, line.equals("1") ? 1 : 0);
             return (line.equals("1"));
         } catch (IOException e) {
             Log.e("FChargeToggle", "Couldn't read fast_charge file");

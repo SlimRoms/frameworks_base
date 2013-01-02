@@ -63,11 +63,11 @@ public class QuickSettingsTile implements OnClickListener {
     }
 
     public void setupQuickSettingsTile(){
-        createQuickSettings();
-        onPostCreate();
-        updateQuickSettings();
-        mTile.setOnClickListener(this);
-        mTile.setOnLongClickListener(mOnLongClick);
+            createQuickSettings();
+            onPostCreate();
+            updateQuickSettings();
+            mTile.setOnClickListener(this);
+            mTile.setOnLongClickListener(mOnLongClick);
     }
 
     void createQuickSettings(){

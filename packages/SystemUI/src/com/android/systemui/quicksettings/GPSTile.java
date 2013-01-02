@@ -40,11 +40,12 @@ public class GPSTile extends QuickSettingsTile implements LocationGpsStateChange
     private boolean working = false;
 
     ContentResolver mContentResolver;
-    public static QuickSettingsTile mInstance;
+    public static GPSTile mInstance;
 
     public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
             QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler) {
         if (mInstance == null) mInstance = new GPSTile(context, inflater, container, qsc);
+        else {mInstance.updateTileState();  qsc.registerAction(LocationManager.PROVIDERS_CHANGED_ACTION, mInstance);}
         return mInstance;
     }
 
@@ -90,7 +91,7 @@ public class GPSTile extends QuickSettingsTile implements LocationGpsStateChange
         super.onPostCreate();
     }
 
-    void applyGPSChanges() {
+    private void updateTileState() {
         if (enabled && working) {
             mDrawable = R.drawable.ic_qs_location;
         } else if (enabled) {
@@ -98,6 +99,10 @@ public class GPSTile extends QuickSettingsTile implements LocationGpsStateChange
         } else {
             mDrawable = R.drawable.ic_qs_gps_off;
         }
+    }
+
+    void applyGPSChanges() {
+        updateTileState();
         updateQuickSettings();
     }
 
