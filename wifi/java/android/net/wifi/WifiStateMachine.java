@@ -1074,6 +1074,14 @@ public class WifiStateMachine extends StateMachine {
      * @param persist {@code true} if the setting should be remembered.
      */
     public void setCountryCode(String countryCode, boolean persist) {
+
+        String countryCodeUser = Settings.Global.getString(mContext.getContentResolver(),
+                Settings.Global.WIFI_COUNTRY_CODE_USER);
+        if (countryCodeUser != null && countryCodeUser != countryCode) {
+            persist = true;
+            countryCode = countryCodeUser;
+        }
+
         if (persist) {
             Settings.Global.putString(mContext.getContentResolver(),
                     Settings.Global.WIFI_COUNTRY_CODE,
@@ -1344,7 +1352,6 @@ public class WifiStateMachine extends StateMachine {
                 Settings.Global.WIFI_COUNTRY_CODE);
         if (countryCode != null && !countryCode.isEmpty()) {
             setCountryCode(countryCode, false);
-            mCountryCode = countryCode;
         } else {
             //use driver default
         }
