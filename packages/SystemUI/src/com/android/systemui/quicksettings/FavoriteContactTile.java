@@ -30,14 +30,17 @@ import com.android.systemui.statusbar.phone.QuickSettingsController;
 import com.android.systemui.statusbar.phone.QuickSettingsContainerView;
 
 import java.io.InputStream;
+import java.util.Map;
 
 import android.provider.ContactsContract;
+import android.provider.Settings;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.database.Cursor;
+import android.util.Log;
 import android.util.Pair;
 import android.widget.TextView;
 import android.widget.ImageView;
@@ -48,20 +51,18 @@ public class FavoriteContactTile extends QuickSettingsTile implements SharedPref
     private Drawable avatar = null;
     private String name = "";
     SharedPreferences prefs;
-    public static int instanceCount = 0;
-    private int tileID;
 
     public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
-            QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler) {
-        return new FavoriteContactTile(context, inflater, container, qsc, handler);
+            QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler, String id) {
+        return new FavoriteContactTile(context, inflater, container, qsc, handler, id);
     }
 
     public FavoriteContactTile(Context context, LayoutInflater inflater,
             QuickSettingsContainerView container,
-            QuickSettingsController qsc, Handler handler) {
+            QuickSettingsController qsc, Handler handler, String id) {
         super(context, inflater, container, qsc);
+        this.tileID = id;
         mTileLayout = R.layout.quick_settings_tile_user;
-        tileID = instanceCount++;
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
         prefs.registerOnSharedPreferenceChangeListener(this);
         queryForFavContactInformation();
@@ -94,7 +95,7 @@ public class FavoriteContactTile extends QuickSettingsTile implements SharedPref
         ImageView iv = (ImageView) mTile.findViewById(R.id.user_imageview);
         TextView tv = (TextView) mTile.findViewById(R.id.user_textview);
         if (avatar != null)  iv.setImageDrawable(avatar);
-        if (name == null || name.equals("")) tv.setText("long click");
+        if (name == null || name.equals("")) tv.setText(R.string.qs_fav_long_press);
         else tv.setText(name);
     }
 
@@ -121,6 +122,9 @@ public class FavoriteContactTile extends QuickSettingsTile implements SharedPref
                         try {
                             if (cursor.moveToFirst()) {
                                 name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+                                Log.e("FavoriteContactTile","putting into system setting: "+QuickSettingsController.TILE_FAVCONTACT+"+"+tileID+"|"+name);
+                                Settings.System.putString(mContext.getContentResolver(),
+                                        Settings.System.QUICK_SETTINGS_TILE_CONTENT, QuickSettingsController.TILE_FAVCONTACT+"+"+tileID+"|"+name);
                             }
                         } finally {
                             cursor.close();
@@ -150,10 +154,16 @@ public class FavoriteContactTile extends QuickSettingsTile implements SharedPref
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (key.equals(tileID+"")) queryForFavContactInformation();
+        if (key.equals(tileID)) queryForFavContactInformation();
     }
 
-    public static void resetContent(Context context) {
-        PreferenceManager.getDefaultSharedPreferences(context).edit().clear().apply();
+    public static void cleanContent(Context context, String tiles) {
+        SharedPreferences allPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+        Map<String, ?> allContacts = allPrefs.getAll();
+        for (String mTileID : allContacts.keySet()){
+            if (!tiles.contains(QuickSettingsController.TILE_FAVCONTACT+"+"+mTileID)){
+                allPrefs.edit().remove(mTileID).apply();
+            }
+        }
     }
 }

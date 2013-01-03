@@ -35,7 +35,7 @@ public class WifiAPTile extends QuickSettingsTile {
     public static WifiAPTile mInstance;
 
     public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
-            QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler) {
+            QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler, String id) {
         if (mInstance == null) mInstance = new WifiAPTile(context, inflater, container, qsc);
         else {mInstance.updateTileState(); mInstance.updateQuickSettings(); qsc.registerAction(WifiManager.WIFI_AP_STATE_CHANGED_ACTION, mInstance);}
         return mInstance;

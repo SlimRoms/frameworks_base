@@ -52,7 +52,7 @@ public class BrightnessTile extends QuickSettingsTile implements BrightnessState
     public static BrightnessTile mInstance;
 
     public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
-            QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler) {
+            QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler, String id) {
         if (mInstance == null) mInstance = new BrightnessTile(context, inflater, container, qsc, handler);
         else {
             mInstance.onBrightnessLevelChanged();

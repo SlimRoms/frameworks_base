@@ -46,7 +46,7 @@ public class FChargeTile extends QuickSettingsTile {
     protected boolean enabled = false;
 
     public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
-            QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler) {
+            QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler, String id) {
         if (mInstance == null) mInstance = new FChargeTile(context, inflater, container, qsc, handler);
         else {mInstance.updateTileState(); qsc.registerObservedContent(Settings.System.getUriFor(Settings.System.FCHARGE_ENABLED), mInstance);}
         return mInstance;

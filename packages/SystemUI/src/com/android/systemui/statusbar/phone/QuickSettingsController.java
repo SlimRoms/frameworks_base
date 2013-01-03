@@ -16,13 +16,11 @@
 
 package com.android.systemui.statusbar.phone;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.StringTokenizer;
 
 import android.bluetooth.BluetoothAdapter;
 import android.content.BroadcastReceiver;
@@ -138,7 +136,7 @@ public class QuickSettingsController {
     /**
      * END OF DATA MATCHING BLOCK
      */
-    static Class[] paramsTypes = {Context.class, LayoutInflater.class, QuickSettingsContainerView.class, QuickSettingsController.class, Handler.class};
+    static Class[] paramsTypes = {Context.class, LayoutInflater.class, QuickSettingsContainerView.class, QuickSettingsController.class, Handler.class, String.class};
     private final Context mContext;
     public PanelBar mBar;
     private final ViewGroup mContainerView;
@@ -176,7 +174,7 @@ public class QuickSettingsController {
         if (Settings.System.getInt(resolver, Settings.System.QS_DYNAMIC_IME, 1) == 1)  tiles += TILE_DELIMITER + TILE_IME;
     }
 
-    private QuickSettingsTile createTile(boolean condition, String tile, LayoutInflater inflater) {
+    private QuickSettingsTile createTile(boolean condition, String tile, String instanceID, LayoutInflater inflater) {
         QuickSettingsTile qs = null;
         if (condition){
            try{
@@ -185,7 +183,7 @@ public class QuickSettingsController {
                        null, getClass().getClassLoader());
                Class tileClass = classLoader.loadClass(TILES_CLASSES.get(tile));
                Method getInstance = tileClass.getMethod("getInstance", paramsTypes);
-               Object[] args = {mContext, inflater,  (QuickSettingsContainerView) mContainerView, this, mHandler};
+               Object[] args = {mContext, inflater,  (QuickSettingsContainerView) mContainerView, this, mHandler, instanceID};
                qs = (QuickSettingsTile) getInstance.invoke(null, args);
            }
            catch(Exception e){
@@ -198,22 +196,27 @@ public class QuickSettingsController {
     void addQuickSettings(LayoutInflater inflater){
         // Load the user configured tiles
         loadTiles();
-        // reset fav contact instance counter
-        if (!tiles.contains(TILE_FAVCONTACT)) FavoriteContactTile.resetContent(mContext);
-        FavoriteContactTile.instanceCount = 0;
+        // clean fav contact instances data
+        FavoriteContactTile.cleanContent(mContext, tiles);
+        StringTokenizer st;
+        String tileName;
+        String instanceID ="0";
         // Split out the tile names and add to the list
         for (String tile : tiles.split("\\|")) {
             QuickSettingsTile qs = null;
-            if (tile.equals(TILE_BLUETOOTH)) {
-                qs = createTile(deviceSupportsBluetooth(), tile, inflater);
-            }else if (tile.equals(TILE_WIFIAP) || tile.equals(TILE_MOBILENETWORK) || tile.equals(TILE_NETWORKMODE) || tile.equals(TILE_MOBILEDATA)) {
-                qs = createTile(deviceSupportsTelephony(), tile, inflater);
-            } else if (tile.equals(TILE_PROFILE)){
-                qs = createTile(systemProfilesEnabled(resolver), tile, inflater);
+            st = new StringTokenizer(tile,"+");
+            tileName = st.nextToken();
+            if (st.hasMoreTokens()) instanceID = st.nextToken();
+            if (tileName.equals(TILE_BLUETOOTH)) {
+                qs = createTile(deviceSupportsBluetooth(), tileName, instanceID, inflater);
+            }else if (tileName.equals(TILE_WIFIAP) || tileName.equals(TILE_MOBILENETWORK) || tileName.equals(TILE_NETWORKMODE) || tileName.equals(TILE_MOBILEDATA)) {
+                qs = createTile(deviceSupportsTelephony(), tileName, instanceID, inflater);
+            } else if (tileName.equals(TILE_PROFILE)){
+                qs = createTile(systemProfilesEnabled(resolver), tileName, instanceID, inflater);
             } else {
-                qs = createTile(true, tile, inflater);
+                qs = createTile(true, tileName, instanceID, inflater);
             }
-            if (tile.equals(TILE_IME)) this.IMETile = (InputMethodTile) qs;
+            if (tileName.equals(TILE_IME)) this.IMETile = (InputMethodTile) qs;
             if (qs != null) {
                 qs.setupQuickSettingsTile();
             }

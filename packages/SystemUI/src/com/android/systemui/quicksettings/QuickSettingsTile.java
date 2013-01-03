@@ -50,6 +50,7 @@ public class QuickSettingsTile implements OnClickListener {
     protected String mLabel;
     protected PhoneStatusBar mStatusbarService;
     protected QuickSettingsController mQsc;
+    protected String tileID = "0";
 
     public QuickSettingsTile(Context context, LayoutInflater inflater, QuickSettingsContainerView container, QuickSettingsController qsc) {
         mContext = context;

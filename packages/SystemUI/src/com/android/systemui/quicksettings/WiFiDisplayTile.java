@@ -36,7 +36,7 @@ public class WiFiDisplayTile extends QuickSettingsTile{
     public static QuickSettingsTile mInstance;
 
     public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
-            QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler) {
+            QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler, String id) {
         if (mInstance == null) mInstance = new WiFiDisplayTile(context, inflater, container, qsc);
         return mInstance;
     }

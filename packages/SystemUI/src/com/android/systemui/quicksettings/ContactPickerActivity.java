@@ -29,19 +29,17 @@ import android.net.Uri;
 
 import android.preference.PreferenceManager;
 
-import android.util.Log;
-
 public class ContactPickerActivity extends Activity {
 
     private static final int CONTACT_PICKER_RESULT = 1001;
-    int callingTile;
+    String callingTileID;
 
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle os = this.getIntent().getExtras();
-        callingTile = os.getInt("hashCode");
+        callingTileID = os.getString("hashCode");
         Intent contactPickerIntent = new Intent(Intent.ACTION_PICK, Contacts.CONTENT_URI);
         startActivityForResult(contactPickerIntent, CONTACT_PICKER_RESULT);
     }
@@ -59,10 +57,9 @@ public class ContactPickerActivity extends Activity {
                     try {
                         if (cursor.moveToFirst()) {
                             String lookup_key = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY));
-                            Log.e("\r\n\r\n --------", "storing lookup_key "+lookup_key+"\r\n\r\n");
                             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
                             SharedPreferences.Editor editor = prefs.edit();
-                            editor.putString(callingTile+"", lookup_key); // store selected contact
+                            editor.putString(callingTileID, lookup_key); // store selected contact
                             editor.apply();
                         }
                     } finally {

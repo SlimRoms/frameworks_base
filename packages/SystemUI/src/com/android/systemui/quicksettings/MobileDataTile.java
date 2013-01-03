@@ -37,7 +37,7 @@ public class MobileDataTile extends QuickSettingsTile {
     public static MobileDataTile mInstance;
 
     public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
-            QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler) {
+            QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler, String id) {
         if (mInstance == null) mInstance = new MobileDataTile(context, inflater, container, qsc, handler);
         else {mInstance.updateTileState(); mInstance.updateQuickSettings(); qsc.registerObservedContent(Settings.Global.getUriFor(Settings.Global.MOBILE_DATA), mInstance);}
         return mInstance;

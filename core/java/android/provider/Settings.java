@@ -2583,6 +2583,13 @@ public final class Settings {
         public static final String QUICK_SETTINGS_TILES = "quick_settings_tiles";
 
         /**
+         * Quick Settings Tile Content
+         *
+         * @hide
+         */
+        public static final String QUICK_SETTINGS_TILE_CONTENT = "quick_settings_tile_content";
+
+        /**
          * Quick Settings Panel Dynamic Tiles
          *
          * @hide
