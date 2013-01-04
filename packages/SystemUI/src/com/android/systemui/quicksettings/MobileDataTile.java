@@ -48,6 +48,8 @@ public class MobileDataTile extends QuickSettingsTile {
             QuickSettingsController qsc, Handler handler) {
         super(context, inflater, container, qsc);
 
+        updateTileState();
+
         mOnClick = new View.OnClickListener() {
 
             @Override
