@@ -3401,6 +3401,12 @@ public final class Settings {
         public static final String KG_CAMERA_WIDGET = "kg_camera_widget";
 
         /**
+         * Weather to minimize lockscreen challenge on screen turned on
+         * @hide
+         */
+        public static final String LOCKSCREEN_MAXIMIZE_WIDGETS = "lockscreen_maximize_widgets";
+
+        /**
          * @hide
          */
         public static final String KG_ALL_WIDGETS = "kg_all_widgets";
