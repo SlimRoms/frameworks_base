@@ -47,6 +47,7 @@ public class NotificationPanelView extends PanelView {
     private float mGestureStartX;
     private float mGestureStartY;
     private float mFlipOffset;
+    private float mSwipeDirection;
     private boolean mTrackingSwipe;
     private boolean mSwipeTriggered;
 
@@ -104,9 +105,11 @@ public class NotificationPanelView extends PanelView {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        boolean shouldRecycleEvent = false;
         if (PhoneStatusBar.SETTINGS_DRAG_SHORTCUT && mStatusBar.mHasFlipSettings) {
             boolean flip = false;
             boolean swipeFlipJustFinished = false;
+            boolean swipeFlipJustStarted = false;
             switch (event.getActionMasked()) {
                 case MotionEvent.ACTION_DOWN:
                     mGestureStartX = event.getX(0);
@@ -128,17 +131,33 @@ public class NotificationPanelView extends PanelView {
                     final float deltaY = Math.abs(event.getY(0) - mGestureStartY);
                     final float maxDeltaY = getHeight() * STATUS_BAR_SWIPE_VERTICAL_MAX_PERCENTAGE;
                     final float minDeltaX = getWidth() * STATUS_BAR_SWIPE_TRIGGER_PERCENTAGE;
-                    if (mTrackingSwipe &&
-                            deltaX > deltaY && deltaY < maxDeltaY && deltaX > minDeltaX) {
-                        mGestureStartX = event.getX(0);
-                        mGestureStartY = event.getY(0);
+                    if (mTrackingSwipe && deltaY > maxDeltaY) {
+                        mTrackingSwipe = false;
+                    }
+                    if (mTrackingSwipe && deltaX > deltaY && deltaX > minDeltaX) {
+
+                        mSwipeDirection = event.getX(0) - mGestureStartX;
+
+                        // The value below can be used to adjust deltaX to always increase,
+                        // if the user keeps swiping in the same direction as she started the
+                        // gesture. If she, however, moves her finger the other way, deltaX will
+                        // decrease.
+                        //
+                        // This allows for a horizontal, in any direction, to always flip the
+                        // views.
+                        mSwipeDirection = mSwipeDirection < 0f ? -1f : 1f;
+
                         if (mStatusBar.isShowingSettings()) {
                             mFlipOffset = 1f;
+                            // in this case, however, we need deltaX to decrease
+                            mSwipeDirection = -mSwipeDirection;
                         } else {
                             mFlipOffset = -1f;
                         }
+                        mGestureStartX = event.getX(0);
                         mTrackingSwipe = false;
                         mSwipeTriggered = true;
+                        swipeFlipJustStarted = true;
                     }
                     break;
                 case MotionEvent.ACTION_POINTER_DOWN:
@@ -167,13 +186,33 @@ public class NotificationPanelView extends PanelView {
                     mOkToFlip = false;
                 }
             } else if (mSwipeTriggered) {
-                final float deltaX = event.getX(0) - mGestureStartX;
+                final float deltaX = (event.getX(0) - mGestureStartX) * mSwipeDirection;
                 mStatusBar.partialFlip(mFlipOffset +
                                        deltaX / (getWidth() * STATUS_BAR_SWIPE_MOVE_PERCENTAGE));
+                if (!swipeFlipJustStarted) {
+                    return true; // Consume the event.
+                }
             } else if (swipeFlipJustFinished) {
                 mStatusBar.completePartialFlip();
             }
+
+            if (swipeFlipJustStarted || swipeFlipJustFinished) {
+                // Made up event: finger at the middle bottom of the view.
+                MotionEvent original = event;
+                event = MotionEvent.obtain(original.getDownTime(), original.getEventTime(),
+                    original.getAction(), getWidth()/2, getHeight(),
+                    original.getPressure(0), original.getSize(0), original.getMetaState(),
+                    original.getXPrecision(), original.getYPrecision(), original.getDeviceId(),
+                    original.getEdgeFlags());
+                shouldRecycleEvent = true;
+            }
+
         }
-        return mHandleView.dispatchTouchEvent(event);
+
+        final boolean result = mHandleView.dispatchTouchEvent(event);
+        if (shouldRecycleEvent) {
+            event.recycle();
+        }
+        return result;
     }
 }
