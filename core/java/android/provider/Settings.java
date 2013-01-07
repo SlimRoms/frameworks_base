@@ -2919,6 +2919,13 @@ public final class Settings {
         public static final String ACTIVITY_RESOLVER_USE_ALT = "activity_resolver_use_alt";
 
         /**
+         * whether to hide the Ram Usage Bar on recent switcher
+         *
+         * @hide
+         */
+        public static final String RECENTS_RAM_BAR = "recents_ram_bar";
+
+        /**
          * Override and forcefully disable the fullscreen keyboard
          * @hide
          */
