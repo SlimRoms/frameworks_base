@@ -3407,6 +3407,12 @@ public final class Settings {
         public static final String LOCKSCREEN_MAXIMIZE_WIDGETS = "lockscreen_maximize_widgets";
 
         /**
+         * Weather to hide lockscreen gadgets glowing hints
+         * @hide
+         */
+        public static final String LOCKSCREEN_DISABLE_HINTS = "lockscreen_disable_hints";
+
+        /**
          * @hide
          */
         public static final String KG_ALL_WIDGETS = "kg_all_widgets";
