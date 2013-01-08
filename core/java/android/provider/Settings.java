@@ -3244,6 +3244,11 @@ public final class Settings {
         /**
          * @hide
          */
+        public static final String NAVIGATION_BAR_CAN_MOVE = "navigation_bar_can_move";
+
+        /**
+         * @hide
+         */
         public static final String NAVIGATION_BAR_HEIGHT = "navigation_bar_height";
 
         /**
