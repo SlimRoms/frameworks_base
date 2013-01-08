@@ -246,11 +246,8 @@ public class KeyguardHostView extends KeyguardViewBase {
         checkAppWidgetConsistency();
         mSwitchPageRunnable.run();
 
-        if(Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.LOCKSCREEN_DISABLE_HINTS, 0) == 0) {
-            // This needs to be called after the pages are all added.
-            mViewStateManager.showUsabilityHints();
-        }
+        // This needs to be called after the pages are all added.
+        mViewStateManager.showUsabilityHints();
 
         showPrimarySecurityScreen(false);
         updateSecurityViews();
@@ -832,8 +829,7 @@ public class KeyguardHostView extends KeyguardViewBase {
         // hierarchyviewer).
         requestLayout();
 
-        if (mViewStateManager != null && Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.LOCKSCREEN_DISABLE_HINTS, 0) == 0) {
+        if (mViewStateManager != null) {
             mViewStateManager.showUsabilityHints();
         }
         minimizeChallengeIfDesired();
