@@ -57,7 +57,6 @@ public class GPSTile extends QuickSettingsTile implements LocationGpsStateChange
         LocationController controller = new LocationController(mContext);
         controller.addStateChangedCallback(this);
 
-        mLabel = mContext.getString(R.string.quick_settings_gps);
         enabled = Settings.Secure.isLocationProviderEnabled(mContentResolver, LocationManager.GPS_PROVIDER);
 
         mOnClick = new OnClickListener() {
@@ -87,6 +86,7 @@ public class GPSTile extends QuickSettingsTile implements LocationGpsStateChange
 
     @Override
     void onPostCreate() {
+        setGenericLabel();
         applyGPSChanges();
         super.onPostCreate();
     }
