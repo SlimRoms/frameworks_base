@@ -31,6 +31,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -681,6 +682,16 @@ public abstract class PreferenceActivity extends ListActivity implements
     public boolean onIsMultiPane() {
         boolean preferMultiPane = getResources().getBoolean(
                 com.android.internal.R.bool.preferences_prefer_dual_pane);
+        int multiPaneMode = Settings.System.getInt(getContentResolver(),
+                Settings.System.DUAL_PANE_PREFS, (preferMultiPane ? 1 : 0));
+        switch (multiPaneMode) {
+            case 0:
+                preferMultiPane = false;
+                break;
+            case 1:
+                preferMultiPane = true;
+                break;
+        }
         return preferMultiPane;
     }
 
