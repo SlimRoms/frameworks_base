@@ -800,6 +800,14 @@ public class DevicePolicyManagerService extends IDevicePolicyManager.Stub {
                 // Ignore
             }
             journal.rollback();
+        } finally {
+            try {
+                if (stream != null) {
+                    stream.close();
+                }
+            } catch (IOException ex) {
+                // Ignore
+            }
         }
     }
 
