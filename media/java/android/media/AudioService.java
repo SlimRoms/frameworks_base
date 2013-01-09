@@ -484,14 +484,14 @@ public class AudioService extends IAudioService.Stub implements OnFinished {
                 null,
                 0);
 
+        mSafeMediaVolumeState = new Integer(SAFE_MEDIA_VOLUME_NOT_CONFIGURED);
+
         readPersistedSettings();
         mSettingsObserver = new SettingsObserver();
         updateStreamVolumeAlias(false /*updateVolumes*/);
         createStreamStates();
 
         mMediaServerOk = true;
-
-        mSafeMediaVolumeState = new Integer(SAFE_MEDIA_VOLUME_NOT_CONFIGURED);
 
         // Call setRingerModeInt() to apply correct mute
         // state on streams affected by ringer mode.
@@ -739,6 +739,7 @@ public class AudioService extends IAudioService.Stub implements OnFinished {
                     UserHandle.USER_CURRENT);
 
             readDockAudioSettings(cr);
+            updateManualSafeMediaVolume();
         }
 
         //******************************************************************
@@ -1107,7 +1108,7 @@ public class AudioService extends IAudioService.Stub implements OnFinished {
 
     // UI update and Broadcast Intent
     private void sendMasterVolumeUpdate(int flags, int oldVolume, int newVolume) {
-        mVolumePanel.postMasterVolumeChanged(flags);
+        masterVolumeChanged(flags);
 
         Intent intent = new Intent(AudioManager.MASTER_VOLUME_CHANGED_ACTION);
         intent.putExtra(AudioManager.EXTRA_PREV_MASTER_VOLUME_VALUE, oldVolume);
@@ -1117,7 +1118,7 @@ public class AudioService extends IAudioService.Stub implements OnFinished {
 
     // UI update and Broadcast Intent
     private void sendMasterMuteUpdate(boolean muted, int flags) {
-        mVolumePanel.postMasterMuteChanged(flags);
+        masterMuteChanged(flags);
         broadcastMasterMuteStatus(muted);
     }
 
@@ -2314,7 +2315,7 @@ public class AudioService extends IAudioService.Stub implements OnFinished {
                         if (mMusicActiveMs > UNSAFE_VOLUME_MUSIC_ACTIVE_MS_MAX) {
                             setSafeMediaVolumeEnabled(true);
                             mMusicActiveMs = 0;
-                            mVolumePanel.postDisplaySafeVolumeWarning();
+                            displaySafeVolumeWarning();
                         }
                     }
                 }
@@ -3466,6 +3467,10 @@ public class AudioService extends IAudioService.Stub implements OnFinished {
                 Settings.System.MODE_RINGER_STREAMS_AFFECTED), false, this);
             mContentResolver.registerContentObserver(Settings.Global.getUriFor(
                 Settings.Global.DOCK_AUDIO_MEDIA_ENABLED), false, this);
+            mContentResolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.VOLUME_LINK_NOTIFICATION), false, this);
+            mContentResolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.SAFE_HEADSET_VOLUME_RESTORE), false, this);
         }
 
         @Override
@@ -3510,6 +3515,8 @@ public class AudioService extends IAudioService.Stub implements OnFinished {
                 } else {
                     mStreamVolumeAlias[AudioSystem.STREAM_NOTIFICATION] = AudioSystem.STREAM_NOTIFICATION;
                 }
+                readDockAudioSettings(mContentResolver);
+                updateManualSafeMediaVolume();
             }
         }
     }
@@ -3990,6 +3997,63 @@ public class AudioService extends IAudioService.Stub implements OnFinished {
         }
     }
 
+    private void masterVolumeChanged(final int flags) {
+        if (mUiContext != null && mVolumePanel != null) {
+            mVolumePanel.postMasterVolumeChanged(flags);
+        } else {
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    if (mUiContext == null) {
+                        mUiContext = ThemeUtils.createUiContext(mContext);
+                    }
+
+                    final Context context = mUiContext != null ? mUiContext : mContext;
+                    mVolumePanel = new VolumePanel(context, AudioService.this);
+                    mVolumePanel.postMasterVolumeChanged(flags);
+                }
+            });
+        }
+    }
+
+    private void masterMuteChanged(final int flags) {
+        if (mUiContext != null && mVolumePanel != null) {
+            mVolumePanel.postMasterMuteChanged(flags);
+        } else {
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    if (mUiContext == null) {
+                        mUiContext = ThemeUtils.createUiContext(mContext);
+                    }
+
+                    final Context context = mUiContext != null ? mUiContext : mContext;
+                    mVolumePanel = new VolumePanel(context, AudioService.this);
+                    mVolumePanel.postMasterMuteChanged(flags);
+                }
+            });
+        }
+    }
+
+    private void remoteSliderVisibility(final boolean hasRemotePlayback) {
+        if (mUiContext != null && mVolumePanel != null) {
+            mVolumePanel.postRemoteSliderVisibility(hasRemotePlayback);
+        } else {
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    if (mUiContext == null) {
+                        mUiContext = ThemeUtils.createUiContext(mContext);
+                    }
+
+                    final Context context = mUiContext != null ? mUiContext : mContext;
+                    mVolumePanel = new VolumePanel(context, AudioService.this);
+                    mVolumePanel.postRemoteSliderVisibility(hasRemotePlayback);
+                }
+            });
+        }
+    }
+
     private void showVolumeChangeUi(final int streamType, final int flags) {
         if (mUiContext != null && mVolumePanel != null) {
             mVolumePanel.postVolumeChanged(streamType, flags);
@@ -4004,6 +4068,63 @@ public class AudioService extends IAudioService.Stub implements OnFinished {
                     final Context context = mUiContext != null ? mUiContext : mContext;
                     mVolumePanel = new VolumePanel(context, AudioService.this);
                     mVolumePanel.postVolumeChanged(streamType, flags);
+                }
+            });
+        }
+    }
+
+    private void remoteVolumeChanged(final int streamType, final int flags) {
+        if (mUiContext != null && mVolumePanel != null) {
+            mVolumePanel.postRemoteVolumeChanged(streamType, flags);
+        } else {
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    if (mUiContext == null) {
+                        mUiContext = ThemeUtils.createUiContext(mContext);
+                    }
+
+                    final Context context = mUiContext != null ? mUiContext : mContext;
+                    mVolumePanel = new VolumePanel(context, AudioService.this);
+                    mVolumePanel.postRemoteVolumeChanged(streamType, flags);
+                }
+            });
+        }
+    }
+
+    private void displaySafeVolumeWarning() {
+        if (mUiContext != null && mVolumePanel != null) {
+            mVolumePanel.postDisplaySafeVolumeWarning();
+        } else {
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    if (mUiContext == null) {
+                        mUiContext = ThemeUtils.createUiContext(mContext);
+                    }
+
+                    final Context context = mUiContext != null ? mUiContext : mContext;
+                    mVolumePanel = new VolumePanel(context, AudioService.this);
+                    mVolumePanel.postDisplaySafeVolumeWarning();
+                }
+            });
+        }
+    }
+
+    private void hasNewRemotePlaybackInfo() {
+        if (mUiContext != null && mVolumePanel != null) {
+            mVolumePanel.postHasNewRemotePlaybackInfo();
+        } else {
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    if (mUiContext == null) {
+                        mUiContext = ThemeUtils.createUiContext(mContext);
+                    }
+
+                    final Context context = mUiContext != null ? mUiContext : mContext;
+                    mVolumePanel = new VolumePanel(context, AudioService.this);
+                    mVolumePanel.postHasNewRemotePlaybackInfo();
                 }
             });
         }
@@ -5522,7 +5643,7 @@ public class AudioService extends IAudioService.Stub implements OnFinished {
                             synchronized (mMainRemote) {
                                 if (rccId == mMainRemote.mRccId) {
                                     mMainRemote.mVolume = value;
-                                    mVolumePanel.postHasNewRemotePlaybackInfo();
+                                    hasNewRemotePlaybackInfo();
                                 }
                             }
                             break;
@@ -5531,7 +5652,7 @@ public class AudioService extends IAudioService.Stub implements OnFinished {
                             synchronized (mMainRemote) {
                                 if (rccId == mMainRemote.mRccId) {
                                     mMainRemote.mVolumeMax = value;
-                                    mVolumePanel.postHasNewRemotePlaybackInfo();
+                                    hasNewRemotePlaybackInfo();
                                 }
                             }
                             break;
@@ -5540,7 +5661,7 @@ public class AudioService extends IAudioService.Stub implements OnFinished {
                             synchronized (mMainRemote) {
                                 if (rccId == mMainRemote.mRccId) {
                                     mMainRemote.mVolumeHandling = value;
-                                    mVolumePanel.postHasNewRemotePlaybackInfo();
+                                    hasNewRemotePlaybackInfo();
                                 }
                             }
                             break;
@@ -5658,7 +5779,7 @@ public class AudioService extends IAudioService.Stub implements OnFinished {
         }
 
         // fire up the UI
-        mVolumePanel.postRemoteVolumeChanged(streamType, flags);
+        remoteVolumeChanged(streamType, flags);
     }
 
     private void sendVolumeUpdateToRemote(int rccId, int direction) {
@@ -5762,7 +5883,7 @@ public class AudioService extends IAudioService.Stub implements OnFinished {
         synchronized (mMainRemote) {
             if (mHasRemotePlayback != hasRemotePlayback) {
                 mHasRemotePlayback = hasRemotePlayback;
-                mVolumePanel.postRemoteSliderVisibility(hasRemotePlayback);
+                remoteSliderVisibility(hasRemotePlayback);
             }
         }
     }
@@ -5924,6 +6045,8 @@ public class AudioService extends IAudioService.Stub implements OnFinished {
     // mSafeMediaVolumeDevices lists the devices for which safe media volume is enforced,
     private final int mSafeMediaVolumeDevices = AudioSystem.DEVICE_OUT_WIRED_HEADSET |
                                                 AudioSystem.DEVICE_OUT_WIRED_HEADPHONE;
+    // mManualSafeMediaVolume overrides the built-in safe media volume
+    boolean mManualSafeMediaVolume;
     // mMusicActiveMs is the cumulative time of music activity since safe volume was disabled.
     // When this time reaches UNSAFE_VOLUME_MUSIC_ACTIVE_MS_MAX, the safe media volume is re-enabled
     // automatically. mMusicActiveMs is rounded to a multiple of MUSIC_ACTIVE_POLL_PERIOD_MS.
@@ -5955,6 +6078,9 @@ public class AudioService extends IAudioService.Stub implements OnFinished {
     }
 
     private void enforceSafeMediaVolume() {
+        // return if safe volume has been manually turned off
+        if (!mManualSafeMediaVolume) return;
+
         VolumeStreamState streamState = mStreamStates[AudioSystem.STREAM_MUSIC];
         boolean lastAudible = (streamState.muteCount() != 0);
         int devices = mSafeMediaVolumeDevices;
@@ -5996,8 +6122,8 @@ public class AudioService extends IAudioService.Stub implements OnFinished {
             if ((mSafeMediaVolumeState == SAFE_MEDIA_VOLUME_ACTIVE) &&
                     (mStreamVolumeAlias[streamType] == AudioSystem.STREAM_MUSIC) &&
                     ((device & mSafeMediaVolumeDevices) != 0) &&
-                    (index > mSafeMediaVolumeIndex)) {
-                mVolumePanel.postDisplaySafeVolumeWarning();
+                    (index > mSafeMediaVolumeIndex) && mManualSafeMediaVolume) {
+                displaySafeVolumeWarning();
                 return false;
             }
             return true;
@@ -6055,5 +6181,11 @@ public class AudioService extends IAudioService.Stub implements OnFinished {
         pw.println("\nAudio routes:");
         pw.print("  mMainType=0x"); pw.println(Integer.toHexString(mCurAudioRoutes.mMainType));
         pw.print("  mBluetoothName="); pw.println(mCurAudioRoutes.mBluetoothName);
+    }
+
+    protected void updateManualSafeMediaVolume() {
+        mManualSafeMediaVolume = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.SAFE_HEADSET_VOLUME_RESTORE, 1) == 1;
+        setSafeMediaVolumeEnabled(mManualSafeMediaVolume);
     }
 }
