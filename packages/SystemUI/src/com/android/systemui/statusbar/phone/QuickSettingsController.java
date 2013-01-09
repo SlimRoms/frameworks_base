@@ -30,6 +30,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.database.ContentObserver;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Handler;
 import android.provider.Settings;
@@ -85,6 +86,7 @@ public class QuickSettingsController {
     public static final String TILE_SLEEP = "toggleSleepMode";
     public static final String TILE_SYNC = "toggleSync";
     public static final String TILE_TORCH = "toggleFlashlight";  // Keep old string for compatibility
+    public static final String TILE_USBTETHER = "toggleUsbTether";
     public static final String TILE_USER = "toggleUser";
     public static final String TILE_WIFI = "toggleWifi";
     public static final String TILE_WIFIAP = "toggleWifiAp";
@@ -121,6 +123,7 @@ public class QuickSettingsController {
         TILES_CLASSES.put(TILE_SLEEP, "com.android.systemui.quicksettings.SleepScreenTile");
         TILES_CLASSES.put(TILE_SYNC, "com.android.systemui.quicksettings.SyncTile");
         TILES_CLASSES.put(TILE_TORCH, "com.android.systemui.quicksettings.TorchTile");
+        TILES_CLASSES.put(TILE_USBTETHER, "com.android.systemui.quicksettings.UsbTetherTile");
         TILES_CLASSES.put(TILE_USER, "com.android.systemui.quicksettings.UserTile");
         TILES_CLASSES.put(TILE_WIFI, "com.android.systemui.quicksettings.WiFiTile");
         TILES_CLASSES.put(TILE_WIFIAP, "com.android.systemui.quicksettings.WifiAPTile");
@@ -175,6 +178,8 @@ public class QuickSettingsController {
         if (Settings.System.getInt(resolver, Settings.System.QS_DYNAMIC_BUGREPORT, 1) == 1) tiles += TILE_DELIMITER + TILE_BUGREPORT;
         if (Settings.System.getInt(resolver, Settings.System.QS_DYNAMIC_WIFI, 1) == 1) tiles += TILE_DELIMITER + TILE_WIFIDISPLAY;
         if (Settings.System.getInt(resolver, Settings.System.QS_DYNAMIC_IME, 1) == 1)  tiles += TILE_DELIMITER + TILE_IME;
+        if (Settings.System.getInt(resolver, Settings.System.QS_DYNAMIC_USBTETHER, 1) == 1
+                && deviceSupportsUsbTether())  tiles += TILE_DELIMITER + TILE_USBTETHER;
     }
 
     private QuickSettingsTile createTile(boolean condition, String tile, String instanceID, LayoutInflater inflater) {
@@ -216,7 +221,7 @@ public class QuickSettingsController {
                 qs = createTile(deviceSupportsBluetooth(), tileName, instanceID, inflater);
             }else if (tileName.equals(TILE_WIFIAP) || tileName.equals(TILE_MOBILENETWORK) || tileName.equals(TILE_NETWORKMODE) || tileName.equals(TILE_MOBILEDATA)) {
                 qs = createTile(deviceSupportsTelephony(), tileName, instanceID, inflater);
-            } else if (tileName.equals(TILE_PROFILE)){
+            } else if (tileName.equals(TILE_PROFILE)) {
                 qs = createTile(systemProfilesEnabled(resolver), tileName, instanceID, inflater);
             } else {
                 qs = createTile(true, tileName, instanceID, inflater);
@@ -314,6 +319,11 @@ public class QuickSettingsController {
 
     boolean deviceSupportsBluetooth() {
         return (BluetoothAdapter.getDefaultAdapter() != null);
+    }
+
+    boolean deviceSupportsUsbTether() {
+        ConnectivityManager cm = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+        return (cm.getTetherableUsbRegexs().length != 0);
     }
 
     boolean systemProfilesEnabled(ContentResolver resolver) {

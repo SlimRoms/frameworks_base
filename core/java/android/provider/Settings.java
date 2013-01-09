@@ -2643,6 +2643,13 @@ public final class Settings {
          *
          * @hide
          */
+        public static final String QS_DYNAMIC_USBTETHER = "qs_dyanmic_usbtether";
+
+        /**
+         * Quick Settings Panel Dynamic Tiles
+         *
+         * @hide
+         */
         public static final String QS_DYNAMIC_WIFI = "qs_dyanmic_wifi";
 
          /**
