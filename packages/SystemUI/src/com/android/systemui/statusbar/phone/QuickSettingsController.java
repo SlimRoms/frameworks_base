@@ -139,7 +139,7 @@ public class QuickSettingsController {
     static Class[] paramsTypes = {Context.class, LayoutInflater.class, QuickSettingsContainerView.class, QuickSettingsController.class, Handler.class, String.class};
     private final Context mContext;
     public PanelBar mBar;
-    private final ViewGroup mContainerView;
+    private final QuickSettingsContainerView mContainerView;
     private final Handler mHandler;
     private BroadcastReceiver mReceiver;
     private ContentObserver mObserver;
@@ -224,7 +224,7 @@ public class QuickSettingsController {
         Log.e("\r\n\r\n"+TAG, "All tiles sucessfully created");
     }
 
-    void setupQuickSettings() {
+    private void setupQuickSettings() {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         // Clear out old receiver
         if (mReceiver != null) {
@@ -330,12 +330,9 @@ public class QuickSettingsController {
     }
 
     public void updateResources() {
-        /*
-         * this method is supposed to redraw all the tiles if needed
-         * for future need. Commented out for now.
-         * mContainerView.removeAllViews();
-         * setupQuickSettings();
-         * mContainerView.requestLayout();
-         */
+        mContainerView.updateResources();
+        mContainerView.removeAllViews();
+        setupQuickSettings();
+        mContainerView.requestLayout();
     }
 }
