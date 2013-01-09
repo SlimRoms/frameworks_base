@@ -1818,6 +1818,13 @@ public final class Settings {
         public static final String LIGHT_FILTER_INTERVAL = "light_filter_interval";
 
         /**
+         * Touch Key Light Duration
+         *
+         * @hide
+         */
+        public static final String TOUCHKEY_LIGHT_DUR = "touchkey_light_dir";
+
+        /**
          * Whether to enable the electron beam animation when turning screen on
          *
          * @hide */

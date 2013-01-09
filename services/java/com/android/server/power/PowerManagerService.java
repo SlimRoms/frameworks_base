@@ -373,6 +373,8 @@ public final class PowerManagerService extends IPowerManager.Stub
     private static native void nativeSetAutoSuspend(boolean enable);
     private static native void nativeCpuBoost(int duration);
 
+    private int mTouchKeyTimeout;
+
     public PowerManagerService() {
         synchronized (mLock) {
             mWakeLockSuspendBlocker = createSuspendBlockerLocked("PowerManagerService");
@@ -1284,6 +1286,10 @@ public final class PowerManagerService extends IPowerManager.Stub
      * This function must have no other side-effects.
      */
     private void updateUserActivitySummaryLocked(long now, int dirty) {
+
+        int mTouchKeyTimeout = (Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.TOUCHKEY_LIGHT_DUR, BUTTON_ON_DURATION));
+
         // Update the status of the user activity timeout timer.
         if ((dirty & (DIRTY_USER_ACTIVITY | DIRTY_WAKEFULNESS | DIRTY_SETTINGS)) != 0) {
             mHandler.removeMessages(MSG_USER_ACTIVITY_TIMEOUT);
@@ -1298,11 +1304,17 @@ public final class PowerManagerService extends IPowerManager.Stub
                     nextTimeout = mLastUserActivityTime
                             + screenOffTimeout - screenDimDuration;
                     if (now < nextTimeout) {
-                        if (now > mLastUserActivityTime + BUTTON_ON_DURATION) {
+                        if (mTouchKeyTimeout == 5) {
+                            mButtonsLight.setBrightness(mDisplayPowerRequest.screenBrightness);
+                        } else if (mTouchKeyTimeout == 6) {
                             mButtonsLight.setBrightness(0);
                         } else {
-                            mButtonsLight.setBrightness(mDisplayPowerRequest.screenBrightness);
-                            nextTimeout = now + BUTTON_ON_DURATION;
+                            if (now > mLastUserActivityTime + mTouchKeyTimeout) {
+                                mButtonsLight.setBrightness(0);
+                            } else {
+                                mButtonsLight.setBrightness(mDisplayPowerRequest.screenBrightness);
+                                nextTimeout = now + mTouchKeyTimeout;
+                            }
                         }
                         mUserActivitySummary |= USER_ACTIVITY_SCREEN_BRIGHT;
                     } else {
