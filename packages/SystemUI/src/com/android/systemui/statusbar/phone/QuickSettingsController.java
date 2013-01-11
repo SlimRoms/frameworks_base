@@ -183,7 +183,7 @@ public class QuickSettingsController {
                        null, getClass().getClassLoader());
                Class tileClass = classLoader.loadClass(TILES_CLASSES.get(tile));
                Method getInstance = tileClass.getMethod("getInstance", paramsTypes);
-               Object[] args = {mContext, inflater,  (QuickSettingsContainerView) mContainerView, this, mHandler, instanceID};
+               Object[] args = {mContext, inflater,  mContainerView, this, mHandler, instanceID};
                qs = (QuickSettingsTile) getInstance.invoke(null, args);
            }
            catch(Exception e){
