@@ -24,6 +24,9 @@ import android.util.Log;
 import android.util.SparseArray;
 import android.util.SparseBooleanArray;
 import android.util.SparseIntArray;
+import android.os.SystemProperties;
+import android.util.FloatMath;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +39,10 @@ import java.util.List;
  */
 public class SystemSensorManager extends SensorManager {
     private static final int SENSOR_DISABLE = -1;
+    private static final long SENSOR_LOOPMINMS = SystemProperties.getLong( "sensor.loop.minms", 0); // minimal duration of a sensor loop => sleep to prevent notification storm if faster than that.
+    private static final float MAGNITUDE_THRESHOLD = ((float)SystemProperties.getLong( "sensor.magnitude.threshold", 0))/1000.0f;
+
+
     private static boolean sSensorModuleInitialized = false;
     private static ArrayList<Sensor> sFullSensorsList = new ArrayList<Sensor>();
     /* The thread and the sensor list are global to the process
@@ -120,6 +127,8 @@ public class SystemSensorManager extends SensorManager {
                 while (true) {
                     // wait for an event
                     final int sensor = sensors_data_poll(sQueue, values, status, timestamp);
+                    long lastLoopMS = System.currentTimeMillis();
+                    long timeToSleep = SENSOR_LOOPMINMS;
 
                     int accuracy = status[0];
                     synchronized (sListeners) {
@@ -137,21 +146,31 @@ public class SystemSensorManager extends SensorManager {
                             break;
                         }
                         final Sensor sensorObject = sHandleToSensor.get(sensor);
+
                         if (sensorObject != null) {
-                            // report the sensor event to all listeners that
-                            // care about it.
-                            final int size = sListeners.size();
-                            for (int i=0 ; i<size ; i++) {
-                                ListenerDelegate listener = sListeners.get(i);
-                                if (listener.hasSensor(sensorObject)) {
-                                    // this is asynchronous (okay to call
-                                    // with sListeners lock held).
-                                    listener.onSensorChangedLocked(sensorObject,
-                                            values, timestamp, accuracy);
+                            final float mag = FloatMath.sqrt(values[0] * values[0] + values[1] * values[1] + values[2] * values[2]);
+                            if (Math.abs(mag - SensorManager.STANDARD_GRAVITY) > MAGNITUDE_THRESHOLD) {
+                                // report the sensor event to all listeners that
+                                // care about it.
+                                final int size = sListeners.size();
+                                for (int i=0 ; i<size ; i++) {
+                                    ListenerDelegate listener = sListeners.get(i);
+                                    if (listener.hasSensor(sensorObject)) {
+                                        // this is asynchronous (okay to call
+                                        // with sListeners lock held).
+                                        listener.onSensorChangedLocked(sensorObject,
+                                                values, timestamp, accuracy);
+                                    }
                                 }
                             }
                         }
                     }
+
+                    timeToSleep = SENSOR_LOOPMINMS - (System.currentTimeMillis() - lastLoopMS);
+                    lastLoopMS = System.currentTimeMillis();
+                    try { if(timeToSleep>0) Thread.sleep(timeToSleep);}
+                    catch(InterruptedException e) {;}
+
                 }
                 //Log.d(TAG, "exiting main sensor thread");
             }
