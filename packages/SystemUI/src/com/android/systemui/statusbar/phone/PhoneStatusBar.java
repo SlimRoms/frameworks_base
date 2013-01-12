@@ -747,8 +747,7 @@ public class PhoneStatusBar extends BaseStatusBar {
                 }
                 mQS.setService(this);
                 mQS.setBar(mStatusBarView);
-                mQS.updateResources();
-
+                mQS.setupQuickSettings();
                 // Start observing for changes
                 mTilesChangedObserver = new TilesChangedObserver(mHandler);
                 mTilesChangedObserver.startObserving();
@@ -2806,7 +2805,7 @@ public class PhoneStatusBar extends BaseStatusBar {
         }
 
         // Update the QuickSettings container
-        if (mQS != null) mQS.updateResources();
+        if (mSettingsContainer != null) mSettingsContainer.updateResources();
 
     }
 
@@ -2963,7 +2962,9 @@ public class PhoneStatusBar extends BaseStatusBar {
         public void onChange(boolean selfChange) {
             if (mSettingsContainer != null) {
                 // Refresh the container
-                mQS.updateResources();
+                mSettingsContainer.removeAllViews();
+                mQS.setupQuickSettings();
+                mSettingsContainer.updateResources();
                 setNotificationWallpaperHelper();
             }
         }
