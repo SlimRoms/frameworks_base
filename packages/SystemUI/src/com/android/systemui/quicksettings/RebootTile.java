@@ -27,11 +27,13 @@ import com.android.systemui.statusbar.phone.QuickSettingsController;
 import com.android.systemui.statusbar.phone.QuickSettingsContainerView;
 
 public class RebootTile extends QuickSettingsTile {
-    public static QuickSettingsTile mInstance;
+    public static RebootTile mInstance;
+    private boolean rebootToRecovery = false;
 
     public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
             QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler, String id) {
         if (mInstance == null) mInstance = new RebootTile(context, inflater, container, qsc);
+        else {mInstance.updateTileState(); mInstance.updateQuickSettings();}
         return mInstance;
     }
 
@@ -39,25 +41,33 @@ public class RebootTile extends QuickSettingsTile {
             QuickSettingsContainerView container,
             QuickSettingsController qsc) {
         super(context, inflater, container, qsc);
-
-        mLabel = mContext.getString(R.string.quick_settings_reboot);
-        mDrawable = R.drawable.ic_qs_reboot;
-
+        updateTileState();
         mOnClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
-               pm.reboot("");
+               rebootToRecovery = !rebootToRecovery;
+               updateTileState();
+               updateQuickSettings();
             }
         };
         mOnLongClick = new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
                 PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
-                pm.reboot("recovery");
+                pm.reboot(rebootToRecovery? "recovery" : "");
                 return true;
             }
         };
+    }
+
+    private void updateTileState() {
+        if(rebootToRecovery) {
+            mLabel = mContext.getString(R.string.quick_settings_reboot_recovery);
+            mDrawable = R.drawable.ic_qs_reboot_recovery;
+        } else {
+            mLabel = mContext.getString(R.string.quick_settings_reboot);
+            mDrawable = R.drawable.ic_qs_reboot;
+        }
     }
 
 }
