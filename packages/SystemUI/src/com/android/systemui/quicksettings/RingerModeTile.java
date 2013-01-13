@@ -25,6 +25,7 @@ import android.os.Handler;
 import android.os.Vibrator;
 import android.provider.Settings;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnLongClickListener;
@@ -53,11 +54,19 @@ public class RingerModeTile extends QuickSettingsTile {
     private int mRingerValuesIndex;
 
     private AudioManager mAudioManager;
-    public static QuickSettingsTile mInstance;
+    public static RingerModeTile mInstance;
 
     public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
             QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler, String id) {
         if (mInstance == null) mInstance = new RingerModeTile(context, inflater, container, qsc);
+        else {
+            mInstance.applyVibrationChanges();
+            qsc.registerAction(AudioManager.RINGER_MODE_CHANGED_ACTION, mInstance);
+            qsc.registerObservedContent(Settings.System.getUriFor(Settings.System.EXPANDED_RING_MODE)
+                    , mInstance);
+            qsc.registerObservedContent(Settings.System.getUriFor(Settings.System.VIBRATE_WHEN_RINGING)
+                    , mInstance);
+            }
         return mInstance;
     }
 
@@ -99,6 +108,7 @@ public class RingerModeTile extends QuickSettingsTile {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        Log.e("\r\n\r\nRingerModeTile","RINGER_MODE_CHANGED_ACTION\r\n");
         applyVibrationChanges();
     }
 
@@ -184,8 +194,9 @@ public class RingerModeTile extends QuickSettingsTile {
         ContentResolver resolver = mContext.getContentResolver();
         boolean vibrateWhenRinging = Settings.System.getInt(resolver,
                 Settings.System.VIBRATE_WHEN_RINGING, 0) == 1;
+        Log.e("\r\n\r\nRingerModeTile","vibrateWhenRinging = "+vibrateWhenRinging);
         int ringerMode = mAudioManager.getRingerMode();
-
+        Log.e("RingerModeTile","ringerMode = "+ringerMode+"\r\n");
         Ringer ringer = new Ringer(ringerMode, vibrateWhenRinging);
         for (int i = 0; i < mRingers.length; i++) {
             if (mRingers[i].equals(ringer)) {
@@ -228,7 +239,9 @@ public class RingerModeTile extends QuickSettingsTile {
             }
 
             Ringer r = (Ringer) o;
-            return r.mVibrateWhenRinging == mVibrateWhenRinging
+            if (r.mRingerMode == AudioManager.RINGER_MODE_SILENT && this.mRingerMode == AudioManager.RINGER_MODE_SILENT) return true;
+            else if (r.mRingerMode == AudioManager.RINGER_MODE_VIBRATE && this.mRingerMode == AudioManager.RINGER_MODE_VIBRATE) return true;
+            else return r.mVibrateWhenRinging == mVibrateWhenRinging
                     && r.mRingerMode == mRingerMode;
         }
     }
