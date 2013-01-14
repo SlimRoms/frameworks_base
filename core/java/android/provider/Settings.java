@@ -3437,6 +3437,12 @@ public final class Settings {
         public static final String KG_ALL_WIDGETS = "kg_all_widgets";
 
         /**
+         * Whether to use the carousel as widget container on portrait view
+         * @hide
+         */
+        public static final String LOCKSCREEN_USE_WIDGET_CONTAINER_CAROUSEL = "lockscreen_use_widget_container_carousel";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
