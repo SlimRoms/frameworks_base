@@ -1826,8 +1826,6 @@
   <!-- Config.xml entries -->
   <java-symbol type="integer" name="config_backKillTimeout" />
   <java-symbol type="bool" name="config_hasRotationLockSwitch" />
-  <java-symbol type="bool" name="config_samsung_stk" />
-  <java-symbol type="bool" name="config_smsSamsungCdmaAlternateMessageIDEncoding" />
   <java-symbol type="bool" name="config_show_cmIMESwitcher"/>
 
   <!-- Config Power Menu -->
@@ -1835,6 +1833,11 @@
   <java-symbol type="drawable" name="ic_lock_reboot" />
   <java-symbol type="drawable" name="ic_lock_screenshot" />
   <java-symbol type="string" name="config_legacyUmsLunFile" />
+
+  <!-- Telephony -->
+  <java-symbol type="bool" name="config_smsSamsungCdmaAlternateMessageIDEncoding" />
+  <java-symbol type="bool" name="config_samsung_stk" />
+  <java-symbol type="array" name="config_telephony_set_audioparameters" />
 
   <!-- Hardware Key ReMapping -->
   <java-symbol type="integer" name="config_deviceHardwareKeys" />
@@ -1880,4 +1883,5 @@
 
   <!-- Wifi -->
   <java-symbol type="bool" name="config_wifiApStartInterface" />
+
 </resources>
