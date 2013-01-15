@@ -1533,8 +1533,10 @@ public class NotificationManagerService extends INotificationManager.Stub
         boolean forceWithScreenOff = (mLedNotification.notification.flags &
                 Notification.FLAG_FORCE_LED_SCREEN_OFF) != 0;
 
+        final boolean inQuietHours = inQuietHours();
+
         // Don't flash while we are in a call, screen is on or we are in quiet hours with light dimmed
-        if (mInCall || mScreenOn || (inQuietHours() && mQuietHoursDim) || (wasScreenOn && !forceWithScreenOff)) {
+        if (mInCall || mScreenOn || (inQuietHours && mQuietHoursDim) || (wasScreenOn && !forceWithScreenOff)) {
             mNotificationLight.turnOff();
         } else {
             int ledARGB;
