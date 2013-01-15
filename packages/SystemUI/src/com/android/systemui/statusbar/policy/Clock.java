@@ -61,8 +61,6 @@ public class Clock extends TextView implements OnClickListener, OnLongClickListe
     public static final int AM_PM_STYLE_GONE    = 2;
     public static final int PROTEKK_O_CLOCK     = 3;
 
-    private static int AM_PM_STYLE = AM_PM_STYLE_GONE;
-
     public static final int CLOCK_DATE_DISPLAY_GONE = 0;
     public static final int CLOCK_DATE_DISPLAY_SMALL = 1;
     public static final int CLOCK_DATE_DISPLAY_NORMAL = 2;
@@ -82,7 +80,7 @@ public class Clock extends TextView implements OnClickListener, OnLongClickListe
 
     protected int mClockColor = com.android.internal.R.color.holo_blue_light;
 
-    private int mAmPmStyle;
+    private int mAmPmStyle = AM_PM_STYLE_GONE;
     public boolean mShowClock;
 
     Handler mHandler;
@@ -219,7 +217,7 @@ public class Clock extends TextView implements OnClickListener, OnLongClickListe
              * add dummy characters around it to let us find it again after
              * formatting and change its size.
              */
-            if (AM_PM_STYLE != AM_PM_STYLE_NORMAL) {
+            if (mAmPmStyle != AM_PM_STYLE_NORMAL) {
                 int a = -1;
                 boolean quoted = false;
                 for (int i = 0; i < format.length(); i++) {
@@ -278,14 +276,14 @@ public class Clock extends TextView implements OnClickListener, OnLongClickListe
 
         SpannableStringBuilder formatted = new SpannableStringBuilder(result);
 
-        if (AM_PM_STYLE != AM_PM_STYLE_NORMAL) {
+        if (mAmPmStyle != AM_PM_STYLE_NORMAL) {
             int magic1 = result.indexOf(MAGIC1);
             int magic2 = result.indexOf(MAGIC2);
             if (magic1 >= 0 && magic2 > magic1) {
-                if (AM_PM_STYLE == AM_PM_STYLE_GONE) {
+                if (mAmPmStyle == AM_PM_STYLE_GONE) {
                     formatted.delete(magic1, magic2+1);
                 } else {
-                    if (AM_PM_STYLE == AM_PM_STYLE_SMALL) {
+                    if (mAmPmStyle == AM_PM_STYLE_SMALL) {
                         CharacterStyle style = new RelativeSizeSpan(0.7f);
                         formatted.setSpan(style, magic1, magic2,
                                           Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
@@ -320,11 +318,11 @@ public class Clock extends TextView implements OnClickListener, OnLongClickListe
         mShowClock = (Settings.System.getInt(resolver,
                 Settings.System.STATUS_BAR_CLOCK, 1) == 1);
 
-        mAmPmStyle = Settings.System.getInt(resolver,
-                Settings.System.STATUSBAR_CLOCK_AM_PM_STYLE, AM_PM_STYLE_GONE);
+        int amPmStyle = Settings.System.getInt(resolver,
+                    Settings.System.STATUSBAR_CLOCK_AM_PM_STYLE, AM_PM_STYLE_GONE);
 
-        if (mAmPmStyle != AM_PM_STYLE) {
-            AM_PM_STYLE = mAmPmStyle;
+        if (mAmPmStyle != amPmStyle) {
+            mAmPmStyle = amPmStyle;
             mClockFormatString = "";
 
             if (mAttached) {
