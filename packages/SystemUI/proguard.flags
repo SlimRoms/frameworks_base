@@ -15,6 +15,7 @@
 }
 
 -keep class com.android.systemui.statusbar.tv.TvStatusBar
+-keep class com.android.systemui.statusbar.phone.QuickSettingsController
 -keep class com.android.systemui.quicksettings.* {
   public static *;
 }
