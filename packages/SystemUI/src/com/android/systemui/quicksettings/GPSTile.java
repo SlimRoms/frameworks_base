@@ -44,8 +44,8 @@ public class GPSTile extends QuickSettingsTile implements LocationGpsStateChange
 
     public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
             QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler, String id) {
-        if (mInstance == null) mInstance = new GPSTile(context, inflater, container, qsc);
-        else {mInstance.updateTileState();  qsc.registerAction(LocationManager.PROVIDERS_CHANGED_ACTION, mInstance);}
+        mInstance = null;
+        mInstance = new GPSTile(context, inflater, container, qsc);
         return mInstance;
     }
 

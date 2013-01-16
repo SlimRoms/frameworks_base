@@ -58,15 +58,8 @@ public class RingerModeTile extends QuickSettingsTile {
 
     public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
             QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler, String id) {
-        if (mInstance == null) mInstance = new RingerModeTile(context, inflater, container, qsc);
-        else {
-            mInstance.applyVibrationChanges();
-            qsc.registerAction(AudioManager.RINGER_MODE_CHANGED_ACTION, mInstance);
-            qsc.registerObservedContent(Settings.System.getUriFor(Settings.System.EXPANDED_RING_MODE)
-                    , mInstance);
-            qsc.registerObservedContent(Settings.System.getUriFor(Settings.System.VIBRATE_WHEN_RINGING)
-                    , mInstance);
-            }
+        mInstance = null;
+        mInstance = new RingerModeTile(context, inflater, container, qsc);
         return mInstance;
     }
 

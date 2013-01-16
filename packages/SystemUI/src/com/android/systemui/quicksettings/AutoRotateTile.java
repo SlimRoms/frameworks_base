@@ -40,8 +40,8 @@ public class AutoRotateTile extends QuickSettingsTile {
 
     public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
             QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler, String id) {
-        if (mInstance == null) mInstance = new AutoRotateTile(context, inflater, container, qsc, handler);
-        else {mInstance.applyAutoRotationChanges(); qsc.registerObservedContent(Settings.System.getUriFor(Settings.System.ACCELEROMETER_ROTATION), mInstance);}
+        mInstance = null;
+        mInstance = new AutoRotateTile(context, inflater, container, qsc, handler);
         return mInstance;
     }
 

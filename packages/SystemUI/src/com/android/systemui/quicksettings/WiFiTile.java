@@ -35,7 +35,8 @@ public class WiFiTile extends QuickSettingsTile implements NetworkSignalChangedC
 
     public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
             QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler, String id) {
-        if (mInstance == null) mInstance = new WiFiTile(context, inflater, container, qsc);
+        mInstance = null;
+        mInstance = new WiFiTile(context, inflater, container, qsc);
         return mInstance;
     }
 

@@ -53,12 +53,8 @@ public class BrightnessTile extends QuickSettingsTile implements BrightnessState
 
     public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
             QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler, String id) {
-        if (mInstance == null) mInstance = new BrightnessTile(context, inflater, container, qsc, handler);
-        else {
-            mInstance.onBrightnessLevelChanged();
-            qsc.registerObservedContent(Settings.System.getUriFor(Settings.System.SCREEN_BRIGHTNESS), mInstance);
-            qsc.registerObservedContent(Settings.System.getUriFor(Settings.System.SCREEN_BRIGHTNESS_MODE), mInstance);
-        }
+        mInstance = null;
+        mInstance = new BrightnessTile(context, inflater, container, qsc, handler);
         return mInstance;
     }
 
