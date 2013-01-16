@@ -63,12 +63,8 @@ public class MobileNetworkTypeTile extends QuickSettingsTile {
 
     public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
             QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler, String id) {
-        if (mInstance == null) mInstance = new MobileNetworkTypeTile(context, inflater, container, qsc);
-        else {
-            mInstance.applyNetworkTypeChanges();
-            qsc.registerObservedContent(Settings.System.getUriFor(Settings.System.EXPANDED_NETWORK_MODE), mInstance);
-            qsc.registerAction(ACTION_NETWORK_MODE_CHANGED, mInstance);
-        }
+        mInstance = null;
+        mInstance = new MobileNetworkTypeTile(context, inflater, container, qsc);
         return mInstance;
     }
 
