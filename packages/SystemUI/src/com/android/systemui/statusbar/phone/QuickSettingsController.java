@@ -198,6 +198,8 @@ public class QuickSettingsController {
         loadTiles();
         // clean fav contact instances data
         FavoriteContactTile.cleanContent(mContext, tiles);
+        if (tiles.equals("")) return;
+        if (tiles.startsWith("|")) tiles = tiles.substring(1);
         StringTokenizer st;
         String tileName;
         String instanceID ="0";
