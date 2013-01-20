@@ -1827,6 +1827,7 @@
   <java-symbol type="integer" name="config_backKillTimeout" />
   <java-symbol type="bool" name="config_hasRotationLockSwitch" />
   <java-symbol type="bool" name="config_show_cmIMESwitcher"/>
+  <java-symbol type="bool" name="config_noDelayInATwoDP" />
 
   <!-- Config Power Menu -->
   <java-symbol type="drawable" name="ic_lock_profile" />
