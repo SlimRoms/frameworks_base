@@ -95,7 +95,7 @@
             android:paddingBottom="1dp">
 
             <TextView
-                android:id="@+id/foregroundText"
+                android:id="@+id/usedMemText"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -117,7 +117,7 @@
                 android:singleLine="true" />
 
             <TextView
-                android:id="@+id/backgroundText"
+                android:id="@+id/freeMemText"
                 android:layout_gravity="center_vertical|right"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
