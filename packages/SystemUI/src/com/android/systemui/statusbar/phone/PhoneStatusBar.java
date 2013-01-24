@@ -758,14 +758,14 @@ public class PhoneStatusBar extends BaseStatusBar {
                 mQS.setService(this);
                 mQS.setBar(mStatusBarView);
                 mQS.setupQuickSettings();
-                // Start observing for changes
-                mTilesChangedObserver = new TilesChangedObserver(mHandler);
-                mTilesChangedObserver.startObserving();
-
             } else {
                 mQS = null; // fly away, be free
             }
         }
+
+        // Start observing for changes on QuickSettings (needed here for enable/hide qs)
+        mTilesChangedObserver = new TilesChangedObserver(mHandler);
+        mTilesChangedObserver.startObserving();
 
         mClingShown = ! (DEBUG_CLINGS
             || !Prefs.read(mContext).getBoolean(Prefs.SHOWN_QUICK_SETTINGS_HELP, false));
