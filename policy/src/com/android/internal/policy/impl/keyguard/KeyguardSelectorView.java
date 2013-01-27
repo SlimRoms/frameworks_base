@@ -109,15 +109,11 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
                 } else {
                     target -= 1 + mTargetOffset;
                     if (target < mStoredTargets.length && mStoredTargets[target] != null) {
-                        if (mStoredTargets[target].equals(GlowPadView.EMPTY_TARGET)) {
-                            mCallback.dismiss(false);
-                        } else {
-                            try {
-                                Intent launchIntent = Intent.parseUri(mStoredTargets[target], 0);
-                                mActivityLauncher.launchActivity(launchIntent, false, true, null, null);
-                                return;
-                            } catch (URISyntaxException e) {
-                            }
+                        try {
+                            Intent launchIntent = Intent.parseUri(mStoredTargets[target], 0);
+                            mActivityLauncher.launchActivity(launchIntent, false, true, null, null);
+                            return;
+                        } catch (URISyntaxException e) {
                         }
                     }
                 }
@@ -316,9 +312,6 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
             final boolean isLandscape = mCreationOrientation == Configuration.ORIENTATION_LANDSCAPE;
             final Drawable blankActiveDrawable = res.getDrawable(R.drawable.ic_lockscreen_target_activated);
             final InsetDrawable activeBack = new InsetDrawable(blankActiveDrawable, 0, 0, 0, 0);
-            //Magnetic target replacement
-            final Drawable blankInActiveDrawable = res.getDrawable(com.android.internal.R.drawable.ic_lockscreen_lock_pressed);
-            final Drawable unlockActiveDrawable = res.getDrawable(com.android.internal.R.drawable.ic_lockscreen_unlock_activated);
             // Shift targets for landscape lockscreen on phones
             mTargetOffset = isLandscape && !mIsScreenLarge ? 2 : 0;
             if (mTargetOffset == 2) {
@@ -396,7 +389,7 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
                             storedDraw.add(new TargetDrawable(res, 0));
                         }
                     } else {
-                        storedDraw.add(new TargetDrawable(res, getLayeredDrawable(unlockActiveDrawable, blankInActiveDrawable, tmpInset, true)));
+                        storedDraw.add(new TargetDrawable(res, 0));
                     }
                 } else {
                     storedDraw.add(new TargetDrawable(res, 0));
