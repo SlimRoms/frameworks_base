@@ -96,6 +96,8 @@ public class PhoneStatusBarView extends PanelBar {
                 @Override
                 protected void onPostExecute(Boolean inHome) {
                     setBackgroundAlpha(inHome ? mAlpha : 1);
+                    Settings.System.putInt(getContext().getContentResolver(),
+                        Settings.System.IS_HOME, inHome ? 1 : 0);
                 }
             }.execute();
         }
@@ -363,7 +365,7 @@ public class PhoneStatusBarView extends PanelBar {
             resolver.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.STATUS_BAR_ALPHA), false, this);
             resolver.registerContentObserver(
-                    Settings.System.getUriFor(Settings.System.STATUS_BAR_ALPHA_MODE), false, this);
+                    Settings.System.getUriFor(Settings.System.STATUS_NAV_BAR_ALPHA_MODE), false, this);
             resolver.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.STATUS_BAR_COLOR), false, this);
         }
@@ -379,7 +381,7 @@ public class PhoneStatusBarView extends PanelBar {
                        Settings.System.STATUS_BAR_ALPHA,
                        0.0f);
         mAlphaMode = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.STATUS_BAR_ALPHA_MODE, 1);
+                Settings.System.STATUS_NAV_BAR_ALPHA_MODE, 1);
         mStatusBarColor = Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.STATUS_BAR_COLOR, -1);
 
