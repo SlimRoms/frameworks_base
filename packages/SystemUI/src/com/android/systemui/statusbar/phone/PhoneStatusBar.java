@@ -190,11 +190,11 @@ public class PhoneStatusBar extends BaseStatusBar {
 
     // viewgroup containing the normal contents of the statusbar
     LinearLayout mStatusBarContents;
-    
+
     // right-hand icons
     LinearLayout mSystemIconArea;
-    
-    // left-hand icons 
+
+    // left-hand icons
     LinearLayout mStatusIcons;
     LinearLayout mCenterClockLayout;
     // the icons themselves
@@ -282,6 +282,7 @@ public class PhoneStatusBar extends BaseStatusBar {
 
     boolean mAnimating;
     boolean mClosing; // only valid when mAnimating; indicates the initial acceleration
+    boolean mHighEndGfx;
     float mAnimY;
     float mAnimVel;
     float mAnimAccel;
@@ -466,7 +467,6 @@ public class PhoneStatusBar extends BaseStatusBar {
 
         mStatusBarView = (PhoneStatusBarView) mStatusBarWindow.findViewById(R.id.status_bar);
         mStatusBarView.setBar(this);
-        
 
         PanelHolder holder = (PanelHolder) mStatusBarWindow.findViewById(R.id.panel_holder);
         mStatusBarView.setPanelHolder(holder);
@@ -485,6 +485,13 @@ public class PhoneStatusBar extends BaseStatusBar {
                     }
                 });
 
+        mHighEndGfx = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.HIGH_END_GFX_ENABLED, 0) != 0;
+        if (!ActivityManager.isHighEndGfx() && !mHighEndGfx) {
+            mStatusBarWindow.setBackground(null);
+            mNotificationPanel.setBackground(new FastColorDrawable(context.getResources().getColor(
+                    R.color.notification_panel_solid_background)));
+        }
         if (ENABLE_INTRUDERS) {
             mIntruderAlertView = (IntruderAlertView) View.inflate(context, R.layout.intruder_alert, null);
             mIntruderAlertView.setVisibility(View.GONE);
@@ -727,6 +734,13 @@ public class PhoneStatusBar extends BaseStatusBar {
                     mSettingsPanel = (SettingsPanelView) ((ViewStub)settings_stub).inflate();
                 } else {
                     mSettingsPanel = (SettingsPanelView) mStatusBarWindow.findViewById(R.id.settings_panel);
+                }
+
+                if (mSettingsPanel != null) {
+                    if (!ActivityManager.isHighEndGfx() && !mHighEndGfx) {
+                        mSettingsPanel.setBackground(new FastColorDrawable(context.getResources().getColor(
+                                R.color.notification_panel_solid_background)));
+                    }
                 }
             }
 
