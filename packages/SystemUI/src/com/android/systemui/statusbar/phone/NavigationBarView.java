@@ -120,7 +120,7 @@ public class NavigationBarView extends LinearLayout {
     private int mNavBarColor;
     private int mNavBarButtonColor;
     private int mNavBarButtonColorMode;
-    private boolean mIsHome;
+    private boolean mIsHome = true;
 
     public String[] mClickActions = new String[7];
     public String[] mLongpressActions = new String[7];
