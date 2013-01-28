@@ -3482,6 +3482,12 @@ public final class Settings {
         public static final String NAVIGATION_BAR_BUTTON_TINT = "navigation_bar_button_tint";
 
         /**
+         * Option To Colorize Navigation bar buttons in different modes
+         * 0 = all, 1 = system icons, 2 = system icons + custom user icons
+         */
+        public static final String NAVIGATION_BAR_BUTTON_TINT_MODE = "navigation_bar_button_tint_mode";
+
+        /**
          * @hide
          */
         public static final String[] NAVIGATION_BAR_GLOW_DURATION = new String[] {

@@ -29,6 +29,7 @@ import android.database.ContentObserver;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.PorterDuff.Mode;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
@@ -117,7 +118,9 @@ public class NavigationBarView extends LinearLayout {
     private float mAlpha;
     private int mAlphaMode;
     private int mNavBarColor;
-    private boolean mIsHome = true;
+    private int mNavBarButtonColor;
+    private int mNavBarButtonColorMode;
+    private boolean mIsHome;
 
     public String[] mClickActions = new String[7];
     public String[] mLongpressActions = new String[7];
@@ -368,6 +371,10 @@ public class NavigationBarView extends LinearLayout {
                 v.setContentDescription(r.getString(R.string.accessibility_menu));
                 v.setGlowBackground(landscape ? R.drawable.ic_sysbar_highlight_land
                         : R.drawable.ic_sysbar_highlight);
+                if (mNavBarButtonColor == 0x00000000)
+                    v.setColorFilter(null);
+                else
+                    v.setColorFilter(mNavBarButtonColor, Mode.SRC_ATOP);
                 return v;
 
             case KEY_MENU_LEFT:
@@ -382,6 +389,10 @@ public class NavigationBarView extends LinearLayout {
                 v.setContentDescription(r.getString(R.string.accessibility_menu));
                 v.setGlowBackground(landscape ? R.drawable.ic_sysbar_highlight_land
                         : R.drawable.ic_sysbar_highlight);
+                if (mNavBarButtonColor == 0x00000000)
+                    v.setColorFilter(null);
+                else
+                    v.setColorFilter(mNavBarButtonColor, Mode.SRC_ATOP);
                 return v;
 
         }
@@ -406,6 +417,10 @@ public class NavigationBarView extends LinearLayout {
                 File f = new File(Uri.parse(iconUri).getPath());
                 if (f.exists()) {
                     v.setImageDrawable(new BitmapDrawable(getResources(), f.getAbsolutePath()));
+                    if (mNavBarButtonColor == 0x00000000 || mNavBarButtonColorMode == 1)
+                        v.setColorFilter(null);
+                    else
+                        v.setColorFilter(mNavBarButtonColor, Mode.MULTIPLY);
                     drawableSet = true;
                 }
             }
@@ -423,6 +438,10 @@ public class NavigationBarView extends LinearLayout {
                         v.setPaddingRelative(appIconPadding[0], appIconPadding[1],
                                 appIconPadding[2], appIconPadding[3]);
                     v.setImageDrawable(d);
+                    if (mNavBarButtonColor == 0x00000000  || mNavBarButtonColorMode != 0)
+                        v.setColorFilter(null);
+                    else
+                        v.setColorFilter(mNavBarButtonColor, Mode.MULTIPLY);
                     drawableSet = true;
                 } catch (NameNotFoundException e) {
                     e.printStackTrace();
@@ -436,6 +455,10 @@ public class NavigationBarView extends LinearLayout {
 
         if (!drawableSet) {
             v.setImageDrawable(getNavbarIconImage(landscape, clickAction));
+            if (mNavBarButtonColor == 0x00000000)
+                v.setColorFilter(null);
+            else
+                v.setColorFilter(mNavBarButtonColor, Mode.SRC_ATOP);
         }
 
         v.setGlowBackground(landscape ? R.drawable.ic_sysbar_highlight_land
@@ -912,6 +935,14 @@ public class NavigationBarView extends LinearLayout {
                     this);
 
             resolver.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.NAVIGATION_BAR_BUTTON_TINT), false,
+                    this);
+
+            resolver.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.NAVIGATION_BAR_BUTTON_TINT_MODE), false,
+                    this);
+
+            resolver.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.NAVIGATION_BAR_ALPHA), false,
                     this);
 
@@ -958,6 +989,12 @@ public class NavigationBarView extends LinearLayout {
 
         mTablet_UI = Settings.System.getInt(resolver,
                 Settings.System.TABLET_UI, 0);
+
+        mNavBarButtonColor = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.NAVIGATION_BAR_BUTTON_TINT, 0x00000000);
+
+        mNavBarButtonColorMode = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.NAVIGATION_BAR_BUTTON_TINT_MODE, 0);
 
         mNavBarColor = Settings.System.getInt(resolver,
                 Settings.System.NAVIGATION_BAR_TINT, -1);
