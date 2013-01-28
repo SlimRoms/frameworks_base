@@ -248,7 +248,7 @@ public class ExtensibleKeyButtonView extends KeyButtonView {
             } else if (mLongpress.equals(ACTION_SCREENSHOT)) {
                 takeScreenshot();
                 return true;
-            } else if (mClickAction.equals(ACTION_NOTIFICATIONS)) {
+            } else if (mLongpress.equals(ACTION_NOTIFICATIONS)) {
                 try {
                     mBarService.toggleNotificationShade();
                 } catch (RemoteException e) {
