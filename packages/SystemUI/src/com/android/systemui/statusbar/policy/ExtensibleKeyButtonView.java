@@ -30,6 +30,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
+import android.os.PowerManager;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemClock;
@@ -100,8 +101,6 @@ public class ExtensibleKeyButtonView extends KeyButtonView {
                 setCode (KeyEvent.KEYCODE_SEARCH);
             } else if (ClickAction.equals(ACTION_MENU)) {
                 setCode (KeyEvent.KEYCODE_MENU);
-            } else if (ClickAction.equals(ACTION_POWER)) {
-                setCode (KeyEvent.KEYCODE_POWER);
             } else { // the remaining options need to be handled by OnClick;
                 setOnClickListener(mClickListener);
                 if (ClickAction.equals(ACTION_RECENTS))
@@ -186,9 +185,11 @@ public class ExtensibleKeyButtonView extends KeyButtonView {
                 getContext().sendBroadcast(new Intent("android.settings.SHOW_INPUT_METHOD_PICKER"));
                 return;
             } else if (mClickAction.equals(ACTION_KILL)) {
-
                 mHandler.postDelayed(mKillTask,ViewConfiguration.getGlobalActionKeyTimeout());
                 return;
+            } else if (mClickAction.equals(ACTION_POWER)) {
+                PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
+                pm.goToSleep(SystemClock.uptimeMillis());
             } else {  // we must have a custom uri
                  try {
                      Intent intent = Intent.parseUri(mClickAction, 0);
@@ -228,7 +229,8 @@ public class ExtensibleKeyButtonView extends KeyButtonView {
                 injectKeyDelayed(KeyEvent.KEYCODE_MENU);
                 return true;
             } else if (mLongpress.equals(ACTION_POWER)) {
-                injectKeyDelayed(KeyEvent.KEYCODE_POWER);
+                PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
+                pm.goToSleep(SystemClock.uptimeMillis());
                 return true;
             } else if (mLongpress.equals(ACTION_IME)) {
                 getContext().sendBroadcast(new Intent("android.settings.SHOW_INPUT_METHOD_PICKER"));
