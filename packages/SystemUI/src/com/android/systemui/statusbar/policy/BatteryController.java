@@ -25,6 +25,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.ContentObserver;
+import android.graphics.Color;
 import android.os.BatteryManager;
 import android.os.Handler;
 import android.provider.Settings;
@@ -200,7 +201,12 @@ public class BatteryController extends BroadcastReceiver {
             v.setText(mContext.getString(mTextStyle,
                     mLevel));
             v.setPadding(v.getPaddingLeft(),v.getPaddingTop(),pxTextPadding,v.getPaddingBottom());
-            if (mTextColor != -1) {
+
+            // turn text red at 14% when not on charger - same level android battery warning appears
+            // if no custom color is defined && over 14% use system color
+            if (mLevel <= 14 && !mBatteryPlugged) {
+                v.setTextColor(Color.RED);
+            } else if (mTextColor != -1) {
                 v.setTextColor(mTextColor);
             }
         }
