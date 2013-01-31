@@ -48,7 +48,7 @@ public class NfcTile extends QuickSettingsTile {
             QuickSettingsController qsc) {
         super(context, inflater, container, qsc);
 
-        setState(getNfcState());
+        setTileState(getNfcState());
 
         mOnClick = new View.OnClickListener() {
             @Override
@@ -78,7 +78,7 @@ public class NfcTile extends QuickSettingsTile {
     }
 
     private void applyNfcChanges() {
-        updateTileState();
+        setTileState(getNfcState());
         updateQuickSettings();
     }
 
@@ -96,24 +96,19 @@ public class NfcTile extends QuickSettingsTile {
         }
     }
 
-    private void updateTileState() {
-        // Get the initial label
-        mLabel = mContext.getString(R.string.quick_settings_nfc);
-        setState(getNfcState());
-    }
+    private void setTileState(int state) {
 
-    private void setState(int state) {
         switch (state) {
         case NfcAdapter.STATE_TURNING_ON:
         case NfcAdapter.STATE_ON:
             mDrawable = R.drawable.ic_qs_nfc_on;
+            mLabel = mContext.getString(R.string.quick_settings_nfc);
             break;
         case NfcAdapter.STATE_TURNING_OFF:
         case NfcAdapter.STATE_OFF:
         default:
             mDrawable = R.drawable.ic_qs_nfc_off;
-            mLabel = mContext.getString(R.string.quick_settings_nfc) + " "
-                      + mContext.getString(R.string.quick_settings_label_disabled);
+            mLabel = mContext.getString(R.string.quick_settings_nfc_off);
             break;
         }
     }
