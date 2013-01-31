@@ -108,6 +108,7 @@ public class NavigationBarView extends LinearLayout {
     final static String ACTION_RECENTS = "**recents**";
     final static String ACTION_SCREENSHOT = "**screenshot**";
     final static String ACTION_IME = "**ime**";
+    final static String ACTION_LAST_APP = "**lastapp**";
     final static String ACTION_KILL = "**kill**";
     final static String ACTION_NULL = "**null**";
 
@@ -1070,6 +1071,9 @@ public class NavigationBarView extends LinearLayout {
             } else if (uri.equals(ACTION_IME)) {
 
                 return getResources().getDrawable(R.drawable.ic_sysbar_ime_switcher);
+            } else if (uri.equals(ACTION_LAST_APP)) {
+
+                return getResources().getDrawable(R.drawable.ic_sysbar_lastapp);
             } else if (uri.equals(ACTION_KILL)) {
 
                 return getResources().getDrawable(R.drawable.ic_sysbar_killtask);
