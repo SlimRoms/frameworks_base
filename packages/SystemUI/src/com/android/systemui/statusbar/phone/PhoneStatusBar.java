@@ -282,7 +282,6 @@ public class PhoneStatusBar extends BaseStatusBar {
 
     boolean mAnimating;
     boolean mClosing; // only valid when mAnimating; indicates the initial acceleration
-    boolean mHighEndGfx;
     float mAnimY;
     float mAnimVel;
     float mAnimAccel;
@@ -485,9 +484,7 @@ public class PhoneStatusBar extends BaseStatusBar {
                     }
                 });
 
-        mHighEndGfx = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.HIGH_END_GFX_ENABLED, 0) != 0;
-        if (!ActivityManager.isHighEndGfx() && !mHighEndGfx) {
+        if (!ActivityManager.isHighEndGfx()) {
             mStatusBarWindow.setBackground(null);
             mNotificationPanel.setBackground(new FastColorDrawable(context.getResources().getColor(
                     R.color.notification_panel_solid_background)));
@@ -737,7 +734,7 @@ public class PhoneStatusBar extends BaseStatusBar {
                 }
 
                 if (mSettingsPanel != null) {
-                    if (!ActivityManager.isHighEndGfx() && !mHighEndGfx) {
+                    if (!ActivityManager.isHighEndGfx()) {
                         mSettingsPanel.setBackground(new FastColorDrawable(context.getResources().getColor(
                                 R.color.notification_panel_solid_background)));
                     }
