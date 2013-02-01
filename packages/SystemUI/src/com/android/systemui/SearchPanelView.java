@@ -294,7 +294,7 @@ public class SearchPanelView extends FrameLayout implements
         }
 
         // Add User Targets
-        for (int i = 0; i < middleStart; i++) {
+        for (int i = middleStart - 1; i >= 0; i--) {
             intentList.add(targetActivities[i]);
             longList.add(longActivities[i]);
             storedDraw.add(getTargetDrawable(targetActivities[i], i));
