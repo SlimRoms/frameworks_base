@@ -203,7 +203,7 @@ public class UsbDeviceManager {
         final StorageManager storageManager = StorageManager.from(mContext);
         final StorageVolume primary = storageManager.getPrimaryVolume();
 
-        if (Settings.Secure.getInt(mContentResolver, Settings.Secure.USB_MASS_STORAGE_ENABLED, 0 ) == 1 ) {
+        if (Settings.Global.getInt(mContentResolver, Settings.Global.USB_MASS_STORAGE_ENABLED, 0 ) == 1 ) {
                 massStorageSupported = primary != null && primary.allowMassStorage();
         } else {
                 massStorageSupported = false;
