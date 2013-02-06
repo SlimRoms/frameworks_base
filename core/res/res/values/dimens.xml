@@ -70,6 +70,9 @@
     <!-- Default vertical gap between keys in the password keyboard (used by keyguard) -->
     <dimen name="password_keyboard_verticalGap">9dip</dimen>
 
+    <!-- Default maximum height for the widget pager in the keyguard -->
+    <dimen name="keyguard_widget_pager_max_height">480dp</dimen>
+
     <!-- Size of lockscreen outerring on unsecure unlock LockScreen -->
     <dimen name="keyguard_lockscreen_outerring_diameter">270dp</dimen>
 
