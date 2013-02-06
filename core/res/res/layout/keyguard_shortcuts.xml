@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 **
-** Copyright 2012, The Android Open Source Project
+** Copyright 2012, ParanoidAndroid Project
 **
 ** Licensed under the Apache License, Version 2.0 (the "License")
 ** you may not use this file except in compliance with the License.
@@ -17,15 +17,15 @@
 */
 -->
 
-<merge xmlns:android="http://schemas.android.com/apk/res/android">
-    <LinearLayout
-        android:id="@+id/keyguard_glow_pad_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" >
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
-        <include layout="@layout/keyguard_glow_pad_view" />
+        <com.android.internal.policy.impl.keyguard.KeyguardShortcuts
+            android:id="@+id/shortcuts"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-    </LinearLayout>
-
-</merge>
+</LinearLayout>
