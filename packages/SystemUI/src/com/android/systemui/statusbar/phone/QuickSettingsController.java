@@ -76,6 +76,7 @@ public class QuickSettingsController {
     public static final String TILE_NETWORKMODE = "toggleNetworkMode";
     public static final String TILE_NFC = "toggleNfc";
     public static final String TILE_PROFILE = "toggleProfile";
+    public static final String TILE_QUIETHOURS = "toggleQuietHours";
     public static final String TILE_REBOOT = "toggleReboot";
     public static final String TILE_RINGER = "toggleSound";
     public static final String TILE_SCREENTIMEOUT = "toggleScreenTimeout";
@@ -111,6 +112,7 @@ public class QuickSettingsController {
         TILES_CLASSES.put(TILE_NETWORKMODE, "com.android.systemui.quicksettings.MobileNetworkTypeTile");
         TILES_CLASSES.put(TILE_NFC, "com.android.systemui.quicksettings.NfcTile");
         TILES_CLASSES.put(TILE_PROFILE, "com.android.systemui.quicksettings.ProfileTile");
+        TILES_CLASSES.put(TILE_QUIETHOURS, "com.android.systemui.quicksettings.QuietHoursTile");
         TILES_CLASSES.put(TILE_REBOOT, "com.android.systemui.quicksettings.RebootTile");
         TILES_CLASSES.put(TILE_RINGER, "com.android.systemui.quicksettings.RingerModeTile");
         TILES_CLASSES.put(TILE_SCREENTIMEOUT, "com.android.systemui.quicksettings.ScreenTimeoutTile");
