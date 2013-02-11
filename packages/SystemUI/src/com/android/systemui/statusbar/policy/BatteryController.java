@@ -71,7 +71,7 @@ public class BatteryController extends BroadcastReceiver {
 
     private boolean mBatteryPlugged = false;
     private int mLevel = 0;
-    private int mTextColor = 0;
+    private int mTextColor = -1;
     private int mBatteryStyle;
     private int mBatteryIcon = BATTERY_ICON_STYLE_NORMAL;
 
@@ -208,6 +208,8 @@ public class BatteryController extends BroadcastReceiver {
                 v.setTextColor(Color.RED);
             } else if (mTextColor != -1) {
                 v.setTextColor(mTextColor);
+            } else {
+                v.setTextColor(mContext.getResources().getColor(com.android.internal.R.color.holo_blue_light));
             }
         }
     }
