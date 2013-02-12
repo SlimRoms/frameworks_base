@@ -18,6 +18,7 @@ package com.android.systemui.statusbar.policy;
 
 import android.app.ActivityManagerNative;
 import android.app.StatusBarManager;
+import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.ContentUris;
 import android.content.Context;
@@ -34,6 +35,7 @@ import android.view.View.OnLongClickListener;
 import android.view.ViewParent;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.systemui.R;
 
@@ -177,12 +179,16 @@ public class DateView extends TextView implements OnClickListener, OnLongClickLi
     public void onClick(View v) {
         long nowMillis = System.currentTimeMillis();
 
-        Uri.Builder builder = CalendarContract.CONTENT_URI.buildUpon();
-        builder.appendPath("time");
-        ContentUris.appendId(builder, nowMillis);
-        Intent intent = new Intent(Intent.ACTION_VIEW)
-                .setData(builder.build());
-        collapseStartActivity(intent);
+        try {
+            Uri.Builder builder = CalendarContract.CONTENT_URI.buildUpon();
+            builder.appendPath("time");
+            ContentUris.appendId(builder, nowMillis);
+            Intent intent = new Intent(Intent.ACTION_VIEW)
+                    .setData(builder.build());
+            collapseStartActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(mContext, R.string.calendar_error_alert, Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override

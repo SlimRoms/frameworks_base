@@ -589,8 +589,13 @@
     <string name="service_free_mem"><xliff:g id="memory">%1$s</xliff:g> free</string>
     <!-- [CHAR LIMIT=10] Running services, summary of foreground processes -->
     <string name="service_used_mem"><xliff:g id="memory">%1$s</xliff:g> used</string>
+
     <!-- Quiet hours quicksettings tile -->
     <string name="quick_settings_quiethours">Quiet hours</string>
     <string name="quick_settings_quiethours_off">Quiet hours off</string>
+
+    <!-- Notification drawer toasts -->
+    <string name="calendar_error_alert">No Calendar app installed.</string>
+    <string name="clock_error_alert">No DeskClock app installed.</string>
 
 </resources>

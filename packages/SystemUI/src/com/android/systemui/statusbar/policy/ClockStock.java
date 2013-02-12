@@ -18,6 +18,7 @@ package com.android.systemui.statusbar.policy;
 
 import android.app.ActivityManagerNative;
 import android.app.StatusBarManager;
+import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -43,6 +44,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -232,18 +234,28 @@ public class ClockStock extends TextView implements OnClickListener, OnLongClick
 
     @Override
     public void onClick(View v) {
-        // start com.android.deskclock/.DeskClock
-        ComponentName clock = new ComponentName("com.android.deskclock",
-                "com.android.deskclock.DeskClock");
-        Intent intent = new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER)
-                .setComponent(clock);
-        collapseStartActivity(intent);
+        try {
+            // start com.android.deskclock/.DeskClock
+            ComponentName clock = new ComponentName("com.android.deskclock",
+                    "com.android.deskclock.DeskClock");
+            Intent intent = new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER)
+                    .setComponent(clock);
+            collapseStartActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(mContext,
+                com.android.systemui.R.string.clock_error_alert, Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
     public boolean onLongClick(View v) {
-        Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
-        collapseStartActivity(intent);
+        try {
+            Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
+            collapseStartActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(mContext,
+                com.android.systemui.R.string.clock_error_alert, Toast.LENGTH_LONG).show();
+        }
 
         // consume event
         return true;
