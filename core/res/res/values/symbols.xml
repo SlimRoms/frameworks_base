@@ -1886,6 +1886,9 @@
   <!-- Developer settings - Kill app back press -->
   <java-symbol type="string" name="app_killed_message" />
 
+  <!-- Expanded desktop default set -->
+  <java-symbol type="string" name="expanded_mode_default_set" />
+
   <!-- Lockscreen -->
   <java-symbol type="bool" name="config_disableHomeUnlockSetting" />
   <java-symbol type="id" name="expand_challenge_handle" />
