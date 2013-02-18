@@ -767,6 +767,8 @@
   <java-symbol type="string" name="short_format_month" />
   <java-symbol type="string" name="shutdown_confirm" />
   <java-symbol type="string" name="shutdown_confirm_question" />
+  <java-symbol type="string" name="shutdown_confirm_reboot" />
+  <java-symbol type="string" name="shutdown_confirm_reboot_question" />
   <java-symbol type="string" name="shutdown_progress" />
   <java-symbol type="string" name="sim_added_message" />
   <java-symbol type="string" name="sim_added_title" />
