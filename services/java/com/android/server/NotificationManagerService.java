@@ -175,6 +175,9 @@ public class NotificationManagerService extends INotificationManager.Stub
     // Dim LED if hardware supports it.
     private boolean mQuietHoursDim = true;
 
+    private HashMap<String, Long> mAnnoyingNotifications = new HashMap<String, Long>();
+    private long mAnnoyingNotificationThreshold = -1;
+
     // Notification control database. For now just contains disabled packages.
     private AtomicFile mPolicyFile;
     private HashSet<String> mBlockedPackages = new HashSet<String>();
@@ -390,7 +393,7 @@ public class NotificationManagerService extends INotificationManager.Stub
                 + Integer.toHexString(System.identityHashCode(this))
                 + " pkg=" + pkg
                 + " id=" + Integer.toHexString(id)
-                + " tag=" + tag 
+                + " tag=" + tag
                 + " score=" + score
                 + "}";
         }
@@ -683,6 +686,8 @@ public class NotificationManagerService extends INotificationManager.Stub
                     Settings.System.QUIET_HOURS_STILL), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.QUIET_HOURS_DIM), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD), false, this);
             update();
         }
 
@@ -705,6 +710,8 @@ public class NotificationManagerService extends INotificationManager.Stub
                     Settings.System.QUIET_HOURS_STILL, 0, UserHandle.USER_CURRENT_OR_SELF) != 0;
             mQuietHoursDim = Settings.System.getIntForUser(resolver,
                     Settings.System.QUIET_HOURS_DIM, 0, UserHandle.USER_CURRENT_OR_SELF) != 0;
+            mAnnoyingNotificationThreshold = Settings.System.getLongForUser(resolver,
+                    Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD, 0, UserHandle.USER_CURRENT_OR_SELF);
         }
     }
 
@@ -1018,7 +1025,7 @@ public class NotificationManagerService extends INotificationManager.Stub
         enqueueNotificationInternal(pkg, Binder.getCallingUid(), Binder.getCallingPid(),
                 tag, id, notification, idOut, userId);
     }
-    
+
     private final static int clamp(int x, int low, int high) {
         return (x < low) ? low : ((x > high) ? high : x);
     }
@@ -1088,7 +1095,7 @@ public class NotificationManagerService extends INotificationManager.Stub
             if (notification.priority < Notification.PRIORITY_HIGH) notification.priority = Notification.PRIORITY_HIGH;
         }
 
-        // 1. initial score: buckets of 10, around the app 
+        // 1. initial score: buckets of 10, around the app
         int score = notification.priority * NOTIFICATION_PRIORITY_MULTIPLIER; //[-20..20]
 
         // 2. Consult external heuristics (TBD)
@@ -1116,7 +1123,7 @@ public class NotificationManagerService extends INotificationManager.Stub
         synchronized (mNotificationList) {
             final boolean inQuietHours = inQuietHours();
 
-            NotificationRecord r = new NotificationRecord(pkg, tag, id, 
+            NotificationRecord r = new NotificationRecord(pkg, tag, id,
                     callingUid, callingPid, userId,
                     score,
                     notification);
@@ -1211,6 +1218,7 @@ public class NotificationManagerService extends INotificationManager.Stub
                     && (r.userId == UserHandle.USER_ALL ||
                         (r.userId == userId && r.userId == currentUser))
                     && canInterrupt
+                    && !notificationIsAnnoying(pkg)
                     && mSystemReady) {
 
                 final AudioManager audioManager = (AudioManager) mContext
@@ -1327,6 +1335,25 @@ public class NotificationManagerService extends INotificationManager.Stub
     private boolean shouldConvertSoundToVibration() {
         return Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.NOTIFICATION_CONVERT_SOUND_TO_VIBRATION, 1) != 0;
+    }
+
+    private boolean notificationIsAnnoying(String pkg) {
+        if (mAnnoyingNotificationThreshold <= 0)
+            return false;
+
+        if("android".equals(pkg))
+            return false;
+
+        long currentTime = System.currentTimeMillis();
+        if (mAnnoyingNotifications.containsKey(pkg)
+                && (currentTime - mAnnoyingNotifications.get(pkg) < mAnnoyingNotificationThreshold)) {
+            // less than threshold; it's an annoying notification!!
+            return true;
+        } else {
+            // not in map or time to re-add
+            mAnnoyingNotifications.put(pkg, currentTime);
+            return false;
+        }
     }
 
     private boolean inQuietHours() {
