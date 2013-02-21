@@ -39,8 +39,8 @@ public class ToggleLockscreenTile extends QuickSettingsTile {
     private static final String KEY_DISABLED = "lockscreen_disabled";
 
     private final KeyguardManager mKeyguardManager;
-    private boolean mDisabledLockscreen = false;
-    private SharedPreferences sp;
+    private boolean mDisabledLockscreen;
+    private SharedPreferences mPrefs;
     public static QuickSettingsTile mInstance;
 
     public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
@@ -57,6 +57,8 @@ public class ToggleLockscreenTile extends QuickSettingsTile {
         mLabel = mContext.getString(R.string.quick_settings_lockscreen);
 
         mKeyguardManager = (KeyguardManager) mContext.getSystemService(Context.KEYGUARD_SERVICE);
+        mPrefs = mContext.getSharedPreferences("PowerButton-" + PowerButton.BUTTON_LOCKSCREEN, Context.MODE_PRIVATE);
+        mDisabledLockscreen = mPrefs.getBoolean(KEY_DISABLED, false);
 
         mOnClick = new OnClickListener() {
 
@@ -64,8 +66,7 @@ public class ToggleLockscreenTile extends QuickSettingsTile {
             public void onClick(View v) {
                 mDisabledLockscreen = !mDisabledLockscreen;
 
-                sp = mContext.getSharedPreferences("PowerButton-" + PowerButton.BUTTON_LOCKSCREEN, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sp.edit();
+                SharedPreferences.Editor editor = mPrefs.edit();
                 editor.putBoolean(KEY_DISABLED, mDisabledLockscreen);
                 editor.apply();
 
