@@ -94,6 +94,8 @@ public class NavigationBarView extends LinearLayout {
     private DelegateViewHelper mDelegateHelper;
     private DeadZone mDeadZone;
 
+    private SettingsObserver mSettingsObserver;
+
     // workaround for LayoutTransitions leaving the nav buttons in a weird state (bug 5549288)
     final static boolean WORKAROUND_INVALID_LAYOUT = true;
     final static int MSG_CHECK_INVALID_LAYOUT = 8686;
@@ -800,8 +802,21 @@ public class NavigationBarView extends LinearLayout {
          broadcastObserver.observe();
 
          // this takes care of making the buttons
-         SettingsObserver settingsObserver = new SettingsObserver(new Handler());
-         settingsObserver.observe();
+         mSettingsObserver = new SettingsObserver(new Handler());
+         updateSettings();
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        mSettingsObserver.observe();
+        updateSettings();
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        mContext.getContentResolver().unregisterContentObserver(mSettingsObserver);
+        super.onDetachedFromWindow();
     }
 
     public void reorient() {
