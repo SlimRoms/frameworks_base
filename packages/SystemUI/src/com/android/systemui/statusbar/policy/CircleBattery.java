@@ -124,17 +124,21 @@ public class CircleBattery extends ImageView {
                     Settings.System.STATUS_BAR_BATTERY, 0));
 
             mCircleColor = (Settings.System.getInt(mContext.getContentResolver(),
-                    Settings.System.STATUS_BAR_CIRCLE_BATTERY_COLOR, -1));
+                    Settings.System.STATUS_BAR_CIRCLE_BATTERY_COLOR, -2));
             mCircleTextColor = (Settings.System.getInt(mContext.getContentResolver(),
-                    Settings.System.STATUS_BAR_BATTERY_TEXT_COLOR, -1));
+                    Settings.System.STATUS_BAR_BATTERY_TEXT_COLOR, -2));
             mCircleAnimSpeed = (Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.STATUS_BAR_CIRCLE_BATTERY_ANIMATIONSPEED, 3));
 
             if (mCircleTextColor  == -1) {
+                mCircleTextColor = res.getColor(R.color.white);
+            } else if (mCircleTextColor  == -2) {
                 mCircleTextColor = res.getColor(R.color.holo_blue_dark);
             }
 
             if (mCircleColor == -1) {
+                mCircleTextColor = res.getColor(R.color.white);
+            } else if (mCircleColor  == -2) {
                 mCircleColor = res.getColor(R.color.holo_blue_dark);
             }
 

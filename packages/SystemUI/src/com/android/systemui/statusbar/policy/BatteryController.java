@@ -71,7 +71,7 @@ public class BatteryController extends BroadcastReceiver {
 
     private boolean mBatteryPlugged = false;
     private int mLevel = 0;
-    private int mTextColor = -1;
+    private int mTextColor = -2;
     private int mBatteryStyle;
     private int mBatteryIcon = BATTERY_ICON_STYLE_NORMAL;
 
@@ -206,10 +206,12 @@ public class BatteryController extends BroadcastReceiver {
             // if no custom color is defined && over 14% use system color
             if (mLevel <= 14 && !mBatteryPlugged) {
                 v.setTextColor(Color.RED);
-            } else if (mTextColor != -1) {
-                v.setTextColor(mTextColor);
-            } else {
+            } else if (mTextColor == -1) {
+                v.setTextColor(mContext.getResources().getColor(com.android.internal.R.color.white));
+            } else if (mTextColor == -2) {
                 v.setTextColor(mContext.getResources().getColor(com.android.internal.R.color.holo_blue_light));
+            } else {
+                v.setTextColor(mTextColor);
             }
         }
     }
@@ -221,7 +223,7 @@ public class BatteryController extends BroadcastReceiver {
                 Settings.System.STATUS_BAR_BATTERY, 0));
 
         mTextColor = Settings.System.getInt(mContext.getContentResolver(),
-                    Settings.System.STATUS_BAR_BATTERY_TEXT_COLOR, -1);
+                    Settings.System.STATUS_BAR_BATTERY_TEXT_COLOR, -2);
 
         updateBattery();
     }
