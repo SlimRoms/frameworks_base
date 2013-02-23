@@ -617,8 +617,8 @@ public class KeyguardHostView extends KeyguardViewBase {
      * @param turningOff true if the device is being turned off
      */
     void showPrimarySecurityScreen(boolean turningOff) {
-        final boolean lockBeforeUnlock = Settings.System.getIntForUser(mContext.getContentResolver(),
-                Settings.System.LOCK_BEFORE_UNLOCK, 0, UserHandle.USER_CURRENT) == 1;
+        final boolean lockBeforeUnlock = Settings.Secure.getIntForUser(mContext.getContentResolver(),
+                Settings.Secure.LOCK_BEFORE_UNLOCK, 0, UserHandle.USER_CURRENT) == 1;
         final boolean isSimOrAccount = mCurrentSecuritySelection == SecurityMode.SimPin
                 || mCurrentSecuritySelection == SecurityMode.SimPuk
                 || mCurrentSecuritySelection == SecurityMode.Account

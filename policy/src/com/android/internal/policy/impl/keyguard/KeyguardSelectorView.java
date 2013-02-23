@@ -246,10 +246,10 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
         View bouncerFrameView = findViewById(R.id.keyguard_selector_view_frame);
         mBouncerFrame = bouncerFrameView.getBackground();
 
-        final int unsecureUnlockMethod = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.LOCKSCREEN_UNSECURE_USED, 1);
-        final int lockBeforeUnlock = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.LOCK_BEFORE_UNLOCK, 0);
+        final int unsecureUnlockMethod = Settings.Secure.getInt(mContext.getContentResolver(),
+                Settings.Secure.LOCKSCREEN_UNSECURE_USED, 1);
+        final int lockBeforeUnlock = Settings.Secure.getInt(mContext.getContentResolver(),
+                Settings.Secure.LOCK_BEFORE_UNLOCK, 0);
 
         //bring emergency button on slider lockscreen to front when lockBeforeUnlock is enabled
         //to make it clickable
