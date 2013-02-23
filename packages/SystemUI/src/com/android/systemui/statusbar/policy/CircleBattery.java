@@ -69,8 +69,8 @@ public class CircleBattery extends ImageView {
     private boolean mIsDocked = false;      // whether or not dock battery is connected
 
     private int     mCircleSize;    // draw size of circle. read rather complicated from
-                                    // another status bar icon, so it fits the icon size
-                                    // no matter the dps and resolution
+                                     // another status bar icon, so it fits the icon size
+                                     // no matter the dps and resolution
     private RectF   mRectLeft;      // contains the precalculated rect used in drawArc(), derived from mCircleSize
     private RectF   mRectRight;     // contains the precalculated rect used in drawArc() for dock battery
     private Float   mTextLeftX;     // precalculated x position for drawText() to appear centered
@@ -82,11 +82,13 @@ public class CircleBattery extends ImageView {
     private Paint   mPaintGray;
     private Paint   mPaintSystem;
     private Paint   mPaintRed;
-    private int batteryStyle;
+    private int mBatteryStyle;
 
     private int mCircleColor;
     private int mCircleTextColor;
     private int mCircleAnimSpeed;
+
+    private SettingsObserver mSettingsObserver;
 
     // runnable to invalidate view via mHandler.postDelayed() call
     private final Runnable mInvalidate = new Runnable() {
@@ -113,57 +115,11 @@ public class CircleBattery extends ImageView {
                     Settings.System.STATUS_BAR_BATTERY_TEXT_COLOR), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_CIRCLE_BATTERY_ANIMATIONSPEED), false, this);
-            onChange(true);
         }
 
         @Override
         public void onChange(boolean selfChange) {
-            Resources res = getResources();
-
-            batteryStyle = (Settings.System.getInt(mContext.getContentResolver(),
-                    Settings.System.STATUS_BAR_BATTERY, 0));
-
-            mCircleColor = (Settings.System.getInt(mContext.getContentResolver(),
-                    Settings.System.STATUS_BAR_CIRCLE_BATTERY_COLOR, -2));
-            mCircleTextColor = (Settings.System.getInt(mContext.getContentResolver(),
-                    Settings.System.STATUS_BAR_BATTERY_TEXT_COLOR, -2));
-            mCircleAnimSpeed = (Settings.System.getInt(mContext.getContentResolver(),
-                    Settings.System.STATUS_BAR_CIRCLE_BATTERY_ANIMATIONSPEED, 3));
-
-            if (mCircleTextColor  == -1) {
-                mCircleTextColor = res.getColor(R.color.white);
-            } else if (mCircleTextColor  == -2) {
-                mCircleTextColor = res.getColor(R.color.holo_blue_dark);
-            }
-
-            if (mCircleColor == -1) {
-                mCircleTextColor = res.getColor(R.color.white);
-            } else if (mCircleColor  == -2) {
-                mCircleColor = res.getColor(R.color.holo_blue_dark);
-            }
-
-            /*
-             * initialize vars and force redraw
-             */
-            initializeCircleVars();
-            mRectLeft = null;
-            mCircleSize = 0;
-
-            mActivated = (batteryStyle == BatteryController.BATTERY_STYLE_CIRCLE ||
-                          batteryStyle == BatteryController.BATTERY_STYLE_CIRCLE_PERCENT ||
-                          batteryStyle == BatteryController.BATTERY_STYLE_DOTTED_CIRCLE ||
-                          batteryStyle == BatteryController.BATTERY_STYLE_DOTTED_CIRCLE_PERCENT);
-            mPercentage = (batteryStyle == BatteryController.BATTERY_STYLE_CIRCLE_PERCENT ||
-                           batteryStyle == BatteryController.BATTERY_STYLE_DOTTED_CIRCLE_PERCENT);
-
-            setVisibility(mActivated ? View.VISIBLE : View.GONE);
-            if (mBatteryReceiver != null) {
-                mBatteryReceiver.updateRegistration();
-            }
-
-            if (mActivated && mAttached) {
-                invalidate();
-            }
+            updateSettings();
         }
     }
 
@@ -234,14 +190,8 @@ public class CircleBattery extends ImageView {
 
         mContext = context;
         mHandler = new Handler();
-
-        batteryStyle = (Settings.System.getInt(mContext.getContentResolver(),
-                    Settings.System.STATUSBAR_BATTERY_ICON, 0));
-        SettingsObserver settingsObserver = new SettingsObserver(mHandler);
-        settingsObserver.observe();
         mBatteryReceiver = new BatteryReceiver(mContext);
-
-        initializeCircleVars();
+        updateSettings();
     }
 
     @Override
@@ -250,6 +200,9 @@ public class CircleBattery extends ImageView {
         if (!mAttached) {
             mAttached = true;
             mBatteryReceiver.updateRegistration();
+            mSettingsObserver = new SettingsObserver(mHandler);
+            mSettingsObserver.observe();
+            updateSettings();
             mHandler.postDelayed(mInvalidate, 250);
         }
     }
@@ -260,7 +213,8 @@ public class CircleBattery extends ImageView {
         if (mAttached) {
             mAttached = false;
             mBatteryReceiver.updateRegistration();
-            mRectLeft = null; // makes sure, size based variables get
+            mContext.getContentResolver().unregisterContentObserver(mSettingsObserver);
+            mRectLeft = null;   // makes sure, size based variables get
                                 // recalculated on next attach
             mCircleSize = 0;    // makes sure, mCircleSize is reread from icons on
                                 // next attach
@@ -285,8 +239,8 @@ public class CircleBattery extends ImageView {
             usePaint = mPaintRed;
         }
         usePaint.setAntiAlias(true);
-        if (batteryStyle == BatteryController.BATTERY_STYLE_DOTTED_CIRCLE_PERCENT ||
-            batteryStyle == BatteryController.BATTERY_STYLE_DOTTED_CIRCLE) {
+        if (mBatteryStyle == BatteryController.BATTERY_STYLE_DOTTED_CIRCLE_PERCENT ||
+            mBatteryStyle == BatteryController.BATTERY_STYLE_DOTTED_CIRCLE) {
             // change usePaint from solid to dashed
             usePaint.setPathEffect(new DashPathEffect(new float[]{3,2},0));
         }else {
@@ -331,6 +285,56 @@ public class CircleBattery extends ImageView {
             drawCircle(canvas, mLevel, (mIsCharging ? mAnimOffset : 0), mTextRightX, mRectRight);
         } else {
             drawCircle(canvas, mLevel, (mIsCharging ? mAnimOffset : 0), mTextLeftX, mRectLeft);
+        }
+    }
+
+    private void updateSettings() {
+        Resources res = getResources();
+
+        mBatteryStyle = (Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.STATUS_BAR_BATTERY, 0));
+
+        mCircleColor = (Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.STATUS_BAR_CIRCLE_BATTERY_COLOR, -2));
+        mCircleTextColor = (Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.STATUS_BAR_BATTERY_TEXT_COLOR, -2));
+        mCircleAnimSpeed = (Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.STATUS_BAR_CIRCLE_BATTERY_ANIMATIONSPEED, 3));
+
+        if (mCircleTextColor  == -1) {
+            mCircleTextColor = res.getColor(R.color.white);
+        } else if (mCircleTextColor  == -2) {
+            mCircleTextColor = res.getColor(R.color.holo_blue_dark);
+        }
+
+        if (mCircleColor == -1) {
+            mCircleTextColor = res.getColor(R.color.white);
+        } else if (mCircleColor  == -2) {
+            mCircleColor = res.getColor(R.color.holo_blue_dark);
+        }
+
+        /*
+         * initialize vars and force redraw
+         */
+        initializeCircleVars();
+        mRectLeft = null;
+        mCircleSize = 0;
+
+        mActivated = (mBatteryStyle == BatteryController.BATTERY_STYLE_CIRCLE ||
+                      mBatteryStyle == BatteryController.BATTERY_STYLE_CIRCLE_PERCENT ||
+                      mBatteryStyle == BatteryController.BATTERY_STYLE_DOTTED_CIRCLE ||
+                      mBatteryStyle == BatteryController.BATTERY_STYLE_DOTTED_CIRCLE_PERCENT);
+        mPercentage = (mBatteryStyle == BatteryController.BATTERY_STYLE_CIRCLE_PERCENT ||
+                       mBatteryStyle == BatteryController.BATTERY_STYLE_DOTTED_CIRCLE_PERCENT);
+
+        setVisibility(mActivated ? View.VISIBLE : View.GONE);
+
+        if (mBatteryReceiver != null) {
+            mBatteryReceiver.updateRegistration();
+        }
+
+        if (mActivated && mAttached) {
+            invalidate();
         }
     }
 

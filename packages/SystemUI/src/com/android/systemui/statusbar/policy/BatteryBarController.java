@@ -125,6 +125,7 @@ public class BatteryBarController extends LinearLayout {
         if (isAttached) {
             isAttached = false;
             removeBars();
+            getContext().unregisterReceiver(mIntentReceiver);
             getContext().getContentResolver().unregisterContentObserver(mSettingsObserver);
         }
         super.onDetachedFromWindow();
