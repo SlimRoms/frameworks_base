@@ -114,6 +114,7 @@
         android:requiresFadingEdge="none"
         android:fillViewport="true"
         android:overScrollMode="never"
+        android:layout_above="@id/handle"
         android:layout_gravity="bottom"
         android:visibility="invisible"
         android:layout_marginBottom="@dimen/notification_shortcuts_close_handle_height">
