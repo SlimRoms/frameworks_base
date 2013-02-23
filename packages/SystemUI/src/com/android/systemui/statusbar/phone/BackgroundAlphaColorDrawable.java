@@ -34,7 +34,7 @@ public class BackgroundAlphaColorDrawable extends ColorDrawable {
     }
 
     public void setBgColor(int color) {
-        if (color == -1) {
+        if (color == -2) {
             color = Color.BLACK;
         }
         mBgColor = color;

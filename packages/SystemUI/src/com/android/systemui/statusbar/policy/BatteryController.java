@@ -206,8 +206,6 @@ public class BatteryController extends BroadcastReceiver {
             // if no custom color is defined && over 14% use system color
             if (mLevel <= 14 && !mBatteryPlugged) {
                 v.setTextColor(Color.RED);
-            } else if (mTextColor == -1) {
-                v.setTextColor(mContext.getResources().getColor(com.android.internal.R.color.white));
             } else if (mTextColor == -2) {
                 v.setTextColor(mContext.getResources().getColor(com.android.internal.R.color.holo_blue_light));
             } else {

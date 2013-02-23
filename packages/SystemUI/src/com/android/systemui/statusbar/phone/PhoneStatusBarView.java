@@ -130,7 +130,7 @@ public class PhoneStatusBarView extends PanelBar {
         Drawable bg = mContext.getResources().getDrawable(R.drawable.status_bar_background);
         if(bg instanceof ColorDrawable) {
             BackgroundAlphaColorDrawable bacd = new BackgroundAlphaColorDrawable(
-                    mStatusBarColor != -1 ? mStatusBarColor : ((ColorDrawable) bg).getColor());
+                    mStatusBarColor != -2 ? mStatusBarColor : ((ColorDrawable) bg).getColor());
             setBackground(bacd);
         }
     }
@@ -407,7 +407,7 @@ public class PhoneStatusBarView extends PanelBar {
         mAlphaMode = Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.STATUS_NAV_BAR_ALPHA_MODE, 1);
         mStatusBarColor = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.STATUS_BAR_COLOR, -1);
+                Settings.System.STATUS_BAR_COLOR, -2);
 
         updateBackgroundAlpha();
 

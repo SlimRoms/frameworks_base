@@ -301,15 +301,11 @@ public class CircleBattery extends ImageView {
         mCircleAnimSpeed = (Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.STATUS_BAR_CIRCLE_BATTERY_ANIMATIONSPEED, 3));
 
-        if (mCircleTextColor  == -1) {
-            mCircleTextColor = res.getColor(R.color.white);
-        } else if (mCircleTextColor  == -2) {
+        if (mCircleTextColor  == -2) {
             mCircleTextColor = res.getColor(R.color.holo_blue_dark);
         }
 
-        if (mCircleColor == -1) {
-            mCircleTextColor = res.getColor(R.color.white);
-        } else if (mCircleColor  == -2) {
+        if (mCircleColor  == -2) {
             mCircleColor = res.getColor(R.color.holo_blue_dark);
         }
 

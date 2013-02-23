@@ -324,7 +324,7 @@ public class NavigationBarView extends LinearLayout {
         Drawable bg = mContext.getResources().getDrawable(R.drawable.nav_bar_bg);
         if(bg instanceof ColorDrawable) {
             BackgroundAlphaColorDrawable bacd = new BackgroundAlphaColorDrawable(
-                    mNavBarColor != -1 ? mNavBarColor : ((ColorDrawable) bg).getColor());
+                    mNavBarColor != -2 ? mNavBarColor : ((ColorDrawable) bg).getColor());
             setBackground(bacd);
         }
         updateKeyguardAlpha();
@@ -898,7 +898,7 @@ public class NavigationBarView extends LinearLayout {
         if(bg == null) return;
 
         if(bg instanceof BackgroundAlphaColorDrawable) {
-            if(mNavBarColor != -1) {
+            if(mNavBarColor != -2) {
                 ((BackgroundAlphaColorDrawable) bg).setBgColor(mNavBarColor);
             }
         }
@@ -1013,7 +1013,7 @@ public class NavigationBarView extends LinearLayout {
                 Settings.System.NAVIGATION_BAR_BUTTON_TINT_MODE, 0);
 
         mNavBarColor = Settings.System.getInt(resolver,
-                Settings.System.NAVIGATION_BAR_TINT, -1);
+                Settings.System.NAVIGATION_BAR_TINT, -2);
 
         mAlpha = 1 - Settings.System.getFloat(resolver,
                 Settings.System.NAVIGATION_BAR_ALPHA, 0.0f);
