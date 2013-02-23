@@ -23,6 +23,7 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemProperties;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
@@ -36,6 +37,7 @@ public class PlatLogoActivity extends Activity {
     Toast mToast;
     ImageView mContent;
     int mCount;
+    private boolean mIsSlim;
     final Handler mHandler = new Handler();
 
     private View makeView() {
@@ -62,14 +64,16 @@ public class PlatLogoActivity extends Activity {
         lp.gravity = Gravity.CENTER_HORIZONTAL;
         lp.bottomMargin = (int) (-4*metrics.density);
 
+        mIsSlim = SystemProperties.get("ro.slim.version") != null;
+
         TextView tv = new TextView(this);
         if (light != null) tv.setTypeface(light);
         tv.setTextSize(1.25f*size);
         tv.setTextColor(0xFFFFFFFF);
         tv.setShadowLayer(4*metrics.density, 0, 2*metrics.density, 0x66000000);
-        tv.setText("Android " + Build.VERSION.RELEASE);
+        tv.setText((mIsSlim ? "SlimBean " : "Android ") + Build.VERSION.RELEASE);
         view.addView(tv, lp);
-   
+
         tv = new TextView(this);
         if (normal != null) tv.setTypeface(normal);
         tv.setTextSize(size);
