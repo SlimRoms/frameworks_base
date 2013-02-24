@@ -1911,7 +1911,10 @@ public class PhoneStatusBar extends BaseStatusBar {
     }
 
     public boolean isShowingSettings() {
-        return mHasFlipSettings && mFlipSettingsView.getVisibility() == View.VISIBLE;
+        if (mFlipSettingsView != null) {
+            return mHasFlipSettings && mFlipSettingsView.getVisibility() == View.VISIBLE;
+        }
+        return false;
     }
 
     public void completePartialFlip() {
