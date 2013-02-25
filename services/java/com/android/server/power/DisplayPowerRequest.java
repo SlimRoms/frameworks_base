@@ -63,7 +63,7 @@ final class DisplayPowerRequest {
     public boolean blockScreenOn;
 
     // Slim settings - override config for ElectronBeam on or off
-    public boolean electronBeamOnEnabled;
+    public int electronBeamMode;
     public boolean electronBeamOffEnabled;
 
     public DisplayPowerRequest() {
@@ -73,7 +73,7 @@ final class DisplayPowerRequest {
         screenAutoBrightnessAdjustment = 0.0f;
         useAutoBrightness = false;
         blockScreenOn = false;
-        electronBeamOnEnabled = false;
+        electronBeamMode = 0;
         electronBeamOffEnabled = false;
     }
 
@@ -88,8 +88,12 @@ final class DisplayPowerRequest {
         screenAutoBrightnessAdjustment = other.screenAutoBrightnessAdjustment;
         useAutoBrightness = other.useAutoBrightness;
         blockScreenOn = other.blockScreenOn;
-        electronBeamOnEnabled = other.electronBeamOnEnabled;
+        electronBeamMode = other.electronBeamMode;
         electronBeamOffEnabled = other.electronBeamOffEnabled;
+    }
+
+    public int getElectronBeamMode() {
+        return electronBeamMode;
     }
 
     @Override
@@ -106,7 +110,7 @@ final class DisplayPowerRequest {
                 && screenAutoBrightnessAdjustment == other.screenAutoBrightnessAdjustment
                 && useAutoBrightness == other.useAutoBrightness
                 && blockScreenOn == other.blockScreenOn
-                && electronBeamOnEnabled == other.electronBeamOnEnabled
+                && electronBeamMode == other.electronBeamMode
                 && electronBeamOffEnabled == other.electronBeamOffEnabled;
     }
 
@@ -123,7 +127,7 @@ final class DisplayPowerRequest {
                 + ", screenAutoBrightnessAdjustment=" + screenAutoBrightnessAdjustment
                 + ", useAutoBrightness=" + useAutoBrightness
                 + ", blockScreenOn=" + blockScreenOn
-                + ", electronBeamOnEnabled=" + electronBeamOnEnabled
+                + ", electronBeamMode=" + electronBeamMode
                 + ", electronBeamOffEnabled=" + electronBeamOffEnabled;
     }
 }
