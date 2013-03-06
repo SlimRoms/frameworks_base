@@ -150,6 +150,10 @@ public class InputMethodTile extends QuickSettingsTile {
     void updateQuickSettings() {
         TextView tv = (TextView) mTile.findViewById(R.id.tile_textview);
         tv.setText(mLabel);
+        tv.setTextSize(1, mTileTextSize);
+        if (mTileTextColor != -2) {
+            tv.setTextColor(mTileTextColor);
+        }
         tv.setCompoundDrawablesWithIntrinsicBounds(0, mDrawable, 0, 0);
         mTile.setVisibility(showTile ? View.VISIBLE : View.GONE);
         super.updateQuickSettings();

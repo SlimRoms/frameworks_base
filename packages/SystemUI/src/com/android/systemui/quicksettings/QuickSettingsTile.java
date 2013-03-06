@@ -32,8 +32,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.android.systemui.R;
-import com.android.systemui.statusbar.phone.QuickSettingsController;
 import com.android.systemui.statusbar.phone.PhoneStatusBar;
+import com.android.systemui.statusbar.phone.QuickSettingsController;
 import com.android.systemui.statusbar.phone.QuickSettingsContainerView;
 import com.android.systemui.statusbar.phone.QuickSettingsTileView;
 
@@ -51,6 +51,8 @@ public class QuickSettingsTile implements OnClickListener {
     protected PhoneStatusBar mStatusbarService;
     protected QuickSettingsController mQsc;
     protected String tileID = "0";
+    protected int mTileTextSize;
+    protected int mTileTextColor;
 
     public QuickSettingsTile(Context context, LayoutInflater inflater, QuickSettingsContainerView container, QuickSettingsController qsc) {
         mContext = context;
@@ -61,9 +63,11 @@ public class QuickSettingsTile implements OnClickListener {
         mStatusbarService = qsc.mStatusBarService;
         mQsc = qsc;
         mTileLayout = R.layout.quick_settings_tile_generic;
+        mTileTextSize = ((QuickSettingsContainerView) mContainerView).updateTileTextSize();
+        mTileTextColor = ((QuickSettingsContainerView) mContainerView).updateTileTextColor();
     }
 
-    public void setupQuickSettingsTile(){
+    public void setupQuickSettingsTile() {
             createQuickSettings();
             onPostCreate();
             updateQuickSettings();
@@ -71,7 +75,7 @@ public class QuickSettingsTile implements OnClickListener {
             mTile.setOnLongClickListener(mOnLongClick);
     }
 
-    void createQuickSettings(){
+    void createQuickSettings() {
         mTile = (QuickSettingsTileView) mInflater.inflate(R.layout.quick_settings_tile, mContainerView, false);
         mTile.setContent(mTileLayout, mInflater);
         mContainerView.addView(mTile);
@@ -83,13 +87,17 @@ public class QuickSettingsTile implements OnClickListener {
 
     public void onChangeUri(ContentResolver resolver, Uri uri) {}
 
-    void updateQuickSettings(){
+    void updateQuickSettings() {
         TextView tv = (TextView) mTile.findViewById(R.id.tile_textview);
         tv.setCompoundDrawablesWithIntrinsicBounds(0, mDrawable, 0, 0);
         tv.setText(mLabel);
+        tv.setTextSize(1, mTileTextSize);
+        if (mTileTextColor != -2) {
+            tv.setTextColor(mTileTextColor);
+        }
     }
 
-    void startSettingsActivity(String action){
+    void startSettingsActivity(String action) {
         Intent intent = new Intent(action);
         startSettingsActivity(intent);
     }

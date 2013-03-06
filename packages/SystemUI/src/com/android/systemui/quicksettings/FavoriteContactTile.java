@@ -94,9 +94,18 @@ public class FavoriteContactTile extends QuickSettingsTile implements SharedPref
     void updateQuickSettings(){
         ImageView iv = (ImageView) mTile.findViewById(R.id.user_imageview);
         TextView tv = (TextView) mTile.findViewById(R.id.user_textview);
-        if (avatar != null)  iv.setImageDrawable(avatar);
-        if (name == null || name.equals("")) tv.setText(R.string.qs_fav_long_press);
-        else tv.setText(name);
+        if (avatar != null) {
+            iv.setImageDrawable(avatar);
+        }
+        if (name == null || name.equals("")) {
+            tv.setText(R.string.qs_fav_long_press);
+        } else {
+            tv.setText(name);
+        }
+        tv.setTextSize(1, mTileTextSize);
+        if (mTileTextColor != -2) {
+            tv.setTextColor(mTileTextColor);
+        }
     }
 
     /*
