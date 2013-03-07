@@ -18,6 +18,7 @@ package com.android.internal.policy.impl.keyguard;
 
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.KeyguardManager;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
@@ -39,6 +40,7 @@ import android.os.PowerManager;
 import android.os.SystemClock;
 import android.os.SystemProperties;
 import android.os.Vibrator;
+import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Log;
 import android.util.Slog;
@@ -273,8 +275,17 @@ public class KeyguardViewManager {
             toggleSilentMode(context);
             return true;
         } else if ("CAMERA".equals(uri)) {
-            dismiss();
-            context.sendBroadcast(new Intent(Intent.ACTION_CAMERA_BUTTON, null));
+            KeyguardManager km = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);
+            if (km.isKeyguardSecure()) {
+                mContext.startActivity(new Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA_SECURE).setFlags(
+                        Intent.FLAG_ACTIVITY_NEW_TASK|
+                        Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS|
+                        Intent.FLAG_ACTIVITY_NO_HISTORY));
+            }
+            else {
+                dismiss();
+                mContext.sendBroadcast(new Intent(Intent.ACTION_CAMERA_BUTTON, null));
+            }
             return true;
         } else if ("POWER".equals(uri)) {
             PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
