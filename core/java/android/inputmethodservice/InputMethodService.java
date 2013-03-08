@@ -28,6 +28,7 @@ import android.content.res.TypedArray;
 import android.graphics.Rect;
 import android.graphics.Region;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
 import android.os.ResultReceiver;
 import android.os.SystemClock;
@@ -315,6 +316,9 @@ public class InputMethodService extends AbstractInputMethodService {
     
     int mStatusIcon;
     int mBackDisposition;
+
+    boolean mForcedAutoRotate;
+    Handler mHandler;
 
     final Insets mTmpInsets = new Insets();
     final int[] mTmpLocation = new int[2];
@@ -720,6 +724,8 @@ public class InputMethodService extends AbstractInputMethodService {
         mCandidatesVisibility = getCandidatesHiddenVisibility();
         mCandidatesFrame.setVisibility(mCandidatesVisibility);
         mInputFrame.setVisibility(View.GONE);
+
+        mHandler = new Handler();
     }
 
     @Override public void onDestroy() {
@@ -1426,6 +1432,20 @@ public class InputMethodService extends AbstractInputMethodService {
             mWindowWasVisible = true;
             mInShowWindow = false;
         }
+        int mKeyboardRotationTimeout = Settings.System.getInt(getContentResolver(),
+                Settings.System.KEYBOARD_ROTATION_TIMEOUT, 0);
+        if (mKeyboardRotationTimeout > 0) {
+            mHandler.removeCallbacks(restoreAutoRotation);
+            if (!mForcedAutoRotate) {
+                boolean isAutoRotate = (Settings.System.getInt(getContentResolver(),
+                        Settings.System.ACCELEROMETER_ROTATION, 0) == 1);
+                if (!isAutoRotate) {
+                    mForcedAutoRotate = true;
+                    Settings.System.putInt(getContentResolver(),
+                            Settings.System.ACCELEROMETER_ROTATION, 1);
+                }
+            }
+        }
     }
 
     void showWindowInner(boolean showInput) {
@@ -1508,7 +1528,23 @@ public class InputMethodService extends AbstractInputMethodService {
             onWindowHidden();
             mWindowWasVisible = false;
         }
+        int mKeyboardRotationTimeout = Settings.System.getInt(getContentResolver(),
+                Settings.System.KEYBOARD_ROTATION_TIMEOUT, 0);
+        if (mKeyboardRotationTimeout > 0) {
+            mHandler.removeCallbacks(restoreAutoRotation);
+            if (mForcedAutoRotate) {
+                mHandler.postDelayed(restoreAutoRotation, mKeyboardRotationTimeout);
+            }
+        }
     }
+
+    final Runnable restoreAutoRotation = new Runnable() {
+        @Override public void run() {
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.ACCELEROMETER_ROTATION, 0);
+            mForcedAutoRotate = false;
+        }
+    };
 
     /**
      * Called when the input method window has been shown to the user, after

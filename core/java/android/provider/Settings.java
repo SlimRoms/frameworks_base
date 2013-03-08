@@ -3313,6 +3313,12 @@ public final class Settings {
         public static final String LOCKSCREEN_AUTO_ROTATE = "lockscreen_auto_rotate";
 
         /**
+         * Automatic keyboard rotation timeout.  0 to disable completely.
+         * @hide
+         */
+        public static final String KEYBOARD_ROTATION_TIMEOUT = "keyboard_rotation_timeout";
+
+        /**
          * Show the pending notification counts as overlays on the status bar
          * Whether to enable custom rebindings of the actions performed on
          * certain key press events.
