@@ -86,6 +86,7 @@ public class CircleBattery extends ImageView {
 
     private int mCircleColor;
     private int mCircleTextColor;
+    private int mCircleTextChargingColor;
     private int mCircleAnimSpeed;
 
     private SettingsObserver mSettingsObserver;
@@ -108,13 +109,20 @@ public class CircleBattery extends ImageView {
         public void observe() {
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_BATTERY), false, this);
+                    Settings.System.STATUS_BAR_BATTERY),
+                    false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_CIRCLE_BATTERY_COLOR), false, this);
+                    Settings.System.STATUS_BAR_CIRCLE_BATTERY_COLOR),
+                    false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_BATTERY_TEXT_COLOR), false, this);
+                    Settings.System.STATUS_BAR_BATTERY_TEXT_COLOR),
+                    false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_CIRCLE_BATTERY_ANIMATIONSPEED), false, this);
+                    Settings.System.STATUS_BAR_BATTERY_TEXT_CHARGING_COLOR),
+                    false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_CIRCLE_BATTERY_ANIMATIONSPEED),
+                    false, this);
         }
 
         @Override
@@ -264,7 +272,9 @@ public class CircleBattery extends ImageView {
         if (level < 100 && mPercentage) {
             if (level <= 14) {
                 mPaintFont.setColor(mPaintRed.getColor());
-            }else {
+            } else if (mIsCharging) {
+                mPaintFont.setColor(mCircleTextChargingColor);
+            } else {
                 mPaintFont.setColor(mCircleTextColor);
             }
             canvas.drawText(Integer.toString(level), textX, mTextY, mPaintFont);
@@ -298,15 +308,21 @@ public class CircleBattery extends ImageView {
                 Settings.System.STATUS_BAR_CIRCLE_BATTERY_COLOR, -2));
         mCircleTextColor = (Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.STATUS_BAR_BATTERY_TEXT_COLOR, -2));
+        mCircleTextChargingColor = (Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.STATUS_BAR_BATTERY_TEXT_CHARGING_COLOR, -2));
         mCircleAnimSpeed = (Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.STATUS_BAR_CIRCLE_BATTERY_ANIMATIONSPEED, 3));
 
-        if (mCircleTextColor  == -2) {
-            mCircleTextColor = res.getColor(R.color.holo_blue_dark);
-        }
+        int defaultColor = res.getColor(R.color.holo_blue_dark);
 
-        if (mCircleColor  == -2) {
-            mCircleColor = res.getColor(R.color.holo_blue_dark);
+        if (mCircleTextColor == -2) {
+            mCircleTextColor = defaultColor;
+        }
+        if (mCircleTextChargingColor == -2) {
+            mCircleTextChargingColor = defaultColor;
+        }
+        if (mCircleColor == -2) {
+            mCircleColor = defaultColor;
         }
 
         /*

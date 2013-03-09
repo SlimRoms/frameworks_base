@@ -72,6 +72,7 @@ public class BatteryController extends BroadcastReceiver {
     private boolean mBatteryPlugged = false;
     private int mLevel = 0;
     private int mTextColor = -2;
+    private int mTextChargingColor = -2;
     private int mBatteryStyle;
     private int mBatteryIcon = BATTERY_ICON_STYLE_NORMAL;
 
@@ -85,9 +86,14 @@ public class BatteryController extends BroadcastReceiver {
         void observe() {
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_BATTERY), false, this);
+                    Settings.System.STATUS_BAR_BATTERY),
+                    false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_BATTERY_TEXT_COLOR), false, this);
+                    Settings.System.STATUS_BAR_BATTERY_TEXT_COLOR),
+                    false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_BATTERY_TEXT_CHARGING_COLOR),
+                    false, this);
         }
 
         @Override public void onChange(boolean selfChange) {
@@ -204,10 +210,15 @@ public class BatteryController extends BroadcastReceiver {
 
             // turn text red at 14% when not on charger - same level android battery warning appears
             // if no custom color is defined && over 14% use system color
+            // if charging turn to green or to custom user color
             if (mLevel <= 14 && !mBatteryPlugged) {
                 v.setTextColor(Color.RED);
-            } else if (mTextColor == -2) {
+            } else if (mTextColor == -2  && !mBatteryPlugged) {
                 v.setTextColor(mContext.getResources().getColor(com.android.internal.R.color.holo_blue_light));
+            } else if (mTextChargingColor != -2  && mBatteryPlugged) {
+                v.setTextColor(mTextChargingColor);
+            } else if (mBatteryPlugged) {
+                v.setTextColor(Color.GREEN);
             } else {
                 v.setTextColor(mTextColor);
             }
@@ -222,6 +233,9 @@ public class BatteryController extends BroadcastReceiver {
 
         mTextColor = Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.STATUS_BAR_BATTERY_TEXT_COLOR, -2);
+
+        mTextChargingColor = Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.STATUS_BAR_BATTERY_TEXT_CHARGING_COLOR, -2);
 
         updateBattery();
     }

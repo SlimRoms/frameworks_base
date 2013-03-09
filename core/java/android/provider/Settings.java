@@ -2880,6 +2880,12 @@ public final class Settings {
         public static final String STATUS_BAR_BATTERY_TEXT_COLOR = "status_bar_battery_text_color";
 
         /**
+         * Battery icon text charging color
+         * in statusbar
+         */
+        public static final String STATUS_BAR_BATTERY_TEXT_CHARGING_COLOR = "status_bar_battery_text_charging_color";
+
+        /**
          * Circle battery animation speed during charge
          * in statusbar
          */
