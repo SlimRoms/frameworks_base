@@ -633,6 +633,7 @@ public class PhoneStatusBar extends BaseStatusBar {
             mNotificationButton = (ImageView) mStatusBarWindow.findViewById(R.id.notification_button);
             if (mNotificationButton != null) {
                 mNotificationButton.setOnClickListener(mNotificationButtonListener);
+                mNotificationButton.setOnLongClickListener(mNotificationLongClickListener);
             }
         }
 
@@ -2833,44 +2834,63 @@ public class PhoneStatusBar extends BaseStatusBar {
     private View.OnLongClickListener mSettingsLongClickListener = new View.OnLongClickListener() {
         @Override
         public boolean onLongClick(View v) {
-            if (mPowerWidget.getVisibility() == View.GONE) {
-                int height = mPowerWidget.getHeight();
-                Animation anim = AnimationUtils.makeInAnimation(mContext, true);
-                anim.setDuration(500);
-                anim.setAnimationListener(new AnimationListener() {
-                    @Override
-                    public void onAnimationStart(Animation animation) {
-                        mPowerWidget.setVisibility(View.VISIBLE);
-                        Settings.System.putInt(mContext.getContentResolver(), Settings.System.EXPANDED_VIEW_WIDGET, 1);
-                    }
-                    //stupid android wont compile empty methods so I have to override them to work.... better make them public too!
-                    @Override
-                    public void onAnimationEnd(Animation animation) {
-                    }
-                    @Override
-                    public void onAnimationRepeat(Animation animation) {
-                    }
-                });
-                mPowerWidget.startAnimation(anim);
+            int mQSPWToggle = Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.QS_LONGPRESS_PW_TOGGLE, 0);
+            if (mQSPWToggle == 1) {
+                if (mPowerWidget.getVisibility() == View.GONE) {
+                    int height = mPowerWidget.getHeight();
+                    Animation anim = AnimationUtils.makeInAnimation(mContext, true);
+                    anim.setDuration(500);
+                    anim.setAnimationListener(new AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+                            mPowerWidget.setVisibility(View.VISIBLE);
+                            Settings.System.putInt(mContext.getContentResolver(),
+                                    Settings.System.EXPANDED_VIEW_WIDGET, 1);
+                        }
+                        //stupid android wont compile empty methods so I have to override them to work.... better make them public too!
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                        }
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+                        }
+                    });
+                    mPowerWidget.startAnimation(anim);
+                } else {
+                    int height = mPowerWidget.getHeight();
+                    Animation anim = AnimationUtils.makeOutAnimation(mContext, false);
+                    anim.setDuration(500);
+                    anim.setAnimationListener(new AnimationListener() {
+                         @Override
+                         public void onAnimationEnd(Animation animation) {
+                             mPowerWidget.setVisibility(View.GONE);
+                             Settings.System.putInt(mContext.getContentResolver(),
+                                    Settings.System.EXPANDED_VIEW_WIDGET, 0);
+                         }
+                         //stupid android wont compile empty methods so I have to override them to work....
+                         @Override
+                         public void onAnimationStart(Animation animation) {
+                         }
+                         @Override
+                         public void onAnimationRepeat(Animation animation) {
+                         }
+                    });
+                    mPowerWidget.startAnimation(anim);
+                }
             } else {
-                int height = mPowerWidget.getHeight();
-                Animation anim = AnimationUtils.makeOutAnimation(mContext, false);
-                anim.setDuration(500);
-                anim.setAnimationListener(new AnimationListener() {
-                     @Override
-                     public void onAnimationEnd(Animation animation) {
-                         mPowerWidget.setVisibility(View.GONE);
-                         Settings.System.putInt(mContext.getContentResolver(), Settings.System.EXPANDED_VIEW_WIDGET, 0);
-                     }
-                     //stupid android wont compile empty methods so I have to override them to work....
-                     @Override
-                     public void onAnimationStart(Animation animation) {
-                     }
-                     @Override
-                     public void onAnimationRepeat(Animation animation) {
-                     }
-                });
-                mPowerWidget.startAnimation(anim);
+                try {
+                    ActivityManagerNative.getDefault().dismissKeyguardOnNextActivity();
+                } catch (RemoteException e) {
+                }
+                try {
+                    animateCollapsePanels();
+                    Intent i = new Intent("android.settings.SETTINGS");
+                    i.addCategory(Intent.CATEGORY_DEFAULT);
+                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    v.getContext().startActivity(i);
+                } catch (Exception e) {
+                }
             }
             return true;
         }
@@ -2888,6 +2908,25 @@ public class PhoneStatusBar extends BaseStatusBar {
         @Override
         public void onClick(View v) {
             animateExpandNotificationsPanel();
+        }
+    };
+
+    private View.OnLongClickListener mNotificationLongClickListener = new View.OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View v) {
+            try {
+                ActivityManagerNative.getDefault().dismissKeyguardOnNextActivity();
+            } catch (RemoteException e) {
+            }
+            try {
+                animateCollapsePanels();
+                Intent i = new Intent("com.android.settings.slim.quicksettings.QuickSettings");
+                i.addCategory(Intent.CATEGORY_DEFAULT);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                v.getContext().startActivity(i);
+            } catch (Exception e) {
+            }
+            return true;
         }
     };
 
