@@ -88,6 +88,7 @@ public class QuickSettingsController {
     public static final String TILE_TORCH = "toggleFlashlight";  // Keep old string for compatibility
     public static final String TILE_USBTETHER = "toggleUsbTether";
     public static final String TILE_USER = "toggleUser";
+    public static final String TILE_VOLUME = "toggleVolume";
     public static final String TILE_WIFI = "toggleWifi";
     public static final String TILE_WIFIAP = "toggleWifiAp";
     public static final String TILE_WIFIDISPLAY = "toggleWifiDisplay";
@@ -125,6 +126,7 @@ public class QuickSettingsController {
         TILES_CLASSES.put(TILE_TORCH, "com.android.systemui.quicksettings.TorchTile");
         TILES_CLASSES.put(TILE_USBTETHER, "com.android.systemui.quicksettings.UsbTetherTile");
         TILES_CLASSES.put(TILE_USER, "com.android.systemui.quicksettings.UserTile");
+        TILES_CLASSES.put(TILE_VOLUME, "com.android.systemui.quicksettings.VolumeTile");
         TILES_CLASSES.put(TILE_WIFI, "com.android.systemui.quicksettings.WiFiTile");
         TILES_CLASSES.put(TILE_WIFIAP, "com.android.systemui.quicksettings.WifiAPTile");
         TILES_CLASSES.put(TILE_WIFIDISPLAY, "com.android.systemui.quicksettings.WiFiDisplayTile");
