@@ -654,6 +654,7 @@ public class PhoneStatusBar extends BaseStatusBar {
 
         // Load the Power widget views and set the listeners
         mPowerWidget = (PowerWidget)mStatusBarWindow.findViewById(R.id.exp_power_stat);
+        mPowerWidget.setBar(mStatusBarView);
         mPowerWidget.setGlobalButtonOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

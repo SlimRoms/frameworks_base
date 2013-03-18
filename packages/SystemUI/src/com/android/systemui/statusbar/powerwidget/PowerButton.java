@@ -37,6 +37,8 @@ import com.android.systemui.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.android.systemui.statusbar.phone.PanelBar;
+
 public abstract class PowerButton {
     public static final String TAG = "PowerButton";
 
@@ -89,6 +91,8 @@ public abstract class PowerButton {
     protected Vibrator mVibrator;
     private long[] mClickPattern;
     private long[] mLongClickPattern;
+
+    public PanelBar mBar;
 
     // we use this to ensure we update our views on the UI thread
     private Handler mViewUpdateHandler = new Handler() {
@@ -219,4 +223,9 @@ public abstract class PowerButton {
     protected SharedPreferences getPreferences(Context context) {
         return context.getSharedPreferences("PowerButton-" + mType, Context.MODE_PRIVATE);
     }
+
+    public void setBar(PanelBar bar) {
+        mBar = bar;
+    }
+
 }
