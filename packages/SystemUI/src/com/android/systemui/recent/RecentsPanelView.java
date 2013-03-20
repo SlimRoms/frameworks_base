@@ -71,6 +71,7 @@ import com.android.internal.util.MemInfoReader;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.Runtime;
 import java.util.ArrayList;
 
 public class RecentsPanelView extends FrameLayout implements OnItemClickListener, RecentsCallback,
@@ -470,6 +471,19 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
                 @Override
                 public void onClick(View v) {
                     mRecentsContainer.removeAllViewsInLayout();
+                }
+            });
+            mClearRecents.setOnLongClickListener(new OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    mRecentsContainer.removeAllViewsInLayout();
+                    try {
+                        Runtime.getRuntime().exec("su -c sync");
+                        Runtime.getRuntime().exec("su -c echo 3 > /proc/sys/vm/drop_caches");
+                    } catch (Exception e) {
+                        Log.d(TAG, "Flush caches failed!");
+                    }
+                    return true;
                 }
             });
         }
