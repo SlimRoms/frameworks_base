@@ -36,6 +36,22 @@
     <string name="defaultMsisdnAlphaTag" msgid="2850889754919584674">"MSISDN1"</string>
     <string name="mmiError" msgid="5154499457739052907">"Неполадки подключения или неверный код MMI."</string>
     <string name="mmiFdnError" msgid="5224398216385316471">"Операция возможна только для разрешенных номеров."</string>
+    <!-- Names of default profiles. -->
+    <string name="profileNameDefault">По умолчанию</string>
+    <string name="profileNameWork">Работа</string>
+    <string name="profileNameHome">Дом</string>
+    <string name="profileNameSilent">Без звука</string>
+    <string name="profileNameNight">Ночь</string>
+
+    <!-- Names of application groups. -->
+    <string name="profileGroupPhone">Телефон</string>
+    <string name="profileGroupCalendar">Календарь</string>
+    <string name="profileGroupGmail">Gmail</string>
+    <string name="profileGroupEmail">Email</string>
+    <string name="profileGroupSMS">SMS</string>
+
+    <!-- Name of wildcard profile. -->
+    <string name="wildcardProfile">Другой</string>
     <string name="serviceEnabled" msgid="8147278346414714315">"Служба включена."</string>
     <string name="serviceEnabledFor" msgid="6856228140453471041">"Служба подключена для:"</string>
     <string name="serviceDisabled" msgid="1937553226592516411">"Служба отключена."</string>
@@ -139,13 +155,53 @@
     <string name="turn_off_radio" msgid="8198784949987062346">"Отключить беспроводное соединение"</string>
     <string name="screen_lock" msgid="799094655496098153">"Блокировка экрана"</string>
     <string name="power_off" msgid="4266614107412865048">"Выключение"</string>
+    <!-- Button to reboot the phone, within the Phone Options dialog -->
+    <string name="reboot_system" product="tablet">Перезагрузка планшета</string>
+    <string name="reboot_system" product="default">Перезагрузка телефона</string>
+    <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
+    <!-- label for item that screenshots in phone options dialog -->
+    <string name="global_action_screenshot">Снимок экрана</string>
+
+    <string name="global_actions_toggle_expanded_desktop_mode">Расширенный экран</string>
+    <string name="global_actions_expanded_desktop_mode_on_status">Включен</string>
+    <string name="global_actions_expanded_desktop_mode_off_status">Выключен</string>
+
+    <!-- Button to reboot the phone, within the Reboot Options dialog -->
+    <string name="reboot_reboot">Перезагрузка</string>
+    <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
+    <string name="reboot_recovery">Рекавери</string>
+    <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
+    <string name="reboot_bootloader">Бутлоадер</string>
+    <!-- Button to reboot the phone into bootmenu, within the Reboot Options dialog -->
+    <string name="reboot_bootmenu">Загрузочное меню</string>
+    <!-- Button to reboot the phone into fastboot, within the Reboot Options dialog -->
+    <string name="reboot_fastboot">Fastboot</string>
+    <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
+    <string name="reboot_download">Скачивание</string>
+
+    <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
+    <string name="reboot_progress">Перезагрузка\u2026</string>
+    <!-- Reboot Confirmation Dialog.  When the user chooses to reboot the phone, there will be a confirmation dialog.  This is the message. -->
+    <string name="reboot_confirm">Ваш телефон будет перезагружен.</string>
+
     <string name="silent_mode_silent" msgid="319298163018473078">"Звонок отключен"</string>
     <string name="silent_mode_vibrate" msgid="7072043388581551395">"Вибросигнал"</string>
     <string name="silent_mode_ring" msgid="8592241816194074353">"Звонок включен"</string>
     <string name="shutdown_progress" msgid="2281079257329981203">"Выключение..."</string>
     <string name="shutdown_confirm" product="tablet" msgid="3385745179555731470">"Планшетный ПК будет отключен."</string>
     <string name="shutdown_confirm" product="default" msgid="649792175242821353">"Телефон будет выключен."</string>
+    <!-- Reboot Confirmation Dialog.  When the user chooses to reboot the phone, there will
+         be a confirmation dialog.  This is the message. -->
+    <string name="shutdown_confirm_reboot" product="tablet">Ваш планшет будет перезагружен.</string>
+    <!-- Reboot Confirmation Dialog.  When the user chooses to reboot the phone, there will
+         be a confirmation dialog.  This is the message. -->
+    <string name="shutdown_confirm_reboot" product="default">Ваш планшет будет перезагружен.</string>
     <string name="shutdown_confirm_question" msgid="2906544768881136183">"Завершить работу?"</string>
+    <!-- Reboot Confirmation Dialog.  When the user chooses to reboot the phone, it asks
+         the user if they'd like to reboot.  This is the message.  This is used instead of
+         shutdown_confirm_reboot when the system is configured to use long press to go directly to the
+         reboot dialog instead of the global actions menu. -->
+    <string name="shutdown_confirm_reboot_question">Перезагрузиться?</string>
     <string name="reboot_safemode_title" msgid="7054509914500140361">"Переход в безопасный режим"</string>
     <string name="reboot_safemode_confirm" msgid="55293944502784668">"Перейти в безопасный режим? Все приложения сторонних поставщиков отключатся. Они будут включены по возвращении в обычный режим."</string>
     <string name="recent_tasks_title" msgid="3691764623638127888">"Недавние"</string>
@@ -476,6 +532,17 @@
     <string name="permdesc_asec_rename" msgid="1794757588472127675">"Приложение сможет переименовывать внутреннее хранилище."</string>
     <string name="permlab_vibrate" msgid="7696427026057705834">"Управление функцией вибросигнала"</string>
     <string name="permdesc_vibrate" msgid="6284989245902300945">"Приложение сможет контролировать вибросигналы."</string>
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_fm_radio_receiver">Управление FM-приемником</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_fm_radio_receiver">Разрешает приложению управлять
+        FM-приемником.</string>
+
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_fm_radio_transmitter">Управление FM-передатчиком</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_fm_radio_transmitter">Разрешает приложению управлять
+        FM-передатчиком.</string>
     <string name="permlab_flashlight" msgid="2155920810121984215">"Управление вспышкой"</string>
     <string name="permdesc_flashlight" msgid="6522284794568368310">"Приложение сможет контролировать вспышку."</string>
     <string name="permlab_manageUsb" msgid="1113453430645402723">"управлять настройками и разрешениями для USB-устройств"</string>
@@ -762,6 +829,7 @@
     <string name="lockscreen_password_wrong" msgid="5737815393253165301">"Повторить попытку"</string>
     <string name="faceunlock_multiple_failures" msgid="754137583022792429">"Все попытки войти с помощью Фейсконтроля использованы"</string>
     <string name="lockscreen_plugged_in" msgid="8057762828355572315">"Идет зарядка (<xliff:g id="NUMBER">%d</xliff:g><xliff:g id="PERCENT">%%</xliff:g>)"</string>
+    <string name="lockscreen_discharging">Не заряжается (<xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g>)</string>
     <string name="lockscreen_charged" msgid="321635745684060624">"Заряжено"</string>
     <string name="lockscreen_battery_short" msgid="4477264849386850266">"<xliff:g id="NUMBER">%d</xliff:g><xliff:g id="PERCENT">%%</xliff:g>"</string>
     <string name="lockscreen_low_battery" msgid="1482873981919249740">"Подключите зарядное устройство"</string>
@@ -993,6 +1061,21 @@
     <string name="weeks" msgid="6509623834583944518">"нед."</string>
     <string name="year" msgid="4001118221013892076">"г."</string>
     <string name="years" msgid="6881577717993213522">"г."</string>
+    <!-- Phrase describing a time duration using seconds [CHAR LIMIT=16] -->
+    <plurals name="duration_seconds">
+        <item quantity="one">1 секунда</item>
+        <item quantity="other"><xliff:g id="count">%d</xliff:g> секунд</item>
+    </plurals>
+    <!-- Phrase describing a time duration using minutes [CHAR LIMIT=16] -->
+    <plurals name="duration_minutes">
+        <item quantity="one">1 минута</item>
+        <item quantity="other"><xliff:g id="count">%d</xliff:g> минут</item>
+    </plurals>
+    <!-- Phrase describing a time duration using hours [CHAR LIMIT=16] -->
+    <plurals name="duration_hours">
+    <item quantity="one">1 час</item>
+    <item quantity="other"><xliff:g id="count">%d</xliff:g> часов</item>
+</plurals>
     <string name="VideoView_error_title" msgid="3534509135438353077">"Ошибка"</string>
     <string name="VideoView_error_text_invalid_progressive_playback" msgid="3186670335938670444">"Это видео не предназначено для потокового воспроизведения на данном устройстве."</string>
     <string name="VideoView_error_text_unknown" msgid="3450439155187810085">"Не удалось воспроизвести видео."</string>
@@ -1213,7 +1296,7 @@
     <string name="permlab_route_media_output" msgid="1642024455750414694">"Перенаправление мультимедийных данных"</string>
     <string name="permdesc_route_media_output" msgid="4932818749547244346">"Приложение сможет направлять поток мультимедиа на другие внешние устройства."</string>
     <string name="tutorial_double_tap_to_zoom_message_short" msgid="4070433208160063538">"Нажмите дважды для изменения масштаба"</string>
-    <string name="gadget_host_error_inflating" msgid="4882004314906466162">"Не удалось добавить виджет."</string>
+    <string name="gadget_host_error_inflating" msgid="4882004314906466162">"Не удалось добавить виджет. Возможно, вы забыли его настроить."</string>
     <string name="ime_action_go" msgid="8320845651737369027">"Выбрать"</string>
     <string name="ime_action_search" msgid="658110271822807811">"Поиск"</string>
     <string name="ime_action_send" msgid="2316166556349314424">"Отправить"</string>
@@ -1378,6 +1461,10 @@
     <string name="sending" msgid="3245653681008218030">"Отправка..."</string>
     <string name="launchBrowserDefault" msgid="2057951947297614725">"Запустить браузер?"</string>
     <string name="SetupCallDefault" msgid="5834948469253758575">"Ответить?"</string>
+    <!-- Long-press back kill application -->
+    <string name="app_killed_message">Приложение закрыто</string>
+    <!-- Notification for Expanded desktop default -->
+    <string name="expanded_mode_default_set">Расширенный экран скрывает только строку состояния. Переключается в настройках меню "Параметры устройства"</string>
     <string name="activity_resolver_use_always" msgid="8017770747801494933">"Всегда"</string>
     <string name="activity_resolver_use_once" msgid="2404644797149173758">"Только сейчас"</string>
     <string name="default_audio_route_name" product="tablet" msgid="4617053898167127471">"Планшетный ПК"</string>
@@ -1444,4 +1531,13 @@
     <string name="enable_accessibility_canceled" msgid="3833923257966635673">"Специальные возможности не будут включены."</string>
     <string name="user_switched" msgid="3768006783166984410">"Выбран аккаунт пользователя <xliff:g id="NAME">%1$s</xliff:g>."</string>
     <string name="owner_name" msgid="2716755460376028154">"Владелец"</string>
+    <!-- label for item that reboots the phone in phone options dialog -->
+    <string name="global_action_reboot">Перезагрузка</string>
+
+    <!-- label for item that opens the profile choosing dialog -->
+    <string name="global_action_choose_profile">Выбрать профиль</string>
+
+    <!-- Hardware Rotation lock string -->
+    <string name="toast_rotation_unlocked">Поворот экрана разрешен</string>
+    <string name="toast_rotation_locked">Поворот экрана запрещен</string>
 </resources>
