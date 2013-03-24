@@ -91,7 +91,7 @@ public class NavigationBarView extends LinearLayout {
 
     private Drawable mBackIcon, mBackLandIcon, mBackAltIcon, mBackAltLandIcon;
     
-    private DelegateViewHelper mDelegateHelper;
+    public DelegateViewHelper mDelegateHelper;
     private DeadZone mDeadZone;
 
     private SettingsObserver mSettingsObserver;
