@@ -112,6 +112,7 @@ public class NavigationBarView extends LinearLayout {
     final static String ACTION_IME = "**ime**";
     final static String ACTION_LAST_APP = "**lastapp**";
     final static String ACTION_KILL = "**kill**";
+    final static String ACTION_WIDGETS = "**widgets**";
     final static String ACTION_NULL = "**null**";
 
     int mNumberOfButtons = 3;
@@ -216,10 +217,6 @@ public class NavigationBarView extends LinearLayout {
     }
 
     public View getRightMenuButton() {
-        return mCurrentView.findViewById(R.id.menu);
-    }
-
-    public View getMenuButton() {
         return mCurrentView.findViewById(R.id.menu);
     }
 
@@ -1093,6 +1090,9 @@ public class NavigationBarView extends LinearLayout {
             } else if (uri.equals(ACTION_KILL)) {
 
                 return getResources().getDrawable(R.drawable.ic_sysbar_killtask);
+            } else if (uri.equals(ACTION_WIDGETS)) {
+
+                return getResources().getDrawable(R.drawable.ic_sysbar_widget);
             } else if (uri.equals(ACTION_POWER)) {
 
                 return getResources().getDrawable(R.drawable.ic_sysbar_power);

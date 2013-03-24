@@ -56,7 +56,8 @@ public class CommandQueue extends IStatusBar.Stub {
     private static final int MSG_PRELOAD_RECENT_APPS        = 14 << MSG_SHIFT;
     private static final int MSG_CANCEL_PRELOAD_RECENT_APPS = 15 << MSG_SHIFT;
     private static final int MSG_SET_NAVIGATION_ICON_HINTS  = 16 << MSG_SHIFT;
-    private static final int MSG_TOGGLE_NOTIFICATION_SHADE = 17 << MSG_SHIFT;
+    private static final int MSG_TOGGLE_NOTIFICATION_SHADE  = 17 << MSG_SHIFT;
+    private static final int MSG_TOGGLE_WIDGETS             = 18 << MSG_SHIFT;
 
     public static final int FLAG_EXCLUDE_NONE = 0;
     public static final int FLAG_EXCLUDE_SEARCH_PANEL = 1 << 0;
@@ -95,6 +96,7 @@ public class CommandQueue extends IStatusBar.Stub {
         public void setHardKeyboardStatus(boolean available, boolean enabled);
         public void toggleNotificationShade();
         public void toggleRecentApps();
+        public void toggleWidgets();
         public void preloadRecentApps();
         public void showSearchPanel();
         public void hideSearchPanel();
@@ -220,6 +222,13 @@ public class CommandQueue extends IStatusBar.Stub {
         }
     }
 
+    public void toggleWidgets() {
+        synchronized (mList) {
+            mHandler.removeMessages(MSG_TOGGLE_WIDGETS);
+            mHandler.obtainMessage(MSG_TOGGLE_WIDGETS, 0, 0, null).sendToTarget();
+        }
+    }
+
     public void preloadRecentApps() {
         synchronized (mList) {
             mHandler.removeMessages(MSG_PRELOAD_RECENT_APPS);
@@ -311,6 +320,9 @@ public class CommandQueue extends IStatusBar.Stub {
                     break;
                 case MSG_TOGGLE_NOTIFICATION_SHADE:
                     mCallbacks.toggleNotificationShade();
+                    break;
+                case MSG_TOGGLE_WIDGETS:
+                    mCallbacks.toggleWidgets();
                     break;
                 case MSG_TOGGLE_RECENT_APPS:
                     mCallbacks.toggleRecentApps();

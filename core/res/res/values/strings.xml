@@ -3472,7 +3472,7 @@
 
     <!-- Shown in gadget hosts (e.g. the home screen) when there was an error inflating
     the gadget. -->
-    <string name="gadget_host_error_inflating">Couldn\'t add widget.</string>
+    <string name="gadget_host_error_inflating">Couldn\'t add widget. Maybe you forgot to setup your widget.</string>
 
     <!-- Long label for a button on a full-screen input method for the "Go" action. -->
     <string name="ime_action_go">Go</string>

@@ -30,6 +30,7 @@ import com.android.systemui.recent.RecentsActivity;
 import com.android.systemui.recent.TaskDescription;
 import com.android.systemui.statusbar.policy.NotificationRowLayout;
 import com.android.systemui.statusbar.tablet.StatusBarPanel;
+import com.android.systemui.statusbar.WidgetView;
 
 import android.app.ActivityManager;
 import android.app.ActivityManagerNative;
@@ -96,8 +97,11 @@ public abstract class BaseStatusBar extends SystemUI implements
     protected static final int MSG_CLOSE_SEARCH_PANEL = 1025;
     protected static final int MSG_SHOW_INTRUDER = 1026;
     protected static final int MSG_HIDE_INTRUDER = 1027;
+    protected static final int MSG_TOGGLE_WIDGETS = 1028;
 
     protected static final boolean ENABLE_INTRUDERS = false;
+
+    private WidgetView mWidgetView;
 
     // Should match the value in PhoneWindowManager
     public static final String SYSTEM_DIALOG_REASON_RECENT_APPS = "recentapps";
@@ -242,6 +246,7 @@ public abstract class BaseStatusBar extends SystemUI implements
         }
 
         createAndAddWindows();
+        mWidgetView = new WidgetView(mContext,null);
 
         disable(switches[0]);
         setSystemUiVisibility(switches[1], 0xffffffff);
@@ -411,6 +416,13 @@ public abstract class BaseStatusBar extends SystemUI implements
     @Override
     public void toggleRecentApps() {
         int msg = MSG_TOGGLE_RECENTS_PANEL;
+        mHandler.removeMessages(msg);
+        mHandler.sendEmptyMessage(msg);
+    }
+
+    @Override
+    public void toggleWidgets() {
+        int msg = MSG_TOGGLE_WIDGETS;
         mHandler.removeMessages(msg);
         mHandler.sendEmptyMessage(msg);
     }
@@ -700,6 +712,12 @@ public abstract class BaseStatusBar extends SystemUI implements
              case MSG_CANCEL_PRELOAD_RECENT_APPS:
                   cancelPreloadingRecentTasksList();
                   break;
+             case MSG_TOGGLE_WIDGETS:
+                 if (DEBUG) Slog.d(TAG, "toggle navbar widgets");
+                 Intent toggleWidgets = new Intent(
+                 WidgetView.WidgetReceiver.ACTION_TOGGLE_WIDGETS);
+                 mContext.sendBroadcast(toggleWidgets);
+                 break;
              case MSG_OPEN_SEARCH_PANEL:
                  if (DEBUG) Slog.d(TAG, "opening search panel");
                  if (mSearchPanelView != null) {
