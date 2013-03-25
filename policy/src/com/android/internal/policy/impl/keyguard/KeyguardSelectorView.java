@@ -508,6 +508,7 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
         mShortcuts = (KeyguardShortcuts) findViewById(R.id.shortcuts);
         if (mShortcuts != null) {
             mShortcuts.setKeyguardCallback(callback);
+            mShortcuts.setLauncher(mActivityLauncher);
         }
     }
 
