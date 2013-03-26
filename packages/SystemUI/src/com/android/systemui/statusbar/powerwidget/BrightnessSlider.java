@@ -37,10 +37,6 @@ import com.android.systemui.statusbar.policy.CurrentUserTracker;
 public class BrightnessSlider implements ToggleSlider.Listener {
     private static final String TAG = "StatusBar.BrightnessController";
 
-    // Backlight range is from 0 - 255. Need to make sure that user
-    // doesn't set the backlight to 0 and get stuck
-    private int mScreenBrightnessDim = android.os.PowerManager.BRIGHTNESS_DIM;
-
     private static final int MAXIMUM_BACKLIGHT = android.os.PowerManager.BRIGHTNESS_ON;
 
     private Context mContext;
@@ -61,9 +57,6 @@ public class BrightnessSlider implements ToggleSlider.Listener {
         mControl = (ToggleSlider) mView.findViewById(R.id.brightness);
 
         mUserTracker = new CurrentUserTracker(mContext);
-
-        mScreenBrightnessDim = mContext.getResources().getInteger(
-                com.android.internal.R.integer.config_screenBrightnessDim);
 
         boolean automaticAvailable = context.getResources().getBoolean(
                 com.android.internal.R.bool.config_automatic_brightness_available);
@@ -95,8 +88,8 @@ public class BrightnessSlider implements ToggleSlider.Listener {
             value = MAXIMUM_BACKLIGHT;
         }
 
-        mControl.setMax(MAXIMUM_BACKLIGHT - mScreenBrightnessDim);
-        mControl.setValue(value - mScreenBrightnessDim);
+        mControl.setMax(MAXIMUM_BACKLIGHT);
+        mControl.setValue(value);
 
         mControl.setOnChangedListener(this);
 
@@ -124,7 +117,7 @@ public class BrightnessSlider implements ToggleSlider.Listener {
         setMode(automatic ? Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC
                 : Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
         if (!automatic) {
-            final int val = value + mScreenBrightnessDim;
+            final int val = value;
             setBrightness(val);
             if (!tracking && !skip) {
                 AsyncTask.execute(new Runnable() {
