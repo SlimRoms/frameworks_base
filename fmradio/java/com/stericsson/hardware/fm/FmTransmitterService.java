@@ -357,8 +357,8 @@ public class FmTransmitterService extends IFmTransmitter.Stub {
 
     /* Returns true if airplane mode is currently on */
     private boolean isAirplaneModeOn() {
-        return Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.AIRPLANE_MODE_ON, 0) == 1;
+        return Settings.Global.getInt(mContext.getContentResolver(),
+                Settings.Global.AIRPLANE_MODE_ON, 0) == 1;
     }
 
     public FmTransmitterService(Context context) {

@@ -685,7 +685,7 @@ public class ConnectionUtil {
      */
     public void setAirplaneMode(Context context, boolean enableAM) {
         //set the airplane mode
-        Settings.System.putInt(context.getContentResolver(), Settings.System.AIRPLANE_MODE_ON,
+        Settings.Global.putInt(context.getContentResolver(), Settings.Global.AIRPLANE_MODE_ON,
                 enableAM ? 1 : 0);
         // Post the intent
         Intent intent = new Intent(Intent.ACTION_AIRPLANE_MODE_CHANGED);
