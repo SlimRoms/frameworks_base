@@ -486,12 +486,18 @@ public class AudioManager {
                 if (shouldSuppressVolumeKey()) {
                     direction = ADJUST_SAME;
                 } else {
-                    boolean swapKeys = Settings.System.getInt(mContext.getContentResolver(),
-                            Settings.System.SWAP_VOLUME_KEYS_BY_ROTATE, 0) == 1;
+                    int swapKeys = Settings.System.getInt(mContext.getContentResolver(),
+                            Settings.System.SWAP_VOLUME_KEYS_BY_ROTATE, 0);
                     int rotation = mWindowManager.getDefaultDisplay().getRotation();
-                    if (swapKeys
+                    if (swapKeys == 1 // phone or hybrid
                             && (rotation == Surface.ROTATION_90
-                            ||  rotation == Surface.ROTATION_180)) {
+                            || rotation == Surface.ROTATION_180)) {
+                        direction = keyCode == KeyEvent.KEYCODE_VOLUME_UP
+                                ? ADJUST_LOWER
+                                : ADJUST_RAISE;
+                    } else if (swapKeys == 2 // tablet
+                            && (rotation == Surface.ROTATION_180
+                            || rotation == Surface.ROTATION_270)) {
                         direction = keyCode == KeyEvent.KEYCODE_VOLUME_UP
                                 ? ADJUST_LOWER
                                 : ADJUST_RAISE;
