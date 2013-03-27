@@ -805,12 +805,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (upgradeVersion == 58) {
             /* Add default for new Auto Time Zone */
-            int autoTimeValue = getIntValueFromSystem(db, Settings.System.AUTO_TIME, 0);
+            int autoTimeValue = getIntValueFromSystem(db, Settings.Global.AUTO_TIME, 0);
             db.beginTransaction();
             SQLiteStatement stmt = null;
             try {
                 stmt = db.compileStatement("INSERT INTO system(name,value)" + " VALUES(?,?);");
-                loadSetting(stmt, Settings.System.AUTO_TIME_ZONE,
+                loadSetting(stmt, Settings.Global.AUTO_TIME_ZONE,
                         autoTimeValue); // Sync timezone to NITZ if auto_time was enabled
                 db.setTransactionSuccessful();
             } finally {
