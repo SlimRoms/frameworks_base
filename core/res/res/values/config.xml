@@ -317,6 +317,10 @@
          Software implementation will be used if config_hardware_auto_brightness_available is not set -->
     <bool name="config_automatic_brightness_available">false</bool>
 
+    <!-- Flag indicating whether the we should enable the automatic brightness adjust in Settings. 
+         this flage depends on the config_automatic_brightness_available -->
+    <bool name="config_automatic_adjust_brightness_available">true</bool>
+
     <!-- Don't name config resources like this.  It should look like config_annoyDianne -->
     <bool name="config_annoy_dianne">true</bool>
 
