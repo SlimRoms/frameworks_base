@@ -195,7 +195,7 @@
     <string name="shutdown_confirm_reboot" product="tablet">Ваш планшет будет перезагружен.</string>
     <!-- Reboot Confirmation Dialog.  When the user chooses to reboot the phone, there will
          be a confirmation dialog.  This is the message. -->
-    <string name="shutdown_confirm_reboot" product="default">Ваш планшет будет перезагружен.</string>
+    <string name="shutdown_confirm_reboot" product="default">Ваш телефон будет перезагружен.</string>
     <string name="shutdown_confirm_question" msgid="2906544768881136183">"Завершить работу?"</string>
     <!-- Reboot Confirmation Dialog.  When the user chooses to reboot the phone, it asks
          the user if they'd like to reboot.  This is the message.  This is used instead of
