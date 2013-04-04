@@ -822,7 +822,7 @@
     <string name="keyguard_accessibility_password_unlock">Sblocco con password.</string>
     <string name="keyguard_accessibility_pattern_area">Area sequenza.</string>
     <string name="keyguard_accessibility_slide_area">Area di scorrimento.</string>
-    <string name="password_keyboard_label_symbol_key">?123</string>
+    <string name="password_keyboard_label_symbol_key">\?123</string>
     <string name="password_keyboard_label_alpha_key">ABC</string>
     <string name="password_keyboard_label_alt_key">ALT</string>
     <string name="granularity_label_character">carattere</string>
