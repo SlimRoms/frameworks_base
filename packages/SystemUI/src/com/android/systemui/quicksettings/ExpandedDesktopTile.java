@@ -71,6 +71,7 @@ public class ExpandedDesktopTile extends QuickSettingsTile {
         qsc.registerObservedContent(Settings.System.getUriFor(Settings.System.EXPANDED_DESKTOP_STATE), this);
     }
 
+    @Override
     void onPostCreate() {
         updateTile();
         super.onPostCreate();
@@ -86,6 +87,7 @@ public class ExpandedDesktopTile extends QuickSettingsTile {
             mDrawable = R.drawable.ic_qs_expanded_desktop_off;
             mLabel = mContext.getString(R.string.quick_settings_expanded_desktop_off);
         }
+        updateQuickSettings();
     }
 
     @Override
