@@ -2575,6 +2575,209 @@ public final class Settings {
         public static final String POINTER_SPEED = "pointer_speed";
 
         /**
+         * Whether to enable pie controls
+         * The value is 1, 2 or 0).
+         * Default: 0
+         * On expanded desktop: 1
+         * always: 2
+         * @hide
+         */
+        public static final String PIE_CONTROLS = "pie_controls";
+
+        /**
+         * Pie show text (0 or 1)
+         * @hide
+         */
+        public static final String PIE_SHOW_TEXT = "pie_show_text";
+
+        /**
+         * Pie disable redundant statusbar infos (0 or 1)
+         * @hide
+         */
+        public static final String PIE_DISABLE_STATUSBAR_INFO = "pie_disable_statusbar_info";
+
+        /**
+         * Pie show snap (0 or 1)
+         * @hide
+         */
+        public static final String PIE_SHOW_SNAP = "pie_show_snap";
+
+        /**
+         * Pie show background (0 or 1)
+         * @hide
+         */
+        public static final String PIE_SHOW_BACKGROUND = "pie_show_background";
+
+        /**
+         * Locations of the pie in the screen.
+         * (1<<0) = LEFT
+         * (1<<1) = BOTTOM
+         * (1<<2) = RIGHT
+         * (1<<3) = TOP
+         * Default: LEFT
+         * @hide
+         */
+        public static final String PIE_GRAVITY = "pie_gravity";
+
+        /**
+         * Mask for the locations of the pie for certain UI situations
+         * (1<<0) = LEFT
+         * (1<<1) = BOTTOM
+         * (1<<2) = RIGHT
+         * (1<<3) = TOP
+         * Default: LEFT
+         * @hide
+         */
+        public static final String PIE_TRIGGER_MASK = "pie_trigger_mask";
+
+        /**
+         * Relative pie size (fraction)
+         * Default: 1.0f
+         * @hide
+         */
+        public static final String PIE_SIZE = "pie_size";
+
+        /**
+         * Relative pie trigger size
+         * @hide
+         */
+        public static final String PIE_TRIGGER_SIZE = "pie_trigger_size";
+
+        /**
+         * Show pie trigger
+         * @hide
+         */
+        public static final String PIE_TRIGGER_SHOW = "pie_trigger_show";
+
+        /**
+         * Pie IME softkeyboard state toggle (0 or 1)
+         * @hide
+         */
+        public static final String PIE_SOFTKEYBOARD_IS_SHOWING = "pie_softkeyboard_is_showing";
+
+        /**
+         * Pie allow to adjust triggers if IME is showing (0 or 1)
+         * @hide
+         */
+        public static final String PIE_ADJUST_TRIGGER_FOR_IME = "pie_adjust_trigger_for_ime";
+
+        /**
+         * Pie button color
+         * @hide
+         */
+        public static final String PIE_BUTTON_COLOR = "pie_button_color";
+
+        /**
+         * Pie button press color
+         * @hide
+         */
+        public static final String PIE_BUTTON_PRESSED_COLOR = "pie_button_pressed_color";
+
+        /**
+         * Pie button long press color
+         * @hide
+         */
+        public static final String PIE_BUTTON_LONG_PRESSED_COLOR = "pie_button_long_pressed_color";
+
+        /**
+         * Pie button outline color
+         * @hide
+         */
+        public static final String PIE_BUTTON_OUTLINE_COLOR = "pie_button_outline_color";
+
+        /**
+         * Pie background color
+         * @hide
+         */
+        public static final String PIE_BACKGROUND_COLOR = "pie_background_color";
+
+        /**
+         * Pie snap color
+         * @hide
+         */
+        public static final String PIE_SNAP_COLOR = "pie_snap_color";
+
+        /**
+         * Pie text color
+         * @hide
+         */
+        public static final String PIE_TEXT_COLOR = "pie_text_color";
+
+        /**
+         * Pie icon color
+         * @hide
+         */
+        public static final String PIE_ICON_COLOR = "pie_icon_color";
+
+        /**
+         * Pie icon color mode
+         * @hide
+         */
+        public static final String PIE_ICON_COLOR_MODE = "pie_icon_color_mode";
+
+        /**
+         * Pie button alpha
+         * @hide
+         */
+        public static final String PIE_BUTTON_ALPHA = "pie_button_alpha";
+
+        /**
+         * Pie button pressed and long pressed alpha
+         * @hide
+         */
+        public static final String PIE_BUTTON_PRESSED_ALPHA = "pie_button_pressed_alpha";
+
+        /**
+         * Pie background alpha
+         * @hide
+         */
+        public static final String PIE_BACKGROUND_ALPHA = "pie_background_alpha";
+
+        /**
+         * @hide
+         */
+        public static final String PIE_BUTTONS_QTY = "pie_buttons_qty";
+
+        /**
+         * @hide
+         */
+        public static final String[] PIE_CUSTOM_ACTIVITIES = new String[] {
+            "pie_custom_intent_0",
+            "pie_custom_intent_1",
+            "pie_custom_intent_2",
+            "pie_custom_intent_3",
+            "pie_custom_intent_4",
+        };
+
+        /**
+         * @hide
+         */
+        public static final String[] PIE_LONGPRESS_ACTIVITIES = new String[] {
+            "pie_longpress_intent_0",
+            "pie_longpress_intent_1",
+            "pie_longpress_intent_2",
+            "pie_longpress_intent_3",
+            "pie_longpress_intent_4",
+        };
+
+        /**
+         * @hide
+         */
+        public static final String[] PIE_CUSTOM_ICONS = new String[] {
+            "pie_custom_icon_0",
+            "pie_custom_icon_1",
+            "pie_custom_icon_2",
+            "pie_custom_icon_3",
+            "pie_custom_icon_4",
+        };
+
+       /**
+        *
+        * @hide
+        */
+        public static final String PIE_LONG_PRESS_ENABLE = "pie_long_press_enable";
+
+        /**
          * Quick Settings Panel Tiles to Use
          *
          * @hide

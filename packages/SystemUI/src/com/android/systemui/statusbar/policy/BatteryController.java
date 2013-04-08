@@ -59,7 +59,7 @@ public class BatteryController extends BroadcastReceiver {
     public  static final int BATTERY_STYLE_CIRCLE_PERCENT        = 4;
     public  static final int BATTERY_STYLE_DOTTED_CIRCLE         = 5;
     public  static final int BATTERY_STYLE_DOTTED_CIRCLE_PERCENT = 6;
-    private static final int BATTERY_STYLE_GONE                  = 7;
+    public static final int BATTERY_STYLE_GONE                  = 7;
 
     private static final int BATTERY_ICON_STYLE_NORMAL      = R.drawable.stat_sys_battery;
     private static final int BATTERY_ICON_STYLE_CHARGE      = R.drawable.stat_sys_battery_charge;
@@ -87,6 +87,9 @@ public class BatteryController extends BroadcastReceiver {
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_BATTERY),
+                    false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.PIE_DISABLE_STATUSBAR_INFO),
                     false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_BATTERY_TEXT_COLOR),
@@ -230,6 +233,11 @@ public class BatteryController extends BroadcastReceiver {
 
         mBatteryStyle = (Settings.System.getInt(resolver,
                 Settings.System.STATUS_BAR_BATTERY, 0));
+
+        if (Settings.System.getInt(resolver,
+                Settings.System.PIE_DISABLE_STATUSBAR_INFO, 0) == 1) {
+            mBatteryStyle = BATTERY_STYLE_GONE;
+        }
 
         mTextColor = Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.STATUS_BAR_BATTERY_TEXT_COLOR, -2);

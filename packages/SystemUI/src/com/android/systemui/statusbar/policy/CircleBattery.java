@@ -112,6 +112,9 @@ public class CircleBattery extends ImageView {
                     Settings.System.STATUS_BAR_BATTERY),
                     false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.PIE_DISABLE_STATUSBAR_INFO),
+                    false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_CIRCLE_BATTERY_COLOR),
                     false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
@@ -303,6 +306,10 @@ public class CircleBattery extends ImageView {
 
         mBatteryStyle = (Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.STATUS_BAR_BATTERY, 0));
+        if (Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.PIE_DISABLE_STATUSBAR_INFO, 0) == 1) {
+            mBatteryStyle = BatteryController.BATTERY_STYLE_GONE;
+        }
 
         mCircleColor = (Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.STATUS_BAR_CIRCLE_BATTERY_COLOR, -2));
