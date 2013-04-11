@@ -23,7 +23,6 @@ import com.android.internal.util.MemInfoReader;
 import com.android.server.wm.WindowManagerService;
 
 import android.graphics.Point;
-import android.os.SystemProperties;
 import android.util.Slog;
 import android.view.Display;
 
@@ -44,7 +43,7 @@ class ProcessList {
 
     // The B list of SERVICE_ADJ -- these are the old and decrepit
     // services that aren't as shiny and interesting as the ones in the A list.
-    static final int SERVICE_B_ADJ = 12;
+    static final int SERVICE_B_ADJ = 8;
 
     // This is the process of the previous application that the user was in.
     // This process is kept above other things, because it is very common to
@@ -52,25 +51,25 @@ class ProcessList {
     // task switch (toggling between the two top recent apps) as well as normal
     // UI flow such as clicking on a URI in the e-mail app to view in the browser,
     // and then pressing back to return to e-mail.
-    static final int PREVIOUS_APP_ADJ = 5;
+    static final int PREVIOUS_APP_ADJ = 7;
 
     // This is a process holding the home application -- we want to try
     // avoiding killing it, even if it would normally be in the background,
     // because the user interacts with it so much.
-    static final int HOME_APP_ADJ = 3;
+    static final int HOME_APP_ADJ = 6;
 
     // This is a process holding an application service -- killing it will not
     // have much of an impact as far as the user is concerned.
-    static final int SERVICE_ADJ = 6;
+    static final int SERVICE_ADJ = 5;
 
     // This is a process currently hosting a backup operation.  Killing it
     // is not entirely fatal but is generally a bad idea.
-    static final int BACKUP_APP_ADJ = 7;
+    static final int BACKUP_APP_ADJ = 4;
 
     // This is a process with a heavy-weight application.  It is in the
     // background, but we want to try to avoid killing it.  Value set in
     // system/rootdir/init.rc on startup.
-    static final int HEAVY_WEIGHT_APP_ADJ = 4;
+    static final int HEAVY_WEIGHT_APP_ADJ = 3;
 
     // This is a process only hosting components that are perceptible to the
     // user, and we really want to avoid killing them, but they are not
@@ -102,19 +101,7 @@ class ProcessList {
     // The maximum number of hidden processes we will keep around before
     // killing them; this is just a control to not let us go too crazy with
     // keeping around processes on devices with large amounts of RAM.
-    static final int MAX_HIDDEN_APPS;
-
-    static {
-        // Allow more hidden apps on huge memory devices (1.5GB or higher)
-        // or fetch from the system property
-        // <512MB - 15
-        // <1.5GB - 25
-        // >1.5GB - 40
-        MemInfoReader mi = new MemInfoReader();
-        MAX_HIDDEN_APPS = SystemProperties.getInt("sys.mem.max_hidden_apps",
-                (mi.getTotalSize() > (1.5*1024*1024)) ? 40 :
-                (mi.getTotalSize() < (512*1024)) ? 15 : 25);
-    }
+    static final int MAX_HIDDEN_APPS = 24;
 
     // We allow empty processes to stick around for at most 30 minutes.
     static final long MAX_EMPTY_TIME = 30*60*1000;
