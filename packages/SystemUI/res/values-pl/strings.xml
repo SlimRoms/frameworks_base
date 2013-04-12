@@ -152,6 +152,7 @@
     <string name="accessibility_quick_settings_airplane">Tryb samolotowy: <xliff:g id="STATE">%s</xliff:g>.</string>
     <string name="accessibility_quick_settings_bluetooth">Bluetooth: <xliff:g id="STATE">%s</xliff:g>.</string>
     <string name="accessibility_quick_settings_alarm">Alarm ustawiony na <xliff:g id="TIME">%s</xliff:g>.</string>
+    <string name="qs_shortcut_long_press">Przytrzymaj</string>
     <string name="data_usage_disabled_dialog_3g_title">Wyłączono transmisję danych 2G/3G</string>
     <string name="data_usage_disabled_dialog_4g_title">Wyłączono transmisję danych 4G</string>
     <string name="data_usage_disabled_dialog_mobile_title">Wyłączono komórkową transmisję danych</string>

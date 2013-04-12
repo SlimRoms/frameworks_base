@@ -152,6 +152,7 @@
     <string name="accessibility_quick_settings_airplane">Režim V letadle: <xliff:g id="STATE">%s</xliff:g>.</string>
     <string name="accessibility_quick_settings_bluetooth">Bluetooth: <xliff:g id="STATE">%s</xliff:g>.</string>
     <string name="accessibility_quick_settings_alarm">Budík je nastaven na <xliff:g id="TIME">%s</xliff:g>.</string>
+    <string name="qs_shortcut_long_press">Podržení</string>
     <string name="data_usage_disabled_dialog_3g_title">Datové přenosy 2G a 3G jsou zakázány</string>
     <string name="data_usage_disabled_dialog_4g_title">Datové přenosy 4G jsou zakázány</string>
     <string name="data_usage_disabled_dialog_mobile_title">Mobilní data jsou zakázána</string>
