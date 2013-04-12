@@ -28,6 +28,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
+import android.view.View.OnLayoutChangeListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -42,19 +43,26 @@ public class QuickSettingsTile implements OnClickListener {
     protected final Context mContext;
     protected final ViewGroup mContainerView;
     protected final LayoutInflater mInflater;
+
     protected QuickSettingsTileView mTile;
     protected OnClickListener mOnClick;
     protected OnLongClickListener mOnLongClick;
+
     protected int mTileLayout;
     protected int mDrawable;
-    protected String mLabel;
-    protected PhoneStatusBar mStatusbarService;
-    protected QuickSettingsController mQsc;
-    protected String tileID = "0";
     protected int mTileTextSize;
     protected int mTileTextColor;
+    public static int mTileSize = 141;
 
-    public QuickSettingsTile(Context context, LayoutInflater inflater, QuickSettingsContainerView container, QuickSettingsController qsc) {
+    protected String mLabel;
+    protected String name = "";
+    protected String tileID = "0";
+
+    protected PhoneStatusBar mStatusbarService;
+    protected QuickSettingsController mQsc;
+
+    public QuickSettingsTile(Context context, LayoutInflater inflater,
+            QuickSettingsContainerView container, QuickSettingsController qsc) {
         mContext = context;
         mContainerView = container;
         mInflater = inflater;
@@ -65,6 +73,7 @@ public class QuickSettingsTile implements OnClickListener {
         mTileLayout = R.layout.quick_settings_tile_generic;
         mTileTextSize = ((QuickSettingsContainerView) mContainerView).updateTileTextSize();
         mTileTextColor = ((QuickSettingsContainerView) mContainerView).updateTileTextColor();
+        mTileSize = mContext.getResources().getDimensionPixelSize(R.dimen.quick_settings_cell_height);
     }
 
     public void setupQuickSettingsTile() {
@@ -79,9 +88,22 @@ public class QuickSettingsTile implements OnClickListener {
         mTile = (QuickSettingsTileView) mInflater.inflate(R.layout.quick_settings_tile, mContainerView, false);
         mTile.setContent(mTileLayout, mInflater);
         mContainerView.addView(mTile);
+        mTile.addOnLayoutChangeListener(new OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View v, int left, int top, int right, int bottom,
+                    int oldLeft, int oldTop, int oldRight, int oldBottom)
+            {
+                if (left == 0 && top == 0 && right == 0 && bottom == 0)
+                    return;
+                int newSize = v.getHeight();
+                if (newSize > 0 && newSize != mTileSize) {
+                    mTileSize = newSize;
+                }
+            }
+        });
     }
 
-    void onPostCreate(){}
+    void onPostCreate() {}
 
     public void onReceive(Context context, Intent intent) {}
 
@@ -128,4 +150,7 @@ public class QuickSettingsTile implements OnClickListener {
         }
     }
 
+    public String getTileContent() {
+        return name;
+    }
 }

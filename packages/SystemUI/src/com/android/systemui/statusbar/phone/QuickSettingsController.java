@@ -36,14 +36,17 @@ import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.ViewGroup;
 import com.android.systemui.quicksettings.QuickSettingsTile;
 import com.android.systemui.quicksettings.InputMethodTile;
 
 import dalvik.system.DexClassLoader;
+import android.content.SharedPreferences;
+import java.util.Map;
 
 public class QuickSettingsController {
     private static String TAG = "QuickSettingsController";
+
+    public HashMap<String, QuickSettingsTile> allTilesMap;
 
     // Stores the broadcast receivers and content observers
     // quick tiles register for.
@@ -61,6 +64,7 @@ public class QuickSettingsController {
      */
     public static final String TILE_AIRPLANE = "toggleAirplane";
     public static final String TILE_ALARM = "toggleAlarm";
+    public static final String TILE_CUSTOMSHORTCUT = "toggleCustomShortcut";
     public static final String TILE_AUTOROTATE = "toggleAutoRotate";
     public static final String TILE_BATTERY = "toggleBattery";
     public static final String TILE_BLUETOOTH = "toggleBluetooth";
@@ -99,6 +103,7 @@ public class QuickSettingsController {
     static {
         TILES_CLASSES.put(TILE_AIRPLANE, "com.android.systemui.quicksettings.AirplaneModeTile");
         TILES_CLASSES.put(TILE_ALARM, "com.android.systemui.quicksettings.AlarmTile");
+        TILES_CLASSES.put(TILE_CUSTOMSHORTCUT, "com.android.systemui.quicksettings.CustomShortcutTile");
         TILES_CLASSES.put(TILE_AUTOROTATE, "com.android.systemui.quicksettings.AutoRotateTile");
         TILES_CLASSES.put(TILE_BATTERY, "com.android.systemui.quicksettings.BatteryTile");
         TILES_CLASSES.put(TILE_BLUETOOTH, "com.android.systemui.quicksettings.BluetoothTile");
@@ -205,11 +210,17 @@ public class QuickSettingsController {
     void addQuickSettings(LayoutInflater inflater){
         // Load the user configured tiles
         loadTiles();
+        // clean tiles data
+        cleanTilesContent();
         if (tiles.equals("")) return;
         if (tiles.startsWith("|")) tiles = tiles.substring(1);
         StringTokenizer st;
         String tileName;
         String instanceID ="0";
+        if (allTilesMap != null) {
+            allTilesMap.clear();
+        }
+        allTilesMap = new HashMap<String, QuickSettingsTile>();
         // Split out the tile names and add to the list
         for (String tile : tiles.split("\\|")) {
             QuickSettingsTile qs = null;
@@ -228,9 +239,37 @@ public class QuickSettingsController {
             if (tileName.equals(TILE_IME)) this.IMETile = (InputMethodTile) qs;
             if (qs != null) {
                 qs.setupQuickSettingsTile();
+                allTilesMap.put(tile, qs);
             }
         }
         Log.e("\r\n\r\n"+TAG, "All tiles sucessfully created");
+        updateTilesContent();
+    }
+
+    private void cleanTilesContent() {
+        SharedPreferences allPrefs = mContext.getSharedPreferences("QuickSettingsTilesContent", 0);
+        Map<String, ?> allTiles = allPrefs.getAll();
+        for (String mTileID : allTiles.keySet()){
+            if (!tiles.contains(mTileID)){
+                allPrefs.edit().remove(mTileID).apply();
+            }
+        }
+    }
+
+    public void updateTilesContent() {
+        String tilesContentString = "";
+        for (String mTileID : allTilesMap.keySet()){
+            if (mTileID.contains("+")) {
+                String tileContent = allTilesMap.get(mTileID).getTileContent();
+                if (tiles.contains(mTileID) && tileContent != null && !tileContent.equals("")) {
+                    tilesContentString += "|" + mTileID + "=" + tileContent;
+                }
+            }
+        }
+        String finalContent = tilesContentString.length() > 0 ? tilesContentString.substring(1) : "";
+        Log.i(getClass().getSimpleName(), "settings tile contents: " + finalContent);
+        Settings.System.putString(mContext.getContentResolver(),
+            Settings.System.QUICK_SETTINGS_TILE_CONTENT, finalContent);
     }
 
     public void setupQuickSettings() {
