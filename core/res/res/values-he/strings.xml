@@ -1,0 +1,1791 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="byteShort">B</string>
+    <string name="kilobyteShort">KB</string>
+    <string name="megabyteShort">MB</string>
+    <string name="gigabyteShort">GB</string>
+    <string name="terabyteShort">TB</string>
+    <string name="petabyteShort">PB</string>
+    <string name="fileSizeSuffix"><xliff:g id="number" example="123">%1$s</xliff:g><xliff:g id="unit" example="KB">%2$s</xliff:g></string>
+    <string name="untitled">&lt;ללא שם&gt;</string>
+    <string name="ellipsis">\u2026</string>
+    <string name="ellipsis_two_dots">\u2025</string>
+    <string name="emptyPhoneNumber">(ללא מספר)</string>
+    <string name="unknownName">(לא ידוע)</string>
+    <string name="defaultVoiceMailAlphaTag">תא קולי</string>
+    <string name="defaultMsisdnAlphaTag">MSISDN1</string>
+    <string name="mmiError">בעיית חיבור או קוד MMI לא תקף.</string>
+    <string name="mmiFdnError">הפעולה מוגבלת למספרי חיוג קבועים בלבד.</string>
+    <string name="profileNameDefault">ברירת מחדל</string>
+    <string name="profileNameWork">עבודה</string>
+    <string name="profileNameHome">בית</string>
+    <string name="profileNameSilent">השתק</string>
+    <string name="profileNameNight">לילה</string>
+    <string name="profileGroupPhone">טלפון</string>
+    <string name="profileGroupCalendar">יומן</string>
+    <string name="profileGroupGmail">Gmail</string>
+    <string name="profileGroupEmail">דואר</string>
+    <string name="profileGroupSMS">סמס</string>
+    <string name="wildcardProfile">אחרים</string>
+    <string name="serviceEnabled">השרות הופעל.</string>
+    <string name="serviceEnabledFor">השרות הופעל עבור:</string>
+    <string name="serviceDisabled">השרות הופסק.</string>
+    <string name="serviceRegistered">הרישום הצליח.</string>
+    <string name="serviceErased">המחיקה הצליחה.</string>
+    <string name="passwordIncorrect">סיסמה שגויה.</string>
+    <string name="mmiComplete">MMI הושלם.</string>
+    <string name="badPin">קוד ה-PIN הישן שהוקלד שגוי.</string>
+    <string name="badPuk">קוד ה-PUK שהקלדת שגוי.</string>
+    <string name="mismatchPin">קודי ה-PIN שהקלדת אינם תואמים.</string>
+    <string name="invalidPin">הקלד קוד PIN שמכיל 4 עד 8 ספרות.</string>
+    <string name="invalidPuk">הקלד קוד PUK שמכיל 8 ספרות או יותר.</string>
+    <string name="needPuk">כרטיס הסים נעול בקוד PUK. הקלד את קוד ה-PUK לפתוח אותו.</string>
+    <string name="needPuk2">הקלד קוד PUK2 לפתוח את כרטיס הסים.</string>
+    <string name="imei">IMEI</string>
+    <string name="meid">MEID</string>
+    <string name="ClipMmi">זיהוי שיחה נכנסת</string>
+    <string name="ClirMmi">זיהוי שיחה יוצאת</string>
+    <string name="CfMmi">הפניית שיחה</string>
+    <string name="CwMmi">שיחה ממתינה</string>
+    <string name="BaMmi">חסימת שיחות</string>
+    <string name="PwdMmi">שינוי סיסמה</string>
+    <string name="PinMmi">שינוי PIN</string>
+    <string name="CnipMmi">חיוג מספר קיים</string>
+    <string name="CnirMmi">מספר חסום</string>
+    <string name="ThreeWCMmi">שיחת ועידה</string>
+    <string name="RuacMmi">דחיית שיחות בלתי רצויות</string>
+    <string name="CndMmi">משלוח מספר טלפון</string>
+    <string name="DndMmi">נא לא להפריע</string>
+    <string name="CLIRDefaultOnNextCallOn">ברירת מחדל לשיחה מזוהה לחסום. בשיחה הבאה: חסום</string>
+    <string name="CLIRDefaultOnNextCallOff">ברירת מחדל לשיחה מזוהה לחסום. בשיחה הבאה: לא חסום</string>
+    <string name="CLIRDefaultOffNextCallOn">שחזר ברירת מחדל לשיחה מזוהה לא חסום. בשיחה הבאה: חסום</string>
+    <string name="CLIRDefaultOffNextCallOff">שחזר ברירת מחדל לשיחה מזוהה לא חסום. בשיחה הבאה: לא חסום</string>
+    <string name="serviceNotProvisioned">השירות אינו מפוקח.</string>
+    <string name="CLIRPermanent">אין באפשרותך לשנות את הגדרת שיחה מזוהה.</string>
+    <string name="RestrictedChangedTitle">גישה מוגבלת שונתה</string>
+    <string name="RestrictedOnData">שירות נתונים חסום.</string>
+    <string name="RestrictedOnEmergency">שירות חירום חסום.</string>
+    <string name="RestrictedOnNormal">שירות קולי חסום.</string>
+    <string name="RestrictedOnAllVoice">כל שירותי הקול חסומים.</string>
+    <string name="RestrictedOnSms">שירות מסרונים חסום.</string>
+    <string name="RestrictedOnVoiceData">שירותי קול/נתונים חסומים.</string>
+    <string name="RestrictedOnVoiceSms">שרותי קול/מסרונים חסומים.</string>
+    <string name="RestrictedOnAll">כל שרותי קול/נתונים/מסרונים חסומים.</string>
+    <string name="serviceClassVoice">קול</string>
+    <string name="serviceClassData">נתונים</string>
+    <string name="serviceClassFAX">פקס</string>
+    <string name="serviceClassSMS">סמס</string>
+    <string name="serviceClassDataAsync">Async</string>
+    <string name="serviceClassDataSync">סינכרון</string>
+    <string name="serviceClassPacket">חבילה</string>
+    <string name="serviceClassPAD">PAD</string>
+    <string name="roamingText0">מחוון נדידה מופעל</string>
+    <string name="roamingText1">מחוון נדידה כבוי</string>
+    <string name="roamingText2">מחוון נדידה מהבהב</string>
+    <string name="roamingText3">מחוץ לסביבה</string>
+    <string name="roamingText4">מחוץ לבנין</string>
+    <string name="roamingText5">נדידה - מערכת מועדפת</string>
+    <string name="roamingText6">נדידה - מערכת זמינה</string>
+    <string name="roamingText7">נדידה - שותף לברית</string>
+    <string name="roamingText8">נדידה - שותף פרימיום</string>
+    <string name="roamingText9">נדידה - פונקציונאליות שרות מלאה</string>
+    <string name="roamingText10">נדידה - פונקציונאליות שרות חלקית</string>
+    <string name="roamingText11">סמל נדידה מופעל</string>
+    <string name="roamingText12">סמל נדידה כבוי</string>
+    <string name="roamingTextSearching">מחפש שירות</string>
+    <string name="cfTemplateNotForwarded"><xliff:g id="bearer_service_code">{0}</xliff:g>: לא מועבר</string>
+    <string name="cfTemplateForwarded"><xliff:g id="bearer_service_code">{0}</xliff:g>: <xliff:g id="dialing_number">{1}</xliff:g></string>
+    <string name="cfTemplateForwardedTime"><xliff:g id="bearer_service_code">{0}</xliff:g>: <xliff:g id="dialing_number">{1}</xliff:g> לאחר <xliff:g id="time_delay">{2}</xliff:g> שניות</string>
+    <string name="cfTemplateRegistered"><xliff:g id="bearer_service_code">{0}</xliff:g>: לא מועבר</string>
+    <string name="cfTemplateRegisteredTime"><xliff:g id="bearer_service_code">{0}</xliff:g>: לא מועבר</string>
+    <string name="fcComplete">קוד המאפיין הושלם.</string>
+    <string name="fcError">תקלה בקישור או קוד לא חוקי.</string>
+    <string name="httpErrorOk">אוקיי</string>
+    <string name="httpError">אירעה שגיאת רשת.</string>
+    <string name="httpErrorLookup">לא הצלחתי למצוא את כתובת ה-URL.</string>
+    <string name="httpErrorUnsupportedAuthScheme">סכימת האימות באתר אינה נתמכת.</string>
+    <string name="httpErrorAuth">לא היתה אפשרות לאמת.</string>
+    <string name="httpErrorProxyAuth">אימות באמצעות שרת ה-proxy לא הצליח.</string>
+    <string name="httpErrorConnect">לא היתה אפשרות להתחבר לשרת.</string>
+    <string name="httpErrorIO">לא הצלחתי לתקשר עם השרת. נסה שוב מאוחר יותר.</string>
+    <string name="httpErrorTimeout">הסתיים הזמן שהוקצב לחיבור לשרת.</string>
+    <string name="httpErrorRedirectLoop">הדף מכיל יותר מדי ניתובים מחדש של השרת.</string>
+    <string name="httpErrorUnsupportedScheme">הפרוטוקול אינו נתמך.</string>
+    <string name="httpErrorFailedSslHandshake">לא היתה אפשרות ליצור חיבור מאובטח.</string>
+    <string name="httpErrorBadUrl">לא יכולתי לפתוח את הדף כי כתובת ה-URL לא חוקי.</string>
+    <string name="httpErrorFile">לא יכולתי לגשת לקובץ.</string>
+    <string name="httpErrorFileNotFound">לא היתה אפשרות למצוא את הקובץ המבוקש.</string>
+    <string name="httpErrorTooManyRequests">בקשות רבות מדי מעובדות. נסה שוב מאוחר יותר.</string>
+    <string name="notification_title">שגיאת כניסה עבור <xliff:g id="account" example="foo@gmail.com"> %1$ s </xliff:g></string>
+    <string name="contentServiceSync">סינכרון</string>
+    <string name="contentServiceSyncNotificationTitle">סינכרון</string>
+    <string name="contentServiceTooManyDeletesNotificationDesc">מחיקות רבות מדי של <xliff:g id="content_type"> %s </xliff:g>.</string>
+    <string name="low_memory" product="tablet">אזור האחסון בטאבלט מלא. מחק קבצים מסוימים כדי לפנות מקום.</string>
+    <string name="low_memory" product="default">אזור האחסון בטאבלט מלא. מחק קבצים מסוימים כדי לפנות מקום.</string>
+    <string name="me">אני</string>
+    <string name="power_dialog" product="tablet">אפשרויות טאבלט</string>
+    <string name="power_dialog" product="default">אפשרויות טאבלט</string>
+    <string name="silent_mode">מצב שקט</string>
+    <string name="turn_on_radio">הפעל אלחוטית</string>
+    <string name="turn_off_radio">כבה אלחוטית</string>
+    <string name="screen_lock">נעילת מסך</string>
+    <string name="power_off">כבה</string>
+    <string name="reboot_system" product="tablet">אתחל טאבלט</string>
+    <string name="reboot_system" product="default">אתחל טאבלט</string>
+    <string name="global_action_screenshot">צילום מסך</string>
+    <string name="global_actions_toggle_expanded_desktop_mode">הרחב שולחן עבודה</string>
+    <string name="global_actions_expanded_desktop_mode_on_status">מופעל</string>
+    <string name="global_actions_expanded_desktop_mode_off_status">כבוי</string>
+    <string name="reboot_reboot">אתחול</string>
+    <string name="reboot_recovery">ריקוברי</string>
+    <string name="reboot_bootloader">Bootloader</string>
+    <string name="reboot_bootmenu">Bootmenu</string>
+    <string name="reboot_fastboot">Fastboot</string>
+    <string name="reboot_download">הורדה</string>
+    <string name="reboot_progress">Rebooting\u2026</string>
+    <string name="reboot_confirm">הטלפון שלך יאותחל.</string>
+    <string name="silent_mode_silent">צלצול כבוי</string>
+    <string name="silent_mode_vibrate">רטט</string>
+    <string name="silent_mode_ring">צלצול מופעל</string>
+    <string name="shutdown_progress">מבצע כיבוי\u2026</string>
+    <string name="shutdown_confirm" product="tablet">הטאבלט שלך יכבה.</string>
+    <string name="shutdown_confirm" product="default">הטאבלט שלך יכבה.</string>
+    <string name="shutdown_confirm_reboot" product="tablet">הטאבלט שלך יאותחל.</string>
+    <string name="shutdown_confirm_reboot" product="default">הטאבלט שלך יאותחל.</string>
+    <string name="shutdown_confirm_question">האם ברצונך לכבות?</string>
+    <string name="shutdown_confirm_reboot_question">האם ברצונך לאתחל?</string>
+    <string name="reboot_safemode_title">אתחול במצב בטוח</string>
+    <string name="reboot_safemode_confirm">האם ברצונך לאתחל למצב בטוח?                    
+זה יגרום להשבתת כל יישומי צד שלישי שהתקנת.                    
+הם ישוחזרו בעת אתחול מחדש.</string>
+    <string name="recent_tasks_title">אחרון</string>
+    <string name="no_recent_tasks">אין יישומים אחרונים.</string>
+    <string name="global_actions" product="tablet">אפשרויות טאבלט</string>
+    <string name="global_actions" product="default">אפשרויות טאבלט</string>
+    <string name="global_action_lock">נעילת מסך</string>
+    <string name="global_action_power_off">כבה</string>
+    <string name="global_action_bug_report">דוח תקלות</string>
+    <string name="bugreport_title">צור דוח תקלות</string>
+    <string name="bugreport_message">זה יאסוף מידע על המצב העכשווי של ההתקן שלך, לשלוח כדואר אלקטרוני. יקח מעט זמן מרגע התחלת יצירת דוח תקלות עד שהוא יהיה מוכן לשליחה; אנא היה סבלני.</string>
+    <string name="global_action_toggle_silent_mode">מצב שקט</string>
+    <string name="global_action_silent_mode_on_status">צליל כבוי</string>
+    <string name="global_action_silent_mode_off_status">צליל מופעל</string>
+    <string name="global_actions_toggle_airplane_mode">מצב טיסה</string>
+    <string name="global_actions_airplane_mode_on_status">מצב טיסה מופעל</string>
+    <string name="global_actions_airplane_mode_off_status">מצב טיסה כבוי</string>
+    <string name="status_bar_notification_info_overflow">999 +</string>
+    <string name="safeMode">מצב בטוח</string>
+    <string name="android_system_label">מערכת אנדרואיד</string>
+    <string name="permgrouplab_costMoney">שירותים שעולים כסף</string>
+    <string name="permgroupdesc_costMoney">בצע דברים שעשויים לעלות לך כסף.</string>
+    <string name="permgrouplab_messages">ההודעות שלך</string>
+    <string name="permgroupdesc_messages">קריאה וכתיבה של המסרונים, הדואר האלקטרוני, והודעות אחרות שלך.</string>
+    <string name="permgrouplab_personalInfo">המידע האישי שלך</string>
+    <string name="permgroupdesc_personalInfo">גישה ישירה למידע אודותיך, המאוחסנים בכרטיס איש הקשר שלך.</string>
+    <string name="permgrouplab_socialInfo">המידע החברתי שלך</string>
+    <string name="permgroupdesc_socialInfo">גישה ישירה למידע אודות אנשי הקשר שלך והקשרים החברתיים שלך.</string>
+    <string name="permgrouplab_location">המיקום שלך</string>
+    <string name="permgroupdesc_location">פקח על המיקום הפיזי שלך.</string>
+    <string name="permgrouplab_network">תקשורת רשת</string>
+    <string name="permgroupdesc_network">גישה לתכונות רשת שונות.</string>
+    <string name="permgrouplab_bluetoothNetwork">בלוטוס</string>
+    <string name="permgroupdesc_bluetoothNetwork">גישה התקנים ורשתות דרך בלוטוס.</string>
+    <string name="permgrouplab_audioSettings">הגדרות השמע</string>
+    <string name="permgroupdesc_audioSettings">שנה את הגדרות השמע.</string>
+    <string name="permgrouplab_affectsBattery">משפיע על הסוללה</string>
+    <string name="permgroupdesc_affectsBattery">השתמש בתכונות שעשויות לרוקן את הסוללה במהירות.</string>
+    <string name="permgrouplab_calendar">יומן</string>
+    <string name="permgroupdesc_calendar">גישה ישירה ליומן וארועים.</string>
+    <string name="permgrouplab_dictionary">קרא מילון משתמש</string>
+    <string name="permgroupdesc_dictionary">קרא מילים במילון משתמש.</string>
+    <string name="permgrouplab_writeDictionary">כתוב מילון משתמש</string>
+    <string name="permgroupdesc_writeDictionary">הוסף מילים למילון משתמש.</string>
+    <string name="permgrouplab_bookmarks">סימניות והיסטוריה</string>
+    <string name="permgroupdesc_bookmarks">גישה ישירה לסימניות והיסטוריית הדפדפן.</string>
+    <string name="permgrouplab_deviceAlarms">צלצול</string>
+    <string name="permgroupdesc_deviceAlarms">הגדר את השעון המעורר.</string>
+    <string name="permgrouplab_voicemail">תא קולי</string>
+    <string name="permgroupdesc_voicemail">גישה ישירה אל התא הקולי.</string>
+    <string name="permgrouplab_microphone">מיקרופון</string>
+    <string name="permgroupdesc_microphone">גישה ישירה אל המיקרופון כדי להקליט שמע.</string>
+    <string name="permgrouplab_camera">מצלמה</string>
+    <string name="permgroupdesc_camera">גישה ישירה אל המצלמה עבור תמונה או לכידת וידאו.</string>
+    <string name="permgrouplab_appInfo">מידע על היישומים שלך</string>
+    <string name="permgroupdesc_appInfo">יכולת להשפיע על אופן הפעולה של יישומים אחרים על המכשיר.</string>
+    <string name="permgrouplab_wallpaper">טפט</string>
+    <string name="permgroupdesc_wallpaper">שנה את הגדרות הטפט של המכשיר.</string>
+    <string name="permgrouplab_systemClock">שעון</string>
+    <string name="permgroupdesc_systemClock">שינוי זמן התקן או אזור זמן.</string>
+    <string name="permgrouplab_statusBar">שורת מצב</string>
+    <string name="permgroupdesc_statusBar">שנה הגדרות שורת המצב של ההתקן.</string>
+    <string name="permgrouplab_syncSettings">הגדרות סינכרון</string>
+    <string name="permgroupdesc_syncSettings">גישה להגדרות הסינכרון.</string>
+    <string name="permgrouplab_accounts">החשבונות שלך</string>
+    <string name="permgroupdesc_accounts">גישה לחשבונות זמינים.</string>
+    <string name="permgrouplab_hardwareControls">פקדי חומרה</string>
+    <string name="permgroupdesc_hardwareControls">גישה ישירה לחומרה של המכשיר.</string>
+    <string name="permgrouplab_phoneCalls">שיחות טלפון</string>
+    <string name="permgroupdesc_phoneCalls">צג, רשומה, ושיחות טלפון.</string>
+    <string name="permgrouplab_systemTools">כלי מערכת</string>
+    <string name="permgroupdesc_systemTools">גישה ברמה נמוכה יותר ושליטה על המערכת.</string>
+    <string name="permgrouplab_developmentTools">כלי הפיתוח</string>
+    <string name="permgroupdesc_developmentTools">תכונות הנחוצות רק עבור מפתחי יישומים.</string>
+    <string name="permgrouplab_display">ממשק משתמש של יישומים אחרים</string>
+    <string name="permgroupdesc_display">השפע על ממשק המשתמש של יישומים אחרים.</string>
+    <string name="permgrouplab_storage">אחסון</string>
+    <string name="permgroupdesc_storage" product="nosdcard">גישה לאחסון USB.</string>
+    <string name="permgroupdesc_storage" product="default">גישה לאחסון USB.</string>
+    <string name="permlab_statusBar">בטל או ערוך את שורת המצב</string>
+    <string name="permdesc_statusBar">אפשר ליישום לבטל את שורת המצב או להוסיף או להסיר סמלי המערכת.</string>
+    <string name="permlab_statusBarService">שורת המצב</string>
+    <string name="permdesc_statusBarService">מאפשר ליישום להיות בשורת המצב.</string>
+    <string name="permlab_expandStatusBar">הרחב/כווץ את שורת המצב</string>
+    <string name="permdesc_expandStatusBar">מאפשר ליישום להרחיב או לכווץ את שורת המצב.</string>
+    <string name="permlab_processOutgoingCalls">נתב מחדש שיחות יוצאות</string>
+    <string name="permdesc_processOutgoingCalls">מאפשר ליישום לעבד שיחות יוצאות או לשנות את המספר לחיוג. הרשאה זו מאפשרת ליישום לפקח, לנתב מחדש, או למנוע שיחות יוצאות.</string>
+    <string name="permlab_receiveSms">קבל מסרונים (SMS)</string>
+    <string name="permdesc_receiveSms">מאפשר ליישום לקבל ולעבד מסרונים. זה אומר שהיישום יכול לפקח או למחוק מסרונים הנשלחים למכשירך ללא שהוצגו לך.</string>
+    <string name="permlab_receiveMms">קבל מסרוני מדיה (MMS)</string>
+    <string name="permdesc_receiveMms">מאפשר ליישום לקבל ולעבד מסרוני מדיה (MMS). זה אומר שהיישום יכול לפקח או למחוק מסרונים הנשלחים למכשירך מבלי להציגם לך.</string>
+    <string name="permlab_receiveEmergencyBroadcast">קבל שידורים לשעת חירום</string>
+    <string name="permdesc_receiveEmergencyBroadcast">מאפשר ליישום לקבל ולעבד הודעות שידור חירום. הרשאה זו זמינה רק ליישומי מערכת.</string>
+    <string name="permlab_readCellBroadcasts">קרא הודעות של תשדורות סלולריות</string>
+    <string name="permdesc_readCellBroadcasts">מאפשר ליישום לקרוא הודעות תא הנקלטות במכשירך. התראות תא משודרות במיקומות מסויימים כדי להזהירך מפני סכנות.
+יישומים זדוניים עשויים לשבש את פעולת מכשירך וביצועיו בעת קליטת התראה.</string>
+    <string name="permlab_sendSms">שליחת הודעות SMS</string>
+    <string name="permdesc_sendSms">אפשר ליישום לשלוח הודעות SMS.
+פעולה זו עלולה לגרור תשלומים בלתי מתוכננים. 
+יישומים זדוניים עשויים לגרום לחיובים כספיים באמצעות שלוחת הודעות ללא אישור.</string>
+    <string name="permlab_sendSmsNoConfirmation">שליחת הודעות SMS ללא אישור</string>
+    <string name="permdesc_sendSmsNoConfirmation">אפשר ליישום לשלוח הודעות SMS.
+פעולה זו עלולה לגרום לתשלומים בלתי מתוכננים.
+יישומים זדוניים עשויים לגרום לחיוב כספי באמצעות שליחת הודעות ללא אישור.</string>
+    <string name="permlab_readSms">קריאת הודעות (SMS או MMS)</string>
+    <string name="permdesc_readSms" product="tablet">אפשר ליישום לקרוא הודעות SMS השמורות על מכשיר הטאבלט או כרטיס ה-SIM.
+פעולה זו מאפשר ליישום לקרוא את כל הודעות ה-SMS, ללא קשר לתוכן וללא התחשבות בפרטיות.</string>
+    <string name="permdesc_readSms" product="default">אפשר ליישום לקרוא הודעות SMS השמורות על מכשיר הטאבלט או כרטיס ה-SIM.
+פעולה זו מאפשר ליישום לקרוא את כל הודעות ה-SMS, ללא קשר לתוכן וללא התחשבות בפרטיות.</string>
+    <string name="permlab_writeSms">עריכת הודעות (SMS או MMS)</string>
+    <string name="permdesc_writeSms" product="tablet">אפשר ליישום לערוך הודעות SMS השמורות על מכשיר הטאבלט או כרטיס ה-SIM.
+יישומים זדוניים עשויים למחוק הודעות.</string>
+    <string name="permdesc_writeSms" product="default">אפשר ליישום לערוך הודעות SMS השמורות על מכשיר הטאבלט או כרטיס ה-SIM.
+יישומים זדוניים עשויים למחוק הודעות.</string>
+    <string name="permlab_receiveWapPush">קבלת הודעות (WAP)</string>
+    <string name="permdesc_receiveWapPush">אפשר ליישום לקבל ולעבד הודעות WAP.
+הרשאה זו מאפשרת ניטור ומחיקת הודעות ללא הצגה מוקדמת שלהן.</string>
+    <string name="permlab_getTasks">שחזר יישומים פועלים</string>
+    <string name="permdesc_getTasks">אפשר ליישום לאסוף מידע על משימות הפועלות עכשיו ושפעלו לאחרונה.
+פעולה זו מאפשרת ליישום לגלות מידע על היישומים המורצים במכשיר.</string>
+    <string name="permlab_interactAcrossUsers">אינטראקציה בין משתמשים</string>
+    <string name="permdesc_interactAcrossUsers">אפשר ליישום לבצע פעולות על מספר משתמשים שונים במכשיר.
+יישומים זדוניים עשויים לנצל זאת כדי לעקוף הגנות בין משתמשים.</string>
+    <string name="permlab_interactAcrossUsersFull">אפשר גישה מלאה לאינטראקציה בין משתמשים</string>
+    <string name="permdesc_interactAcrossUsersFull">אפשר את כל האינטראקציות בין משתמשים.</string>
+    <string name="permlab_manageUsers">ניהול משתמשים</string>
+    <string name="permdesc_manageUsers">אפשר ליישומים לנהל את המשתמש במכשיר, כולל תשאול, יצירה ומחיקה.</string>
+    <string name="permlab_getDetailedTasks">אחזור פרטי יישומים פועלים</string>
+    <string name="permdesc_getDetailedTasks">אפשר ליישום לאחזר מידע מפורט אודות משימות פועלות ושפעלו לאחרונה.
+יישומים זדוניים עשויים לגלות מידע פרטי על יישומים אחרים.</string>
+    <string name="permlab_reorderTasks">סידור מחדש של יישומים פועלים</string>
+    <string name="permdesc_reorderTasks">אפשר ליישום להעביר משימות לקידמה ולרקע.
+היישום עשוי לעשות זאת ללא קלט משתמש.</string>
+    <string name="permlab_removeTasks">הפסקת יישומים פועלים</string>
+    <string name="permdesc_removeTasks">אפשר ליישום לעצור משימות ולסגור את יישומן.
+יישומים זדוניים עלולים לשבש את פעולתם של יישומים אחרים.</string>
+    <string name="permlab_startAnyActivity">התחל כל פעילות</string>
+    <string name="permdesc_startAnyActivity">אפשר ליישום להתחיל על פעולה, ללא התחשבות בהגנות הרשאה.</string>
+    <string name="permlab_setScreenCompatibility">הגדר תאימות מסך</string>
+    <string name="permdesc_setScreenCompatibility">מאפשר ליישום לשלוט במצב תאימות מסך של יישומים אחרים. יישומים זדוניים עשויים לפגוע בהתנהגות יישומים אחרים.</string>
+    <string name="permlab_setDebugApp">אפשר איתור בגים ביישומים</string>
+    <string name="permdesc_setDebugApp">מאפשר ליישום להפעיל איתור באגים עבור ישום אחר. יישומים זדוניים עשויים להשתמש בכך לסגור יישומים אחרים.</string>
+    <string name="permlab_changeConfiguration">שנה הגדרות התצוגה של המערכת</string>
+    <string name="permdesc_changeConfiguration">מאפשר ליישום לשנות את התצורה הנוכחית, כגון אזור או גודל כולל של הגופן.</string>
+    <string name="permlab_enableCarMode">הפעלת מצב רכב</string>
+    <string name="permdesc_enableCarMode">אפשר ליישום להפעיל את מצב רכב.</string>
+    <string name="permlab_killBackgroundProcesses">סגור יישומים אחרים</string>
+    <string name="permdesc_killBackgroundProcesses">מאפשר ליישום לסיים תהליכים ברקע של יישומים אחרים. זה עשוי לגרום ליישומים אחרים להפסיק לפעול.</string>
+    <string name="permlab_forceStopPackages">הכרח סגירה של יישומים אחרים</string>
+    <string name="permdesc_forceStopPackages">מאפשר לישום לעצור בכוח יישומים אחרים.</string>
+    <string name="permlab_forceBack">הכרח סגירה של היישום</string>
+    <string name="permdesc_forceBack">מאפשר ליישום לאלץ סגירה או חזרה מכל פעילות שמתנהלת עכשיו בקידמה. לא נחוץ ליישומים רגילים.</string>
+    <string name="permlab_dump">אחזר את המצב הפנימי של המערכת</string>
+    <string name="permdesc_dump">Allows the app to retrieve
+                internal state of the system. Malicious apps may retrieve
+                a wide variety of private and secure information that they should
+                never normally need.</string>
+    <string name="permlab_retrieve_window_content">אחזר תוכן המסך</string>
+    <string name="permdesc_retrieve_window_content">Allows the app to retrieve
+                the content of the active window. Malicious apps may retrieve
+                the entire window content and examine all its text except passwords.</string>
+    <string name="permlab_temporary_enable_accessibility">temporary enable accessibility</string>
+    <string name="permdesc_temporary_enable_accessibility">Allows an application to temporarily
+                 enable accessibility on the device. Malicious apps may enable accessibility without
+                 user consent.</string>
+    <string name="permlab_retrieve_window_info">אחזר חלון פרטי</string>
+    <string name="permdesc_retrieve_window_info">Allows an application to retrieve
+                 information about the the windows from the window manager. Malicious apps may
+                 retrieve information that is intended for internal system usage.</string>
+    <string name="permlab_filter_events">סנן ארועים</string>
+    <string name="permdesc_filter_events">Allows an application to register an input filter
+                        which filters the stream of all user events before they are dispatched. Malicious app
+                        may control the system UI whtout user intervention.</string>
+    <string name="permlab_magnify_display">הגדל תצוגה</string>
+    <string name="permdesc_magnify_display">Allows an application to magnify the content of a
+                display. Malicious apps may transform the display content in a way that renders the
+                device unusable.</string>
+    <string name="permlab_shutdown">כיבוי חלקי</string>
+    <string name="permdesc_shutdown">Puts the activity manager into a shutdown
+                state.    Does not perform a complete shutdown.</string>
+    <string name="permlab_stopAppSwitches">מנע החלפת יישומים</string>
+    <string name="permdesc_stopAppSwitches">Prevents the user from switching to
+                another app.</string>
+    <string name="permlab_runSetActivityWatcher">monitor and control all app launching</string>
+    <string name="permdesc_runSetActivityWatcher">Allows the app to
+                monitor and control how the system launches activities.
+                Malicious apps may completely compromise the system. This
+                permission is only needed for development, never for normal
+                use.</string>
+    <string name="permlab_broadcastPackageRemoved">שלח שידור של חבילה שהוסרה</string>
+    <string name="permdesc_broadcastPackageRemoved">Allows the app to
+                broadcast a notification that an app package has been removed.
+                Malicious apps may use this to kill any other running
+                app.</string>
+    <string name="permlab_broadcastSmsReceived">שלח מסרון-שידור התקבל</string>
+    <string name="permdesc_broadcastSmsReceived">Allows the app to
+                broadcast a notification that an SMS message has been received.
+                Malicious apps may use this to forge incoming SMS messages.</string>
+    <string name="permlab_broadcastWapPush">send WAP-PUSH-received broadcast</string>
+    <string name="permdesc_broadcastWapPush">Allows the app to
+                broadcast a notification that a WAP PUSH message has been received.
+                Malicious apps may use this to forge MMS message receipt or to
+                silently replace the content of any webpage with malicious variants.</string>
+    <string name="permlab_setProcessLimit">limit number of running processes</string>
+    <string name="permdesc_setProcessLimit">Allows the app
+                to control the maximum number of processes that will run. Never
+                needed for normal apps.</string>
+    <string name="permlab_setAlwaysFinish">force background apps to close</string>
+    <string name="permdesc_setAlwaysFinish">Allows the app
+                to control whether activities are always finished as soon as they
+                go to the background. Never needed for normal apps.</string>
+    <string name="permlab_batteryStats">קרא נתוני סוללה</string>
+    <string name="permdesc_batteryStats">Allows an application to read the current low-level
+                battery use data.    May allow the application to find out detailed information about
+                which apps you use.</string>
+    <string name="permlab_updateBatteryStats">ערוך נתוני סוללה</string>
+    <string name="permdesc_updateBatteryStats">Allows the app to modify
+                collected battery statistics. Not for use by normal apps.</string>
+    <string name="permlab_backup">control system backup and restore</string>
+    <string name="permdesc_backup">Allows the app to control the system\'s backup and restore mechanism.    Not for use by normal apps.</string>
+    <string name="permlab_confirm_full_backup">confirm a full backup or restore operation</string>
+    <string name="permdesc_confirm_full_backup">Allows the app to launch the full backup confirmation UI.    Not to be used by any app.</string>
+    <string name="permlab_internalSystemWindow">הצג חלונות לא מורשים</string>
+    <string name="permdesc_internalSystemWindow">Allows the app to create
+                windows that are intended to be used by the internal system
+                user interface. Not for use by normal apps.</string>
+    <string name="permlab_systemAlertWindow">draw over other apps</string>
+    <string name="permdesc_systemAlertWindow">Allows the app to draw on top of other
+                applications or parts of the user interface.    They may interfere with your
+                use of the interface in any application, or change what you think you are
+                seeing in other applications.</string>
+    <string name="permlab_setAnimationScale">modify global animation speed</string>
+    <string name="permdesc_setAnimationScale">Allows the app to change
+                the global animation speed (faster or slower animations) at any time.</string>
+    <string name="permlab_manageAppTokens">נהל אסימוני יישום</string>
+    <string name="permdesc_manageAppTokens">Allows the app to
+                create and manage their own tokens, bypassing their normal
+                Z-ordering. Should never be needed for normal apps.</string>
+    <string name="permlab_freezeScreen">הקפא מסך</string>
+    <string name="permdesc_freezeScreen">Allows the application to temporarily freeze
+                the screen for a full-screen transition.</string>
+    <string name="permlab_injectEvents">לחץ על מקשים ולחצני בקרה</string>
+    <string name="permdesc_injectEvents" product="tablet">Allows the app to deliver
+                its own input events (key presses, etc.) to other apps. Malicious
+                apps may use this to take over the tablet.</string>
+    <string name="permdesc_injectEvents" product="default">Allows the app to deliver
+                its own input events (key presses, etc.) to other apps. Malicious
+                apps may use this to take over the tablet.</string>
+    <string name="permlab_readInputState">הקלטת הקלדות ופעולות</string>
+    <string name="permdesc_readInputState">אפשר ליישום לנטר אחר הקלדות המשתמש בעת שימוש ביישום אחר (דוגמת הזנת סיסמא).
+אין סיבה שיישומים רגילים ידרשו זאת.</string>
+    <string name="permlab_bindInputMethod">צימוד לשיטת קלט</string>
+    <string name="permdesc_bindInputMethod">אפשר ליישום האב להצמד לממשק העל של שיטת הקלט.
+אין סיבה שיישומים רגילים ידרשו זאת.</string>
+    <string name="permlab_bindAccessibilityService">צימוד לשירות נגישות</string>
+    <string name="permdesc_bindAccessibilityService">אפשר ליישום האב להצמד לממשק העל של שירות נגישות.
+אין סיבה שיישומים רגילים ידרשו זאת.</string>
+    <string name="permlab_bindTextService">צימוד לשירות טקסט</string>
+    <string name="permdesc_bindTextService">אפשר ליישום האב להצמד לממשק העל של שירות טקסט (לדוגמא שירות בדיקת איות).
+אין סיבה שיישומים רגילים ידרשו זאת.</string>
+    <string name="permlab_bindVpnService">צימוד לשירות VPN</string>
+    <string name="permdesc_bindVpnService">אפשר ליישום האב להצמד לממשק העל של שירות VPN.
+אין סיבה שיישומים רגילים ידרשו זאת.</string>
+    <string name="permlab_bindWallpaper">צמד לטפט</string>
+    <string name="permdesc_bindWallpaper">אפשר ליישום האב להצמד לממשק העל של טפט.
+אין סיבה שיישומים רגילים ידרשו זאת.</string>
+    <string name="permlab_bindRemoteViews">צמד לשירות יישומון</string>
+    <string name="permdesc_bindRemoteViews">אפשר ליישום האב להצמד לממשק העל של שירות יישומון.
+אין סיבה שיישומים רגילים ידרשו זאת.</string>
+    <string name="permlab_bindDeviceAdmin">אינטראקציה עם מנהל התקן</string>
+    <string name="permdesc_bindDeviceAdmin">אפשר ליישום האב לשלוח הוראות למנהל התקן.
+אין סיבה שיישומים רגילים ידרשו זאת.</string>
+    <string name="permlab_setOrientation">שינוי כיוון מסך</string>
+    <string name="permdesc_setOrientation">אפשר ליישום לשנות את כיוון המסך בכל עת.
+אין סיבה שיישומים רגילים ידרשו זאת.</string>
+    <string name="permlab_setPointerSpeed">שינוי מהירות מצביע</string>
+    <string name="permdesc_setPointerSpeed">אפשר ליישום לשנות את מהירות המצביע בכל עת.
+אין סיבה שיישומים רגילים ידרשו זאת.</string>
+    <string name="permlab_setKeyboardLayout">שינוי פריסת מקלדת</string>
+    <string name="permdesc_setKeyboardLayout">אפשר ליישום לשנות את פריסת המקלדת.
+אין סיבה שיישומים רגילים ידרשו זאת.</string>
+    <string name="permlab_signalPersistentProcesses">שלח אותות LINUX ליישומים</string>
+    <string name="permdesc_signalPersistentProcesses">אפשר ליישום לבקש שהאות המסופק יישלח לכלל התהליכים המתמידים.</string>
+    <string name="permlab_persistentActivity">הרץ יישום באופן מתמיד</string>
+    <string name="permdesc_persistentActivity" product="tablet">אפשר ליישום להריץ חלקים ממנו באופן מתמיד בזיכרון. פעולה זו עשויה להגביל את כמות הזיכרון הפנוי ליישומים אחרים ולהאט את פעולת הטאבלט.</string>
+    <string name="permdesc_persistentActivity" product="default">אפשר ליישום להריץ חלקים ממנו באופן מתמיד בזיכרון. פעולה זו עשויה להגביל את כמות הזיכרון הפנוי ליישומים אחרים ולהאט את פעולת הטאבלט.</string>
+    <string name="permlab_deletePackages">מחיקת יישומים</string>
+    <string name="permdesc_deletePackages">אפשר ליישום למחוק יישומי אנדרואיד.
+יישומים זדוניים עלולים לנצל זאת כדי למחוק יישומים חשובים.</string>
+    <string name="permlab_clearAppUserData">מחיקת מידע של יישומים אחרים</string>
+    <string name="permdesc_clearAppUserData">אפשר ליישום לנקות מידע משתמש.</string>
+    <string name="permlab_deleteCacheFiles">מחיקת מידע מטמון של יישומים אחרים</string>
+    <string name="permdesc_deleteCacheFiles">אפשר ליישום למחוק קבצי זיכרון מטמון.</string>
+    <string name="permlab_getPackageSize">מדוד שטח אחסון של יישום</string>
+    <string name="permdesc_getPackageSize">אפשר ליישום לאחזר את גדלי הקוד שלו, המידע שלו וזיכרון המטמון שלו</string>
+    <string name="permlab_installPackages">התקנת יישומים ישירה</string>
+    <string name="permdesc_installPackages">אפשר ליישום להתקין יישומי אנדרואיד חדשים ולעדכנם.
+יישומים זדוניים עלולים לנצל זאת כדי להתקין יישומים חדשים בעלי רמת הרשאה גבוהה.</string>
+    <string name="permlab_clearAppCache">מחיקת כלל הזיכרון המטמון של יישום</string>
+    <string name="permdesc_clearAppCache" product="tablet">אפשר ליישום לשחרר איחסון של הטאבלט על ידי מחיקת קבצים בספריות הזיכרון המטמון של יישומים אחרים.
+פעולה זו עלולה לגרום ליישומים להיטען לאט יותר בשל הצורך לטעון מחדש את המידע שלהם.</string>
+    <string name="permdesc_clearAppCache" product="default">אפשר ליישום לשחרר איחסון של הטאבלט על ידי מחיקת קבצים בספריות הזיכרון המטמון של יישומים אחרים.
+פעולה זו עלולה לגרום ליישומים להיטען לאט יותר בשל הצורך לטעון מחדש את המידע שלהם.</string>
+    <string name="permlab_movePackage">העברת משאבי יישום</string>
+    <string name="permdesc_movePackage">אפשר ליישום להעביר משאבי יישום מהזיכרון הפנימי למדיה חיצונית, ולהפך.</string>
+    <string name="permlab_preventpower">מניעת כפתור הדלקה/כיבוי</string>
+    <string name="permdesc_preventpower">אפשר ליישום לעקוף את כפתוק ההדלקה/כיבוי</string>
+    <string name="permlab_readLogs">שלח נתוני רישום רגישים</string>
+    <string name="permdesc_readLogs" product="tablet">אפשר ליישום לקרוא קבצי לוג של המערכת. 
+עולה זו מאפשרת לאחזר מידע אודות השימוש בטאבלט, 
+ויתכן שגם מידע אישי ופרטי.</string>
+    <string name="permdesc_readLogs" product="default">אפשר ליישום לקרוא קבצי לוג של המערכת. 
+עולה זו מאפשרת לאחזר מידע אודות השימוש בטאבלט, 
+ויתכן שגם מידע אישי ופרטי.</string>
+    <string name="permlab_anyCodecForPlayback">השתמש בכל סוג של מפענח מדיה לצורך השמעה</string>
+    <string name="permdesc_anyCodecForPlayback">אפשר ליישום להשתמש בכל מפענח מדיה מותקן להצגת תוכן.</string>
+    <string name="permlab_diagnostic">קריאה/כתיבה למשאבי כלים לבדיקה תקינות</string>
+    <string name="permdesc_diagnostic">אפשר ליישום לקרוא ולכתוב לכל המשאבים של קבוצת הבדיקה, דוגמת קבצים ב- /dev.
+פעולה זו עלולה להשפיע על יציבות המערכת ואבטחתה.
+יש לאפשר זאת אך ורק לצורכי בדיקת חומרה של היצרן או מפעילת הסלולר.</string>
+    <string name="permlab_changeComponentState">הפעלה וכיבוי של רכיבי יישום</string>
+    <string name="permdesc_changeComponentState" product="tablet">Allows the app to change whether a
+                component of another app is enabled or not. Malicious apps may use this
+                to disable important tablet capabilities. Care must be used with this permission, as it is
+                possible to get app components into an unusable, inconsistent, or unstable state.
+        </string>
+    <string name="permdesc_changeComponentState" product="default">Allows the app to change whether a
+                component of another app is enabled or not. Malicious apps may use this
+                to disable important tablet capabilities. Care must be used with this permission, as it is
+                possible to get app components into an unusable, inconsistent, or unstable state.
+        </string>
+    <string name="permlab_grantRevokePermissions">grant or revoke permissions</string>
+    <string name="permdesc_grantRevokePermissions">Allows an application to grant or revoke
+                specific permissions for it or other applications.    Malicious applications may use this
+                to access features you have not granted them.
+        </string>
+    <string name="permlab_setPreferredApplications">קבע יישומים מועדפים</string>
+    <string name="permdesc_setPreferredApplications">Allows the app to
+                modify your preferred apps. Malicious apps may
+                silently change the apps that are run, spoofing your
+                existing apps to collect private data from you.</string>
+    <string name="permlab_writeSettings">modify system settings</string>
+    <string name="permdesc_writeSettings">Allows the app to modify the
+                system\'s settings data. Malicious apps may corrupt your system\'s
+                configuration.</string>
+    <string name="permlab_writeSecureSettings">modify secure system settings</string>
+    <string name="permdesc_writeSecureSettings">Allows the app to modify the
+                system\'s secure settings data. Not for use by normal apps.</string>
+    <string name="permlab_writeGservices">modify the Google services map</string>
+    <string name="permdesc_writeGservices">Allows the app to modify the
+                Google services map.    Not for use by normal apps.</string>
+    <string name="permlab_receiveBootCompleted">הפעל בעת אתחול</string>
+    <string name="permdesc_receiveBootCompleted" product="tablet">Allows the app to
+                have itself started as soon as the system has finished booting.
+                This can make it take longer to start the tablet and allow the
+                app to slow down the overall tablet by always running.</string>
+    <string name="permdesc_receiveBootCompleted" product="default">Allows the app to
+                have itself started as soon as the system has finished booting.
+                This can make it take longer to start the tablet and allow the
+                app to slow down the overall tablet by always running.</string>
+    <string name="permlab_broadcastSticky">send sticky broadcast</string>
+    <string name="permdesc_broadcastSticky" product="tablet">Allows the app to
+        send sticky broadcasts, which remain after the broadcast ends. Excessive use
+        may make the tablet slow or unstable by causing it to use too much memory.
+        </string>
+    <string name="permdesc_broadcastSticky" product="default">Allows the app to
+        send sticky broadcasts, which remain after the broadcast ends. Excessive use
+        may make the tablet slow or unstable by causing it to use too much memory.
+        </string>
+    <string name="permlab_readContacts">read your contacts</string>
+    <string name="permdesc_readContacts" product="tablet">Allows the app to read
+            data about your contacts stored on your tablet, including the frequency
+            with which you\'ve called, emailed, or communicated in other ways with
+            specific individuals. This permission allows apps to save your contact
+            data, and malicious apps may share contact data without your
+            knowledge.</string>
+    <string name="permdesc_readContacts" product="default">Allows the app to read
+            data about your contacts stored on your tablet, including the frequency
+            with which you\'ve called, emailed, or communicated in other ways with
+            specific individuals. This permission allows apps to save your contact
+            data, and malicious apps may share contact data without your
+            knowledge.</string>
+    <string name="permlab_writeContacts">modify your contacts</string>
+    <string name="permdesc_writeContacts" product="tablet">Allows the app to
+            modify the data about your contacts stored on your tablet, including the
+            frequency with which you\'ve called, emailed, or communicated in other ways
+            with specific contacts. This permission allows apps to delete contact
+            data.</string>
+    <string name="permdesc_writeContacts" product="default">Allows the app to
+            modify the data about your contacts stored on your tablet, including the
+            frequency with which you\'ve called, emailed, or communicated in other ways
+            with specific contacts. This permission allows apps to delete contact
+            data.</string>
+    <string name="permlab_readCallLog">קרא יומן פעילות</string>
+    <string name="permdesc_readCallLog" product="tablet">Allows the app to read
+         your tablet\'s call log, including data about incoming and outgoing calls.
+         This permission allows apps to save your call log data, and malicious apps
+         may share call log data without your knowledge.</string>
+    <string name="permdesc_readCallLog" product="default">Allows the app to read
+         your tablet\'s call log, including data about incoming and outgoing calls.
+         This permission allows apps to save your call log data, and malicious apps
+         may share call log data without your knowledge.</string>
+    <string name="permlab_writeCallLog">כתוב יומן שיחות</string>
+    <string name="permdesc_writeCallLog" product="tablet">Allows the app to modify your tablet\'s call log, including data about incoming and outgoing calls.
+                Malicious apps may use this to erase or modify your call log.</string>
+    <string name="permdesc_writeCallLog" product="default">Allows the app to modify your tablet\'s call log, including data about incoming and outgoing calls.
+                Malicious apps may use this to erase or modify your call log.</string>
+    <string name="permlab_readProfile">קרא את כרטיס איש הקשר שלך</string>
+    <string name="permdesc_readProfile" product="default">Allows the app to read
+         personal profile information stored on your device, such as your name and
+         contact information. This means the app can identify you and may send your
+         profile information to others.</string>
+    <string name="permlab_writeProfile">ערוך את כרטיס איש הקשר שלך</string>
+    <string name="permdesc_writeProfile" product="default">Allows the app to
+            change or add to personal profile information stored on your device, such
+            as your name and contact information.    This means the app can identify you
+            and may send your profile information to others.</string>
+    <string name="permlab_readSocialStream" product="default">קרא את הזרם החברתי שלך</string>
+    <string name="permdesc_readSocialStream" product="default">Allows the app
+            to access and sync social updates from you and your friends. Be careful
+            when sharing information -- this allows the app to read communications
+            between you and your friends on social networks, regardless of
+            confidentiality. Note: this permission may not be enforced on all social
+            networks.</string>
+    <string name="permlab_writeSocialStream" product="default">כתוב לזרם החברתי שלך</string>
+    <string name="permdesc_writeSocialStream" product="default">Allows the app to
+         display social updates from your friends.    Be careful when sharing
+         information -- this allows the app to produce messages that may appear to
+         come from a friend. Note: this permission may not be enforced on all social
+         networks.</string>
+    <string name="permlab_readCalendar">read calendar events plus confidential information</string>
+    <string name="permdesc_readCalendar" product="tablet">Allows the app to read
+             all calendar events stored on your tablet, including those of friends or
+             co-workers. This may allow the app to share or save your calendar data,
+             regardless of confidentiality or sensitivity.</string>
+    <string name="permdesc_readCalendar" product="default">Allows the app to read
+             all calendar events stored on your tablet, including those of friends or
+             co-workers. This may allow the app to share or save your calendar data,
+             regardless of confidentiality or sensitivity.</string>
+    <string name="permlab_writeCalendar">add or modify calendar events and send email to guests without owners\' knowledge</string>
+    <string name="permdesc_writeCalendar" product="tablet">Allows the app to
+         add, remove, change events that you can modify on your tablet, including
+         those of friends or co-workers. This may allow the app to send messages
+         that appear to come from calendar owners, or modify events without the
+         owners\' knowledge.</string>
+    <string name="permdesc_writeCalendar" product="default">Allows the app to
+         add, remove, change events that you can modify on your tablet, including
+         those of friends or co-workers. This may allow the app to send messages
+         that appear to come from calendar owners, or modify events without the
+         owners\' knowledge.</string>
+    <string name="permlab_accessMockLocation">mock location sources for testing</string>
+    <string name="permdesc_accessMockLocation">Create mock location sources for
+            testing or install a new location provider.    This allows the app to
+            override the location and/or status returned by other location sources
+            such as GPS or location providers.</string>
+    <string name="permlab_accessLocationExtraCommands">access extra location provider commands</string>
+    <string name="permdesc_accessLocationExtraCommands">Allows the app to access
+            extra location provider commands.    This may allow the app to to interfere
+            with the operation of the GPS or other location sources.</string>
+    <string name="permlab_installLocationProvider">permission to install a location provider</string>
+    <string name="permdesc_installLocationProvider">Create mock location sources
+            for testing or install a new location provider.    This allows the app to
+            override the location and/or status returned by other location sources
+            such as GPS or location providers.</string>
+    <string name="permlab_accessFineLocation">precise location (GPS and
+            network-based)</string>
+    <string name="permdesc_accessFineLocation">Allows the app to get your
+            precise location using the Global Positioning System (GPS) or network
+            location sources such as cell towers and Wi-Fi. These location services
+            must be turned on and available to your device for the app to use them.
+            Apps may use this to determine where you are, and may consume additional
+            battery power.</string>
+    <string name="permlab_accessCoarseLocation">approximate location
+            (network-based)</string>
+    <string name="permdesc_accessCoarseLocation">Allows the app to get your
+            approximate location. This location is derived by location services using
+            network location sources such as cell towers and Wi-Fi. These location
+            services must be turned on and available to your device for the app to
+            use them. Apps may use this to determine approximately where you
+            are.</string>
+    <string name="permlab_accessSurfaceFlinger">access SurfaceFlinger</string>
+    <string name="permdesc_accessSurfaceFlinger">אפשר ליישום להשתמך בתכונות SurfaceFlinger בסיסיות.</string>
+    <string name="permlab_readFrameBuffer">קריאת חוצץ מסגרת</string>
+    <string name="permdesc_readFrameBuffer">אפשר ליישום לקרוא את תוכן חוצץ המסגרת.</string>
+    <string name="permlab_configureWifiDisplay">קביעת תצורה לתצוגות Wifi</string>
+    <string name="permdesc_configureWifiDisplay">אפשר ליישום להגדיר ולהתחבר לתצוגות Wifi.</string>
+    <string name="permlab_controlWifiDisplay">שליטה בתצוגות Wifi</string>
+    <string name="permdesc_controlWifiDisplay">אפשר ליישום לשלוט בתכונות בסיסיות של תצוגות Wifi.</string>
+    <string name="permlab_modifyAudioSettings">שינוי הגדרות קול</string>
+    <string name="permdesc_modifyAudioSettings">אפשר ליישום לשנות הגדרות קול גלובאליות, כגון עוצמה ובאילו רמקולים נעשה שימוש.</string>
+    <string name="permlab_recordAudio">הקלטת שמע</string>
+    <string name="permdesc_recordAudio">אפשר ליישום להקליט שמע באמצעות המיקרופון.
+הרשאה זו מאפשרת ליישום להקליט שמע בכל עת ללא אישור.</string>
+    <string name="permlab_camera">צלם תמונות ווידאו</string>
+    <string name="permdesc_camera">אפשר ליישום לצלם תמונות ווידאו באמצעות המצלמה.
+הראה זו מאפשרות ליישום להשתמש במצלמה בכל עת ללא אישור.</string>
+    <string name="permlab_brick" product="tablet">השבת טאבלט לצמיתות</string>
+    <string name="permlab_brick" product="default">השבת טאבלט לצמיתות</string>
+    <string name="permdesc_brick" product="tablet">אפשר ליישום זה להשבית את הטאבלט לצמיתות.
+הרשאה זו הינה מסוכנת מאוד.</string>
+    <string name="permdesc_brick" product="default">אפשר ליישום זה להשבית את הטאבלט לצמיתות.
+הרשאה זו הינה מסוכנת מאוד.</string>
+    <string name="permlab_reboot" product="tablet">אתחול טאבלט כפוי</string>
+    <string name="permlab_reboot" product="default">אתחול טאבלט כפוי</string>
+    <string name="permdesc_reboot" product="tablet">אפשר ליישום לאלץ אתחול של הטאבלט.</string>
+    <string name="permdesc_reboot" product="default">אפשר ליישום לאלץ אתחול של הטאבלט.</string>
+    <string name="permlab_mount_unmount_filesystems" product="nosdcard">גישה למערכת קבצים של אחסון USB</string>
+    <string name="permlab_mount_unmount_filesystems" product="default">גישה למערכת קבצים של אחסון USB</string>
+    <string name="permdesc_mount_unmount_filesystems">אפשר ליישום זה לעגן ולהסיר מערכות קבצים עבור התקני אחסון נשלפים.</string>
+    <string name="permlab_mount_format_filesystems" product="nosdcard">מחק אחסון USB</string>
+    <string name="permlab_mount_format_filesystems" product="default">מחק אחסון USB</string>
+    <string name="permdesc_mount_format_filesystems">אפשר ליישום לפרמט התקני איחסון נשלף.</string>
+    <string name="permlab_asec_access">קבל מידע על אחסון פנימי</string>
+    <string name="permdesc_asec_access">מאפשר ליישום לקבל מידע על אחסון פנימי.</string>
+    <string name="permlab_asec_create">צור אחסון פנימי</string>
+    <string name="permdesc_asec_create">אפשר ליישום ליצור איחסון פנימי.</string>
+    <string name="permlab_asec_destroy">השמד אחסון פנימי</string>
+    <string name="permdesc_asec_destroy">אפשר ליישום למחוק איחסון פנימי.</string>
+    <string name="permlab_asec_mount_unmount">הגדר / הסרה של איחסון פנימי</string>
+    <string name="permdesc_asec_mount_unmount">אפשר ליישום להגדיר/להסיר איחסון פנימי.</string>
+    <string name="permlab_asec_rename">שינוי שם של איחסון פנימי</string>
+    <string name="permdesc_asec_rename">אפשר ליישום לשנות שם של איחסון פנימי.</string>
+    <string name="permlab_vibrate">בקרת רטט</string>
+    <string name="permdesc_vibrate">אפשר ליישום לשלוט על הרטט.</string>
+    <string name="permlab_fm_radio_receiver">בקרת מקלט FM</string>
+    <string name="permdesc_fm_radio_receiver">אפשר ליישום לשלוח במקלט ה-FM.</string>
+    <string name="permlab_fm_radio_transmitter">בקרת משדר FM</string>
+    <string name="permdesc_fm_radio_transmitter">אפשר ליישום לשלוט במשדר ה-FM.</string>
+    <string name="permlab_flashlight">בקשת פנס תאורה</string>
+    <string name="permdesc_flashlight">אפשר ליישום לשלוט בפנס התאורה.</string>
+    <string name="permlab_manageUsb">ניהול העדפות והרשאות להתקני USB</string>
+    <string name="permdesc_manageUsb">אפשר ליישום לנהל העדפות והרשאות להתקני USB.</string>
+    <string name="permlab_accessMtp">יישום פרוטוקול MTP</string>
+    <string name="permdesc_accessMtp">אפשר גישה לגרעין מנהל התקני MTP ליישום פרוטוקול ה-MTP USB.</string>
+    <string name="permlab_hardware_test">בדיקת חומרה</string>
+    <string name="permdesc_hardware_test">אפשר ליישום לשלוט על ציוד היקפי לצרכי בדיקת חומרה.</string>
+    <string name="permlab_callPhone">התקשר ישירות למספרי טלפון</string>
+    <string name="permdesc_callPhone">אפשר ליישום להתקשר למספרי טלפון ללא התערבות משתמש.
+פעולה זו עשויה לגרום לחיובים ושיחות בלתי מתוכננים.
+תשומת לב שהרשאה זו אינה מאפשרת ליישום להתקשר למספרי חירום.
+יישומים זדוניים עלולים לגרום לחיובים כספיים על ידי ביצוע התקשרות ללא אישור.</string>
+    <string name="permlab_callPrivileged">התקשרות ישירה לכל מספר טלפון</string>
+    <string name="permdesc_callPrivileged">אפשר ליישום להתקשר לכל מספר טלפון, כולל מספרי חירום, ללא התערבות משתמש.
+יישומים זדוניים עלולים לבצע התקשרויות שאינן נחוצות ואף לא חוקיות למספרי חירום.</string>
+    <string name="permlab_performCdmaProvisioning" product="tablet">הפעלה ישירה של התקנת CDMA טאבלט</string>
+    <string name="permlab_performCdmaProvisioning" product="default">הפעלה ישירה של התקנת CDMA טאבלט</string>
+    <string name="permdesc_performCdmaProvisioning">אפשר ליישום ליזום התקשרות CDMA.
+יישומים זדוניים עלולים ליזום התקשרויות CDMA שאינן נחוצות.</string>
+    <string name="permlab_locationUpdates">התראות עדכוני בקרת מיקום</string>
+    <string name="permdesc_locationUpdates">אפשר ליישום להפעיל/לכבות התראות על עדכוני מיקום.
+לא לשימוש על ידי יישומים רגילים.</string>
+    <string name="permlab_checkinProperties">access checkin properties</string>
+    <string name="permdesc_checkinProperties">Allows the app read/write access to
+                properties uploaded by the checkin service.    Not for use by normal
+                apps.</string>
+    <string name="permlab_bindGadget">בחר יישומונים</string>
+    <string name="permdesc_bindGadget">Allows the app to tell the system
+                which widgets can be used by which app. An app with this permission
+                can give access to personal data to other apps.
+                Not for use by normal apps.</string>
+    <string name="permlab_modifyPhoneState">שנה מצב טלפון</string>
+    <string name="permdesc_modifyPhoneState">Allows the app to control the
+                phone features of the device. An app with this permission can switch
+                networks, turn the phone radio on and off and the like without ever notifying
+                you.</string>
+    <string name="permlab_readPhoneState">קרא מצב וזהות הטלפון</string>
+    <string name="permdesc_readPhoneState">Allows the app to access the phone
+            features of the device.    This permission allows the app to determine the
+            phone number and device IDs, whether a call is active, and the remote number
+            connected by a call.</string>
+    <string name="permlab_wakeLock" product="tablet">מנע מצב שינה מהטאבלט</string>
+    <string name="permlab_wakeLock" product="default">מנע מצב שינה מהטאבלט</string>
+    <string name="permdesc_wakeLock" product="tablet">מאפשר ליישום למנוע מהטאבלט לישון.</string>
+    <string name="permdesc_wakeLock" product="default">מאפשר ליישום למנוע מהטאבלט לישון.</string>
+    <string name="permlab_devicePower" product="tablet">הדלק או כבה את הטאבלט</string>
+    <string name="permlab_devicePower" product="default">הדלק או כבה את הטאבלט</string>
+    <string name="permdesc_devicePower" product="tablet">מאפשר ליישום להפעיל ולכבות את הטאבלט.</string>
+    <string name="permdesc_devicePower" product="default">מאפשר ליישום להפעיל ולכבות את הטאבלט.</string>
+    <string name="permlab_factoryTest">הפעל במצב בדיקה</string>
+    <string name="permdesc_factoryTest" product="tablet">Run as a low-level manufacturer test,
+                allowing complete access to the tablet hardware. Only available
+                when a tablet is running in manufacturer test mode.</string>
+    <string name="permdesc_factoryTest" product="default">Run as a low-level manufacturer test,
+                allowing complete access to the tablet hardware. Only available
+                when a tablet is running in manufacturer test mode.</string>
+    <string name="permlab_setWallpaper">הגדרת טפט</string>
+    <string name="permdesc_setWallpaper">Allows the app to set the system wallpaper.</string>
+    <string name="permlab_setWallpaperHints">adjust your wallpaper size</string>
+    <string name="permdesc_setWallpaperHints">Allows the app to set the system wallpaper size hints.</string>
+    <string name="permlab_masterClear">reset system to factory defaults</string>
+    <string name="permdesc_masterClear">Allows the app to completely
+                reset the system to its factory settings, erasing all data,
+                configuration, and installed apps.</string>
+    <string name="permlab_setTime">set time</string>
+    <string name="permdesc_setTime" product="tablet">Allows the app to change the tablet\'s clock time.</string>
+    <string name="permdesc_setTime" product="default">Allows the app to change the tablet\'s clock time.</string>
+    <string name="permlab_setTimeZone">set time zone</string>
+    <string name="permdesc_setTimeZone" product="tablet">Allows the app to change the tablet\'s time zone.</string>
+    <string name="permdesc_setTimeZone" product="default">Allows the app to change the tablet\'s time zone.</string>
+    <string name="permlab_accountManagerService">act as the AccountManagerService</string>
+    <string name="permdesc_accountManagerService">Allows the app to make calls to AccountAuthenticators.</string>
+    <string name="permlab_getAccounts">find accounts on the device</string>
+    <string name="permdesc_getAccounts" product="tablet">Allows the app to get
+            the list of accounts known by the tablet.    This may include any accounts
+            created by applications you have installed.</string>
+    <string name="permdesc_getAccounts" product="default">Allows the app to get
+            the list of accounts known by the tablet.    This may include any accounts
+            created by applications you have installed.</string>
+    <string name="permlab_authenticateAccounts">create accounts and set passwords</string>
+    <string name="permdesc_authenticateAccounts">Allows the app
+        to use the account authenticator capabilities of the
+        AccountManager, including creating accounts and getting and
+        setting their passwords.</string>
+    <string name="permlab_manageAccounts">הוסף או הסר חשבונות</string>
+    <string name="permdesc_manageAccounts">מאפשר ליישום לבצע פעולות כגון הוספה והסרה של חשבונות, ומחיקה של הסיסמאות שלהם.</string>
+    <string name="permlab_useCredentials">השתמש בחשבונות על המכשיר</string>
+    <string name="permdesc_useCredentials">מאפשר ליישום לבקש אסימוני אימות.</string>
+    <string name="permlab_accessNetworkState">צפה בחיבורי רשת</string>
+    <string name="permdesc_accessNetworkState">Allows the app to view
+            information about network connections such as which networks exist and are
+            connected.</string>
+    <string name="permlab_createNetworkSockets">גישה מלאה לרשת</string>
+    <string name="permdesc_createNetworkSockets">Allows the app to create
+         network sockets and use custom network protocols. The browser and other
+         applications provide means to send data to the internet, so this
+         permission is not required to send data to the internet.</string>
+    <string name="permlab_writeApnSettings">change/intercept network settings and traffic</string>
+    <string name="permdesc_writeApnSettings">Allows the app to change network settings and to intercept and inspect all network traffic,
+            for example to change the proxy and port of any APN. Malicious apps may monitor, redirect, or modify network
+            packets without your knowledge.</string>
+    <string name="permlab_changeNetworkState">שנה קישוריות רשת</string>
+    <string name="permdesc_changeNetworkState">מאפשר ליישום לשנות את מצב קישוריות רשת.</string>
+    <string name="permlab_changeTetherState">change tethered connectivity</string>
+    <string name="permdesc_changeTetherState">Allows the app to change the state of tethered network connectivity.</string>
+    <string name="permlab_changeBackgroundDataSetting">change background data usage setting</string>
+    <string name="permdesc_changeBackgroundDataSetting">Allows the app to change the background data usage setting.</string>
+    <string name="permlab_accessWifiState">הצג את חיבורי Wi-Fi</string>
+    <string name="permdesc_accessWifiState">אפשר ליישום לראות מידע על קישוריות Wi-Fi, 
+כמו למשל האם Wi-Fi מופעל ושמות התקנים מקושרים ב-Wi-Fi.</string>
+    <string name="permlab_changeWifiState">חיבור וניתוק Wi-Fi</string>
+    <string name="permdesc_changeWifiState">אפשר ליישום להתחבר ולהתנתק מנקודות גישה ל-Wi-Fi
+ולשנות הגדרות מכשיר עבור רשתות Wi-Fi.</string>
+    <string name="permlab_changeWifiMulticastState">אפשר קליטת שידור Wi-Fi לקבוצה</string>
+    <string name="permdesc_changeWifiMulticastState" product="tablet">אפשר ליישום לקלוט פקטות הנשלחות לכלל המכשירים ברשת Wi-Fi באמצעות כתובות multicast, לא רק הטאבלט שלך.
+פעולה זו צורכת יותר חשמל מאשר תצורת עבודה שלא ב-multicast.</string>
+    <string name="permdesc_changeWifiMulticastState" product="default">אפשר ליישום לקלוט פקטות הנשלחות לכלל המכשירים ברשת Wi-Fi באמצעות כתובות multicast, לא רק הטאבלט שלך.
+פעולה זו צורכת יותר חשמל מאשר תצורת עבודה שלא ב-multicast.</string>
+    <string name="permlab_bluetoothAdmin">access Bluetooth settings</string>
+    <string name="permdesc_bluetoothAdmin" product="tablet">Allows the app to
+            configure the local Bluetooth tablet, and to discover and pair with remote
+            devices.</string>
+    <string name="permdesc_bluetoothAdmin" product="default">Allows the app to
+            configure the local Bluetooth tablet, and to discover and pair with remote
+            devices.</string>
+    <string name="permlab_accessWimaxState">connect and disconnect from WiMAX</string>
+    <string name="permdesc_accessWimaxState">Allows the app to determine whether
+         WiMAX is enabled and information about any WiMAX networks that are
+         connected. </string>
+    <string name="permlab_changeWimaxState">שנה מצב WiMAX</string>
+    <string name="permdesc_changeWimaxState" product="tablet">Allows the app to
+            connect the tablet to and disconnect the tablet from WiMAX networks.</string>
+    <string name="permdesc_changeWimaxState" product="default">Allows the app to
+            connect the tablet to and disconnect the tablet from WiMAX networks.</string>
+    <string name="permlab_bluetooth">התחבר להתקני בלוטוס אחרים</string>
+    <string name="permdesc_bluetooth" product="tablet">Allows the app to view the
+            configuration of Bluetooth on the tablet, and to make and accept
+            connections with paired devices.</string>
+    <string name="permdesc_bluetooth" product="default">Allows the app to view the
+            configuration of Bluetooth on the tablet, and to make and accept
+            connections with paired devices.</string>
+    <string name="permlab_nfc">control Near Field Communication</string>
+    <string name="permdesc_nfc">Allows the app to communicate
+            with Near Field Communication (NFC) tags, cards, and readers.</string>
+    <string name="permlab_disableKeyguard">disable your screen lock</string>
+    <string name="permdesc_disableKeyguard">Allows the app to disable the
+            keylock and any associated password security.    For example, the phone
+            disables the keylock when receiving an incoming phone call, then
+            re-enables the keylock when the call is finished.</string>
+    <string name="permlab_readSyncSettings">קרא הגדרות סינכרון</string>
+    <string name="permdesc_readSyncSettings">Allows the app to read the sync settings for an account. For example, this can determine whether the People app is synced with an account.</string>
+    <string name="permlab_writeSyncSettings">מתג בין כבה והפעל</string>
+    <string name="permdesc_writeSyncSettings">Allows an app to modify the sync settings for an account.    For example, this can be used to enable sync of the People app with an account.</string>
+    <string name="permlab_readSyncStats">קרא נתונים של סינכרון</string>
+    <string name="permdesc_readSyncStats">Allows an app to read the sync stats for an account, including the history of sync events and how much data is synced. </string>
+    <string name="permlab_subscribedFeedsRead">קרא הזנות שמנוי עליהם</string>
+    <string name="permdesc_subscribedFeedsRead">Allows the app to get details about the currently synced feeds.</string>
+    <string name="permlab_subscribedFeedsWrite">כתוב הזנות שמנוי עליהם</string>
+    <string name="permdesc_subscribedFeedsWrite">Allows the app to modify
+            your currently synced feeds. Malicious apps may change your synced feeds.</string>
+    <string name="permlab_readDictionary">read terms you added to the dictionary</string>
+    <string name="permdesc_readDictionary">Allows the app to read all words,
+             names and phrases that the user may have stored in the user dictionary.</string>
+    <string name="permlab_writeDictionary">הוסף מילים למילון המוגדר על-ידי המשתמש</string>
+    <string name="permdesc_writeDictionary">Allows the app to write new words into the
+            user dictionary.</string>
+    <string name="permlab_sdcardRead" product="nosdcard">בדיקת גישה לאחסון מוגן</string>
+    <string name="permlab_sdcardRead" product="default">בדיקת גישה לאחסון מוגן</string>
+    <string name="permdesc_sdcardRead" product="nosdcard">Allows the app to test a permission for USB storage that will be available on future devices. </string>
+    <string name="permdesc_sdcardRead" product="default">Allows the app to test a permission for USB storage that will be available on future devices. </string>
+    <string name="permlab_sdcardWrite" product="nosdcard">modify or delete the contents of your USB storage</string>
+    <string name="permlab_sdcardWrite" product="default">modify or delete the contents of your USB storage</string>
+    <string name="permdesc_sdcardWrite" product="nosdcard">Allows the app to write to the USB storage.</string>
+    <string name="permdesc_sdcardWrite" product="default">Allows the app to write to the USB storage.</string>
+    <string name="permlab_mediaStorageWrite" product="default">modify/delete internal media storage contents</string>
+    <string name="permdesc_mediaStorageWrite" product="default">Allows the app to modify the contents of the internal media storage.</string>
+    <string name="permlab_sdcardAccessAll">access external storage of all users</string>
+    <string name="permdesc_sdcardAccessAll">Allows the app to access external storage for all users.</string>
+    <string name="permlab_cache_filesystem">גישה למטמון מערכת הקבצים</string>
+    <string name="permdesc_cache_filesystem">Allows the app to read and write the cache filesystem.</string>
+    <string name="permlab_use_sip">בצע/קבל שיחות אינטרנט</string>
+    <string name="permdesc_use_sip">Allows the app to use the SIP service to make/receive Internet calls.</string>
+    <string name="permlab_readNetworkUsageHistory">read historical network usage</string>
+    <string name="permdesc_readNetworkUsageHistory">Allows the app to read historical network usage for specific networks and apps.</string>
+    <string name="permlab_manageNetworkPolicy">manage network policy</string>
+    <string name="permdesc_manageNetworkPolicy">Allows the app to manage network policies and define app-specific rules.</string>
+    <string name="permlab_modifyNetworkAccounting">modify network usage accounting</string>
+    <string name="permdesc_modifyNetworkAccounting">Allows the app to modify how network usage is accounted against apps. Not for use by normal apps.</string>
+    <string name="policylab_limitPassword">Set password rules</string>
+    <string name="policydesc_limitPassword">Control the length and the characters allowed in screen-unlock passwords.</string>
+    <string name="policylab_watchLogin">Monitor screen-unlock attempts</string>
+    <string name="policydesc_watchLogin" product="tablet">Monitor the number of incorrect passwords
+        typed when unlocking the screen, and lock the tablet or erase all the tablet\'s
+        data if too many incorrect passwords are typed.</string>
+    <string name="policydesc_watchLogin" product="default">Monitor the number of incorrect passwords
+        typed when unlocking the screen, and lock the tablet or erase all the tablet\'s
+        data if too many incorrect passwords are typed.</string>
+    <string name="policylab_resetPassword">Change the screen-unlock password</string>
+    <string name="policydesc_resetPassword">Change the screen-unlock password.</string>
+    <string name="policylab_forceLock">נעל את המסך</string>
+    <string name="policydesc_forceLock">Control how and when the screen locks.</string>
+    <string name="policylab_wipeData">Erase all data</string>
+    <string name="policydesc_wipeData" product="tablet">Erase the tablet\'s data without warning by performing a factory data reset.</string>
+    <string name="policydesc_wipeData" product="default">Erase the tablet\'s data without warning by performing a factory data reset.</string>
+    <string name="policylab_setGlobalProxy">Set the device global proxy</string>
+    <string name="policydesc_setGlobalProxy">Set the device global proxy
+                to be used while policy is enabled. Only the first device admin
+                sets the effective global proxy.</string>
+    <string name="policylab_expirePassword">Set lock-screen password expiration</string>
+    <string name="policydesc_expirePassword">Control how frequently the lock-screen password must be changed.</string>
+    <string name="policylab_encryptedStorage">Set storage encryption</string>
+    <string name="policydesc_encryptedStorage">Require that stored app data be encrypted.</string>
+    <string name="policylab_disableCamera">Disable cameras</string>
+    <string name="policydesc_disableCamera">Prevent use of all device cameras.</string>
+    <string name="policylab_disableKeyguardFeatures">Disable features in keyguard</string>
+    <string name="policydesc_disableKeyguardFeatures">Prevent use of some features in keyguard.</string>
+    <string name="phoneTypeCustom">מותאם</string>
+    <string name="phoneTypeHome">בית</string>
+    <string name="phoneTypeMobile">נייד</string>
+    <string name="phoneTypeWork">עבודה</string>
+    <string name="phoneTypeFaxWork">פקס עבודה</string>
+    <string name="phoneTypeFaxHome">פקס בית</string>
+    <string name="phoneTypePager">זימונית</string>
+    <string name="phoneTypeOther">אחרים</string>
+    <string name="phoneTypeCallback">התקשר חזרה</string>
+    <string name="phoneTypeCar">מכונית</string>
+    <string name="phoneTypeCompanyMain">חברה ראשי</string>
+    <string name="phoneTypeIsdn">ISDN</string>
+    <string name="phoneTypeMain">ראשי</string>
+    <string name="phoneTypeOtherFax">פקס אחר</string>
+    <string name="phoneTypeRadio">רדיו</string>
+    <string name="phoneTypeTelex">טלקס</string>
+    <string name="phoneTypeTtyTdd">TTY TDD</string>
+    <string name="phoneTypeWorkMobile">נייד עבודה</string>
+    <string name="phoneTypeWorkPager">זימונית עבודה</string>
+    <string name="phoneTypeAssistant">סיוע</string>
+    <string name="phoneTypeMms">MMS</string>
+    <string name="eventTypeCustom">מותאם</string>
+    <string name="eventTypeBirthday">יום הולדת</string>
+    <string name="eventTypeAnniversary">יום השנה</string>
+    <string name="eventTypeOther">אחרים</string>
+    <string name="emailTypeCustom">מותאם</string>
+    <string name="emailTypeHome">בית</string>
+    <string name="emailTypeWork">עבודה</string>
+    <string name="emailTypeOther">אחרים</string>
+    <string name="emailTypeMobile">נייד</string>
+    <string name="postalTypeCustom">מותאם</string>
+    <string name="postalTypeHome">בית</string>
+    <string name="postalTypeWork">עבודה</string>
+    <string name="postalTypeOther">אחרים</string>
+    <string name="imTypeCustom">מותאם</string>
+    <string name="imTypeHome">בית</string>
+    <string name="imTypeWork">עבודה</string>
+    <string name="imTypeOther">אחרים</string>
+    <string name="imProtocolCustom">מותאם</string>
+    <string name="imProtocolAim">AIM</string>
+    <string name="imProtocolMsn">Windows Live</string>
+    <string name="imProtocolYahoo">יאהו</string>
+    <string name="imProtocolSkype">סקייפ</string>
+    <string name="imProtocolQq">QQ</string>
+    <string name="imProtocolGoogleTalk">Google Talk</string>
+    <string name="imProtocolIcq">ICQ</string>
+    <string name="imProtocolJabber">Jabber</string>
+    <string name="imProtocolNetMeeting">NetMeeting</string>
+    <string name="orgTypeWork">עבודה</string>
+    <string name="orgTypeOther">אחרים</string>
+    <string name="orgTypeCustom">מותאם</string>
+    <string name="relationTypeCustom">מותאם</string>
+    <string name="relationTypeAssistant">סיוע</string>
+    <string name="relationTypeBrother">Brother</string>
+    <string name="relationTypeChild">Child</string>
+    <string name="relationTypeDomesticPartner">Domestic Partner</string>
+    <string name="relationTypeFather">Father</string>
+    <string name="relationTypeFriend">Friend</string>
+    <string name="relationTypeManager">Manager</string>
+    <string name="relationTypeMother">Mother</string>
+    <string name="relationTypeParent">Parent</string>
+    <string name="relationTypePartner">Partner</string>
+    <string name="relationTypeReferredBy">Referred by</string>
+    <string name="relationTypeRelative">Relative</string>
+    <string name="relationTypeSister">Sister</string>
+    <string name="relationTypeSpouse">Spouse</string>
+    <string name="sipAddressTypeCustom">מותאם</string>
+    <string name="sipAddressTypeHome">בית</string>
+    <string name="sipAddressTypeWork">עבודה</string>
+    <string name="sipAddressTypeOther">אחרים</string>
+    <string name="keyguard_password_enter_pin_code">Type PIN code</string>
+    <string name="keyguard_password_enter_puk_code">Type PUK and new PIN code</string>
+    <string name="keyguard_password_enter_puk_prompt">PUK code</string>
+    <string name="keyguard_password_enter_pin_prompt">New PIN code</string>
+    <string name="keyguard_password_entry_touch_hint"><font size="17"> גע כדי להקליד את הסיסמה</font></string>
+    <string name="keyguard_password_enter_password_code">Type password to unlock</string>
+    <string name="keyguard_password_enter_pin_password_code">Type PIN to unlock</string>
+    <string name="keyguard_password_wrong_pin_code">Incorrect PIN code.</string>
+    <string name="keyguard_label_text">To unlock, press Menu then 0.</string>
+    <string name="emergency_call_dialog_number_for_display">מספר חירום</string>
+    <string name="lockscreen_carrier_default">אין שירות.</string>
+    <string name="lockscreen_screen_locked">מסך נעול.</string>
+    <string name="lockscreen_instructions_when_pattern_enabled">הקש על תפריט כדי לבטל נעילה או להחליף שיחת חירום.</string>
+    <string name="lockscreen_instructions_when_pattern_disabled">הקש על תפריט כדי לבטל נעילה.</string>
+    <string name="lockscreen_pattern_instructions">צייר צורה כדי לבטל נעילה</string>
+    <string name="lockscreen_emergency_call">שיחת חירום</string>
+    <string name="lockscreen_return_to_call">חזור לשיחה</string>
+    <string name="lockscreen_pattern_correct">נכון!</string>
+    <string name="lockscreen_pattern_wrong">נסה שוב</string>
+    <string name="lockscreen_password_wrong">נסה שוב</string>
+    <string name="faceunlock_multiple_failures">ניסיונות הפתיחה באמצעות זיהוי פנים נוצלו</string>
+    <string name="lockscreen_plugged_in">טעינה, <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
+    <string name="lockscreen_discharging">פורק, <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
+    <string name="lockscreen_charged">טעון</string>
+    <string name="lockscreen_battery_short"><xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
+    <string name="lockscreen_low_battery">Connect your charger, <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
+    <string name="lockscreen_missing_sim_message_short">ללא כרטיס SIM</string>
+    <string name="lockscreen_missing_sim_message" product="tablet">ללא כרטיס SIM ב- tablet.</string>
+    <string name="lockscreen_missing_sim_message" product="default">ללא כרטיס SIM ב- tablet.</string>
+    <string name="lockscreen_missing_sim_instructions">הכנס את כרטיס ה-SIM.</string>
+    <string name="lockscreen_missing_sim_instructions_long">כרטיס ה-SIM חסר או לא קריא. הכנס את כרטיס ה-SIM.</string>
+    <string name="lockscreen_permanent_disabled_sim_message_short">כרטיס ה-SIM לא שמיש.</string>
+    <string name="lockscreen_permanent_disabled_sim_instructions">Your SIM card has been permanently disabled.\n
+        Contact your wireless service provider for another SIM card.</string>
+    <string name="lockscreen_transport_prev_description">Previous track button</string>
+    <string name="lockscreen_transport_next_description">Next track button</string>
+    <string name="lockscreen_transport_pause_description">Pause button</string>
+    <string name="lockscreen_transport_play_description">Play button</string>
+    <string name="lockscreen_transport_stop_description">Stop button</string>
+    <string name="emergency_calls_only" msgid="2485604591272668370">Emergency calls only</string>
+    <string name="lockscreen_network_locked_message">Network locked</string>
+    <string name="lockscreen_sim_puk_locked_message">SIM card is PUK-locked.</string>
+    <string name="lockscreen_sim_puk_locked_instructions">See the User Guide or contact Customer Care.</string>
+    <string name="lockscreen_sim_locked_message">כרטיס ה-SIM נעול.</string>
+    <string name="lockscreen_sim_unlock_progress_dialog_message">Unlocking SIM card\u2026</string>
+    <string name="lockscreen_too_many_failed_attempts_dialog_message">
+                You have incorrectly drawn your unlock pattern <xliff:g id="number">%d</xliff:g> times.
+                \n\nTry again in <xliff:g id="number">%d</xliff:g> seconds.
+        </string>
+    <string name="lockscreen_too_many_failed_password_attempts_dialog_message">
+                You have incorrectly typed your password <xliff:g id="number">%d</xliff:g> times.
+                \n\nTry again in <xliff:g id="number">%d</xliff:g> seconds.
+        </string>
+    <string name="lockscreen_too_many_failed_pin_attempts_dialog_message">
+                You have incorrectly typed your PIN <xliff:g id="number">%d</xliff:g> times.
+                \n\nTry again in <xliff:g id="number">%d</xliff:g> seconds.
+        </string>
+    <string name="lockscreen_failed_attempts_almost_glogin" product="tablet">
+                You have incorrectly drawn your unlock pattern <xliff:g id="number">%d</xliff:g> times.
+             After <xliff:g id="number">%d</xliff:g> more unsuccessful attempts,
+             you will be asked to unlock your tablet using your Google signin.\n\n
+             Try again in <xliff:g id="number">%d</xliff:g> seconds.
+        </string>
+    <string name="lockscreen_failed_attempts_almost_glogin" product="default">
+                You have incorrectly drawn your unlock pattern <xliff:g id="number">%d</xliff:g> times.
+             After <xliff:g id="number">%d</xliff:g> more unsuccessful attempts,
+             you will be asked to unlock your tablet using your Google signin.\n\n
+             Try again in <xliff:g id="number">%d</xliff:g> seconds.
+        </string>
+    <string name="lockscreen_failed_attempts_almost_at_wipe" product="tablet">
+             You have incorrectly attempted to unlock the tablet <xliff:g id="number">%d</xliff:g> times.
+             After <xliff:g id="number">%d</xliff:g> more unsuccessful attempts,
+             the tablet will be reset to factory default and all user data will be lost.
+        </string>
+    <string name="lockscreen_failed_attempts_almost_at_wipe" product="default">
+             You have incorrectly attempted to unlock the tablet <xliff:g id="number">%d</xliff:g> times.
+             After <xliff:g id="number">%d</xliff:g> more unsuccessful attempts,
+             the tablet will be reset to factory default and all user data will be lost.
+        </string>
+    <string name="lockscreen_failed_attempts_now_wiping" product="tablet">
+             You have incorrectly attempted to unlock the tablet <xliff:g id="number">%d</xliff:g> times.
+             The tablet will now be reset to factory default.
+        </string>
+    <string name="lockscreen_failed_attempts_now_wiping" product="default">
+             You have incorrectly attempted to unlock the tablet <xliff:g id="number">%d</xliff:g> times.
+             The tablet will now be reset to factory default.
+        </string>
+    <string name="lockscreen_too_many_failed_attempts_countdown">Try again in <xliff:g id="number">%d</xliff:g> seconds.</string>
+    <string name="lockscreen_forgot_pattern_button_text">Forgot pattern?</string>
+    <string name="lockscreen_glogin_forgot_pattern">Account unlock</string>
+    <string name="lockscreen_glogin_too_many_attempts">Too many pattern attempts</string>
+    <string name="lockscreen_glogin_instructions">To unlock, sign in with your Google account.</string>
+    <string name="lockscreen_glogin_username_hint">שם משתמש (דואר אלקטרוני)</string>
+    <string name="lockscreen_glogin_password_hint">סיסמה</string>
+    <string name="lockscreen_glogin_submit_button">הירשם</string>
+    <string name="lockscreen_glogin_invalid_input">משתמש או סיסמה שגויים.</string>
+    <string name="lockscreen_glogin_account_recovery_hint">Forgot your username or password\?\nVisit <b>google.com/accounts/recovery</b>.</string>
+    <string name="lockscreen_glogin_checking_password">Checking\u2026</string>
+    <string name="lockscreen_unlock_label">Unlock</string>
+    <string name="lockscreen_sound_on_label">Sound on</string>
+    <string name="lockscreen_sound_off_label">Sound off</string>
+    <string name="lockscreen_access_pattern_start">Pattern started</string>
+    <string name="lockscreen_access_pattern_cleared">Pattern cleared</string>
+    <string name="lockscreen_access_pattern_cell_added">Cell added</string>
+    <string name="lockscreen_access_pattern_detected">Pattern completed</string>
+    <string name="keyguard_accessibility_add_widget">Add widget.</string>
+    <string name="keyguard_accessibility_widget_empty_slot">Empty</string>
+    <string name="keyguard_accessibility_unlock_area_expanded">Unlock area expanded.</string>
+    <string name="keyguard_accessibility_unlock_area_collapsed">Unlock area collapsed.</string>
+    <string name="keyguard_accessibility_widget"><xliff:g id="widget_index">%1$s</xliff:g> widget.</string>
+    <string name="keyguard_accessibility_user_selector">User selector</string>
+    <string name="keyguard_accessibility_status">Status</string>
+    <string name="keyguard_accessibility_camera">מצלמה</string>
+    <string name="keygaurd_accessibility_media_controls">Media controls</string>
+    <string name="keyguard_accessibility_widget_reorder_start">Widget reordering started.</string>
+    <string name="keyguard_accessibility_widget_reorder_end">Widget reordering ended.</string>
+    <string name="keyguard_accessibility_widget_deleted">Widget <xliff:g id="widget_index">%1$s</xliff:g> deleted.</string>
+    <string name="keyguard_accessibility_expand_lock_area">Expand unlock area.</string>
+    <string name="keyguard_accessibility_slide_unlock">Slide unlock.</string>
+    <string name="keyguard_accessibility_pattern_unlock">Pattern unlock.</string>
+    <string name="keyguard_accessibility_face_unlock">Face unlock.</string>
+    <string name="keyguard_accessibility_pin_unlock">פתיחת PIN.</string>
+    <string name="keyguard_accessibility_password_unlock">ביטול נעילה עם סיסמה.</string>
+    <string name="keyguard_accessibility_pattern_area">אזור צורה.</string>
+    <string name="keyguard_accessibility_slide_area">אזור החלקה.</string>
+    <string name="password_keyboard_label_symbol_key">\?123</string>
+    <string name="password_keyboard_label_alpha_key">ABC</string>
+    <string name="password_keyboard_label_alt_key">ALT</string>
+    <string name="granularity_label_character">תו</string>
+    <string name="granularity_label_word">מילה</string>
+    <string name="granularity_label_link">קישור</string>
+    <string name="granularity_label_line">קו</string>
+    <string name="hour_ampm">"<xliff:g id="hour" example="3">%-l</xliff:g><xliff:g id="ampm" example="pm">%P</xliff:g>"</string>
+    <string name="hour_cap_ampm">"<xliff:g id="hour" example="3">%-l</xliff:g><xliff:g id="ampm" example="PM">%p</xliff:g>"</string>
+    <string name="factorytest_failed">Factory test failed</string>
+    <string name="factorytest_not_system">The FACTORY_TEST action
+                is only supported for packages installed in /system/app.</string>
+    <string name="factorytest_no_action">No package was found that provides the
+                FACTORY_TEST action.</string>
+    <string name="factorytest_reboot">אתחול</string>
+    <string name="js_dialog_title">The page at \"<xliff:g id="title">%s</xliff:g>\" says:</string>
+    <string name="js_dialog_title_default">JavaScript</string>
+    <string name="js_dialog_before_unload">Navigate away from this page?\n\n<xliff:g id="message">%s</xliff:g>\n\nTouch OK to continue, or Cancel to stay on the current page.</string>
+    <string name="save_password_label">Confirm</string>
+    <string name="double_tap_toast">Tip: Double-tap to zoom in and out.</string>
+    <string name="autofill_this_form">Autofill</string>
+    <string name="setup_autofill">Set up Autofill</string>
+    <string name="autofill_address_name_separator">\u0020</string>
+    <string name="autofill_address_summary_name_format">$1$ 2$ 3</string>
+    <string name="autofill_address_summary_separator">, \u0020</string>
+    <string name="autofill_address_summary_format">$1$ 2$ 3</string>
+    <string name="autofill_attention_ignored_re">attention|attn</string>
+    <string name="autofill_region_ignored_re">province|region|other<!-- es -->|provincia<!-- pt-BR, pt-PT -->|bairro|suburb</string>
+    <string name="autofill_company_re">company|business|organization|organisation|department<!-- de-DE -->|firma|firmenname<!-- es -->|empresa<!-- fr-FR -->|societe|société<!-- it-IT -->|ragione.?sociale<!-- ja-JP -->|会社<!-- ru -->|название.?компании<!-- zh-CN -->|单位|公司</string>
+    <string name="autofill_address_line_1_re">address.?line|address1|addr1|street<!-- de-DE -->|strasse|straße|hausnummer|housenumber<!-- en-GB -->|house.?name<!-- es -->|direccion|dirección<!-- fr-FR -->|adresse<!-- it-IT -->|indirizzo<!-- ja-JP -->|住所1<!-- pt-BR, pt-PT -->|morada|endereço<!-- ru -->|Адрес<!-- zh-CN -->|地址</string>
+    <string name="autofill_address_line_1_label_re">address<!-- fr-FR -->|adresse<!-- it-IT -->|indirizzo<!-- ja-JP -->|住所<!-- zh-CN -->|地址</string>
+    <string name="autofill_address_line_2_re">address.?line2|address2|addr2|street|suite|unit<!-- de-DE -->|adresszusatz|ergänzende.?angaben<!-- es -->|direccion2|colonia|adicional<!-- fr-FR -->|addresssuppl|complementnom|appartement<!-- it-IT -->|indirizzo2<!-- ja-JP -->|住所2</string>
+    <string name="autofill_address_line_3_re">address.?line3|address3|addr3|street|line3<!-- es -->|municipio<!-- fr-FR -->|batiment|residence<!-- it-IT -->|indirizzo3</string>
+    <string name="autofill_country_re">country|location<!-- ja-JP -->|国<!-- zh-CN -->|国家</string>
+    <string name="autofill_zip_code_re">zip|postal|post code|pcode|^1z$<!-- de-DE -->|postleitzahl<!-- es -->|cp<!-- fr-FR -->|cdp<!-- it-IT -->|cap<!-- ja-JP -->|郵便番号<!-- pt-BR, pt-PT -->|codigo|codpos|cep<!-- ru -->|Почтовый.?Индекс<!--zh-CN -->|邮政编码|邮编<!-- zh-TW -->|郵遞區號</string>
+    <string name="autofill_zip_4_re">zip|^-$|post2<!-- pt-BR, pt-PT -->|codpos2</string>
+    <string name="autofill_city_re">city|town<!-- de-DE -->|ort|stadt<!-- en-AU -->|suburb<!-- es -->|ciudad|provincia|localidad|poblacion<!-- fr-FR -->|ville|commune<!-- it-IT -->|localita<!-- ja-JP -->|市区町村<!-- pt-BR, pt-PT -->|cidade<!-- ru -->|Город<!-- zh-CN -->|市<!-- zh-TW -->|分區</string>
+    <string name="autofill_state_re">state|county|region|province<!-- de-DE -->|land<!-- en-UK -->|county|principality<!-- ja-JP -->|都道府県<!-- pt-BR, pt-PT -->|estado|provincia<!-- ru -->|область<!-- zh-CN -->|省<!-- zh-TW -->|地區</string>
+    <string name="autofill_address_type_same_as_re">same as</string>
+    <string name="autofill_address_type_use_my_re">use my</string>
+    <string name="autofill_billing_designator_re">bill</string>
+    <string name="autofill_shipping_designator_re">ship</string>
+    <string name="autofill_email_re">e.?mail<!-- ja-JP -->|メールアドレス<!-- ru -->|Электронной.?Почты<!-- zh-CN -->|邮件|邮箱<!-- zh-TW -->|電郵地址</string>
+    <string name="autofill_username_re">user.?name|user.?id<!-- de-DE -->|vollständiger.?name<!-- zh-CN -->|用户名</string>
+    <string name="autofill_name_re">^name|full.?name|your.?name|customer.?name|firstandlastname<!-- es -->|nombre.*y.*apellidos<!-- fr-FR -->|^nom<!-- ja-JP -->|お名前|氏名<!-- pt-BR, pt-PT -->|^nome<!-- zh-CN -->|姓名</string>
+    <string name="autofill_name_specific_re">^name<!-- fr-FR -->|^nom<!-- pt-BR, pt-PT -->|^nome</string>
+    <string name="autofill_first_name_re">irst.*name|initials|fname|first$<!-- de-DE -->|vorname<!-- es -->|nombre<!-- fr-FR -->|forename|prénom|prenom<!-- ja-JP -->|名<!-- pt-BR, pt-PT -->|nome<!-- ru -->|Имя</string>
+    <string name="autofill_middle_initial_re">middle.*initial|m\\.i\\.|mi$</string>
+    <string name="autofill_middle_name_re">middle.*name|mname|middle$<!-- es -->|apellido.?materno|lastlastname</string>
+    <string name="autofill_last_name_re">last.*name|lname|surname|last$<!-- de-DE -->|nachname<!-- es -->|apellidos<!-- fr-FR -->|famille|^nom<!-- it-IT -->|cognome<!-- ja-JP -->|姓<!-- pt-BR, pt-PT -->|morada|apelidos|surename|sobrenome<!-- ru -->|Фамилия</string>
+    <string name="autofill_phone_re">phone<!-- de-DE -->|telefonnummer<!-- es -->|telefono|teléfono<!-- fr-FR -->|telfixe<!-- ja-JP -->|電話<!-- pt-BR, pt-PT -->|telefone|telemovel<!-- ru -->|телефон<!-- zh-CN -->|电话</string>
+    <string name="autofill_area_code_re">area.*code|acode|area</string>
+    <string name="autofill_phone_prefix_re">prefix<!-- fr-FR -->|preselection<!-- pt-BR, pt-PT -->|ddd</string>
+    <string name="autofill_phone_suffix_re">suffix</string>
+    <string name="autofill_phone_extension_re">ext<!-- pt-BR, pt-PT -->|ramal</string>
+    <string name="autofill_name_on_card_re">card.?holder|name.?on.?card|ccname|owner<!-- de-DE -->|karteninhaber<!-- es -->|nombre.*tarjeta<!-- fr-FR -->|nom.*carte<!-- it-IT -->|nome.*cart<!-- ja-JP -->|名前<!-- ru -->|Имя.*карты<!-- zh-CN -->|信用卡开户名|开户名|持卡人姓名<!-- zh-TW -->|持卡人姓名</string>
+    <string name="autofill_name_on_card_contextual_re">name</string>
+    <string name="autofill_card_cvc_re">verification|card identification|cvn|security code|cvv code|cvc</string>
+    <string name="autofill_card_number_re">number|card.?#|card.?no|ccnum<!-- de-DE -->|nummer<!-- es -->|credito|numero|número<!-- fr-FR -->|numéro<!-- ja-JP -->|カード番号<!-- ru -->|Номер.*карты<!-- zh-CN -->|信用卡号|信用卡号码<!-- zh-TW -->|信用卡卡號</string>
+    <string name="autofill_expiration_month_re">expir|exp.*month|exp.*date|ccmonth<!-- de-DE -->|gueltig|gültig|monat<!-- es -->|fecha<!-- fr-FR -->|date.*exp<!-- it-IT -->|scadenza<!-- ja-JP -->|有効期限<!-- pt-BR, pt-PT -->|validade<!-- ru -->|Срок действия карты<!-- zh-CN -->|月</string>
+    <string name="autofill_expiration_date_re">exp|^/|year<!-- de-DE -->|ablaufdatum|gueltig|gültig|yahr<!-- es -->|fecha<!-- it-IT -->|scadenza<!-- ja-JP -->|有効期限<!-- pt-BR, pt-PT -->|validade<!-- ru -->|Срок действия карты<!-- zh-CN -->|年|有效期</string>
+    <string name="autofill_card_ignored_re">^card</string>
+    <string name="autofill_fax_re">fax<!-- fr-FR -->|télécopie|telecopie<!-- ja-JP -->|ファックス<!-- ru -->|факс<!-- zh-CN -->|传真<!-- zh-TW -->|傳真</string>
+    <string name="autofill_country_code_re">country.*code|ccode|_cc</string>
+    <string name="autofill_area_code_notext_re">^\\($</string>
+    <string name="autofill_phone_prefix_separator_re">^-$|^\\)$</string>
+    <string name="autofill_phone_suffix_separator_re">^-$</string>
+    <string name="autofill_province">מחוז</string>
+    <string name="autofill_postal_code">מיקוד</string>
+    <string name="autofill_state">מדינה</string>
+    <string name="autofill_zip_code">מיקוד</string>
+    <string name="autofill_county">ארץ</string>
+    <string name="autofill_island">אי</string>
+    <string name="autofill_district">מחוז</string>
+    <string name="autofill_department">מחלקה</string>
+    <string name="autofill_prefecture">Prefecture</string>
+    <string name="autofill_parish">Parish</string>
+    <string name="autofill_area">אזור</string>
+    <string name="autofill_emirate">אמירות</string>
+    <string name="permlab_readHistoryBookmarks">read your Web bookmarks and history</string>
+    <string name="permdesc_readHistoryBookmarks">Allows the app to read the
+         history of all URLs that the Browser has visited, and all of the Browser\'s
+         bookmarks. Note: this permission may not be enforced by third-party
+         browsers or other    applications with web browsing capabilities.</string>
+    <string name="permlab_writeHistoryBookmarks">write web bookmarks and history</string>
+    <string name="permdesc_writeHistoryBookmarks" product="tablet">Allows the
+                app to modify the Browser\'s history or bookmarks stored on your tablet.
+                This may allow the app to erase or modify Browser data.    Note: this
+                permission may note be enforced by third-party browsers or other
+                applications with web browsing capabilities.</string>
+    <string name="permdesc_writeHistoryBookmarks" product="default">Allows the
+                app to modify the Browser\'s history or bookmarks stored on your tablet.
+                This may allow the app to erase or modify Browser data.    Note: this
+                permission may note be enforced by third-party browsers or other
+                applications with web browsing capabilities.</string>
+    <string name="permlab_setAlarm">הגדר התראה</string>
+    <string name="permdesc_setAlarm">Allows the app to set an alarm in
+            an installed alarm clock app. Some alarm clock apps may
+            not implement this feature.</string>
+    <string name="permlab_addVoicemail">הוסף הודעה קולית</string>
+    <string name="permdesc_addVoicemail">Allows the app to add messages
+            to your voicemail inbox.</string>
+    <string name="permlab_writeGeolocationPermissions">modify Browser geolocation permissions</string>
+    <string name="permdesc_writeGeolocationPermissions">Allows the app to modify the
+                Browser\'s geolocation permissions. Malicious apps
+                may use this to allow sending location information to arbitrary web sites.</string>
+    <string name="permlab_packageVerificationAgent">ודא חבילות</string>
+    <string name="permdesc_packageVerificationAgent">Allows the app to verify a package is
+                installable.</string>
+    <string name="permlab_bindPackageVerifier">bind to a package verifier</string>
+    <string name="permdesc_bindPackageVerifier">Allows the holder to make requests of
+                package verifiers. Should never be needed for normal apps.</string>
+    <string name="permlab_serialPort">access serial ports</string>
+    <string name="permdesc_serialPort">Allows the holder to access serial ports using the SerialManager API.</string>
+    <string name="permlab_accessContentProvidersExternally">access content providers externally</string>
+    <string name="permdesc_accessContentProvidersExternally">Allows the holder to access content
+         providers from the shell. Should never be needed for normal apps.</string>
+    <string name="permlab_updateLock">discourage automatic device updates</string>
+    <string name="permdesc_updateLock">Allows the holder to offer information to the system about when would be a good time for a noninteractive reboot to upgrade the device.</string>
+    <string name="save_password_message">Do you want the browser to remember this password?</string>
+    <string name="save_password_notnow">Not now</string>
+    <string name="save_password_remember">Remember</string>
+    <string name="save_password_never">Never</string>
+    <string name="open_permission_deny">You don\'t have permission to open this page.</string>
+    <string name="text_copied">Text copied to clipboard.</string>
+    <string name="more_item_label">עוד</string>
+    <string name="prepend_shortcut_label">תפריט +</string>
+    <string name="menu_space_shortcut_label">רווח</string>
+    <string name="menu_enter_shortcut_label">הזן</string>
+    <string name="menu_delete_shortcut_label">מחק</string>
+    <string name="search_go">חפש</string>
+    <string name="searchview_description_search">חפש</string>
+    <string name="searchview_description_query">שאילתת החיפוש</string>
+    <string name="searchview_description_clear">נקה חיפוש</string>
+    <string name="searchview_description_submit">Submit query</string>
+    <string name="searchview_description_voice">Voice search</string>
+    <string name="enable_explore_by_touch_warning_title">Enable Explore by Touch?</string>
+    <string name="enable_explore_by_touch_warning_message" product="tablet">
+                        <xliff:g id="accessibility_service_name">%1$s</xliff:g> wants to enable Explore by Touch.
+                        When Explore by Touch is turned on, you can hear or see descriptions of what\'s under
+                        your finger or perform gestures to interact with the tablet.</string>
+    <string name="enable_explore_by_touch_warning_message" product="default">
+                        <xliff:g id="accessibility_service_name">%1$s</xliff:g> wants to enable Explore by Touch.
+                        When Explore by Touch is turned on, you can hear or see descriptions of what\'s under
+                        your finger or perform gestures to interact with the tablet.</string>
+    <string name="oneMonthDurationPast">1 month ago</string>
+    <string name="beforeOneMonthDurationPast">Before 1 month ago</string>
+    <string name="last_month">Last month</string>
+    <string name="older">Older</string>
+    <string name="preposition_for_date">on <xliff:g id="date" example="May 29">%s</xliff:g></string>
+    <string name="preposition_for_time">at <xliff:g id="time" example="2:33 am">%s</xliff:g></string>
+    <string name="preposition_for_year">in <xliff:g id="year" example="2003">%s</xliff:g></string>
+    <string name="day">day</string>
+    <string name="days">days</string>
+    <string name="hour">hour</string>
+    <string name="hours">hours</string>
+    <string name="minute">min</string>
+    <string name="minutes">mins</string>
+    <string name="second">sec</string>
+    <string name="seconds">secs</string>
+    <string name="week">week</string>
+    <string name="weeks">שבועות</string>
+    <string name="year">שנה</string>
+    <string name="years">שנים</string>
+    <string name="VideoView_error_title">בעית וידאו</string>
+    <string name="VideoView_error_text_invalid_progressive_playback">This video isn\'t valid for streaming to this device.</string>
+    <string name="VideoView_error_text_unknown">אין אפשרות להפעיל וידאו זה.</string>
+    <string name="VideoView_error_button">אוקיי</string>
+    <string name="relative_time">"<xliff:g id="date" example="4 hours ago">%1$s</xliff:g>, <xliff:g id="time" example="11:00 am">%2$s</xliff:g>"</string>
+    <string name="noon">"צהריים"</string>
+    <string name="Noon">"צהריים"</string>
+    <string name="midnight">"חצות"</string>
+    <string name="Midnight">"חצות"</string>
+    <string name="elapsed_time_short_format_mm_ss"><xliff:g id="minutes" example="1">%1$02d</xliff:g>:<xliff:g id="seconds" example="23">%2$02d</xliff:g></string>
+    <string name="elapsed_time_short_format_h_mm_ss"><xliff:g id="hours" example="1">%1$d</xliff:g>:<xliff:g id="minutes" example="43">%2$02d</xliff:g>:<xliff:g id="seconds" example="33">%3$02d</xliff:g></string>
+    <string name="selectAll">Select all</string>
+    <string name="cut">גזור</string>
+    <string name="copy">העתק</string>
+    <string name="paste">הדבק</string>
+    <string name="replace">Replace\u2026</string>
+    <string name="delete">Delete</string>
+    <string name="copyUrl">Copy URL</string>
+    <string name="selectTextMode">Select text</string>
+    <string name="textSelectionCABTitle">Text selection</string>
+    <string name="addToDictionary">Add to dictionary</string>
+    <string name="deleteText">Delete</string>
+    <string name="inputMethod">Input method</string>
+    <string name="editTextMenuTitle">Text actions</string>
+    <string name="low_internal_storage_view_title">Storage space running out</string>
+    <string name="low_internal_storage_view_text">Some system functions may not work</string>
+    <string name="ok">אוקיי</string>
+    <string name="cancel">ביטול</string>
+    <string name="yes">אוקיי</string>
+    <string name="no">ביטול</string>
+    <string name="dialog_alert_title">תשומת לב</string>
+    <string name="loading">Loading\u2026</string>
+    <string name="capital_on">ON</string>
+    <string name="capital_off">OFF</string>
+    <string name="whichApplication">השלם את הפעולה באמצעות</string>
+    <string name="alwaysUse">השתמש כברירת מחדל עבור פעולה זו.</string>
+    <string name="clearDefaultHintMsg">Clear default in System settings &gt; Apps &gt; Downloaded.</string>
+    <string name="chooseActivity">בחר פעולה לביצוע</string>
+    <string name="chooseUsbActivity">בחר יישום עבור התקן ה-USB</string>
+    <string name="noApplications">אף יישום לא יכול לבצע פעולה זו.</string>
+    <string name="aerr_application">Unfortunately, <xliff:g id="application">%1$s</xliff:g> has stopped.</string>
+    <string name="aerr_process">Unfortunately, the process <xliff:g id="process">%1$s</xliff:g> has
+                stopped.</string>
+    <string name="anr_activity_application"><xliff:g id="application">%2$s</xliff:g> isn\'t responding.\n\nDo you want to close it?</string>
+    <string name="anr_activity_process">Activity <xliff:g id="activity">%1$s</xliff:g> isn\'t responding.\n\nDo you want to close it?</string>
+    <string name="anr_application_process"><xliff:g id="application">%1$s</xliff:g> isn\'t responding. Do you want to close it?</string>
+    <string name="anr_process">Process <xliff:g id="process">%1$s</xliff:g> isn\'t responding.\n\nDo you want to close it?</string>
+    <string name="force_close">אוקיי</string>
+    <string name="report">דווח</string>
+    <string name="wait">המתן</string>
+    <string name="webpage_unresponsive">The page has become unresponsive.\n\nDo you want to close it?</string>
+    <string name="launch_warning_title">App redirected</string>
+    <string name="launch_warning_replace"><xliff:g id="app_name">%1$s</xliff:g> is now running.</string>
+    <string name="launch_warning_original"><xliff:g id="app_name">%1$s</xliff:g> was originally launched.</string>
+    <string name="screen_compat_mode_scale">Scale</string>
+    <string name="screen_compat_mode_show">Always show</string>
+    <string name="screen_compat_mode_hint">Re-enable this in System settings &gt; Apps &gt; Downloaded.</string>
+    <string name="smv_application">The app <xliff:g id="application">%1$s</xliff:g>
+                (process <xliff:g id="process">%2$s</xliff:g>) has violated its self-enforced StrictMode policy.</string>
+    <string name="smv_process">The process <xliff:g id="process">%1$s</xliff:g> has
+            has violated its self-enforced StrictMode policy.</string>
+    <string name="android_upgrading_title">Android is upgrading\u2026</string>
+    <string name="android_upgrading_apk">Optimizing app
+                <xliff:g id="number" example="123">%1$d</xliff:g> of
+                <xliff:g id="number" example="123">%2$d</xliff:g>.</string>
+    <string name="android_upgrading_starting_apps">Starting apps.</string>
+    <string name="android_upgrading_complete">Finishing boot.</string>
+    <string name="heavy_weight_notification"><xliff:g id="app">%1$s</xliff:g> running</string>
+    <string name="heavy_weight_notification_detail">Touch to switch to app</string>
+    <string name="heavy_weight_switcher_title">Switch apps?</string>
+    <string name="heavy_weight_switcher_text">Another app is already running
+        that must be stopped before you can start a new one.</string>
+    <string name="old_app_action">Return to <xliff:g id="old_app">%1$s</xliff:g></string>
+    <string name="old_app_description">Don\'t start the new app.</string>
+    <string name="new_app_action">Start <xliff:g id="old_app">%1$s</xliff:g></string>
+    <string name="new_app_description">Stop the old app without saving.</string>
+    <string name="sendText">Choose an action for text</string>
+    <string name="volume_ringtone">Ringer volume</string>
+    <string name="volume_music">Media volume</string>
+    <string name="volume_music_hint_playing_through_bluetooth">Playing through Bluetooth</string>
+    <string name="volume_music_hint_silent_ringtone_selected">Silent ringtone set</string>
+    <string name="volume_call">עוצמת שמע שיחה</string>
+    <string name="volume_bluetooth_call">עוצמת שמע בלוטוס</string>
+    <string name="volume_alarm">עוצמת אזעקה</string>
+    <string name="volume_notification">עוצמת התראה</string>
+    <string name="volume_unknown">עוצמת שמע</string>
+    <string name="volume_icon_description_bluetooth">עוצמת שמע בלוטוס</string>
+    <string name="volume_icon_description_ringer">עוצמת צלצול</string>
+    <string name="volume_icon_description_incall">עוצמת שיחה</string>
+    <string name="volume_icon_description_media">Media volume</string>
+    <string name="volume_icon_description_notification">עוצמת התראה</string>
+    <string name="ringtone_default">רינגטון ברירת המחדל</string>
+    <string name="ringtone_default_with_actual">Default ringtone (<xliff:g id="actual_ringtone">%1$s</xliff:g>)</string>
+    <string name="ringtone_silent">אף אחד</string>
+    <string name="ringtone_picker_title">רינגטונים</string>
+    <string name="ringtone_unknown">רינגטון לא ידוע</string>
+    <string name="wifi_available_sign_in">היכנס לרשת Wi-Fi</string>
+    <string name="network_available_sign_in">היכנס לרשת</string>
+    <string name="network_available_sign_in_detailed"><xliff:g id="network_ssid">%1$s</xliff:g></string>
+    <string name="wifi_watchdog_network_disabled">Couldn\'t connect to Wi-Fi</string>
+    <string name="wifi_watchdog_network_disabled_detailed">\u0020has a poor Internet connection.</string>
+    <string name="wifi_p2p_dialog_title">Wi-Fi Direct</string>
+    <string name="wifi_p2p_turnon_message">Start Wi-Fi Direct. This will turn off Wi-Fi client/hotspot.</string>
+    <string name="wifi_p2p_failed_message">Couldn\'t start Wi-Fi Direct.</string>
+    <string name="wifi_p2p_enabled_notification_title">Wi-Fi Direct is on</string>
+    <string name="wifi_p2p_enabled_notification_message">Touch for settings</string>
+    <string name="accept">Accept</string>
+    <string name="decline">Decline</string>
+    <string name="wifi_p2p_invitation_sent_title">הזמנה נשלחה</string>
+    <string name="wifi_p2p_invitation_to_connect_title">הזמנה להתחברות</string>
+    <string name="wifi_p2p_from_message">מ: </string>
+    <string name="wifi_p2p_to_message">אל: </string>
+    <string name="wifi_p2p_enter_pin_message">הקלד את ה PIN הנדרש: </string>
+    <string name="wifi_p2p_show_pin_message">PIN: </string>
+    <string name="wifi_p2p_frequency_conflict_message">The phone will temporarily disconnect from Wi-Fi while it\'s connected to <xliff:g id="device_name">%1$s</xliff:g></string>
+    <string name="select_character">הוסף תו</string>
+    <string name="sms_control_title">שליחת הודעות SMS</string>
+    <string name="sms_control_message">&lt;b&gt;<xliff:g id="app_name">%1$s</xliff:g>&lt;/b&gt; is sending a large number of SMS messages. Do you want to allow this app to continue sending messages?</string>
+    <string name="sms_control_yes">אפשר</string>
+    <string name="sms_control_no">מנע</string>
+    <string name="sms_short_code_confirm_message">&lt;b&gt;<xliff:g id="app_name">%1$s</xliff:g>&lt;/b&gt; would like to send a message to &lt;b&gt;<xliff:g id="dest_address">%2$s</xliff:g>&lt;/b&gt;.</string>
+    <string name="sms_short_code_details">This <font fgcolor="#ffffb060">may cause charges</font> on your mobile account.</string>
+    <string name="sms_premium_short_code_details"><font fgcolor="#ffffb060">This will cause charges on your mobile account.</font></string>
+    <string name="sms_short_code_confirm_allow">Send</string>
+    <string name="sms_short_code_confirm_deny">ביטול</string>
+    <string name="sms_short_code_remember_choice">Remember my choice</string>
+    <string name="sms_short_code_remember_undo_instruction">You can change this later in Settings\u00A0&gt;\u00A0Apps\"</string>
+    <string name="sms_short_code_confirm_always_allow">Always Allow</string>
+    <string name="sms_short_code_confirm_never_allow">Never Allow</string>
+    <string name="sim_removed_title">SIM card removed</string>
+    <string name="sim_removed_message">The mobile network will be unavailable until you restart with a valid SIM card inserted.</string>
+    <string name="sim_done_button">בוצע</string>
+    <string name="sim_added_title">נוסף כרטיס סים</string>
+    <string name="sim_added_message">הפעל מחדש את המכשיר כדי לגשת לרשת הסלולרית.</string>
+    <string name="sim_restart_button">Restart</string>
+    <string name="time_picker_dialog_title">Set time</string>
+    <string name="date_picker_dialog_title">Set date</string>
+    <string name="date_time_set">Set</string>
+    <string name="date_time_done">בוצע</string>
+    <string name="perms_new_perm_prefix"><font size="12" fgcolor="#ff33b5e5">NEW: </font></string>
+    <string name="perms_description_app">Provided by <xliff:g id="app_name">%1$s</xliff:g>.</string>
+    <string name="no_permissions">No permissions required</string>
+    <string name="perm_costs_money">this may cost you money</string>
+    <string name="usb_storage_activity_title">USB mass storage</string>
+    <string name="usb_storage_title">USB connected</string>
+    <string name="usb_storage_message" product="nosdcard">You\'ve connected to your computer via USB. Touch the button below if you want to copy files between your computer and your Android\'s USB storage.</string>
+    <string name="usb_storage_message" product="default">You\'ve connected to your computer via USB. Touch the button below if you want to copy files between your computer and your Android\'s USB storage.</string>
+    <string name="usb_storage_button_mount">Turn on USB storage</string>
+    <string name="usb_storage_error_message" product="nosdcard">There\'s a problem using your USB storage for USB mass storage.</string>
+    <string name="usb_storage_error_message" product="default">There\'s a problem using your USB storage for USB mass storage.</string>
+    <string name="usb_storage_notification_title">USB connected</string>
+    <string name="usb_storage_notification_message">Touch to copy files to/from your computer.</string>
+    <string name="usb_storage_stop_notification_title">Turn off USB storage</string>
+    <string name="usb_storage_stop_notification_message">Touch to turn off USB storage.</string>
+    <string name="usb_storage_stop_title">USB storage in use</string>
+    <string name="usb_storage_stop_message" product="nosdcard">Before turning off USB storage, unmount (\"eject\") your Android\'s USB storage from your computer.</string>
+    <string name="usb_storage_stop_message" product="default">Before turning off USB storage, unmount (\"eject\") your Android\'s USB storage from your computer.</string>
+    <string name="usb_storage_stop_button_mount">Turn off USB storage</string>
+    <string name="usb_storage_stop_error_message">There was a problem turning off USB storage. Check that you\'ve unmounted the USB host, then try again.</string>
+    <string name="dlg_confirm_kill_storage_users_title">Turn on USB storage</string>
+    <string name="dlg_confirm_kill_storage_users_text">If you turn on USB storage, some apps you\'re using will stop and may be unavailable until you turn off USB storage.</string>
+    <string name="dlg_error_title">USB operation unsuccessful</string>
+    <string name="dlg_ok">אוקיי</string>
+    <string name="usb_mtp_notification_title">Connected as a media device</string>
+    <string name="usb_ptp_notification_title">Connected as a camera</string>
+    <string name="usb_cd_installer_notification_title">Connected as an installer</string>
+    <string name="usb_accessory_notification_title">Connected to a USB accessory</string>
+    <string name="usb_notification_message">גע עבור אפשרויות נוספות של USB.</string>
+    <string name="extmedia_format_title" product="nosdcard">האם לפרמט אחסון USB?</string>
+    <string name="extmedia_format_title" product="default">האם לפרמט אחסון USB?</string>
+    <string name="extmedia_format_message" product="nosdcard">All files stored in your USB storage (under path \'%1$s\') will be erased. This action can\'t be reversed!</string>
+    <string name="extmedia_format_message" product="default">All files stored in your USB storage (under path \'%1$s\') will be erased. This action can\'t be reversed!</string>
+    <string name="extmedia_format_button_format">Format</string>
+    <string name="adb_active_notification_title">Android debugging enabled</string>
+    <string name="adb_active_notification_message">Select to disable debugging.</string>
+    <string name="select_input_method">Choose input method</string>
+    <string name="configure_input_methods">Set up input methods</string>
+    <string name="use_physical_keyboard">Physical keyboard</string>
+    <string name="hardware">חומרה</string>
+    <string name="select_keyboard_layout_notification_title">בחר פריסת לוח מקשים</string>
+    <string name="select_keyboard_layout_notification_message">גע כדי לבחור פריסת לוח מקשים.</string>
+    <string name="fast_scroll_alphabet">\u0020ABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+    <string name="fast_scroll_numeric_alphabet">\u00200123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+    <string name="candidates_style"><u>candidates</u></string>
+    <string name="ext_media_checking_notification_title" product="nosdcard">Preparing USB storage</string>
+    <string name="ext_media_checking_notification_title" product="default">Preparing USB storage</string>
+    <string name="ext_media_checking_notification_message">Checking for errors.</string>
+    <string name="ext_media_nofs_notification_title" product="nosdcard">Blank USB storage</string>
+    <string name="ext_media_nofs_notification_title" product="default">Blank USB storage</string>
+    <string name="ext_media_nofs_notification_message" product="nosdcard">USB storage is blank or has unsupported filesystem.</string>
+    <string name="ext_media_nofs_notification_message" product="default">USB storage is blank or has unsupported filesystem.</string>
+    <string name="ext_media_unmountable_notification_title" product="nosdcard">Damaged USB storage</string>
+    <string name="ext_media_unmountable_notification_title" product="default">Damaged USB storage</string>
+    <string name="ext_media_unmountable_notification_message" product="nosdcard">USB storage is damaged. Try reformatting it.</string>
+    <string name="ext_media_unmountable_notification_message" product="default">USB storage is damaged. Try reformatting it.</string>
+    <string name="ext_media_badremoval_notification_title" product="nosdcard">USB storage unexpectedly removed</string>
+    <string name="ext_media_badremoval_notification_title" product="default">USB storage unexpectedly removed</string>
+    <string name="ext_media_badremoval_notification_message" product="nosdcard">Unmount USB storage before removing to avoid data loss.</string>
+    <string name="ext_media_badremoval_notification_message" product="default">Unmount USB storage before removing to avoid data loss.</string>
+    <string name="ext_media_safe_unmount_notification_title" product="nosdcard">USB storage safe to remove</string>
+    <string name="ext_media_safe_unmount_notification_title" product="default">USB storage safe to remove</string>
+    <string name="ext_media_safe_unmount_notification_message" product="nosdcard">You can safely remove USB storage.</string>
+    <string name="ext_media_safe_unmount_notification_message" product="default">You can safely remove USB storage.</string>
+    <string name="ext_media_nomedia_notification_title" product="nosdcard">Removed USB storage</string>
+    <string name="ext_media_nomedia_notification_title" product="default">Removed USB storage</string>
+    <string name="ext_media_nomedia_notification_message" product="nosdcard">USB storage removed. Insert new media.</string>
+    <string name="ext_media_nomedia_notification_message" product="default">USB storage removed. Insert new media.</string>
+    <string name="activity_list_empty">No matching activities found.</string>
+    <string name="permlab_pkgUsageStats">update component usage statistics</string>
+    <string name="permdesc_pkgUsageStats">Allows the app to modify collected component usage statistics. Not for use by normal apps.</string>
+    <string name="permlab_copyProtectedData">copy content</string>
+    <string name="permdesc_copyProtectedData">Allows the app to invoke default container service to copy content. Not for use by normal apps.</string>
+    <string name="permlab_route_media_output">Route media output</string>
+    <string name="permdesc_route_media_output">Allows an application to route media output to other external devices.</string>
+    <string name="tutorial_double_tap_to_zoom_message_short">Touch twice for zoom control</string>
+    <string name="gadget_host_error_inflating">Couldn\'t add widget. Maybe you forgot to setup your widget.</string>
+    <string name="ime_action_go">Go</string>
+    <string name="ime_action_search">חפש</string>
+    <string name="ime_action_send">Send</string>
+    <string name="ime_action_next">Next</string>
+    <string name="ime_action_done">בוצע</string>
+    <string name="ime_action_previous">Prev</string>
+    <string name="ime_action_default">Execute</string>
+    <string name="dial_number_using">Dial number\nusing <xliff:g id="number" example="555">%s</xliff:g></string>
+    <string name="create_contact_using">Create contact\nusing <xliff:g id="number" example="555">%s</xliff:g></string>
+    <string name="grant_credentials_permission_message_header">The following one or more apps request permission to access your account, now and in the future.</string>
+    <string name="grant_credentials_permission_message_footer">Do you want to allow this request?</string>
+    <string name="grant_permissions_header_text">Access request</string>
+    <string name="allow">אפשר</string>
+    <string name="deny">מנע</string>
+    <string name="permission_request_notification_title">Permission requested</string>
+    <string name="permission_request_notification_with_subtitle">Permission requested\nfor account <xliff:g id="account" example="foo@gmail.com">%s</xliff:g>.</string>
+    <string name="input_method_binding_label">Input method</string>
+    <string name="sync_binding_label">סינכרון</string>
+    <string name="accessibility_binding_label">Accessibility</string>
+    <string name="wallpaper_binding_label">טפט</string>
+    <string name="chooser_wallpaper">Change wallpaper</string>
+    <string name="alternate_eri_file">/data/eri.xml</string>
+    <string name="vpn_title">VPN activated</string>
+    <string name="vpn_title_long">VPN is activated by <xliff:g id="app" example="FooVPN client">%s</xliff:g></string>
+    <string name="vpn_text">Touch to manage the network.</string>
+    <string name="vpn_text_long">Connected to <xliff:g id="session" example="office">%s</xliff:g>. Touch to manage the network.</string>
+    <string name="vpn_lockdown_connecting">Always-on VPN connecting\u2026</string>
+    <string name="vpn_lockdown_connected">Always-on VPN connected</string>
+    <string name="vpn_lockdown_error">Always-on VPN error</string>
+    <string name="vpn_lockdown_reset">Touch to reset connection</string>
+    <string name="upload_file">Choose file</string>
+    <string name="no_file_chosen">No file chosen</string>
+    <string name="reset">Reset</string>
+    <string name="submit">Submit</string>
+    <string name="car_mode_disable_notification_title">Car mode enabled</string>
+    <string name="car_mode_disable_notification_message">Touch to exit car mode.</string>
+    <string name="tethered_notification_title">Tethering or hotspot active</string>
+    <string name="tethered_notification_message">Touch to set up.</string>
+    <string name="back_button_label">Back</string>
+    <string name="next_button_label">Next</string>
+    <string name="skip_button_label">Skip</string>
+    <string name="throttle_warning_notification_title">High mobile data use</string>
+    <string name="throttle_warning_notification_message">Touch to learn more about mobile data use.</string>
+    <string name="throttled_notification_title">Mobile data limit exceeded</string>
+    <string name="throttled_notification_message">Touch to learn more about mobile data use.</string>
+    <string name="no_matches">No matches</string>
+    <string name="find_on_page">Find on page</string>
+    <string name="action_mode_done">בוצע</string>
+    <string name="progress_unmounting" product="nosdcard">Unmounting USB storage\u2026</string>
+    <string name="progress_unmounting" product="default">Unmounting USB storage\u2026</string>
+    <string name="progress_erasing" product="nosdcard">Erasing USB storage\u2026</string>
+    <string name="progress_erasing" product="default">Erasing USB storage\u2026</string>
+    <string name="format_error" product="nosdcard">Couldn\'t erase USB storage.</string>
+    <string name="format_error" product="default">Couldn\'t erase USB storage.</string>
+    <string name="media_bad_removal">SD card was removed before being unmounted.</string>
+    <string name="media_checking" product="nosdcard">USB storage is currently being checked.</string>
+    <string name="media_checking" product="default">USB storage is currently being checked.</string>
+    <string name="media_removed">SD card has been removed.</string>
+    <string name="media_shared" product="nosdcard">USB storage is currently in use by a computer.</string>
+    <string name="media_shared" product="default">USB storage is currently in use by a computer.</string>
+    <string name="media_unknown_state">External media in unknown state.</string>
+    <string name="share">Share</string>
+    <string name="find">Find</string>
+    <string name="websearch">Web Search</string>
+    <string name="find_next">Find next</string>
+    <string name="find_previous">Find previous</string>
+    <string name="gpsNotifTicker">Location request from <xliff:g id="name">%s</xliff:g></string>
+    <string name="gpsNotifTitle">Location request</string>
+    <string name="gpsNotifMessage">Requested by <xliff:g id="name">%1$s</xliff:g> (<xliff:g id="service" example="SUPL-service">%2$s</xliff:g>)</string>
+    <string name="gpsVerifYes">Yes</string>
+    <string name="gpsVerifNo">No</string>
+    <string name="sync_too_many_deletes">Delete limit exceeded</string>
+    <string name="sync_too_many_deletes_desc">There are <xliff:g id="number_of_deleted_items">%1$d</xliff:g> deleted items for <xliff:g id="type_of_sync">%2$s</xliff:g>, account <xliff:g id="account_name">%3$s</xliff:g>. What do you want to do?</string>
+    <string name="sync_really_delete">Delete the items</string>
+    <string name="sync_undo_deletes">Undo the deletes</string>
+    <string name="sync_do_nothing">Do nothing for now</string>
+    <string name="choose_account_label">Choose an account</string>
+    <string name="add_account_label">"Add an account"</string>
+    <string name="add_account_button_label">Add account</string>
+    <string name="number_picker_increment_button">Increase</string>
+    <string name="number_picker_decrement_button">Decrease</string>
+    <string name="number_picker_increment_scroll_mode"><xliff:g id="value" example="3">%s</xliff:g> touch and hold.</string>
+    <string name="number_picker_increment_scroll_action">Slide up to increase and down to decrease.</string>
+    <string name="time_picker_increment_minute_button">Increase minute</string>
+    <string name="time_picker_decrement_minute_button">Decrease minute</string>
+    <string name="time_picker_increment_hour_button">Increase hour</string>
+    <string name="time_picker_decrement_hour_button">Decrease hour</string>
+    <string name="time_picker_increment_set_pm_button">Set PM</string>
+    <string name="time_picker_decrement_set_am_button">Set AM</string>
+    <string name="date_picker_increment_month_button">Increase month</string>
+    <string name="date_picker_decrement_month_button">Decrease month</string>
+    <string name="date_picker_increment_day_button">Increase day</string>
+    <string name="date_picker_decrement_day_button">Decrease day</string>
+    <string name="date_picker_increment_year_button">Increase year</string>
+    <string name="date_picker_decrement_year_button">Decrease year</string>
+    <string name="keyboardview_keycode_alt">Alt</string>
+    <string name="keyboardview_keycode_cancel">ביטול</string>
+    <string name="keyboardview_keycode_delete">Delete</string>
+    <string name="keyboardview_keycode_done">בוצע</string>
+    <string name="keyboardview_keycode_mode_change">Mode change</string>
+    <string name="keyboardview_keycode_shift">Shift</string>
+    <string name="keyboardview_keycode_enter">Enter</string>
+    <string name="activitychooserview_choose_application">Choose an app</string>
+    <string name="shareactionprovider_share_with">Share with</string>
+    <string name="shareactionprovider_share_with_application">Share with <xliff:g id="application_name" example="Bluetooth">%s</xliff:g></string>
+    <string name="content_description_sliding_handle">"Sliding handle. Touch &amp; hold."</string>
+    <string name="description_direction_up">Slide up for <xliff:g id="target_description" example="Unlock">%s</xliff:g>.</string>
+    <string name="description_direction_down">Slide down for <xliff:g id="target_description" example="Unlock">%s</xliff:g>.</string>
+    <string name="description_direction_left">\"Slide left for <xliff:g id="target_description" example="Unlock">%s</xliff:g>.</string>
+    <string name="description_direction_right">Slide right for <xliff:g id="target_description" example="Unlock">%s</xliff:g>.</string>
+    <string name="description_target_unlock">Unlock</string>
+    <string name="description_target_camera">מצלמה</string>
+    <string name="description_target_silent">השתק</string>
+    <string name="description_target_soundon">Sound on</string>
+    <string name="description_target_search">חפש</string>
+    <string name="description_target_unlock_tablet">Swipe to unlock.</string>
+    <string name="keyboard_headset_required_to_hear_password">Plug in a headset to hear password keys spoken.</string>
+    <string name="keyboard_password_character_no_headset">Dot.</string>
+    <string name="action_bar_home_description">Navigate home</string>
+    <string name="action_bar_up_description">Navigate up</string>
+    <string name="action_menu_overflow_description">More options</string>
+    <string name="storage_internal">Internal storage</string>
+    <string name="storage_sd_card">SD card</string>
+    <string name="storage_usb">USB storage</string>
+    <string name="extract_edit_menu_button">Edit</string>
+    <string name="data_usage_warning_title">Data usage warning</string>
+    <string name="data_usage_warning_body">Touch to view usage and settings.</string>
+    <string name="data_usage_3g_limit_title">2G-3G data disabled</string>
+    <string name="data_usage_4g_limit_title">4G data disabled</string>
+    <string name="data_usage_mobile_limit_title">Mobile data disabled</string>
+    <string name="data_usage_wifi_limit_title">Wi-Fi data disabled</string>
+    <string name="data_usage_limit_body">Touch to enable.</string>
+    <string name="data_usage_3g_limit_snoozed_title">2G-3G data limit exceeded</string>
+    <string name="data_usage_4g_limit_snoozed_title">4G data limit exceeded</string>
+    <string name="data_usage_mobile_limit_snoozed_title">Mobile data limit exceeded</string>
+    <string name="data_usage_wifi_limit_snoozed_title">Wi-Fi data limit exceeded</string>
+    <string name="data_usage_limit_snoozed_body"><xliff:g id="size" example="3.8GB">%s</xliff:g> over specified limit.</string>
+    <string name="data_usage_restricted_title">Background data restricted</string>
+    <string name="data_usage_restricted_body">Touch to remove restriction.</string>
+    <string name="ssl_certificate">Security certificate</string>
+    <string name="ssl_certificate_is_valid">This certificate is valid.</string>
+    <string name="issued_to">Issued to:</string>
+    <string name="common_name">Common name:</string>
+    <string name="org_name">Organization:</string>
+    <string name="org_unit">Organizational unit:</string>
+    <string name="issued_by">Issued by:</string>
+    <string name="validity_period">Validity:</string>
+    <string name="issued_on">Issued on:</string>
+    <string name="expires_on">Expires on:</string>
+    <string name="serial_number">Serial number:</string>
+    <string name="fingerprints">Fingerprints:</string>
+    <string name="sha256_fingerprint">SHA-256 fingerprint:</string>
+    <string name="sha1_fingerprint">SHA-1 fingerprint:</string>
+    <string name="activity_chooser_view_see_all">See all</string>
+    <string name="activity_chooser_view_dialog_title_default">Choose activity</string>
+    <string name="share_action_provider_share_with">Share with</string>
+    <string name="status_bar_device_locked">Device locked.</string>
+    <string name="list_delimeter">", "</string>
+    <string name="sending">Sending\u2026</string>
+    <string name="launchBrowserDefault">Launch Browser?</string>
+    <string name="SetupCallDefault">Accept call?</string>
+    <string name="app_killed_message">Application killed</string>
+    <string name="expanded_mode_default_set">Expanded desktop set to hide StatusBar only. Configure in Power menu settings</string>
+    <string name="activity_resolver_use_always">Always</string>
+    <string name="activity_resolver_use_once">Just once</string>
+    <string name="default_audio_route_name" product="tablet">Tablet</string>
+    <string name="default_audio_route_name" product="default">Tablet</string>
+    <string name="default_audio_route_name_headphones">Headphones</string>
+    <string name="default_audio_route_name_dock_speakers">Dock speakers</string>
+    <string name="default_media_route_name_hdmi">HDMI</string>
+    <string name="default_audio_route_category_name">System</string>
+    <string name="bluetooth_a2dp_audio_route_name">Bluetooth audio</string>
+    <string name="media_route_chooser_grouping_done">בוצע</string>
+    <string name="media_route_button_content_description">Media output</string>
+    <string name="media_route_status_scanning">Scanning...</string>
+    <string name="media_route_status_connecting">Connecting...</string>
+    <string name="media_route_status_available">Available</string>
+    <string name="media_route_status_not_available">Not available</string>
+    <string name="display_manager_built_in_display_name">Built-in Screen</string>
+    <string name="display_manager_hdmi_display_name">HDMI Screen</string>
+    <string name="display_manager_overlay_display_name">Overlay #<xliff:g id="id">%1$d</xliff:g></string>
+    <string name="display_manager_overlay_display_title"><xliff:g id="name">%1$s</xliff:g>: <xliff:g id="width">%2$d</xliff:g>x<xliff:g id="height">%3$d</xliff:g>, <xliff:g id="dpi">%4$d</xliff:g> dpi</string>
+    <string name="wifi_display_notification_title">Wireless display is connected</string>
+    <string name="wifi_display_notification_message">This screen is showing on another device</string>
+    <string name="wifi_display_notification_disconnect">Disconnect</string>
+    <string name="kg_emergency_call_label">שיחת חירום</string>
+    <string name="kg_forgot_pattern_button_text">Forgot Pattern</string>
+    <string name="kg_wrong_pattern">Wrong Pattern</string>
+    <string name="kg_wrong_password">Wrong Password</string>
+    <string name="kg_wrong_pin">Wrong PIN</string>
+    <string name="kg_too_many_failed_attempts_countdown">Try again in <xliff:g id="number">%d</xliff:g> seconds.</string>
+    <string name="kg_pattern_instructions">Draw your pattern</string>
+    <string name="kg_sim_pin_instructions">Enter SIM PIN</string>
+    <string name="kg_pin_instructions">Enter PIN</string>
+    <string name="kg_password_instructions">Enter Password</string>
+    <string name="kg_puk_enter_puk_hint">SIM is now disabled. Enter PUK code to continue. Contact carrier for details.</string>
+    <string name="kg_puk_enter_pin_hint">Enter desired PIN code</string>
+    <string name="kg_enter_confirm_pin_hint">Confirm desired PIN code</string>
+    <string name="kg_sim_unlock_progress_dialog_message">Unlocking SIM card\u2026</string>
+    <string name="kg_password_wrong_pin_code">Incorrect PIN code.</string>
+    <string name="kg_invalid_sim_pin_hint">הקלד קוד PIN שמכיל 4 עד 8 ספרות.</string>
+    <string name="kg_invalid_sim_puk_hint">PUK code should be 8 numbers or more.</string>
+    <string name="kg_invalid_puk">Re-enter the correct PUK code. Repeated attempts will permanently disable the SIM.</string>
+    <string name="kg_invalid_confirm_pin_hint" product="default">PIN codes does not match</string>
+    <string name="kg_login_too_many_attempts">Too many pattern attempts</string>
+    <string name="kg_login_instructions">To unlock, sign in with your Google account.</string>
+    <string name="kg_login_username_hint">שם משתמש (דואר אלקטרוני)</string>
+    <string name="kg_login_password_hint">סיסמה</string>
+    <string name="kg_login_submit_button">הירשם</string>
+    <string name="kg_login_invalid_input">משתמש או סיסמה שגויים.</string>
+    <string name="kg_login_account_recovery_hint">Forgot your username or password\?\nVisit <b>google.com/accounts/recovery</b>.</string>
+    <string name="kg_login_checking_password">Checking account\u2026</string>
+    <string name="kg_too_many_failed_pin_attempts_dialog_message">
+                You have incorrectly typed your PIN <xliff:g id="number">%d</xliff:g> times.
+                \n\nTry again in <xliff:g id="number">%d</xliff:g> seconds.
+        </string>
+    <string name="kg_too_many_failed_password_attempts_dialog_message">
+                You have incorrectly typed your password <xliff:g id="number">%d</xliff:g> times.
+                \n\nTry again in <xliff:g id="number">%d</xliff:g> seconds.
+        </string>
+    <string name="kg_too_many_failed_pattern_attempts_dialog_message">
+                You have incorrectly drawn your unlock pattern <xliff:g id="number">%d</xliff:g> times.
+                \n\nTry again in <xliff:g id="number">%d</xliff:g> seconds.
+        </string>
+    <string name="kg_failed_attempts_almost_at_wipe" product="tablet">
+             You have incorrectly attempted to unlock the tablet <xliff:g id="number">%d</xliff:g> times.
+             After <xliff:g id="number">%d</xliff:g> more unsuccessful attempts,
+             the tablet will be reset to factory default and all user data will be lost.
+        </string>
+    <string name="kg_failed_attempts_almost_at_wipe" product="default">
+             You have incorrectly attempted to unlock the tablet <xliff:g id="number">%d</xliff:g> times.
+             After <xliff:g id="number">%d</xliff:g> more unsuccessful attempts,
+             the tablet will be reset to factory default and all user data will be lost.
+        </string>
+    <string name="kg_failed_attempts_now_wiping" product="tablet">
+             You have incorrectly attempted to unlock the tablet <xliff:g id="number">%d</xliff:g> times.
+             The tablet will now be reset to factory default.
+        </string>
+    <string name="kg_failed_attempts_now_wiping" product="default">
+             You have incorrectly attempted to unlock the tablet <xliff:g id="number">%d</xliff:g> times.
+             The tablet will now be reset to factory default.
+        </string>
+    <string name="kg_failed_attempts_almost_at_login" product="tablet">
+             You have incorrectly drawn your unlock pattern <xliff:g id="number">%d</xliff:g> times.
+             After <xliff:g id="number">%d</xliff:g> more unsuccessful attempts,
+             you will be asked to unlock your tablet using an email account.\n\n
+             Try again in <xliff:g id="number">%d</xliff:g> seconds.
+        </string>
+    <string name="kg_failed_attempts_almost_at_login" product="default">
+             You have incorrectly drawn your unlock pattern <xliff:g id="number">%d</xliff:g> times.
+             After <xliff:g id="number">%d</xliff:g> more unsuccessful attempts,
+             you will be asked to unlock your tablet using an email account.\n\n
+             Try again in <xliff:g id="number">%d</xliff:g> seconds.
+        </string>
+    <string name="kg_text_message_separator" product="default">" \u2014 "</string>
+    <string name="kg_reordering_delete_drop_target_text">Remove</string>
+    <string name="safe_media_volume_warning" product="default">
+             \"Raise volume above safe level?\nListening at high volume for long periods may damage your hearing.\"
+        </string>
+    <string name="continue_to_enable_accessibility">Keep holding down two fingers to enable accessibility.</string>
+    <string name="accessibility_enabled">Accessibility enabled.</string>
+    <string name="enable_accessibility_canceled">Accessibility canceled.</string>
+    <string name="user_switched">Current user <xliff:g id="name" example="Bob">%1$s</xliff:g>.</string>
+    <string name="owner_name" msgid="3879126011135546571">Owner</string>
+    <string name="global_action_reboot">אתחול</string>
+    <string name="global_action_choose_profile">Profile</string>
+    <string name="toast_rotation_unlocked">Display rotation unlocked</string>
+    <string name="toast_rotation_locked">Display rotation locked</string>
+    <string-array name="phoneTypes">
+        <item>בית</item>
+        <item>נייד</item>
+        <item>עבודה</item>
+        <item>פקס עבודה</item>
+        <item>פקס בית</item>
+        <item>זימונית</item>
+        <item>אחרים</item>
+        <item>מותאם</item>
+    </string-array>
+    <string-array name="emailAddressTypes">
+        <item>בית</item>
+        <item>עבודה</item>
+        <item>אחרים</item>
+        <item>מותאם</item>
+    </string-array>
+    <string-array name="postalAddressTypes">
+        <item>בית</item>
+        <item>עבודה</item>
+        <item>אחרים</item>
+        <item>מותאם</item>
+    </string-array>
+    <string-array name="imAddressTypes">
+        <item>בית</item>
+        <item>עבודה</item>
+        <item>אחרים</item>
+        <item>מותאם</item>
+    </string-array>
+    <string-array name="organizationTypes">
+        <item>עבודה</item>
+        <item>אחרים</item>
+        <item>מותאם</item>
+    </string-array>
+    <string-array name="imProtocols">
+        <item>AIM</item>
+        <item>Windows Live</item>
+        <item>יאהו</item>
+        <item>סקייפ</item>
+        <item>QQ</item>
+        <item>Google Talk</item>
+        <item>ICQ</item>
+        <item>Jabber</item>
+    </string-array>
+</resources>
