@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_label">ממשק המשתמש של המערכת</string>
+    <string name="status_bar_clear_all_button">נקה הכל</string>
+    <string name="status_bar_do_not_disturb_button">השתק/י התרעות</string>
+    <string name="status_bar_please_disturb_button">הצג התראות</string>
+    <string name="status_bar_recent_remove_item_title">הסר מרשימה</string>
+    <string name="status_bar_recent_inspect_item_title">פרטי יישום</string>
+    <string name="status_bar_no_recent_apps">אין אפליקציות</string>
+    <string name="status_bar_accessibility_dismiss_recents">נקה אפליקציות אחרונות</string>
+    <string name="status_bar_no_notifications_title">אין הודעות</string>
+    <string name="status_bar_ongoing_events_title">אירועים מתמשכים</string>
+    <string name="status_bar_latest_events_title">התראות</string>
+    <string name="battery_low_title">חבר מטען</string>
+    <string name="battery_low_subtitle">הסוללה מתרוקנת.</string>
+    <string name="battery_low_percent_format"><xliff:g id="number">%d%%</xliff:g> נותרו</string>
+    <string name="invalid_charger">טעינת USB אינה נתמכת. 
+יש להשתמש במטען הייעודי בלבד.</string>
+    <string name="battery_low_why">השימוש בסוללה</string>
+    <string name="status_bar_settings_settings_button">הגדרות</string>
+    <string name="status_bar_settings_wifi_button">רשתות אלחוטיות</string>
+    <string name="status_bar_settings_airplane">מצב טיסה</string>
+    <string name="status_bar_settings_auto_rotation">סיבוב מסך אוטומטי</string>
+    <string name="status_bar_settings_mute_label">השתקה</string>
+    <string name="status_bar_settings_auto_brightness_label">אוטומטי</string>
+    <string name="status_bar_settings_notifications">התראות</string>
+    <string name="bluetooth_tethered">קישור Bluetooth</string>
+    <string name="status_bar_input_method_settings_configure_input_methods">הגדרת שיטות קלט</string>
+    <string name="status_bar_use_physical_keyboard">מקלדת פיזית</string>
+    <string name="usb_device_permission_prompt">האם לאפשר ליישום <xliff:g id="application">%1$s</xliff:g> לגשת למכשיר ה-USB?</string>
+    <string name="usb_accessory_permission_prompt">האם לאפשר ליישום <xliff:g id="application">%1$s</xliff:g> לגשת למכשיר ה-USB?</string>
+    <string name="usb_device_confirm_prompt">לפתוח <xliff:g id="activity">%1$s</xliff:g> כאשר מכשיר USB זה מחובר?</string>
+    <string name="usb_accessory_confirm_prompt">לפתוח <xliff:g id="activity">%1$s</xliff:g> כאשר מכשיר ה-USB הזה מחובר?</string>
+    <string name="usb_accessory_uri_prompt">אין אפליקציות מותקנות שפועלות עם התקן ה-USB. ניתן למצוא מידע נוסף ההתקן ב- <xliff:g id="url">%1$s</xliff:g></string>
+    <string name="title_usb_accessory">אביזר USB</string>
+    <string name="label_view">תצוגה</string>
+    <string name="always_use_device">השתמש כברירת מחדל עבור התקן USB זה</string>
+    <string name="always_use_accessory">השתמש כברירת מחדל עבור התקן USB זה</string>
+    <string name="usb_debugging_title">לאפשר איתור ותיקון שגיאות דרך USB?</string>
+    <string name="usb_debugging_message">טביעת ה-RSA של המחשב היא: :\n<xliff:g id="fingerprint">%1$s</xliff:g></string>
+    <string name="usb_debugging_always">אפשר תמיד ממחשב זה</string>
+    <string name="compat_mode_on">שנה גודל למסך מלא</string>
+    <string name="compat_mode_off">מתח למסך מלא</string>
+    <string name="compat_mode_help_header">תאימות זום</string>
+    <string name="compat_mode_help_body">כאשר ישום תוכנן למסך קטן יותר, פקד הזום יופיע על יד השעון.</string>
+    <string name="screenshot_saving_ticker">שומר תצלום מסך\u2026</string>
+    <string name="screenshot_saving_title">שומר תצלום מסך\u2026</string>
+    <string name="screenshot_saving_text">תצלום מסך נשמר.</string>
+    <string name="screenshot_saved_title">תצלום מסך בוצע.</string>
+    <string name="screenshot_saved_text">גע/י כדי לראות את תצלום המסך.</string>
+    <string name="screenshot_failed_title">תצלום המסך נכשל.</string>
+    <string name="screenshot_failed_text">לא ניתן לשמור את תצלום המסך. יתכן שהזיכרון בשימוש.</string>
+    <string name="usb_preference_title">אפשרויות העברת קובץ דרך USB</string>
+    <string name="use_mtp_button_title">עגן כנגן מדיה (MTP)</string>
+    <string name="use_ptp_button_title">עגן כמצלמה (PTP)</string>
+    <string name="installer_cd_button_title">התקן יישום אנדרואיד להעברת קבצים עבור Mac</string>
+    <string name="accessibility_back">חזור</string>
+    <string name="accessibility_home">בית</string>
+    <string name="accessibility_menu">תפריט</string>
+    <string name="accessibility_recent">אפליקציות אחרונות</string>
+    <string name="accessibility_ime_switch_button">כפתור ברירת שיטת הקלט.</string>
+    <string name="accessibility_compatibility_zoom_button">לחצן תאימות זום.</string>
+    <string name="accessibility_compatibility_zoom_example">הגדל מסך קטן לגדול.</string>
+    <string name="accessibility_bluetooth_connected">Bluetooth מחובר.</string>
+    <string name="accessibility_bluetooth_disconnected">Bluetooth מנותק.</string>
+    <string name="accessibility_no_battery">אין סוללה.</string>
+    <string name="accessibility_battery_one_bar">פס סוללה יחיד.</string>
+    <string name="accessibility_battery_two_bars">שני פסי סוללה.</string>
+    <string name="accessibility_battery_three_bars">שלושה פסי סוללה.</string>
+    <string name="accessibility_battery_full">סוללה מלאה.</string>
+    <string name="accessibility_no_phone">אין מכשיר.</string>
+    <string name="accessibility_phone_one_bar">פס מכשיר אחד.</string>
+    <string name="accessibility_phone_two_bars">שני פסי מכשיר.</string>
+    <string name="accessibility_phone_three_bars">שלושה פסי מכשיר.</string>
+    <string name="accessibility_phone_signal_full">אות מכשיר בעוצמה מלאה.</string>
+    <string name="accessibility_no_data">אין נתונים.</string>
+    <string name="accessibility_data_one_bar">פס נתונים אחד.</string>
+    <string name="accessibility_data_two_bars">שני פסי נתונים.</string>
+    <string name="accessibility_data_three_bars">שלושה פסי נתונים.</string>
+    <string name="accessibility_data_signal_full">אות נתונים בעוצמה מלאה.</string>
+    <string name="accessibility_wifi_off">Wifi כבוי.</string>
+    <string name="accessibility_no_wifi">Wifi מנותק.</string>
+    <string name="accessibility_wifi_one_bar">פס Wi-Fi אחד.</string>
+    <string name="accessibility_wifi_two_bars">שני פסי Wi-Fi.</string>
+    <string name="accessibility_wifi_three_bars">שלושה פסי Wi-Fi.</string>
+    <string name="accessibility_wifi_signal_full">אות Wi-Fi בעוצמה מלאה.</string>
+    <string name="accessibility_no_wimax">אין קישור WiMAX.</string>
+    <string name="accessibility_wimax_one_bar">פס קליטה WiMAX אחד.</string>
+    <string name="accessibility_wimax_two_bars">שני פסי קליטת WiMAX.</string>
+    <string name="accessibility_wimax_three_bars">שלושה פסי קליטת WiMAX.</string>
+    <string name="accessibility_wimax_signal_full">אות WiMAX בעוצמה מלאה.</string>
+    <string name="accessibility_no_signal">אין קליטה.</string>
+    <string name="accessibility_not_connected">מנותק.</string>
+    <string name="accessibility_zero_bars">אפס פסי קליטה.</string>
+    <string name="accessibility_one_bar">פס קליטה אחד.</string>
+    <string name="accessibility_two_bars">שני פסי קליטה.</string>
+    <string name="accessibility_three_bars">שלושה פסי קליטה.</string>
+    <string name="accessibility_signal_full">אות בעוצמה מלאה.</string>
+    <string name="accessibility_desc_on">פעיל.</string>
+    <string name="accessibility_desc_off">כבוי.</string>
+    <string name="accessibility_desc_connected">מחובר.</string>
+    <string name="accessibility_data_connection_gprs">GPRS</string>
+    <string name="accessibility_data_connection_1x">1 X</string>
+    <string name="accessibility_data_connection_hspa">HSPA</string>
+    <string name="accessibility_data_connection_3g">3G</string>
+    <string name="accessibility_data_connection_3.5g">3.5 G</string>
+    <string name="accessibility_data_connection_HP">HSPA +</string>
+    <string name="accessibility_data_connection_4g">4G</string>
+    <string name="accessibility_data_connection_cdma">CDMA</string>
+    <string name="accessibility_data_connection_roaming">נדידה</string>
+    <string name="accessibility_data_connection_edge">EDGE</string>
+    <string name="accessibility_data_connection_wifi">רשתות אלחוטיות</string>
+    <string name="accessibility_no_sim">אין כרטיס SIM.</string>
+    <string name="accessibility_bluetooth_tether">קישור Bluetooth.</string>
+    <string name="accessibility_airplane_mode">מצב טיסה.</string>
+    <string name="accessibility_battery_level">סוללה ב- <xliff:g id="number">%d</xliff:g> אחוז.</string>
+    <string name="accessibility_settings_button">הגדרות מערכת.</string>
+    <string name="accessibility_notifications_button">התראות.</string>
+    <string name="accessibility_remove_notification">הסר התראה.</string>
+    <string name="accessibility_gps_enabled">GPS מופעל.</string>
+    <string name="accessibility_gps_acquiring">מאתר GPS.</string>
+    <string name="accessibility_tty_enabled">TeleTypewriter מופעל.</string>
+    <string name="accessibility_ringer_vibrate">צלצול רטט.</string>
+    <string name="accessibility_ringer_silent">צלצול שקט.</string>
+    <string name="accessibility_recents_item_dismissed"><xliff:g id="app" example="Calendar">%s</xliff:g> בוטל.</string>
+    <string name="accessibility_notification_dismissed">התראה בוטלה.</string>
+    <string name="accessibility_desc_notification_shade">גוון התראה.</string>
+    <string name="accessibility_desc_quick_settings">הגדרות מהירות.</string>
+    <string name="accessibility_desc_recent_apps">אפליקציות אחרונות.</string>
+    <string name="accessibility_quick_settings_user">משתמש <xliff:g id="user" example="John Doe">%s</xliff:g>.</string>
+    <string name="accessibility_quick_settings_wifi"><xliff:g id="signal" example="Three bars">%1$s</xliff:g>. <xliff:g id="network" example="MyWifiNetwork">%2$s</xliff:g></string>
+    <string name="accessibility_quick_settings_mobile">נייד <xliff:g id="signal" example="Three bars">%1$s</xliff:g>. <xliff:g id="type" example="4G">%2$s</xliff:g>. <xliff:g id="network" example="T-Mobile">%3$s</xliff:g>.</string>
+    <string name="accessibility_quick_settings_battery">סוללה <xliff:g id="state" example="50% charging">%s</xliff:g>.</string>
+    <string name="accessibility_quick_settings_airplane">מצב טיסה <xliff:g id="state" example="Off">%s</xliff:g>.</string>
+    <string name="accessibility_quick_settings_bluetooth">Bluetooth <xliff:g id="state" example="Off">%s</xliff:g>.</string>
+    <string name="accessibility_quick_settings_alarm">שעון מעורר מכוון ל- <xliff:g id="time" example="Wed 3:30 PM">%s</xliff:g>.</string>
+    <string name="qs_fav_long_press">לחיצה ארוכה</string>
+    <string name="data_usage_disabled_dialog_3g_title">העברת נתונים 2G-3G מבוטלת</string>
+    <string name="data_usage_disabled_dialog_4g_title">העברת נתונים ב-4G מבוטלת</string>
+    <string name="data_usage_disabled_dialog_mobile_title">העברת נתונים ניידת מבוטלת</string>
+    <string name="data_usage_disabled_dialog_title">העברת נתונים מבוטלת</string>
+    <string name="data_usage_disabled_dialog">הגעת לגבול שנקבע להעברת נתונים\n\nאם תאפשר/י את העברת הנתונים מחדש, יתכן שתחוייב/י על ידי ספקית הסלולר.</string>
+    <string name="data_usage_disabled_dialog_enable">אפשר הכברת נתונים מחדש</string>
+    <string name="status_bar_settings_signal_meter_disconnected">אין חיבור לאינטרנט</string>
+    <string name="status_bar_settings_signal_meter_wifi_nossid">Wi-Fi מחובר</string>
+    <string name="gps_notification_searching_text">מחפש לווייני GPS</string>
+    <string name="gps_notification_found_text">מיקום נקבע על ידי GPS</string>
+    <string name="accessibility_clear_all">נקה את כל הדיווחים.</string>
+    <string name="status_bar_notification_inspect_item_title">פרטי יישום</string>
+    <string name="close_universe">סגירה</string>
+    <string name="notifications_off_title">התראות מושתקות</string>
+    <string name="notifications_off_text">הקש/י כאן כדי להפיל התראות מחדש.</string>
+    <string name="accessibility_rotation_lock_off">המסך יסתובב באופן אוטומטי.</string>
+    <string name="accessibility_rotation_lock_on_landscape">המסך נעול לרוחב.</string>
+    <string name="accessibility_rotation_lock_on_portrait">המסך נעול לאורך.</string>
+    <string name="jelly_bean_dream_name">BeanFlinger</string>
+    <string name="start_dreams">חלום בהקיץ</string>
+    <string name="ethernet_label">Ethernet</string>
+    <string name="quick_settings_airplane_mode_label">מצב טיסה</string>
+    <string name="quick_settings_battery_charging_label">טוען, <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
+    <string name="quick_settings_battery_charged_label">טעון</string>
+    <string name="quick_settings_bluetooth_label">Bluetooth</string>
+    <string name="quick_settings_bluetooth_multiple_devices_label">Bluetooth (<xliff:g id="number">%d</xliff:g> התקני)</string>
+    <string name="quick_settings_bluetooth_off_label">Bluetooth כבוי</string>
+    <string name="quick_settings_brightness_label">בהירות</string>
+    <string name="quick_settings_rotation_unlocked_label">סיבוב אוטומטי</string>
+    <string name="quick_settings_rotation_locked_label">סיבוב מסך נעול</string>
+    <string name="quick_settings_ime_label">שיטת קלט</string>
+    <string name="quick_settings_location_label">מיקום בשימוש</string>
+    <string name="quick_settings_media_device_label">התקן מדיה</string>
+    <string name="quick_settings_rssi_label">RSSI</string>
+    <string name="quick_settings_rssi_emergency_only">שיחות חירום בלבד</string>
+    <string name="quick_settings_settings_label">הגדרות</string>
+    <string name="quick_settings_time_label">זמן</string>
+    <string name="quick_settings_user_label">אני</string>
+    <string name="quick_settings_wifi_label">רשתות אלחוטיות</string>
+    <string name="quick_settings_wifi_not_connected">מנותק</string>
+    <string name="quick_settings_wifi_no_network">אין רשת</string>
+    <string name="quick_settings_wifi_off_label">Wi-Fi כבוי</string>
+    <string name="quick_settings_wifi_display_label">תצוגת Wi-Fi</string>
+    <string name="quick_settings_wifi_display_no_connection_label">תצוגת אלחוט</string>
+    <string name="quick_settings_profile_label">פרופיל</string>
+    <string name="quick_settings_brightness_dialog_title">בהירות</string>
+    <string name="quick_settings_brightness_dialog_auto_brightness_label">אוטומטי</string>
+    <string name="quick_settings_gps">GPS</string>
+    <string name="quick_settings_gps_off">GPS כבוי</string>
+    <string name="quick_settings_power">הדלקה / כיבוי</string>
+    <string name="quick_settings_ringer_on">צלילים פועלים</string>
+    <string name="quick_settings_ringer_off">צלילים כבויים</string>
+    <string name="quick_settings_vibration_on">רטט מופעל</string>
+    <string name="quick_settings_vibration_off">רטט כבוי</string>
+    <string name="quick_settings_label_enabled">מופעל</string>
+    <string name="quick_settings_label_disabled">כבוי</string>
+    <string name="quick_settings_ringer_normal">צלצולים</string>
+    <string name="quick_settings_lockscreen">מסך נעילה</string>
+    <string name="quick_settings_network_type">מצב רשת</string>
+    <string name="quick_settings_report_bug">דווח על באג</string>
+    <string name="quick_settings_mobile_data_on">נתונים ניידים מופעל</string>
+    <string name="quick_settings_mobile_data_off">נתונים ניידים כבוי</string>
+    <string name="quick_settings_reboot">אתחול המערכת</string>
+    <string name="quick_settings_reboot_recovery">אתחול ל-Recovery</string>
+    <string name="quick_settings_sync">סינכרון</string>
+    <string name="quick_settings_sync_off">סינכרון כבוי</string>
+    <string name="quick_settings_torch">פנס</string>
+    <string name="quick_settings_torch_off">פנס כבוי</string>
+    <string name="quick_settings_nfc">NFC</string>
+    <string name="quick_settings_nfc_off">NFC כבוי</string>
+    <string name="quick_settings_fcharge">טעינה מהירה</string>
+    <string name="quick_settings_screen_timeout">זמן כיבוי</string>
+    <string name="quick_settings_screen_timeout_summary">%1$d %2$s</string>
+    <string name="quick_settings_usb_tether_off_label">מנותק</string>
+    <string name="quick_settings_usb_tether_connected_label">קישוריות דרך USB כבוי</string>
+    <string name="quick_settings_usb_tether_on_label">קישוריות</string>
+    <string name="quick_settings_wifiap">נקודת גישה אלחוטית</string>
+    <string name="quick_settings_wifiap_off">נקודת גישה אלחוטית כבויה</string>
+    <string name="quick_settings_lte">LTE</string>
+    <string name="quick_settings_lte_off">LTE כבוי</string>
+    <string name="quick_settings_volume">עוצמה</string>
+    <string name="quick_settings_expanded_desktop">מורחב</string>
+    <string name="quick_settings_expanded_desktop_off">רגיל</string>
+    <string name="status_bar_help_title">התראות מופיעות כאן</string>
+    <string name="status_bar_help_text">ניתן לגשת אליהם בכל עת על ידי משיכה למטה.\nמשוך/י למטה שנית כדי לעבור לבקרת מערכת.</string>
+    <string name="powerwidget_screen_timeout_toast">זמן כיבוי המסך נקבע על: %1$d %2$s</string>
+    <string name="action_home">בית</string>
+    <string name="action_back">חזור</string>
+    <string name="action_recents">אחרונים</string>
+    <string name="action_screenshot">תצלום מסך</string>
+    <string name="action_menu">תפריט</string>
+    <string name="action_ime">פתח את שנאי ה-IME</string>
+    <string name="action_kill">סגור יישום</string>
+    <string name="action_power">הדלקה / כיבוי</string>
+    <string name="action_notifications">התראות</string>
+    <string name="action_lastapp">אפליקציה אחרונה</string>
+    <string name="action_none">ריק</string>
+    <string name="toggle_ring_vib">צלצול/רטט - גלילה</string>
+    <string name="toggle_ring_silent">צלצול/שקט - גלילה</string>
+    <string name="toggle_ring_vib_silent">צלצול/רטט/שקט - גלילה</string>
+    <string name="toggle_widgets">יישומונים - גלילה</string>
+    <string name="widgets">יישומונים</string>
+    <string name="app_killed_message">היישום נסגר</string>
+    <string name="brightness_label">בהירות</string>
+    <string name="memory">זיכרון RAM</string>
+    <string name="service_free_mem"><xliff:g id="memory">%1$s</xliff:g> פנוי</string>
+    <string name="service_used_mem"><xliff:g id="memory">%1$s</xliff:g> בשימוש</string>
+    <string name="quick_settings_quiethours">שעות שקט</string>
+    <string name="quick_settings_quiethours_off">שעות שקט כבוי</string>
+    <string name="calendar_error_alert">לא מותקן יישום לוח שנה.</string>
+    <string name="clock_error_alert">לא מותקן יישום DeskClock.</string>
+    <plurals name="status_bar_accessibility_recent_apps">
+        <item quantity="one">אפליקציה אחרונה אחת</item>
+        <item quantity="other">אפליקציה אחרונה 1</item>
+    </plurals>
+</resources>
