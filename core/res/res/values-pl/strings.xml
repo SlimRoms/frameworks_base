@@ -803,7 +803,7 @@
     <string name="keyguard_accessibility_password_unlock">Odblokowanie hasłem.</string>
     <string name="keyguard_accessibility_pattern_area">Obszar wzoru.</string>
     <string name="keyguard_accessibility_slide_area">Obszar przesuwania.</string>
-    <string name="password_keyboard_label_symbol_key">?123</string>
+    <string name="password_keyboard_label_symbol_key">\?123</string>
     <string name="password_keyboard_label_alpha_key">ABC</string>
     <string name="password_keyboard_label_alt_key">ALT</string>
     <string name="granularity_label_character">znak</string>
@@ -863,7 +863,7 @@
     <string name="autofill_expiration_month_re">expir|exp.*month|exp.*date|ccmonth<!-- de-DE -->|gueltig|gültig|monat<!-- es -->|fecha<!-- fr-FR -->|date.*exp<!-- it-IT -->|scadenza<!-- ja-JP -->|有効期限<!-- pt-BR, pt-PT -->|validade<!-- ru -->|Срок действия карты<!-- zh-CN -->|月</string>
     <string name="autofill_expiration_date_re">exp|^/|year<!-- de-DE -->|ablaufdatum|gueltig|gültig|yahr<!-- es -->|fecha<!-- it-IT -->|scadenza<!-- ja-JP -->|有効期限<!-- pt-BR, pt-PT -->|validade<!-- ru -->|Срок действия карты<!-- zh-CN -->|年|有效期</string>
     <string name="autofill_card_ignored_re">^ karta</string>
-    <string name="autofill_fax_re">faks <!--fr-FR,--> |télécopie|telecopie <!----> |ファックス ja-JP <!--ru--> |факс <!-zh-CN--> |传真 <!-zh-TW--> |傳真</string>
+    <string name="autofill_fax_re">faks <!--fr-FR,--> |télécopie|telecopie <!----> |ファックス ja-JP <!--ru--> |факс <!--zh-CN--> |传真 <!--zh-TW--> |傳真</string>
     <string name="autofill_country_code_re">country.*code|ccode|_cc</string>
     <string name="autofill_area_code_notext_re">^\\($</string>
     <string name="autofill_phone_prefix_separator_re">^-$|^\\)$</string>

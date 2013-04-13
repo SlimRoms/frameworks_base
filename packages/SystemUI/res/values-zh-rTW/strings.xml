@@ -127,12 +127,12 @@
     <string name="accessibility_desc_notification_shade">通知欄。</string>
     <string name="accessibility_desc_quick_settings">快速設置。</string>
     <string name="accessibility_desc_recent_apps">最近使用的應用程式</string>
-    <string name="accessibility_quick_settings_user">使用者 <xliff:g id="user"example="John Doe">%s</xliff:g>。</string>
+    <string name="accessibility_quick_settings_user">使用者 <xliff:g id="user" example="John Doe">%s</xliff:g>。</string>
     <string name="accessibility_quick_settings_wifi"><xliff:g id="signal" example="Three bars">%1$s</xliff:g>. <xliff:g id="network" example="MyWifiNetwork">%2$s</xliff:g></string>
     <string name="accessibility_quick_settings_mobile">手機 <xliff:g id="signal" example="Three bars">%1$s</xliff:g>. <xliff:g id="type" example="4G">%2$s</xliff:g>. <xliff:g id="network" example="T-Mobile">%3$s</xliff:g>.</string>
-    <string name="accessibility_quick_settings_battery">充電中 <xliff:g id="state"example="50%charging">%s</xliff:g>。</string>
-    <string name="accessibility_quick_settings_airplane">飛航模式 <xliff:g id="state"example="Off">%s</xliff:g>。</string>
-    <string name="accessibility_quick_settings_bluetooth">藍牙 <xliff:g id="state"example="Off">%s</xliff:g>。</string>
+    <string name="accessibility_quick_settings_battery">充電中 <xliff:g id="state" example="50%charging">%s</xliff:g>。</string>
+    <string name="accessibility_quick_settings_airplane">飛航模式 <xliff:g id="state" example="Off">%s</xliff:g>。</string>
+    <string name="accessibility_quick_settings_bluetooth">藍牙 <xliff:g id="state" example="Off">%s</xliff:g>。</string>
     <string name="accessibility_quick_settings_alarm">鬧鐘設置為 <xliff:g id="time" example="Wed 3:30 PM">%s</xliff:g>。</string>
     <string name="qs_fav_long_press">長按</string>
     <string name="data_usage_disabled_dialog_3g_title">已停用 2G-3G 數據</string>

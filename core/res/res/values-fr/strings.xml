@@ -803,7 +803,7 @@
     <string name="keyguard_accessibility_password_unlock">Déverrouillage par mot de passe</string>
     <string name="keyguard_accessibility_pattern_area">Zone du schéma</string>
     <string name="keyguard_accessibility_slide_area">Zone où faire glisser votre doigt sur l\'écran</string>
-    <string name="password_keyboard_label_symbol_key">?123</string>
+    <string name="password_keyboard_label_symbol_key">\?123</string>
     <string name="password_keyboard_label_alpha_key">ABC</string>
     <string name="password_keyboard_label_alt_key">ALT</string>
     <string name="granularity_label_character">caractère</string>
