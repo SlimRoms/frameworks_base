@@ -152,7 +152,6 @@
     <string name="accessibility_quick_settings_airplane">Modalità aereo: <xliff:g id="STATE">%s</xliff:g>.</string>
     <string name="accessibility_quick_settings_bluetooth">Bluetooth: <xliff:g id="STATE">%s</xliff:g>.</string>
     <string name="accessibility_quick_settings_alarm">Allarme impostato per: <xliff:g id="TIME">%s</xliff:g>.</string>
-    <string name="qs_fav_long_press">Pressione prolungata</string>
     <string name="data_usage_disabled_dialog_3g_title">Dati 2G-3G disattivati</string>
     <string name="data_usage_disabled_dialog_4g_title">Dati 4G disattivati</string>
     <string name="data_usage_disabled_dialog_mobile_title">Dati mobili disattivati</string>
