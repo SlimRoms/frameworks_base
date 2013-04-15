@@ -38,7 +38,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import com.android.systemui.quicksettings.QuickSettingsTile;
-import com.android.systemui.quicksettings.FavoriteContactTile;
 import com.android.systemui.quicksettings.InputMethodTile;
 
 import dalvik.system.DexClassLoader;
@@ -206,8 +205,6 @@ public class QuickSettingsController {
     void addQuickSettings(LayoutInflater inflater){
         // Load the user configured tiles
         loadTiles();
-        // clean fav contact instances data
-        FavoriteContactTile.cleanContent(mContext, tiles);
         if (tiles.equals("")) return;
         if (tiles.startsWith("|")) tiles = tiles.substring(1);
         StringTokenizer st;
