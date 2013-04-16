@@ -131,7 +131,7 @@
     <string name="accessibility_no_sim">Nessuna SIM presente.</string>
     <string name="accessibility_bluetooth_tether">Tethering Bluetooth.</string>
     <string name="accessibility_airplane_mode">Modalità aereo.</string>
-    <string name="accessibility_battery_level">%</string>
+    <string name="accessibility_battery_level">Batteria <xliff:g id="number">%d</xliff:g> percento.</string>
     <string name="accessibility_settings_button">Impostazioni di sistema.</string>
     <string name="accessibility_notifications_button">Notifiche.</string>
     <string name="accessibility_remove_notification">Cancella notifica.</string>
