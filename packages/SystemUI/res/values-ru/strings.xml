@@ -299,7 +299,6 @@
 	<string name="select_custom_activity_title">Выбрать действие</string>
 	<string name="quicksettings_shortcuts_edit_title">Изменить ярлык</string>
 	<string name="quicksettings_shortcuts_edit_msg">Изменить или выбрать приложение или значок</string>
-	<string name="qs_shortcut_long_press">Долгое нажатие</string>
 	<string name="icon_picker_type">Выбрать тип значка:</string>
 	<string name="icon_picker_choose_icon_title">Выбрать значок</string>
     <string name="icon_default">По умолчанию</string>
