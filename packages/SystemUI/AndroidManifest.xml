@@ -307,5 +307,10 @@
             </intent-filter>
         </activity>
 
+        <!-- started from Custom Shortcut Tile -->
+        <activity
+            android:name=".quicksettings.ShortcutPickerActivity"
+            android:label="@string/customshortcut_chooser_title"/>
+
     </application>
 </manifest>
