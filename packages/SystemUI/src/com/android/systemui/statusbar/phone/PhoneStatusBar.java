@@ -2525,9 +2525,9 @@ public class PhoneStatusBar extends BaseStatusBar {
         // hide pie triggers when keyguard is visible
         try {
             if (mWindowManagerService.isKeyguardLocked()) {
-                disablePie(true);
+                setupTriggers(false, true);
             } else {
-                disablePie(false);
+                setupTriggers(false, false);
             }
         } catch (RemoteException e) {
             // nothing else to do ...
