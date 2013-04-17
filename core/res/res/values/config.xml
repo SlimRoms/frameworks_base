@@ -1115,4 +1115,9 @@
         <item>150</item>
         <item>100</item>
     </integer-array>
+
+    <!-- Boolean to enable/disable SlimPIE
+        default is enabled -->
+    <bool name="config_slimPie">true</bool>
+
 </resources>
