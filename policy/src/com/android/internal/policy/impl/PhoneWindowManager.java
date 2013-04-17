@@ -1014,21 +1014,16 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     break;
                 case KEY_ACTION_APP_SWITCH:
                     sendCloseSystemWindows(SYSTEM_DIALOG_REASON_RECENT_APPS);
-                    if (Settings.System.getInt(mContext.getContentResolver(),
-                            Settings.System.CLASSIC_RECENTS_MENU, 0) == 1) {
-                        showOrHideRecentAppsDialog(RECENT_APPS_BEHAVIOR_SHOW_OR_DISMISS);
-                    } else {
-                        try {
-                            IStatusBarService statusbar = getStatusBarService();
-                            if (statusbar != null) {
-                                statusbar.toggleRecentApps();
-                                mRecentAppsPreloaded = false;
-                            }
-                        } catch (RemoteException e) {
-                            Slog.e(TAG, "RemoteException when showing recent apps", e);
-                            // re-acquire status bar service next time it is needed.
-                            mStatusBarService = null;
+                    try {
+                        IStatusBarService statusbar = getStatusBarService();
+                        if (statusbar != null) {
+                            statusbar.toggleRecentApps();
+                            mRecentAppsPreloaded = false;
                         }
+                    } catch (RemoteException e) {
+                        Slog.e(TAG, "RemoteException when showing recent apps", e);
+                        // re-acquire status bar service next time it is needed.
+                        mStatusBarService = null;
                     }
                     break;
                 case KEY_ACTION_SEARCH:
