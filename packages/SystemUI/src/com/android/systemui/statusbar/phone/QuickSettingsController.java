@@ -192,6 +192,9 @@ public class QuickSettingsController {
         QuickSettingsTile qs = null;
         if (condition){
            try{
+               if (TILES_CLASSES.get(tile) == null) {
+                   return qs;
+               }
                DexClassLoader classLoader = new DexClassLoader(
                        "/system/app/SystemUI.apk", mContext.getFilesDir().getAbsolutePath(),
                        null, getClass().getClassLoader());
