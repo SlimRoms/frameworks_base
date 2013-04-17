@@ -180,7 +180,6 @@ public abstract class BaseStatusBar extends SystemUI implements
             | Position.RIGHT.FLAG
             | Position.TOP.FLAG;
     private boolean mForceDisableBottomAndTopTrigger = false;
-    private boolean mDisablePie = false;
     private View[] mPieTrigger = new View[Position.values().length];
     private PieSettingsObserver mSettingsObserver;
 
@@ -1447,17 +1446,12 @@ public abstract class BaseStatusBar extends SystemUI implements
         int pie = Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.PIE_CONTROLS, 0);
 
-        return ((pie == 1 && expanded) || pie == 2) && !mDisablePie;
-    }
-
-    public void disablePie(boolean disable) {
-        mDisablePie = disable;
-        attachPie();
+        return (pie == 1 && expanded) || pie == 2;
     }
 
     private void attachPie() {
         if (isPieEnabled()) {
-            setupTriggers(false);
+            setupTriggers(false, false);
             // Create our container, if it does not exist already
             if (mPieContainer == null) {
                 mPieContainer = new PieLayout(mContext);
@@ -1500,7 +1494,11 @@ public abstract class BaseStatusBar extends SystemUI implements
         }
     }
 
-    public void setupTriggers(boolean forceDisableBottomAndTopTrigger) {
+    public void setupTriggers(boolean forceDisableBottomAndTopTrigger, boolean disableTriggers) {
+            if (disableTriggers) {
+                updatePieTriggerMask(0);
+                return;
+            }
             mForceDisableBottomAndTopTrigger = forceDisableBottomAndTopTrigger;
             int expandedMode = Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.EXPANDED_DESKTOP_MODE, 0);
