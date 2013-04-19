@@ -220,7 +220,7 @@
     <string name="quick_settings_expanded_desktop_off">Normal</string>
     <string name="status_bar_help_title">Las notificaciones aparecen aquí.</string>
     <string name="status_bar_help_text">Desliza el dedo hacia abajo para acceder al contenido.\"\n\"Vuelve a deslizar el dedo hacia abajo para acceder a los controles del sistema.</string>
-    <string name="powerwidget_screen_timeout_toast">Tiempo de espera de pantalla establecida en: %1$ d %2$ s</string>
+    <string name="powerwidget_screen_timeout_toast">Tiempo de espera de pantalla establecida en: %1$d %2$s</string>
     <string name="action_home">Página principal</string>
     <string name="action_back">Atrás</string>
     <string name="action_recents">Recientes</string>

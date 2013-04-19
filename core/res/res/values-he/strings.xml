@@ -117,7 +117,7 @@
     <string name="httpErrorFile">לא יכולתי לגשת לקובץ.</string>
     <string name="httpErrorFileNotFound">לא היתה אפשרות למצוא את הקובץ המבוקש.</string>
     <string name="httpErrorTooManyRequests">בקשות רבות מדי מעובדות. נסה שוב מאוחר יותר.</string>
-    <string name="notification_title">שגיאת כניסה עבור <xliff:g id="account" example="foo@gmail.com"> %1$ s </xliff:g></string>
+    <string name="notification_title">שגיאת כניסה עבור <xliff:g id="account" example="foo@gmail.com"> %1$s </xliff:g></string>
     <string name="contentServiceSync">סינכרון</string>
     <string name="contentServiceSyncNotificationTitle">סינכרון</string>
     <string name="contentServiceTooManyDeletesNotificationDesc">מחיקות רבות מדי של <xliff:g id="content_type"> %s </xliff:g>.</string>
@@ -1120,9 +1120,9 @@
     <string name="autofill_this_form">Autofill</string>
     <string name="setup_autofill">Set up Autofill</string>
     <string name="autofill_address_name_separator">\u0020</string>
-    <string name="autofill_address_summary_name_format">$1$ 2$ 3</string>
+    <string name="autofill_address_summary_name_format">$1$2$3</string>
     <string name="autofill_address_summary_separator">, \u0020</string>
-    <string name="autofill_address_summary_format">$1$ 2$ 3</string>
+    <string name="autofill_address_summary_format">$1$2$3</string>
     <string name="autofill_attention_ignored_re">attention|attn</string>
     <string name="autofill_region_ignored_re">province|region|other<!-- es -->|provincia<!-- pt-BR, pt-PT -->|bairro|suburb</string>
     <string name="autofill_company_re">company|business|organization|organisation|department<!-- de-DE -->|firma|firmenname<!-- es -->|empresa<!-- fr-FR -->|societe|société<!-- it-IT -->|ragione.?sociale<!-- ja-JP -->|会社<!-- ru -->|название.?компании<!-- zh-CN -->|单位|公司</string>

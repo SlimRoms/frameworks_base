@@ -824,9 +824,9 @@
     <string name="autofill_this_form">Autocompletar</string>
     <string name="setup_autofill">Configurar Autocompletar</string>
     <string name="autofill_address_name_separator"> </string>
-    <string name="autofill_address_summary_name_format">$1$ 2$ 3</string>
+    <string name="autofill_address_summary_name_format">$1$2$3</string>
     <string name="autofill_address_summary_separator">, </string>
-    <string name="autofill_address_summary_format">$1$ 2$ 3</string>
+    <string name="autofill_address_summary_format">$1$2$3</string>
     <string name="autofill_attention_ignored_re">atención|Attn</string>
     <string name="autofill_region_ignored_re">Provincia|región|otro <!--es--> |provincia <!--pt-BR, pt-PT--> |bairro|suburb</string>
     <string name="autofill_company_re">¿Company|Business|Organization|Organisation|Department <!--de-DE--> |firma|firmenname <!--es--> |empresa <!--fr-FR--> |societe|société <!--it - IT--> |ragione.?¿sociale <!--ja-JP--> |会社 <!--ru--> |название.?Компании <!--zh-CN--> |单位|公司</string>
@@ -835,7 +835,7 @@
     <string name="autofill_address_line_2_re">¿Dirección.?¿LINE2|Address2|addr2|Street|Suite|Unit <!--de-DE--> |adresszusatz|ergänzende.?Angaben <!--es--> |direccion2|colonia|adicional <!--fr-FR--> |addresssuppl|complementnom|appartement <!--it - IT--> |indirizzo2 <!--ja-JP--> |住所2</string>
     <string name="autofill_address_line_3_re">¿Dirección.?Line3|address3|addr3|Street|Line3 <!--es--> |municipio <!--fr-FR--> |batiment|residence <!--it - IT--> |indirizzo3</string>
     <string name="autofill_country_re">País|localización <!--ja-JP--> |国 <!--zh-CN--> |国家</string>
-    <string name="autofill_zip_code_re">¿Zip|Postal|Post code|pcode| ^$ 1z <!--de-DE--> |postleitzahl <!--es--> |cp <!--fr-FR--> |cdp <!--it - IT--> |cap <!--ja-JP--> |郵便番号 <!--pt-BR, pt-PT--> |codigo|codpos|cep <!--ru--> |Почтовый.?Индекс <!--zh-CN--> |邮政编码|邮编 <!--zh-TW--> |郵遞區號</string>
+    <string name="autofill_zip_code_re">¿Zip|Postal|Post code|pcode|^$1z <!--de-DE--> |postleitzahl <!--es--> |cp <!--fr-FR--> |cdp <!--it - IT--> |cap <!--ja-JP--> |郵便番号 <!--pt-BR, pt-PT--> |codigo|codpos|cep <!--ru--> |Почтовый.?Индекс <!--zh-CN--> |邮政编码|邮编 <!--zh-TW--> |郵遞區號</string>
     <string name="autofill_zip_4_re">zip| ^-$ |post2 <!--pt-BR, pt-PT--> |codpos2</string>
     <string name="autofill_city_re">City|Town <!--de-DE--> |ort|stadt <!--en-AU--> |suburb <!--es--> |ciudad|provincia|localidad|poblacion <!--fr-FR--> |ville|commune <!--it - IT--> |localita <!--ja-JP--> |市区町村 <!--pt-BR, pt-PT--> |cidade <!--ru--> |Город <!--zh-CN--> |市 <!--zh-TW--> |分區</string>
     <string name="autofill_state_re">State|County|region|Province <!--de-DE--> |land <!--en-UK--> |county|principality <!--ja-JP--> |都道府県 <!--pt-BR, pt-PT--> |estado|provincia <!--ru--> |область <!--zh-CN--> |省 <!--zh-TW--> |地區</string>
@@ -1032,7 +1032,7 @@
     <string name="ringtone_unknown">Tono desconocido</string>
     <string name="wifi_available_sign_in">Iniciar sesión en red Wi-Fi</string>
     <string name="network_available_sign_in">Iniciar sesión en la red</string>
-    <string name="network_available_sign_in_detailed"><xliff:g id="network_ssid"> %1$ s </xliff:g></string>
+    <string name="network_available_sign_in_detailed"><xliff:g id="network_ssid"> %1$s </xliff:g></string>
     <string name="wifi_watchdog_network_disabled">No se ha podido establecer conexión con la red Wi-Fi.</string>
     <string name="wifi_watchdog_network_disabled_detailed"> tiene una conexión inestable a Internet.</string>
     <string name="wifi_p2p_dialog_title">Wi-Fi Direct</string>

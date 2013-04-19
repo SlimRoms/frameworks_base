@@ -207,7 +207,7 @@
     <string name="quick_settings_nfc_off">NFC apagado</string>
     <string name="quick_settings_fcharge">Carga rapida</string>
     <string name="quick_settings_screen_timeout">Tiempo de espera</string>
-    <string name="quick_settings_screen_timeout_summary">%1$ d %2$ s</string>
+    <string name="quick_settings_screen_timeout_summary">%1$d %2$s</string>
     <string name="quick_settings_usb_tether_off_label">Desconectado</string>
     <string name="quick_settings_usb_tether_connected_label">Tethering apagado</string>
     <string name="quick_settings_usb_tether_on_label">Tethering</string>
@@ -220,7 +220,7 @@
     <string name="quick_settings_expanded_desktop_off">Normal</string>
     <string name="status_bar_help_title">Las notificaciones aparecen aquí</string>
     <string name="status_bar_help_text">Desliza el dedo hacia abajo para acceder al contenido.\"\n\"Vuelve a deslizar el dedo hacia abajo para acceder a los controles del sistema.</string>
-    <string name="powerwidget_screen_timeout_toast">Tiempo de espera de pantalla establecido en: %1$ d %2$ s</string>
+    <string name="powerwidget_screen_timeout_toast">Tiempo de espera de pantalla establecido en: %1$d %2$s</string>
     <string name="action_home">Inicio</string>
     <string name="action_back">Atrás</string>
     <string name="action_recents">Recientes</string>

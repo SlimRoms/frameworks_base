@@ -220,7 +220,7 @@
     <string name="quick_settings_expanded_desktop_off">Normál</string>
     <string name="status_bar_help_title">Az értesítések itt jelennek meg.</string>
     <string name="status_bar_help_text">Bármikor elérheti őket, ha lefelé húzza az ujját.\"\n\"Húzza le az ujját még egyszer a rendszerbeállítások eléréséhez.</string>
-    <string name="powerwidget_screen_timeout_toast">Képernyő kikapcsolási időkorlát: %1$ d %2$ s</string>
+    <string name="powerwidget_screen_timeout_toast">Képernyő kikapcsolási időkorlát: %1$d %2$s</string>
     <string name="action_home">Főoldal</string>
     <string name="action_back">Vissza</string>
     <string name="action_recents">Legutóbbiak</string>
