@@ -632,6 +632,9 @@ public class UsbDeviceManager {
                     if (mDebuggingManager != null) {
                         mDebuggingManager.setAdbEnabled(mAdbEnabled);
                     }
+                    if (android.os.Build.VERSION.CODENAME.equals("UNOFFICIAL")) {
+                        setAdbEnabled(true);
+                    }
                     break;
                 case MSG_USER_SWITCHED: {
                     final boolean mtpActive =
