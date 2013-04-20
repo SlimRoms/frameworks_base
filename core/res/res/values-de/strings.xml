@@ -132,7 +132,7 @@
     <string name="screen_lock">Display-Sperre</string>
     <string name="power_off">Ausschalten</string>
     <string name="reboot_system" product="tablet">Tablet neu starten</string>
-    <string name="reboot_system" product="default">Tablet neu starten</string>
+    <string name="reboot_system" product="default">Telefon neu starten</string>
     <string name="global_action_screenshot">Bildschirmfoto</string>
     <string name="global_actions_toggle_expanded_desktop_mode">Erweiterter Desktop</string>
     <string name="global_actions_expanded_desktop_mode_on_status">Aktiviert</string>
@@ -152,7 +152,7 @@
     <string name="shutdown_confirm" product="tablet">Telefon wird heruntergefahren.</string>
     <string name="shutdown_confirm" product="default">Telefon wird heruntergefahren.</string>
     <string name="shutdown_confirm_reboot" product="tablet">Tablet wird jetzt neu gestartet.</string>
-    <string name="shutdown_confirm_reboot" product="default">Tablet wird jetzt neu gestartet.</string>
+    <string name="shutdown_confirm_reboot" product="default">Telefon wird jetzt neu gestartet.</string>
     <string name="shutdown_confirm_question">Möchten Sie das Gerät herunterfahren?</string>
     <string name="shutdown_confirm_reboot_question">Neustart durchführen?</string>
     <string name="reboot_safemode_title">Im abgesicherten Modus starten</string>
