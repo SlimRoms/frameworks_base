@@ -113,7 +113,7 @@
     <string name="accessibility_no_sim">沒有插入SIM卡。</string>
     <string name="accessibility_bluetooth_tether">藍牙網路共用</string>
     <string name="accessibility_airplane_mode">飛航模式</string>
-    <string name="accessibility_battery_level">電量 <xliff:g id="number"> %d%</xliff:g> %。</string>
+    <string name="accessibility_battery_level">電量 <xliff:g id="number">%d</xliff:g>百分之</string>
     <string name="accessibility_settings_button">系統設置。</string>
     <string name="accessibility_notifications_button">通知。</string>
     <string name="accessibility_remove_notification">清除通知。</string>
@@ -157,7 +157,7 @@
     <string name="start_dreams">休眠模式</string>
     <string name="ethernet_label">乙太網路</string>
     <string name="quick_settings_airplane_mode_label">飛航模式</string>
-    <string name="quick_settings_battery_charging_label">充電中,<xliff:g id="NUMBER">%d</xliff:g><xliff:g id="PERCENT">%%</xliff:g></string>
+    <string name="quick_settings_battery_charging_label">充電中,<xliff:g id="number">%d</xliff:g><xliff:g id="PERCENT">%%</xliff:g></string>
     <string name="quick_settings_battery_charged_label">充電完成</string>
     <string name="quick_settings_bluetooth_label">藍牙</string>
     <string name="quick_settings_bluetooth_multiple_devices_label"> <xliff:g id="number"> %d </xliff:g> 個藍牙裝置</string>
