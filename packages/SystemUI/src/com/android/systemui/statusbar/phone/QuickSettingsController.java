@@ -76,6 +76,7 @@ public class QuickSettingsController {
     public static final String TILE_IME = "toggleIME";
     public static final String TILE_LOCKSCREEN = "toggleLockScreen";
     public static final String TILE_LTE = "toggleLte";
+    public static final String TILE_MUSIC = "toggleMusic";
     public static final String TILE_MOBILEDATA = "toggleMobileData";
     public static final String TILE_MOBILENETWORK = "toggleMobileNetwork";
     public static final String TILE_NETWORKMODE = "toggleNetworkMode";
@@ -115,6 +116,7 @@ public class QuickSettingsController {
         TILES_CLASSES.put(TILE_IME, "com.android.systemui.quicksettings.InputMethodTile");
         TILES_CLASSES.put(TILE_LOCKSCREEN, "com.android.systemui.quicksettings.ToggleLockscreenTile");
         TILES_CLASSES.put(TILE_LTE, "com.android.systemui.quicksettings.LteTile");
+        TILES_CLASSES.put(TILE_MUSIC, "com.android.systemui.quicksettings.MusicTile");
         TILES_CLASSES.put(TILE_MOBILEDATA, "com.android.systemui.quicksettings.MobileDataTile");
         TILES_CLASSES.put(TILE_MOBILENETWORK, "com.android.systemui.quicksettings.MobileNetworkTile");
         TILES_CLASSES.put(TILE_NETWORKMODE, "com.android.systemui.quicksettings.MobileNetworkTypeTile");
