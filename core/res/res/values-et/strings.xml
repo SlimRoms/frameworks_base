@@ -864,7 +864,7 @@
     <string name="autofill_expiration_date_re">exp|^/|year<!-- de-DE -->|ablaufdatum|gueltig|gültig|yahr<!-- es -->|fecha<!-- it-IT -->|scadenza<!-- ja-JP -->|有効期限<!-- pt-BR, pt-PT -->|validade<!-- ru -->|Срок действия карты<!-- zh-CN -->|年|有效期</string>
     <string name="autofill_card_ignored_re">^card</string>
     <string name="autofill_fax_re">fax<!-- fr-FR -->|télécopie|telecopie<!-- ja-JP -->|ファックス<!-- ru -->|факс<!-- zh-CN -->|传真<!-- zh-TW -->|傳真</string>
-    <string name="autofill_country_code_re">riiki. * code|ccode|_cc</string>
+    <string name="autofill_country_code_re">riiki.*code|ccode|_cc</string>
     <string name="autofill_area_code_notext_re">^\\($</string>
     <string name="autofill_phone_prefix_separator_re">^-$|^\\)$</string>
     <string name="autofill_phone_suffix_separator_re">^-$</string>
