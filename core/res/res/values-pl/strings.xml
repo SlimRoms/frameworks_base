@@ -862,7 +862,7 @@
     <string name="autofill_card_number_re">number|card.?#|card.?no|ccnum<!-- de-DE -->|nummer<!-- es -->|credito|numero|número<!-- fr-FR -->|numéro<!-- ja-JP -->|カード番号<!-- ru -->|Номер.*карты<!-- zh-CN -->|信用卡号|信用卡号码<!-- zh-TW -->|信用卡卡號</string>
     <string name="autofill_expiration_month_re">expir|exp.*month|exp.*date|ccmonth<!-- de-DE -->|gueltig|gültig|monat<!-- es -->|fecha<!-- fr-FR -->|date.*exp<!-- it-IT -->|scadenza<!-- ja-JP -->|有効期限<!-- pt-BR, pt-PT -->|validade<!-- ru -->|Срок действия карты<!-- zh-CN -->|月</string>
     <string name="autofill_expiration_date_re">exp|^/|year<!-- de-DE -->|ablaufdatum|gueltig|gültig|yahr<!-- es -->|fecha<!-- it-IT -->|scadenza<!-- ja-JP -->|有効期限<!-- pt-BR, pt-PT -->|validade<!-- ru -->|Срок действия карты<!-- zh-CN -->|年|有效期</string>
-    <string name="autofill_card_ignored_re">^ karta</string>
+    <string name="autofill_card_ignored_re">^karta</string>
     <string name="autofill_fax_re">faks <!--fr-FR,--> |télécopie|telecopie <!----> |ファックス ja-JP <!--ru--> |факс <!--zh-CN--> |传真 <!--zh-TW--> |傳真</string>
     <string name="autofill_country_code_re">country.*code|ccode|_cc</string>
     <string name="autofill_area_code_notext_re">^\\($</string>
