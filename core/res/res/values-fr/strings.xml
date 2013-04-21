@@ -132,7 +132,7 @@
     <string name="screen_lock">Verrouillage de l\'écran</string>
     <string name="power_off">Éteindre</string>
     <string name="reboot_system" product="tablet">Redémarrer la tablette</string>
-    <string name="reboot_system" product="default">Redémarrer la tablette</string>
+    <string name="reboot_system" product="default">Redémarrer le téléphone</string>
     <string name="global_action_screenshot">Capture d\'écran</string>
     <string name="global_actions_toggle_expanded_desktop_mode">Bureau étendu</string>
     <string name="global_actions_expanded_desktop_mode_on_status">Activé</string>
@@ -152,7 +152,7 @@
     <string name="shutdown_confirm" product="tablet">Votre téléphone va s\'éteindre.</string>
     <string name="shutdown_confirm" product="default">Votre téléphone va s\'éteindre.</string>
     <string name="shutdown_confirm_reboot" product="tablet">Votre tablette va redémarrer maintenant.</string>
-    <string name="shutdown_confirm_reboot" product="default">Votre tablette va redémarrer maintenant.</string>
+    <string name="shutdown_confirm_reboot" product="default">Votre téléphone va redémarrer maintenant.</string>
     <string name="shutdown_confirm_question">Voulez-vous éteindre l\'appareil ?</string>
     <string name="shutdown_confirm_reboot_question">Voulez-vous redémarrer ?</string>
     <string name="reboot_safemode_title">Redémarrer en mode sans échec</string>
