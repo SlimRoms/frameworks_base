@@ -59,11 +59,13 @@ import java.util.Date;
 
 public class ShortcutPickerActivity extends Activity implements ShortcutPickHelper.OnPickListener{
 
+    private final static String TAG = "ShortcutPickerActivity";
+    private final boolean DBG = false;
+
     public final static String ICON_FILE = "icon_file";
     public final static String CONTACT_TEMPLATE = "content://com.android.contacts/contacts/lookup";
     public final static String PHONE_NUMBER_TEMPLATE = "tel:";
     public final static String SMS_TEMPLATE = "smsto:";
-    public final static String TAG = "ShortcutPickerActivity";
 
     private final static int CUSTOM_USER_ICON = 0;
 
@@ -100,7 +102,7 @@ public class ShortcutPickerActivity extends Activity implements ShortcutPickHelp
         mEmptyLabel = getResources().getString(R.string.empty_tile_title);
         prefs = getSharedPreferences("QuickSettingsTilesContent", 0);
         pickShortcut();
-        Log.i(TAG, "onCreate finished! callingTileID="+callingTileID);
+        if (DBG) Log.i(TAG, "onCreate finished! callingTileID="+callingTileID);
     }
 
     private void pickShortcut() {
@@ -328,7 +330,7 @@ public class ShortcutPickerActivity extends Activity implements ShortcutPickHelp
                 avatar = getResources().getDrawable(R.drawable.ic_qs_default_user);
                 Uri res;
                 String contactId = null;
-                Log.e(TAG, lookupIntent.getDataString());
+                if (DBG) Log.e(TAG, lookupIntent.getDataString());
                 if (mShortcutUri.contains(SMS_TEMPLATE) || mShortcutUri.contains(PHONE_NUMBER_TEMPLATE)) {
                     String phoneUri = lookupIntent.getDataString();
                     String phoneNumber = phoneUri.substring(phoneUri.indexOf(":")+1);
@@ -336,7 +338,7 @@ public class ShortcutPickerActivity extends Activity implements ShortcutPickHelp
                 } else {
                     res = ContactsContract.Contacts.lookupContact(getContentResolver(), lookupIntent.getData());
                 }
-                Log.e(TAG, res.toString());
+                if (DBG) Log.e(TAG, res.toString());
                 String[] projection = new String[] {
                     ContactsContract.Contacts.DISPLAY_NAME,
                     ContactsContract.Contacts.PHOTO_URI,
@@ -352,7 +354,7 @@ public class ShortcutPickerActivity extends Activity implements ShortcutPickHelp
                         cursor.close();
                     }
                 }
-                Log.e(TAG, contactId);
+                if (DBG) Log.e(TAG, contactId);
                 if (contactId != null) {
                     Uri lookupUri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_LOOKUP_URI, contactId);
                     res = ContactsContract.Contacts.lookupContact(getContentResolver(), lookupUri);

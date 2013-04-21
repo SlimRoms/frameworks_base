@@ -37,6 +37,7 @@ import com.android.systemui.statusbar.phone.QuickSettingsContainerView;
 public class RingerModeTile extends QuickSettingsTile {
 
     private static final String SEPARATOR = "OV=I=XseparatorX=I=VO";
+    private final boolean DBG = false;
 
     // Define the available ringer modes
     private final Ringer mSilentRinger = new Ringer(AudioManager.RINGER_MODE_SILENT, false);
@@ -101,7 +102,7 @@ public class RingerModeTile extends QuickSettingsTile {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Log.e("\r\n\r\nRingerModeTile","RINGER_MODE_CHANGED_ACTION\r\n");
+        if (DBG) Log.e("\r\n\r\nRingerModeTile","RINGER_MODE_CHANGED_ACTION\r\n");
         applyVibrationChanges();
     }
 
@@ -187,9 +188,9 @@ public class RingerModeTile extends QuickSettingsTile {
         ContentResolver resolver = mContext.getContentResolver();
         boolean vibrateWhenRinging = Settings.System.getInt(resolver,
                 Settings.System.VIBRATE_WHEN_RINGING, 0) == 1;
-        Log.e("\r\n\r\nRingerModeTile","vibrateWhenRinging = "+vibrateWhenRinging);
+        if (DBG) Log.e("\r\n\r\nRingerModeTile","vibrateWhenRinging = "+vibrateWhenRinging);
         int ringerMode = mAudioManager.getRingerMode();
-        Log.e("RingerModeTile","ringerMode = "+ringerMode+"\r\n");
+        if (DBG) Log.e("RingerModeTile","ringerMode = "+ringerMode+"\r\n");
         Ringer ringer = new Ringer(ringerMode, vibrateWhenRinging);
         for (int i = 0; i < mRingers.length; i++) {
             if (mRingers[i].equals(ringer)) {

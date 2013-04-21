@@ -36,6 +36,7 @@ import com.android.systemui.statusbar.phone.QuickSettingsController;
 public class MobileNetworkTypeTile extends QuickSettingsTile {
 
     private static final String TAG = "NetworkModeQuickSettings";
+    private final boolean DBG = false;
 
     // retrieved from Phone.apk
     private static final String ACTION_NETWORK_MODE_CHANGED = "com.android.internal.telephony.NETWORK_MODE_CHANGED";
@@ -211,7 +212,7 @@ public class MobileNetworkTypeTile extends QuickSettingsTile {
             case Phone.NT_MODE_EVDO_NO_CDMA:
             case Phone.NT_MODE_GLOBAL:
                 // need to check what is going on
-                Log.d(TAG, "Unexpected network mode (" + mMode + ")");
+                if (DBG) Log.d(TAG, "Unexpected network mode (" + mMode + ")");
                 return STATE_UNEXPECTED;
         }
         return STATE_INTERMEDIATE;

@@ -34,7 +34,9 @@ import com.android.systemui.statusbar.phone.QuickSettingsContainerView;
 import com.android.systemui.statusbar.phone.QuickSettingsController;
 
 public class MusicTile extends QuickSettingsTile {
+
     private final String TAG = "MusicTile";
+    private final boolean DBG = false;
 
     public static MusicTile mInstance;
 
@@ -127,7 +129,7 @@ public class MusicTile extends QuickSettingsTile {
             try {
                 audioService.dispatchMediaKeyEventUnderWakelock(event);
             } catch (RemoteException e) {
-                Log.e(TAG, "dispatchMediaKeyEvent threw exception " + e);
+                if (DBG) Log.e(TAG, "dispatchMediaKeyEvent threw exception " + e);
             }
         }
     }
@@ -137,7 +139,7 @@ public class MusicTile extends QuickSettingsTile {
             mAS = IAudioService.Stub.asInterface(
                     ServiceManager.checkService(Context.AUDIO_SERVICE));
             if (mAS == null) {
-                Log.w(TAG, "Unable to find IAudioService interface.");
+                if (DBG) Log.w(TAG, "Unable to find IAudioService interface.");
             }
         }
         return mAS;
