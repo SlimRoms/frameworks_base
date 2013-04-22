@@ -803,7 +803,7 @@
     <string name="keyguard_accessibility_password_unlock">密码解锁。</string>
     <string name="keyguard_accessibility_pattern_area">图案区域。</string>
     <string name="keyguard_accessibility_slide_area">滑动区域。</string>
-    <string name="password_keyboard_label_symbol_key">?123</string>
+    <string name="password_keyboard_label_symbol_key">\?123</string>
     <string name="password_keyboard_label_alpha_key">ABC</string>
     <string name="password_keyboard_label_alt_key">ALT</string>
     <string name="granularity_label_character">字符</string>
@@ -828,8 +828,7 @@
     <string name="autofill_address_summary_separator">， </string>
     <string name="autofill_address_summary_format">$1$2$3</string>
     <string name="autofill_attention_ignored_re">attention|attn</string>
-    <string name="autofill_region_ignored_re">province|region|other <! — — es--> |provincia <! — — pt-BR、 pt PT--> |bairro|suburb</string>
-    <string name="autofill_company_re">company|business|organization|organisation|department <! — — de DE--> |firma|firmenname <! — — es--> |empresa <! — — FR-FR--> |societe|société <! — — 它---> |ragione IT。?社会 <! — —--> |会社 JA-JP <! — —--> |название ru。?Компании <! — — zh-CN--> |单位|公司</string>
+    <string name="autofill_region_ignored_re">province|region|other <!-- es--> |provincia <!-- pt-BR、 pt PT--> |bairro|suburb</string>
     <string name="autofill_address_line_1_re">address.?line|address1|addr1|street<!-- de-DE -->|strasse|straße|hausnummer|housenumber<!-- en-GB -->|house.?name<!-- es -->|direccion|dirección<!-- fr-FR -->|adresse<!-- it-IT -->|indirizzo<!-- ja-JP -->|住所1<!-- pt-BR, pt-PT -->|morada|endereço<!-- ru -->|Адрес<!-- zh-CN -->|地址</string>
     <string name="autofill_address_line_1_label_re">address<!-- fr-FR -->|adresse<!-- it-IT -->|indirizzo<!-- ja-JP -->|住所<!-- zh-CN -->|地址</string>
     <string name="autofill_address_line_2_re">address.?line2|address2|addr2|street|suite|unit<!-- de-DE -->|adresszusatz|ergänzende.?angaben<!-- es -->|direccion2|colonia|adicional<!-- fr-FR -->|addresssuppl|complementnom|appartement<!-- it-IT -->|indirizzo2<!-- ja-JP -->|住所2</string>
