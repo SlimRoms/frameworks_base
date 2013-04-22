@@ -227,7 +227,9 @@
     <string name="quick_settings_ringer_normal">Звук</string>
     <string name="quick_settings_lockscreen">Экран блокировки</string>
     <string name="quick_settings_network_type">Режим сети</string>
-    <string name="quick_settings_report_bug">Написать баг</string>
+    <string name="quick_settings_report_bug">Сообщить ошибку</string>
+    <string name="quick_settings_music_play">Играть</string>
+    <string name="quick_settings_music_pause">Пауза</string>
     <string name="quick_settings_mobile_data_on">Передача данных</string>
     <string name="quick_settings_mobile_data_off">Передача данных\nвыкл</string>
     <string name="quick_settings_reboot">Перезагрузить</string>
