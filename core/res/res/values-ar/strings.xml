@@ -803,7 +803,7 @@
     <string name="keyguard_accessibility_password_unlock">إلغاء القفل باستخدام كلمة المرور.</string>
     <string name="keyguard_accessibility_pattern_area">منطقة النقش.</string>
     <string name="keyguard_accessibility_slide_area">منطقة التمرير.</string>
-    <string name="password_keyboard_label_symbol_key">?123</string>
+    <string name="password_keyboard_label_symbol_key">\?123</string>
     <string name="password_keyboard_label_alpha_key">ب ت ث</string>
     <string name="password_keyboard_label_alt_key">ALT</string>
     <string name="granularity_label_character">حرف</string>
@@ -830,7 +830,7 @@
     <string name="autofill_attention_ignored_re">انتباه|انتبه</string>
     <string name="autofill_region_ignored_re">مقاطعة|إقليم|آخر<!-- es -->|provincia<!-- pt-BR, pt-PT -->|bairro|suburb</string>
     <string name="autofill_company_re">شركة|عمل|منظمة|منظمة|قسم</string>
-    <string name="autofill_address_line_1_re">العنوان.?خط|العنوان 1|عن.1|شارع<!</string>
+    <string name="autofill_address_line_1_re">العنوان.?خط|العنوان 1|عن.1|شارع</string>
     <string name="autofill_address_line_1_label_re">عنوان<!-- fr-FR -->|adresse<!-- it-IT -->|indirizzo<!-- ja-JP -->|住所<!-- zh-CN -->|地址</string>
     <string name="autofill_address_line_2_re">عنوان.?خط 2|عنوان 2|عن. 2|شارع|جناح|وحدة<!-- de-DE -->|adresszusatz|ergänzende.?angaben<!-- es -->|direccion2|colonia|adicional<!-- fr-FR -->|addresssuppl|complementnom|appartement<!-- it-IT -->|indirizzo2<!-- ja-JP -->|住所2</string>
     <string name="autofill_address_line_3_re">عنوان.?خط3|عنوان 3|عن.3|شارع|خط3<!-- es -->|municipio<!-- fr-FR -->|batiment|residence<!-- it-IT -->|indirizzo3</string>
