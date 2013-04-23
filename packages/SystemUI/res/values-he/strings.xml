@@ -135,7 +135,6 @@
     <string name="accessibility_quick_settings_airplane">מצב טיסה <xliff:g id="state" example="Off">%s</xliff:g>.</string>
     <string name="accessibility_quick_settings_bluetooth">Bluetooth <xliff:g id="state" example="Off">%s</xliff:g>.</string>
     <string name="accessibility_quick_settings_alarm">שעון מעורר מכוון ל- <xliff:g id="time" example="Wed 3:30 PM">%s</xliff:g>.</string>
-    <string name="qs_fav_long_press">לחיצה ארוכה</string>
     <string name="data_usage_disabled_dialog_3g_title">העברת נתונים 2G-3G מבוטלת</string>
     <string name="data_usage_disabled_dialog_4g_title">העברת נתונים ב-4G מבוטלת</string>
     <string name="data_usage_disabled_dialog_mobile_title">העברת נתונים ניידת מבוטלת</string>
@@ -196,6 +195,8 @@
     <string name="quick_settings_lockscreen">מסך נעילה</string>
     <string name="quick_settings_network_type">מצב רשת</string>
     <string name="quick_settings_report_bug">דווח על באג</string>
+    <string name="quick_settings_music_play">נגן</string>
+    <string name="quick_settings_music_pause">הפסקה</string>
     <string name="quick_settings_mobile_data_on">נתונים ניידים מופעל</string>
     <string name="quick_settings_mobile_data_off">נתונים ניידים כבוי</string>
     <string name="quick_settings_reboot">אתחול המערכת</string>
@@ -245,8 +246,78 @@
     <string name="service_used_mem"><xliff:g id="memory">%1$s</xliff:g> בשימוש</string>
     <string name="quick_settings_quiethours">שעות שקט</string>
     <string name="quick_settings_quiethours_off">שעות שקט כבוי</string>
+    <string name="ok">אישור</string>
+    <string name="cancel">ביטול</string>
+    <string name="empty_tile_title">ריק</string>
+    <string name="profile_applist_title">יישומים</string>
+    <string name="picker_activities">פעילויות</string>
+    <string name="select_custom_app_title">בחר יישום מותאם אישית</string>
+    <string name="select_custom_activity_title">בחר פעילות מותאמת אישית</string>
+    <string name="quicksettings_shortcuts_edit_title">עריכת קיצור דרך</string>
+    <string name="quicksettings_shortcuts_edit_msg">בחר או שנה את היישום או הסמל הרצוי</string>
+    <string name="qs_shortcut_long_press">לחיצה ארוכה</string>
+    <string name="icon_picker_type">בחר את סוג הסמל:</string>
+    <string name="icon_picker_choose_icon_title">בחר סמל</string>
+    <string name="icon_default">ברירת מחדל</string>
+    <string name="icon_presets">סמלי המערכת</string>
+    <string name="icon_custom">גלריה</string>
+    <string name="customshortcut_chooser_title">בוחר קיצורי הדרך</string>
+    <string name="quicksettings_shortcuts_title">קיצורי דרך</string>
+    <string name="quicksettings_shortcuts_icon_picker_alarm">התראה</string>
+    <string name="quicksettings_shortcuts_icon_picker_andy">Andy</string>
+    <string name="quicksettings_shortcuts_icon_picker_battery">סוללה</string>
+    <string name="quicksettings_shortcuts_icon_picker_browser">דפדפן</string>
+    <string name="quicksettings_shortcuts_icon_picker_calendar">לוח שנה</string>
+    <string name="quicksettings_shortcuts_icon_picker_camera">מצלמה</string>
+    <string name="quicksettings_shortcuts_icon_picker_cloud">שירותי הענן</string>
+    <string name="quicksettings_shortcuts_icon_picker_contact">איש קשר</string>
+    <string name="quicksettings_shortcuts_icon_picker_directdial">חיוג ישיר</string>
+    <string name="quicksettings_shortcuts_icon_picker_directmessage">הודעה ישירה</string>
+    <string name="quicksettings_shortcuts_icon_picker_drive">כונן</string>
+    <string name="quicksettings_shortcuts_icon_picker_dropbox">Dropbox</string>
+    <string name="quicksettings_shortcuts_icon_picker_email">דוא\"ל</string>
+    <string name="quicksettings_shortcuts_icon_picker_email2">דוא\"ל חלופי</string>
+    <string name="quicksettings_shortcuts_icon_picker_evernote">Evernote</string>
+    <string name="quicksettings_shortcuts_icon_picker_facebook">פייסבוק</string>
+    <string name="quicksettings_shortcuts_icon_picker_favorite">מועדפים</string>
+    <string name="quicksettings_shortcuts_icon_picker_file_browser">מנהל קבצים</string>
+    <string name="quicksettings_shortcuts_icon_picker_file_browser2">מנהל קבצים אחר</string>
+    <string name="quicksettings_shortcuts_icon_picker_fitness">כושר</string>
+    <string name="quicksettings_shortcuts_icon_picker_gallery">גלריה</string>
+    <string name="quicksettings_shortcuts_icon_picker_google_small">Google</string>
+    <string name="quicksettings_shortcuts_icon_picker_gplus">Google Plus</string>
+    <string name="quicksettings_shortcuts_icon_picker_gtalk">GTalk</string>
+    <string name="quicksettings_shortcuts_icon_picker_help">עזרה</string>
+    <string name="quicksettings_shortcuts_icon_picker_joystick">ג\'ויסטיק</string>
+    <string name="quicksettings_shortcuts_icon_picker_laptop">מחשב נייד</string>
+    <string name="quicksettings_shortcuts_icon_picker_notes">הערות</string>
+    <string name="quicksettings_shortcuts_icon_picker_luggage">נסיעה</string>
+    <string name="quicksettings_shortcuts_icon_picker_maps">מפות</string>
+    <string name="quicksettings_shortcuts_icon_picker_market">חנות</string>
+    <string name="quicksettings_shortcuts_icon_picker_movie">סרטים</string>
+    <string name="quicksettings_shortcuts_icon_picker_music">מוסיקה</string>
+    <string name="quicksettings_shortcuts_icon_picker_nav">ניווט</string>
+    <string name="quicksettings_shortcuts_icon_picker_phone">טלפון</string>
+    <string name="quicksettings_shortcuts_icon_picker_package">חבילה</string>
+    <string name="quicksettings_shortcuts_icon_picker_play">נגן</string>
+    <string name="quicksettings_shortcuts_icon_picker_podcast">פודקאסט</string>
+    <string name="quicksettings_shortcuts_icon_picker_quicksettings">הגדרות מהירות</string>
+    <string name="quicksettings_shortcuts_icon_picker_rss">עדכוני RSS</string>
+    <string name="quicksettings_shortcuts_icon_picker_sdcard">כרטיס SD</string>
+    <string name="quicksettings_shortcuts_icon_picker_search">חיפוש</string>
+    <string name="quicksettings_shortcuts_icon_picker_sms">הודעות</string>
+    <string name="quicksettings_shortcuts_icon_picker_tasks">משימות</string>
+    <string name="quicksettings_shortcuts_icon_picker_terminal">מסוף</string>
+    <string name="quicksettings_shortcuts_icon_picker_tv">טלוויזיה</string>
+    <string name="quicksettings_shortcuts_icon_picker_twitter">טוויטר</string>
     <string name="calendar_error_alert">לא מותקן יישום לוח שנה.</string>
     <string name="clock_error_alert">לא מותקן יישום DeskClock.</string>
+    <string name="pie_battery_status_charging">טוען (<xliff:g id="percent">%d</xliff:g>%%)</string>
+    <string name="pie_battery_status_full">טעון</string>
+    <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% נשאר</string>
+    <string name="pie_phone_status_no_service">אין שירות</string>
+    <string name="pie_phone_status_airplane_mode">מצב טיסה פועל</string>
+    <string name="pie_phone_status_emergency_only">שיחות חירום בלבד</string>
     <plurals name="status_bar_accessibility_recent_apps">
         <item quantity="one">אפליקציה אחרונה אחת</item>
         <item quantity="other">אפליקציה אחרונה 1</item>
