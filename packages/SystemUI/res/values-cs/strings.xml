@@ -1,24 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- 
-/**
- * Copyright (c) 2009, The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License"); 
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at 
- *
- *     http://www.apache.org/licenses/LICENSE-2.0 
- *
- * Unless required by applicable law or agreed to in writing, software 
- * distributed under the License is distributed on an "AS IS" BASIS, 
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
- * See the License for the specific language governing permissions and 
- * limitations under the License.
- */
- -->
+<?xml version="1.0" encoding="utf-8"?>
 
-<resources xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_label">UI systému</string>
     <string name="status_bar_clear_all_button">Vymazat</string>
     <string name="status_bar_do_not_disturb_button">Nerušit</string>
@@ -152,7 +134,6 @@
     <string name="accessibility_quick_settings_airplane">Režim V letadle: <xliff:g id="STATE">%s</xliff:g>.</string>
     <string name="accessibility_quick_settings_bluetooth">Bluetooth: <xliff:g id="STATE">%s</xliff:g>.</string>
     <string name="accessibility_quick_settings_alarm">Budík je nastaven na <xliff:g id="TIME">%s</xliff:g>.</string>
-    <string name="qs_shortcut_long_press">Podržení</string>
     <string name="data_usage_disabled_dialog_3g_title">Datové přenosy 2G a 3G jsou zakázány</string>
     <string name="data_usage_disabled_dialog_4g_title">Datové přenosy 4G jsou zakázány</string>
     <string name="data_usage_disabled_dialog_mobile_title">Mobilní data jsou zakázána</string>
@@ -213,6 +194,7 @@
     <string name="quick_settings_lockscreen">Odemykací obrazovka</string>
     <string name="quick_settings_network_type">Režim sítě</string>
     <string name="quick_settings_report_bug">Nahlásit chybu</string>
+    <string name="quick_settings_music_play">Obchod Play</string>
     <string name="quick_settings_mobile_data_on">Mobilní data</string>
     <string name="quick_settings_mobile_data_off">Mobilní data vyp.</string>
     <string name="quick_settings_reboot">Restartovat systém</string>
@@ -262,8 +244,85 @@
     <string name="service_used_mem">Využito: <xliff:g id="memory">%1$s</xliff:g></string>
     <string name="quick_settings_quiethours">Tichý režim</string>
     <string name="quick_settings_quiethours_off">Tichý režim vyp.</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Zrušit</string>
+    <string name="empty_tile_title">Prázdné</string>
+    <string name="profile_applist_title">Aplikace</string>
+    <string name="picker_activities">Aktivity</string>
+    <string name="select_custom_app_title">Zvolte vlastní aplikaci</string>
+    <string name="select_custom_activity_title">Zvolte vlastní činnost</string>
+    <string name="quicksettings_shortcuts_edit_title">Upravit zkratku</string>
+    <string name="quicksettings_shortcuts_edit_msg">Vyberte nebo změňte požadovanou aplikaci nebo ikonu</string>
+    <string name="qs_shortcut_long_press">Dlouhé stisknutí</string>
+    <string name="icon_picker_type">Zvolit typ ikony:</string>
+    <string name="icon_picker_choose_icon_title">Vyberte ikonu</string>
+    <string name="icon_default">Výchozí</string>
+    <string name="icon_presets">Systémové ikony</string>
+    <string name="icon_custom">Galerie</string>
+    <string name="customshortcut_chooser_title">Výběr zástupce</string>
+    <string name="quicksettings_shortcuts_title">Zástupce</string>
+    <string name="quicksettings_shortcuts_icon_picker_alarm">Budík</string>
+    <string name="quicksettings_shortcuts_icon_picker_andy">Android</string>
+    <string name="quicksettings_shortcuts_icon_picker_battery">Baterie</string>
+    <string name="quicksettings_shortcuts_icon_picker_browser">Prohlížeč</string>
+    <string name="quicksettings_shortcuts_icon_picker_calendar">Kalendář</string>
+    <string name="quicksettings_shortcuts_icon_picker_camera">Fotoaparát</string>
+    <string name="quicksettings_shortcuts_icon_picker_cloud">Cloud</string>
+    <string name="quicksettings_shortcuts_icon_picker_contact">Kontakt</string>
+    <string name="quicksettings_shortcuts_icon_picker_directdial">Přímé vytáčení</string>
+    <string name="quicksettings_shortcuts_icon_picker_directmessage">Přímá zpráva</string>
+    <string name="quicksettings_shortcuts_icon_picker_drive">Drive</string>
+    <string name="quicksettings_shortcuts_icon_picker_dropbox">Dropbox</string>
+    <string name="quicksettings_shortcuts_icon_picker_email">E-mail</string>
+    <string name="quicksettings_shortcuts_icon_picker_email2">E-mail alternativa</string>
+    <string name="quicksettings_shortcuts_icon_picker_evernote">Evernote</string>
+    <string name="quicksettings_shortcuts_icon_picker_facebook">Facebook</string>
+    <string name="quicksettings_shortcuts_icon_picker_favorite">Oblíbené</string>
+    <string name="quicksettings_shortcuts_icon_picker_file_browser">Prohlížeč souborů</string>
+    <string name="quicksettings_shortcuts_icon_picker_file_browser2">Prohlížeč souborů alternativa</string>
+    <string name="quicksettings_shortcuts_icon_picker_fitness">Fitness</string>
+    <string name="quicksettings_shortcuts_icon_picker_gallery">Galerie</string>
+    <string name="quicksettings_shortcuts_icon_picker_gears">Nastavení</string>
+    <string name="quicksettings_shortcuts_icon_picker_google_small">Google</string>
+    <string name="quicksettings_shortcuts_icon_picker_gplus">Google +</string>
+    <string name="quicksettings_shortcuts_icon_picker_gtalk">GTalk</string>
+    <string name="quicksettings_shortcuts_icon_picker_help">Nápověda</string>
+    <string name="quicksettings_shortcuts_icon_picker_joystick">Joystick</string>
+    <string name="quicksettings_shortcuts_icon_picker_key">Klíče/Účty</string>
+    <string name="quicksettings_shortcuts_icon_picker_laptop">Notebook</string>
+    <string name="quicksettings_shortcuts_icon_picker_notes">Poznámky</string>
+    <string name="quicksettings_shortcuts_icon_picker_luggage">Cestování</string>
+    <string name="quicksettings_shortcuts_icon_picker_maps">Mapy</string>
+    <string name="quicksettings_shortcuts_icon_picker_market">Market</string>
+    <string name="quicksettings_shortcuts_icon_picker_movie">Filmy</string>
+    <string name="quicksettings_shortcuts_icon_picker_music">Hudba</string>
+    <string name="quicksettings_shortcuts_icon_picker_nav">Navigace</string>
+    <string name="quicksettings_shortcuts_icon_picker_phone">Telefon</string>
+    <string name="quicksettings_shortcuts_icon_picker_package">Balíček</string>
+    <string name="quicksettings_shortcuts_icon_picker_pinterest">Pinterest</string>
+    <string name="quicksettings_shortcuts_icon_picker_play">Obchod Play</string>
+    <string name="quicksettings_shortcuts_icon_picker_pocket">Přihrádka</string>
+    <string name="quicksettings_shortcuts_icon_picker_podcast">Podcast</string>
+    <string name="quicksettings_shortcuts_icon_picker_quicksettings">Rychlé nastavení</string>
+    <string name="quicksettings_shortcuts_icon_picker_rss">RSS kanál</string>
+    <string name="quicksettings_shortcuts_icon_picker_sdcard">SD Karta</string>
+    <string name="quicksettings_shortcuts_icon_picker_search">Vyhledat</string>
+    <string name="quicksettings_shortcuts_icon_picker_sms">Zprávy</string>
+    <string name="quicksettings_shortcuts_icon_picker_tasks">Úkoly</string>
+    <string name="quicksettings_shortcuts_icon_picker_terminal">Terminál</string>
+    <string name="quicksettings_shortcuts_icon_picker_transit">Doprava</string>
+    <string name="quicksettings_shortcuts_icon_picker_tv">TV</string>
+    <string name="quicksettings_shortcuts_icon_picker_twitter">Twitter</string>
+    <string name="quicksettings_shortcuts_icon_picker_unlock">Odemknout</string>
     <string name="calendar_error_alert">Není nainstalovaný kalendář.</string>
     <string name="clock_error_alert">Není nainstalovaná aplikace DeskClock.</string>
+    <string name="qs_shortcut_error">Nejdříve vyberte cíl zástupce!</string>
+    <string name="pie_battery_status_charging">Nabíjení (<xliff:g id="percent">%d</xliff:g>%%)</string>
+    <string name="pie_battery_status_full">Nabito</string>
+    <string name="pie_battery_status_discharging">Zbývá <xliff:g id="percent">%d</xliff:g>%%</string>
+    <string name="pie_phone_status_no_service">Žádný signál</string>
+    <string name="pie_phone_status_airplane_mode">Režim v letadle</string>
+    <string name="pie_phone_status_emergency_only">Pouze tísňová volání</string>
     <plurals name="status_bar_accessibility_recent_apps">
         <item quantity="one">1 nová aplikace</item>
         <item quantity="few">nové aplikace: %d</item>
