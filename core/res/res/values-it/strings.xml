@@ -1526,6 +1526,7 @@
     </plurals>
     <plurals name="duration_hours">
         <item quantity="one">1 ora</item>
+        <item quantity="other"><xliff:g id="count">%d</xliff:g> ore</item>
     </plurals>
     <plurals name="wifi_available">
         <item quantity="one">Rete Wi-Fi disponibile</item>
