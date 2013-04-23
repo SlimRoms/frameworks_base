@@ -1,24 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- 
-/**
- * Copyright (c) 2009, The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License"); 
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at 
- *
- *     http://www.apache.org/licenses/LICENSE-2.0 
- *
- * Unless required by applicable law or agreed to in writing, software 
- * distributed under the License is distributed on an "AS IS" BASIS, 
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
- * See the License for the specific language governing permissions and 
- * limitations under the License.
- */
- -->
+<?xml version="1.0" encoding="utf-8"?>
 
-<resources xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_label">Interfejs</string>
     <string name="status_bar_clear_all_button">Wyczyść</string>
     <string name="status_bar_do_not_disturb_button">Nie przeszkadzać</string>
@@ -152,7 +134,6 @@
     <string name="accessibility_quick_settings_airplane">Tryb samolotowy: <xliff:g id="STATE">%s</xliff:g>.</string>
     <string name="accessibility_quick_settings_bluetooth">Bluetooth: <xliff:g id="STATE">%s</xliff:g>.</string>
     <string name="accessibility_quick_settings_alarm">Alarm ustawiony na <xliff:g id="TIME">%s</xliff:g>.</string>
-    <string name="qs_shortcut_long_press">Przytrzymaj</string>
     <string name="data_usage_disabled_dialog_3g_title">Wyłączono transmisję danych 2G/3G</string>
     <string name="data_usage_disabled_dialog_4g_title">Wyłączono transmisję danych 4G</string>
     <string name="data_usage_disabled_dialog_mobile_title">Wyłączono komórkową transmisję danych</string>
@@ -213,6 +194,8 @@
     <string name="quick_settings_lockscreen">Ekran blokady</string>
     <string name="quick_settings_network_type">Tryb sieci</string>
     <string name="quick_settings_report_bug">Zgłoszenie problemu</string>
+    <string name="quick_settings_music_play">Odtwórz</string>
+    <string name="quick_settings_music_pause">Pauza</string>
     <string name="quick_settings_mobile_data_on">Dane mobilne</string>
     <string name="quick_settings_mobile_data_off">Dane mobilne wył</string>
     <string name="quick_settings_reboot">Restart systemu</string>
@@ -262,8 +245,85 @@
     <string name="service_used_mem"><xliff:g id="memory">%1$s</xliff:g> używane</string>
     <string name="quick_settings_quiethours">Ciche godziny</string>
     <string name="quick_settings_quiethours_off">Ciche godziny wyłączone</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Anuluj</string>
+    <string name="empty_tile_title">Puste</string>
+    <string name="profile_applist_title">Aplikacje</string>
+    <string name="picker_activities">Działania</string>
+    <string name="select_custom_app_title">Wybierz niestandardową aplikację</string>
+    <string name="select_custom_activity_title">Wybierz niestandardowe działanie</string>
+    <string name="quicksettings_shortcuts_edit_title">Edytuj skrót</string>
+    <string name="quicksettings_shortcuts_edit_msg">Wybierz lub zmień pożądaną aplikację i przypisz do niej ikonę</string>
+    <string name="qs_shortcut_long_press">Przytrzymaj</string>
+    <string name="icon_picker_type">Wybierz typ ikony:</string>
+    <string name="icon_picker_choose_icon_title">Wybierz ikonę</string>
+    <string name="icon_default">Domyślna</string>
+    <string name="icon_presets">Ikony systemowe</string>
+    <string name="icon_custom">Galeria</string>
+    <string name="customshortcut_chooser_title">Panel szybkich ustawień</string>
+    <string name="quicksettings_shortcuts_title">Skróty</string>
+    <string name="quicksettings_shortcuts_icon_picker_alarm">Alarm</string>
+    <string name="quicksettings_shortcuts_icon_picker_andy">Android</string>
+    <string name="quicksettings_shortcuts_icon_picker_battery">Bateria</string>
+    <string name="quicksettings_shortcuts_icon_picker_browser">Przeglądarka</string>
+    <string name="quicksettings_shortcuts_icon_picker_calendar">Kalendarz</string>
+    <string name="quicksettings_shortcuts_icon_picker_camera">Aparat</string>
+    <string name="quicksettings_shortcuts_icon_picker_cloud">Chmura</string>
+    <string name="quicksettings_shortcuts_icon_picker_contact">Kontakty</string>
+    <string name="quicksettings_shortcuts_icon_picker_directdial">Telefon do osoby</string>
+    <string name="quicksettings_shortcuts_icon_picker_directmessage">SMS do osoby</string>
+    <string name="quicksettings_shortcuts_icon_picker_drive">Jazda</string>
+    <string name="quicksettings_shortcuts_icon_picker_dropbox">Dropbox</string>
+    <string name="quicksettings_shortcuts_icon_picker_email">E-mail</string>
+    <string name="quicksettings_shortcuts_icon_picker_email2">E-mail alternatywny</string>
+    <string name="quicksettings_shortcuts_icon_picker_evernote">Evernote</string>
+    <string name="quicksettings_shortcuts_icon_picker_facebook">Facebook</string>
+    <string name="quicksettings_shortcuts_icon_picker_favorite">Ulubione</string>
+    <string name="quicksettings_shortcuts_icon_picker_file_browser">Przeglądarka plików</string>
+    <string name="quicksettings_shortcuts_icon_picker_file_browser2">Alternatywna Przeglądarka Plików</string>
+    <string name="quicksettings_shortcuts_icon_picker_fitness">Fitness</string>
+    <string name="quicksettings_shortcuts_icon_picker_gallery">Galeria</string>
+    <string name="quicksettings_shortcuts_icon_picker_gears">Koła zębate</string>
+    <string name="quicksettings_shortcuts_icon_picker_google_small">Google</string>
+    <string name="quicksettings_shortcuts_icon_picker_gplus">Google+</string>
+    <string name="quicksettings_shortcuts_icon_picker_gtalk">GTalk</string>
+    <string name="quicksettings_shortcuts_icon_picker_help">Pomoc</string>
+    <string name="quicksettings_shortcuts_icon_picker_joystick">Joystick</string>
+    <string name="quicksettings_shortcuts_icon_picker_key">Klucze/Konta</string>
+    <string name="quicksettings_shortcuts_icon_picker_laptop">Laptop</string>
+    <string name="quicksettings_shortcuts_icon_picker_notes">Notatki</string>
+    <string name="quicksettings_shortcuts_icon_picker_luggage">Podróż</string>
+    <string name="quicksettings_shortcuts_icon_picker_maps">Mapy</string>
+    <string name="quicksettings_shortcuts_icon_picker_market">Google Play</string>
+    <string name="quicksettings_shortcuts_icon_picker_movie">Filmy</string>
+    <string name="quicksettings_shortcuts_icon_picker_music">Muzyka</string>
+    <string name="quicksettings_shortcuts_icon_picker_nav">Nawigacja</string>
+    <string name="quicksettings_shortcuts_icon_picker_phone">Telefon</string>
+    <string name="quicksettings_shortcuts_icon_picker_package">Pakiet</string>
+    <string name="quicksettings_shortcuts_icon_picker_pinterest">Pinterest</string>
+    <string name="quicksettings_shortcuts_icon_picker_play">Odtwórz</string>
+    <string name="quicksettings_shortcuts_icon_picker_pocket">Pocket</string>
+    <string name="quicksettings_shortcuts_icon_picker_podcast">Podcast</string>
+    <string name="quicksettings_shortcuts_icon_picker_quicksettings">Szybkie ustawienia</string>
+    <string name="quicksettings_shortcuts_icon_picker_rss">Kanał RSS</string>
+    <string name="quicksettings_shortcuts_icon_picker_sdcard">Karta SD</string>
+    <string name="quicksettings_shortcuts_icon_picker_search">Szukaj</string>
+    <string name="quicksettings_shortcuts_icon_picker_sms">Wiadomości</string>
+    <string name="quicksettings_shortcuts_icon_picker_tasks">Zadania</string>
+    <string name="quicksettings_shortcuts_icon_picker_terminal">Terminal</string>
+    <string name="quicksettings_shortcuts_icon_picker_transit">Transit</string>
+    <string name="quicksettings_shortcuts_icon_picker_tv">TV</string>
+    <string name="quicksettings_shortcuts_icon_picker_twitter">Twitter</string>
+    <string name="quicksettings_shortcuts_icon_picker_unlock">Odblokuj</string>
     <string name="calendar_error_alert">Nie zainstalowano aplikacji kalendarza. </string>
     <string name="clock_error_alert">Nie zainstalowano aplikacji zegar pulpitu. </string>
+    <string name="qs_shortcut_error">Najpierw wybierz skrót aby zmienić jego ikonę !</string>
+    <string name="pie_battery_status_charging">Ładowanie (<xliff:g id="percent">%d</xliff:g>%%)</string>
+    <string name="pie_battery_status_full">Naładowana</string>
+    <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% pozostało</string>
+    <string name="pie_phone_status_no_service">Brak usługi</string>
+    <string name="pie_phone_status_airplane_mode">Tryb samolotowy wł</string>
+    <string name="pie_phone_status_emergency_only">Tylko połączenia alarmowe</string>
     <plurals name="status_bar_accessibility_recent_apps">
         <item quantity="one">1 ostatnia aplikacja</item>
         <item quantity="few">Ostatnie aplikacje: %d</item>
