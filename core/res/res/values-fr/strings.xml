@@ -734,7 +734,7 @@
     <string name="lockscreen_password_wrong">Veuillez réessayer.</string>
     <string name="faceunlock_multiple_failures">Nombre maximal autorisé de tentatives Face Unlock atteint.</string>
     <string name="lockscreen_plugged_in">En charge (<xliff:g id="NUMBER">%d</xliff:g><xliff:g id="PERCENT">%%</xliff:g>)</string>
-    <string name="lockscreen_discharging">Sur batterie, <xliff:g id="number"> %d </xliff:g> <xliff:g id="percent"> % </xliff:g></string>
+    <string name="lockscreen_discharging">Sur batterie, <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
     <string name="lockscreen_charged">Chargé</string>
     <string name="lockscreen_battery_short"><xliff:g id="NUMBER">%d</xliff:g> <xliff:g id="PERCENT">%%</xliff:g></string>
     <string name="lockscreen_low_battery">Branchez votre chargeur.</string>

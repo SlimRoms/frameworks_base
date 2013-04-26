@@ -734,7 +734,7 @@
     <string name="lockscreen_password_wrong">Vuelve a intentarlo</string>
     <string name="faceunlock_multiple_failures">Se ha superado el número máximo de intentos de desbloqueo facial.</string>
     <string name="lockscreen_plugged_in">Cargando (<xliff:g id="NUMBER">%d</xliff:g><xliff:g id="PERCENT">%%</xliff:g>)</string>
-    <string name="lockscreen_discharging">Descarga, <xliff:g id="number"> %d </xliff:g> <xliff:g id="percent"> % </xliff:g></string>
+    <string name="lockscreen_discharging">Descarga, <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
     <string name="lockscreen_charged">Cargado</string>
     <string name="lockscreen_battery_short"><xliff:g id="NUMBER">%d</xliff:g><xliff:g id="PERCENT">%%</xliff:g></string>
     <string name="lockscreen_low_battery">Conecta el cargador</string>
