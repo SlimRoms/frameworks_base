@@ -121,10 +121,10 @@
     <string name="contentServiceSync">Sincronización</string>
     <string name="contentServiceSyncNotificationTitle">Sincronización</string>
     <string name="contentServiceTooManyDeletesNotificationDesc">Demasiadas eliminaciones de <xliff:g id="CONTENT_TYPE">%s</xliff:g></string>
-    <string name="low_memory" product="tablet">Se ha agotado el espacio de almacenamiento del teléfono. Elimina algunos archivos para liberar espacio.</string>
+    <string name="low_memory" product="tablet">Se ha agotado el espacio de almacenamiento del tablet. Elimina algunos archivos para liberar espacio.</string>
     <string name="low_memory" product="default">Se ha agotado el espacio de almacenamiento del teléfono. Elimina algunos archivos para liberar espacio.</string>
     <string name="me">Yo</string>
-    <string name="power_dialog" product="tablet">Opciones del teléfono</string>
+    <string name="power_dialog" product="tablet">Opciones del tablet</string>
     <string name="power_dialog" product="default">Opciones del teléfono</string>
     <string name="silent_mode">Modo silencio</string>
     <string name="turn_on_radio">Activar conexión inalámbrica</string>
@@ -132,7 +132,7 @@
     <string name="screen_lock">Bloqueo de pantalla</string>
     <string name="power_off">Apagar</string>
     <string name="reboot_system" product="tablet">Reiniciar tablet</string>
-    <string name="reboot_system" product="default">Reiniciar tablet</string>
+    <string name="reboot_system" product="default">Reiniciar teléfono</string>
     <string name="global_action_screenshot">Captura de pantalla</string>
     <string name="global_actions_toggle_expanded_desktop_mode">Escritorio ampliado</string>
     <string name="global_actions_expanded_desktop_mode_on_status">Activado</string>
@@ -149,17 +149,17 @@
     <string name="silent_mode_vibrate">Modo vibración</string>
     <string name="silent_mode_ring">Timbre activado</string>
     <string name="shutdown_progress">Apagando...</string>
-    <string name="shutdown_confirm" product="tablet">El teléfono se apagará.</string>
+    <string name="shutdown_confirm" product="tablet">El tablet se apagará.</string>
     <string name="shutdown_confirm" product="default">El teléfono se apagará.</string>
     <string name="shutdown_confirm_reboot" product="tablet">La tablet se reiniciará ahora.</string>
-    <string name="shutdown_confirm_reboot" product="default">La tablet se reiniciará ahora.</string>
+    <string name="shutdown_confirm_reboot" product="default">La teléfono se reiniciará ahora.</string>
     <string name="shutdown_confirm_question">¿Seguro que quieres apagar el teléfono?</string>
     <string name="shutdown_confirm_reboot_question">¿Desea reiniciar?</string>
     <string name="reboot_safemode_title">Reiniciar en modo seguro</string>
     <string name="reboot_safemode_confirm">¿Quieres reiniciar el sistema en modo seguro? Se inhabilitarán todas las aplicaciones externas que hayas instalado. Esas aplicaciones se restaurarán la próxima vez que reinicies del sistema.</string>
     <string name="recent_tasks_title">Reciente</string>
     <string name="no_recent_tasks">No hay aplicaciones recientes.</string>
-    <string name="global_actions" product="tablet">Opciones del teléfono</string>
+    <string name="global_actions" product="tablet">Opciones del tablet</string>
     <string name="global_actions" product="default">Opciones del teléfono</string>
     <string name="global_action_lock">Bloqueo de pantalla</string>
     <string name="global_action_power_off">Apagar</string>
@@ -465,9 +465,9 @@
     <string name="permlab_brick" product="default">inhabilitar el teléfono de forma permanente</string>
     <string name="permdesc_brick" product="tablet">Permite que la aplicación inhabilite todas las funciones del teléfono de forma permanente. Este permiso es muy peligroso.</string>
     <string name="permdesc_brick" product="default">Permite que la aplicación inhabilite todas las funciones del teléfono de forma permanente. Este permiso es muy peligroso.</string>
-    <string name="permlab_reboot" product="tablet">forzar reinicio del teléfono</string>
+    <string name="permlab_reboot" product="tablet">forzar reinicio del tablet</string>
     <string name="permlab_reboot" product="default">forzar reinicio del teléfono</string>
-    <string name="permdesc_reboot" product="tablet">Permite que la aplicación fuerce el reinicio del teléfono.</string>
+    <string name="permdesc_reboot" product="tablet">Permite que la aplicación fuerce el reinicio del tablet.</string>
     <string name="permdesc_reboot" product="default">Permite que la aplicación fuerce el reinicio del teléfono.</string>
     <string name="permlab_mount_unmount_filesystems" product="nosdcard">acceder al sistema de archivos de la tarjeta SD</string>
     <string name="permlab_mount_unmount_filesystems" product="default">acceder al sistema de archivos de la tarjeta SD</string>
@@ -1315,7 +1315,7 @@
     <string name="expanded_mode_default_set">Escritorio expandido para ocultar la barra de Estado. Configurar en ajustes de menú de energía</string>
     <string name="activity_resolver_use_always">Siempre</string>
     <string name="activity_resolver_use_once">Solo una vez</string>
-    <string name="default_audio_route_name" product="tablet">Teléfono</string>
+    <string name="default_audio_route_name" product="tablet">Tablet</string>
     <string name="default_audio_route_name" product="default">Teléfono</string>
     <string name="default_audio_route_name_headphones">Auriculares</string>
     <string name="default_audio_route_name_dock_speakers">Altavoces del conector</string>

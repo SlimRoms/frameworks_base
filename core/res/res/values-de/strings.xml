@@ -149,7 +149,7 @@
     <string name="silent_mode_vibrate">Klingeltonmodus \"Vibration\"</string>
     <string name="silent_mode_ring">Klingelton ein</string>
     <string name="shutdown_progress">Wird heruntergefahren...</string>
-    <string name="shutdown_confirm" product="tablet">Telefon wird heruntergefahren.</string>
+    <string name="shutdown_confirm" product="tablet">Tablet wird heruntergefahren.</string>
     <string name="shutdown_confirm" product="default">Telefon wird heruntergefahren.</string>
     <string name="shutdown_confirm_reboot" product="tablet">Tablet wird jetzt neu gestartet.</string>
     <string name="shutdown_confirm_reboot" product="default">Telefon wird jetzt neu gestartet.</string>
@@ -1315,7 +1315,7 @@
     <string name="expanded_mode_default_set">Erweiterter Desktop versteckt derzeit nur die Statusbar. Das Verhalten kann unter Ein/Aus-Taste geändert werden</string>
     <string name="activity_resolver_use_always">Immer</string>
     <string name="activity_resolver_use_once">Nur diesmal</string>
-    <string name="default_audio_route_name" product="tablet">Telefon</string>
+    <string name="default_audio_route_name" product="tablet">Tablet</string>
     <string name="default_audio_route_name" product="default">Telefon</string>
     <string name="default_audio_route_name_headphones">Kopfhörer</string>
     <string name="default_audio_route_name_dock_speakers">Dock-Lautsprecher</string>
