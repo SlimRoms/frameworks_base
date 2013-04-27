@@ -121,10 +121,10 @@
     <string name="contentServiceSync">Synchronizacja</string>
     <string name="contentServiceSyncNotificationTitle">Synchronizuj</string>
     <string name="contentServiceTooManyDeletesNotificationDesc">Zbyt wiele usuwanych <xliff:g id="CONTENT_TYPE">%s</xliff:g>.</string>
-    <string name="low_memory" product="tablet">Pamięć telefonu jest pełna. Usuń niektóre pliki, aby zwolnić miejsce.</string>
+    <string name="low_memory" product="tablet">Pamięć tablet jest pełna. Usuń niektóre pliki, aby zwolnić miejsce.</string>
     <string name="low_memory" product="default">Pamięć telefonu jest pełna. Usuń niektóre pliki, aby zwolnić miejsce.</string>
     <string name="me">Ja</string>
-    <string name="power_dialog" product="tablet">Opcje telefonu</string>
+    <string name="power_dialog" product="tablet">Opcje tablet</string>
     <string name="power_dialog" product="default">Opcje telefonu</string>
     <string name="silent_mode">Tryb cichy</string>
     <string name="turn_on_radio">Włącz połączenia bezprzewodowe</string>
@@ -132,7 +132,7 @@
     <string name="screen_lock">Blokada ekranu</string>
     <string name="power_off">Wyłącz</string>
     <string name="reboot_system" product="tablet">Uruchom tablet ponownie</string>
-    <string name="reboot_system" product="default">Uruchom tablet ponownie</string>
+    <string name="reboot_system" product="default">Uruchom telefonu ponownie</string>
     <string name="global_action_screenshot">Zrzut ekranu</string>
     <string name="global_actions_toggle_expanded_desktop_mode">Rozszerzony pulpit</string>
     <string name="global_actions_expanded_desktop_mode_on_status">Włączony</string>
@@ -149,17 +149,17 @@
     <string name="silent_mode_vibrate">Dzwonek z wibracjami</string>
     <string name="silent_mode_ring">Dzwonek włączony</string>
     <string name="shutdown_progress">Wyłączanie...</string>
-    <string name="shutdown_confirm" product="tablet">Telefon zostanie wyłączony</string>
+    <string name="shutdown_confirm" product="tablet">Tablet zostanie wyłączony</string>
     <string name="shutdown_confirm" product="default">Telefon zostanie wyłączony</string>
     <string name="shutdown_confirm_reboot" product="tablet">Tablet uruchomi się ponownie.</string>
-    <string name="shutdown_confirm_reboot" product="default">Tablet uruchomi się ponownie.</string>
+    <string name="shutdown_confirm_reboot" product="default">Telefon uruchomi się ponownie.</string>
     <string name="shutdown_confirm_question">Czy chcesz wyłączyć?</string>
     <string name="shutdown_confirm_reboot_question">Czy chcesz uruchomić ponownie?</string>
     <string name="reboot_safemode_title">Uruchom w trybie awaryjnym</string>
     <string name="reboot_safemode_confirm">Chcesz uruchomić urządzenie w trybie awaryjnym? W ten sposób wyłączysz wszystkie zainstalowane aplikacje innych firm. Zostaną one przywrócone po ponownym uruchomieniu.</string>
     <string name="recent_tasks_title">Najnowsze</string>
     <string name="no_recent_tasks">Brak ostatnio uruchomionych aplikacji.</string>
-    <string name="global_actions" product="tablet">Opcje telefonu</string>
+    <string name="global_actions" product="tablet">Opcje tablet</string>
     <string name="global_actions" product="default">Opcje telefonu</string>
     <string name="global_action_lock">Blokada ekranu</string>
     <string name="global_action_power_off">Wyłącz</string>
@@ -1318,7 +1318,7 @@
     <string name="expanded_mode_default_set">Rozszerzony pulpit ustawiony by ukrywać pasek statusu. Konfiguracja w ustawieniach \'Power menu\'</string>
     <string name="activity_resolver_use_always">Zawsze</string>
     <string name="activity_resolver_use_once">Tylko raz</string>
-    <string name="default_audio_route_name" product="tablet">Telefon</string>
+    <string name="default_audio_route_name" product="tablet">Tablet</string>
     <string name="default_audio_route_name" product="default">Telefon</string>
     <string name="default_audio_route_name_headphones">Słuchawki</string>
     <string name="default_audio_route_name_dock_speakers">Głośniki stacji dokującej</string>

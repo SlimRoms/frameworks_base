@@ -139,10 +139,10 @@
     <string name="contentServiceSync">Synchronizace</string>
     <string name="contentServiceSyncNotificationTitle">Synchronizace</string>
     <string name="contentServiceTooManyDeletesNotificationDesc">Příliš mnoho smazaných položek služby <xliff:g id="CONTENT_TYPE">%s</xliff:g>.</string>
-    <string name="low_memory" product="tablet">Paměť telefonu je plná. Uvolněte místo smazáním některých souborů.</string>
+    <string name="low_memory" product="tablet">Paměť tablet je plná. Uvolněte místo smazáním některých souborů.</string>
     <string name="low_memory" product="default">Paměť telefonu je plná. Uvolněte místo smazáním některých souborů.</string>
     <string name="me">Já</string>
-    <string name="power_dialog" product="tablet">Možnosti telefonu</string>
+    <string name="power_dialog" product="tablet">Možnosti tablet</string>
     <string name="power_dialog" product="default">Možnosti telefonu</string>
     <string name="silent_mode">Tichý režim</string>
     <string name="turn_on_radio">Zapnout bezdrátové připojení</string>
@@ -150,7 +150,7 @@
     <string name="screen_lock">Zámek obrazovky</string>
     <string name="power_off">Vypnout</string>
     <string name="reboot_system" product="tablet">Restartovat tablet</string>
-    <string name="reboot_system" product="default">Restartovat tablet</string>
+    <string name="reboot_system" product="default">Restartovat telefonu</string>
     <string name="global_action_screenshot">Screenshot</string>
     <string name="global_actions_toggle_expanded_desktop_mode">Rozšířená plocha</string>
     <string name="global_actions_expanded_desktop_mode_on_status">Povoleno</string>
@@ -167,17 +167,17 @@
     <string name="silent_mode_vibrate">Vibrační vyzvánění</string>
     <string name="silent_mode_ring">Vyzvánění zapnuto</string>
     <string name="shutdown_progress">Vypínání...</string>
-    <string name="shutdown_confirm" product="tablet">Váš telefon bude vypnut.</string>
+    <string name="shutdown_confirm" product="tablet">Váš tablet bude vypnut.</string>
     <string name="shutdown_confirm" product="default">Váš telefon bude vypnut.</string>
     <string name="shutdown_confirm_reboot" product="tablet">Váš tablet se nyní restartuje.</string>
-    <string name="shutdown_confirm_reboot" product="default">Váš tablet se nyní restartuje.</string>
+    <string name="shutdown_confirm_reboot" product="default">Váš telefonu se nyní restartuje.</string>
     <string name="shutdown_confirm_question">Chcete zařízení vypnout?</string>
     <string name="shutdown_confirm_reboot_question">Chcete restartovat?</string>
     <string name="reboot_safemode_title">Restart v nouzovém režimu</string>
     <string name="reboot_safemode_confirm">Chcete zařízení restartovat v nouzovém režimu? Deaktivujete tak veškeré nainstalované aplikace třetích stran. Po dalším restartu budou obnoveny.</string>
     <string name="recent_tasks_title">Nejnovější</string>
     <string name="no_recent_tasks">Žádné nové aplikace</string>
-    <string name="global_actions" product="tablet">Možnosti telefonu</string>
+    <string name="global_actions" product="tablet">Možnosti tablet</string>
     <string name="global_actions" product="default">Možnosti telefonu</string>
     <string name="global_action_lock">Zámek obrazovky</string>
     <string name="global_action_power_off">Vypnout</string>
@@ -479,13 +479,13 @@
     <string name="permdesc_recordAudio">Umožňuje aplikaci zaznamenat zvuk pomocí mikrofonu. Toto oprávnění umožňuje aplikaci kdykoliv zaznamenat zvuk bez vašeho svolení.</string>
     <string name="permlab_camera">pořizování fotografií a videí</string>
     <string name="permdesc_camera">Umožňuje aplikaci pořizovat fotografie a videa pomocí fotoaparátu. Toto oprávnění umožňuje aplikaci používat fotoaparát kdykoliv i bez vašeho svolení.</string>
-    <string name="permlab_brick" product="tablet">trvalé vypnutí telefonu</string>
+    <string name="permlab_brick" product="tablet">trvalé vypnutí tablet</string>
     <string name="permlab_brick" product="default">trvalé vypnutí telefonu</string>
-    <string name="permdesc_brick" product="tablet">Umožňuje aplikaci trvale vypnout celý telefon. To je velmi nebezpečné oprávnění.</string>
+    <string name="permdesc_brick" product="tablet">Umožňuje aplikaci trvale vypnout celý tablet. To je velmi nebezpečné oprávnění.</string>
     <string name="permdesc_brick" product="default">Umožňuje aplikaci trvale vypnout celý telefon. To je velmi nebezpečné oprávnění.</string>
-    <string name="permlab_reboot" product="tablet">vynucení restartování telefonu</string>
+    <string name="permlab_reboot" product="tablet">vynucení restartování tablet</string>
     <string name="permlab_reboot" product="default">vynucení restartování telefonu</string>
-    <string name="permdesc_reboot" product="tablet">Umožňuje aplikaci vynutit restartování telefonu.</string>
+    <string name="permdesc_reboot" product="tablet">Umožňuje aplikaci vynutit restartování tablet.</string>
     <string name="permdesc_reboot" product="default">Umožňuje aplikaci vynutit restartování telefonu.</string>
     <string name="permlab_mount_unmount_filesystems" product="nosdcard">přístup k systému souborů na kartě SD</string>
     <string name="permlab_mount_unmount_filesystems" product="default">přístup k systému souborů na kartě SD</string>
@@ -1323,7 +1323,7 @@
     <string name="app_killed_message">Aplikace ukončena</string>
     <string name="activity_resolver_use_always">Vždy</string>
     <string name="activity_resolver_use_once">Pouze jednou</string>
-    <string name="default_audio_route_name" product="tablet">Telefon</string>
+    <string name="default_audio_route_name" product="tablet">Tablet</string>
     <string name="default_audio_route_name" product="default">Telefon</string>
     <string name="default_audio_route_name_headphones">Sluchátka</string>
     <string name="default_audio_route_name_dock_speakers">Reproduktory doku</string>
