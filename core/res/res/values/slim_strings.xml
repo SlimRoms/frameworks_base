@@ -90,7 +90,6 @@
     <!-- label for item that reboots the phone in phone options dialog -->
     <string name="global_action_reboot">Reboot</string>
 
-
     <!-- App ops requests -->
     <string name="app_ops_access_camera">access the camera</string>
     <string name="app_ops_access_location">access your location</string>
@@ -145,5 +144,8 @@
 
     <!-- USB_PREFERENCES: Notification for when no USB options chosen.  This is the title -->
     <string name="usb_choose_notification_title">Touch for choose USB options.</string>
+
+    <!-- In WiFi AP notification -->
+    <string name="notify_turn_wifi_ap_off_title">Turn Wi-Fi AP off</string>
 
 </resources>
