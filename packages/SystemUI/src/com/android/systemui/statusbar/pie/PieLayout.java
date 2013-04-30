@@ -73,7 +73,7 @@ public class PieLayout extends FrameLayout implements View.OnTouchListener {
     private float mSnapThreshold;
     private float mSnapThresholdSqr;
 
-    private float mPieScale = 1.0f;
+    private float mPieScale = 1.1f;
     private int mPadding;
 
     private boolean mActive = false;

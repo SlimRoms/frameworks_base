@@ -223,13 +223,13 @@
 
     <!-- ==================== pie controls ==================== -->
     <!-- Actual width/height of the trigger views placed on the UI -->
-    <dimen name="pie_trigger_height">12dp</dimen>
+    <dimen name="pie_trigger_thickness">7dp</dimen>
     <!-- Minimum width/height of the trigger views placed on the UI -->
-    <dimen name="pie_trigger_min_height">5dp</dimen>
+    <dimen name="pie_trigger_min_thickness">3dp</dimen>
     <!-- Maximum width/height of the trigger views placed on the UI -->
-    <dimen name="pie_trigger_max_height">30dp</dimen>
+    <dimen name="pie_trigger_max_thickness">18dp</dimen>
     <!-- The distance a touch event must travel on the surface to trigger the pie control -->
-    <dimen name="pie_trigger_distance">2dp</dimen>
+    <dimen name="pie_trigger_distance">3dp</dimen>
     <!-- Padding between the pie controls and the screen border -->
     <dimen name="pie_padding">16dp</dimen>
 
