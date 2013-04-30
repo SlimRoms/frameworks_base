@@ -980,10 +980,8 @@
     <string name="chooseActivity">اختيار إجراء</string>
     <string name="chooseUsbActivity">اختيار أحد التطبيقات لجهاز USB</string>
     <string name="noApplications">ليست هناك تطبيقات يمكنها تنفيذ هذا الإجراء.</string>
-    <string name="aerr_title">[سلسلة فارغة]</string>
     <string name="aerr_application">للأسف، توقف <xliff:g id="APPLICATION">%1$s</xliff:g>.</string>
     <string name="aerr_process">للأسف، توقفت العملية <xliff:g id="PROCESS">%1$s</xliff:g>.</string>
-    <string name="anr_title">[سلسلة فارغة]</string>
     <string name="anr_activity_application"><xliff:g id="APPLICATION">%2$s</xliff:g> لا يستجيب.\"\n\n\"هل تريد إغلاقه؟</string>
     <string name="anr_activity_process">النشاط <xliff:g id="ACTIVITY">%1$s</xliff:g> لا يستجيب.\"\n\n\"هل تريد إغلاقه؟</string>
     <string name="anr_application_process"><xliff:g id="APPLICATION">%1$s</xliff:g> لا يستجيب. هل تريد إغلاقه؟</string>
@@ -1111,7 +1109,6 @@
     <string name="extmedia_format_button_format">تنسيق</string>
     <string name="adb_active_notification_title">تم توصيل تصحيح أخطاء USB</string>
     <string name="adb_active_notification_message">المس لتعطيل تصحيح أخطاء USB.</string>
-    <string name="locale_replacement">"[سلسلة فارغة]"</string>
     <string name="select_input_method">اختيار أسلوب الإدخال</string>
     <string name="configure_input_methods">إعداد أسلوب الإدخال</string>
     <string name="use_physical_keyboard">لوحة مفاتيح فعلية</string>

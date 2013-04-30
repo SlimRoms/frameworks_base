@@ -980,10 +980,8 @@
     <string name="chooseActivity">Toimingu valimine</string>
     <string name="chooseUsbActivity">USB-seadme jaoks rakenduse valimine</string>
     <string name="noApplications">Ükski rakendus ei saa seda toimingut teostada.</string>
-    <string name="aerr_title">[empty string]</string>
     <string name="aerr_application">Kahjuks on rakendus <xliff:g id="APPLICATION">%1$s</xliff:g> peatunud.</string>
     <string name="aerr_process">Kahjuks on protsess <xliff:g id="PROCESS">%1$s</xliff:g> peatunud.</string>
-    <string name="anr_title">[empty string]</string>
     <string name="anr_activity_application"><xliff:g id="APPLICATION">%2$s</xliff:g> ei vasta.\"\n\n\"Kas soovite selle sulgeda?</string>
     <string name="anr_activity_process">Tegevus <xliff:g id="ACTIVITY">%1$s</xliff:g> ei vasta.\"\n\n\"Kas soovite selle sulgeda?</string>
     <string name="anr_application_process"><xliff:g id="APPLICATION">%1$s</xliff:g> ei vasta. Kas soovite selle sulgeda?</string>
@@ -1111,7 +1109,6 @@
     <string name="extmedia_format_button_format">Vorminda</string>
     <string name="adb_active_notification_title">USB-silumine ühendatud</string>
     <string name="adb_active_notification_message">Puudutage USB-silumise keelamiseks.</string>
-    <string name="locale_replacement">"[empty string]"</string>
     <string name="select_input_method">Valige sisestusmeetod</string>
     <string name="configure_input_methods">Seadista sisestusmeetodid</string>
     <string name="use_physical_keyboard">Füüsiline klaviatuur</string>

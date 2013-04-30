@@ -980,10 +980,8 @@
     <string name="chooseActivity">Sélectionnez une action</string>
     <string name="chooseUsbActivity">Sélectionnez une application pour le périphérique de stockage USB</string>
     <string name="noApplications">Aucune application ne peut effectuer cette action.</string>
-    <string name="aerr_title">[empty string]</string>
     <string name="aerr_application">L\'application \"<xliff:g id="APPLICATION">%1$s</xliff:g>\" s\'est arrêtée.</string>
     <string name="aerr_process">Malheureusement, le processus <xliff:g id="PROCESS">%1$s</xliff:g> s\'est arrêté.</string>
-    <string name="anr_title">[empty string]</string>
     <string name="anr_activity_application">L\'application <xliff:g id="APPLICATION">%2$s</xliff:g> ne répond pas.\"\n\n\"Voulez-vous quitter ?</string>
     <string name="anr_activity_process">L\'activité <xliff:g id="ACTIVITY">%1$s</xliff:g> ne répond pas.\"\n\n\"Voulez-vous quitter ?</string>
     <string name="anr_application_process">L\'application <xliff:g id="APPLICATION">%1$s</xliff:g> ne répond pas. Voulez-vous quitter ?</string>
@@ -1111,7 +1109,6 @@
     <string name="extmedia_format_button_format">Formater</string>
     <string name="adb_active_notification_title">Débogage android activé</string>
     <string name="adb_active_notification_message">Désactiver le débogage android (adb).</string>
-    <string name="locale_replacement">"[empty string]"</string>
     <string name="select_input_method">Sélectionner le mode de saisie</string>
     <string name="configure_input_methods">Configurer les modes de saisie</string>
     <string name="use_physical_keyboard">Clavier physique</string>

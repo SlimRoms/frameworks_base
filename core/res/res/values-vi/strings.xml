@@ -980,10 +980,8 @@
     <string name="chooseActivity">Chọn một tác vụ</string>
     <string name="chooseUsbActivity">Chọn ứng dụng cho thiết bị USB</string>
     <string name="noApplications">Không ứng dụng nào có thể thực hiện tác vụ này.</string>
-    <string name="aerr_title">[chuỗi rỗng]</string>
     <string name="aerr_application">Rất tiếc, <xliff:g id="APPLICATION">%1$s</xliff:g> đã dừng lại.</string>
     <string name="aerr_process">Rất tiếc, quá trình <xliff:g id="PROCESS">%1$s</xliff:g> đã dừng lại.</string>
-    <string name="anr_title">[chuỗi rỗng]</string>
     <string name="anr_activity_application"><xliff:g id="APPLICATION">%2$s</xliff:g> hiện không phản hồi.\"\n\n\"Bạn có muốn đóng ứng dụng này không?</string>
     <string name="anr_activity_process">Hoạt động <xliff:g id="ACTIVITY">%1$s</xliff:g> không phản hồi.\"\n\n\"Bạn có muốn đóng ứng dụng này không?</string>
     <string name="anr_application_process"><xliff:g id="APPLICATION">%1$s</xliff:g> hiện không phản hồi. Bạn có muốn đóng ứng dụng không?</string>
@@ -1111,7 +1109,6 @@
     <string name="extmedia_format_button_format">Định dạng</string>
     <string name="adb_active_notification_title">Gỡ lỗi USB đã được kết nối</string>
     <string name="adb_active_notification_message">Chạm để vô hiệu hóa gỡ lỗi USB.</string>
-    <string name="locale_replacement">"[chuỗi rỗng]"</string>
     <string name="select_input_method">Chọn phương thức nhập</string>
     <string name="configure_input_methods">Thiết lập phương thức nhập</string>
     <string name="use_physical_keyboard">Bàn phím thực</string>
