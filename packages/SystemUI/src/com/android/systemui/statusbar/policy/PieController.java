@@ -667,7 +667,7 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
                 File f = new File(Uri.parse(imageUri).getPath());
                 if (f.exists()) {
                     Drawable d = new BitmapDrawable(mContext.getResources(), f.getAbsolutePath());
-                    if (clickAction.equals(ACTION_RECENTS)) {
+                    if (clickAction.equals(ACTION_BACK)) {
                         mBackIcon = d;
                     }
                     view.setImageDrawable(d);
