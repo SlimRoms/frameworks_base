@@ -231,7 +231,7 @@
     <!-- The distance a touch event must travel on the surface to trigger the pie control -->
     <dimen name="pie_trigger_distance">3dp</dimen>
     <!-- Padding between the pie controls and the screen border -->
-    <dimen name="pie_padding">16dp</dimen>
+    <dimen name="pie_padding">4dp</dimen>
 
     <!-- Radius of the snap points a the border of the screen -->
     <dimen name="pie_snap_radius">45dp</dimen>
