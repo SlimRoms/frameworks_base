@@ -37,17 +37,21 @@ import android.os.Process;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemClock;
+import android.os.UserHandle;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.InputDevice;
 import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.Toast;
 
 import com.android.internal.statusbar.IStatusBarService;
 import com.android.systemui.R;
+import com.android.systemui.recent.RecentTasksLoader;
+import com.android.systemui.recent.RecentsActivity;
 import com.android.systemui.statusbar.policy.KeyButtonView;
 
 import java.util.List;
@@ -206,6 +210,24 @@ public class ExtensibleKeyButtonView extends KeyButtonView {
                 return;
 
             } else if (mClickAction.equals(ACTION_RECENTS)) {
+                setId(R.id.recent_apps);
+                setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        int action = event.getAction() & MotionEvent.ACTION_MASK;
+                        if (action == MotionEvent.ACTION_DOWN) {
+                            preloadRecentTasksList();
+                        } else if (action == MotionEvent.ACTION_CANCEL) {
+                            cancelPreloadingRecentTasksList();
+                        } else if (action == MotionEvent.ACTION_UP) {
+                            if (!v.isPressed()) {
+                                cancelPreloadingRecentTasksList();
+                            }
+
+                        }
+                        return false;
+                    }
+                });
                 try {
                     mBarService.toggleRecentApps();
                 } catch (RemoteException e) {
@@ -297,6 +319,24 @@ public class ExtensibleKeyButtonView extends KeyButtonView {
                 toggleLastApp();
                 return true;
             } else if (mLongpress.equals(ACTION_RECENTS)) {
+                setId(R.id.recent_apps);
+                setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        int action = event.getAction() & MotionEvent.ACTION_MASK;
+                        if (action == MotionEvent.ACTION_DOWN) {
+                            preloadRecentTasksList();
+                        } else if (action == MotionEvent.ACTION_CANCEL) {
+                            cancelPreloadingRecentTasksList();
+                        } else if (action == MotionEvent.ACTION_UP) {
+                            if (!v.isPressed()) {
+                                cancelPreloadingRecentTasksList();
+                            }
+
+                        }
+                        return false;
+                    }
+                });
                 try {
                     mBarService.toggleRecentApps();
                 } catch (RemoteException e) {
@@ -327,6 +367,24 @@ public class ExtensibleKeyButtonView extends KeyButtonView {
             }
         }
     };
+
+    protected void preloadRecentTasksList() {
+        Intent intent = new Intent(RecentsActivity.PRELOAD_INTENT);
+        intent.setClassName("com.android.systemui",
+                "com.android.systemui.recent.RecentsPreloadReceiver");
+        mContext.sendBroadcastAsUser(intent, new UserHandle(UserHandle.USER_CURRENT));
+
+        RecentTasksLoader.getInstance(mContext).preloadFirstTask();
+    }
+
+    protected void cancelPreloadingRecentTasksList() {
+        Intent intent = new Intent(RecentsActivity.CANCEL_PRELOAD_INTENT);
+        intent.setClassName("com.android.systemui",
+                "com.android.systemui.recent.RecentsPreloadReceiver");
+        mContext.sendBroadcastAsUser(intent, new UserHandle(UserHandle.USER_CURRENT));
+
+        RecentTasksLoader.getInstance(mContext).cancelPreloadingFirstTask();
+    }
 
     final Runnable mScreenshotTimeout = new Runnable() {
         @Override
