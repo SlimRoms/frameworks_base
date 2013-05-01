@@ -112,10 +112,10 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
     private final static String ACTION_WIDGETS = "**widgets**";
     private final static String ACTION_NULL = "**null**";
 
-    private int mNumberOfButtons = 3;
-    private String[] mClickActions = new String[5];
-    private String[] mLongpressActions = new String[5];
-    private String[] mPortraitIcons = new String[5];
+    private String[] mClickActions = new String[7];
+    private String[] mLongpressActions = new String[7];
+    private String[] mPortraitIcons = new String[7];
+    private boolean mSecondLayerActive;
 
     private final static String[] StockClickActions = {
         "**back**",
@@ -125,7 +125,19 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
         "**null**"
     };
 
+    private final static String[] StockSecondLayerClickActions = {
+        "**menu**",
+        "**notifications**",
+        "**search**",
+        "**screenshot**",
+        "**ime**",
+        "**null**",
+        "**null**"
+    };
+
     private final static String[] StockLongpress = {
+        "**null**",
+        "**null**",
         "**null**",
         "**null**",
         "**null**",
@@ -159,6 +171,7 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
 
     // all pie slices that are managed by the controller
     private PieSliceContainer mNavigationSlice;
+    private PieSliceContainer mNavigationSliceSecondLayer;
     private PieSysInfo mSysInfo;
 
     private int mNavigationIconHints = 0;
@@ -300,6 +313,8 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
                     Settings.System.PIE_BUTTON_ALPHA), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.PIE_BUTTON_PRESSED_ALPHA), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.PIE_SECOND_LAYER_ACTIVE), false, this);
             resolver.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.PIE_LONG_PRESS_ENABLE),
                     false,
@@ -323,11 +338,62 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
 
         @Override
         public void onChange(boolean selfChange) {
+            boolean secondLayerActive = Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.PIE_SECOND_LAYER_ACTIVE, 0) == 1;
+
+            if (mSecondLayerActive != secondLayerActive) {
+                if (secondLayerActive) {
+                    // second layer is enabled....start observing the settings
+                    mSecondLayerObserver.observe();
+                } else {
+                    // second layer is disabled....unregister observer for it
+                    mContext.getContentResolver().unregisterContentObserver(mSecondLayerObserver);
+                }
+                mSecondLayerActive = secondLayerActive;
+                constructSlices();
+            } else {
+                setupNavigationItems();
+            }
+        }
+    }
+    private SettingsObserver mSettingsObserver = new SettingsObserver(mHandler);
+
+    // second layer observer is only active when user activated it to
+    // reduce mem usage on normal mode
+    private final class SecondLayerObserver extends ContentObserver {
+        SecondLayerObserver(Handler handler) {
+            super(handler);
+        }
+
+        void observe() {
+            ContentResolver resolver = mContext.getContentResolver();
+            resolver.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.PIE_LONG_PRESS_ENABLE_SECOND_LAYER),
+                    false,
+                    this);
+            for (int j = 0; j < 7; j++) { // watch all 7 settings for changes.
+                resolver.registerContentObserver(
+                        Settings.System.getUriFor(Settings.System.PIE_CUSTOM_ACTIVITIES_SECOND_LAYER[j]),
+                        false,
+                        this);
+                resolver.registerContentObserver(
+                        Settings.System
+                                .getUriFor(Settings.System.PIE_LONGPRESS_ACTIVITIES_SECOND_LAYER[j]),
+                        false,
+                        this);
+                resolver.registerContentObserver(
+                        Settings.System.getUriFor(Settings.System.PIE_CUSTOM_ICONS_SECOND_LAYER[j]),
+                        false,
+                        this);
+            }
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
             setupNavigationItems();
         }
     }
-
-    private SettingsObserver mSettingsObserver = new SettingsObserver(mHandler);
+    private SecondLayerObserver mSecondLayerObserver = new SecondLayerObserver(mHandler);
 
     private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -375,7 +441,6 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
 
     public void attachTo(PieLayout container) {
         mPieContainer = container;
-        mPieContainer.clearSlices();
 
         if (DEBUG) {
             Slog.d(TAG, "Attaching to container: " + container);
@@ -383,26 +448,20 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
 
         mPieContainer.setOnSnapListener(this);
 
-        final Resources res = mContext.getResources();
+        mSecondLayerActive = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.PIE_SECOND_LAYER_ACTIVE, 0) == 1;
 
-        // construct navbar slice
-        int inner = res.getDimensionPixelSize(R.dimen.pie_navbar_radius);
-        int outer = inner + res.getDimensionPixelSize(R.dimen.pie_navbar_height);
-        mNavigationSlice = new PieSliceContainer(mPieContainer, PieSlice.IMPORTANT
-                | PieDrawable.DISPLAY_ALL);
-        mNavigationSlice.setGeometry(START_ANGLE, 180 - 2 * EMPTY_ANGLE, inner, outer);
-        setupNavigationItems();
-        mPieContainer.addSlice(mNavigationSlice);
-
-        // construct sysinfo slice
-        inner = res.getDimensionPixelSize(R.dimen.pie_sysinfo_radius);
-        outer = inner + res.getDimensionPixelSize(R.dimen.pie_sysinfo_height);
-        mSysInfo = new PieSysInfo(mContext, mPieContainer, this, PieDrawable.DISPLAY_NOT_AT_TOP);
-        mSysInfo.setGeometry(START_ANGLE, 180 - 2 * EMPTY_ANGLE, inner, outer);
-        mPieContainer.addSlice(mSysInfo);
+        // construct the slices
+        constructSlices();
 
         // start listening for changes
         mSettingsObserver.observe();
+
+        // start listening for second layer observer
+        // only when active
+        if (mSecondLayerActive) {
+            mSecondLayerObserver.observe();
+        }
 
         mContext.registerReceiver(mBroadcastReceiver,
                 new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
@@ -418,6 +477,48 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
         }
     }
 
+    private void constructSlices() {
+        final Resources res = mContext.getResources();
+
+        // if already constructed...clear the slices
+        if (mPieContainer != null) {
+            mPieContainer.clearSlices();
+        }
+
+        // construct navbar slice
+        int inner = res.getDimensionPixelSize(R.dimen.pie_navbar_radius);
+        int outer = inner + res.getDimensionPixelSize(R.dimen.pie_navbar_height);
+        mNavigationSlice = new PieSliceContainer(mPieContainer, PieSlice.IMPORTANT
+                | PieDrawable.DISPLAY_ALL);
+        mNavigationSlice.setGeometry(START_ANGLE, 180 - 2 * EMPTY_ANGLE, inner, outer);
+
+        // construct maybe navbar slice second layer
+        if (mSecondLayerActive) {
+            inner = res.getDimensionPixelSize(R.dimen.pie_navbar_second_layer_radius);
+            outer = inner + res.getDimensionPixelSize(R.dimen.pie_navbar_height);
+            mNavigationSliceSecondLayer = new PieSliceContainer(mPieContainer, PieSlice.IMPORTANT
+                    | PieDrawable.DISPLAY_ALL);
+            mNavigationSliceSecondLayer.setGeometry(START_ANGLE, 180 - 2 * EMPTY_ANGLE, inner, outer);
+        }
+
+        // setup buttons and add the slices finally
+        setupNavigationItems();
+        mPieContainer.addSlice(mNavigationSlice);
+        if (mSecondLayerActive) {
+            mPieContainer.addSlice(mNavigationSliceSecondLayer);
+            // adjust dimensions for sysinfo when second layer is active
+            inner = res.getDimensionPixelSize(R.dimen.pie_sysinfo_second_layer_radius);
+        } else {
+            inner = res.getDimensionPixelSize(R.dimen.pie_sysinfo_radius);
+        }
+
+        // construct sysinfo slice
+        outer = inner + res.getDimensionPixelSize(R.dimen.pie_sysinfo_height);
+        mSysInfo = new PieSysInfo(mContext, mPieContainer, this, PieDrawable.DISPLAY_NOT_AT_TOP);
+        mSysInfo.setGeometry(START_ANGLE, 180 - 2 * EMPTY_ANGLE, inner, outer);
+        mPieContainer.addSlice(mSysInfo);
+    }
+
     private void setupNavigationItems() {
         ContentResolver resolver = mContext.getContentResolver();
         int minimumImageSize = (int) mContext.getResources().getDimension(R.dimen.pie_item_size);
@@ -425,56 +526,120 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
         mNavigationSlice.clear();
         prepareBackAltIcon();
 
-        mNumberOfButtons = Settings.System.getInt(resolver,
+        int numberOfButtons = Settings.System.getInt(resolver,
                 Settings.System.PIE_BUTTONS_QTY, 0);
-        if (mNumberOfButtons == 0) {
-            mNumberOfButtons = 3;
+        if (numberOfButtons == 0) {
+            numberOfButtons = 3;
             Settings.System.putInt(resolver,
                     Settings.System.PIE_BUTTONS_QTY, 3);
         }
+        getCustomActionsAndConstruct(resolver, false, numberOfButtons, minimumImageSize);
 
-        for (int j = 0; j < 5; j++) {
-            mClickActions[j] = Settings.System.getString(resolver,
-                    Settings.System.PIE_CUSTOM_ACTIVITIES[j]);
-            if (mClickActions[j] == null) {
-                mClickActions[j] = StockClickActions[j];
-                Settings.System.putString(resolver,
-                        Settings.System.PIE_CUSTOM_ACTIVITIES[j], mClickActions[j]);
+        if (mSecondLayerActive) {
+            mNavigationSliceSecondLayer.clear();
+            numberOfButtons = Settings.System.getInt(resolver,
+                    Settings.System.PIE_BUTTONS_QTY_SECOND_LAYER, 0);
+            if (numberOfButtons == 0) {
+                numberOfButtons = 5;
+                Settings.System.putInt(resolver,
+                        Settings.System.PIE_BUTTONS_QTY_SECOND_LAYER, 5);
             }
-
-            mLongpressActions[j] = Settings.System.getString(resolver,
-                    Settings.System.PIE_LONGPRESS_ACTIVITIES[j]);
-
-            if (mLongpressActions[j] == null) {
-                mLongpressActions[j] = StockLongpress[j];
-                Settings.System.putString(resolver,
-                        Settings.System.PIE_LONGPRESS_ACTIVITIES[j], mLongpressActions[j]);
-            }
-
-            mPortraitIcons[j] = Settings.System.getString(resolver,
-                    Settings.System.PIE_CUSTOM_ICONS[j]);
-            if (mPortraitIcons[j] == null) {
-                mPortraitIcons[j] = "";
-                Settings.System.putString(resolver,
-                        Settings.System.PIE_CUSTOM_ICONS[j], "");
-            }
-        }
-
-        int mLongpressEnabled = Settings.System.getInt(mContext.getContentResolver(),
-                 Settings.System.PIE_LONG_PRESS_ENABLE, 0);
-        int buttonWidth = 6 / mNumberOfButtons;
-
-        for (int j = 0; j < mNumberOfButtons; j++) {
-
-            if (mLongpressEnabled == 0) {
-                        mLongpressActions[j] = "**null**";
-            }
-
-            mNavigationSlice.addItem(constructItem(buttonWidth, mClickActions[j],
-                    mLongpressActions[j], mPortraitIcons[j], minimumImageSize));
+            getCustomActionsAndConstruct(resolver, true, numberOfButtons, minimumImageSize);
         }
 
         setNavigationIconHints(mNavigationIconHints, true);
+    }
+
+    private void getCustomActionsAndConstruct(ContentResolver resolver,
+            boolean secondLayer, int numberOfButtons, int minimumImageSize) {
+        int i = 5;
+        if (secondLayer) {
+            i = 7;
+        }
+
+        for (int j = 0; j < i; j++) {
+            if (secondLayer) {
+                mClickActions[j] = Settings.System.getString(resolver,
+                        Settings.System.PIE_CUSTOM_ACTIVITIES_SECOND_LAYER[j]);
+            } else {
+                mClickActions[j] = Settings.System.getString(resolver,
+                        Settings.System.PIE_CUSTOM_ACTIVITIES[j]);
+            }
+            if (mClickActions[j] == null) {
+                if (secondLayer) {
+                    mClickActions[j] = StockSecondLayerClickActions[j];
+                    Settings.System.putString(resolver,
+                            Settings.System.PIE_CUSTOM_ACTIVITIES_SECOND_LAYER[j], mClickActions[j]);
+                } else {
+                    mClickActions[j] = StockClickActions[j];
+                    Settings.System.putString(resolver,
+                            Settings.System.PIE_CUSTOM_ACTIVITIES[j], mClickActions[j]);
+                }
+            }
+
+            if (secondLayer) {
+                mLongpressActions[j] = Settings.System.getString(resolver,
+                        Settings.System.PIE_LONGPRESS_ACTIVITIES_SECOND_LAYER[j]);
+            } else {
+                mLongpressActions[j] = Settings.System.getString(resolver,
+                        Settings.System.PIE_LONGPRESS_ACTIVITIES[j]);
+            }
+
+            if (mLongpressActions[j] == null) {
+                mLongpressActions[j] = StockLongpress[j];
+                if (secondLayer) {
+                    Settings.System.putString(resolver,
+                            Settings.System.PIE_LONGPRESS_ACTIVITIES_SECOND_LAYER[j], mLongpressActions[j]);
+                } else {
+                    Settings.System.putString(resolver,
+                            Settings.System.PIE_LONGPRESS_ACTIVITIES[j], mLongpressActions[j]);
+                }
+            }
+
+            if (secondLayer) {
+                mPortraitIcons[j] = Settings.System.getString(resolver,
+                        Settings.System.PIE_CUSTOM_ICONS_SECOND_LAYER[j]);
+            } else {
+                mPortraitIcons[j] = Settings.System.getString(resolver,
+                        Settings.System.PIE_CUSTOM_ICONS[j]);
+            }
+
+            if (mPortraitIcons[j] == null) {
+                mPortraitIcons[j] = "";
+                if (secondLayer) {
+                    Settings.System.putString(resolver,
+                            Settings.System.PIE_CUSTOM_ICONS_SECOND_LAYER[j], "");
+                } else {
+                    Settings.System.putString(resolver,
+                            Settings.System.PIE_CUSTOM_ICONS[j], "");
+                }
+            }
+        }
+
+        int longpressEnabled;
+        if (secondLayer) {
+            longpressEnabled = Settings.System.getInt(mContext.getContentResolver(),
+                     Settings.System.PIE_LONG_PRESS_ENABLE_SECOND_LAYER, 0);
+        } else {
+            longpressEnabled = Settings.System.getInt(mContext.getContentResolver(),
+                     Settings.System.PIE_LONG_PRESS_ENABLE, 0);
+        }
+        int buttonWidth = 7 / numberOfButtons;
+
+        for (int j = 0; j < numberOfButtons; j++) {
+
+            if (longpressEnabled == 0) {
+                        mLongpressActions[j] = "**null**";
+            }
+
+            if (secondLayer) {
+                mNavigationSliceSecondLayer.addItem(constructItem(buttonWidth, mClickActions[j],
+                        mLongpressActions[j], mPortraitIcons[j], minimumImageSize));
+            } else {
+                mNavigationSlice.addItem(constructItem(buttonWidth, mClickActions[j],
+                        mLongpressActions[j], mPortraitIcons[j], minimumImageSize));
+            }
+        }
     }
 
     private PieItem constructItem(int width, String clickAction, String longPressAction,
@@ -610,32 +775,46 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
         if (DEBUG) Slog.v(TAG, "Pie navigation hints: " + hints);
 
         mNavigationIconHints = hints;
+        PieItem item;
 
-        PieItem item = findItem(ACTION_HOME);
-        if (item != null) {
-            boolean isNop = (hints & StatusBarManager.NAVIGATION_HINT_HOME_NOP) != 0;
-            item.setAlpha(isNop ? 0.5f : 1.0f);
-        }
-        item = findItem(ACTION_RECENTS);
-        if (item != null) {
-            boolean isNop = (hints & StatusBarManager.NAVIGATION_HINT_RECENT_NOP) != 0;
-            item.setAlpha(isNop ? 0.5f : 1.0f);
-        }
-        item = findItem(ACTION_BACK);
-        if (item != null) {
-            boolean isNop = (hints & StatusBarManager.NAVIGATION_HINT_BACK_NOP) != 0;
-            boolean isAlt = (hints & StatusBarManager.NAVIGATION_HINT_BACK_ALT) != 0;
-            item.setAlpha(isNop ? 0.5f : 1.0f);
-            item.setImageDrawable(isAlt ? mBackAltIcon : mBackIcon);
+        for (int j = 0; j < 2; j++) {
+            item = findItem(ACTION_HOME, j);
+            if (item != null) {
+                boolean isNop = (hints & StatusBarManager.NAVIGATION_HINT_HOME_NOP) != 0;
+                item.setAlpha(isNop ? 0.5f : 1.0f);
+            }
+            item = findItem(ACTION_RECENTS, j);
+            if (item != null) {
+                boolean isNop = (hints & StatusBarManager.NAVIGATION_HINT_RECENT_NOP) != 0;
+                item.setAlpha(isNop ? 0.5f : 1.0f);
+            }
+            item = findItem(ACTION_BACK, j);
+            if (item != null) {
+                boolean isNop = (hints & StatusBarManager.NAVIGATION_HINT_BACK_NOP) != 0;
+                boolean isAlt = (hints & StatusBarManager.NAVIGATION_HINT_BACK_ALT) != 0;
+                item.setAlpha(isNop ? 0.5f : 1.0f);
+                item.setImageDrawable(isAlt ? mBackAltIcon : mBackIcon);
+            }
         }
         setDisabledFlags(mDisabledFlags, true);
     }
 
-    private PieItem findItem(String type) {
-        for (PieItem item : mNavigationSlice.getItems()) {
-            String itemType = (String) item.tag;
-            if (type.equals(itemType)) {
-                return item;
+    private PieItem findItem(String type, int secondLayer) {
+        if (secondLayer == 1) {
+            if (mSecondLayerActive && mNavigationSliceSecondLayer != null) {
+                for (PieItem item : mNavigationSliceSecondLayer.getItems()) {
+                    String itemType = (String) item.tag;
+                    if (type.equals(itemType)) {
+                       return item;
+                    }
+                }
+            }
+        } else {
+            for (PieItem item : mNavigationSlice.getItems()) {
+                String itemType = (String) item.tag;
+                if (type.equals(itemType)) {
+                   return item;
+                }
             }
         }
 
@@ -663,17 +842,20 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
         final boolean disableBack = ((disabledFlags & View.STATUS_BAR_DISABLE_BACK) != 0)
                 && ((mNavigationIconHints & StatusBarManager.NAVIGATION_HINT_BACK_ALT) == 0);
 
-        PieItem item = findItem(ACTION_BACK);
-        if (item != null) {
-            item.show(!disableBack);
-        }
-        item = findItem(ACTION_HOME);
-        if (item != null) {
-            item.show(!disableHome);
-        }
-        item = findItem(ACTION_RECENTS);
-        if (item != null) {
-            item.show(!disableRecent);
+        PieItem item;
+        for (int j = 0; j < 2; j++) {
+            item = findItem(ACTION_BACK, j);
+            if (item != null) {
+                item.show(!disableBack);
+            }
+            item = findItem(ACTION_HOME, j);
+            if (item != null) {
+                item.show(!disableHome);
+            }
+            item = findItem(ACTION_RECENTS, j);
+            if (item != null) {
+                item.show(!disableRecent);
+            }
         }
     }
 

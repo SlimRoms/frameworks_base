@@ -73,7 +73,7 @@ public class PieLayout extends FrameLayout implements View.OnTouchListener {
     private float mSnapThreshold;
     private float mSnapThresholdSqr;
 
-    private float mPieScale = 1.1f;
+    private float mPieScale = 1.0f;
     private int mPadding;
 
     private boolean mActive = false;
@@ -317,7 +317,7 @@ public class PieLayout extends FrameLayout implements View.OnTouchListener {
 
     private void getDimensions() {
         mPieScale = Settings.System.getFloat(mContext.getContentResolver(),
-                Settings.System.PIE_SIZE, 1.1f);
+                Settings.System.PIE_SIZE, 1.0f);
 
         final Resources res = mContext.getResources();
 
