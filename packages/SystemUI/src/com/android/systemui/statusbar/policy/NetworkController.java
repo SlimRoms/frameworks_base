@@ -1123,12 +1123,7 @@ public class NetworkController extends BroadcastReceiver {
             // look again; your radios are now airplanes
             mContentDescriptionPhoneSignal = mContext.getString(
                     R.string.accessibility_airplane_mode);
-            if (Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.PIE_DISABLE_STATUSBAR_INFO, 0) == 0) {
-                mAirplaneIconId = R.drawable.stat_sys_signal_flightmode;
-            } else {
-                mAirplaneIconId = 0;
-            }
+            mAirplaneIconId = R.drawable.stat_sys_signal_flightmode;
             mPhoneSignalIconId = mDataSignalIconId = mDataTypeIconId = mQSDataTypeIconId = 0;
             mQSPhoneSignalIconId = 0;
 

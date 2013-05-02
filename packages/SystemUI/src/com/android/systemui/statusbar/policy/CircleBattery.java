@@ -115,6 +115,12 @@ public class CircleBattery extends ImageView {
                     Settings.System.PIE_DISABLE_STATUSBAR_INFO),
                     false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.PIE_CONTROLS),
+                    false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.EXPANDED_DESKTOP_STATE),
+                    false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_CIRCLE_BATTERY_COLOR),
                     false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
@@ -303,21 +309,33 @@ public class CircleBattery extends ImageView {
 
     private void updateSettings() {
         Resources res = getResources();
+        ContentResolver resolver = mContext.getContentResolver();
 
-        mBatteryStyle = (Settings.System.getInt(mContext.getContentResolver(),
+        mBatteryStyle = (Settings.System.getInt(resolver,
                 Settings.System.STATUS_BAR_BATTERY, 0));
-        if (Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.PIE_DISABLE_STATUSBAR_INFO, 0) == 1) {
-            mBatteryStyle = BatteryController.BATTERY_STYLE_GONE;
+
+        boolean disableStatusBarInfo = Settings.System.getInt(resolver,
+                Settings.System.PIE_DISABLE_STATUSBAR_INFO, 0) == 1;
+        if (disableStatusBarInfo) {
+            // call only the settings if statusbar info is really hidden
+            int pieMode = Settings.System.getInt(resolver,
+                    Settings.System.PIE_CONTROLS, 0);
+            boolean expandedDesktopState = Settings.System.getInt(resolver,
+                    Settings.System.EXPANDED_DESKTOP_STATE, 0) == 1;
+
+            if (pieMode == 2
+                || pieMode == 1 && expandedDesktopState) {
+                mBatteryStyle = BatteryController.BATTERY_STYLE_GONE;
+            }
         }
 
-        mCircleColor = (Settings.System.getInt(mContext.getContentResolver(),
+        mCircleColor = (Settings.System.getInt(resolver,
                 Settings.System.STATUS_BAR_CIRCLE_BATTERY_COLOR, -2));
-        mCircleTextColor = (Settings.System.getInt(mContext.getContentResolver(),
+        mCircleTextColor = (Settings.System.getInt(resolver,
                 Settings.System.STATUS_BAR_BATTERY_TEXT_COLOR, -2));
-        mCircleTextChargingColor = (Settings.System.getInt(mContext.getContentResolver(),
+        mCircleTextChargingColor = (Settings.System.getInt(resolver,
                 Settings.System.STATUS_BAR_BATTERY_TEXT_CHARGING_COLOR, -2));
-        mCircleAnimSpeed = (Settings.System.getInt(mContext.getContentResolver(),
+        mCircleAnimSpeed = (Settings.System.getInt(resolver,
                 Settings.System.STATUS_BAR_CIRCLE_BATTERY_ANIMATIONSPEED, 3));
 
         int defaultColor = res.getColor(R.color.holo_blue_dark);
