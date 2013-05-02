@@ -82,7 +82,6 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
     private PopupMenu mPopup;
     private View mRecentsScrim;
     private View mRecentsNoApps;
-    private View mRecentsRamBar;
     private ViewGroup mRecentsContainer;
     private StatusBarTouchProxy mStatusBarTouchProxy;
 
@@ -464,7 +463,6 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
 
         mRecentsScrim = findViewById(R.id.recents_bg_protect);
         mRecentsNoApps = findViewById(R.id.recents_no_apps);
-        mRecentsRamBar = findViewById(R.id.recents_ram_bar);
 
         mClearRecents = (ImageView) findViewById(R.id.recents_clear);
         if (mClearRecents != null){
@@ -851,89 +849,83 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
             wm.getDefaultDisplay().getMetrics(metrics);
             float logicalDensity = metrics.density;
 
-            int pxRamBarPadding = (int) (30 * logicalDensity + 0.5);
-            if (mRecentsContainer != null)
-                mRecentsContainer.setPadding(0,0,0,pxRamBarPadding);
-                mRamUsageBar.setVisibility(View.VISIBLE);
+            mRamUsageBar.setVisibility(View.VISIBLE);
+            updateMemoryInfo();
 
-                updateMemoryInfo();
+            switch (mRamBarMode) {
+                case 1:
+                    usedMem = mActiveMemory;
+                    freeMem = mTotalMemory - mActiveMemory;
+                    break;
+                case 2:
+                    usedMem = mActiveMemory + mCachedMemory;
+                    freeMem = mTotalMemory - mActiveMemory - mCachedMemory;
+                    break;
+                case 3:
+                    usedMem = mTotalMemory - mFreeMemory;
+                    freeMem = mFreeMemory;
+                    break;
+            }
 
-                switch (mRamBarMode) {
-                    case 1:
-                        usedMem = mActiveMemory;
-                        freeMem = mTotalMemory - mActiveMemory;
-                        break;
-                    case 2:
-                        usedMem = mActiveMemory + mCachedMemory;
-                        freeMem = mTotalMemory - mActiveMemory - mCachedMemory;
-                        break;
-                    case 3:
-                        usedMem = mTotalMemory - mFreeMemory;
-                        freeMem = mFreeMemory;
-                        break;
+            mUsedMemText = (TextView)findViewById(R.id.usedMemText);
+            mFreeMemText = (TextView)findViewById(R.id.freeMemText);
+            mRamText = (TextView)findViewById(R.id.ramText);
+            mUsedMemText.setText(getResources().getString(
+                    R.string.service_used_mem, usedMem + " MB"));
+            mFreeMemText.setText(getResources().getString(
+                    R.string.service_free_mem, freeMem + " MB"));
+            mRamText.setText(getResources().getString(
+                    R.string.memory));
+            float totalMem = mTotalMemory;
+            float totalShownMem = (mTotalMemory - mFreeMemory - mCachedMemory -  mActiveMemory)/ totalMem;
+            float totalActiveMem = mActiveMemory / totalMem;
+            float totalCachedMem = mCachedMemory / totalMem;
+            mRamUsageBar.setRatios(totalShownMem, totalCachedMem, totalActiveMem);
+
+            mRamUsageBar.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent();
+                    intent.setComponent(new ComponentName(
+                            "com.android.settings",
+                            "com.android.settings.RunningServices"));
+
+                    try {
+                        // Dismiss the lock screen when Settings starts.
+                        ActivityManagerNative.getDefault().dismissKeyguardOnNextActivity();
+                    } catch (RemoteException e) {
+                    }
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                            | Intent.FLAG_ACTIVITY_MULTIPLE_TASK
+                            | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
+                            | Intent.FLAG_ACTIVITY_NO_HISTORY);
+                    mContext.startActivityAsUser(intent, new UserHandle(UserHandle.USER_CURRENT));
                 }
+            });
 
-                mUsedMemText = (TextView)findViewById(R.id.usedMemText);
-                mFreeMemText = (TextView)findViewById(R.id.freeMemText);
-                mRamText = (TextView)findViewById(R.id.ramText);
-                mUsedMemText.setText(getResources().getString(
-                        R.string.service_used_mem, usedMem + " MB"));
-                mFreeMemText.setText(getResources().getString(
-                        R.string.service_free_mem, freeMem + " MB"));
-                mRamText.setText(getResources().getString(
-                        R.string.memory));
-                float totalMem = mTotalMemory;
-                float totalShownMem = (mTotalMemory - mFreeMemory - mCachedMemory -  mActiveMemory)/ totalMem;
-                float totalActiveMem = mActiveMemory / totalMem;
-                float totalCachedMem = mCachedMemory / totalMem;
-                mRamUsageBar.setRatios(totalShownMem, totalCachedMem, totalActiveMem);
+            mRamUsageBar.setOnLongClickListener(new OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    Intent intent = new Intent();
+                    intent.setComponent(new ComponentName(
+                            "com.android.settings",
+                            "com.android.settings.Settings$ASSRamBarActivity"));
 
-                mRamUsageBar.setOnClickListener(new OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent();
-                        intent.setComponent(new ComponentName(
-                                "com.android.settings",
-                                "com.android.settings.RunningServices"));
-
-                        try {
-                            // Dismiss the lock screen when Settings starts.
-                            ActivityManagerNative.getDefault().dismissKeyguardOnNextActivity();
-                        } catch (RemoteException e) {
-                        }
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                                | Intent.FLAG_ACTIVITY_MULTIPLE_TASK
-                                | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
-                                | Intent.FLAG_ACTIVITY_NO_HISTORY);
-                        mContext.startActivityAsUser(intent, new UserHandle(UserHandle.USER_CURRENT));
+                    try {
+                        // Dismiss the lock screen when Settings starts.
+                        ActivityManagerNative.getDefault().dismissKeyguardOnNextActivity();
+                    } catch (RemoteException e) {
                     }
-                });
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                            | Intent.FLAG_ACTIVITY_MULTIPLE_TASK
+                            | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
+                            | Intent.FLAG_ACTIVITY_NO_HISTORY);
+                    mContext.startActivityAsUser(intent, new UserHandle(UserHandle.USER_CURRENT));
+                    return true;
+                }
+            });
 
-                mRamUsageBar.setOnLongClickListener(new OnLongClickListener() {
-                        @Override
-                        public boolean onLongClick(View v) {
-                            Intent intent = new Intent();
-                            intent.setComponent(new ComponentName(
-                                    "com.android.settings",
-                                    "com.android.settings.Settings$ASSRamBarActivity"));
-
-                        try {
-                            // Dismiss the lock screen when Settings starts.
-                            ActivityManagerNative.getDefault().dismissKeyguardOnNextActivity();
-                        } catch (RemoteException e) {
-                        }
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                                | Intent.FLAG_ACTIVITY_MULTIPLE_TASK
-                                | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
-                                | Intent.FLAG_ACTIVITY_NO_HISTORY);
-                        mContext.startActivityAsUser(intent, new UserHandle(UserHandle.USER_CURRENT));
-                        return true;
-                    }
-                });
-
-        } else if (mRamUsageBar != null){
-            if (mRecentsContainer != null)
-                mRecentsContainer.setPadding(0,0,0,0);
+        } else if (mRamUsageBar != null) {
             mRamUsageBar.setVisibility(View.GONE);
         }
     }
