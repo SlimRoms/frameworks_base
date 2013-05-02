@@ -92,7 +92,7 @@ public class PieSysInfo extends PieSliceContainer implements ValueAnimator.Anima
     }
 
     @Override
-    public void prepare(Position position, float scale) {
+    public void prepare(Position position, float scale, boolean mirrorRightPie) {
 
         // We are updating data later when we starting to get visible.
         // This does not save work on the main thread, but for fast gestures

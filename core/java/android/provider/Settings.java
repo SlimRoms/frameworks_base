@@ -2585,6 +2585,12 @@ public final class Settings {
         public static final String PIE_CONTROLS = "pie_controls";
 
         /**
+         * Whether right edge PIE is mirrored or not
+         * @hide
+         */
+        public static final String PIE_MIRROR_RIGHT = "pie_mirror_right";
+
+        /**
          * Pie show text (0 or 1)
          * @hide
          */
