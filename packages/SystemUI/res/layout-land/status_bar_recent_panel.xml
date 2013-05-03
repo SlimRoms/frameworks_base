@@ -81,7 +81,6 @@
 
             <FrameLayout
                 android:id="@+id/recents_bg_protect"
-                android:background="@drawable/status_bar_recents_background"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentBottom="true"
