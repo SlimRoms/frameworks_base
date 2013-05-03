@@ -229,7 +229,7 @@ public class PieItem extends PieLayout.PieDrawable {
     }
 
     @Override
-    public void prepare(Position position, float scale) {
+    public void prepare(Position position, float scale, boolean mirrorRightPie) {
         mPath = getOutline(scale);
         if (mView != null) {
             mView.measure(mView.getLayoutParams().width, mView.getLayoutParams().height);
