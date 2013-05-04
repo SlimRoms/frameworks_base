@@ -1919,4 +1919,7 @@
   <!-- Stylus gestures -->
   <java-symbol type="bool" name="config_stylusGestures" />
 
+  <!-- Panel auto brightness -->
+  <java-symbol type="integer" name="config_panelAutoBrightnessValue" />
+
 </resources>

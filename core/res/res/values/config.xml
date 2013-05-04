@@ -1125,4 +1125,7 @@
          it is disabled by default so devices need to add an overlay to enable -->
     <string name="config_fastChargePath" translatable="false"></string>
 
+    <!-- Integer to configure panel auto brightness mode when changed -->
+    <integer name="config_panelAutoBrightnessValue">-1</integer>
+
 </resources>
