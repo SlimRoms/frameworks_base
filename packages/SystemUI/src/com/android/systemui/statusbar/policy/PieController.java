@@ -304,6 +304,8 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.PIE_BUTTON_PRESSED_COLOR), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.PIE_BUTTON_LONG_PRESSED_COLOR), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.PIE_BUTTON_OUTLINE_COLOR), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.PIE_ICON_COLOR), false, this);
