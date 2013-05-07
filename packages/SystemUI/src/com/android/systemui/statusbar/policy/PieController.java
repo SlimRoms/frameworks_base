@@ -347,9 +347,11 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
                 if (secondLayerActive) {
                     // second layer is enabled....start observing the settings
                     mSecondLayerObserver.observe();
+                    mSecondLayerObserverRegistered = true;
                 } else {
                     // second layer is disabled....unregister observer for it
                     mContext.getContentResolver().unregisterContentObserver(mSecondLayerObserver);
+                    mSecondLayerObserverRegistered = false;
                 }
                 mSecondLayerActive = secondLayerActive;
                 constructSlices();
@@ -359,6 +361,7 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
         }
     }
     private SettingsObserver mSettingsObserver = new SettingsObserver(mHandler);
+    private boolean mSettingsObserverRegistered = false;
 
     // second layer observer is only active when user activated it to
     // reduce mem usage on normal mode
@@ -396,6 +399,7 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
         }
     }
     private SecondLayerObserver mSecondLayerObserver = new SecondLayerObserver(mHandler);
+    private boolean mSecondLayerObserverRegistered = false;
 
     private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -405,6 +409,9 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
                 mBatteryLevel = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
                 mBatteryStatus = intent.getIntExtra(BatteryManager.EXTRA_STATUS,
                          BatteryManager.BATTERY_STATUS_UNKNOWN);
+            } else if (Intent.ACTION_EXTERNAL_APPLICATIONS_UNAVAILABLE.equals(action)
+                        || Intent.ACTION_EXTERNAL_APPLICATIONS_AVAILABLE.equals(action)) {
+                setupNavigationItems();
             } else if (Intent.ACTION_SCREEN_OFF.equals(action)) {
                 // Give up on screen off. what's the point in pie controls if you don't see them?
                 if (mPieContainer != null) {
@@ -413,6 +420,7 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
             }
         }
     };
+    private boolean mBroadcastReceiverRegistered = false;
 
     private PhoneStateListener mPhoneStateListener = new PhoneStateListener() {
         @Override
@@ -437,6 +445,25 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
         Tracker.sDistance = mContext.getResources().getDimensionPixelSize(R.dimen.pie_trigger_distance);
     }
 
+    public void destroyPie() {
+        if (mPieContainer != null) {
+            mPieContainer.destroyPieContainer();
+        }
+        mPieContainer = null;
+        if (mBroadcastReceiverRegistered) {
+            mBroadcastReceiverRegistered = false;
+            mContext.unregisterReceiver(mBroadcastReceiver);
+        }
+        if (mSettingsObserverRegistered) {
+            mSettingsObserverRegistered = false;
+            mContext.getContentResolver().unregisterContentObserver(mSettingsObserver);
+        }
+        if (mSecondLayerObserverRegistered) {
+            mSecondLayerObserverRegistered = false;
+            mContext.getContentResolver().unregisterContentObserver(mSecondLayerObserver);
+        }
+    }
+
     public void attachTo(BaseStatusBar statusBar) {
         mStatusBar = statusBar;
     }
@@ -458,19 +485,27 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
 
         // start listening for changes
         mSettingsObserver.observe();
+        mSettingsObserverRegistered = true;
 
         // start listening for second layer observer
         // only when active
         if (mSecondLayerActive) {
             mSecondLayerObserver.observe();
+            mSecondLayerObserverRegistered = true;
         }
 
-        mContext.registerReceiver(mBroadcastReceiver,
-                new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+        // add intent actions to listen on it
+        // battery change for the battery
+        // screen off to get rid of the pie
+        // apps available to check if apps on external sdcard
+        // are available and reconstruct the button icons
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_BATTERY_CHANGED);
         filter.addAction(Intent.ACTION_SCREEN_OFF);
+        filter.addAction(Intent.ACTION_EXTERNAL_APPLICATIONS_AVAILABLE);
+        filter.addAction(Intent.ACTION_EXTERNAL_APPLICATIONS_UNAVAILABLE);
         mContext.registerReceiver(mBroadcastReceiver, filter);
+        mBroadcastReceiverRegistered = true;
 
         if (mHasTelephony) {
             TelephonyManager telephonyManager =
