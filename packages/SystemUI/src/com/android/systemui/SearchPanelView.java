@@ -17,27 +17,28 @@
 package com.android.systemui;
 
 import android.animation.LayoutTransition;
-import android.app.ActivityOptions;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.SearchManager;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningAppProcessInfo;
 import android.app.ActivityManagerNative;
+import android.app.ActivityOptions;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.IActivityManager;
+import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
-import android.content.ComponentName;
-import android.content.res.Configuration;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.ContentResolver;
+import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
-import android.content.res.Resources;
+import android.content.IntentFilter;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.content.pm.ActivityInfo;
-import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.content.ServiceConnection;
 import android.database.ContentObserver;
 import android.graphics.Bitmap;
@@ -48,17 +49,15 @@ import android.graphics.drawable.StateListDrawable;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.net.Uri;
-import android.os.Vibrator;
 import android.os.Handler;
 import android.os.IBinder;
-import android.os.SystemClock;
-import android.os.PowerManager;
-import android.os.Process;
-import android.os.ServiceManager;
 import android.os.Message;
 import android.os.Messenger;
+import android.os.PowerManager;
+import android.os.Process;
 import android.os.RemoteException;
 import android.os.ServiceManager;
+import android.os.SystemClock;
 import android.os.UserHandle;
 import android.os.Vibrator;
 import android.provider.Settings;
@@ -77,8 +76,6 @@ import android.view.ViewTreeObserver.OnPreDrawListener;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-
-
 
 import com.android.internal.widget.multiwaveview.GlowPadView;
 import com.android.internal.widget.multiwaveview.GlowPadView.OnTriggerListener;
@@ -119,7 +116,6 @@ public class SearchPanelView extends FrameLayout implements
 
     private PackageManager mPackageManager;
     private Resources mResources;
-    private TargetObserver mTargetObserver;
     private ContentResolver mContentResolver;
     private String[] targetActivities = new String[5];
     private String[] longActivities = new String[5];
@@ -310,14 +306,13 @@ public class SearchPanelView extends FrameLayout implements
         mGlowPadView.setTargetResources(storedDraw);
     }
 
-    private TargetDrawable getTargetDrawable (String action, int customIconIndex){
+    private TargetDrawable getTargetDrawable(String action, int customIconIndex){
 
-        TargetDrawable cDrawable = new TargetDrawable(mResources, mResources.getDrawable(com.android.internal.R.drawable.ic_lockscreen_camera));
-        cDrawable.setEnabled(false);
+        TargetDrawable noneDrawable = new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_action_none));
 
         String customIconUri = "";
         try {
-        customIconUri = Settings.System.getString(mContext.getContentResolver(),
+            customIconUri = Settings.System.getString(mContext.getContentResolver(),
                 Settings.System.NAVRING_CUSTOM_APP_ICONS[customIconIndex]);
         } catch (Exception e) {
         }
@@ -326,7 +321,6 @@ public class SearchPanelView extends FrameLayout implements
             // it's an icon the user chose from the gallery here
             File iconFile = new File(Uri.parse(customIconUri).getPath());
             if (iconFile.exists()) {
-
                 try {
                     Drawable customIcon = resize(new BitmapDrawable(getResources(), iconFile.getAbsolutePath()));
                     Drawable iconBg = resize(mResources.getDrawable(R.drawable.ic_navbar_blank));
@@ -342,12 +336,15 @@ public class SearchPanelView extends FrameLayout implements
                     selector.addState(new int[] {android.R.attr.state_enabled, -android.R.attr.state_active, android.R.attr.state_focused}, iconActivated);
                     return new TargetDrawable(mResources, selector);
                 } catch (Exception e) {
+                    return noneDrawable;
                 }
             }
         }
 
-        if (action == null || action.equals("") || action.equals("none"))
-            return cDrawable;
+        if (action == null || action.equals("**none**"))
+            return noneDrawable;
+        if (action.equals(""))
+            return new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_navbar_blank));
         if (action.equals("**screenshot**"))
             return new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_action_screenshot));
         if (action.equals("**ime**"))
@@ -387,7 +384,7 @@ public class SearchPanelView extends FrameLayout implements
             selector.addState(new int[] {android.R.attr.state_enabled, -android.R.attr.state_active, android.R.attr.state_focused}, iconActivated);
             return new TargetDrawable(mResources, selector);
         } catch (Exception e) {
-            return cDrawable;
+            return noneDrawable;
         }
     }
 
@@ -512,6 +509,15 @@ public class SearchPanelView extends FrameLayout implements
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
 
+        // add intent actions to listen on it
+        // apps available to check if apps on external sdcard
+        // are available and reconstruct the button icons
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_EXTERNAL_APPLICATIONS_AVAILABLE);
+        filter.addAction(Intent.ACTION_EXTERNAL_APPLICATIONS_UNAVAILABLE);
+        mContext.registerReceiver(mBroadcastReceiver, filter);
+
+        // start observing settings
         mObserver.observe();
         updateSettings();
         setDrawables();
@@ -520,6 +526,8 @@ public class SearchPanelView extends FrameLayout implements
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
+        // unregister receiver and observer
+        mContext.unregisterReceiver(mBroadcastReceiver);
         mObserver.unobserve();
     }
 
@@ -564,23 +572,16 @@ public class SearchPanelView extends FrameLayout implements
         return mResources.getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
     }
 
-    public class TargetObserver extends ContentObserver {
-        public TargetObserver(Handler handler) {
-            super(handler);
-        }
-
+    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
-        public boolean deliverSelfNotifications() {
-            return super.deliverSelfNotifications();
+        public void onReceive(Context context, Intent intent) {
+            final String action = intent.getAction();
+            if (Intent.ACTION_EXTERNAL_APPLICATIONS_UNAVAILABLE.equals(action)
+                        || Intent.ACTION_EXTERNAL_APPLICATIONS_AVAILABLE.equals(action)) {
+                setDrawables();
+            }
         }
-
-        @Override
-        public void onChange(boolean selfChange) {
-            super.onChange(selfChange);
-            setDrawables();
-            updateSettings();
-        }
-    }
+    };
 
     class SettingsObserver extends ContentObserver {
         SettingsObserver(Handler handler) {
