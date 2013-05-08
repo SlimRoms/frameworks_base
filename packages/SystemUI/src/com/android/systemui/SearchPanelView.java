@@ -117,6 +117,7 @@ public class SearchPanelView extends FrameLayout implements
     private PackageManager mPackageManager;
     private Resources mResources;
     private ContentResolver mContentResolver;
+    private boolean mAttached = false;
     private String[] targetActivities = new String[5];
     private String[] longActivities = new String[5];
     private int startPosOffset;
@@ -343,8 +344,11 @@ public class SearchPanelView extends FrameLayout implements
 
         if (action == null || action.equals("**none**"))
             return noneDrawable;
-        if (action.equals(""))
-            return new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_navbar_blank));
+        if (action.equals("")) {
+            TargetDrawable blankDrawable = new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_navbar_blank));
+            blankDrawable.setEnabled(false);
+            return blankDrawable;
+        }
         if (action.equals("**screenshot**"))
             return new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_action_screenshot));
         if (action.equals("**ime**"))
@@ -509,26 +513,32 @@ public class SearchPanelView extends FrameLayout implements
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
 
-        // add intent actions to listen on it
-        // apps available to check if apps on external sdcard
-        // are available and reconstruct the button icons
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(Intent.ACTION_EXTERNAL_APPLICATIONS_AVAILABLE);
-        filter.addAction(Intent.ACTION_EXTERNAL_APPLICATIONS_UNAVAILABLE);
-        mContext.registerReceiver(mBroadcastReceiver, filter);
+        if (!mAttached) {
+            mAttached = true;
+            // add intent actions to listen on it
+            // apps available to check if apps on external sdcard
+            // are available and reconstruct the button icons
+            IntentFilter filter = new IntentFilter();
+            filter.addAction(Intent.ACTION_EXTERNAL_APPLICATIONS_AVAILABLE);
+            filter.addAction(Intent.ACTION_EXTERNAL_APPLICATIONS_UNAVAILABLE);
+            mContext.registerReceiver(mBroadcastReceiver, filter);
 
-        // start observing settings
-        mObserver.observe();
-        updateSettings();
-        setDrawables();
+            // start observing settings
+            mObserver.observe();
+            updateSettings();
+            setDrawables();
+        }
     }
 
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        // unregister receiver and observer
-        mContext.unregisterReceiver(mBroadcastReceiver);
-        mObserver.unobserve();
+        if (mAttached) {
+            mAttached = false;
+            // unregister receiver and observer
+            mContext.unregisterReceiver(mBroadcastReceiver);
+            mObserver.unobserve();
+        }
     }
 
     /**
