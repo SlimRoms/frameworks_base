@@ -125,14 +125,14 @@
     <string name="low_memory" product="default">Pamięć telefonu jest pełna. Usuń niektóre pliki, aby zwolnić miejsce.</string>
     <string name="me">Ja</string>
     <string name="power_dialog" product="tablet">Opcje tablet</string>
-    <string name="power_dialog" product="default">Opcje telefonu</string>
+    <string name="power_dialog" product="default">Opcje telefon</string>
     <string name="silent_mode">Tryb cichy</string>
     <string name="turn_on_radio">Włącz połączenia bezprzewodowe</string>
     <string name="turn_off_radio">Wyłącz połączenia bezprzewodowe</string>
     <string name="screen_lock">Blokada ekranu</string>
     <string name="power_off">Wyłącz</string>
     <string name="reboot_system" product="tablet">Uruchom tablet ponownie</string>
-    <string name="reboot_system" product="default">Uruchom telefonu ponownie</string>
+    <string name="reboot_system" product="default">Uruchom telefon ponownie</string>
     <string name="global_action_screenshot">Zrzut ekranu</string>
     <string name="global_actions_toggle_expanded_desktop_mode">Rozszerzony pulpit</string>
     <string name="global_actions_expanded_desktop_mode_on_status">Włączony</string>
