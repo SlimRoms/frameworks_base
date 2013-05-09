@@ -111,6 +111,7 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
     final static String ACTION_MENU = "**menu**";
     final static String ACTION_POWER = "**power**";
     final static String ACTION_NOTIFICATIONS = "**notifications**";
+    final static String ACTION_QS = "**quicksettings**";
     final static String ACTION_RECENTS = "**recents**";
     final static String ACTION_SCREENSHOT = "**screenshot**";
     final static String ACTION_IME = "**ime**";
@@ -1136,6 +1137,9 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
             } else if (uri.equals(ACTION_NOTIFICATIONS)) {
 
                 return getResources().getDrawable(R.drawable.ic_sysbar_notifications);
+            } else if (uri.equals(ACTION_QS)) {
+
+                return getResources().getDrawable(R.drawable.ic_sysbar_qs);
             }
         }
 

@@ -104,6 +104,7 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
     private final static String ACTION_MENU = "**menu**";
     private final static String ACTION_POWER = "**power**";
     private final static String ACTION_NOTIFICATIONS = "**notifications**";
+    private final static String ACTION_QS = "**quicksettings**";
     private final static String ACTION_RECENTS = "**recents**";
     private final static String ACTION_SCREENSHOT = "**screenshot**";
     private final static String ACTION_IME = "**ime**";
@@ -767,6 +768,8 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
                 return mContext.getResources().getDrawable(R.drawable.ic_sysbar_power);
             } else if (uri.equals(ACTION_NOTIFICATIONS)) {
                 return mContext.getResources().getDrawable(R.drawable.ic_sysbar_notifications);
+            } else if (uri.equals(ACTION_QS)) {
+                return mContext.getResources().getDrawable(R.drawable.ic_sysbar_qs);
             }
         }
         return mContext.getResources().getDrawable(R.drawable.ic_sysbar_null);
@@ -988,6 +991,13 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
         } else if (type.equals(ACTION_NOTIFICATIONS)) {
             try {
                 mBarService.toggleNotificationShade();
+            } catch (RemoteException e) {
+                // wtf is this
+            }
+            return;
+        } else if (type.equals(ACTION_QS)) {
+            try {
+                mBarService.toggleQSShade();
             } catch (RemoteException e) {
                 // wtf is this
             }

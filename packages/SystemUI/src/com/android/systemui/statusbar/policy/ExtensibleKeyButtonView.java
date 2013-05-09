@@ -60,6 +60,7 @@ public class ExtensibleKeyButtonView extends KeyButtonView {
     final static String ACTION_MENU = "**menu**";
     final static String ACTION_POWER = "**power**";
     final static String ACTION_NOTIFICATIONS = "**notifications**";
+    final static String ACTION_QS = "**quicksettings**";
     final static String ACTION_RECENTS = "**recents**";
     final static String ACTION_SCREENSHOT = "**screenshot**";
     final static String ACTION_IME = "**ime**";
@@ -221,6 +222,13 @@ public class ExtensibleKeyButtonView extends KeyButtonView {
                     // wtf is this
                 }
                 return;
+            } else if (mClickAction.equals(ACTION_QS)) {
+                try {
+                    mBarService.toggleQSShade();
+                } catch (RemoteException e) {
+                    // wtf is this
+                }
+                return;
             } else if (mClickAction.equals(ACTION_IME)) {
                 getContext().sendBroadcast(new Intent("android.settings.SHOW_INPUT_METHOD_PICKER"));
                 return;
@@ -309,6 +317,13 @@ public class ExtensibleKeyButtonView extends KeyButtonView {
             } else if (mLongpress.equals(ACTION_NOTIFICATIONS)) {
                 try {
                     mBarService.toggleNotificationShade();
+                } catch (RemoteException e) {
+                    // wtf is this
+                }
+                return true;
+            } else if (mLongpress.equals(ACTION_QS)) {
+                try {
+                    mBarService.toggleQSShade();
                 } catch (RemoteException e) {
                     // wtf is this
                 }

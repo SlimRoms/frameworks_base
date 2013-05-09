@@ -258,7 +258,7 @@ public class PhoneStatusBarView extends PanelBar {
         mBar.setupTriggers(false);
 
         Settings.System.putInt(mContext.getContentResolver(),
-            Settings.System.TOGGLE_NOTIFICATION_SHADE, 0);
+            Settings.System.TOGGLE_NOTIFICATION_AND_QS_SHADE, 0);
     }
 
     @Override
