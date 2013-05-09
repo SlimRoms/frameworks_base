@@ -1536,6 +1536,8 @@
 
     <!-- label for item that opens the profile choosing dialog -->
     <string name="global_action_choose_profile">Выбрать профиль</string>
+    <!-- In WiFi AP notification -->
+    <string name="notify_turn_wifi_ap_off_title">Отключить точку доступа Wi-Fi</string>
 
     <!-- Hardware Rotation lock string -->
     <string name="toast_rotation_unlocked">Поворот экрана разрешен</string>
