@@ -569,15 +569,14 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
 
         mNavigationSlice.clear();
 
-        // reset mIconResizeFactor to default
-        mIconResizeFactor = PieLayout.PIE_ICON_SIZE_FACTOR_DEFAULT;
+        // reset mIconResizeFactor
+        mIconResizeFactor = 1.0f;
         // check the size set from the user and set resize values if needed
-        float diff = mIconResizeFactor - Settings.System.getFloat(resolver,
+        float diff = PieLayout.PIE_ICON_START_SIZE_FACTOR - Settings.System.getFloat(resolver,
                 Settings.System.PIE_SIZE, PieLayout.PIE_CONTROL_SIZE_DEFAULT);
-        float stockDiff = mIconResizeFactor - PieLayout.PIE_CONTROL_SIZE_DEFAULT;
-        if ((diff - stockDiff) > 0.0f) {
+        if (diff > 0.0f) {
             mIconResize = true;
-            mIconResizeFactor = 1.0f - (1 / mIconResizeFactor * diff);
+            mIconResizeFactor = 1.0f - diff;
         } else {
             mIconResize = false;
         }
