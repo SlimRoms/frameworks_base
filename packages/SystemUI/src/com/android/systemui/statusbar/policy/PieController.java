@@ -164,6 +164,7 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
     private int mBatteryLevel;
     private int mBatteryStatus;
     private boolean mHasTelephony;
+    private TelephonyManager mTelephonyManager;
     private ServiceState mServiceState;
     private ActivityManager mActivityManager;
     private IStatusBarService mBarService;
@@ -353,11 +354,9 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
                 if (secondLayerActive) {
                     // second layer is enabled....start observing the settings
                     mSecondLayerObserver.observe();
-                    mSecondLayerObserverRegistered = true;
                 } else {
                     // second layer is disabled....unregister observer for it
                     mContext.getContentResolver().unregisterContentObserver(mSecondLayerObserver);
-                    mSecondLayerObserverRegistered = false;
                 }
                 mSecondLayerActive = secondLayerActive;
                 constructSlices();
@@ -367,7 +366,6 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
         }
     }
     private SettingsObserver mSettingsObserver = new SettingsObserver(mHandler);
-    private boolean mSettingsObserverRegistered = false;
 
     // second layer observer is only active when user activated it to
     // reduce mem usage on normal mode
@@ -405,7 +403,6 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
         }
     }
     private SecondLayerObserver mSecondLayerObserver = new SecondLayerObserver(mHandler);
-    private boolean mSecondLayerObserverRegistered = false;
 
     private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -426,7 +423,6 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
             }
         }
     };
-    private boolean mBroadcastReceiverRegistered = false;
 
     private PhoneStateListener mPhoneStateListener = new PhoneStateListener() {
         @Override
@@ -445,36 +441,39 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
         mVibrator = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
         mWm = IWindowManager.Stub.asInterface(ServiceManager.getService("window"));
 
-        final PackageManager pm = mContext.getPackageManager();
-        mHasTelephony = pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY);
+        if (mContext.getPackageManager().hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
+            mTelephonyManager =
+                    (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
+        }
 
         Tracker.sDistance = mContext.getResources().getDimensionPixelSize(R.dimen.pie_trigger_distance);
     }
 
     public void detachContainer() {
-        if (mPieContainer != null) {
-            mPieContainer.clearSlices();
-            mPieContainer = null;
+        if (mPieContainer == null) {
+            return;
         }
-        if (mBroadcastReceiverRegistered) {
-            mBroadcastReceiverRegistered = false;
-            mContext.unregisterReceiver(mBroadcastReceiver);
+
+        if (mTelephonyManager != null) {
+            mTelephonyManager.listen(mPhoneStateListener, PhoneStateListener.LISTEN_NONE);
         }
-        if (mSettingsObserverRegistered) {
-            mSettingsObserverRegistered = false;
-            mContext.getContentResolver().unregisterContentObserver(mSettingsObserver);
-        }
-        if (mSecondLayerObserverRegistered) {
-            mSecondLayerObserverRegistered = false;
+
+        if (mSecondLayerActive) {
             mContext.getContentResolver().unregisterContentObserver(mSecondLayerObserver);
         }
+
+        mContext.unregisterReceiver(mBroadcastReceiver);
+        mContext.getContentResolver().unregisterContentObserver(mSettingsObserver);
+
+        mPieContainer.clearSlices();
+        mPieContainer = null;
     }
 
-    public void attachTo(BaseStatusBar statusBar) {
+    public void attachStatusBar(BaseStatusBar statusBar) {
         mStatusBar = statusBar;
     }
 
-    public void attachTo(PieLayout container) {
+    public void attachContainer(PieLayout container) {
         mPieContainer = container;
 
         if (DEBUG) {
@@ -491,14 +490,6 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
 
         // start listening for changes
         mSettingsObserver.observe();
-        mSettingsObserverRegistered = true;
-
-        // start listening for second layer observer
-        // only when active
-        if (mSecondLayerActive) {
-            mSecondLayerObserver.observe();
-            mSecondLayerObserverRegistered = true;
-        }
 
         // add intent actions to listen on it
         // battery change for the battery
@@ -511,12 +502,15 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
         filter.addAction(Intent.ACTION_EXTERNAL_APPLICATIONS_AVAILABLE);
         filter.addAction(Intent.ACTION_EXTERNAL_APPLICATIONS_UNAVAILABLE);
         mContext.registerReceiver(mBroadcastReceiver, filter);
-        mBroadcastReceiverRegistered = true;
 
-        if (mHasTelephony) {
-            TelephonyManager telephonyManager =
-                    (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
-            telephonyManager.listen(mPhoneStateListener, PhoneStateListener.LISTEN_SERVICE_STATE);
+        // start listening for second layer observer
+        // only when active
+        if (mSecondLayerActive) {
+            mSecondLayerObserver.observe();
+        }
+
+        if (mTelephonyManager != null) {
+            mTelephonyManager.listen(mPhoneStateListener, PhoneStateListener.LISTEN_SERVICE_STATE);
         }
     }
 

@@ -2626,17 +2626,6 @@ public final class Settings {
         public static final String PIE_GRAVITY = "pie_gravity";
 
         /**
-         * Mask for the locations of the pie for certain UI situations
-         * (1<<0) = LEFT
-         * (1<<1) = BOTTOM
-         * (1<<2) = RIGHT
-         * (1<<3) = TOP
-         * Default: LEFT
-         * @hide
-         */
-        public static final String PIE_TRIGGER_MASK = "pie_trigger_mask";
-
-        /**
          * Relative pie size (fraction)
          * Default: 1.0f
          * @hide
