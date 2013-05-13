@@ -451,11 +451,11 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
         Tracker.sDistance = mContext.getResources().getDimensionPixelSize(R.dimen.pie_trigger_distance);
     }
 
-    public void destroyPie() {
+    public void detachContainer() {
         if (mPieContainer != null) {
-            mPieContainer.destroyPieContainer();
+            mPieContainer.clearSlices();
+            mPieContainer = null;
         }
-        mPieContainer = null;
         if (mBroadcastReceiverRegistered) {
             mBroadcastReceiverRegistered = false;
             mContext.unregisterReceiver(mBroadcastReceiver);
