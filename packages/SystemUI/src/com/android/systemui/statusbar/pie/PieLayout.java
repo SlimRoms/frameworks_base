@@ -247,8 +247,7 @@ public class PieLayout extends FrameLayout implements View.OnTouchListener {
         public final Position position;
     }
 
-    private int mPieTriggerSlots;
-    private int mPieTriggerMask;
+    private int mSnapPointMask = 0;
     private SnapPoint[] mSnapPoints = new SnapPoint[Position.values().length];
     private SnapPoint mActiveSnap = null;
 
@@ -281,6 +280,14 @@ public class PieLayout extends FrameLayout implements View.OnTouchListener {
 
     public void setOnSnapListener(OnSnapListener onSnapListener) {
         mOnSnapListener = onSnapListener;
+    }
+
+    /**
+     * Tells the Layout where to show snap points.
+     * @param mask is a mask that corresponds to {@link Position}{@code .FLAG}.
+     */
+    public void setSnapPoints(int mask) {
+        mSnapPointMask = mask;
     }
 
     private void getDimensions() {
@@ -339,32 +346,23 @@ public class PieLayout extends FrameLayout implements View.OnTouchListener {
         mActiveSnap = null;
         // reuse already created snap points
         for (Position g : Position.values()) {
-            if ((mPieTriggerMask & g.FLAG) != 0) {
-                if ((mPieTriggerSlots & g.FLAG) == 0) {
-                    int x = width / 2;
-                    int y = height / 2;
-                    if (g == Position.LEFT || g == Position.RIGHT) {
-                        x = g.FACTOR * width;
-                    } else {
-                        y = g.FACTOR * height;
-                    }
-                    if (mSnapPoints[g.INDEX] != null) {
-                        mSnapPoints[g.INDEX].reposition(x, y);
-                    } else {
-                        mSnapPoints[g.INDEX] = new SnapPoint(x, y, g);
-                    }
+            if ((mSnapPointMask & g.FLAG) != 0) {
+                int x = width / 2;
+                int y = height / 2;
+                if (g == Position.LEFT || g == Position.RIGHT) {
+                    x = g.FACTOR * width;
                 } else {
-                    mSnapPoints[g.INDEX] = null;
+                    y = g.FACTOR * height;
+                }
+                if (mSnapPoints[g.INDEX] != null) {
+                    mSnapPoints[g.INDEX].reposition(x, y);
+                } else {
+                    mSnapPoints[g.INDEX] = new SnapPoint(x, y, g);
                 }
             } else {
                 mSnapPoints[g.INDEX] = null;
             }
         }
-    }
-
-    public void setPieTriggers(int pieTriggerMask, int pieTriggerSlots) {
-        mPieTriggerMask = pieTriggerMask;
-        mPieTriggerSlots = pieTriggerSlots;
     }
 
     @Override
