@@ -513,7 +513,7 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
         }
     }
 
-    private void constructSlices() {
+    public void constructSlices() {
         final Resources res = mContext.getResources();
 
         // if already constructed...clear the slices
