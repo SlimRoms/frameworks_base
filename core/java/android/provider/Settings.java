@@ -2952,13 +2952,6 @@ public final class Settings {
         public static final String QS_DISABLE_PANEL = "qs_disable_panel";
 
         /**
-         * QuickSettings flip button longpress PowerWidget toggle
-         *
-         * @hide
-         */
-        public static final String QS_LONGPRESS_PW_TOGGLE = "qs_longpress_pw_toggle";
-
-        /**
          * Use the Notification Power Widget? (Who wouldn't!)
          *
          * @hide
@@ -3973,6 +3966,12 @@ public final class Settings {
          * @hide
          */
         public static final String NOTIFICATIONS_BEHAVIOUR = "notifications_behaviour";
+
+        /**
+         * Always show settings button toggle
+         * @hide
+         */
+        public static final String NOTIFICATION_SETTINGS_BUTTON = "notification_settings_btn";
 
         /**
          * Battery warning preferences
