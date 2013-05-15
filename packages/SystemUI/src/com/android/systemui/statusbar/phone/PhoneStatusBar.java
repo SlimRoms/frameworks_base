@@ -565,7 +565,7 @@ public class PhoneStatusBar extends BaseStatusBar {
 
         updateShowSearchHoldoff();
 
-        if (!mRecreating) {
+        if (mNavigationBarView == null) {
             mNavigationBarView =
                 (NavigationBarView) View.inflate(context, R.layout.navigation_bar, null);
 
