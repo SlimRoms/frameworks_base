@@ -334,6 +334,12 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
         updateKeyguardAlpha();
     }
 
+    public void recreateNavigationBar() {
+        setBackgroundResource(0);
+        setBackgroundResource(R.drawable.nav_bar_bg);
+        makeBar();
+    }
+
     private void addLightsOutButton(LinearLayout root, View v, boolean landscape, boolean empty) {
 
         ImageView addMe = new ImageView(mContext);
