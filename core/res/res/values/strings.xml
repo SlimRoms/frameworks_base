@@ -4104,4 +4104,10 @@
     <!-- Hardware Rotation lock string -->
     <string name="toast_rotation_unlocked">Display rotation unlocked</string>
     <string name="toast_rotation_locked">Display rotation locked</string>
+
+    <!-- The title of the profile picker dialog. -->
+    <string name="profile_picker_title">Profiles</string>
+
+    <!-- The item label for the no profile selection item. -->
+    <string name="profile_none">None</string>
 </resources>
