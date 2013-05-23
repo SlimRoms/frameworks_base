@@ -416,7 +416,11 @@ public class PhoneStatusBar extends BaseStatusBar {
                     Settings.System.NOTIFICATION_SHORTCUTS_HIDE_CARRIER, 0, UserHandle.USER_CURRENT) != 0;
             boolean notificationSettingsBtn = Settings.System.getInt(
                     resolver, Settings.System.NOTIFICATION_SETTINGS_BUTTON, 0) == 1;
-            mSettingsButton.setVisibility(notificationSettingsBtn ? View.VISIBLE : View.GONE);
+            if (mHasSettingsPanel) {
+                mSettingsButton.setVisibility(notificationSettingsBtn ? View.VISIBLE : View.GONE);
+            } else {
+                mSettingsButton.setVisibility(View.GONE);
+            }
             if (mCarrierLabel != null) {
                 toggleCarrierAndWifiLabelVisibility();
             }
