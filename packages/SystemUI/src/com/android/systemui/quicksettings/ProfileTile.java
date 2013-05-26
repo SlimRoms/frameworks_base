@@ -52,6 +52,7 @@ public class ProfileTile extends QuickSettingsTile {
         super(context, inflater, container, qsc);
 
         qsc.registerAction(ProfileManagerService.INTENT_ACTION_PROFILE_SELECTED, this);
+        qsc.registerAction(ProfileManagerService.INTENT_ACTION_PROFILE_UPDATED, this);
 
         mProfileManager = (ProfileManager) mContext.getSystemService(Context.PROFILE_SERVICE);
         mDrawable = R.drawable.ic_qs_profiles;
