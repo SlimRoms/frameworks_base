@@ -23,6 +23,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.database.ContentObserver;
 import android.graphics.drawable.Drawable;
 import android.graphics.PorterDuff.Mode;
@@ -63,6 +64,7 @@ public class WidgetView extends LinearLayout {
     long mDowntime;
     boolean mMoving = false;
     boolean showing = false;
+    int mCurrUiInvertedMode;
 
     final static String TAG = "Widget";
 
@@ -71,11 +73,15 @@ public class WidgetView extends LinearLayout {
 
         mContext = context;
         mWindowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
+
+        mCurrUiInvertedMode = mContext.getResources().getConfiguration().uiInvertedMode;
+
         IntentFilter filter = new IntentFilter();
         filter.addAction(WidgetReceiver.ACTION_ALLOCATE_ID);
         filter.addAction(WidgetReceiver.ACTION_DEALLOCATE_ID);
         filter.addAction(WidgetReceiver.ACTION_TOGGLE_WIDGETS);
         filter.addAction(WidgetReceiver.ACTION_DELETE_WIDGETS);
+        filter.addAction(Intent.ACTION_CONFIGURATION_CHANGED);
         mContext.registerReceiver(new WidgetReceiver(), filter);
         mHandler = new Handler();
         SettingsObserver settingsObserver = new SettingsObserver(mHandler);
@@ -275,10 +281,6 @@ public class WidgetView extends LinearLayout {
                 Settings.System.getUriFor(Settings.System.NAVIGATION_BAR_WIDGETS_ALPHA),
                 false,
                 this);
-            resolver.registerContentObserver(
-                Settings.Secure.getUriFor(Settings.Secure.UI_MODE_IS_TOGGLED),
-                false,
-                this);
             createWidgetView();
         }
 
@@ -327,6 +329,14 @@ public class WidgetView extends LinearLayout {
                     mAdapter.mAppWidgetHost.deleteAppWidgetId(widgetIds[i]);
                 }
                 mAdapter.mAppWidgetHost.deleteHost();
+            } else if (Intent.ACTION_CONFIGURATION_CHANGED.equals(action)) {
+                // detect inverted ui mode change
+                int uiInvertedMode =
+                    mContext.getResources().getConfiguration().uiInvertedMode;
+                if (uiInvertedMode != mCurrUiInvertedMode) {
+                    mCurrUiInvertedMode = uiInvertedMode;
+                    createWidgetView();
+                }
             }
         }
     }
