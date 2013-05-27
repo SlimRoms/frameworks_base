@@ -33,9 +33,10 @@ import com.android.systemui.statusbar.phone.QuickSettingsController;
 import com.android.systemui.statusbar.phone.QuickSettingsContainerView;
 import com.android.systemui.statusbar.policy.NetworkController;
 import com.android.systemui.statusbar.policy.NetworkController.NetworkSignalChangedCallback;
+import android.content.BroadcastReceiver;
 
 public class MobileNetworkTile extends QuickSettingsTile implements NetworkSignalChangedCallback{
-
+    private NetworkController mController;
     private int mDataTypeIconId;
     private String dataContentDescription;
     private String signalContentDescription;
@@ -43,15 +44,16 @@ public class MobileNetworkTile extends QuickSettingsTile implements NetworkSigna
     public static QuickSettingsTile mInstance;
 
     public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
-            QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler, String id) {
+            QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler, String id, BroadcastReceiver controller) {
         mInstance = null;
-        mInstance = new MobileNetworkTile(context, inflater, container, qsc);
+        mInstance = new MobileNetworkTile(context, inflater, container, qsc, (NetworkController) controller);
         return mInstance;
     }
 
     public MobileNetworkTile(Context context, LayoutInflater inflater,
-            QuickSettingsContainerView container, QuickSettingsController qsc) {
+            QuickSettingsContainerView container, QuickSettingsController qsc, NetworkController controller) {
         super(context, inflater, container, qsc);
+        mController = controller;
         mTileLayout = R.layout.quick_settings_tile_rssi;
 
         mOnClick = new View.OnClickListener() {
@@ -76,9 +78,14 @@ public class MobileNetworkTile extends QuickSettingsTile implements NetworkSigna
 
     @Override
     void onPostCreate() {
-        NetworkController controller = new NetworkController(mContext);
-        controller.addNetworkSignalChangedCallback(this);
+        mController.addNetworkSignalChangedCallback(this);
         super.onPostCreate();
+    }
+
+    @Override
+    public void onDestroy() {
+        mController.removeNetworkSignalChangedCallback(this);
+        super.onDestroy();
     }
 
     @Override

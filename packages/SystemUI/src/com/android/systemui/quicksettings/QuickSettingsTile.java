@@ -105,6 +105,8 @@ public class QuickSettingsTile implements OnClickListener {
 
     void onPostCreate() {}
 
+    public void onDestroy() {}
+
     public void onReceive(Context context, Intent intent) {}
 
     public void onChangeUri(ContentResolver resolver, Uri uri) {}

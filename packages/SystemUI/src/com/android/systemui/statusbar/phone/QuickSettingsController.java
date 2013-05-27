@@ -151,6 +151,7 @@ public class QuickSettingsController {
      * END OF DATA MATCHING BLOCK
      */
     static Class[] paramsTypes = {Context.class, LayoutInflater.class, QuickSettingsContainerView.class, QuickSettingsController.class, Handler.class, String.class};
+    static Class[] paramsTypesWithController = {Context.class, LayoutInflater.class, QuickSettingsContainerView.class, QuickSettingsController.class, Handler.class, String.class, BroadcastReceiver.class};
     private final Context mContext;
     public PanelBar mBar;
     private final QuickSettingsContainerView mContainerView;
@@ -190,7 +191,7 @@ public class QuickSettingsController {
                 && deviceSupportsUsbTether())  tiles += TILE_DELIMITER + TILE_USBTETHER;
     }
 
-    private QuickSettingsTile createTile(boolean condition, String tile, String instanceID, LayoutInflater inflater) {
+    private QuickSettingsTile createTile(boolean condition, String tile, String instanceID, LayoutInflater inflater, BroadcastReceiver controller) {
         QuickSettingsTile qs = null;
         if (condition){
            try{
@@ -201,9 +202,16 @@ public class QuickSettingsController {
                        "/system/app/SystemUI.apk", mContext.getFilesDir().getAbsolutePath(),
                        null, getClass().getClassLoader());
                Class tileClass = classLoader.loadClass(TILES_CLASSES.get(tile));
-               Method getInstance = tileClass.getMethod("getInstance", paramsTypes);
-               Object[] args = {mContext, inflater,  mContainerView, this, mHandler, instanceID};
-               qs = (QuickSettingsTile) getInstance.invoke(null, args);
+               Method getInstance;
+               if (controller != null) {
+                   getInstance = tileClass.getMethod("getInstance", paramsTypesWithController);
+                   Object[] args = {mContext, inflater,  mContainerView, this, mHandler, instanceID, controller};
+                   qs = (QuickSettingsTile) getInstance.invoke(null, args);
+               } else {
+                   getInstance = tileClass.getMethod("getInstance", paramsTypes);
+                   Object[] args = {mContext, inflater,  mContainerView, this, mHandler, instanceID};
+                   qs = (QuickSettingsTile) getInstance.invoke(null, args);
+               }
            }
            catch(Exception e){
                Log.e(TAG, "Can't instanciate quick settings tile "+tile, e);
@@ -233,13 +241,26 @@ public class QuickSettingsController {
             tileName = st.nextToken();
             if (st.hasMoreTokens()) instanceID = st.nextToken();
             if (tileName.equals(TILE_BLUETOOTH)) {
-                qs = createTile(deviceSupportsBluetooth(), tileName, instanceID, inflater);
-            }else if (tileName.equals(TILE_WIFIAP) || tileName.equals(TILE_MOBILENETWORK) || tileName.equals(TILE_NETWORKMODE) || tileName.equals(TILE_MOBILEDATA)) {
-                qs = createTile(deviceSupportsTelephony(), tileName, instanceID, inflater);
+                qs = createTile(deviceSupportsBluetooth(), tileName, instanceID, inflater,
+                    mStatusBarService.mBluetoothController);
+            } else if (tileName.equals(TILE_WIFIAP)
+                || tileName.equals(TILE_NETWORKMODE) || tileName.equals(TILE_MOBILEDATA)) {
+                qs = createTile(deviceSupportsTelephony(), tileName, instanceID, inflater, null);
+            } else if (tileName.equals(TILE_MOBILENETWORK)) {
+                qs = createTile(deviceSupportsTelephony(), tileName, instanceID, inflater,
+                    mStatusBarService.mNetworkController);
             } else if (tileName.equals(TILE_PROFILE)) {
-                qs = createTile(systemProfilesEnabled(resolver), tileName, instanceID, inflater);
+                qs = createTile(systemProfilesEnabled(resolver), tileName, instanceID,
+                    inflater, null);
+            } else if (tileName.equals(TILE_WIFI)
+                || tileName.equals(TILE_AIRPLANE)) {
+                qs = createTile(true, tileName, instanceID, inflater,
+                    mStatusBarService.mNetworkController);
+            } else if (tileName.equals(TILE_BATTERY)) {
+                qs = createTile(true, tileName, instanceID, inflater,
+                    mStatusBarService.mBatteryController);
             } else {
-                qs = createTile(true, tileName, instanceID, inflater);
+                qs = createTile(true, tileName, instanceID, inflater, null);
             }
             if (tileName.equals(TILE_IME)) this.IMETile = (InputMethodTile) qs;
             if (qs != null) {
@@ -283,6 +304,12 @@ public class QuickSettingsController {
         }
         if (mReceiver != null) {
             mContext.unregisterReceiver(mReceiver);
+        }
+        if (allTilesMap != null) {
+            for (String mTileID : allTilesMap.keySet()) {
+                allTilesMap.get(mTileID).onDestroy();
+            }
+            allTilesMap.clear();
         }
         mContainerView.removeAllViews();
     }

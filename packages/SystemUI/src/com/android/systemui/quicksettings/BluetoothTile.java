@@ -30,24 +30,27 @@ import com.android.systemui.R;
 import com.android.systemui.statusbar.phone.QuickSettingsContainerView;
 import com.android.systemui.statusbar.phone.QuickSettingsController;
 import com.android.systemui.statusbar.policy.BluetoothController;
+import android.content.BroadcastReceiver;
 
 public class BluetoothTile extends QuickSettingsTile implements BluetoothStateChangeCallback{
 
     private boolean enabled = false;
     private boolean connected = false;
     private BluetoothAdapter mBluetoothAdapter;
+    private BluetoothController mController;
     public static QuickSettingsTile mInstance;
 
     public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
-            QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler, String id) {
+            QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler, String id, BroadcastReceiver controller) {
         mInstance = null;
-        mInstance = new BluetoothTile(context, inflater, container, qsc);
+        mInstance = new BluetoothTile(context, inflater, container, qsc, (BluetoothController) controller);
         return mInstance;
     }
 
     public BluetoothTile(Context context, LayoutInflater inflater,
-            QuickSettingsContainerView container, QuickSettingsController qsc) {
+            QuickSettingsContainerView container, QuickSettingsController qsc, BluetoothController controller) {
         super(context, inflater, container, qsc);
+        mController = controller;
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         enabled = mBluetoothAdapter.isEnabled();
         connected = mBluetoothAdapter.getConnectionState() == BluetoothAdapter.STATE_CONNECTED;
@@ -114,11 +117,16 @@ public class BluetoothTile extends QuickSettingsTile implements BluetoothStateCh
 
     @Override
     void onPostCreate() {
-        BluetoothController controller = new BluetoothController(mContext);
-        controller.addStateChangedCallback(this);
+        mController.addStateChangedCallback(this);
         checkBluetoothState();
         applyBluetoothChanges();
         super.onPostCreate();
+    }
+
+    @Override
+    public void onDestroy() {
+        mController.removeStateChangedCallback(this);
+        super.onDestroy();
     }
 
     @Override

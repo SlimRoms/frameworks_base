@@ -31,9 +31,10 @@ import com.android.systemui.statusbar.phone.QuickSettingsContainerView;
 import com.android.systemui.statusbar.phone.QuickSettingsController;
 import com.android.systemui.statusbar.policy.BatteryController;
 import com.android.systemui.statusbar.policy.BatteryController.BatteryStateChangeCallback;
+import android.content.BroadcastReceiver;
 
 public class BatteryTile extends QuickSettingsTile implements BatteryStateChangeCallback{
-
+    private BatteryController mController;
     private boolean charging = false;
     private int batteryLevel = 0;
     private Drawable batteryIcon;
@@ -43,22 +44,20 @@ public class BatteryTile extends QuickSettingsTile implements BatteryStateChange
     public static QuickSettingsTile mInstance;
 
     public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
-            QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler, String id) {
+            QuickSettingsContainerView container, final QuickSettingsController qsc, Handler handler, String id, BroadcastReceiver controller) {
         mInstance = null;
-        mInstance = new BatteryTile(context, inflater, container, qsc);
+        mInstance = new BatteryTile(context, inflater, container, qsc, (BatteryController) controller);
         return mInstance;
     }
 
     public BatteryTile(Context context, LayoutInflater inflater,
-            QuickSettingsContainerView container, QuickSettingsController qsc) {
+            QuickSettingsContainerView container, QuickSettingsController qsc, BatteryController controller) {
         super(context, inflater, container, qsc);
 
+        mController = controller;
         mTileLayout = R.layout.quick_settings_tile_battery;
         batteryLevels = (LevelListDrawable) mContext.getResources().getDrawable(R.drawable.qs_sys_battery);
         chargingBatteryLevels = (LevelListDrawable) mContext.getResources().getDrawable(R.drawable.qs_sys_battery_charging);
-
-        BatteryController controller = new BatteryController(mContext);
-        controller.addStateChangedCallback(this);
 
         mOnClick = new View.OnClickListener() {
             @Override
@@ -71,7 +70,14 @@ public class BatteryTile extends QuickSettingsTile implements BatteryStateChange
     @Override
     void onPostCreate() {
         applyBatteryChanges();
+        mController.addStateChangedCallback(this);
         super.onPostCreate();
+    }
+
+    @Override
+    public void onDestroy() {
+        mController.removeStateChangedCallback(this);
+        super.onDestroy();
     }
 
     @Override
