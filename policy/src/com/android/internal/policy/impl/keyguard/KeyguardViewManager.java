@@ -212,6 +212,15 @@ public class KeyguardViewManager {
                 case KeyEvent.KEYCODE_MENU:
                     action = Settings.System.LOCKSCREEN_LONG_MENU_ACTION;
                     break;
+                case KeyEvent.KEYCODE_ASSIST:
+                    action = Settings.System.LOCKSCREEN_LONG_ASSIST_ACTION;
+                    break;
+                case KeyEvent.KEYCODE_APP_SWITCH:
+                    action = Settings.System.LOCKSCREEN_LONG_APP_SWITCH_ACTION;
+                    break;
+                case KeyEvent.KEYCODE_CAMERA:
+                    action = Settings.System.LOCKSCREEN_LONG_CAMERA_ACTION;
+                    break;
             }
 
             if (action != null) {

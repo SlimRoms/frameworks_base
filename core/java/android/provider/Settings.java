@@ -3522,6 +3522,24 @@ public final class Settings {
          */
         public static final String LOCKSCREEN_LONG_MENU_ACTION = "lockscreen_long_menu_action";
 
+        /**
+         * Action for long-pressing assist button on lock screen
+         * @hide
+         */
+        public static final String LOCKSCREEN_LONG_ASSIST_ACTION = "lockscreen_long_assist_action";
+
+        /**
+         * Action for long-pressing app switch button on lock screen
+         * @hide
+         */
+        public static final String LOCKSCREEN_LONG_APP_SWITCH_ACTION = "lockscreen_long_app_switch_action";
+
+        /**
+         * Action for long-pressing camera button on lock screen
+         * @hide
+         */
+        public static final String LOCKSCREEN_LONG_CAMERA_ACTION = "lockscreen_long_camera_action";
+
          /**
           * Always show the battery status on the lockscreen
           * @hide
@@ -3645,6 +3663,9 @@ public final class Settings {
           * 11 - Kill App
           * 12 - Last App
           * 13 - Custom App
+          * 14 - Widget viewpager
+          * 15 - QuickSettings shade toggle
+          * 16 - Camera button
           * @hide
           */
 
@@ -3719,6 +3740,20 @@ public final class Settings {
           * @hide
           */
          public static final String KEY_APP_SWITCH_LONG_PRESS_ACTION = "key_app_switch_long_press_action";
+
+         /**
+          * Action to perform when the camera key is pressed. (Default is 16)
+          * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
+          * @hide
+          */
+         public static final String KEY_CAMERA_ACTION = "key_camera_action";
+
+         /**
+          * Action to perform when the app camera is long-pressed. (Default is 0)
+          * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
+          * @hide
+          */
+         public static final String KEY_CAMERA_LONG_PRESS_ACTION = "key_camera_long_press_action";
 
         /**
         * MediaScanner behavior on boot.
