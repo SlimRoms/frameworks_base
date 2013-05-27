@@ -91,7 +91,9 @@ public class SignalClusterView
         super(context, attrs, defStyle);
 
         mHandler = new Handler();
-        mSettingsObserver = new SettingsObserver(mHandler);
+        if (mSettingsObserver == null) {
+            mSettingsObserver = new SettingsObserver(mHandler);
+        }
     }
 
     public void setNetworkController(NetworkController nc) {

@@ -55,6 +55,7 @@ public class CircleBattery extends ImageView {
     private Handler mHandler;
     private Context mContext;
     private BatteryReceiver mBatteryReceiver = null;
+    private SettingsObserver mObserver;
 
     // state variables
     private boolean mAttached;      // whether or not attached to a window
@@ -88,8 +89,6 @@ public class CircleBattery extends ImageView {
     private int mCircleTextColor;
     private int mCircleTextChargingColor;
     private int mCircleAnimSpeed;
-
-    private SettingsObserver mSettingsObserver;
 
     // runnable to invalidate view via mHandler.postDelayed() call
     private final Runnable mInvalidate = new Runnable() {
@@ -132,6 +131,10 @@ public class CircleBattery extends ImageView {
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_CIRCLE_BATTERY_ANIMATIONSPEED),
                     false, this);
+        }
+
+        public void unobserve() {
+            mContext.getContentResolver().unregisterContentObserver(this);
         }
 
         @Override
@@ -208,6 +211,7 @@ public class CircleBattery extends ImageView {
         mContext = context;
         mHandler = new Handler();
         mBatteryReceiver = new BatteryReceiver(mContext);
+        mObserver = new SettingsObserver(mHandler);
         updateSettings();
     }
 
@@ -217,8 +221,7 @@ public class CircleBattery extends ImageView {
         if (!mAttached) {
             mAttached = true;
             mBatteryReceiver.updateRegistration();
-            mSettingsObserver = new SettingsObserver(mHandler);
-            mSettingsObserver.observe();
+            mObserver.observe();
             updateSettings();
             mHandler.postDelayed(mInvalidate, 250);
         }
@@ -229,8 +232,8 @@ public class CircleBattery extends ImageView {
         super.onDetachedFromWindow();
         if (mAttached) {
             mAttached = false;
+            mObserver.unobserve();
             mBatteryReceiver.updateRegistration();
-            mContext.getContentResolver().unregisterContentObserver(mSettingsObserver);
             mRectLeft = null;   // makes sure, size based variables get
                                 // recalculated on next attach
             mCircleSize = 0;    // makes sure, mCircleSize is reread from icons on

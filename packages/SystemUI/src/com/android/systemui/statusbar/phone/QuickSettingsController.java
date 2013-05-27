@@ -277,18 +277,21 @@ public class QuickSettingsController {
             Settings.System.QUICK_SETTINGS_TILE_CONTENT, finalContent);
     }
 
-    public void setupQuickSettings() {
-        LayoutInflater inflater = LayoutInflater.from(mContext);
-        // Clear out old receiver
+    public void shutdown() {
+        if (mObserver != null) {
+            mContext.getContentResolver().unregisterContentObserver(mObserver);
+        }
         if (mReceiver != null) {
             mContext.unregisterReceiver(mReceiver);
         }
+        mContainerView.removeAllViews();
+    }
+
+    public void setupQuickSettings() {
+        shutdown();
+        LayoutInflater inflater = LayoutInflater.from(mContext);
         mReceiver = new QSBroadcastReceiver();
         mReceiverMap.clear();
-        // Clear out old observer
-        if (mObserver != null) {
-            resolver.unregisterContentObserver(mObserver);
-        }
         mObserver = new QuickSettingsObserver(mHandler);
         mObserverMap.clear();
         addQuickSettings(inflater);
