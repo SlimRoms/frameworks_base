@@ -31,7 +31,8 @@ import com.android.systemui.statusbar.phone.QuickSettingsController;
 
 public class ExpandedDesktopTile extends QuickSettingsTile {
     public static ExpandedDesktopTile mInstance;
-    private boolean enabled = false;
+    private boolean mEnabled = false;
+    private boolean mMode = false;
 
     public static QuickSettingsTile getInstance(Context context, LayoutInflater inflater,
             QuickSettingsContainerView container, final QuickSettingsController qsc,
@@ -53,10 +54,12 @@ public class ExpandedDesktopTile extends QuickSettingsTile {
         mOnClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Change the system setting
-                Settings.System.putInt(mContext.getContentResolver(), Settings.System.EXPANDED_DESKTOP_STATE,
-                                        !enabled ? 1 : 0);
+                if (mMode) {
+                    // Change the system setting
+                    Settings.System.putInt(mContext.getContentResolver(), Settings.System.EXPANDED_DESKTOP_STATE,
+                                            !mEnabled ? 1 : 0);
                 }
+            }
         };
 
         mOnLongClick = new View.OnLongClickListener() {
@@ -69,6 +72,7 @@ public class ExpandedDesktopTile extends QuickSettingsTile {
             }
         };
         qsc.registerObservedContent(Settings.System.getUriFor(Settings.System.EXPANDED_DESKTOP_STATE), this);
+        qsc.registerObservedContent(Settings.System.getUriFor(Settings.System.EXPANDED_DESKTOP_MODE), this);
     }
 
     @Override
@@ -78,14 +82,21 @@ public class ExpandedDesktopTile extends QuickSettingsTile {
     }
 
     private synchronized void updateTile() {
-        enabled = Settings.System.getInt(mContext.getContentResolver(),
+        mEnabled = Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.EXPANDED_DESKTOP_STATE, 0) == 1;
-        if (enabled) {
+        mMode = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.EXPANDED_DESKTOP_MODE, 0) > 0;
+
+        if (mEnabled && mMode) {
             mDrawable = R.drawable.ic_qs_expanded_desktop_on;
             mLabel = mContext.getString(R.string.quick_settings_expanded_desktop);
         } else {
             mDrawable = R.drawable.ic_qs_expanded_desktop_off;
-            mLabel = mContext.getString(R.string.quick_settings_expanded_desktop_off);
+            if (mMode) {
+                mLabel = mContext.getString(R.string.quick_settings_expanded_desktop_off);
+            } else {
+                mLabel = mContext.getString(R.string.quick_settings_expanded_desktop_disabled);
+            }
         }
         updateQuickSettings();
     }
