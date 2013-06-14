@@ -1420,8 +1420,12 @@ public final class PowerManagerService extends IPowerManager.Stub
                     nextTimeout = mLastUserActivityTime
                             + screenOffTimeout - screenDimDuration;
                     if (now < nextTimeout) {
+                        int brightness = mButtonBrightnessOverrideFromWindowManager >= 0
+                                ? mButtonBrightnessOverrideFromWindowManager
+                                : mDisplayPowerRequest.screenBrightness;
                         if (mTouchKeyTimeout == 5) {
-                            mButtonsLight.setBrightness(mDisplayPowerRequest.screenBrightness);
+                            mButtonsLight.setBrightness(brightness);
+                            mButtonsLight.setBrightness(mKeyboardVisible ? brightness : 0);
                         } else if (mTouchKeyTimeout == 6) {
                             mButtonsLight.setBrightness(0);
                             mKeyboardLight.setBrightness(0);
@@ -1430,13 +1434,10 @@ public final class PowerManagerService extends IPowerManager.Stub
                                 mButtonsLight.setBrightness(0);
                                 mKeyboardLight.setBrightness(0);
                             } else {
-                                int brightness = mButtonBrightnessOverrideFromWindowManager >= 0
-                                        ? mButtonBrightnessOverrideFromWindowManager
-                                        : mDisplayPowerRequest.screenBrightness;
                                 mButtonsLight.setBrightness(brightness);
                                 mKeyboardLight.setBrightness(mKeyboardVisible ? brightness : 0);
                                 if (brightness != 0) {
-                                    nextTimeout = now + BUTTON_ON_DURATION;
+                                    nextTimeout = now + mTouchKeyTimeout;
                                 }
                             }
                         }
