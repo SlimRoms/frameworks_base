@@ -147,6 +147,14 @@ public class BatteryController extends BroadcastReceiver {
         mChangeCallbacks.remove(cb);
     }
 
+    public int getBatteryLevel() {
+        return mLevel;
+    }
+
+    public boolean isBatteryStatusCharging() {
+        return mBatteryPlugged;
+    }
+
     public void onReceive(Context context, Intent intent) {
         final String action = intent.getAction();
         if (action.equals(Intent.ACTION_BATTERY_CHANGED)) {

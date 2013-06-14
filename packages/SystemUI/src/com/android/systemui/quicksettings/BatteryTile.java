@@ -56,6 +56,10 @@ public class BatteryTile extends QuickSettingsTile implements BatteryStateChange
 
         mController = controller;
         mTileLayout = R.layout.quick_settings_tile_battery;
+
+        batteryLevel = mController.getBatteryLevel();
+        charging = mController.isBatteryStatusCharging();
+
         batteryLevels = (LevelListDrawable) mContext.getResources().getDrawable(R.drawable.qs_sys_battery);
         chargingBatteryLevels = (LevelListDrawable) mContext.getResources().getDrawable(R.drawable.qs_sys_battery_charging);
 
