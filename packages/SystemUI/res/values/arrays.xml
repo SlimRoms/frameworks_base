@@ -112,9 +112,9 @@
         <item>@*android:drawable/ic_shortcut_camera</item>
         <item>@*android:drawable/ic_shortcut_cloud</item>
         <item>@*android:drawable/ic_shortcut_contact</item>
-        <item>@*android:drawable/ic_shortcut_drive</item>
         <item>@*android:drawable/ic_shortcut_directdial</item>
         <item>@*android:drawable/ic_shortcut_directmessage</item>
+        <item>@*android:drawable/ic_shortcut_drive</item>
         <item>@*android:drawable/ic_shortcut_dropbox</item>
         <item>@*android:drawable/ic_shortcut_email</item>
         <item>@*android:drawable/ic_shortcut_email2</item>
