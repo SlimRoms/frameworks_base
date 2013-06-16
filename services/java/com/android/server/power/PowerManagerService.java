@@ -1425,7 +1425,7 @@ public final class PowerManagerService extends IPowerManager.Stub
                                 : mDisplayPowerRequest.screenBrightness;
                         if (mTouchKeyTimeout == 5) {
                             mButtonsLight.setBrightness(brightness);
-                            mButtonsLight.setBrightness(mKeyboardVisible ? brightness : 0);
+                            mKeyboardLight.setBrightness(mKeyboardVisible ? brightness : 0);
                         } else if (mTouchKeyTimeout == 6) {
                             mButtonsLight.setBrightness(0);
                             mKeyboardLight.setBrightness(0);
