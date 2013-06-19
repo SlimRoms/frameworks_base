@@ -1114,6 +1114,16 @@ public abstract class BaseStatusBar extends SystemUI implements
         updateExpansionStates();
         updateNotificationIcons();
 
+        if (entry.userCleared() && !mNotificationData.hasClearableItems()) {
+            // wait a bit to make the user aware of what's happening
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    animateCollapsePanels(CommandQueue.FLAG_EXCLUDE_NONE);
+                }
+            }, 225);
+        }
+
         return entry.notification;
     }
 
