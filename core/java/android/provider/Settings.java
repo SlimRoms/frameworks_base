@@ -3854,46 +3854,7 @@ public final class Settings {
         /**
          * @hide
          */
-        public static final String NAVIGATION_BAR_BUTTONS_QTY = "navigation_bar_buttons_qty";
-
-        /**
-         * @hide
-         */
-        public static final String[] NAVIGATION_CUSTOM_ACTIVITIES = new String[] {
-            "navigation_custom_app_intent_0",
-            "navigation_custom_app_intent_1",
-            "navigation_custom_app_intent_2",
-            "navigation_custom_app_intent_3",
-            "navigation_custom_app_intent_4",
-            "navigation_custom_app_intent_5",
-            "navigation_custom_app_intent_6",
-        };
-
-        /**
-         * @hide
-         */
-        public static final String[] NAVIGATION_LONGPRESS_ACTIVITIES = new String[] {
-            "navigation_longpress_app_intent_0",
-            "navigation_longpress_app_intent_1",
-            "navigation_longpress_app_intent_2",
-            "navigation_longpress_app_intent_3",
-            "navigation_longpress_app_intent_4",
-            "navigation_longpress_app_intent_5",
-            "navigation_longpress_app_intent_6",
-        };
-
-        /**
-         * @hide
-         */
-        public static final String[] NAVIGATION_CUSTOM_APP_ICONS = new String[] {
-            "navigation_custom_app_icon_0",
-            "navigation_custom_app_icon_1",
-            "navigation_custom_app_icon_2",
-            "navigation_custom_app_icon_3",
-            "navigation_custom_app_icon_4",
-            "navigation_custom_app_icon_5",
-            "navigation_custom_app_icon_6",
-        };
+        public static final String SYSTEMUI_NAVBAR_CONFIG= "systemui_navbar_config";
 
        /**
         *

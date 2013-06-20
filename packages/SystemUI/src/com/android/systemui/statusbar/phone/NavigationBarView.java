@@ -120,7 +120,7 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
     final static String ACTION_WIDGETS = "**widgets**";
     final static String ACTION_NULL = "**null**";
 
-    int mNumberOfButtons = 3;
+    int mNumberOfButtons;
 
     int mTablet_UI = 0;
 
@@ -132,18 +132,14 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
     private boolean mIsHome = true;
     private boolean mAppIsBinded = false;
 
-    public String[] mClickActions = new String[7];
-    public String[] mLongpressActions = new String[7];
-    public String[] mPortraitIcons = new String[7];
+    private String[] mClickActions = new String[5];
+    private String[] mLongpressActions = new String[5];
+    private String[] mPortraitIcons = new String[5];
 
-    public final static int sStockButtonsQty = 3;
-    public final static String[] StockClickActions = {
-        "**back**", "**home**", "**recents**", "**null**", "**null**", "**null**", "**null**"
-    };
+    private final static String mNavBarConfigDefault = "**back**|**null**|empty|"
+                                                        + "**home**|**null**|empty|"
+                                                        + "**recents**|**null**|empty";
 
-    public final static String[] StockLongpress = {
-        "**null**", "**null**", "**null**", "**null**", "**null**", "**null**", "**null**"
-    };
     FrameLayout rot0;
     FrameLayout rot90;
 
@@ -286,13 +282,13 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
                 addLightsOutButton(lightsOut, leftmenuKey, landscape, true);
             }
 
-            int mLongpressEnabled = Settings.System.getInt(mContext.getContentResolver(),
+            int longpressEnabled = Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.SYSTEMUI_NAVBAR_LONG_ENABLE, 0);
 
             mAppIsBinded = false;
             for (int j = 0; j < mNumberOfButtons; j++) {
 
-                if (mLongpressEnabled == 0) {
+                if (longpressEnabled == 0) {
                             mLongpressActions[j] = "**null**";
                 }
 
@@ -978,55 +974,42 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
             ContentResolver resolver = mContext.getContentResolver();
 
             resolver.registerContentObserver(
-                    Settings.System.getUriFor(Settings.System.MENU_LOCATION), false,
+                    Settings.System.getUriFor(Settings.System.MENU_LOCATION),
+                    false,
                     this);
             resolver.registerContentObserver(
-                    Settings.System.getUriFor(Settings.System.MENU_VISIBILITY), false,
+                    Settings.System.getUriFor(Settings.System.MENU_VISIBILITY),
+                    false,
                     this);
-
             resolver.registerContentObserver(
-                    Settings.System.getUriFor(Settings.System.NAVIGATION_BAR_BUTTONS_QTY), false,
+                    Settings.System.getUriFor(Settings.System.NAVIGATION_BAR_TINT),
+                    false,
                     this);
-
             resolver.registerContentObserver(
-                    Settings.System.getUriFor(Settings.System.NAVIGATION_BAR_TINT), false,
+                    Settings.System.getUriFor(Settings.System.NAVIGATION_BAR_BUTTON_TINT),
+                    false,
                     this);
-
             resolver.registerContentObserver(
-                    Settings.System.getUriFor(Settings.System.NAVIGATION_BAR_BUTTON_TINT), false,
+                    Settings.System.getUriFor(Settings.System.NAVIGATION_BAR_BUTTON_TINT_MODE),
+                    false,
                     this);
-
             resolver.registerContentObserver(
-                    Settings.System.getUriFor(Settings.System.NAVIGATION_BAR_BUTTON_TINT_MODE), false,
+                    Settings.System.getUriFor(Settings.System.NAVIGATION_BAR_ALPHA),
+                    false,
                     this);
-
             resolver.registerContentObserver(
-                    Settings.System.getUriFor(Settings.System.NAVIGATION_BAR_ALPHA), false,
+                    Settings.System.getUriFor(Settings.System.STATUS_NAV_BAR_ALPHA_MODE),
+                    false,
                     this);
-
             resolver.registerContentObserver(
-                    Settings.System.getUriFor(Settings.System.STATUS_NAV_BAR_ALPHA_MODE), false,
+                    Settings.System.getUriFor(Settings.System.SYSTEMUI_NAVBAR_CONFIG),
+                    false,
+                    this);
+            resolver.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.SYSTEMUI_NAVBAR_LONG_ENABLE),
+                    false,
                     this);
 
-            for (int j = 0; j < 7; j++) { // watch all 5 settings for changes.
-                resolver.registerContentObserver(
-                        Settings.System.getUriFor(Settings.System.NAVIGATION_CUSTOM_ACTIVITIES[j]),
-                        false,
-                        this);
-                resolver.registerContentObserver(
-                        Settings.System
-                                .getUriFor(Settings.System.NAVIGATION_LONGPRESS_ACTIVITIES[j]),
-                        false,
-                        this);
-                resolver.registerContentObserver(
-                        Settings.System.getUriFor(Settings.System.NAVIGATION_CUSTOM_APP_ICONS[j]),
-                        false,
-                        this);
-                resolver.registerContentObserver(
-                        Settings.System.getUriFor(Settings.System.SYSTEMUI_NAVBAR_LONG_ENABLE),
-                        false,
-                        this);
-            }
             updateSettings();
         }
 
@@ -1063,49 +1046,46 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
         mAlphaMode = Settings.System.getInt(resolver,
                 Settings.System.STATUS_NAV_BAR_ALPHA_MODE, 1);
 
-        mNumberOfButtons = Settings.System.getInt(resolver,
-                Settings.System.NAVIGATION_BAR_BUTTONS_QTY, 0);
-        if (mNumberOfButtons == 0) {
-            mNumberOfButtons = sStockButtonsQty;
-            Settings.System.putInt(resolver,
-                    Settings.System.NAVIGATION_BAR_BUTTONS_QTY, sStockButtonsQty);
+        // init vars to fill with them later the navbar config values
+        int counter = 0;
+        int buttonNumber = 0;
+        String navbarConfig = Settings.System.getString(resolver,
+                    Settings.System.SYSTEMUI_NAVBAR_CONFIG);
+
+        if (navbarConfig == null) {
+            navbarConfig = mNavBarConfigDefault;
         }
 
-        for (int j = 0; j < 7; j++) {
-            mClickActions[j] = Settings.System.getString(resolver,
-                    Settings.System.NAVIGATION_CUSTOM_ACTIVITIES[j]);
-            if (mClickActions[j] == null) {
-                mClickActions[j] = StockClickActions[j];
-                Settings.System.putString(resolver,
-                        Settings.System.NAVIGATION_CUSTOM_ACTIVITIES[j], mClickActions[j]);
+        // Split out the navbar config to work with and add to the list
+        for (String configValue : navbarConfig.split("\\|")) {
+            counter++;
+            if (counter == 1) {
+                mClickActions[buttonNumber] = configValue;
             }
-
-            mLongpressActions[j] = Settings.System.getString(resolver,
-                    Settings.System.NAVIGATION_LONGPRESS_ACTIVITIES[j]);
-
-            if (mLongpressActions[j] == null) {
-                mLongpressActions[j] = StockLongpress[j];
-                Settings.System.putString(resolver,
-                        Settings.System.NAVIGATION_LONGPRESS_ACTIVITIES[j], mLongpressActions[j]);
+            if (counter == 2) {
+                mLongpressActions[buttonNumber] = configValue;
             }
-
-            mPortraitIcons[j] = Settings.System.getString(resolver,
-                    Settings.System.NAVIGATION_CUSTOM_APP_ICONS[j]);
-            if (mPortraitIcons[j] == null) {
-                mPortraitIcons[j] = "";
-                Settings.System.putString(resolver,
-                        Settings.System.NAVIGATION_CUSTOM_APP_ICONS[j], "");
+            if (counter == 3) {
+                if (configValue.equals("empty")) {
+                    mPortraitIcons[buttonNumber] = "";
+                } else {
+                    mPortraitIcons[buttonNumber] = configValue;
+                }
+                buttonNumber++;
+                //reset counter due that iteration of one button is finished
+                counter = 0;
             }
         }
+
+        // set overall counted number off buttons
+        mNumberOfButtons = buttonNumber;
+
+        // construct the navigationbar
         makeBar();
 
     }
 
     private Drawable getNavbarIconImage(String uri) {
-
-        if (uri == null)
-            return getResources().getDrawable(R.drawable.ic_sysbar_null);
-
         if (uri.startsWith("**")) {
             if (uri.equals(ACTION_HOME)) {
 
