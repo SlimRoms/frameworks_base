@@ -2754,40 +2754,7 @@ public final class Settings {
         /**
          * @hide
          */
-        public static final String PIE_BUTTONS_QTY = "pie_buttons_qty";
-
-        /**
-         * @hide
-         */
-        public static final String[] PIE_CUSTOM_ACTIVITIES = new String[] {
-            "pie_custom_intent_0",
-            "pie_custom_intent_1",
-            "pie_custom_intent_2",
-            "pie_custom_intent_3",
-            "pie_custom_intent_4",
-        };
-
-        /**
-         * @hide
-         */
-        public static final String[] PIE_LONGPRESS_ACTIVITIES = new String[] {
-            "pie_longpress_intent_0",
-            "pie_longpress_intent_1",
-            "pie_longpress_intent_2",
-            "pie_longpress_intent_3",
-            "pie_longpress_intent_4",
-        };
-
-        /**
-         * @hide
-         */
-        public static final String[] PIE_CUSTOM_ICONS = new String[] {
-            "pie_custom_icon_0",
-            "pie_custom_icon_1",
-            "pie_custom_icon_2",
-            "pie_custom_icon_3",
-            "pie_custom_icon_4",
-        };
+        public static final String PIE_BUTTONS_CONFIG = "pie_buttons_config";
 
        /**
         *
@@ -2803,46 +2770,7 @@ public final class Settings {
         /**
          * @hide
          */
-        public static final String PIE_BUTTONS_QTY_SECOND_LAYER = "pie_buttons_qty_second_layer";
-
-        /**
-         * @hide
-         */
-        public static final String[] PIE_CUSTOM_ACTIVITIES_SECOND_LAYER = new String[] {
-            "pie_custom_intent_sec_0",
-            "pie_custom_intent_sec_1",
-            "pie_custom_intent_sec_2",
-            "pie_custom_intent_sec_3",
-            "pie_custom_intent_sec_4",
-            "pie_custom_intent_sec_5",
-            "pie_custom_intent_sec_6",
-        };
-
-        /**
-         * @hide
-         */
-        public static final String[] PIE_LONGPRESS_ACTIVITIES_SECOND_LAYER = new String[] {
-            "pie_longpress_intent_sec_0",
-            "pie_longpress_intent_sec_1",
-            "pie_longpress_intent_sec_2",
-            "pie_longpress_intent_sec_3",
-            "pie_longpress_intent_sec_4",
-            "pie_longpress_intent_sec_5",
-            "pie_longpress_intent_sec_6",
-        };
-
-        /**
-         * @hide
-         */
-        public static final String[] PIE_CUSTOM_ICONS_SECOND_LAYER = new String[] {
-            "pie_custom_icon_sec_0",
-            "pie_custom_icon_sec_1",
-            "pie_custom_icon_sec_2",
-            "pie_custom_icon_sec_3",
-            "pie_custom_icon_sec_4",
-            "pie_custom_icon_sec_5",
-            "pie_custom_icon_sec_6",
-        };
+        public static final String PIE_BUTTONS_CONFIG_SECOND_LAYER = "pie_buttons_config_second_layer";
 
        /**
         *
