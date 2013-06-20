@@ -118,8 +118,10 @@ public class SearchPanelView extends FrameLayout implements
     private Resources mResources;
     private ContentResolver mContentResolver;
     private boolean mAttached = false;
-    private String[] targetActivities = new String[5];
-    private String[] longActivities = new String[5];
+    private String[] mTargetActivities = new String[5];
+    private String[] mLongActivities = new String[5];
+    private String[] mCustomIcon = new String[5];
+    private final static String mNavRingConfigDefault = "**assist**|**null**|empty";
     private int startPosOffset;
 
     private int mNavRingAmount;
@@ -131,7 +133,7 @@ public class SearchPanelView extends FrameLayout implements
     String[] intent;
     ArrayList<String> intentList = new ArrayList<String>();
     ArrayList<String> longList = new ArrayList<String>();
-    String mEmpty = "**assist**";
+    String mEmpty = "**none**";
 
     public SearchPanelView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
@@ -240,10 +242,6 @@ public class SearchPanelView extends FrameLayout implements
     private void setDrawables() {
         mLongPress = false;
         mSearchPanelLock = false;
-        String target3 = Settings.System.getString(mContext.getContentResolver(), Settings.System.SYSTEMUI_NAVRING[0]);
-        if (target3 == null || target3.equals("")) {
-            Settings.System.putString(mContext.getContentResolver(), Settings.System.SYSTEMUI_NAVRING[0], "**assist**");
-        }
 
         // Custom Targets
         ArrayList<TargetDrawable> storedDraw = new ArrayList<TargetDrawable>();
@@ -253,15 +251,17 @@ public class SearchPanelView extends FrameLayout implements
 
         boolean navbarCanMove = Settings.System.getInt(mContext.getContentResolver(),
                         Settings.System.NAVIGATION_BAR_CAN_MOVE, 1) == 1;
+        boolean screenSizeTablet = screenLayout() == Configuration.SCREENLAYOUT_SIZE_LARGE
+                                || screenLayout() == Configuration.SCREENLAYOUT_SIZE_XLARGE;
 
-         if (screenLayout() == Configuration.SCREENLAYOUT_SIZE_LARGE || isScreenPortrait()
-                || (screenLayout() != Configuration.SCREENLAYOUT_SIZE_LARGE && !isScreenPortrait() && !navbarCanMove)) {
-             startPosOffset =  1;
-             endPosOffset =  (mNavRingAmount) + 1;
+         if (screenSizeTablet || isScreenPortrait()
+                || (!screenSizeTablet && !isScreenPortrait() && !navbarCanMove)) {
+             startPosOffset = 1;
+             endPosOffset = (mNavRingAmount) + 1;
          } else {
-                //lastly the standard landscape with navbar on right
-             startPosOffset =  (Math.min(1,mNavRingAmount / 2)) + 2;
-             endPosOffset =  startPosOffset - 1;
+             //lastly the standard landscape with navbar on right
+             startPosOffset = (Math.min(1,mNavRingAmount / 2)) + 2;
+             endPosOffset = startPosOffset - 1;
          }
 
         intentList.clear();
@@ -285,9 +285,9 @@ public class SearchPanelView extends FrameLayout implements
 
         // Add User Targets
         for (int i = middleStart - 1; i >= 0; i--) {
-            intentList.add(targetActivities[i]);
-            longList.add(longActivities[i]);
-            storedDraw.add(getTargetDrawable(targetActivities[i], i));
+            intentList.add(mTargetActivities[i]);
+            longList.add(mLongActivities[i]);
+            storedDraw.add(getTargetDrawable(mTargetActivities[i], i));
         }
 
         // Add middle Place Holder Targets
@@ -311,11 +311,9 @@ public class SearchPanelView extends FrameLayout implements
 
         TargetDrawable noneDrawable = new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_action_none));
 
-        String customIconUri = "";
-        try {
-            customIconUri = Settings.System.getString(mContext.getContentResolver(),
-                Settings.System.NAVRING_CUSTOM_APP_ICONS[customIconIndex]);
-        } catch (Exception e) {
+        String customIconUri = null;
+        if (customIconIndex != -1) {
+            customIconUri = mCustomIcon[customIconIndex];
         }
 
         if (customIconUri != null && !customIconUri.equals("")) {
@@ -601,22 +599,11 @@ public class SearchPanelView extends FrameLayout implements
         void observe() {
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.SYSTEMUI_NAVRING_AMOUNT), false, this);
+                    Settings.System.SYSTEMUI_NAVRING_CONFIG), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.SYSTEMUI_NAVRING_LONG_ENABLE), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.NAVIGATION_BAR_CAN_MOVE), false, this);
-
-            for (int i = 0; i < 5; i++) {
-                resolver.registerContentObserver(
-                    Settings.System.getUriFor(Settings.System.SYSTEMUI_NAVRING[i]), false, this);
-                resolver.registerContentObserver(
-                    Settings.System.getUriFor(Settings.System.SYSTEMUI_NAVRING_LONG[i]), false, this);
-                resolver.registerContentObserver(
-                        Settings.System.getUriFor(Settings.System.NAVRING_CUSTOM_APP_ICONS[i]),
-                        false, this);
-
-            }
         }
 
         void unobserve() {
@@ -632,20 +619,45 @@ public class SearchPanelView extends FrameLayout implements
 
     public void updateSettings() {
 
-        int mLongpressEnabled = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.SYSTEMUI_NAVRING_LONG_ENABLE, 0);
+        boolean longpressEnabled = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.SYSTEMUI_NAVRING_LONG_ENABLE, 0) == 1;
 
-        for (int i = 0; i < 5; i++) {
-            targetActivities[i] = Settings.System.getString(
-                    mContext.getContentResolver(), Settings.System.SYSTEMUI_NAVRING[i]);
-            longActivities[i] = Settings.System.getString(
-                    mContext.getContentResolver(), Settings.System.SYSTEMUI_NAVRING_LONG[i]);
-            if (mLongpressEnabled == 0) {
-                    longActivities[i] = "**null**";
+        // init vars to fill with them later the navring config values
+        int counter = 0;
+        int targetNumber = 0;
+        String navRingConfig = Settings.System.getString(mContext.getContentResolver(),
+                    Settings.System.SYSTEMUI_NAVRING_CONFIG);
+
+        if (navRingConfig == null) {
+            navRingConfig = mNavRingConfigDefault;
+        }
+
+        // Split out the navring config to work with and add to the list
+        for (String configValue : navRingConfig.split("\\|")) {
+            counter++;
+            if (counter == 1) {
+                mTargetActivities[targetNumber] = configValue;
+            }
+            if (counter == 2) {
+                if (longpressEnabled) {
+                    mLongActivities[targetNumber] = configValue;
+                } else {
+                    mLongActivities[targetNumber] = "**none**";
+                }
+            }
+            if (counter == 3) {
+                if (configValue.equals("empty")) {
+                    mCustomIcon[targetNumber] = "";
+                } else {
+                    mCustomIcon[targetNumber] = configValue;
+                }
+                targetNumber++;
+                //reset counter due that iteration of one target is finished
+                counter = 0;
             }
         }
 
-        mNavRingAmount = Settings.System.getInt(mContext.getContentResolver(),
-                         Settings.System.SYSTEMUI_NAVRING_AMOUNT, 1);
+        // set overall counted number off buttons
+        mNavRingAmount = targetNumber;
     }
 }

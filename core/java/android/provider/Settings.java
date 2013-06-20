@@ -3907,52 +3907,14 @@ public final class Settings {
         *
         * @hide
         */
-        public static final String SYSTEMUI_NAVRING_AMOUNT = "systemui_navring_amount";
-
-       /**
-        *
-        * @hide
-        */
         public static final String SYSTEMUI_NAVRING_LONG_ENABLE = "systemui_navring_long_enable";
 
         /**
-         * Custom navring actions
+         * Custom navring configuration
          *
          * @hide
          */
-        public static final String[] SYSTEMUI_NAVRING = new String[] {
-                "navring_0",
-                "navring_1",
-                "navring_2",
-                "navring_3",
-                "navring_4",
-        };
-
-        /**
-         * Custom navring long press actions
-         *
-         * @hide
-         */
-        public static final String[] SYSTEMUI_NAVRING_LONG = new String[] {
-                "navring_long_0",
-                "navring_long_1",
-                "navring_long_2",
-                "navring_long_3",
-                "navring_long_4",
-        };
-
-        /**
-         * @hide
-         */
-        public static final String[] NAVRING_CUSTOM_APP_ICONS = new String[] {
-            "navring_custom_app_icon_0",
-            "navring_custom_app_icon_1",
-            "navring_custom_app_icon_2",
-            "navring_custom_app_icon_3",
-            "navring_custom_app_icon_4",
-            "navring_custom_app_icon_5",
-            "navring_custom_app_icon_6",
-        };
+        public static final String SYSTEMUI_NAVRING_CONFIG = "systemui_navring_config";
 
         /**
          * @hide
