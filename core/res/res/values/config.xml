@@ -1264,4 +1264,6 @@
         <item>com.android.inputmethod.latin</item>
     </string-array>
 
+    <!-- True if the Irda service should be started at system start -->
+    <bool name="config_enableIrdaManagerService">false</bool>
 </resources>
