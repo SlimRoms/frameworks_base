@@ -134,7 +134,6 @@
     <string name="accessibility_quick_settings_airplane">Flytilstand <xliff:g id="STATE">%s</xliff:g>.</string>
     <string name="accessibility_quick_settings_bluetooth">Bluetooth <xliff:g id="STATE">%s</xliff:g>.</string>
     <string name="accessibility_quick_settings_alarm">Alarmen er indstillet til <xliff:g id="TIME">%s</xliff:g>.</string>
-    <string name="qs_fav_long_press">Langt tryk</string>
     <string name="data_usage_disabled_dialog_3g_title">2G-3G-data er deaktiveret</string>
     <string name="data_usage_disabled_dialog_4g_title">4G-data er deaktiveret</string>
     <string name="data_usage_disabled_dialog_mobile_title">Mobildata er deaktiveret</string>

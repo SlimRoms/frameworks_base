@@ -134,7 +134,6 @@
     <string name="accessibility_quick_settings_airplane">飛航模式 <xliff:g id="state" example="Off">%s</xliff:g>。</string>
     <string name="accessibility_quick_settings_bluetooth">藍牙 <xliff:g id="state" example="Off">%s</xliff:g>。</string>
     <string name="accessibility_quick_settings_alarm">鬧鐘設置為 <xliff:g id="time" example="Wed 3:30 PM">%s</xliff:g>。</string>
-    <string name="qs_fav_long_press">長按</string>
     <string name="data_usage_disabled_dialog_3g_title">已停用 2G-3G 數據</string>
     <string name="data_usage_disabled_dialog_4g_title">已停用 4G 數據</string>
     <string name="data_usage_disabled_dialog_mobile_title">已停用行動數據</string>
