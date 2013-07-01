@@ -1862,6 +1862,9 @@
   <!-- Hardware Key ReMapping -->
   <java-symbol type="integer" name="config_deviceHardwareKeys" />
 
+  <!-- Notification vibrate alert during call -->
+  <java-symbol type="array" name="config_notificationNoAlertsVibePattern" />
+
   <!-- Power menu -->
   <java-symbol type="string" name="global_action_screenshot" />
   <java-symbol type="string" name="global_action_choose_profile" />
