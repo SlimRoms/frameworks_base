@@ -79,6 +79,7 @@ public class SlimTarget {
     public final static String ACTION_POWER = "**power**";
     public final static String ACTION_LAST_APP = "**lastapp**";
     public final static String ACTION_NOTIFICATIONS = "**notifications**";
+    public final static String ACTION_QS = "**quicksettings**";
     public final static String ACTION_RECENTS = "**recents**";
     public final static String ACTION_IME = "**ime**";
     public final static String ACTION_KILL = "**kill**";
@@ -234,10 +235,16 @@ public class SlimTarget {
         if (action.equals(ACTION_NOTIFICATIONS)) {
             try {
                 IStatusBarService.Stub.asInterface(
-                        ServiceManager.getService(mContext.STATUS_BAR_SERVICE)).expandNotificationsPanel();
+                        ServiceManager.getService(mContext.STATUS_BAR_SERVICE)).toggleNotificationShade();
             } catch (RemoteException e) {
-                // A RemoteException is like a cold
-                // Let's hope we don't catch one!
+            }
+            return true;
+        }
+        if (action.equals(ACTION_QS)) {
+            try {
+                IStatusBarService.Stub.asInterface(
+                        ServiceManager.getService(mContext.STATUS_BAR_SERVICE)).toggleQSShade();
+            } catch (RemoteException e) {
             }
             return true;
         }
@@ -280,6 +287,8 @@ public class SlimTarget {
             return mContext.getResources().getString(R.string.action_power);
         if (uri.equals(ACTION_NOTIFICATIONS))
             return mContext.getResources().getString(R.string.action_notifications);
+        if (uri.equals(ACTION_QS))
+            return mContext.getResources().getString(R.string.action_qs);
         if (uri.equals(ACTION_LAST_APP))
             return mContext.getResources().getString(R.string.action_lastapp);
         if (uri.equals(ACTION_NULL))

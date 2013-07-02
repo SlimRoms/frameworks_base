@@ -367,6 +367,10 @@ public class SearchPanelView extends FrameLayout implements
             return new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_action_power));
         if (action.equals("**screenoff**"))
             return new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_action_power));
+        if (action.equals("**quicksettings**"))
+            return new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_action_qs));
+        if (action.equals("**notifications**"))
+            return new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_action_notifications));
         if (action.equals("**assist**"))
             return new TargetDrawable(mResources, com.android.internal.R.drawable.ic_action_assist_generic);
         try {

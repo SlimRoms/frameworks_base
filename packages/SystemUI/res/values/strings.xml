@@ -582,6 +582,7 @@
     <string name="action_kill">Kill task</string>
     <string name="action_power">Power</string>
     <string name="action_notifications">Notifications</string>
+    <string name="action_qs">Quicksettings</string>
     <string name="action_lastapp">Last App</string>
     <string name="action_none">Empty</string>
 
