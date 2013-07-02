@@ -36,6 +36,8 @@ import android.view.animation.TranslateAnimation;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.android.internal.R;
+
 public class BatteryBar extends RelativeLayout implements Animatable {
 
     private static final String TAG = BatteryBar.class.getSimpleName();
@@ -192,8 +194,12 @@ public class BatteryBar extends RelativeLayout implements Animatable {
     private void updateSettings() {
         ContentResolver resolver = getContext().getContentResolver();
 
-        int color = Settings.System.getInt(resolver, Settings.System.STATUSBAR_BATTERY_BAR_COLOR,
-                0xFF33B5E5);
+        int color = Settings.System.getInt(resolver,
+                        Settings.System.STATUSBAR_BATTERY_BAR_COLOR,
+                        -2);
+        if (color == -2) {
+            color = getResources().getColor(R.color.holo_blue_light);
+        }
 
         shouldAnimateCharging = Settings.System.getInt(resolver,
                 Settings.System.STATUSBAR_BATTERY_BAR_ANIMATE, 0) == 1;

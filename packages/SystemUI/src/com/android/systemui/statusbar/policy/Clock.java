@@ -311,8 +311,6 @@ public class Clock extends TextView {
 
     protected void updateSettings() {
         ContentResolver resolver = mContext.getContentResolver();
-        int defaultColor = getResources().getColor(
-                com.android.internal.R.color.holo_blue_light);
 
         mShowClock = (Settings.System.getInt(resolver,
                 Settings.System.STATUS_BAR_CLOCK, 1) == 1);
@@ -336,9 +334,12 @@ public class Clock extends TextView {
         mClockDateStyle = Settings.System.getInt(resolver,
                 Settings.System.STATUSBAR_CLOCK_DATE_STYLE, CLOCK_DATE_STYLE_UPPERCASE);
 
+        int defaultColor = getResources().getColor(
+                com.android.internal.R.color.holo_blue_light);
         mClockColor = Settings.System.getInt(resolver,
-                Settings.System.STATUSBAR_CLOCK_COLOR, defaultColor);
-        if (mClockColor == Integer.MIN_VALUE) {
+                Settings.System.STATUSBAR_CLOCK_COLOR, -2);
+        if (mClockColor == Integer.MIN_VALUE
+                || mClockColor == -2) {
             // flag to reset the color
             mClockColor = defaultColor;
         }
