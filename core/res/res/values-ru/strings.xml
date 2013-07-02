@@ -1548,4 +1548,16 @@
 
     <!-- The item label for the no profile selection item. -->
     <string name="profile_none">Нет</string>
+    
+    <!-- Privacy Guard -->
+    <string name="permlab_changePrivacyGuardState">Включить/выключить защиту личных данных</string>
+    <string name="permdesc_changePrivacyGuardState">Разрешает запуск приложения под защитой личных данных. Такое приложение не будет иметь доступа к личным данным, вроде контактов, журналов звонков или сообщений.</string>
+    <string name="privacy_guard_notification">Защита личных данных включена</string>
+    <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> не сможет иметь доступ к личным данным</string>
+
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_interceptSmsSent">Перехватывать исходящие SMS</string>
+
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_interceptSmsSent">Разрешает перехватывать исходящие SMS. Вредоносные приложения могут использовать это разрешение для запрета отсылки сообщений.</string>
 </resources>
