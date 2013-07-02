@@ -94,11 +94,19 @@ public class ToggleLockscreenTile extends QuickSettingsTile {
         super.onPostCreate();
     }
 
+    @Override
+    public void onDestroy() {
+        if (mLock != null) {
+            mLock.reenableKeyguard();
+        }
+        super.onDestroy();
+    }
+
     void applyLockscreenChanges() {
         if (mLock == null) {
             KeyguardManager keyguardManager = (KeyguardManager)
                     mContext.getSystemService(Context.KEYGUARD_SERVICE);
-            mLock = keyguardManager.newKeyguardLock("PowerWidget");
+            mLock = keyguardManager.newKeyguardLock("LockscreenTile");
         }
         if (mDisabledLockscreen) {
             mDrawable = R.drawable.ic_qs_lock_screen_off;
