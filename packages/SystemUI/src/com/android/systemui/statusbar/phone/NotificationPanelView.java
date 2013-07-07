@@ -110,8 +110,8 @@ public class NotificationPanelView extends PanelView {
             boolean flip = false;
             boolean swipeFlipJustFinished = false;
             boolean swipeFlipJustStarted = false;
-            boolean noNotificationPulldown = Settings.System.getInt(getContext().getContentResolver(),
-                                    Settings.System.QS_NO_NOTIFICATION_PULLDOWN, 0) == 1;
+            int noNotificationPulldownMode = Settings.System.getInt(getContext().getContentResolver(),
+                                    Settings.System.QS_NO_NOTIFICATION_PULLDOWN, 0);
             int quickPulldownMode = Settings.System.getInt(getContext().getContentResolver(),
                                     Settings.System.QS_QUICK_PULLDOWN, 0);
             switch (event.getActionMasked()) {
@@ -128,7 +128,9 @@ public class NotificationPanelView extends PanelView {
                     } else if (event.getX(0) < getWidth() * (1.0f - STATUS_BAR_SETTINGS_LEFT_PERCENTAGE) &&
                             quickPulldownMode == 2) {
                         flip = true;
-                    } else if (!mStatusBar.hasClearableNotifications() && noNotificationPulldown) {
+                    } else if (!mStatusBar.hasClearableNotifications() && noNotificationPulldownMode == 1) {
+                        flip = true;
+                    } else if (!mStatusBar.hasVisibleNotifications() && noNotificationPulldownMode == 2) {
                         flip = true;
                     }
                     break;
