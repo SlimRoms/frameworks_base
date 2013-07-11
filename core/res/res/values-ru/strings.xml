@@ -1556,6 +1556,10 @@
     <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> не сможет иметь доступ к личным данным</string>
 
     <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_cancelNotifications">Отключить уведомления приложений</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_cancelNotifications">Разрешает отключать уведомления, созданные другими приложениями.</string>
+
     <string name="permlab_interceptSmsSent">Перехватывать исходящие SMS</string>
 
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
