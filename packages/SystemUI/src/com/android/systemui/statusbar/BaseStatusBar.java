@@ -144,6 +144,10 @@ public abstract class BaseStatusBar extends SystemUI implements
     public static final int EXPANDED_LEAVE_ALONE = -10000;
     public static final int EXPANDED_FULL_OPEN = -10001;
 
+    private static final boolean CLOSE_PANEL_WHEN_EMPTIED = true;
+    private static final int COLLAPSE_AFTER_DISMISS_DELAY = 200;
+    private static final int COLLAPSE_AFTER_REMOVE_DELAY = 400;
+
     protected CommandQueue mCommandQueue;
     protected IStatusBarService mBarService;
     protected H mHandler = createHandler();
@@ -166,6 +170,12 @@ public abstract class BaseStatusBar extends SystemUI implements
 
     protected FrameLayout mStatusBarContainer;
 
+    private Runnable mPanelCollapseRunnable = new Runnable() {
+        @Override
+        public void run() {
+            animateCollapsePanels(CommandQueue.FLAG_EXCLUDE_NONE);
+        }
+    };
 
     /**
      * An interface for navigation key bars to allow status bars to signal which keys are
@@ -1191,14 +1201,14 @@ public abstract class BaseStatusBar extends SystemUI implements
         updateExpansionStates();
         updateNotificationIcons();
 
-        if (entry.userCleared() && !mNotificationData.hasClearableItems()) {
-            // wait a bit to make the user aware of what's happening
-            mHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    animateCollapsePanels(CommandQueue.FLAG_EXCLUDE_NONE);
-                }
-            }, 225);
+        if (CLOSE_PANEL_WHEN_EMPTIED && isNotificationPanelFullyVisible()) {
+            if (entry.userDismissed() && !mNotificationData.hasClearableItems()) {
+                mHandler.removeCallbacks(mPanelCollapseRunnable);
+                mHandler.postDelayed(mPanelCollapseRunnable, COLLAPSE_AFTER_DISMISS_DELAY);
+            } else if (mNotificationData.size() == 0) {
+                mHandler.removeCallbacks(mPanelCollapseRunnable);
+                mHandler.postDelayed(mPanelCollapseRunnable, COLLAPSE_AFTER_REMOVE_DELAY);
+            }
         }
 
         return entry.notification;
@@ -1240,6 +1250,7 @@ public abstract class BaseStatusBar extends SystemUI implements
         }
         updateExpansionStates();
         updateNotificationIcons();
+        mHandler.removeCallbacks(mPanelCollapseRunnable);
 
         return iconView;
     }
@@ -1287,6 +1298,7 @@ public abstract class BaseStatusBar extends SystemUI implements
     protected abstract void tick(IBinder key, StatusBarNotification n, boolean firstTime);
     protected abstract void updateExpandedViewPos(int expandedPosition);
     protected abstract int getExpandedViewMaxHeight();
+    protected abstract boolean isNotificationPanelFullyVisible();
     protected abstract boolean shouldDisableNavbarGestures();
 
     protected boolean isTopNotification(ViewGroup parent, NotificationData.Entry entry) {
