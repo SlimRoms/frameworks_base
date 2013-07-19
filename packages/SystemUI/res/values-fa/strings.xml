@@ -221,17 +221,6 @@
     <string name="status_bar_help_title">اعلان‌ها در اینجا نمایش داده می‌شوند</string>
     <string name="status_bar_help_text">با کشیدن انگشت به طرف پایین به آنها دسترسی پیدا کنید.\"\n\"برای کنترل‌های سیستم دوباره انگشت خود را به سمت پایین بکشید.</string>
     <string name="powerwidget_screen_timeout_toast">خاموشی صفحه نمایش در: %1$d %2$s</string>
-    <string name="action_home">صفحهٔ اصلی</string>
-    <string name="action_back">برگشت</string>
-    <string name="action_recents">وقایع اخیر</string>
-    <string name="action_screenshot">عکس صفحه</string>
-    <string name="action_menu">منو</string>
-    <string name="action_ime">اجرای تغییر دهنده IME</string>
-    <string name="action_kill">بستن وظیفه</string>
-    <string name="action_power">برق</string>
-    <string name="action_notifications">اعلان‌ها</string>
-    <string name="action_lastapp">آخرین نرم‌افزار</string>
-    <string name="action_none">خالی</string>
     <string name="brightness_label">روشنایی</string>
     <string name="empty_tile_title">خالی</string>
     <string name="quicksettings_shortcuts_icon_picker_facebook">فیس‌بوک</string>

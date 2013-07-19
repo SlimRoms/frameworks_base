@@ -572,24 +572,7 @@
         <xliff:g id="number">%d</xliff:g>
     </string>
 
-    <!--  Target/Action Strings -->
-    <string name="action_home">Home</string>
-    <string name="action_back">Back</string>
-    <string name="action_recents">Recents</string>
-    <string name="action_screenshot">Screenshot</string>
-    <string name="action_menu">Menu</string>
-    <string name="action_ime">Open IME Switcher</string>
-    <string name="action_kill">Kill task</string>
-    <string name="action_power">Power</string>
-    <string name="action_notifications">Notifications</string>
-    <string name="action_qs">Quicksettings</string>
-    <string name="action_lastapp">Last App</string>
-    <string name="action_none">Empty</string>
-
-    <string name="toggle_ring_vib">Ring/Vib - Toggle</string>
-    <string name="toggle_ring_silent">Ring/Silent - Toggle</string>
-    <string name="toggle_ring_vib_silent">Ring/Vib/Silent - Toggle</string>
-    <string name="toggle_widgets">Widgets - Toggle</string>
+    <!--  General action Strings -->
     <string name="widgets">Widgets</string>
     <string name="app_killed_message">App Killed</string>
 
@@ -693,4 +676,5 @@
     <string name="pie_phone_status_no_service">No service</string>
     <string name="pie_phone_status_airplane_mode">Airplane mode on</string>
     <string name="pie_phone_status_emergency_only">Emergency calls only</string>
+
 </resources>

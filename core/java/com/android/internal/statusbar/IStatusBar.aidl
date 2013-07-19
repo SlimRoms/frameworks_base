@@ -38,6 +38,9 @@ oneway interface IStatusBar
     void toggleNotificationShade();
     void toggleQSShade();
     void toggleWidgets();
+    void toggleScreenshot();
+    void toggleLastApp();
+    void toggleKillApp();
     void toggleRecentApps();
     void preloadRecentApps();
     void cancelPreloadRecentApps();

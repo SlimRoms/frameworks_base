@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2013 The CyanogenMod Project (Jens Doll)
+ * Copyright (C) 2013 SlimRoms Project
  * This code is loosely based on portions of the ParanoidAndroid Project source, Copyright (C) 2012.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
@@ -18,7 +19,6 @@ package com.android.systemui.statusbar.policy;
 
 import android.app.Activity;
 import android.app.ActivityManager;
-import android.app.ActivityManager.RunningAppProcessInfo;
 import android.app.ActivityOptions;
 import android.app.SearchManager;
 import android.app.StatusBarManager;
@@ -26,14 +26,11 @@ import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
-import android.content.ComponentName;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
-import android.content.ServiceConnection;
 import android.database.ContentObserver;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -46,9 +43,7 @@ import android.os.BatteryManager;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
-import android.os.Messenger;
 import android.os.PowerManager;
-import android.os.Process;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemClock;
@@ -70,15 +65,11 @@ import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import java.io.File;
-import java.io.FileDescriptor;
-import java.io.PrintWriter;
-import java.net.URISyntaxException;
-import java.util.List;
-
-import com.android.internal.statusbar.IStatusBarService;
+import com.android.internal.util.slim.ButtonConfig;
+import com.android.internal.util.slim.ButtonsConstants;
+import com.android.internal.util.slim.ButtonsHelper;
+import com.android.internal.util.slim.SlimActions;
 import com.android.systemui.R;
 import com.android.systemui.statusbar.BaseStatusBar;
 import com.android.systemui.statusbar.pie.PieItem;
@@ -87,6 +78,12 @@ import com.android.systemui.statusbar.pie.PieLayout.PieDrawable;
 import com.android.systemui.statusbar.pie.PieLayout.PieSlice;
 import com.android.systemui.statusbar.pie.PieSliceContainer;
 import com.android.systemui.statusbar.pie.PieSysInfo;
+
+import java.io.File;
+import java.io.FileDescriptor;
+import java.io.PrintWriter;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
 
 /**
  * Controller class for the default pie control.
@@ -99,37 +96,7 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
     private static final String TAG = "PieController";
     private static final boolean DEBUG = false;
 
-    private final static String ACTION_HOME = "**home**";
-    private final static String ACTION_BACK = "**back**";
-    private final static String ACTION_SEARCH = "**search**";
-    private final static String ACTION_MENU = "**menu**";
-    private final static String ACTION_POWER = "**power**";
-    private final static String ACTION_NOTIFICATIONS = "**notifications**";
-    private final static String ACTION_QS = "**quicksettings**";
-    private final static String ACTION_RECENTS = "**recents**";
-    private final static String ACTION_SCREENSHOT = "**screenshot**";
-    private final static String ACTION_IME = "**ime**";
-    private final static String ACTION_LAST_APP = "**lastapp**";
-    private final static String ACTION_KILL = "**kill**";
-    private final static String ACTION_WIDGETS = "**widgets**";
-    private final static String ACTION_NULL = "**null**";
-
-    private String[] mClickActions = new String[7];
-    private String[] mLongpressActions = new String[7];
-    private String[] mPortraitIcons = new String[7];
     private boolean mSecondLayerActive;
-
-    private final static String
-            mPieConfigDefault = "**back**|**null**|empty|"
-                              + "**home**|**null**|empty|"
-                              + "**recents**|**null**|empty";
-
-    private final static String
-            mPieSecondLayerConfigDefault = "**menu**|**null**|empty|"
-                                         + "**notifications**|**null**|empty|"
-                                         + "**search**|**null**|empty|"
-                                         + "**screenshot**|**null**|empty|"
-                                         + "**ime**|**null**|empty";
 
     public static final float EMPTY_ANGLE = 10;
     public static final float START_ANGLE = 180 + EMPTY_ANGLE;
@@ -149,11 +116,6 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
     private int mBatteryStatus;
     private TelephonyManager mTelephonyManager;
     private ServiceState mServiceState;
-    private ActivityManager mActivityManager;
-    private IStatusBarService mBarService;
-
-    private final Object mScreenshotLock = new Object();
-    private ServiceConnection mScreenshotConnection = null;
 
     // all pie slices that are managed by the controller
     private PieSliceContainer mNavigationSlice;
@@ -288,31 +250,38 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
         void observe() {
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.PIE_BUTTONS_CONFIG), false, this);
+                    Settings.System.PIE_BUTTONS_CONFIG), false, this,
+                    UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.PIE_SIZE), false, this);
+                    Settings.System.PIE_SIZE), false, this,
+                    UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.PIE_BUTTON_COLOR), false, this);
+                    Settings.System.PIE_BUTTON_COLOR), false, this,
+                    UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.PIE_BUTTON_PRESSED_COLOR), false, this);
+                    Settings.System.PIE_BUTTON_PRESSED_COLOR), false, this,
+                    UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.PIE_BUTTON_LONG_PRESSED_COLOR), false, this);
+                    Settings.System.PIE_BUTTON_LONG_PRESSED_COLOR), false, this,
+                    UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.PIE_BUTTON_OUTLINE_COLOR), false, this);
+                    Settings.System.PIE_BUTTON_OUTLINE_COLOR), false, this,
+                    UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.PIE_ICON_COLOR), false, this);
+                    Settings.System.PIE_ICON_COLOR), false, this,
+                    UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.PIE_ICON_COLOR_MODE), false, this);
+                    Settings.System.PIE_ICON_COLOR_MODE), false, this,
+                    UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.PIE_BUTTON_ALPHA), false, this);
+                    Settings.System.PIE_BUTTON_ALPHA), false, this,
+                    UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.PIE_BUTTON_PRESSED_ALPHA), false, this);
+                    Settings.System.PIE_BUTTON_PRESSED_ALPHA), false, this,
+                    UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.PIE_SECOND_LAYER_ACTIVE), false, this);
-            resolver.registerContentObserver(
-                    Settings.System.getUriFor(Settings.System.PIE_LONG_PRESS_ENABLE),
-                    false,
-                    this);
+                    Settings.System.PIE_SECOND_LAYER_ACTIVE), false, this,
+                    UserHandle.USER_ALL);
         }
 
         @Override
@@ -346,10 +315,6 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
 
         void observe() {
             ContentResolver resolver = mContext.getContentResolver();
-            resolver.registerContentObserver(
-                    Settings.System.getUriFor(Settings.System.PIE_LONG_PRESS_ENABLE_SECOND_LAYER),
-                    false,
-                    this);
             resolver.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.PIE_BUTTONS_CONFIG_SECOND_LAYER),
                     false,
@@ -392,10 +357,6 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
 
     public PieController(Context context) {
         mContext = context;
-
-        mActivityManager = (ActivityManager) mContext.getSystemService(Activity.ACTIVITY_SERVICE);
-        mBarService = IStatusBarService.Stub.asInterface(
-                ServiceManager.getService(Context.STATUS_BAR_SERVICE));
 
         mVibrator = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
         mWm = IWindowManager.Stub.asInterface(ServiceManager.getService("window"));
@@ -550,72 +511,38 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
 
     private void getCustomActionsAndConstruct(ContentResolver resolver,
             boolean secondLayer, int minimumImageSize) {
-        // init vars to fill with them later the pie config values
-        int counter = 0;
-        int buttonNumber = 0;
-        boolean longpressEnabled = false;
-        String pieConfig = null;
 
-        if (!secondLayer) {
-            pieConfig = Settings.System.getString(resolver,
-                    Settings.System.PIE_BUTTONS_CONFIG);
-            if (pieConfig == null) {
-                pieConfig = mPieConfigDefault;
-            }
-            longpressEnabled = Settings.System.getInt(resolver,
-                     Settings.System.PIE_LONG_PRESS_ENABLE, 0) == 1;
+        ArrayList<ButtonConfig> buttonsConfig;
+
+        if (secondLayer) {
+            buttonsConfig = ButtonsHelper.getPieSecondLayerConfig(mContext);
         } else {
-            pieConfig = Settings.System.getString(resolver,
-                    Settings.System.PIE_BUTTONS_CONFIG_SECOND_LAYER);
-            if (pieConfig == null) {
-                pieConfig = mPieSecondLayerConfigDefault;
-            }
-            longpressEnabled = Settings.System.getInt(resolver,
-                     Settings.System.PIE_LONG_PRESS_ENABLE_SECOND_LAYER, 0) == 1;
+            buttonsConfig = ButtonsHelper.getPieConfig(mContext);
         }
 
-        // Split out the pie config to work with and add to the list
-        for (String configValue : pieConfig.split("\\|")) {
-            counter++;
-            if (counter == 1) {
-                mClickActions[buttonNumber] = configValue;
-            }
-            if (counter == 2) {
-                if (longpressEnabled) {
-                    mLongpressActions[buttonNumber] = configValue;
-                } else {
-                    mLongpressActions[buttonNumber] = "**null**";
-                }
-            }
-            if (counter == 3) {
-                if (configValue.equals("empty")) {
-                    mPortraitIcons[buttonNumber] = "";
-                } else {
-                    mPortraitIcons[buttonNumber] = configValue;
-                }
-                buttonNumber++;
-                //reset counter due that iteration of one button is finished
-                counter = 0;
-            }
-        }
+        int buttonWidth = 7 / buttonsConfig.size();
+        ButtonConfig buttonConfig;
 
-        int buttonWidth = 7 / buttonNumber;
-
-        for (int j = 0; j < buttonNumber; j++) {
+        for (int j = 0; j < buttonsConfig.size(); j++) {
+            buttonConfig = buttonsConfig.get(j);
             if (secondLayer) {
-                mNavigationSliceSecondLayer.addItem(constructItem(buttonWidth, mClickActions[j],
-                        mLongpressActions[j], mPortraitIcons[j], minimumImageSize));
+                mNavigationSliceSecondLayer.addItem(constructItem(buttonWidth,
+                        buttonConfig.getClickAction(),
+                        buttonConfig.getLongpressAction(),
+                        buttonConfig.getIcon(), minimumImageSize));
             } else {
-                mNavigationSlice.addItem(constructItem(buttonWidth, mClickActions[j],
-                        mLongpressActions[j], mPortraitIcons[j], minimumImageSize));
+                mNavigationSlice.addItem(constructItem(buttonWidth,
+                        buttonConfig.getClickAction(),
+                        buttonConfig.getLongpressAction(),
+                        buttonConfig.getIcon(), minimumImageSize));
             }
         }
     }
 
     private PieItem constructItem(int width, String clickAction, String longPressAction,
-                String imageUri, int minimumImageSize) {
+                String iconUri, int minimumImageSize) {
         ImageView view = new ImageView(mContext);
-        int iconType = setPieItemIcon(view, imageUri, clickAction);
+        int iconType = setPieItemIcon(view, iconUri, clickAction);
         view.setMinimumWidth(minimumImageSize);
         view.setMinimumHeight(minimumImageSize);
         LayoutParams lp = new LayoutParams(minimumImageSize, minimumImageSize);
@@ -623,96 +550,44 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
         PieItem item = new PieItem(mContext, mPieContainer, 0, width, clickAction,
                 longPressAction, view, iconType);
         item.setOnClickListener(this);
-        if (!longPressAction.equals(ACTION_NULL)) {
+        if (!longPressAction.equals(ButtonsConstants.ACTION_NULL)) {
             item.setOnLongClickListener(this);
         }
         return item;
     }
 
-    private int setPieItemIcon(ImageView view, String imageUri, String clickAction) {
-        if (imageUri != null) {
-            if (imageUri.length() > 0) {
-                // custom icon from the URI here
-                File f = new File(Uri.parse(imageUri).getPath());
-                if (f.exists()) {
-                    Drawable d = new BitmapDrawable(mContext.getResources(), f.getAbsolutePath());
-                    view.setImageDrawable(d);
-                    if (clickAction.equals(ACTION_BACK)) {
-                        // back icon image needs to be handled seperatly
-                        // all other is handled in PieItem
-                        int customImageColorize = Settings.System.getInt(
-                                mContext.getContentResolver(),
-                                Settings.System.PIE_ICON_COLOR_MODE, 0);
-                        mBackIcon = prepareBackIcon(d,
-                            (customImageColorize == 0 || customImageColorize == 2), true);
-                    } else {
-                        // custom images need to be forced to resize to fit better
-                        resizeIcon(view, null, true);
-                    }
-                    return 2;
-                }
-            } else if (clickAction != null && !clickAction.startsWith("**")) {
-                // here it's not a system action (**action**), so it must be an
-                // app intent
-                try {
-                    Drawable d = mContext.getPackageManager().getActivityIcon(
-                            Intent.parseUri(clickAction, 0));
-                    view.setImageDrawable(d);
-                    if (mIconResize) {
-                        resizeIcon(view, null, false);
-                    }
-                    return 1;
-                } catch (NameNotFoundException e) {
-                    e.printStackTrace();
-                } catch (URISyntaxException e) {
-                    e.printStackTrace();
-                }
+    private int setPieItemIcon(ImageView view, String iconUri, String clickAction) {
+        Drawable d = ButtonsHelper.getButtonIconImage(mContext, clickAction, iconUri);
+        if (d != null) {
+            view.setImageDrawable(d);
+        }
+
+        if (iconUri != null && !iconUri.equals("empty")) {
+            if (clickAction.equals(ButtonsConstants.ACTION_BACK)) {
+                // back icon image needs to be handled seperatly
+                // all other is handled in PieItem
+                int customImageColorize = Settings.System.getInt(
+                        mContext.getContentResolver(),
+                        Settings.System.PIE_ICON_COLOR_MODE, 0);
+                mBackIcon = prepareBackIcon(d,
+                    (customImageColorize == 0 || customImageColorize == 2), true);
+            } else {
+                // custom images need to be forced to resize to fit better
+                resizeIcon(view, null, true);
             }
-        }
-
-        view.setImageDrawable(getPieSystemIconImage(clickAction));
-        if (mIconResize) {
-            resizeIcon(view, null, false);
-        }
-        return 0;
-    }
-
-    private Drawable getPieSystemIconImage(String uri) {
-        if (uri == null)
-            return mContext.getResources().getDrawable(R.drawable.ic_sysbar_null);
-
-        if (uri.startsWith("**")) {
-            if (uri.equals(ACTION_HOME)) {
-                return mContext.getResources().getDrawable(R.drawable.ic_sysbar_home);
-            } else if (uri.equals(ACTION_BACK)) {
-                mBackIcon = mContext.getResources().getDrawable(R.drawable.ic_sysbar_back);
-                mBackIcon = prepareBackIcon(mBackIcon, false, false);
-                return mBackIcon;
-            } else if (uri.equals(ACTION_RECENTS)) {
-                return mContext.getResources().getDrawable(R.drawable.ic_sysbar_recent);
-            } else if (uri.equals(ACTION_SCREENSHOT)) {
-                return mContext.getResources().getDrawable(R.drawable.ic_sysbar_screenshot);
-            } else if (uri.equals(ACTION_SEARCH)) {
-                return mContext.getResources().getDrawable(R.drawable.ic_sysbar_search);
-            } else if (uri.equals(ACTION_MENU)) {
-                return mContext.getResources().getDrawable(R.drawable.ic_sysbar_menu_big);
-            } else if (uri.equals(ACTION_IME)) {
-                return mContext.getResources().getDrawable(R.drawable.ic_sysbar_ime_switcher);
-            } else if (uri.equals(ACTION_LAST_APP)) {
-                return mContext.getResources().getDrawable(R.drawable.ic_sysbar_lastapp);
-            } else if (uri.equals(ACTION_KILL)) {
-                return mContext.getResources().getDrawable(R.drawable.ic_sysbar_killtask);
-            } else if (uri.equals(ACTION_WIDGETS)) {
-                return mContext.getResources().getDrawable(R.drawable.ic_sysbar_widget);
-            } else if (uri.equals(ACTION_POWER)) {
-                return mContext.getResources().getDrawable(R.drawable.ic_sysbar_power);
-            } else if (uri.equals(ACTION_NOTIFICATIONS)) {
-                return mContext.getResources().getDrawable(R.drawable.ic_sysbar_notifications);
-            } else if (uri.equals(ACTION_QS)) {
-                return mContext.getResources().getDrawable(R.drawable.ic_sysbar_qs);
+            return 2;
+        } else {
+            if (mIconResize) {
+                resizeIcon(view, null, false);
             }
+            if (clickAction.startsWith("**")) {
+                if (clickAction.equals(ButtonsConstants.ACTION_BACK)) {
+                    mBackIcon = prepareBackIcon(d, false, false);
+                }
+                return 0;
+            }
+            return 1;
         }
-        return mContext.getResources().getDrawable(R.drawable.ic_sysbar_null);
     }
 
     private Drawable resizeIcon(ImageView view, Drawable d, boolean useSystemDimens) {
@@ -794,17 +669,17 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
         PieItem item;
 
         for (int j = 0; j < 2; j++) {
-            item = findItem(ACTION_HOME, j);
+            item = findItem(ButtonsConstants.ACTION_HOME, j);
             if (item != null) {
                 boolean isNop = (hints & StatusBarManager.NAVIGATION_HINT_HOME_NOP) != 0;
                 item.setAlpha(isNop ? 0.5f : 1.0f);
             }
-            item = findItem(ACTION_RECENTS, j);
+            item = findItem(ButtonsConstants.ACTION_RECENTS, j);
             if (item != null) {
                 boolean isNop = (hints & StatusBarManager.NAVIGATION_HINT_RECENT_NOP) != 0;
                 item.setAlpha(isNop ? 0.5f : 1.0f);
             }
-            item = findItem(ACTION_BACK, j);
+            item = findItem(ButtonsConstants.ACTION_BACK, j);
             if (item != null) {
                 boolean isNop = (hints & StatusBarManager.NAVIGATION_HINT_BACK_NOP) != 0;
                 boolean isAlt = (hints & StatusBarManager.NAVIGATION_HINT_BACK_ALT) != 0;
@@ -860,15 +735,15 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
 
         PieItem item;
         for (int j = 0; j < 2; j++) {
-            item = findItem(ACTION_BACK, j);
+            item = findItem(ButtonsConstants.ACTION_BACK, j);
             if (item != null) {
                 item.show(!disableBack);
             }
-            item = findItem(ACTION_HOME, j);
+            item = findItem(ButtonsConstants.ACTION_HOME, j);
             if (item != null) {
                 item.show(!disableHome);
             }
-            item = findItem(ACTION_RECENTS, j);
+            item = findItem(ButtonsConstants.ACTION_RECENTS, j);
             if (item != null) {
                 item.show(!disableRecent);
             }
@@ -921,73 +796,22 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
     private void processAction(String type) {
         long when = SystemClock.uptimeMillis();
 
-        if (type.equals(ACTION_NULL) || type == null) {
+        if (type == null) {
             return;
-        } else if (type.equals(ACTION_HOME)) {
+        } else if (type.equals(ButtonsConstants.ACTION_HOME)) {
             injectKeyDelayed(KeyEvent.KEYCODE_HOME, when);
             return;
-        } else if (type.equals(ACTION_BACK)) {
+        } else if (type.equals(ButtonsConstants.ACTION_BACK)) {
             injectKeyDelayed(KeyEvent.KEYCODE_BACK, when);
             return;
-        } else if (type.equals(ACTION_SEARCH)) {
+        } else if (type.equals(ButtonsConstants.ACTION_SEARCH)) {
             injectKeyDelayed(KeyEvent.KEYCODE_SEARCH, when);
             return;
-        } else if (type.equals(ACTION_MENU)) {
+        } else if (type.equals(ButtonsConstants.ACTION_MENU)) {
             injectKeyDelayed(KeyEvent.KEYCODE_MENU, when);
             return;
-        } else if (type.equals(ACTION_POWER)) {
-            PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
-            pm.goToSleep(SystemClock.uptimeMillis());
-            return;
-        } else if (type.equals(ACTION_IME)) {
-            mContext.sendBroadcast(new Intent("android.settings.SHOW_INPUT_METHOD_PICKER"));
-            return;
-        } else if (type.equals(ACTION_KILL)) {
-            mHandler.post(mKillTask);
-            return;
-        } else if (type.equals(ACTION_WIDGETS)) {
-            try {
-                mBarService.toggleWidgets();
-            } catch (RemoteException e) {
-            }
-            return;
-        } else if (type.equals(ACTION_LAST_APP)) {
-            toggleLastApp();
-            return;
-        } else if (type.equals(ACTION_RECENTS)) {
-            try {
-                mBarService.toggleRecentApps();
-            } catch (RemoteException e) {
-                // let it go.
-            }
-            return;
-        } else if (type.equals(ACTION_SCREENSHOT)) {
-            takeScreenshot();
-            return;
-        } else if (type.equals(ACTION_NOTIFICATIONS)) {
-            try {
-                mBarService.toggleNotificationShade();
-            } catch (RemoteException e) {
-                // wtf is this
-            }
-            return;
-        } else if (type.equals(ACTION_QS)) {
-            try {
-                mBarService.toggleQSShade();
-            } catch (RemoteException e) {
-                // wtf is this
-            }
-            return;
-        } else {  // we must have a custom uri
-            try {
-                Intent intent = Intent.parseUri(type, 0);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                mContext.startActivity(intent);
-            } catch (URISyntaxException e) {
-                Log.e(TAG, "URISyntaxException: [" + type + "]");
-            } catch (ActivityNotFoundException e){
-                Log.e(TAG, "ActivityNotFound: [" + type + "]");
-            }
+        } else {
+            SlimActions.processAction(mContext, type);
             return;
         }
     }
@@ -1033,159 +857,5 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
         }
         return mContext.getString(R.string.pie_battery_status_discharging, mBatteryLevel);
     }
-
-    Runnable mKillTask = new Runnable() {
-        public void run() {
-            final Intent intent = new Intent(Intent.ACTION_MAIN);
-            String defaultHomePackage = "com.android.launcher";
-            intent.addCategory(Intent.CATEGORY_HOME);
-            final ResolveInfo res = mContext.getPackageManager().resolveActivity(intent, 0);
-            if (res.activityInfo != null && !res.activityInfo.packageName.equals("android")) {
-                defaultHomePackage = res.activityInfo.packageName;
-            }
-            boolean targetKilled = false;
-            final ActivityManager am = (ActivityManager) mContext
-                    .getSystemService(Activity.ACTIVITY_SERVICE);
-            List<RunningAppProcessInfo> apps = am.getRunningAppProcesses();
-            for (RunningAppProcessInfo appInfo : apps) {
-                int uid = appInfo.uid;
-                // Make sure it's a foreground user application (not system,
-                // root, phone, etc.)
-                if (uid >= Process.FIRST_APPLICATION_UID && uid <= Process.LAST_APPLICATION_UID
-                        && appInfo.importance == RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
-                    if (appInfo.pkgList != null && (appInfo.pkgList.length > 0)) {
-                        for (String pkg : appInfo.pkgList) {
-                            if (!pkg.equals("com.android.systemui") && !pkg.equals(defaultHomePackage)) {
-                                am.forceStopPackage(pkg);
-                                targetKilled = true;
-                                break;
-                            }
-                        }
-                    } else {
-                        Process.killProcess(appInfo.pid);
-                        targetKilled = true;
-                    }
-                }
-                if (targetKilled) {
-                    Toast.makeText(mContext, R.string.app_killed_message, Toast.LENGTH_SHORT).show();
-                    break;
-                }
-            }
-        }
-    };
-
-    final Runnable mScreenshotTimeout = new Runnable() {
-        @Override
-        public void run() {
-            synchronized (mScreenshotLock) {
-                if (mScreenshotConnection != null) {
-                    mContext.unbindService(mScreenshotConnection);
-                    mScreenshotConnection = null;
-                }
-            }
-        }
-    };
-
-    private void takeScreenshot() {
-        synchronized (mScreenshotLock) {
-            if (mScreenshotConnection != null) {
-                return;
-            }
-            ComponentName cn = new ComponentName("com.android.systemui",
-                    "com.android.systemui.screenshot.TakeScreenshotService");
-            Intent intent = new Intent();
-            intent.setComponent(cn);
-            ServiceConnection conn = new ServiceConnection() {
-                @Override
-                public void onServiceConnected(ComponentName name, IBinder service) {
-                    synchronized (mScreenshotLock) {
-                        if (mScreenshotConnection != this) {
-                            return;
-                        }
-                        Messenger messenger = new Messenger(service);
-                        Message msg = Message.obtain(null, 1);
-                        final ServiceConnection myConn = this;
-                        Handler h = new Handler(HDL.getLooper()) {
-                            @Override
-                            public void handleMessage(Message msg) {
-                                synchronized (mScreenshotLock) {
-                                    if (mScreenshotConnection == myConn) {
-                                        mContext.unbindService(mScreenshotConnection);
-                                        mScreenshotConnection = null;
-                                        HDL.removeCallbacks(mScreenshotTimeout);
-                                    }
-                                }
-                            }
-                        };
-                        msg.replyTo = new Messenger(h);
-                        msg.arg1 = msg.arg2 = 0;
-
-                        /*
-                         * remove for the time being if (mStatusBar != null &&
-                         * mStatusBar.isVisibleLw()) msg.arg1 = 1; if
-                         * (mNavigationBar != null &&
-                         * mNavigationBar.isVisibleLw()) msg.arg2 = 1;
-                         */
-
-                        /* wait for the dialog box to close */
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException ie) {
-                        }
-
-                        /* take the screenshot */
-                        try {
-                            messenger.send(msg);
-                        } catch (RemoteException e) {
-                        }
-                    }
-                }
-
-                @Override
-                public void onServiceDisconnected(ComponentName name) {
-                }
-            };
-            if (mContext.bindService(intent, conn, mContext.BIND_AUTO_CREATE)) {
-                mScreenshotConnection = conn;
-                HDL.postDelayed(mScreenshotTimeout, 10000);
-            }
-        }
-    }
-
-    private void toggleLastApp() {
-        int lastAppId = 0;
-        int looper = 1;
-        String packageName;
-        final Intent intent = new Intent(Intent.ACTION_MAIN);
-        final ActivityManager am = (ActivityManager) mContext
-                .getSystemService(Activity.ACTIVITY_SERVICE);
-        String defaultHomePackage = "com.android.launcher";
-        intent.addCategory(Intent.CATEGORY_HOME);
-        final ResolveInfo res = mContext.getPackageManager().resolveActivity(intent, 0);
-        if (res.activityInfo != null && !res.activityInfo.packageName.equals("android")) {
-            defaultHomePackage = res.activityInfo.packageName;
-        }
-        List <ActivityManager.RunningTaskInfo> tasks = am.getRunningTasks(5);
-        // lets get enough tasks to find something to switch to
-        // Note, we'll only get as many as the system currently has - up to 5
-        while ((lastAppId == 0) && (looper < tasks.size())) {
-            packageName = tasks.get(looper).topActivity.getPackageName();
-            if (!packageName.equals(defaultHomePackage) && !packageName.equals("com.android.systemui")) {
-                lastAppId = tasks.get(looper).id;
-            }
-            looper++;
-        }
-        if (lastAppId != 0) {
-            am.moveTaskToFront(lastAppId, am.MOVE_TASK_NO_USER_ACTION);
-        }
-    }
-
-    private Handler HDL = new Handler() {
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-
-            }
-        }
-    };
 
 }

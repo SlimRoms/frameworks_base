@@ -36,6 +36,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.internal.R;
+import com.android.internal.util.slim.ButtonsHelper;
+import com.android.internal.util.slim.ButtonConfig;
+
+import java.net.URISyntaxException;
+import java.util.ArrayList;
 
 public class KeyguardShortcuts extends LinearLayout {
 
@@ -70,40 +75,29 @@ public class KeyguardShortcuts extends LinearLayout {
     }
 
     private void createShortcuts() {
-        String apps = Settings.System.getStringForUser(mContext.getContentResolver(),
-                Settings.System.LOCKSCREEN_SHORTCUTS, UserHandle.USER_CURRENT);
+        ArrayList<ButtonConfig> buttonsConfig = ButtonsHelper.getLockscreenShortcutConfig(mContext);
+        if(buttonsConfig.size() == 0 || isScreenLarge() || isEightTargets()) {
+            return;
+        }
+
         boolean longpress = Settings.System.getIntForUser(mContext.getContentResolver(),
                 Settings.System.LOCKSCREEN_SHORTCUTS_LONGPRESS, 0, UserHandle.USER_CURRENT) == 1;
 
-        if(apps == null || apps.isEmpty() || isScreenLarge() || isEightTargets()) return;
-        final String[] shortcuts = apps.split("\\|");
-        Resources res = mContext.getResources();
-        for(int j = 0; j < shortcuts.length; j++) {
-            String resourceString = null;
-            ImageView i = new ImageView(mContext);
-            int dimens = Math.round(res.getDimensionPixelSize(
-                    R.dimen.app_icon_size));
-            LinearLayout.LayoutParams vp =
-                    new LinearLayout.LayoutParams(dimens, dimens);
-            i.setLayoutParams(vp);
-            Drawable img = null;
+        ButtonConfig buttonConfig;
+
+        for(int j = 0; j < buttonsConfig.size(); j++) {
+            buttonConfig = buttonsConfig.get(j);
+
             try {
-                final Intent launchIntent = Intent.parseUri(shortcuts[j], 0);
-                if(launchIntent == null) { // No intent found
-                    throw new NameNotFoundException();
-                }
-                resourceString = launchIntent.getStringExtra(ICON_FILE);
-                if(resourceString == null) {
-                    ActivityInfo aInfo = launchIntent.resolveActivityInfo(mPackageManager, PackageManager.GET_ACTIVITIES);
-                    if (aInfo != null) {
-                        img = aInfo.loadIcon(mPackageManager);
-                    } else {
-                        img = mContext.getResources().getDrawable(android.R.drawable.sym_def_app_icon).mutate();
-                    }
-                } else { // Custom icon
-                    img = getDrawable(res, resourceString);
-                }
-                i.setImageDrawable(img);
+                final Intent launchIntent = Intent.parseUri(buttonConfig.getClickAction(), 0);
+                ImageView i = new ImageView(mContext);
+                int dimens = Math.round(mContext.getResources().getDimensionPixelSize(
+                        R.dimen.app_icon_size));
+                LinearLayout.LayoutParams vp =
+                        new LinearLayout.LayoutParams(dimens, dimens);
+                i.setLayoutParams(vp);
+                i.setImageDrawable(ButtonsHelper.getButtonIconImage(
+                    mContext, buttonConfig.getClickAction(), buttonConfig.getIcon()));
 
                 if (longpress) {
                     i.setOnLongClickListener(new View.OnLongClickListener() {
@@ -124,11 +118,11 @@ public class KeyguardShortcuts extends LinearLayout {
                     });
                 }
                 addView(i);
-                if(j+1 < shortcuts.length) addSeparator();
-            } catch(Exception e) {
+                if(j+1 < buttonsConfig.size()) {
+                    addSeparator();
+                }
+            } catch (URISyntaxException e) {
                 e.printStackTrace();
-                // No custom icon is set and PackageManager fails to found
-                // default application icon. Or maybe it was uninstalled
             }
         }
     }
