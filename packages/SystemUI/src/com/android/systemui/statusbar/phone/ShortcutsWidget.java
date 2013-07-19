@@ -57,42 +57,42 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import java.io.File;
-import java.util.ArrayList;
-
+import com.android.internal.util.slim.ButtonsHelper;
+import com.android.internal.util.slim.ButtonConfig;
+import com.android.internal.util.slim.ButtonsConstants;
 import com.android.systemui.R;
 
+import java.io.File;
+import java.util.ArrayList;
 
 public class ShortcutsWidget extends LinearLayout {
     static final String TAG = "ShortcutsWidget";
 
-    int viewWidth = 0;
-    int viewHeight = 0;
-    int tmpMargin = 0;
-    int oldMargin = 0;
-    int getPxPadding;
-    int defaultMargin = 5; //px
-    int mDefaultChildSizeDp = 46; //dp
-    int mDefaultChildSizePx; //px
-    int mDefaultChildWidth; //px
+    private int mViewWidth = 0;
+    private int mTmpMargin = 0;
+    private int mOldMargin = 0;
+    private int mGetPxPadding;
+    private int mDefaultMargin = 5; //px
+    private int mDefaultChildSizeDp = 46; //dp
+    private int mDefaultChildSizePx; //px
+    private int mDefaultChildWidth; //px
 
-    private boolean mToggle;
-    private boolean mColorizeToggle;
+    private int mChildCount;
+    private boolean mActive;
+    private int mColorizeMode;
     private int mColor;
-    private String mTargets;
-    private int mQuantity;
 
     private boolean mOverflow;
 
-    private ContentResolver resolver;
     private Context mContext;
     private Handler mHandler;
     private LayoutInflater mInflater;
 
+    private ArrayList<ButtonConfig> mButtonsConfig;
+
     private ShortcutsSettingsObserver mObserver = null;
     private View.OnClickListener mExternalClickListener;
     private View.OnLongClickListener mExternalLongClickListener;
-    private ViewTreeObserver observer;
 
     private final OnGlobalLayoutListener mOnGlobalLayoutListener = new OnGlobalLayoutListener() {
         @Override
@@ -110,23 +110,12 @@ public class ShortcutsWidget extends LinearLayout {
         super(context, attrs);
         mContext = context;
         mHandler = new Handler();
-        mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        resolver = mContext.getContentResolver();
-
-        mToggle = Settings.System.getIntForUser(resolver,
-                Settings.System.NOTIFICATION_SHORTCUTS_TOGGLE, 0, UserHandle.USER_CURRENT) != 0;
-        mTargets = Settings.System.getStringForUser(resolver,
-                Settings.System.NOTIFICATION_SHORTCUTS_TARGETS, UserHandle.USER_CURRENT);
-        mQuantity = Settings.System.getIntForUser(resolver,
-                Settings.System.NOTIFICATION_SHORTCUTS_QUANTITY, 6, UserHandle.USER_CURRENT);
-        mColor = Settings.System.getIntForUser(resolver,
-                Settings.System.NOTIFICATION_SHORTCUTS_COLOR, 0xFFDFE0E0, UserHandle.USER_CURRENT);
-        mColorizeToggle = Settings.System.getIntForUser(resolver,
-                Settings.System.NOTIFICATION_SHORTCUTS_COLORIZE_TOGGLE, 1, UserHandle.USER_CURRENT) != 0;
+        mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         mDefaultChildSizePx = (int) convertDpToPixel(mDefaultChildSizeDp, mContext);
-        mDefaultChildWidth = mDefaultChildSizePx + (defaultMargin * 2); //px
+        mDefaultChildWidth = mDefaultChildSizePx + (mDefaultMargin * 2); //px
+
+        updateShortcuts();
     }
 
     private class ShortcutsSettingsObserver extends ContentObserver {
@@ -138,68 +127,52 @@ public class ShortcutsWidget extends LinearLayout {
             ContentResolver resolver = mContext.getContentResolver();
 
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.NOTIFICATION_SHORTCUTS_TOGGLE), true, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.NOTIFICATION_SHORTCUTS_TARGETS), true, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.NOTIFICATION_SHORTCUTS_QUANTITY), true, this, UserHandle.USER_ALL);
+                    Settings.System.NOTIFICATION_SHORTCUTS_CONFIG), true, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.NOTIFICATION_SHORTCUTS_COLOR), true, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.NOTIFICATION_SHORTCUTS_COLORIZE_TOGGLE), true, this, UserHandle.USER_ALL);
+                    Settings.System.NOTIFICATION_SHORTCUTS_COLOR_MODE), true, this, UserHandle.USER_ALL);
         }
 
         public void unobserve() {
-            ContentResolver resolver = mContext.getContentResolver();
-
-            resolver.unregisterContentObserver(this);
+            mContext.getContentResolver().unregisterContentObserver(this);
         }
 
         @Override
         public void onChange(boolean selfChange, Uri uri) {
-            ContentResolver resolver = mContext.getContentResolver();
-            Resources res = mContext.getResources();
-
-            if (uri.equals(Settings.System.getUriFor(Settings.System.NOTIFICATION_SHORTCUTS_TOGGLE))) {
-                mToggle = Settings.System.getIntForUser(resolver,
-                        Settings.System.NOTIFICATION_SHORTCUTS_TOGGLE, 0, UserHandle.USER_CURRENT) != 0;
-                if (mToggle) {
-                    recreateShortcutLayout();
-                } else {
-                    removeAllViews();
-                }
-            } else if (uri.equals(Settings.System.getUriFor(Settings.System.NOTIFICATION_SHORTCUTS_TARGETS))) {
-                mTargets = Settings.System.getStringForUser(resolver,
-                        Settings.System.NOTIFICATION_SHORTCUTS_TARGETS, UserHandle.USER_CURRENT);
-                recreateShortcutLayout();
-            } else if (uri.equals(Settings.System.getUriFor(Settings.System.NOTIFICATION_SHORTCUTS_QUANTITY))) {
-                mQuantity = Settings.System.getIntForUser(resolver,
-                        Settings.System.NOTIFICATION_SHORTCUTS_QUANTITY, 6, UserHandle.USER_CURRENT);
-                recreateShortcutLayout();
-            } else if (uri.equals(Settings.System.getUriFor(Settings.System.NOTIFICATION_SHORTCUTS_COLOR))) {
-                mColor = Settings.System.getIntForUser(resolver,
-                        Settings.System.NOTIFICATION_SHORTCUTS_COLOR, 0xFFDFE0E0, UserHandle.USER_CURRENT);
-                if (mToggle) {
-                    recreateShortcutLayout();
-                }
-            } else if (uri.equals(Settings.System.getUriFor(Settings.System.NOTIFICATION_SHORTCUTS_COLORIZE_TOGGLE))) {
-                mColorizeToggle = Settings.System.getIntForUser(resolver,
-                        Settings.System.NOTIFICATION_SHORTCUTS_COLORIZE_TOGGLE, 1, UserHandle.USER_CURRENT) != 0;
-                recreateShortcutLayout();
-            }
+            updateShortcuts();
         }
     }
 
-    public void modifyShortcutLayout() {
-        int mChildCount = getChildCount();
-        int tmpWidth = getContWidth();
+    private void updateShortcuts() {
+        ContentResolver resolver = mContext.getContentResolver();
 
+        mButtonsConfig = ButtonsHelper.getNotificationsShortcutConfig(mContext);
+        mChildCount = mButtonsConfig.size();
+        mActive = mChildCount > 0;
+
+        if (mActive) {
+            mColor = Settings.System.getIntForUser(resolver,
+                    Settings.System.NOTIFICATION_SHORTCUTS_COLOR,
+                    mContext.getResources().getColor(com.android.internal.R.color.white),
+                    UserHandle.USER_CURRENT);
+            mColorizeMode = Settings.System.getIntForUser(resolver,
+                    Settings.System.NOTIFICATION_SHORTCUTS_COLOR_MODE,
+                    1, UserHandle.USER_CURRENT);
+            recreateShortcutLayout();
+        } else {
+            removeAllViews();
+        }
+    }
+
+    private void modifyShortcutLayout() {
         // Check if width has changed
+        int tmpWidth = getContWidth();
         if (mChildCount == 0 || tmpWidth == 0) {
             return;
-        } else if (viewWidth != tmpWidth) {
-            viewWidth = tmpWidth;
-            if (mToggle) {
+        } else if (mViewWidth != tmpWidth) {
+            mViewWidth = tmpWidth;
+            if (mActive) {
                 if (determineMargins()) {
                     modifyMargins();
                 } else {
@@ -234,7 +207,7 @@ public class ShortcutsWidget extends LinearLayout {
         recreateShortcutLayout();
     }
 
-    public void destroyShortcuts() {
+    private void destroyShortcuts() {
         try {
             removeAllViews();
         } catch (Exception e) {
@@ -245,88 +218,58 @@ public class ShortcutsWidget extends LinearLayout {
         }
     }
 
-    public static float convertDpToPixel(float dp, Context context){
-        Resources resources = context.getResources();
-        DisplayMetrics metrics = resources.getDisplayMetrics();
-        float px = dp * (metrics.densityDpi/160f);
+    private static float convertDpToPixel(float dp, Context context){
+        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+        float px = dp * (metrics.densityDpi / 160f);
         return px;
     }
 
-    public int getContWidth() {
-        HorizontalScrollView mShortcutScroll = (HorizontalScrollView) ShortcutsWidget.this.getParent();
-
-        // return mContext.getResources().getDisplayMetrics().widthPixels;
-        return mShortcutScroll.getWidth();
+    private int getContWidth() {
+        HorizontalScrollView shortcutScroll = (HorizontalScrollView) ShortcutsWidget.this.getParent();
+        if (shortcutScroll != null) {
+            return shortcutScroll.getWidth();
+        }
+        return 0;
     }
 
-    public int getShortcutChildCount() {
-        String[] mStoredTargets;
-
-        final String EMPTY_TARGET = "empty";
-
-        int drawnChildren = 0;
-        try {
-            mStoredTargets = mTargets.split("\\|");
-        } catch (NullPointerException e) {
-            return drawnChildren;
+    private boolean determineMargins() {
+        int scrollViewWidth = getContWidth();
+        if (scrollViewWidth == 0 || mChildCount == 0) {
+            return false;
         }
-
-        for (int i = 0; i < mQuantity; i++) {
-            if (i < mStoredTargets.length) {
-                String uri = mStoredTargets[i];
-                if (!uri.equals(EMPTY_TARGET)) {
-                    drawnChildren += 1;
-                }
-            }
-        }
-        return drawnChildren;
-    }
-
-    public boolean determineMargins() {
-        int mScrollViewWidth = getContWidth();
-        if (mScrollViewWidth == 0) { return false; }
-
-        int mShortcutChildCount = getShortcutChildCount();
-        if (mShortcutChildCount == 0) { return false; }
 
         // Divide width of container by children
-        int mShortcutWidth = mScrollViewWidth / mShortcutChildCount;
+        int shortcutWidth = scrollViewWidth / mChildCount;
         // If this number is less than the minimum child width..
-        if (mShortcutWidth < mDefaultChildWidth) {
+        if (shortcutWidth < mDefaultChildWidth) {
             mOverflow = true;
             // Uh oh, we have overscroll!
             // Round down to figure out how many can fit.
-            int tmpCount = mScrollViewWidth / mDefaultChildWidth;
+            int tmpCount = scrollViewWidth / mDefaultChildWidth;
             // Get padding for each side
-            tmpMargin = ((mScrollViewWidth - (tmpCount * mDefaultChildWidth)) / tmpCount) / 2;
+            mTmpMargin = ((scrollViewWidth - (tmpCount * mDefaultChildWidth)) / tmpCount) / 2;
         } else {
             mOverflow = false;
-            tmpMargin = (mShortcutWidth - mDefaultChildWidth) / 2;
+            mTmpMargin = (shortcutWidth - mDefaultChildWidth) / 2;
         }
         return true;
     }
 
-    public void modifyMargins() {
-        int mChildCount;
-        try {
-            mChildCount = getChildCount();
-        } catch (NullPointerException e) {
-            return;
-        }
-        if (oldMargin == tmpMargin) {
+    private void modifyMargins() {
+        if (mOldMargin == mTmpMargin) {
             return;
         }
         for (int j = 0; j < mChildCount; j++) {
             View iv = getChildAt(j);
             LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) iv.getLayoutParams();
-            lp.setMargins(defaultMargin + tmpMargin, 0, defaultMargin + tmpMargin, getPxPadding);
+            lp.setMargins(mDefaultMargin + mTmpMargin, 0, mDefaultMargin + mTmpMargin, mGetPxPadding);
         }
-        oldMargin = tmpMargin;
+        mOldMargin = mTmpMargin;
         invalidate();
         requestLayout();
     }
 
-    public Bitmap toGrayscale(Bitmap bmpOriginal) {
+    private Bitmap toGrayscale(Bitmap bmpOriginal) {
         int width, height;
         height = bmpOriginal.getHeight();
         width = bmpOriginal.getWidth();
@@ -349,133 +292,74 @@ public class ShortcutsWidget extends LinearLayout {
         buildShortcuts();
     }
 
-    public void buildShortcuts() {
-        String[] mStoredTargets;
+    private void buildShortcuts() {
+        ButtonConfig buttonConfig;
+        for (int i = 0; i < mChildCount; i++) {
+            buttonConfig = mButtonsConfig.get(i);
 
-        final String ICON_RESOURCE = "icon_resource";
-        final String ICON_PACKAGE = "icon_package";
-        final String ICON_FILE = "icon_file";
-        final String EMPTY_TARGET = "empty";
+            try {
+                final Intent in = Intent.parseUri(buttonConfig.getClickAction(), 0);
+                Drawable front = ButtonsHelper.getButtonIconImage(
+                    mContext, buttonConfig.getClickAction(), buttonConfig.getIcon());
 
-        final Resources res = mContext.getResources();
+                // Draw ImageView
+                ImageView iv = new ImageView(mContext);
+                try {
+                    // colorize system and gallery icons always and app icons only if toggled
+                    if ((buttonConfig.getIcon() != null
+                                && buttonConfig.getIcon().startsWith(ButtonsConstants.SYSTEM_ICON_IDENTIFIER))
+                            || mColorizeMode == 0
+                            || (buttonConfig.getIcon() != null
+                                && !buttonConfig.getIcon().equals(ButtonsConstants.ICON_EMPTY)
+                                && mColorizeMode != 1)) {
+                        Bitmap colorBitmap = ((BitmapDrawable) front).getBitmap();
+                        Bitmap grayscaleBitmap = toGrayscale(colorBitmap);
 
-        if (mTargets == null) {
-            mTargets = "empty|empty|empty|empty|empty|empty|empty|empty|empty|empty|empty|empty|empty|empty|empty|empty";
-            Settings.System.putString(mContext.getContentResolver(),
-                    Settings.System.NOTIFICATION_SHORTCUTS_TARGETS, mTargets);
-            return;
-        }
+                        Paint pp = new Paint();
+                        PorterDuffColorFilter frontFilter = new PorterDuffColorFilter(mColor, PorterDuff.Mode.MULTIPLY);
+                        pp.setColorFilter(frontFilter);
+                        Canvas cc = new Canvas(grayscaleBitmap);
+                        cc.drawBitmap(grayscaleBitmap, 0, 0, pp);
 
-        mStoredTargets = mTargets.split("\\|");
-        ArrayList<ImageView> storedNotifications = new ArrayList<ImageView>();
-        final PackageManager packMan = mContext.getPackageManager();
-
-        for (int i = 0; i < mQuantity; i++) {
-            if (i < mStoredTargets.length) {
-                String uri = mStoredTargets[i];
-                if (!uri.equals(EMPTY_TARGET)) {
-                    try {
-                        final Intent in = Intent.parseUri(uri,0);
-                        Drawable front = null;
-                        boolean colorizeIcon = true;
-                        if (in.hasExtra(ICON_FILE)) {
-                            String fSource = in.getStringExtra(ICON_FILE);
-                            if (fSource != null) {
-                                File fPath = new File(fSource);
-                                if (fPath.exists()) {
-                                    front = new BitmapDrawable(res, BitmapFactory.decodeFile(fSource));
-                                }
-                            }
-                            if (!mColorizeToggle) {
-                                colorizeIcon = false;
-                            }
-                        } else if (in.hasExtra(ICON_RESOURCE)) {
-                            String rSource = in.getStringExtra(ICON_RESOURCE);
-                            String rPackage = in.getStringExtra(ICON_PACKAGE);
-                            if (rSource != null) {
-                                if (rPackage != null) {
-                                    try {
-                                        Context rContext = mContext.createPackageContext(rPackage, 0);
-                                        int id = rContext.getResources().getIdentifier(rSource, "drawable", rPackage);
-                                        front = rContext.getResources().getDrawable(id);
-                                    } catch (NameNotFoundException e) {
-                                        e.printStackTrace();
-                                    } catch (NotFoundException e) {
-                                        e.printStackTrace();
-                                    }
-                                } else {
-                                    front = res.getDrawable(res.getIdentifier(rSource, "drawable", "android"));
-                                }
-                            }
-                        }
-                        if (front == null) {
-                            ActivityInfo aInfo = in.resolveActivityInfo(packMan, PackageManager.GET_ACTIVITIES);
-                            if (aInfo != null) {
-                                front = aInfo.loadIcon(packMan);
-                            } else {
-                                front = res.getDrawable(android.R.drawable.sym_def_app_icon);
-                            }
-                            if (!mColorizeToggle) {
-                                colorizeIcon = false;
-                            }
-                        }
-                        // Draw ImageView?
-                        ImageView iv = new ImageView(mContext);
-                        try {
-                            if (colorizeIcon) {
-                                Bitmap colorBitmap = ((BitmapDrawable) front).getBitmap();
-                                Bitmap grayscaleBitmap = toGrayscale(colorBitmap);
-
-                                Paint pp = new Paint();
-                                PorterDuffColorFilter frontFilter = new PorterDuffColorFilter(mColor, PorterDuff.Mode.MULTIPLY);
-                                pp.setColorFilter(frontFilter);
-                                Canvas cc = new Canvas(grayscaleBitmap);
-                                cc.drawBitmap(grayscaleBitmap, 0, 0, pp);
-
-                                iv.setImageBitmap(grayscaleBitmap);
-                            } else {
-                                iv.setImageDrawable(front);
-                            }
-                        } catch (Exception e) {
-                            if (colorizeIcon) {
-                                PorterDuffColorFilter frontFilter = new PorterDuffColorFilter(mColor, PorterDuff.Mode.MULTIPLY);
-                                front.setColorFilter(frontFilter);
-                            }
-                            iv.setImageDrawable(front);
-                        }
-
-                        getPxPadding = (int) convertDpToPixel(5, mContext);
-                        iv.setPadding(getPxPadding, getPxPadding, getPxPadding, getPxPadding);
-                        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(mDefaultChildSizePx, mDefaultChildSizePx);
-                        int determinedMargin = defaultMargin + tmpMargin;
-                        layoutParams.setMargins(determinedMargin, 0, determinedMargin, getPxPadding);
-
-                        iv.setLayoutParams(layoutParams);
-                        iv.setBackgroundResource(R.drawable.notification_shortcut_bg);
-                        iv.setLongClickable(true);
-                        iv.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                try {
-                                    ActivityManagerNative.getDefault().dismissKeyguardOnNextActivity();
-                                } catch (RemoteException e) {
-                                }
-                                if (mExternalClickListener != null) {
-                                    mExternalClickListener.onClick(v);
-                                }
-                                try {
-                                    Intent i = in;
-                                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    v.getContext().startActivity(i);
-                                } catch (Exception e) {
-                                }
-                            }
-                        });
-                        iv.setOnLongClickListener(mShortcutLongClickListener);
-                        addView(iv);
-                    } catch (Exception e) {
+                        iv.setImageBitmap(grayscaleBitmap);
+                    } else {
+                        iv.setImageDrawable(front);
                     }
+                } catch (Exception e) {
+                        // will never happen but to be sure show the icon
+                        iv.setImageDrawable(front);
                 }
+
+                mGetPxPadding = (int) convertDpToPixel(5, mContext);
+                iv.setPadding(mGetPxPadding, mGetPxPadding, mGetPxPadding, mGetPxPadding);
+                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(mDefaultChildSizePx, mDefaultChildSizePx);
+                int determinedMargin = mDefaultMargin + mTmpMargin;
+                layoutParams.setMargins(determinedMargin, 0, determinedMargin, mGetPxPadding);
+
+                iv.setLayoutParams(layoutParams);
+                iv.setBackgroundResource(R.drawable.notification_shortcut_bg);
+                iv.setLongClickable(true);
+                iv.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        try {
+                            ActivityManagerNative.getDefault().dismissKeyguardOnNextActivity();
+                        } catch (RemoteException e) {
+                        }
+                        if (mExternalClickListener != null) {
+                            mExternalClickListener.onClick(v);
+                        }
+                        try {
+                            Intent i = in;
+                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            v.getContext().startActivity(i);
+                        } catch (Exception e) {
+                        }
+                    }
+                });
+                iv.setOnLongClickListener(mShortcutLongClickListener);
+                addView(iv);
+            } catch (Exception e) {
             }
         }
     }
@@ -483,29 +367,16 @@ public class ShortcutsWidget extends LinearLayout {
     private View.OnLongClickListener mShortcutLongClickListener = new View.OnLongClickListener() {
         @Override
         public boolean onLongClick(View v) {
-            try {
-                ActivityManagerNative.getDefault().dismissKeyguardOnNextActivity();
-            } catch (RemoteException e) {
-            }
-            if (mExternalLongClickListener != null) {
-                mExternalLongClickListener.onLongClick(v);
-            }
-            try {
-                Intent i = new Intent("android.settings.slim.notificationshortcuts.NOTIFICATION_SHORTCUTS");
-                i.addCategory(Intent.CATEGORY_DEFAULT);
-                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                v.getContext().startActivity(i);
-            } catch (Exception e) {
-            }
+            // disabled temporaly will be replace with another feature later
             return true;
         }
     };
 
-    void setGlobalButtonOnClickListener(View.OnClickListener listener) {
+    public void setGlobalButtonOnClickListener(View.OnClickListener listener) {
         mExternalClickListener = listener;
     }
 
-    void setGlobalButtonOnLongClickListener(View.OnLongClickListener listener) {
+    public void setGlobalButtonOnLongClickListener(View.OnLongClickListener listener) {
         mExternalLongClickListener = listener;
     }
 }

@@ -77,9 +77,6 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.android.internal.widget.multiwaveview.GlowPadView;
-import com.android.internal.widget.multiwaveview.GlowPadView.OnTriggerListener;
-import com.android.internal.widget.multiwaveview.TargetDrawable;
 import com.android.systemui.R;
 import com.android.systemui.recent.StatusBarTouchProxy;
 import com.android.systemui.statusbar.BaseStatusBar;
@@ -87,7 +84,13 @@ import com.android.systemui.statusbar.CommandQueue;
 import com.android.systemui.statusbar.phone.PhoneStatusBar;
 import com.android.systemui.statusbar.tablet.StatusBarPanel;
 import com.android.systemui.statusbar.tablet.TabletStatusBar;
-import com.android.systemui.slim.SlimTarget;
+import com.android.internal.util.slim.ButtonConfig;
+import com.android.internal.util.slim.ButtonsHelper;
+import com.android.internal.util.slim.ButtonsConstants;
+import com.android.internal.util.slim.SlimActions;
+import com.android.internal.widget.multiwaveview.GlowPadView;
+import com.android.internal.widget.multiwaveview.GlowPadView.OnTriggerListener;
+import com.android.internal.widget.multiwaveview.TargetDrawable;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -112,19 +115,12 @@ public class SearchPanelView extends FrameLayout implements
     private GlowPadView mGlowPadView;
     private IWindowManager mWm;
 
-    private SlimTarget mSlimTarget;
-
     private PackageManager mPackageManager;
     private Resources mResources;
     private ContentResolver mContentResolver;
     private boolean mAttached = false;
-    private String[] mTargetActivities = new String[5];
-    private String[] mLongActivities = new String[5];
-    private String[] mCustomIcon = new String[5];
-    private final static String mNavRingConfigDefault = "**assist**|**null**|empty";
     private int startPosOffset;
-
-    private int mNavRingAmount;
+    private ArrayList<ButtonConfig> mButtonsConfig;
     private boolean mLongPress;
     private boolean mSearchPanelLock;
     private int mTarget;
@@ -147,7 +143,6 @@ public class SearchPanelView extends FrameLayout implements
         mResources = mContext.getResources();
 
         mContentResolver = mContext.getContentResolver();
-        mSlimTarget = new SlimTarget(context);
         mObserver = new SettingsObserver(new Handler());
     }
 
@@ -167,9 +162,8 @@ public class SearchPanelView extends FrameLayout implements
             public void run() {
                 if (!mSearchPanelLock) {
                     mLongPress = true;
-                    Log.d(TAG,"LongPress!");
                     mBar.hideSearchPanel();
-                    mSlimTarget.launchAction(longList.get(mTarget));
+                    SlimActions.processAction(mContext, longList.get(mTarget));
                     mSearchPanelLock = true;
                  }
             }
@@ -208,7 +202,7 @@ public class SearchPanelView extends FrameLayout implements
             final int resId = mGlowPadView.getResourceIdForTarget(target);
             mTarget = target;
             if (!mLongPress) {
-               mSlimTarget.launchAction(intentList.get(target));
+               SlimActions.processAction(mContext, intentList.get(target));
                mHandler.removeCallbacks(SetLongPress);
             }
         }
@@ -254,52 +248,54 @@ public class SearchPanelView extends FrameLayout implements
         boolean screenSizeTablet = screenLayout() == Configuration.SCREENLAYOUT_SIZE_LARGE
                                 || screenLayout() == Configuration.SCREENLAYOUT_SIZE_XLARGE;
 
-         if (screenSizeTablet || isScreenPortrait()
-                || (!screenSizeTablet && !isScreenPortrait() && !navbarCanMove)) {
-             startPosOffset = 1;
-             endPosOffset = (mNavRingAmount) + 1;
-         } else {
-             //lastly the standard landscape with navbar on right
-             startPosOffset = (Math.min(1,mNavRingAmount / 2)) + 2;
-             endPosOffset = startPosOffset - 1;
-         }
+        if (screenSizeTablet || isScreenPortrait()
+               || (!screenSizeTablet && !isScreenPortrait() && !navbarCanMove)) {
+            startPosOffset = 1;
+            endPosOffset = (mButtonsConfig.size()) + 1;
+        } else {
+            //lastly the standard landscape with navbar on right
+            startPosOffset = (Math.min(1, mButtonsConfig.size() / 2)) + 2;
+            endPosOffset = startPosOffset - 1;
+        }
 
         intentList.clear();
         longList.clear();
 
-         int middleStart = mNavRingAmount;
-         int tqty = middleStart;
-         int middleFinish = 0;
+        int middleStart = mButtonsConfig.size();
+        int tqty = middleStart;
+        int middleFinish = 0;
+        ButtonConfig buttonConfig;
 
-         if (middleBlanks > 0) {
-             middleStart = (tqty/2) + (tqty%2);
-             middleFinish = (tqty/2);
-         }
+        if (middleBlanks > 0) {
+            middleStart = (tqty/2) + (tqty%2);
+            middleFinish = (tqty/2);
+        }
 
-         // Add Initial Place Holder Targets
+        // Add Initial Place Holder Targets
         for (int i = 0; i < startPosOffset; i++) {
-            storedDraw.add(getTargetDrawable("", -1));
+            storedDraw.add(getTargetDrawable("", null));
             intentList.add(mEmpty);
             longList.add(mEmpty);
         }
 
         // Add User Targets
         for (int i = middleStart - 1; i >= 0; i--) {
-            intentList.add(mTargetActivities[i]);
-            longList.add(mLongActivities[i]);
-            storedDraw.add(getTargetDrawable(mTargetActivities[i], i));
+            buttonConfig = mButtonsConfig.get(i);
+            intentList.add(buttonConfig.getClickAction());
+            longList.add(buttonConfig.getLongpressAction());
+            storedDraw.add(getTargetDrawable(buttonConfig.getClickAction(), buttonConfig.getIcon()));
         }
 
         // Add middle Place Holder Targets
         for (int j = 0; j < middleBlanks; j++) {
-            storedDraw.add(getTargetDrawable("", -1));
+            storedDraw.add(getTargetDrawable("", null));
             intentList.add(mEmpty);
             longList.add(mEmpty);
         }
 
         // Add End Place Holder Targets
         for (int i = 0; i < endPosOffset; i++) {
-            storedDraw.add(getTargetDrawable("", -1));
+            storedDraw.add(getTargetDrawable("", null));
             intentList.add(mEmpty);
             longList.add(mEmpty);
         }
@@ -307,21 +303,21 @@ public class SearchPanelView extends FrameLayout implements
         mGlowPadView.setTargetResources(storedDraw);
     }
 
-    private TargetDrawable getTargetDrawable(String action, int customIconIndex){
-
+    private TargetDrawable getTargetDrawable(String action, String customIconUri) {
         TargetDrawable noneDrawable = new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_action_none));
 
-        String customIconUri = null;
-        if (customIconIndex != -1) {
-            customIconUri = mCustomIcon[customIconIndex];
-        }
-
-        if (customIconUri != null && !customIconUri.equals("")) {
+        if (customIconUri != null && !customIconUri.equals(ButtonsConstants.ICON_EMPTY)
+                || customIconUri != null && customIconUri.startsWith("ic_")) {
             // it's an icon the user chose from the gallery here
+            // or a custom system icon
             File iconFile = new File(Uri.parse(customIconUri).getPath());
-            if (iconFile.exists()) {
                 try {
-                    Drawable customIcon = resize(new BitmapDrawable(getResources(), iconFile.getAbsolutePath()));
+                    Drawable customIcon;
+                    if (iconFile.exists()) {
+                        customIcon = resize(new BitmapDrawable(getResources(), iconFile.getAbsolutePath()));
+                    } else {
+                        customIcon = resize(mResources.getDrawable(mResources.getIdentifier(customIconUri, "drawable", "android")));
+                    }
                     Drawable iconBg = resize(mResources.getDrawable(R.drawable.ic_navbar_blank));
                     Drawable iconBgActivated = resize(mResources.getDrawable(R.drawable.ic_navbar_blank_activated));
                     int margin = (int)(iconBg.getIntrinsicHeight() / 3);
@@ -337,41 +333,38 @@ public class SearchPanelView extends FrameLayout implements
                 } catch (Exception e) {
                     return noneDrawable;
                 }
-            }
         }
 
-        if (action == null || action.equals("**none**"))
-            return noneDrawable;
         if (action.equals("")) {
             TargetDrawable blankDrawable = new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_navbar_blank));
             blankDrawable.setEnabled(false);
             return blankDrawable;
         }
-        if (action.equals("**screenshot**"))
+        if (action == null || action.equals(ButtonsConstants.ACTION_NULL))
+            return noneDrawable;
+        if (action.equals(ButtonsConstants.ACTION_SCREENSHOT))
             return new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_action_screenshot));
-        if (action.equals("**ime**"))
+        if (action.equals(ButtonsConstants.ACTION_IME))
             return new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_action_ime_switcher));
-        if (action.equals("**ring_vib**"))
+        if (action.equals(ButtonsConstants.ACTION_VIB))
             return new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_action_vib));
-        if (action.equals("**ring_silent**"))
+        if (action.equals(ButtonsConstants.ACTION_SILENT))
             return new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_action_silent));
-        if (action.equals("**ring_vib_silent**"))
+        if (action.equals(ButtonsConstants.ACTION_VIB_SILENT))
             return new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_action_ring_vib_silent));
-        if (action.equals("**kill**"))
+        if (action.equals(ButtonsConstants.ACTION_KILL))
             return new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_action_killtask));
-        if (action.equals("**widgets**"))
+        if (action.equals(ButtonsConstants.ACTION_WIDGETS))
             return new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_action_widgets));
-        if (action.equals("**lastapp**"))
+        if (action.equals(ButtonsConstants.ACTION_LAST_APP))
             return new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_action_lastapp));
-        if (action.equals("**power**"))
+        if (action.equals(ButtonsConstants.ACTION_POWER))
             return new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_action_power));
-        if (action.equals("**screenoff**"))
-            return new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_action_power));
-        if (action.equals("**quicksettings**"))
+        if (action.equals(ButtonsConstants.ACTION_QS))
             return new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_action_qs));
-        if (action.equals("**notifications**"))
+        if (action.equals(ButtonsConstants.ACTION_NOTIFICATIONS))
             return new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_action_notifications));
-        if (action.equals("**assist**"))
+        if (action.equals(ButtonsConstants.ACTION_ASSIST))
             return new TargetDrawable(mResources, com.android.internal.R.drawable.ic_action_assist_generic);
         try {
             Intent in = Intent.parseUri(action, 0);
@@ -460,7 +453,11 @@ public class SearchPanelView extends FrameLayout implements
             ((ViewGroup) mSearchTargetsContainer).setLayoutTransition(transitioner);
         }
         mShowing = show;
-        if (show) {
+        boolean enabled = true;
+        if (mButtonsConfig != null && mButtonsConfig.size() == 0) {
+            enabled = false;
+        }
+        if (show && enabled) {
             maybeSwapSearchIcon();
             if (getVisibility() != View.VISIBLE) {
                 setVisibility(View.VISIBLE);
@@ -605,8 +602,6 @@ public class SearchPanelView extends FrameLayout implements
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.SYSTEMUI_NAVRING_CONFIG), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.SYSTEMUI_NAVRING_LONG_ENABLE), false, this);
-            resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.NAVIGATION_BAR_CAN_MOVE), false, this);
         }
 
@@ -622,46 +617,6 @@ public class SearchPanelView extends FrameLayout implements
     }
 
     public void updateSettings() {
-
-        boolean longpressEnabled = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.SYSTEMUI_NAVRING_LONG_ENABLE, 0) == 1;
-
-        // init vars to fill with them later the navring config values
-        int counter = 0;
-        int targetNumber = 0;
-        String navRingConfig = Settings.System.getString(mContext.getContentResolver(),
-                    Settings.System.SYSTEMUI_NAVRING_CONFIG);
-
-        if (navRingConfig == null) {
-            navRingConfig = mNavRingConfigDefault;
-        }
-
-        // Split out the navring config to work with and add to the list
-        for (String configValue : navRingConfig.split("\\|")) {
-            counter++;
-            if (counter == 1) {
-                mTargetActivities[targetNumber] = configValue;
-            }
-            if (counter == 2) {
-                if (longpressEnabled) {
-                    mLongActivities[targetNumber] = configValue;
-                } else {
-                    mLongActivities[targetNumber] = "**none**";
-                }
-            }
-            if (counter == 3) {
-                if (configValue.equals("empty")) {
-                    mCustomIcon[targetNumber] = "";
-                } else {
-                    mCustomIcon[targetNumber] = configValue;
-                }
-                targetNumber++;
-                //reset counter due that iteration of one target is finished
-                counter = 0;
-            }
-        }
-
-        // set overall counted number off buttons
-        mNavRingAmount = targetNumber;
+        mButtonsConfig = ButtonsHelper.getNavRingConfig(mContext);
     }
 }

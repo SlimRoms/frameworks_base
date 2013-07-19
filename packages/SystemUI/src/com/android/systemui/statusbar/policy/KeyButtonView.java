@@ -422,10 +422,12 @@ public class KeyButtonView extends ImageView {
             BUTTON_QUIESCENT_ALPHA = (1-(Settings.System.getFloat(
                     resolver, Settings.System.NAVIGATION_BAR_BUTTON_ALPHA, 0.3f)));
 
-            int defaultColor = mContext.getResources().getColor(
-                    com.android.internal.R.color.white);
             mGlowBGColor = Settings.System.getInt(resolver,
-                    Settings.System.NAVIGATION_BAR_GLOW_TINT, defaultColor);
+                    Settings.System.NAVIGATION_BAR_GLOW_TINT, -2);
+            if (mGlowBGColor == -2) {
+                mGlowBGColor = mContext.getResources().getColor(
+                    com.android.internal.R.color.white);
+            }
 
             for (KeyButtonView kbv : mKeyButtonViews) {
 

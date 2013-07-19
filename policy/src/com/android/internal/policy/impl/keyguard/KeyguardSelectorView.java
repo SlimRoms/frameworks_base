@@ -273,7 +273,7 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
 
     private boolean isShortcuts() {
         final String apps = Settings.System.getStringForUser(mContext.getContentResolver(),
-                Settings.System.LOCKSCREEN_SHORTCUTS, UserHandle.USER_CURRENT);
+                Settings.System.LOCKSCREEN_SHORTCUTS_CONFIG, UserHandle.USER_CURRENT);
         if (apps == null || apps.isEmpty()) return false;
         return true;
     }
