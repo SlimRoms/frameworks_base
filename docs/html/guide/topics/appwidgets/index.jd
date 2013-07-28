@@ -1,16 +1,9 @@
 page.title=App Widgets
+page.tags="home","AppWidgetProvider"
 @jd:body
 
 <div id="qv-wrapper">
   <div id="qv">
-    <h2>Quickview</h2>
-    <ul>
-      <li>App Widgets provide users access to some of your application features
-directly from the Home screen (without the need to launch an activity)</li>
-      <li>App Widgets are backed by a special kind of broadcast receiver that
-handles the App
-Widget lifecycle</li>
-    </ul>
     
     <h2>In this document</h2>
     <ol>
@@ -29,10 +22,16 @@ Activity</a>
         <ol>
           <li><a href="#UpdatingFromTheConfiguration">Updating the App Widget
 from 
-            the configuration Activity</a></li>
+            the Configuration Activity</a></li>
         </ol>
       </li>
       <li><a href="#preview">Setting a Preview Image</a></li>
+      <li><a href="#lockscreen">Enabling App Widgets on the Lockscreen</a>
+        <ol>
+          <li><a href="#lockscreen-sizing">Sizing guidelines</a></li>
+        </ol>
+      </li>
+
       <li><a href="#collections">Using App Widgets with Collections</a>
         <ol>
           <li><a href="#collection_sample">Sample application</a></li>
@@ -50,18 +49,6 @@ collections
       <li>{@link android.appwidget.AppWidgetProviderInfo}</li>
       <li>{@link android.appwidget.AppWidgetManager}</li>
     </ol>
-    
-    <h2>See also</h2>
-    <ol>
-      <li><a
-href="{@docRoot}guide/practices/ui_guidelines/widget_design.html">App Widget
-Design 
-        Guidelines</a></li>
-      <li><a
-href="http://android-developers.blogspot.com/2009/04/introducing-home-screen-
-widgets-and.html">Introducing
-        home screen widgets and the AppWidget framework &raquo;</a></li>
-    </ol>
   </div>
 </div>
 
@@ -77,10 +64,18 @@ able to hold other App Widgets is called an App Widget host. The screenshot
 below shows
 the Music App Widget.</p>
 
-<img src="{@docRoot}images/appwidget.png" alt="" />
+<img src="{@docRoot}images/appwidgets/appwidget.png" alt="" />
 
 <p>This document describes how to publish an App Widget using an App Widget
-provider.</p>
+provider. For a discussion of creating your own {@link android.appwidget.AppWidgetHost}
+to host app widgets, see <a href="{@docRoot}guide/topics/appwidgets/host.html">
+App Widget Host</a>.</p>
+
+<div class="note design">
+<p><strong>Widget Design</strong></p>
+  <p>For information about how to design your app widget, read the <a
+href="{@docRoot}design/patterns/widgets.html">Widgets</a> design guide.</p>
+</div>
 
 
 <h2 id="Basics">The Basics</h2>
@@ -108,7 +103,7 @@ an optional
 and allows him or her
 to modify App Widget settings at create-time.</p>
 
-<p>The following sections describe how to setup each of these components.</p>
+<p>The following sections describe how to set up each of these components.</p>
 
 
 <h2 id="Manifest">Declaring an App Widget in the Manifest</h2>
@@ -173,13 +168,15 @@ folder.</p>
 
 <pre>
 &lt;appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
-    android:minWidth="294dp"
-    android:minHeight="72dp"
+    android:minWidth="40dp"
+    android:minHeight="40dp"
     android:updatePeriodMillis="86400000"
     android:previewImage="@drawable/preview"
     android:initialLayout="@layout/example_appwidget"
     android:configure="com.example.android.ExampleAppWidgetConfigure" 
-    android:resizeMode="horizontal|vertical">
+    android:resizeMode="horizontal|vertical"
+    android:widgetCategory="home_screen|keyguard"
+    android:initialKeyguardLayout="@layout/example_keyguard">
 &lt;/appwidget-provider>
 </pre>
 
@@ -274,7 +271,29 @@ widget to show its resize handles, then drag the horizontal and/or vertical
 handles to change the size on the layout grid. Values for the
 <code>resizeMode</code> attribute include "horizontal", "vertical", and "none".
 To declare a widget as resizeable horizontally and vertically, supply the value
-"horizontal|vertical". Introduced in Android 3.1.</li> </ul>
+"horizontal|vertical". Introduced in Android 3.1.</li> 
+
+<li>The <code>minResizeHeight</code> attribute specifies the minimum height (in dps) to which
+the widget can be resized. This field has no effect if it is greater than {@code minHeight} or if
+vertical resizing isn't enabled (see <code>resizeMode</code>). Introduced in Android 4.0.</li>
+
+<li>The <code> minResizeWidth </code> attribute specifies the minimum width (in dps) to which
+the widget can be resized. This field has no effect if it is greater than {@code minWidth} or if
+horizontal resizing isn't enabled (see <code>resizeMode</code>). Introduced in Android 4.0.</li>
+
+<li>The <code>widgetCategory</code> attribute declares whether your App Widget can be displayed on the home screen, 
+the lock screen (keyguard), or both. Values for this attribute include "home_screen" and "keyguard".  A widget that 
+is displayed on both needs to ensure that it follows the design guidelines for both widget classes. For more
+information, see <a href="#lockscreen">Enabling App Widgets on the Lockscreen</a>. The default value is "home_screen". Introduced in Android 4.2.
+</li>
+
+<li>The <code>initialKeyguardLayout</code> attribute points to the layout resource
+that defines the lock screen App Widget layout. This works the same way as the 
+{@link android.appwidget.AppWidgetProviderInfo#initialLayout android:initialLayout}, 
+in that it provides a layout that can appear immediately until your app widget is initialized and able to update 
+the layout. Introduced in Android 4.2.</li>
+
+</ul>
 
 <p>See the {@link android.appwidget.AppWidgetProviderInfo} class for more
 information on the
@@ -457,19 +476,6 @@ AppWidgetProvider
     implementation filters all App Widget broadcasts and calls the above 
     methods as appropriate.</dd> 
 </dl>
-
-<p class="warning"><strong>Note:</strong> In Android 1.5, there is a known issue
-in which the
-<code>onDeleted()</code> method will not be called when it should be. To work
-around this issue, 
-you can implement {@link
-android.appwidget.AppWidgetProvider#onReceive(Context,Intent)
-onReceive()} as described in this 
-<a
-href="http://groups.google.com/group/android-developers/msg/e405ca19df2170e2">
-Group post</a>
-to receive the <code>onDeleted()</code> callback.
-</p>
 
 <p>The most important AppWidgetProvider callback is 
 {@link android.appwidget.AppWidgetProvider#onUpdate(android.content.Context, android.appwidget.AppWidgetManager, int[]) onUpdate()} 
@@ -731,14 +737,74 @@ preview image, launch this application, select the app widget for your
 application and set it up how you'd like your preview image to appear, then save
 it and place it in your application's drawable resources.</p>
 
+<h2 id="lockscreen">Enabling App Widgets on the Lockscreen</h2>
+
+<p>Android 4.2 introduces the ability for users to add widgets to the lock screen. To indicate that your app widget is available for use on the lock screen, declare the {@link android.appwidget.AppWidgetProviderInfo#widgetCategory android:widgetCategory} attribute in the XML file that specifies your {@link android.appwidget.AppWidgetProviderInfo}. This attribute supports two values: "home_screen" and "keyguard". An app widget can declare support for one or both.</p>
+
+<p>By default, every app widget supports placement on the Home screen, so "home_screen" is the default value for the 
+{@link android.appwidget.AppWidgetProviderInfo#widgetCategory android:widgetCategory} attribute. If you want your app widget to be available for the lock screen, add the "keyguard" value:</p>
+<pre>
+&lt;appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+   ...
+   android:widgetCategory="keyguard|home_screen">
+&lt;/appwidget-provider>
+</pre>
+
+<p>If you declare a widget to be displayable on both keyguard (lockscreen) and home, it's likely that you'll want to customize the widget depending on where it is displayed. For example, you might create a separate layout file for keyguard vs. home. The next step is to detect the widget category at runtime and respond accordingly. 
+
+You can detect whether your widget is on the lockscreen or home screen by calling 
+{@link android.appwidget.AppWidgetManager#getAppWidgetOptions getAppWidgetOptions()} 
+to get the widget's options as a {@link android.os.Bundle}. The returned bundle will include the key 
+{@link android.appwidget.AppWidgetManager#OPTION_APPWIDGET_HOST_CATEGORY}, whose value will be one of {@link android.appwidget.AppWidgetProviderInfo#WIDGET_CATEGORY_HOME_SCREEN} or 
+{@link android.appwidget.AppWidgetProviderInfo#WIDGET_CATEGORY_KEYGUARD}. This value is determined by the host into which the widget is bound. In the {@link android.appwidget.AppWidgetProvider}, you can then check the widget's category, for example:</p>
+
+<pre>
+AppWidgetManager appWidgetManager;
+int widgetId;
+Bundle myOptions = appWidgetManager.getAppWidgetOptions (widgetId);
+
+// Get the value of OPTION_APPWIDGET_HOST_CATEGORY
+int category = myOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_HOST_CATEGORY, -1);
+
+// If the value is WIDGET_CATEGORY_KEYGUARD, it's a lockscreen widget
+boolean isKeyguard = category == AppWidgetProviderInfo.WIDGET_CATEGORY_KEYGUARD;
+</pre>
+
+<p>Once you know the widget's category, you can optionally load a different base layout, set different properties, and so on. For example:</p>
+
+<pre>
+int baseLayout = isKeyguard ? R.layout.keyguard_widget_layout : R.layout.widget_layout;
+</pre>
+
+
+<p>You should also specify an initial layout for your app widget when on the lock screen with the 
+{@link android.appwidget.AppWidgetProviderInfo#initialKeyguardLayout android:initialKeyguardLayout} attribute. This works the same way as the 
+{@link android.appwidget.AppWidgetProviderInfo#initialLayout android:initialLayout}, in that it provides a layout that can appear immediately until your app widget is initialized and able to update the layout.</p>
+
+<h3 id="lockscreen-sizing">Sizing guidelines</h3>
+
+<p>When a widget is hosted on the lockscreen, the framework ignores the {@code minWidth}, {@code minHeight}, {@code minResizeWidth}, and {@code minResizeHeight} fields. If a widget is also a home screen widget, these parameters are still needed as they're still used on home, but they will be ignored for purposes of the lockscreen.</p>
+
+<p>The width of a lockscreen widget always fills the provided space. For the height of a lockscreen widget, you have the following options:</p>
+
+<ul>
+    <li>If the widget does not mark itself as vertically resizable ({@code android:resizeMode="vertical"}), then the widget height will always be "small":
+      <ul>
+        <li>On a phone in portrait mode, "small" is defined as the space remaining when an unlock UI is being displayed.</li>
+        <li>On tablets and landscape phones, "small" is set on a per-device basis.</li>    
+      </ul>
+    </li>
+    <li>If the widget marks itself as vertically resizable, then the widget height shows up as "small" on portrait phones displaying an unlock UI. In all other cases, the widget sizes to fill the available height.</li>
+</ul>
+
 <h2 id="collections">Using App Widgets with Collections</h2>
 
-<p>Android 3.0 introduces App Widgets with collections. These kinds of App
+<p>Android 3.0 introduces app widgets with collections. These kinds of App
 Widgets use the {@link android.widget.RemoteViewsService} to display collections
 that are backed by remote data, such as from a <a
 href="{@docRoot}guide/topics/providers/content-providers.html">content
 provider</a>. The data provided by the {@link android.widget.RemoteViewsService}
-is presented in the App Widget using one of the following view types, which
+is presented in the app widget using one of the following view types, which
 we’ll refer to as “collection views:”</p>
 
 <dl>
@@ -815,7 +881,7 @@ href="{@docRoot}resources/samples/StackWidget/index.html">StackView Widget
 sample</a>:</p>
 
 <p>
-<img src="{@docRoot}resources/images/StackWidget.png" alt="" />
+<img src="{@docRoot}images/appwidgets/StackWidget.png" alt="" />
 </p>
 
 <p>This sample consists of a stack of 10 views, which  display the values
@@ -845,15 +911,15 @@ how this is implemented, see
 </ul>
 <h3 id="implementing_collections">Implementing app widgets with collections</h3>
 
-<p>To implement an App Widget with collections, you follow the same basic steps 
+<p>To implement an app widget with collections, you follow the same basic steps 
 you would use to implement any app widget. The following sections  describe the
-additional steps you need to perform to implement an App Widget with
+additional steps you need to perform to implement an app widget with
 collections.</p>
 
 <h4>Manifest for app widgets with collections</h4>
 
 <p> In addition to the requirements listed in <a href="#Manifest">Declaring an
-App Widget in the Manifest</a>, to make it possible for App Widgets with
+app widget in the Manifest</a>, to make it possible for app widgets with
 collections to bind to your {@link android.widget.RemoteViewsService}, you must
 declare the service in your manifest file with the permission {@link
 android.Manifest.permission#BIND_REMOTEVIEWS}. This prevents other applications
@@ -932,7 +998,7 @@ android.widget.RemoteViewsService} can then return your implementation of {@link
 android.widget.RemoteViewsService.RemoteViewsFactory RemoteViewsFactory}, and
 the widget can serve up the appropriate data. When you call this method, you
 must pass an intent that  points to your implementation of {@link
-android.widget.RemoteViewsService} and the App Widget ID that specifies the app
+android.widget.RemoteViewsService} and the app widget ID that specifies the app
 widget to update.</p>
 
 
@@ -954,7 +1020,7 @@ int[] appWidgetIds) {
         // Add the app widget ID to the intent extras.
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetIds[i]);
         intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
-        // Instantiate the RemoteViews object for the App Widget layout.
+        // Instantiate the RemoteViews object for the app widget layout.
         RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
         // Set up the RemoteViews object to use a RemoteViews adapter. 
         // This adapter connects
@@ -1052,7 +1118,7 @@ initialize an array of <code>WidgetItem</code> objects. When your app widget is
 active, the system accesses these objects using their index position in the
 array and the text they contain is displayed  </p>
 
-<p>Here is an excerpt from the the <a
+<p>Here is an excerpt from the <a
 href="{@docRoot}resources/samples/StackWidget/index.html">StackView Widget</a>
 sample's 
 {@link android.widget.RemoteViewsService.RemoteViewsFactory
@@ -1312,15 +1378,15 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 
 <h3 id="fresh">Keeping Collection Data Fresh</h3>
 
-<p>The following figure illustrates the flow that occurs in an App Widget that
+<p>The following figure illustrates the flow that occurs in an app widget that
 uses
-collections when updates occur. It shows how the App Widget code interacts with
+collections when updates occur. It shows how the app widget code interacts with
 the  {@link android.widget.RemoteViewsService.RemoteViewsFactory
 RemoteViewsFactory}, and how you can trigger updates:</p>
 
-<img src="{@docRoot}images/appwidget_collections.png" alt="" />
+<img src="{@docRoot}images/appwidgets/appwidget_collections.png" alt="" />
 
-<p>One feature of App Widgets that use collections is the ability to provide
+<p>One feature of app widgets that use collections is the ability to provide
 users with up-to-date content. For example, consider the Android 3.0 Gmail
 app widget, which provides users with a snapshot of their inbox. To make this
 possible, you need to be able to trigger your {@link

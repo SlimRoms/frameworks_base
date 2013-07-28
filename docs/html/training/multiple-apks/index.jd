@@ -1,9 +1,8 @@
 page.title=Maintaining Multiple APKs
+page.tags="support"
 
 trainingnavtop=true
 startpage=true
-next.title=Creating Multiple APKs for Different API Levels
-next.link=api.html
 
 @jd:body
 
@@ -23,7 +22,7 @@ account</li>
 <!-- related docs (NOT javadocs) -->
 <h2>You should also read</h2>
 <ul>
-  <li><a href="http://developer.android.com/guide/google/play/publishing/multiple-apks.html">Multiple APK
+  <li><a href="http://developer.android.com/google/play/publishing/multiple-apks.html">Multiple APK
 Support</a></li>
 </ul>
 

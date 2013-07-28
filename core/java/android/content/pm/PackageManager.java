@@ -46,7 +46,7 @@ public abstract class PackageManager {
 
     /**
      * This exception is thrown when a given package, application, or component
-     * name can not be found.
+     * name cannot be found.
      */
     public static class NameNotFoundException extends AndroidException {
         public NameNotFoundException() {
@@ -176,6 +176,14 @@ public abstract class PackageManager {
     public static final int GET_CONFIGURATIONS = 0x00004000;
 
     /**
+     * {@link PackageInfo} flag: include disabled components which are in
+     * that state only because of {@link #COMPONENT_ENABLED_STATE_DISABLED_UNTIL_USED}
+     * in the returned info.  Note that if you set this flag, applications
+     * that are in this disabled state will be reported as enabled.
+     */
+    public static final int GET_DISABLED_UNTIL_USED_COMPONENTS = 0x00008000;
+
+    /**
      * Resolution and querying flag: if set, only filters that support the
      * {@link android.content.Intent#CATEGORY_DEFAULT} will be considered for
      * matching.  This is a synonym for including the CATEGORY_DEFAULT in your
@@ -260,10 +268,23 @@ public abstract class PackageManager {
      * user has explicitly disabled the application, regardless of what it has
      * specified in its manifest.  Because this is due to the user's request,
      * they may re-enable it if desired through the appropriate system UI.  This
-     * option currently <strong>can not</strong> be used with
+     * option currently <strong>cannot</strong> be used with
      * {@link #setComponentEnabledSetting(ComponentName, int, int)}.
      */
     public static final int COMPONENT_ENABLED_STATE_DISABLED_USER = 3;
+
+    /**
+     * Flag for {@link #setApplicationEnabledSetting(String, int, int)} only: This
+     * application should be considered, until the point where the user actually
+     * wants to use it.  This means that it will not normally show up to the user
+     * (such as in the launcher), but various parts of the user interface can
+     * use {@link #GET_DISABLED_UNTIL_USED_COMPONENTS} to still see it and allow
+     * the user to select it (as for example an IME, device admin, etc).  Such code,
+     * once the user has selected the app, should at that point also make it enabled.
+     * This option currently <strong>can not</strong> be used with
+     * {@link #setComponentEnabledSetting(ComponentName, int, int)}.
+     */
+    public static final int COMPONENT_ENABLED_STATE_DISABLED_UNTIL_USED = 4;
 
     /**
      * Flag parameter for {@link #installPackage(android.net.Uri, IPackageInstallObserver, int)} to
@@ -646,6 +667,15 @@ public abstract class PackageManager {
     public static final int INSTALL_FAILED_INTERNAL_ERROR = -110;
 
     /**
+     * Installation failed return code: this is passed to the {@link IPackageInstallObserver} by
+     * {@link #installPackage(android.net.Uri, IPackageInstallObserver, int)}
+     * if the system failed to install the package because the user is restricted from installing
+     * apps.
+     * @hide
+     */
+    public static final int INSTALL_FAILED_USER_RESTRICTED = -111;
+
+    /**
      * Flag parameter for {@link #deletePackage} to indicate that you don't want to delete the
      * package's data directory.
      *
@@ -660,6 +690,17 @@ public abstract class PackageManager {
      * @hide
      */
     public static final int DELETE_ALL_USERS = 0x00000002;
+
+    /**
+     * Flag parameter for {@link #deletePackage} to indicate that, if you are calling
+     * uninstall on a system that has been updated, then don't do the normal process
+     * of uninstalling the update and rolling back to the older system version (which
+     * needs to happen for all users); instead, just mark the app as uninstalled for
+     * the current user.
+     *
+     * @hide
+     */
+    public static final int DELETE_SYSTEM_APP = 0x00000004;
 
     /**
      * Return code for when package deletion succeeds. This is passed to the
@@ -688,6 +729,15 @@ public abstract class PackageManager {
      * @hide
      */
     public static final int DELETE_FAILED_DEVICE_POLICY_MANAGER = -2;
+
+    /**
+     * Deletion failed return code: this is passed to the
+     * {@link IPackageDeleteObserver} by {@link #deletePackage()} if the system
+     * failed to delete the package since the user is restricted.
+     *
+     * @hide
+     */
+    public static final int DELETE_FAILED_USER_RESTRICTED = -3;
 
     /**
      * Return code that is passed to the {@link IPackageMoveObserver} by
@@ -818,6 +868,14 @@ public abstract class PackageManager {
      */
     @SdkConstant(SdkConstantType.FEATURE)
     public static final String FEATURE_BLUETOOTH = "android.hardware.bluetooth";
+
+    /**
+     * Feature for {@link #getSystemAvailableFeatures} and
+     * {@link #hasSystemFeature}: The device is capable of communicating with
+     * other devices via Bluetooth Low Energy radio.
+     */
+    @SdkConstant(SdkConstantType.FEATURE)
+    public static final String FEATURE_BLUETOOTH_LE = "android.hardware.bluetooth_le";
 
     /**
      * Feature for {@link #getSystemAvailableFeatures} and
@@ -1112,6 +1170,29 @@ public abstract class PackageManager {
 
     /**
      * Feature for {@link #getSystemAvailableFeatures} and
+     * {@link #hasSystemFeature}: The device supports app widgets.
+     */
+    @SdkConstant(SdkConstantType.FEATURE)
+    public static final String FEATURE_APP_WIDGETS = "android.software.app_widgets";
+
+    /**
+     * Feature for {@link #getSystemAvailableFeatures} and
+     * {@link #hasSystemFeature}: The device supports a home screen that is replaceable
+     * by third party applications.
+     */
+    @SdkConstant(SdkConstantType.FEATURE)
+    public static final String FEATURE_HOME_SCREEN = "android.software.home_screen";
+
+    /**
+     * Feature for {@link #getSystemAvailableFeatures} and
+     * {@link #hasSystemFeature}: The device supports adding new input methods implemented
+     * with the {@link android.inputmethodservice.InputMethodService} API.
+     */
+    @SdkConstant(SdkConstantType.FEATURE)
+    public static final String FEATURE_INPUT_METHODS = "android.software.input_methods";
+
+    /**
+     * Feature for {@link #getSystemAvailableFeatures} and
      * {@link #hasSystemFeature}: The device supports WiFi (802.11) networking.
      */
     @SdkConstant(SdkConstantType.FEATURE)
@@ -1208,6 +1289,23 @@ public abstract class PackageManager {
             = "android.content.pm.extra.VERIFICATION_VERSION_CODE";
 
     /**
+     * The action used to request that the user approve a permission request
+     * from the application.
+     *
+     * @hide
+     */
+    public static final String ACTION_REQUEST_PERMISSION
+            = "android.content.pm.action.REQUEST_PERMISSION";
+
+    /**
+     * Extra field name for the list of permissions, which the user must approve.
+     *
+     * @hide
+     */
+    public static final String EXTRA_REQUEST_PERMISSION_PERMISSION_LIST
+            = "android.content.pm.extra.PERMISSION_LIST";
+
+    /**
      * Retrieve overall information about an application package that is
      * installed on the system.
      * <p>
@@ -1227,9 +1325,9 @@ public abstract class PackageManager {
      *         package. If flag GET_UNINSTALLED_PACKAGES is set and if the
      *         package is not found in the list of installed applications, the
      *         package information is retrieved from the list of uninstalled
-     *         applications(which includes installed applications as well as
-     *         applications with data directory ie applications which had been
-     *         deleted with DONT_DELTE_DATA flag set).
+     *         applications (which includes installed applications as well as
+     *         applications with data directory i.e. applications which had been
+     *         deleted with {@code DONT_DELETE_DATA} flag set).
      * @see #GET_ACTIVITIES
      * @see #GET_GIDS
      * @see #GET_CONFIGURATIONS
@@ -1270,7 +1368,7 @@ public abstract class PackageManager {
      * null if neither are found.
      *
      * <p>Throws {@link NameNotFoundException} if a package with the given
-     * name can not be found on the system.
+     * name cannot be found on the system.
      *
      * @param packageName The name of the package to inspect.
      *
@@ -1285,7 +1383,7 @@ public abstract class PackageManager {
      * assigned to a package.
      *
      * <p>Throws {@link NameNotFoundException} if a package with the given
-     * name can not be found on the system.
+     * name cannot be found on the system.
      *
      * @param packageName The full name (i.e. com.google.apps.contacts) of the
      *                    desired package.
@@ -1297,10 +1395,26 @@ public abstract class PackageManager {
             throws NameNotFoundException;
 
     /**
+     * @hide Return the uid associated with the given package name for the
+     * given user.
+     *
+     * <p>Throws {@link NameNotFoundException} if a package with the given
+     * name can not be found on the system.
+     *
+     * @param packageName The full name (i.e. com.google.apps.contacts) of the
+     *                    desired package.
+     * @param userHandle The user handle identifier to look up the package under.
+     *
+     * @return Returns an integer uid who owns the given package name.
+     */
+    public abstract int getPackageUid(String packageName, int userHandle)
+            throws NameNotFoundException;
+
+    /**
      * Retrieve all of the information we know about a particular permission.
      *
      * <p>Throws {@link NameNotFoundException} if a permission with the given
-     * name can not be found on the system.
+     * name cannot be found on the system.
      *
      * @param name The fully qualified name (i.e. com.google.permission.LOGIN)
      *             of the permission you are interested in.
@@ -1336,7 +1450,7 @@ public abstract class PackageManager {
      * permissions.
      *
      * <p>Throws {@link NameNotFoundException} if a permission group with the given
-     * name can not be found on the system.
+     * name cannot be found on the system.
      *
      * @param name The fully qualified name (i.e. com.google.permission_group.APPS)
      *             of the permission you are interested in.
@@ -1365,7 +1479,7 @@ public abstract class PackageManager {
      * package/application.
      *
      * <p>Throws {@link NameNotFoundException} if an application with the given
-     * package name can not be found on the system.
+     * package name cannot be found on the system.
      *
      * @param packageName The full name (i.e. com.google.apps.contacts) of an
      *                    application.
@@ -1381,7 +1495,7 @@ public abstract class PackageManager {
      *         list of uninstalled applications(which includes
      *         installed applications as well as applications
      *         with data directory ie applications which had been
-     *         deleted with DONT_DELTE_DATA flag set).
+     *         deleted with {@code DONT_DELETE_DATA} flag set).
      *
      * @see #GET_META_DATA
      * @see #GET_SHARED_LIBRARY_FILES
@@ -1395,7 +1509,7 @@ public abstract class PackageManager {
      * class.
      *
      * <p>Throws {@link NameNotFoundException} if an activity with the given
-     * class name can not be found on the system.
+     * class name cannot be found on the system.
      *
      * @param component The full component name (i.e.
      * com.google.apps.contacts/com.google.apps.contacts.ContactsList) of an Activity
@@ -1418,7 +1532,7 @@ public abstract class PackageManager {
      * class.
      *
      * <p>Throws {@link NameNotFoundException} if a receiver with the given
-     * class name can not be found on the system.
+     * class name cannot be found on the system.
      *
      * @param component The full component name (i.e.
      * com.google.apps.calendar/com.google.apps.calendar.CalendarAlarm) of a Receiver
@@ -1441,7 +1555,7 @@ public abstract class PackageManager {
      * class.
      *
      * <p>Throws {@link NameNotFoundException} if a service with the given
-     * class name can not be found on the system.
+     * class name cannot be found on the system.
      *
      * @param component The full component name (i.e.
      * com.google.apps.media/com.google.apps.media.BackgroundPlayback) of a Service
@@ -1463,7 +1577,7 @@ public abstract class PackageManager {
      * provider class.
      *
      * <p>Throws {@link NameNotFoundException} if a provider with the given
-     * class name can not be found on the system.
+     * class name cannot be found on the system.
      *
      * @param component The full component name (i.e.
      * com.google.providers.media/com.google.providers.media.MediaProvider) of a
@@ -1500,7 +1614,7 @@ public abstract class PackageManager {
      *         installed on the device.  In the unlikely case of there being no
      *         installed packages, an empty list is returned.
      *         If flag GET_UNINSTALLED_PACKAGES is set, a list of all
-     *         applications including those deleted with DONT_DELETE_DATA
+     *         applications including those deleted with {@code DONT_DELETE_DATA}
      *         (partially installed apps with data directory) will be returned.
      *
      * @see #GET_ACTIVITIES
@@ -1513,9 +1627,41 @@ public abstract class PackageManager {
      * @see #GET_SERVICES
      * @see #GET_SIGNATURES
      * @see #GET_UNINSTALLED_PACKAGES
-     *
      */
     public abstract List<PackageInfo> getInstalledPackages(int flags);
+
+    /**
+     * Return a List of all installed packages that are currently
+     * holding any of the given permissions.
+     *
+     * @param flags Additional option flags. Use any combination of
+     * {@link #GET_ACTIVITIES},
+     * {@link #GET_GIDS},
+     * {@link #GET_CONFIGURATIONS},
+     * {@link #GET_INSTRUMENTATION},
+     * {@link #GET_PERMISSIONS},
+     * {@link #GET_PROVIDERS},
+     * {@link #GET_RECEIVERS},
+     * {@link #GET_SERVICES},
+     * {@link #GET_SIGNATURES},
+     * {@link #GET_UNINSTALLED_PACKAGES} to modify the data returned.
+     *
+     * @return Returns a List of PackageInfo objects, one for each installed
+     * application that is holding any of the permissions that were provided.
+     *
+     * @see #GET_ACTIVITIES
+     * @see #GET_GIDS
+     * @see #GET_CONFIGURATIONS
+     * @see #GET_INSTRUMENTATION
+     * @see #GET_PERMISSIONS
+     * @see #GET_PROVIDERS
+     * @see #GET_RECEIVERS
+     * @see #GET_SERVICES
+     * @see #GET_SIGNATURES
+     * @see #GET_UNINSTALLED_PACKAGES
+     */
+    public abstract List<PackageInfo> getPackagesHoldingPermissions(
+            String[] permissions, int flags);
 
     /**
      * Return a List of all packages that are installed on the device, for a specific user.
@@ -1538,7 +1684,7 @@ public abstract class PackageManager {
      *         installed on the device.  In the unlikely case of there being no
      *         installed packages, an empty list is returned.
      *         If flag GET_UNINSTALLED_PACKAGES is set, a list of all
-     *         applications including those deleted with DONT_DELETE_DATA
+     *         applications including those deleted with {@code DONT_DELETE_DATA}
      *         (partially installed apps with data directory) will be returned.
      *
      * @see #GET_ACTIVITIES
@@ -1640,6 +1786,30 @@ public abstract class PackageManager {
      * @see #addPermission(PermissionInfo)
      */
     public abstract void removePermission(String name);
+
+    /**
+     * Returns an {@link Intent} suitable for passing to {@code startActivityForResult}
+     * which prompts the user to grant {@code permissions} to this application.
+     * @hide
+     *
+     * @throws NullPointerException if {@code permissions} is {@code null}.
+     * @throws IllegalArgumentException if {@code permissions} contains {@code null}.
+     */
+    public Intent buildPermissionRequestIntent(String... permissions) {
+        if (permissions == null) {
+            throw new NullPointerException("permissions cannot be null");
+        }
+        for (String permission : permissions) {
+            if (permission == null) {
+                throw new IllegalArgumentException("permissions cannot contain null");
+            }
+        }
+
+        Intent i = new Intent(ACTION_REQUEST_PERMISSION);
+        i.putExtra(EXTRA_REQUEST_PERMISSION_PERMISSION_LIST, permissions);
+        i.setPackage("com.android.packageinstaller");
+        return i;
+    }
 
     /**
      * Grant a permission to an application which the application does not
@@ -1754,18 +1924,18 @@ public abstract class PackageManager {
     /**
      * Return a List of all application packages that are installed on the
      * device. If flag GET_UNINSTALLED_PACKAGES has been set, a list of all
-     * applications including those deleted with DONT_DELETE_DATA(partially
+     * applications including those deleted with {@code DONT_DELETE_DATA} (partially
      * installed apps with data directory) will be returned.
      *
      * @param flags Additional option flags. Use any combination of
      * {@link #GET_META_DATA}, {@link #GET_SHARED_LIBRARY_FILES},
      * {@link #GET_UNINSTALLED_PACKAGES} to modify the data returned.
      *
-     * @return A List of ApplicationInfo objects, one for each application that
+     * @return Returns a List of ApplicationInfo objects, one for each application that
      *         is installed on the device.  In the unlikely case of there being
      *         no installed applications, an empty list is returned.
      *         If flag GET_UNINSTALLED_PACKAGES is set, a list of all
-     *         applications including those deleted with DONT_DELETE_DATA
+     *         applications including those deleted with {@code DONT_DELETE_DATA}
      *         (partially installed apps with data directory) will be returned.
      *
      * @see #GET_META_DATA
@@ -2071,7 +2241,7 @@ public abstract class PackageManager {
      * instrumentation class.
      *
      * <p>Throws {@link NameNotFoundException} if instrumentation with the
-     * given class name can not be found on the system.
+     * given class name cannot be found on the system.
      *
      * @param className The full name (i.e.
      *                  com.google.apps.contacts.InstrumentList) of an
@@ -2108,8 +2278,8 @@ public abstract class PackageManager {
      * icon.
      *
      * @param packageName The name of the package that this icon is coming from.
-     * Can not be null.
-     * @param resid The resource identifier of the desired image.  Can not be 0.
+     * Cannot be null.
+     * @param resid The resource identifier of the desired image.  Cannot be 0.
      * @param appInfo Overall information about <var>packageName</var>.  This
      * may be null, in which case the application information will be retrieved
      * for you if needed; if you already have this information around, it can
@@ -2125,7 +2295,7 @@ public abstract class PackageManager {
      * Retrieve the icon associated with an activity.  Given the full name of
      * an activity, retrieves the information about it and calls
      * {@link ComponentInfo#loadIcon ComponentInfo.loadIcon()} to return its icon.
-     * If the activity can not be found, NameNotFoundException is thrown.
+     * If the activity cannot be found, NameNotFoundException is thrown.
      *
      * @param activityName Name of the activity whose icon is to be retrieved.
      *
@@ -2144,7 +2314,7 @@ public abstract class PackageManager {
      * set, this simply returns the result of
      * getActivityIcon(intent.getClassName()).  Otherwise it resolves the intent's
      * component and returns the icon associated with the resolved component.
-     * If intent.getClassName() can not be found or the Intent can not be resolved
+     * If intent.getClassName() cannot be found or the Intent cannot be resolved
      * to a component, NameNotFoundException is thrown.
      *
      * @param intent The intent for which you would like to retrieve an icon.
@@ -2183,7 +2353,7 @@ public abstract class PackageManager {
     /**
      * Retrieve the icon associated with an application.  Given the name of the
      * application's package, retrieves the information about it and calls
-     * getApplicationIcon() to return its icon. If the application can not be
+     * getApplicationIcon() to return its icon. If the application cannot be
      * found, NameNotFoundException is thrown.
      *
      * @param packageName Name of the package whose application icon is to be
@@ -2203,7 +2373,7 @@ public abstract class PackageManager {
      * Retrieve the logo associated with an activity.  Given the full name of
      * an activity, retrieves the information about it and calls
      * {@link ComponentInfo#loadLogo ComponentInfo.loadLogo()} to return its logo.
-     * If the activity can not be found, NameNotFoundException is thrown.
+     * If the activity cannot be found, NameNotFoundException is thrown.
      *
      * @param activityName Name of the activity whose logo is to be retrieved.
      *
@@ -2223,7 +2393,7 @@ public abstract class PackageManager {
      * set, this simply returns the result of
      * getActivityLogo(intent.getClassName()).  Otherwise it resolves the intent's
      * component and returns the logo associated with the resolved component.
-     * If intent.getClassName() can not be found or the Intent can not be resolved
+     * If intent.getClassName() cannot be found or the Intent cannot be resolved
      * to a component, NameNotFoundException is thrown.
      *
      * @param intent The intent for which you would like to retrieve a logo.
@@ -2255,7 +2425,7 @@ public abstract class PackageManager {
     /**
      * Retrieve the logo associated with an application.  Given the name of the
      * application's package, retrieves the information about it and calls
-     * getApplicationLogo() to return its logo. If the application can not be
+     * getApplicationLogo() to return its logo. If the application cannot be
      * found, NameNotFoundException is thrown.
      *
      * @param packageName Name of the package whose application logo is to be
@@ -2279,8 +2449,8 @@ public abstract class PackageManager {
      * labels and other text.
      *
      * @param packageName The name of the package that this text is coming from.
-     * Can not be null.
-     * @param resid The resource identifier of the desired text.  Can not be 0.
+     * Cannot be null.
+     * @param resid The resource identifier of the desired text.  Cannot be 0.
      * @param appInfo Overall information about <var>packageName</var>.  This
      * may be null, in which case the application information will be retrieved
      * for you if needed; if you already have this information around, it can
@@ -2297,8 +2467,8 @@ public abstract class PackageManager {
      * retrieve XML meta data.
      *
      * @param packageName The name of the package that this xml is coming from.
-     * Can not be null.
-     * @param resid The resource identifier of the desired xml.  Can not be 0.
+     * Cannot be null.
+     * @param resid The resource identifier of the desired xml.  Cannot be 0.
      * @param appInfo Overall information about <var>packageName</var>.  This
      * may be null, in which case the application information will be retrieved
      * for you if needed; if you already have this information around, it can
@@ -2316,7 +2486,7 @@ public abstract class PackageManager {
      *
      * @return Returns the label associated with this application, or null if
      * it could not be found for any reason.
-     * @param info The application to get the label of
+     * @param info The application to get the label of.
      */
     public abstract CharSequence getApplicationLabel(ApplicationInfo info);
 
@@ -2324,7 +2494,7 @@ public abstract class PackageManager {
      * Retrieve the resources associated with an activity.  Given the full
      * name of an activity, retrieves the information about it and calls
      * getResources() to return its application's resources.  If the activity
-     * can not be found, NameNotFoundException is thrown.
+     * cannot be found, NameNotFoundException is thrown.
      *
      * @param activityName Name of the activity whose resources are to be
      *                     retrieved.
@@ -2355,7 +2525,7 @@ public abstract class PackageManager {
      * Retrieve the resources associated with an application.  Given the full
      * package name of an application, retrieves the information about it and
      * calls getResources() to return its application's resources.  If the
-     * appPackageName can not be found, NameNotFoundException is thrown.
+     * appPackageName cannot be found, NameNotFoundException is thrown.
      *
      * @param appPackageName Package name of the application whose resources
      *                       are to be retrieved.
@@ -2524,7 +2694,7 @@ public abstract class PackageManager {
      * {@link PackageManager#VERIFICATION_REJECT}.
      *
      * @param id pending package identifier as passed via the
-     *            {@link PackageManager#EXTRA_VERIFICATION_ID} Intent extra
+     *            {@link PackageManager#EXTRA_VERIFICATION_ID} Intent extra.
      * @param verificationCode either {@link PackageManager#VERIFICATION_ALLOW}
      *            or {@link PackageManager#VERIFICATION_REJECT}.
      * @throws SecurityException if the caller does not have the
@@ -2545,7 +2715,7 @@ public abstract class PackageManager {
      * will have no effect.
      *
      * @param id pending package identifier as passed via the
-     *            {@link PackageManager#EXTRA_VERIFICATION_ID} Intent extra
+     *            {@link PackageManager#EXTRA_VERIFICATION_ID} Intent extra.
      * @param verificationCodeAtTimeout either
      *            {@link PackageManager#VERIFICATION_ALLOW} or
      *            {@link PackageManager#VERIFICATION_REJECT}. If
@@ -2729,16 +2899,16 @@ public abstract class PackageManager {
 
     /**
      * @deprecated This function no longer does anything; it was an old
-     * approach to managing preferred activities, which has been superceeded
-     * (and conflicts with) the modern activity-based preferences.
+     * approach to managing preferred activities, which has been superseded
+     * by (and conflicts with) the modern activity-based preferences.
      */
     @Deprecated
     public abstract void addPackageToPreferred(String packageName);
 
     /**
      * @deprecated This function no longer does anything; it was an old
-     * approach to managing preferred activities, which has been superceeded
-     * (and conflicts with) the modern activity-based preferences.
+     * approach to managing preferred activities, which has been superseded
+     * by (and conflicts with) the modern activity-based preferences.
      */
     @Deprecated
     public abstract void removePackageFromPreferred(String packageName);
@@ -2777,7 +2947,7 @@ public abstract class PackageManager {
     /**
      * @deprecated This is a protected API that should not have been available
      * to third party applications.  It is the platform's responsibility for
-     * assigning preferred activities and this can not be directly modified.
+     * assigning preferred activities and this cannot be directly modified.
      *
      * Add a new preferred activity mapping to the system.  This will be used
      * to automatically select the given activity component when
@@ -2811,7 +2981,7 @@ public abstract class PackageManager {
     /**
      * @deprecated This is a protected API that should not have been available
      * to third party applications.  It is the platform's responsibility for
-     * assigning preferred activities and this can not be directly modified.
+     * assigning preferred activities and this cannot be directly modified.
      *
      * Replaces an existing preferred activity mapping to the system, and if that were not present
      * adds a new preferred activity.  This will be used

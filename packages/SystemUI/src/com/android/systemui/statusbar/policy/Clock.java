@@ -41,9 +41,10 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import libcore.icu.LocaleData;
+
 /**
- * This widget display an analogic clock with two hands for hours and
- * minutes.
+ * Digital clock for the status bar.
  */
 public class Clock extends TextView {
     public static final int AM_PM_STYLE_NORMAL  = 0;
@@ -141,6 +142,7 @@ public class Clock extends TextView {
             filter.addAction(Intent.ACTION_TIME_CHANGED);
             filter.addAction(Intent.ACTION_TIMEZONE_CHANGED);
             filter.addAction(Intent.ACTION_CONFIGURATION_CHANGED);
+            filter.addAction(Intent.ACTION_USER_SWITCHED);
 
             getContext().registerReceiver(mIntentReceiver, filter, null, getHandler());
         }
@@ -196,20 +198,14 @@ public class Clock extends TextView {
 
     private final CharSequence getSmallTime() {
         Context context = getContext();
-        boolean b24 = DateFormat.is24HourFormat(context);
-        int res;
-
-        if (b24) {
-            res = R.string.twenty_four_hour_time_format;
-        } else {
-            res = R.string.twelve_hour_time_format;
-        }
+        boolean is24 = DateFormat.is24HourFormat(context);
+        LocaleData d = LocaleData.get(context.getResources().getConfiguration().locale);
 
         final char MAGIC1 = '\uEF00';
         final char MAGIC2 = '\uEF01';
 
         SimpleDateFormat sdf;
-        String format = context.getString(res);
+        String format = is24 ? d.timeFormat24 : d.timeFormat12;
         if (!format.equals(mClockFormatString)) {
             /*
              * Search for an unquoted "a" in the format string, so we can

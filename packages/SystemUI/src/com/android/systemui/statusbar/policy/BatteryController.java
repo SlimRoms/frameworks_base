@@ -158,8 +158,21 @@ public class BatteryController extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         final String action = intent.getAction();
         if (action.equals(Intent.ACTION_BATTERY_CHANGED)) {
+
             mLevel = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
-            mBatteryPlugged = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0) != 0;
+
+            final int status = intent.getIntExtra(BatteryManager.EXTRA_STATUS,
+                    BatteryManager.BATTERY_STATUS_UNKNOWN);
+
+            mBatteryPlugged = false;
+            switch (status) {
+                case BatteryManager.BATTERY_STATUS_CHARGING: 
+                case BatteryManager.BATTERY_STATUS_FULL:
+                    mBatteryPlugged = true;
+                    break;
+            }
+
+
             int N = mIconViews.size();
             for (int i=0; i<N; i++) {
                 ImageView v = mIconViews.get(i);

@@ -21,6 +21,16 @@ trainingnavtop=true
             <a href="#animate">Animate the Card Flip</a>
           </li>
         </ol>
+        <h2>
+          Try it out
+        </h2>
+        <div class="download-box">
+          <a href="{@docRoot}shareables/training/Animations.zip" class=
+          "button">Download the sample app</a>
+          <p class="filename">
+            Animations.zip
+          </p>
+        </div>
       </div>
     </div>
     <p> This lesson shows you how to do a card flip
@@ -60,7 +70,7 @@ trainingnavtop=true
         <code>animator/card_flip_right_out.xml</code>
       </li>
       <li>
-        <code>animator/card_flip_right_in.xml</code>
+        <code>animator/card_flip_left_in.xml</code>
       </li>
       <li>
         <code>animator/card_flip_left_out.xml</code>

@@ -35,6 +35,7 @@ import android.net.LinkAddress;
 import android.net.LinkProperties;
 import android.net.NetworkInfo;
 import android.net.NetworkUtils;
+import android.net.RouteInfo;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Binder;
@@ -1411,7 +1412,21 @@ public class Tethering extends INetworkManagementEventObserver.Stub {
                         linkProperties = mConnService.getLinkProperties(upType);
                     } catch (RemoteException e) { }
                     if (linkProperties != null) {
-                        iface = linkProperties.getInterfaceName();
+                        // Find the interface with the default IPv4 route. It may be the
+                        // interface described by linkProperties, or one of the interfaces
+                        // stacked on top of it.
+                        Log.i(TAG, "Finding IPv4 upstream interface on: " + linkProperties);
+                        RouteInfo ipv4Default = RouteInfo.selectBestRoute(
+                            linkProperties.getAllRoutes(), Inet4Address.ANY);
+                        if (ipv4Default != null) {
+                            iface = ipv4Default.getInterface();
+                            Log.i(TAG, "Found interface " + ipv4Default.getInterface());
+                        } else {
+                            Log.i(TAG, "No IPv4 upstream interface, giving up.");
+                        }
+                    }
+
+                    if (iface != null) {
                         String[] dnsServers = mDefaultDnsServers;
                         Collection<InetAddress> dnses = linkProperties.getDnses();
                         if (dnses != null) {

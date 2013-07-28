@@ -24,16 +24,14 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.net.Uri;
+import android.os.BadParcelableException;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.SystemClock;
 import android.os.UserHandle;
 import android.text.TextUtils;
-import android.util.IntProperty;
 import android.util.Log;
-import android.util.Slog;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -58,6 +56,8 @@ import java.util.ArrayList;
  */
 public class Notification implements Parcelable
 {
+    private static final String TAG = "Notification";
+
     /**
      * Use all default values (where applicable).
      */
@@ -95,16 +95,16 @@ public class Notification implements Parcelable
 
     /**
      * A timestamp related to this notification, in milliseconds since the epoch.
-     * 
+     *
      * Default value: {@link System#currentTimeMillis() Now}.
      *
      * Choose a timestamp that will be most relevant to the user. For most finite events, this
      * corresponds to the time the event happened (or will happen, in the case of events that have
      * yet to occur but about which the user is being informed). Indefinite events should be
-     * timestamped according to when the activity began. 
-     * 
+     * timestamped according to when the activity began.
+     *
      * Some examples:
-     * 
+     *
      * <ul>
      *   <li>Notification of a new chat message should be stamped when the message was received.</li>
      *   <li>Notification of an ongoing file download (with a progress bar, for example) should be stamped when the download started.</li>
@@ -112,8 +112,8 @@ public class Notification implements Parcelable
      *   <li>Notification of an upcoming meeting should be stamped with the time the meeting will begin (that is, in the future).</li>
      *   <li>Notification of an ongoing stopwatch (increasing timer) should be stamped with the watch's start time.
      *   <li>Notification of an ongoing countdown timer should be stamped with the timer's end time.
-     * </ul> 
-     * 
+     * </ul>
+     *
      */
     public long when;
 
@@ -135,13 +135,13 @@ public class Notification implements Parcelable
     /**
      * The number of events that this notification represents. For example, in a new mail
      * notification, this could be the number of unread messages.
-     * 
+     *
      * The system may or may not use this field to modify the appearance of the notification. For
      * example, before {@link android.os.Build.VERSION_CODES#HONEYCOMB}, this number was
      * superimposed over the icon in the status bar. Starting with
      * {@link android.os.Build.VERSION_CODES#HONEYCOMB}, the template used by
      * {@link Notification.Builder} has displayed the number in the expanded notification view.
-     * 
+     *
      * If the number is 0 or negative, it is never shown.
      */
     public int number;
@@ -343,7 +343,7 @@ public class Notification implements Parcelable
 
     /**
      * Obsolete flag indicating high-priority notifications; use the priority field instead.
-     * 
+     *
      * @deprecated Use {@link #priority} with a positive value.
      */
     public static final int FLAG_HIGH_PRIORITY      = 0x00000080;
@@ -384,15 +384,15 @@ public class Notification implements Parcelable
 
     /**
      * Relative priority for this notification.
-     * 
+     *
      * Priority is an indication of how much of the user's valuable attention should be consumed by
      * this notification. Low-priority notifications may be hidden from the user in certain
      * situations, while the user might be interrupted for a higher-priority notification. The
-     * system will make a determination about how to interpret notification priority as described in 
-     * MUMBLE MUMBLE.
+     * system will make a determination about how to interpret this priority when presenting
+     * the notification.
      */
     public int priority;
-    
+
     /**
      * @hide
      * Notification type: incoming call (voice or video) or similar synchronous communication request.
@@ -431,19 +431,54 @@ public class Notification implements Parcelable
     public String[] kind;
 
     /**
-     * Extra key for people values (type TBD).
-     *
+     * Additional semantic data to be carried around with this Notification.
      * @hide
      */
-    public static final String EXTRA_PEOPLE = "android.people";
+    public Bundle extras = new Bundle();
 
-    private Bundle extras;
+    // extras keys for Builder inputs
+    /** @hide */
+    public static final String EXTRA_TITLE = "android.title";
+    /** @hide */
+    public static final String EXTRA_TITLE_BIG = EXTRA_TITLE + ".big";
+    /** @hide */
+    public static final String EXTRA_TEXT = "android.text";
+    /** @hide */
+    public static final String EXTRA_SUB_TEXT = "android.subText";
+    /** @hide */
+    public static final String EXTRA_INFO_TEXT = "android.infoText";
+    /** @hide */
+    public static final String EXTRA_SUMMARY_TEXT = "android.summaryText";
+    /** @hide */
+    public static final String EXTRA_SMALL_ICON = "android.icon";
+    /** @hide */
+    public static final String EXTRA_LARGE_ICON = "android.largeIcon";
+    /** @hide */
+    public static final String EXTRA_LARGE_ICON_BIG = EXTRA_LARGE_ICON + ".big";
+    /** @hide */
+    public static final String EXTRA_PROGRESS = "android.progress";
+    /** @hide */
+    public static final String EXTRA_PROGRESS_MAX = "android.progressMax";
+    /** @hide */
+    public static final String EXTRA_PROGRESS_INDETERMINATE = "android.progressIndeterminate";
+    /** @hide */
+    public static final String EXTRA_SHOW_CHRONOMETER = "android.showChronometer";
+    /** @hide */
+    public static final String EXTRA_SHOW_WHEN = "android.showWhen";
+    /** @hide from BigPictureStyle */
+    public static final String EXTRA_PICTURE = "android.picture";
+    /** @hide from InboxStyle */
+    public static final String EXTRA_TEXT_LINES = "android.textLines";
+
+    // extras keys for other interesting pieces of information
+    /** @hide */
+    public static final String EXTRA_PEOPLE = "android.people";
 
     /**
      * Structure to encapsulate an "action", including title and icon, that can be attached to a Notification.
      * @hide
      */
-    private static class Action implements Parcelable {
+    public static class Action implements Parcelable {
         public int icon;
         public CharSequence title;
         public PendingIntent actionIntent;
@@ -495,7 +530,10 @@ public class Notification implements Parcelable
         };
     }
 
-    private Action[] actions;
+    /**
+     * @hide
+     */
+    public Action[] actions;
 
     /**
      * Constructs a Notification object with default values.
@@ -589,11 +627,10 @@ public class Notification implements Parcelable
 
         kind = parcel.createStringArray(); // may set kind to null
 
-        if (parcel.readInt() != 0) {
-            extras = parcel.readBundle();
-        }
+        extras = parcel.readBundle(); // may be null
 
-        actions = parcel.createTypedArray(Action.CREATOR);
+        actions = parcel.createTypedArray(Action.CREATOR); // may be null
+
         if (parcel.readInt() != 0) {
             bigContentView = RemoteViews.CREATOR.createFromParcel(parcel);
         }
@@ -602,7 +639,16 @@ public class Notification implements Parcelable
     @Override
     public Notification clone() {
         Notification that = new Notification();
+        cloneInto(that, true);
+        return that;
+    }
 
+    /**
+     * Copy all (or if heavy is false, all except Bitmaps and RemoteViews) members
+     * of this into that.
+     * @hide
+     */
+    public void cloneInto(Notification that, boolean heavy) {
         that.when = this.when;
         that.icon = this.icon;
         that.number = this.number;
@@ -615,13 +661,13 @@ public class Notification implements Parcelable
         if (this.tickerText != null) {
             that.tickerText = this.tickerText.toString();
         }
-        if (this.tickerView != null) {
+        if (heavy && this.tickerView != null) {
             that.tickerView = this.tickerView.clone();
         }
-        if (this.contentView != null) {
+        if (heavy && this.contentView != null) {
             that.contentView = this.contentView.clone();
         }
-        if (this.largeIcon != null) {
+        if (heavy && this.largeIcon != null) {
             that.largeIcon = Bitmap.createBitmap(this.largeIcon);
         }
         that.iconLevel = this.iconLevel;
@@ -643,7 +689,7 @@ public class Notification implements Parcelable
         that.flags = this.flags;
 
         that.priority = this.priority;
-        
+
         final String[] thiskind = this.kind;
         if (thiskind != null) {
             final int N = thiskind.length;
@@ -652,19 +698,62 @@ public class Notification implements Parcelable
         }
 
         if (this.extras != null) {
-            that.extras = new Bundle(this.extras);
-
+            try {
+                that.extras = new Bundle(this.extras);
+                // will unparcel
+                that.extras.size();
+            } catch (BadParcelableException e) {
+                Log.e(TAG, "could not unparcel extras from notification: " + this, e);
+                that.extras = null;
+            }
         }
 
-        that.actions = new Action[this.actions.length];
-        for(int i=0; i<this.actions.length; i++) {
-            that.actions[i] = this.actions[i].clone();
+        if (this.actions != null) {
+            that.actions = new Action[this.actions.length];
+            for(int i=0; i<this.actions.length; i++) {
+                that.actions[i] = this.actions[i].clone();
+            }
         }
-        if (this.bigContentView != null) {
+
+        if (heavy && this.bigContentView != null) {
             that.bigContentView = this.bigContentView.clone();
         }
 
-        return that;
+        if (!heavy) {
+            that.lightenPayload(); // will clean out extras
+        }
+    }
+
+    /**
+     * Removes heavyweight parts of the Notification object for archival or for sending to
+     * listeners when the full contents are not necessary.
+     * @hide
+     */
+    public final void lightenPayload() {
+        tickerView = null;
+        contentView = null;
+        bigContentView = null;
+        largeIcon = null;
+        if (extras != null) {
+            extras.remove(Notification.EXTRA_LARGE_ICON);
+            extras.remove(Notification.EXTRA_LARGE_ICON_BIG);
+            extras.remove(Notification.EXTRA_PICTURE);
+        }
+    }
+
+    /**
+     * Make sure this CharSequence is safe to put into a bundle, which basically
+     * means it had better not be some custom Parcelable implementation.
+     * @hide
+     */
+    public static CharSequence safeCharSequence(CharSequence cs) {
+        if (cs instanceof Parcelable) {
+            Log.e(TAG, "warning: " + cs.getClass().getCanonicalName()
+                    + " instance is a custom Parcelable and not allowed in Notification");
+            return cs.toString();
+        }
+
+        return cs;
     }
 
     public int describeContents() {
@@ -742,17 +831,12 @@ public class Notification implements Parcelable
         }
 
         parcel.writeInt(priority);
-        
-        parcel.writeStringArray(kind); // ok for null
-        
-        if (extras != null) {
-            parcel.writeInt(1);
-            extras.writeToParcel(parcel, 0);
-        } else {
-            parcel.writeInt(0);
-        }
 
-        parcel.writeTypedArray(actions, 0);
+        parcel.writeStringArray(kind); // ok for null
+
+        parcel.writeBundle(extras); // null ok
+
+        parcel.writeTypedArray(actions, 0); // null ok
 
         if (bigContentView != null) {
             parcel.writeInt(1);
@@ -800,35 +884,29 @@ public class Notification implements Parcelable
     @Deprecated
     public void setLatestEventInfo(Context context,
             CharSequence contentTitle, CharSequence contentText, PendingIntent contentIntent) {
-        // TODO: rewrite this to use Builder
-        RemoteViews contentView = new RemoteViews(context.getPackageName(),
-                R.layout.notification_template_base);
-        if (this.icon != 0) {
-            contentView.setImageViewResource(R.id.icon, this.icon);
-        }
-        if (priority < PRIORITY_LOW) {
-            contentView.setInt(R.id.icon,
-                    "setBackgroundResource", R.drawable.notification_template_icon_low_bg);
-            contentView.setInt(R.id.status_bar_latest_event_content,
-                    "setBackgroundResource", R.drawable.notification_bg_low);
-        }
+        Notification.Builder builder = new Notification.Builder(context);
+
+        // First, ensure that key pieces of information that may have been set directly
+        // are preserved
+        builder.setWhen(this.when);
+        builder.setSmallIcon(this.icon);
+        builder.setPriority(this.priority);
+        builder.setTicker(this.tickerText);
+        builder.setNumber(this.number);
+        builder.mFlags = this.flags;
+        builder.setSound(this.sound, this.audioStreamType);
+        builder.setDefaults(this.defaults);
+        builder.setVibrate(this.vibrate);
+
+        // now apply the latestEventInfo fields
         if (contentTitle != null) {
-            contentView.setTextViewText(R.id.title, contentTitle);
+            builder.setContentTitle(contentTitle);
         }
         if (contentText != null) {
-            contentView.setTextViewText(R.id.text, contentText);
+            builder.setContentText(contentText);
         }
-        if (this.when != 0) {
-            contentView.setViewVisibility(R.id.time, View.VISIBLE);
-            contentView.setLong(R.id.time, "setTime", when);
-        }
-        if (this.number != 0) {
-            NumberFormat f = NumberFormat.getIntegerInstance();
-            contentView.setTextViewText(R.id.info, f.format(this.number));
-        }
-
-        this.contentView = contentView;
-        this.contentIntent = contentIntent;
+        builder.setContentIntent(contentIntent);
+        builder.buildInto(this);
     }
 
     @Override
@@ -846,7 +924,9 @@ public class Notification implements Parcelable
         }
         // TODO(dsandler): defaults take precedence over local values, so reorder the branches below
         sb.append(" vibrate=");
-        if (this.vibrate != null) {
+        if ((this.defaults & DEFAULT_VIBRATE) != 0) {
+            sb.append("default");
+        } else if (this.vibrate != null) {
             int N = this.vibrate.length-1;
             sb.append("[");
             for (int i=0; i<N; i++) {
@@ -857,16 +937,14 @@ public class Notification implements Parcelable
                 sb.append(this.vibrate[N]);
             }
             sb.append("]");
-        } else if ((this.defaults & DEFAULT_VIBRATE) != 0) {
-            sb.append("default");
         } else {
             sb.append("null");
         }
         sb.append(" sound=");
-        if (this.sound != null) {
-            sb.append(this.sound.toString());
-        } else if ((this.defaults & DEFAULT_SOUND) != 0) {
+        if ((this.defaults & DEFAULT_SOUND) != 0) {
             sb.append("default");
+        } else if (this.sound != null) {
+            sb.append(this.sound.toString());
         } else {
             sb.append("null");
         }
@@ -912,16 +990,16 @@ public class Notification implements Parcelable
 
     /**
      * Builder class for {@link Notification} objects.
-     * 
+     *
      * Provides a convenient way to set the various fields of a {@link Notification} and generate
      * content views using the platform's notification layout template. If your app supports
      * versions of Android as old as API level 4, you can instead use
      * {@link android.support.v4.app.NotificationCompat.Builder NotificationCompat.Builder},
      * available in the <a href="{@docRoot}tools/extras/support-library.html">Android Support
      * library</a>.
-     * 
+     *
      * <p>Example:
-     * 
+     *
      * <pre class="prettyprint">
      * Notification noti = new Notification.Builder(mContext)
      *         .setContentTitle(&quot;New mail from &quot; + sender.toString())
@@ -1021,8 +1099,8 @@ public class Notification implements Parcelable
 
         /**
          * Show the {@link Notification#when} field as a stopwatch.
-         * 
-         * Instead of presenting <code>when</code> as a timestamp, the notification will show an 
+         *
+         * Instead of presenting <code>when</code> as a timestamp, the notification will show an
          * automatically updating display of the minutes and seconds since <code>when</code>.
          *
          * Useful when showing an elapsed time (like an ongoing phone call).
@@ -1075,7 +1153,7 @@ public class Notification implements Parcelable
          * Set the first line of text in the platform notification template.
          */
         public Builder setContentTitle(CharSequence title) {
-            mContentTitle = title;
+            mContentTitle = safeCharSequence(title);
             return this;
         }
 
@@ -1083,16 +1161,17 @@ public class Notification implements Parcelable
          * Set the second line of text in the platform notification template.
          */
         public Builder setContentText(CharSequence text) {
-            mContentText = text;
+            mContentText = safeCharSequence(text);
             return this;
         }
 
         /**
-         * Set the third line of text in the platform notification template. 
-         * Don't use if you're also using {@link #setProgress(int, int, boolean)}; they occupy the same location in the standard template.
+         * Set the third line of text in the platform notification template.
+         * Don't use if you're also using {@link #setProgress(int, int, boolean)}; they occupy the
+         * same location in the standard template.
          */
         public Builder setSubText(CharSequence text) {
-            mSubText = text;
+            mSubText = safeCharSequence(text);
             return this;
         }
 
@@ -1113,7 +1192,7 @@ public class Notification implements Parcelable
          * right (to the right of a smallIcon if it has been placed there).
          */
         public Builder setContentInfo(CharSequence info) {
-            mContentInfo = info;
+            mContentInfo = safeCharSequence(info);
             return this;
         }
 
@@ -1193,7 +1272,7 @@ public class Notification implements Parcelable
          * @see Notification#tickerText
          */
         public Builder setTicker(CharSequence tickerText) {
-            mTickerText = tickerText;
+            mTickerText = safeCharSequence(tickerText);
             return this;
         }
 
@@ -1206,7 +1285,7 @@ public class Notification implements Parcelable
          * @see Notification#tickerView
          */
         public Builder setTicker(CharSequence tickerText, RemoteViews views) {
-            mTickerText = tickerText;
+            mTickerText = safeCharSequence(tickerText);
             mTickerView = views;
             return this;
         }
@@ -1350,12 +1429,12 @@ public class Notification implements Parcelable
             mPriority = pri;
             return this;
         }
-        
+
         /**
          * @hide
-         * 
+         *
          * Add a kind (category) to this notification. Optional.
-         * 
+         *
          * @see Notification#kind
          */
         public Builder addKind(String k) {
@@ -1381,13 +1460,15 @@ public class Notification implements Parcelable
         /**
          * Add an action to this notification. Actions are typically displayed by
          * the system as a button adjacent to the notification content.
+         * <br>
+         * A notification displays up to 3 actions, from left to right in the order they were added.
          *
          * @param icon Resource ID of a drawable that represents the action.
          * @param title Text describing the action.
          * @param intent PendingIntent to be fired when the action is invoked.
          */
         public Builder addAction(int icon, CharSequence title, PendingIntent intent) {
-            mActions.add(new Action(icon, title, intent));
+            mActions.add(new Action(icon, safeCharSequence(title), intent));
             return this;
         }
 
@@ -1563,7 +1644,7 @@ public class Notification implements Parcelable
 
         private RemoteViews generateActionButton(Action action) {
             final boolean tombstone = (action.actionIntent == null);
-            RemoteViews button = new RemoteViews(mContext.getPackageName(), 
+            RemoteViews button = new RemoteViews(mContext.getPackageName(),
                     tombstone ? R.layout.notification_action_tombstone
                               : R.layout.notification_action);
             button.setTextViewCompoundDrawables(R.id.action0, action.icon, 0, 0, 0);
@@ -1600,7 +1681,7 @@ public class Notification implements Parcelable
             n.defaults = mDefaults;
             n.flags = mFlags;
             n.bigContentView = makeBigContentView();
-            if (mLedOnMs != 0 && mLedOffMs != 0) {
+            if (mLedOnMs != 0 || mLedOffMs != 0) {
                 n.flags |= FLAG_SHOW_LIGHTS;
             }
             if ((mDefaults & DEFAULT_LIGHTS) != 0) {
@@ -1613,12 +1694,34 @@ public class Notification implements Parcelable
                 n.kind = null;
             }
             n.priority = mPriority;
-            n.extras = mExtras != null ? new Bundle(mExtras) : null;
             if (mActions.size() > 0) {
                 n.actions = new Action[mActions.size()];
                 mActions.toArray(n.actions);
             }
+
             return n;
+        }
+
+        /**
+         * Capture, in the provided bundle, semantic information used in the construction of
+         * this Notification object.
+         * @hide
+         */
+        public void addExtras(Bundle extras) {
+            // Store original information used in the construction of this object
+            extras.putCharSequence(EXTRA_TITLE, mContentTitle);
+            extras.putCharSequence(EXTRA_TEXT, mContentText);
+            extras.putCharSequence(EXTRA_SUB_TEXT, mSubText);
+            extras.putCharSequence(EXTRA_INFO_TEXT, mContentInfo);
+            extras.putInt(EXTRA_SMALL_ICON, mSmallIcon);
+            extras.putInt(EXTRA_PROGRESS, mProgress);
+            extras.putInt(EXTRA_PROGRESS_MAX, mProgressMax);
+            extras.putBoolean(EXTRA_PROGRESS_INDETERMINATE, mProgressIndeterminate);
+            extras.putBoolean(EXTRA_SHOW_CHRONOMETER, mUseChronometer);
+            extras.putBoolean(EXTRA_SHOW_WHEN, mShowWhen);
+            if (mLargeIcon != null) {
+                extras.putParcelable(EXTRA_LARGE_ICON, mLargeIcon);
+            }
         }
 
         /**
@@ -1634,14 +1737,34 @@ public class Notification implements Parcelable
          * object.
          */
         public Notification build() {
+            final Notification n;
+
             if (mStyle != null) {
-                return mStyle.build();
+                n = mStyle.build();
             } else {
-                return buildUnstyled();
+                n = buildUnstyled();
             }
+
+            n.extras = mExtras != null ? new Bundle(mExtras) : new Bundle();
+
+            addExtras(n.extras);
+            if (mStyle != null) {
+                mStyle.addExtras(n.extras);
+            }
+
+            return n;
+        }
+
+        /**
+         * Apply this Builder to an existing {@link Notification} object.
+         *
+         * @hide
+         */
+        public Notification buildInto(Notification n) {
+            build().cloneInto(n, true);
+            return n;
         }
     }
-
 
     /**
      * An object that can apply a rich notification style to a {@link Notification.Builder}
@@ -1717,12 +1840,24 @@ public class Notification implements Parcelable
             return contentView;
         }
 
+        /**
+         * @hide
+         */
+        public void addExtras(Bundle extras) {
+            if (mSummaryTextSet) {
+                extras.putCharSequence(EXTRA_SUMMARY_TEXT, mSummaryText);
+            }
+            if (mBigContentTitle != null) {
+                extras.putCharSequence(EXTRA_TITLE_BIG, mBigContentTitle);
+            }
+        }
+
         public abstract Notification build();
     }
 
     /**
      * Helper class for generating large-format notifications that include a large image attachment.
-     * 
+     *
      * This class is a "rebuilder": It consumes a Builder object and modifies its behavior, like so:
      * <pre class="prettyprint">
      * Notification noti = new Notification.BigPictureStyle(
@@ -1734,7 +1869,7 @@ public class Notification implements Parcelable
      *      .bigPicture(aBigBitmap)
      *      .build();
      * </pre>
-     * 
+     *
      * @see Notification#bigContentView
      */
     public static class BigPictureStyle extends Style {
@@ -1754,7 +1889,7 @@ public class Notification implements Parcelable
          * This defaults to the value passed to setContentTitle().
          */
         public BigPictureStyle setBigContentTitle(CharSequence title) {
-            internalSetBigContentTitle(title);
+            internalSetBigContentTitle(safeCharSequence(title));
             return this;
         }
 
@@ -1762,7 +1897,7 @@ public class Notification implements Parcelable
          * Set the first line of text after the detail section in the big form of the template.
          */
         public BigPictureStyle setSummaryText(CharSequence cs) {
-            internalSetSummaryText(cs);
+            internalSetSummaryText(safeCharSequence(cs));
             return this;
         }
 
@@ -1791,6 +1926,18 @@ public class Notification implements Parcelable
             return contentView;
         }
 
+        /**
+         * @hide
+         */
+        public void addExtras(Bundle extras) {
+            super.addExtras(extras);
+
+            if (mBigLargeIconSet) {
+                extras.putParcelable(EXTRA_LARGE_ICON_BIG, mBigLargeIcon);
+            }
+            extras.putParcelable(EXTRA_PICTURE, mPicture);
+        }
+
         @Override
         public Notification build() {
             checkBuilder();
@@ -1805,7 +1952,7 @@ public class Notification implements Parcelable
 
     /**
      * Helper class for generating large-format notifications that include a lot of text.
-     * 
+     *
      * This class is a "rebuilder": It consumes a Builder object and modifies its behavior, like so:
      * <pre class="prettyprint">
      * Notification noti = new Notification.BigTextStyle(
@@ -1817,7 +1964,7 @@ public class Notification implements Parcelable
      *      .bigText(aVeryLongString)
      *      .build();
      * </pre>
-     * 
+     *
      * @see Notification#bigContentView
      */
     public static class BigTextStyle extends Style {
@@ -1835,7 +1982,7 @@ public class Notification implements Parcelable
          * This defaults to the value passed to setContentTitle().
          */
         public BigTextStyle setBigContentTitle(CharSequence title) {
-            internalSetBigContentTitle(title);
+            internalSetBigContentTitle(safeCharSequence(title));
             return this;
         }
 
@@ -1843,7 +1990,7 @@ public class Notification implements Parcelable
          * Set the first line of text after the detail section in the big form of the template.
          */
         public BigTextStyle setSummaryText(CharSequence cs) {
-            internalSetSummaryText(cs);
+            internalSetSummaryText(safeCharSequence(cs));
             return this;
         }
 
@@ -1852,8 +1999,17 @@ public class Notification implements Parcelable
          * template in place of the content text.
          */
         public BigTextStyle bigText(CharSequence cs) {
-            mBigText = cs;
+            mBigText = safeCharSequence(cs);
             return this;
+        }
+
+        /**
+         * @hide
+         */
+        public void addExtras(Bundle extras) {
+            super.addExtras(extras);
+
+            extras.putCharSequence(EXTRA_TEXT, mBigText);
         }
 
         private RemoteViews makeBigContentView() {
@@ -1862,7 +2018,7 @@ public class Notification implements Parcelable
             mBuilder.mContentText = null;
 
             RemoteViews contentView = getStandardView(R.layout.notification_template_big_text);
-            
+
             if (hadThreeLines) {
                 // vertical centering
                 contentView.setViewPadding(R.id.line1, 0, 0, 0, 0);
@@ -1880,13 +2036,16 @@ public class Notification implements Parcelable
             checkBuilder();
             Notification wip = mBuilder.buildUnstyled();
             wip.bigContentView = makeBigContentView();
+
+            wip.extras.putCharSequence(EXTRA_TEXT, mBigText);
+
             return wip;
         }
     }
 
     /**
      * Helper class for generating large-format notifications that include a list of (up to 5) strings.
-     * 
+     *
      * This class is a "rebuilder": It consumes a Builder object and modifies its behavior, like so:
      * <pre class="prettyprint">
      * Notification noti = new Notification.InboxStyle(
@@ -1901,7 +2060,7 @@ public class Notification implements Parcelable
      *      .setSummaryText(&quot;+3 more&quot;)
      *      .build();
      * </pre>
-     * 
+     *
      * @see Notification#bigContentView
      */
     public static class InboxStyle extends Style {
@@ -1919,7 +2078,7 @@ public class Notification implements Parcelable
          * This defaults to the value passed to setContentTitle().
          */
         public InboxStyle setBigContentTitle(CharSequence title) {
-            internalSetBigContentTitle(title);
+            internalSetBigContentTitle(safeCharSequence(title));
             return this;
         }
 
@@ -1927,7 +2086,7 @@ public class Notification implements Parcelable
          * Set the first line of text after the detail section in the big form of the template.
          */
         public InboxStyle setSummaryText(CharSequence cs) {
-            internalSetSummaryText(cs);
+            internalSetSummaryText(safeCharSequence(cs));
             return this;
         }
 
@@ -1935,8 +2094,17 @@ public class Notification implements Parcelable
          * Append a line to the digest section of the Inbox notification.
          */
         public InboxStyle addLine(CharSequence cs) {
-            mTexts.add(cs);
+            mTexts.add(safeCharSequence(cs));
             return this;
+        }
+
+        /**
+         * @hide
+         */
+        public void addExtras(Bundle extras) {
+            super.addExtras(extras);
+            CharSequence[] a = new CharSequence[mTexts.size()];
+            extras.putCharSequenceArray(EXTRA_TEXT_LINES, mTexts.toArray(a));
         }
 
         private RemoteViews makeBigContentView() {
@@ -1979,6 +2147,7 @@ public class Notification implements Parcelable
             checkBuilder();
             Notification wip = mBuilder.buildUnstyled();
             wip.bigContentView = makeBigContentView();
+
             return wip;
         }
     }

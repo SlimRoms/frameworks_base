@@ -1351,6 +1351,20 @@ public class Activity extends ContextThemeWrapper
     }
 
     /**
+     * This is called when the user is requesting an assist, to build a full
+     * {@link Intent#ACTION_ASSIST} Intent with all of the context of the current
+     * application.  You can override this method to place into the bundle anything
+     * you would like to appear in the {@link Intent#EXTRA_ASSIST_CONTEXT} part
+     * of the assist Intent.  The default implementation does nothing.
+     *
+     * <p>This function will be called after any global assist callbacks that had
+     * been registered with {@link Application#registerOnProvideAssistDataListener
+     * Application.registerOnProvideAssistDataListener}.
+     */
+    public void onProvideAssistData(Bundle data) {
+    }
+
+    /**
      * Called when you are no longer visible to the user.  You will next
      * receive either {@link #onRestart}, {@link #onDestroy}, or nothing,
      * depending on later user activity.
@@ -2882,7 +2896,7 @@ public class Activity extends ContextThemeWrapper
      * item has been selected.
      * <p>
      * It is not safe to hold onto the context menu after this method returns.
-     * {@inheritDoc}
+     *
      */
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
     }
@@ -3537,7 +3551,8 @@ public class Activity extends ContextThemeWrapper
         try {
             String resolvedType = null;
             if (fillInIntent != null) {
-                fillInIntent.setAllowFds(false);
+                fillInIntent.migrateExtraStreamToClipData();
+                fillInIntent.prepareToLeaveProcess();
                 resolvedType = fillInIntent.resolveTypeIfNeeded(getContentResolver());
             }
             int result = ActivityManagerNative.getDefault()
@@ -3762,9 +3777,10 @@ public class Activity extends ContextThemeWrapper
         if (mParent == null) {
             int result = ActivityManager.START_RETURN_INTENT_TO_CALLER;
             try {
-                intent.setAllowFds(false);
+                intent.migrateExtraStreamToClipData();
+                intent.prepareToLeaveProcess();
                 result = ActivityManagerNative.getDefault()
-                    .startActivity(mMainThread.getApplicationThread(),
+                    .startActivity(mMainThread.getApplicationThread(), getBasePackageName(),
                             intent, intent.resolveTypeIfNeeded(getContentResolver()),
                             mToken, mEmbeddedID, requestCode,
                             ActivityManager.START_FLAG_ONLY_IF_NEEDED, null, null,
@@ -3832,7 +3848,8 @@ public class Activity extends ContextThemeWrapper
     public boolean startNextMatchingActivity(Intent intent, Bundle options) {
         if (mParent == null) {
             try {
-                intent.setAllowFds(false);
+                intent.migrateExtraStreamToClipData();
+                intent.prepareToLeaveProcess();
                 return ActivityManagerNative.getDefault()
                     .startNextMatchingActivity(mToken, intent, options);
             } catch (RemoteException e) {
@@ -4051,10 +4068,16 @@ public class Activity extends ContextThemeWrapper
      * use this information to validate that the recipient is allowed to
      * receive the data.
      * 
-     * <p>Note: if the calling activity is not expecting a result (that is it
+     * <p class="note">Note: if the calling activity is not expecting a result (that is it
      * did not use the {@link #startActivityForResult} 
      * form that includes a request code), then the calling package will be 
-     * null. 
+     * null.</p>
+     *
+     * <p class="note">Note: prior to {@link android.os.Build.VERSION_CODES#JELLY_BEAN_MR2},
+     * the result from this method was unstable.  If the process hosting the calling
+     * package was no longer running, it would return null instead of the proper package
+     * name.  You can use {@link #getCallingActivity()} and retrieve the package name
+     * from that instead.</p>
      * 
      * @return The package of the activity that will receive your
      *         reply, or null if none.
@@ -4073,12 +4096,12 @@ public class Activity extends ContextThemeWrapper
      * can use this information to validate that the recipient is allowed to
      * receive the data.
      * 
-     * <p>Note: if the calling activity is not expecting a result (that is it
+     * <p class="note">Note: if the calling activity is not expecting a result (that is it
      * did not use the {@link #startActivityForResult} 
      * form that includes a request code), then the calling package will be 
      * null. 
      * 
-     * @return String The full name of the activity that will receive your
+     * @return The ComponentName of the activity that will receive your
      *         reply, or null if none.
      */
     public ComponentName getCallingActivity() {
@@ -4186,7 +4209,7 @@ public class Activity extends ContextThemeWrapper
             if (false) Log.v(TAG, "Finishing self: token=" + mToken);
             try {
                 if (resultData != null) {
-                    resultData.setAllowFds(false);
+                    resultData.prepareToLeaveProcess();
                 }
                 if (ActivityManagerNative.getDefault()
                     .finishActivity(mToken, resultCode, resultData)) {
@@ -4338,7 +4361,7 @@ public class Activity extends ContextThemeWrapper
             int flags) {
         String packageName = getPackageName();
         try {
-            data.setAllowFds(false);
+            data.prepareToLeaveProcess();
             IIntentSender target =
                 ActivityManagerNative.getDefault().getIntentSender(
                         ActivityManager.INTENT_SENDER_ACTIVITY_RESULT, packageName,
@@ -4862,8 +4885,8 @@ public class Activity extends ContextThemeWrapper
      * <code>android:immersive</code> but may be changed at runtime by
      * {@link #setImmersive}.
      *
+     * @see #setImmersive(boolean)
      * @see android.content.pm.ActivityInfo#FLAG_IMMERSIVE
-     * @hide
      */
     public boolean isImmersive() {
         try {
@@ -4875,7 +4898,7 @@ public class Activity extends ContextThemeWrapper
 
     /**
      * Adjust the current immersive mode setting.
-     * 
+     *
      * Note that changing this value will have no effect on the activity's
      * {@link android.content.pm.ActivityInfo} structure; that is, if
      * <code>android:immersive</code> is set to <code>true</code>
@@ -4884,9 +4907,8 @@ public class Activity extends ContextThemeWrapper
      * always have its {@link android.content.pm.ActivityInfo#FLAG_IMMERSIVE
      * FLAG_IMMERSIVE} bit set.
      *
-     * @see #isImmersive
+     * @see #isImmersive()
      * @see android.content.pm.ActivityInfo#FLAG_IMMERSIVE
-     * @hide
      */
     public void setImmersive(boolean i) {
         try {
@@ -5018,9 +5040,10 @@ public class Activity extends ContextThemeWrapper
                 resultData = mResultData;
             }
             if (resultData != null) {
-                resultData.setAllowFds(false);
+                resultData.prepareToLeaveProcess();
             }
             try {
+                upIntent.prepareToLeaveProcess();
                 return ActivityManagerNative.getDefault().navigateUpTo(mToken, upIntent,
                         resultCode, resultData);
             } catch (RemoteException e) {

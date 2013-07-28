@@ -3,6 +3,14 @@ no_footer_links=true
 carousel=true
 page.metaDescription=The official site for Android developers. Provides the Android SDK and documentation for app developers and designers.
 @jd:body
+<div id="butterbar-wrapper" >
+  <div id="butterbar" >
+    <div id="butterbar-message">
+<a target="_blank" href="https://docs.google.com/a/google.com/forms/d/1EHLPGqhbxj2HungHRRN4_0K9TGpc-Izy-u46vBDgS8Q/viewform">
+      Take the Android Developer Survey</a>
+    </div>
+  </div>
+</div>
 
 
 <div class="wrap">
@@ -17,14 +25,76 @@ page.metaDescription=The official site for Android developers. Provides the Andr
                         <a href="{@docRoot}about/versions/jelly-bean.html"><img src="{@docRoot}images/home/android-jellybean.png" ></a>
                     </div>
                     <div class="content-right col-6">
-                    <h1>Jelly Bean now available!</h1>
-                    <p>Android 4.1 (Jelly Bean) builds on what's great about Android
-                      with improvements to performance and user experience.</p>
-                    <p>New APIs are also available that allow you to build richer and more
-                      interactive notifications, transfer larger
-                    payloads through NFC, discover services over Wi-Fi, and much more.</p>
-                    <p><a href="{@docRoot}about/versions/jelly-bean.html" class="button">More 
-                        about Jelly Bean</a></p>
+                    <h1>More Jelly Beans!</h1>
+                    <p>Android 4.3 is now available with a variety of performance improvements
+                    and new developer features. </p>
+                    <p>With this release, Android now supports Bluetooth Low Energy for battery
+                    savings with wireless peripherals, OpenGL ES 3.0 for the most advanced mobile 3D
+                    graphics, MPEG DASH support for high quality media streaming, and much more.</p>
+                    <p><a href="{@docRoot}about/versions/jelly-bean.html" class="button">Learn More</a></p>
+                    </div>
+                </li>
+                <li class="item carousel-home">
+                    <div class="content-left col-11" style="padding-top:10px;">
+                        <a href="{@docRoot}channels/io2013.html">
+                          <img src="{@docRoot}images/home/io-videos-2013.png" style="margin:60px 0 0;
+                          box-shadow: 3px 10px 18px 1px #999;">
+                        </a>
+                    </div>
+                    <div class="content-right col-4">
+                    <h1>Watch the Android talks from Google I/O</h1>
+                    <p>If you weren't able to attend Google I/O in person or couldn't make it
+                    to all the talks, you can catch up on the action
+                    with all the recordings, brought to you by
+                    <a href="http://developers.google.com/live">Google Developers Live</a>.</p>
+                    <p><a href="{@docRoot}channels/io2013.html" class="button"
+                    >See the Android talks</a></p>
+                    </div>
+                </li>
+
+
+
+                <li class="item carousel-home">
+                    <div class="content-left col-11" style="padding-top:65px;">
+                      <script src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+                      <div style="box-shadow: 3px 10px 18px 1px #999;width:600px;height:338px">
+                        <div id="ytapiplayer">
+                          You need Flash player 8+ and JavaScript enabled to view this video.
+                        </div>
+                        <script type="text/javascript">
+                            var params = { allowScriptAccess: "always" };
+                            var atts = { id: "ytapiplayer" };
+                            swfobject.embedSWF("//www.youtube.com/v/O8i4HUw7JYA?enablejsapi=1&playerapiid=ytplayer&version=3&HD=1;rel=0;showinfo=0;modestbranding;origin=developer.android.com;autohide=1",
+                              "ytapiplayer", "600", "338", "8", null, null, params, atts);
+
+                            // Callback used to pause/resume carousel based on video state
+                            function onytplayerStateChange(newState) {              
+                               var isPaused = $("#pauseButton").hasClass("paused");
+                               if ((newState == 1) || (newState == 3)) {
+                               // if playing or buffering, pause the carousel
+                                 if (!isPaused) {
+                                    $("#pauseButton").click();
+                                 }
+                               } else {
+                               // otherwise, make sure carousel is running
+                                 if (isPaused) {
+                                    $("#pauseButton").click();
+                                 }
+                               }
+                            }
+
+                            // Callback received when YouTube player loads to setup callback (above)
+                            function onYouTubePlayerReady(playerId) {
+                              var ytplayer = document.getElementById("ytapiplayer");
+                              ytplayer.addEventListener("onStateChange", "onytplayerStateChange");
+                            }
+
+                        </script>
+                      </div>
+                    </div>
+                    <div class="content-right col-4">
+                    <h1 style="white-space:nowrap;line-height:1.2em;">Developer Story: <br />redBus.in</h1>
+                    <p>Bangalore-based developers redBus.in talk about how Android is helping them deliver a superior booking and travel experience to millions of daily bus riders in India.</p>
                     </div>
                 </li>
                 <li class="item carousel-home">
@@ -37,18 +107,6 @@ page.metaDescription=The official site for Android developers. Provides the Andr
 that are beautiful and easy to use.</p>
                     <p><a href="{@docRoot}design/index.html" class="button">Learn More</a></p>
                     </div>
-                </li>
-                <li class="item carousel-home">
-                        <div class="content-left col-10">
-                        <img src="{@docRoot}images/home/google-io.png">
-                        </div>
-                        <div class="content-right col-5">
-                        <h1>Android videos<br/> from Google I/O!</h1>
-                        <p>If you couldn't make it to Google I/O this year or want to review some of the material,
-                          all of the Android sessions are now available for viewing online.</p>
-                        <p><a href="http://www.youtube.com/playlist?list=PL4C6BCDE45E05F49E&feature=plcp"
-class="button">Watch the Android sessions</a></p>
-                        </div>
                 </li>
                 <li class="item carousel-home">
                         <div class="content-left col-10">
@@ -67,6 +125,8 @@ class="button">Watch the Android sessions</a></p>
     </div>
     <!-- /End slideshow -->
     
+    <a href="" id="pauseButton" style="display:none">pause</a>
+    
     
 </div>
 <div class="wrap" style="padding-bottom:20px">
@@ -82,4 +142,3 @@ class="button">Watch the Android sessions</a></p>
     </div>
     <!-- /Section links -->
 </div>     
-

@@ -139,20 +139,13 @@ public class ClockStock extends TextView implements OnClickListener, OnLongClick
 
     private final CharSequence getSmallTime() {
         Context context = getContext();
-        boolean b24 = DateFormat.is24HourFormat(context);
         int res;
-
-        if (b24) {
-            res = R.string.twenty_four_hour_time_format;
-        } else {
-            res = R.string.twelve_hour_time_format;
-        }
 
         final char MAGIC1 = '\uEF00';
         final char MAGIC2 = '\uEF01';
 
         SimpleDateFormat sdf;
-        String format = context.getString(res);
+        String format = DateFormat.getTimeFormatString(context);
         if (!format.equals(mClockFormatString)) {
             /*
              * Search for an unquoted "a" in the format string, so we can

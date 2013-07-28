@@ -30,9 +30,9 @@ import android.util.Slog;
 import android.view.View;
 
 import com.android.systemui.R;
-import com.android.systemui.statusbar.policy.ToggleSlider;
-import com.android.systemui.statusbar.policy.ToggleSlider.Listener;
-import com.android.systemui.statusbar.policy.CurrentUserTracker;
+import com.android.systemui.settings.ToggleSlider;
+import com.android.systemui.settings.ToggleSlider.Listener;
+import com.android.systemui.settings.CurrentUserTracker;
 
 public class BrightnessSlider implements ToggleSlider.Listener {
     private static final String TAG = "StatusBar.BrightnessController";
@@ -56,7 +56,11 @@ public class BrightnessSlider implements ToggleSlider.Listener {
 
         mControl = (ToggleSlider) mView.findViewById(R.id.brightness);
 
-        mUserTracker = new CurrentUserTracker(mContext);
+        mUserTracker = new CurrentUserTracker(mContext) {
+            public void onUserSwitched(int newUserId) {
+            }
+        };
+
 
         boolean automaticAvailable = context.getResources().getBoolean(
                 com.android.internal.R.bool.config_automatic_brightness_available);

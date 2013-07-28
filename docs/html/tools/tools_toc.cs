@@ -10,54 +10,68 @@
     <div class="nav-section-header"><a href="<?cs var:toroot
 ?>sdk/index.html"><span class="en">Download</span></a></div>
     <ul>
+      <li><a href="<?cs var:toroot ?>sdk/installing/bundle.html">
+          <span class="en">Setting Up the ADT Bundle</span></a></li>
+
       <li class="nav-section">
         <div class="nav-section-header">
-          <a href="<?cs var:toroot ?>sdk/installing/index.html"><span class="en">Installing
-    the SDK</span></a></div>
+          <a href="<?cs var:toroot ?>sdk/installing/index.html"><span class="en">Setting Up
+    an Existing IDE</span></a></div>
         <ul>
-          <li><a href="<?cs var:toroot ?>sdk/installing/adding-packages.html">
-              <span class="en">Adding Platforms and Packages</span></a></li>
           <li><a href="<?cs var:toroot ?>sdk/installing/installing-adt.html">
               <span class="en">Installing the Eclipse Plugin</span></a></li>
-          <li><a href="<?cs var:toroot ?>sdk/installing/next.html">
-              <span class="en">Next Steps</span></a></li>
+        <li><a href="<?cs var:toroot ?>sdk/installing/adding-packages.html">
+            <span class="en">Adding Platforms and Packages</span></a></li>
         </ul>
       </li>
-          <li><a href="<?cs var:toroot ?>sdk/exploring.html">
-              <span class="en">Exploring the SDK</span></a></li>
-      <li><a href="<?cs var:toroot ?>tools/sdk/ndk/index.html">NDK</a>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="<?cs var:toroot ?>sdk/installing/studio.html">Android Studio</a>
+        </div>
+        <ul>
+          <li><a href="<?cs var:toroot ?>sdk/installing/migrate.html">
+              Migrating from Eclipse</a></li>
+          <li><a href="<?cs var:toroot ?>sdk/installing/studio-tips.html">
+              Tips and Tricks</a></li>
+        </ul>
+      </li>
+      <li><a href="<?cs var:toroot ?>sdk/exploring.html">
+          <span class="en">Exploring the SDK</span></a></li>
+      <li><a href="<?cs var:toroot ?>tools/sdk/ndk/index.html">Download the NDK</a>
       </li>
     </ul>
   </li>
 
   <li class="nav-section">
     <div class="nav-section-header">
-        <a href="/tools/workflow/index.html"><span class="en">Workflow</span></a>
+        <a href="<?cs var:toroot ?>tools/workflow/index.html"><span class="en">Workflow</span></a>
     </div>
     <ul>
       <li class="nav-section">
-        <div class="nav-section-header"><a href="/tools/devices/index.html"><span class="en">Setting Up Virtual Devices</span></a></div>
+        <div class="nav-section-header"><a href="<?cs var:toroot ?>tools/devices/index.html"><span class="en">Setting Up Virtual Devices</span></a></div>
         <ul>
-          <li><a href="/tools/devices/managing-avds.html"><span class="en">With AVD Manager</span></a></li>
-          <li><a href="/tools/devices/managing-avds-cmdline.html"><span class="en">From the Command Line</span></a></li>
-          <li><a href="/tools/devices/emulator.html"><span class="en">Using the Android Emulator</span></a></li>
+          <li><a href="<?cs var:toroot ?>tools/devices/managing-avds.html"><span class="en">With AVD Manager</span></a></li>
+          <li><a href="<?cs var:toroot ?>tools/devices/managing-avds-cmdline.html"><span class="en">From the Command Line</span></a></li>
+          <li><a href="<?cs var:toroot ?>tools/devices/emulator.html"><span class="en">Using the Emulator</span></a></li>
         </ul>
       </li>
-      <li><a href="/tools/device.html"><span class="en">Using Hardware Devices</span></a></li>
+      <li><a href="<?cs var:toroot ?>tools/device.html"><span class="en">Using Hardware Devices</span></a></li>
       <li class="nav-section">
-        <div class="nav-section-header"><a href="/tools/projects/index.html"><span class="en">Setting Up Projects</span></a></div>
+        <div class="nav-section-header"><a href="<?cs var:toroot ?>tools/projects/index.html"><span class="en">Setting Up Projects</span></a></div>
         <ul>
-          <li><a href="/tools/projects/projects-eclipse.html"><span class="en">From Eclipse with ADT</span></a></li>
-          <li><a href="/tools/projects/projects-cmdline.html"><span class="en">From the Command Line</span></a></li>
+          <li><a href="<?cs var:toroot ?>tools/projects/projects-eclipse.html"><span class="en">From Eclipse with ADT</span></a></li>
+          <li><a href="<?cs var:toroot ?>tools/projects/projects-cmdline.html"><span class="en">From the Command Line</span></a></li>
+          <li><a href="<?cs var:toroot ?>tools/projects/templates.html"><span class="en">Using Code Templates</span></a></li>
         </ul>
       </li>
 
 
       <li class="nav-section">
-        <div class="nav-section-header"><a href="/tools/building/index.html"><span class="en">Building and Running</span></a></div>
+        <div class="nav-section-header"><a href="<?cs var:toroot ?>tools/building/index.html"><span class="en">Building and Running</span></a></div>
         <ul>
-          <li><a href="/tools/building/building-eclipse.html"><span class="en">From Eclipse with ADT</span></a></li>
-          <li><a href="/tools/building/building-cmdline.html"><span class="en">From the Command Line</span></a></li>
+          <li><a href="<?cs var:toroot ?>tools/building/building-eclipse.html"><span class="en">From Eclipse with ADT</span></a></li>
+          <li><a href="<?cs var:toroot ?>tools/building/building-cmdline.html"><span class="en">From the Command Line</span></a></li>
         </ul>
       </li>
 
@@ -92,6 +106,10 @@
           <li>
             <a href="<?cs var:toroot?>tools/testing/testing_accessibility.html">
             <span class="en">Accessibility Testing</span></a>
+          </li>
+           <li>
+            <a href="<?cs var:toroot?>tools/testing/testing_ui.html">
+            <span class="en">UI Testing</span></a>
           </li>
           <li>
             <a href="<?cs var:toroot ?>tools/testing/what_to_test.html">
@@ -135,6 +153,7 @@ class="en">Tools Help</span></a></div>
       <li><a href="<?cs var:toroot ?>tools/help/adb.html">adb</a></li>
       <li><a href="<?cs var:toroot ?>tools/help/adt.html">ADT</a></li>
       <li><a href="<?cs var:toroot ?>tools/help/android.html">android</a></li>
+      <li><a href="<?cs var:toroot ?>tools/help/avd-manager.html">AVD Manager</a></li>
       <li><a href="<?cs var:toroot ?>tools/help/bmgr.html">bmgr</a>
       <li><a href="<?cs var:toroot ?>tools/help/monitor.html">Device Monitor</a></li>
       <li><a href="<?cs var:toroot ?>tools/help/dmtracedump.html">dmtracedump</a></li>
@@ -143,6 +162,7 @@ class="en">Tools Help</span></a></div>
       <li><a href="<?cs var:toroot ?>tools/help/etc1tool.html">etc1tool</a></li>
       <li><a href="<?cs var:toroot ?>tools/help/hierarchy-viewer.html">Hierarchy Viewer</a></li>
       <li><a href="<?cs var:toroot ?>tools/help/hprof-conv.html">hprof-conv</a></li>
+      <li><a href="<?cs var:toroot ?>tools/help/jobb.html">jobb</a></li>
       <li><a href="<?cs var:toroot ?>tools/help/lint.html">lint</span></a></li>
       <li><a href="<?cs var:toroot ?>tools/help/logcat.html">logcat</a></li>
       <li><a href="<?cs var:toroot ?>tools/help/mksdcard.html">mksdcard</a></li>
@@ -160,9 +180,25 @@ class="en">MonkeyRunner</span></a></li>
         </ul>
       </li>
        <li><a href="<?cs var:toroot ?>tools/help/proguard.html">ProGuard</a></li>
+       <li><a href="<?cs var:toroot ?>tools/help/sdk-manager.html">SDK Manager</a></li>
        <li><a href="<?cs var:toroot ?>tools/help/systrace.html">Systrace</a></li>
        <li><a href="<?cs var:toroot ?>tools/help/gltracer.html">Tracer for OpenGL ES</a></li>
        <li><a href="<?cs var:toroot ?>tools/help/traceview.html">Traceview</a></li>
+       <li class="nav-section">
+          <div class="nav-section-header"><a href="<?cs var:toroot ?>tools/help/uiautomator/index.html"><span class="en">uiautomator</span></a></div>
+          <ul>
+             <li><a href="<?cs var:toroot ?>tools/help/uiautomator/Configurator.html"><span class="en">Configurator</span></a></li>
+             <li><a href="<?cs var:toroot ?>tools/help/uiautomator/IAutomationSupport.html"><span class="en">IAutomationSupport</span></a></li>
+             <li><a href="<?cs var:toroot ?>tools/help/uiautomator/UiAutomatorTestCase.html"><span class="en">UiAutomatorTestCase</span></a></li>
+             <li><a href="<?cs var:toroot ?>tools/help/uiautomator/UiCollection.html"><span class="en">UiCollection</span></a></li>
+             <li><a href="<?cs var:toroot ?>tools/help/uiautomator/UiDevice.html"><span class="en">UiDevice</span></a></li>
+             <li><a href="<?cs var:toroot ?>tools/help/uiautomator/UiObject.html"><span class="en">UiObject</span></a></li>
+             <li><a href="<?cs var:toroot ?>tools/help/uiautomator/UiObjectNotFoundException.html"><span class="en">UiObjectNotFoundException</span></a></li>
+             <li><a href="<?cs var:toroot ?>tools/help/uiautomator/UiScrollable.html"><span class="en">UiScrollable</span></a></li>
+             <li><a href="<?cs var:toroot ?>tools/help/uiautomator/UiSelector.html"><span class="en">UiSelector</span></a></li>
+             <li><a href="<?cs var:toroot ?>tools/help/uiautomator/UiWatcher.html"><span class="en">UiWatcher</span></a></li>
+          </ul>
+       </li>
        <li><a href="<?cs var:toroot ?>tools/help/zipalign.html">zipalign</a></li>
     </ul>
   </li>

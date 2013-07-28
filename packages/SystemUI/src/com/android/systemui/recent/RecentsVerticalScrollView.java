@@ -21,6 +21,7 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.database.DataSetObserver;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -69,7 +70,7 @@ public class RecentsVerticalScrollView extends ScrollView
     }
 
     private int scrollPositionOfMostRecent() {
-        return mLinearLayout.getHeight() - getHeight();
+        return mLinearLayout.getHeight() - getHeight() + mPaddingTop;
     }
 
     private void addToRecycledViews(View v) {
@@ -281,7 +282,7 @@ public class RecentsVerticalScrollView extends ScrollView
             mPerformanceHelper.drawCallback(canvas,
                     left, right, top, bottom, mScrollX, mScrollY,
                     getTopFadingEdgeStrength(), getBottomFadingEdgeStrength(),
-                    0, 0);
+                    0, 0, mPaddingTop);
         }
     }
 

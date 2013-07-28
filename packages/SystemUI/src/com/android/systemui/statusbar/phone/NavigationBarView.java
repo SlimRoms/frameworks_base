@@ -99,6 +99,10 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
     private ArrayList<ButtonConfig> mButtonsConfig;
     
     public DelegateViewHelper mDelegateHelper;
+
+    private Drawable mRecentIcon;
+    private Drawable mRecentLandIcon;
+
     private DeadZone mDeadZone;
 
     private SettingsObserver mSettingsObserver;
@@ -230,10 +234,23 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
         mShowMenu = false;
         mDelegateHelper = new DelegateViewHelper(this);
 
+        getIcons(res);
+    }
+
+    private void getIcons(Resources res) {
         mBackIcon = res.getDrawable(R.drawable.ic_sysbar_back);
         mBackLandIcon = res.getDrawable(R.drawable.ic_sysbar_back_land);
         mBackAltIcon = res.getDrawable(R.drawable.ic_sysbar_back_ime);
         mBackAltLandIcon = res.getDrawable(R.drawable.ic_sysbar_back_ime);
+        mRecentIcon = res.getDrawable(R.drawable.ic_sysbar_recent);
+        mRecentLandIcon = res.getDrawable(R.drawable.ic_sysbar_recent_land);
+    }
+
+    @Override
+    public void setLayoutDirection(int layoutDirection) {
+        getIcons(mContext.getResources());
+
+        super.setLayoutDirection(layoutDirection);
     }
 
     private void makeBar() {

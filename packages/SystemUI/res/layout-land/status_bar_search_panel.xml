@@ -48,7 +48,6 @@
                 android:layout_alignParentBottom="true"
                 android:layout_gravity="right|center_vertical"
                 android:gravity="left|center_vertical"
-
                 prvandroid:targetDrawables="@array/navbar_search_targets"
                 prvandroid:targetDescriptions="@array/navbar_search_target_descriptions"
                 prvandroid:directionDescriptions="@array/navbar_search_direction_descriptions"

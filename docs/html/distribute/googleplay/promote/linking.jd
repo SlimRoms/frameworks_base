@@ -1,5 +1,13 @@
 page.title=Linking to Your Products
 @jd:body
+<div id="butterbar-wrapper" >
+  <div id="butterbar" >
+    <div id="butterbar-message">
+<a target="_blank" href="https://docs.google.com/a/google.com/forms/d/1EHLPGqhbxj2HungHRRN4_0K9TGpc-Izy-u46vBDgS8Q/viewform">
+      Take the Android Developer Survey</a>
+    </div>
+  </div>
+</div>
 
 <div class="sidebox-wrapper">
 <div class="sidebox">
@@ -51,7 +59,7 @@ file</a>. The package name is also visible in the Developer Console. </p>
 
 <p>Here's an example:</p>
 
-<p style="margin-left:1em;"><code><a href="http://play.google.com/store/apps/details?id=com.google.android.apps">http://play.google.com/store/apps/details?id=com.google.android.apps</a></code></p>
+<p style="margin-left:1em;"><code><a href="http://play.google.com/store/apps/details?id=com.google.android.apps.maps">http://play.google.com/store/apps/details?id=com.google.android.apps.maps</a></code></p>
 
 <p>For details on how to send the link in an Android app, see <a href="#android-app">Linking from an Android App</a>.</p>
 

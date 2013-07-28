@@ -39,7 +39,11 @@ import android.widget.Toast;
 
 import com.android.systemui.R;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
+
+import libcore.icu.ICU;
 
 public class DateView extends TextView implements OnClickListener, OnLongClickListener {
     private static final String TAG = "DateView";
@@ -119,8 +123,11 @@ public class DateView extends TextView implements OnClickListener, OnLongClickLi
     }
 
     protected void updateClock() {
-        final String dateFormat = getContext().getString(R.string.full_wday_month_day_no_year_split);
-        setText(DateFormat.format(dateFormat, new Date()));
+        final String dateFormat = getContext().getString(R.string.system_ui_date_pattern);
+        final Locale l = Locale.getDefault();
+        String fmt = ICU.getBestDateTimePattern(dateFormat, l.toString());
+        SimpleDateFormat sdf = new SimpleDateFormat(fmt, l);
+        setText(sdf.format(new Date()));
     }
 
     private boolean isVisible() {

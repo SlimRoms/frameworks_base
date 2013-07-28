@@ -30,7 +30,6 @@ import android.view.View;
 import android.view.WindowManager;
 
 import java.io.PrintWriter;
-import java.util.ArrayList;
 
 /**
  * Version of WindowToken that is specifically for a particular application (or
@@ -44,7 +43,7 @@ class AppWindowToken extends WindowToken {
 
     // All of the windows and child windows that are included in this
     // application token.  Note this list is NOT sorted!
-    final ArrayList<WindowState> allAppWindows = new ArrayList<WindowState>();
+    final WindowList allAppWindows = new WindowList();
     final AppWindowAnimator mAppAnimator;
 
     final WindowAnimator mAnimator;
@@ -66,6 +65,9 @@ class AppWindowToken extends WindowToken {
     int numDrawnWindows;
     boolean inPendingTransaction;
     boolean allDrawn;
+    // Set to true when this app creates a surface while in the middle of an animation. In that
+    // case do not clear allDrawn until the animation completes.
+    boolean deferClearAllDrawn;
 
     // Is this token going to be hidden in a little while?  If so, it
     // won't be taken into account for setting the screen orientation.
@@ -154,7 +156,7 @@ class AppWindowToken extends WindowToken {
                         + win.isDrawnLw()
                         + ", isAnimating=" + win.mWinAnimator.isAnimating());
                 if (!win.isDrawnLw()) {
-                    Slog.v(WindowManagerService.TAG, "Not displayed: s=" + win.mWinAnimator.mSurface
+                    Slog.v(WindowManagerService.TAG, "Not displayed: s=" + win.mWinAnimator.mSurfaceControl
                             + " pv=" + win.mPolicyVisibility
                             + " mDrawState=" + win.mWinAnimator.mDrawState
                             + " ah=" + win.mAttachedHidden
@@ -222,6 +224,21 @@ class AppWindowToken extends WindowToken {
             }
         }
         return null;
+    }
+
+    boolean isVisible() {
+        final int N = allAppWindows.size();
+        for (int i=0; i<N; i++) {
+            WindowState win = allAppWindows.get(i);
+            if (!win.mAppFreezing
+                    && (win.mViewVisibility == View.VISIBLE ||
+                        (win.mWinAnimator.isAnimating() &&
+                                !service.mAppTransition.isTransitionSet()))
+                    && !win.mDestroying && win.isDrawnLw()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

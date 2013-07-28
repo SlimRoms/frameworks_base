@@ -9,8 +9,8 @@
 #include <utils/Log.h>
 #include "ResourceIdCache.h"
 #include <map>
-using std::map;
 
+using std::map;
 
 static size_t mHits = 0;
 static size_t mMisses = 0;
