@@ -1257,12 +1257,10 @@ public class KeyguardHostView extends KeyguardViewBase {
     }
 
     private void addDefaultWidgets() {
-        LayoutInflater inflater = LayoutInflater.from(mContext);
-        inflater.inflate(R.layout.keyguard_transport_control_view, this, true);
-
         if (!mSafeModeEnabled && !widgetsDisabledByDpm()
                 && Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.KG_ALL_WIDGETS, 1) == 1) {
+            LayoutInflater inflater = LayoutInflater.from(mContext);
             View addWidget = inflater.inflate(R.layout.keyguard_add_widget, this, false);
             mAppWidgetContainer.addWidget(addWidget, 0);
             View addWidgetButton = addWidget.findViewById(R.id.keyguard_add_widget_view);

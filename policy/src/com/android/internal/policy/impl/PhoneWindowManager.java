@@ -155,11 +155,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     // These need to match the documentation/constant in
     // core/res/res/values/config.xml
     static final int LONG_PRESS_HOME_NOTHING = 0;
-    static final int LONG_PRESS_HOME_RECENT_SYSTEM_UI = 1;
-    static final int LONG_PRESS_HOME_ASSIST = 2;
-
-    static final int DOUBLE_TAP_HOME_NOTHING = 0;
-    static final int DOUBLE_TAP_HOME_RECENT_SYSTEM_UI = 1;
+    static final int LONG_PRESS_HOME_RECENT_DIALOG = 1;
+    static final int LONG_PRESS_HOME_RECENT_SYSTEM_UI = 2;
 
     static final int APPLICATION_MEDIA_SUBLAYER = -2;
     static final int APPLICATION_MEDIA_OVERLAY_SUBLAYER = -1;
@@ -485,8 +482,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     boolean mMenuLongPressed;
     boolean mBackLongPressed;
     boolean mAppSwitchLongPressed;
-    boolean mHomeConsumed;
-    boolean mHomeDoubleTapPending;
     Intent mHomeIntent;
     Intent mCarDockIntent;
     Intent mDeskDockIntent;
@@ -549,9 +544,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     int mOverscanTop = 0;
     int mOverscanRight = 0;
     int mOverscanBottom = 0;
-
-    // What we do when the user double-taps on home
-    private int mDoubleTapOnHomeBehavior;
 
     // Screenshot trigger states
     // Time to volume and power must be pressed within this interval of each other.
@@ -1121,23 +1113,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             mStatusBarService = null;
         }
     }
-
-    private void handleDoubleTapOnHome() {
-        if (mDoubleTapOnHomeBehavior == DOUBLE_TAP_HOME_RECENT_SYSTEM_UI) {
-            mHomeConsumed = true;
-            toggleRecentApps();
-        }
-    }
-
-    private final Runnable mHomeDoubleTapTimeoutRunnable = new Runnable() {
-        @Override
-        public void run() {
-            if (mHomeDoubleTapPending) {
-                mHomeDoubleTapPending = false;
-                launchHomeFromHotKey();
-            }
-        }
-    };
 
     /**
      * Create (if necessary) and show or dismiss the recent apps dialog according
@@ -2568,19 +2543,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     } else {
                         Log.i(TAG, "Ignoring HOME; event canceled.");
                     }
-                }
-                // Delay handling home if a double-tap is possible.
-                if (mDoubleTapOnHomeBehavior != DOUBLE_TAP_HOME_NOTHING) {
-                    mHandler.removeCallbacks(mHomeDoubleTapTimeoutRunnable); // just in case
-                    mHomeDoubleTapPending = true;
-                    mHandler.postDelayed(mHomeDoubleTapTimeoutRunnable,
-                            ViewConfiguration.getDoubleTapTimeout());
                     return -1;
                 }
-
-                // Go home!
-                launchHomeFromHotKey();
-                return -1;
             }
 
             // If a system window has focus, then it doesn't make sense
@@ -2609,11 +2573,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 if (repeatCount == 0) {
                     mHomePressed = true;
                     mHomeLongPressed = false;
-                    if (mHomeDoubleTapPending) {
-                        mHomeDoubleTapPending = false;
-                        mHandler.removeCallbacks(mHomeDoubleTapTimeoutRunnable);
-                        handleDoubleTapOnHome();
-                    }
                 } else if (longPress) {
                     if (!keyguardOn && !mLongPressOnHomeBehavior.equals(getStr(KEY_ACTION_NOTHING))) {
                         performHapticFeedbackLw(null, HapticFeedbackConstants.LONG_PRESS, false);

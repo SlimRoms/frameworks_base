@@ -40,7 +40,7 @@
             android:text="@string/brightness_label"
             android:visibility="gone" />
 
-        <com.android.systemui.statusbar.policy.ToggleSlider
+        <com.android.systemui.settings.ToggleSlider
             android:id="@+id/brightness"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
