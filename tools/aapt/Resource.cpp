@@ -1782,7 +1782,7 @@ static status_t writeLayoutClasses(
                 if (fixupSymbol(&name) != NO_ERROR) {
                     hasErrors = true;
                 }
-                
+
                 uint32_t typeSpecFlags = 0;
                 String16 name16(sym.name);
                 assets->getIncludedResources().identifierForName(
