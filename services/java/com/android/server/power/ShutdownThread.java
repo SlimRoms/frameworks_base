@@ -223,7 +223,7 @@ public final class ShutdownThread extends Thread {
 
     private static int getAdvancedReboot(Context context) {
         return Settings.Secure.getInt(context.getContentResolver(),
-                Settings.Secure.ADVANCED_REBOOT, 0);
+                Settings.Secure.ADVANCED_REBOOT, 1) == 1;
     }
 
     private static class CloseDialogReceiver extends BroadcastReceiver
