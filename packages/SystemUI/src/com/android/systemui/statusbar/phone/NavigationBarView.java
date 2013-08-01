@@ -329,7 +329,7 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
     public void recreateNavigationBar() {
         setBackgroundResource(0);
         setBackgroundResource(R.drawable.nav_bar_bg);
-        makeBar();
+        updateSettings();
     }
 
     private void addLightsOutButton(LinearLayout root, View v, boolean landscape, boolean empty) {
@@ -957,10 +957,6 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
                     this);
             resolver.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.STATUS_NAV_BAR_ALPHA_MODE),
-                    false,
-                    this);
-            resolver.registerContentObserver(
-                    Settings.System.getUriFor(Settings.System.SYSTEMUI_NAVBAR_CONFIG),
                     false,
                     this);
 
