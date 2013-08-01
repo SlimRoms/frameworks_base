@@ -307,7 +307,7 @@ public class SearchPanelView extends FrameLayout implements
         TargetDrawable noneDrawable = new TargetDrawable(mResources, mResources.getDrawable(R.drawable.ic_action_none));
 
         if (customIconUri != null && !customIconUri.equals(ButtonsConstants.ICON_EMPTY)
-                || customIconUri != null && customIconUri.startsWith("ic_")) {
+                || customIconUri != null && customIconUri.startsWith(ButtonsConstants.SYSTEM_ICON_IDENTIFIER)) {
             // it's an icon the user chose from the gallery here
             // or a custom system icon
             File iconFile = new File(Uri.parse(customIconUri).getPath());
@@ -316,7 +316,9 @@ public class SearchPanelView extends FrameLayout implements
                     if (iconFile.exists()) {
                         customIcon = resize(new BitmapDrawable(getResources(), iconFile.getAbsolutePath()));
                     } else {
-                        customIcon = resize(mResources.getDrawable(mResources.getIdentifier(customIconUri, "drawable", "android")));
+                        customIcon = resize(mResources.getDrawable(mResources.getIdentifier(
+                                    customIconUri.substring(ButtonsConstants.SYSTEM_ICON_IDENTIFIER.length()),
+                                    "drawable", "android")));
                     }
                     Drawable iconBg = resize(mResources.getDrawable(R.drawable.ic_navbar_blank));
                     Drawable iconBgActivated = resize(mResources.getDrawable(R.drawable.ic_navbar_blank_activated));
