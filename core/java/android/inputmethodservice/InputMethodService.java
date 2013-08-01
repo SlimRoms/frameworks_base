@@ -32,6 +32,9 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.ResultReceiver;
 import android.os.SystemClock;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.provider.Settings;
 import android.text.InputType;
 import android.text.Layout;
@@ -320,6 +323,8 @@ public class InputMethodService extends AbstractInputMethodService {
 
     boolean mForcedAutoRotate;
     Handler mHandler;
+
+    boolean mPermissionAllowsFeature;
 
     final Insets mTmpInsets = new Insets();
     final int[] mTmpLocation = new int[2];
@@ -677,10 +682,34 @@ public class InputMethodService extends AbstractInputMethodService {
             mWindow.getWindow().addFlags(WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
         }
 
-        //IME is not showing on first onCreate to be sure
-        //toggle it off for PIE
-        Settings.System.putInt(getContentResolver(),
-                Settings.System.PIE_SOFTKEYBOARD_IS_SHOWING, 0);
+        try {
+            mPermissionAllowsFeature = false;
+            String[] currentDefaultImePackage = null;
+            PackageManager pm = getPackageManager();
+
+            String defaultImePackage = Settings.Secure.getString(
+                getContentResolver(), Settings.Secure.DEFAULT_INPUT_METHOD);
+            if (defaultImePackage != null) {
+                currentDefaultImePackage = defaultImePackage.split("/", 2);
+            }
+            PackageInfo packageInfo = pm.getPackageInfo(currentDefaultImePackage[0], PackageManager.GET_PERMISSIONS);
+            String[] requestedPermissions = packageInfo.requestedPermissions;
+            if(requestedPermissions != null) {
+                for (int i = 0; i < requestedPermissions.length; i++) {
+                    if (requestedPermissions[i].equals(android.Manifest.permission.WRITE_SETTINGS)) {
+                        mPermissionAllowsFeature = true;
+                    }
+                }
+            }
+        } catch (NameNotFoundException e) {
+        }
+
+        if (mPermissionAllowsFeature) {
+            //IME is not showing on first onCreate to be sure
+            //toggle it off for PIE
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.PIE_SOFTKEYBOARD_IS_SHOWING, 0);
+        }
 
         initViews();
         mWindow.getWindow().setLayout(MATCH_PARENT, WRAP_CONTENT);
@@ -1448,21 +1477,24 @@ public class InputMethodService extends AbstractInputMethodService {
             mWindowWasVisible = true;
             mInShowWindow = false;
         }
-        //IME softkeyboard is showing....toggle it
-        Settings.System.putInt(getContentResolver(),
-                Settings.System.PIE_SOFTKEYBOARD_IS_SHOWING, 1);
 
-        int mKeyboardRotationTimeout = Settings.System.getInt(getContentResolver(),
-                Settings.System.KEYBOARD_ROTATION_TIMEOUT, 0);
-        if (mKeyboardRotationTimeout > 0) {
-            mHandler.removeCallbacks(restoreAutoRotation);
-            if (!mForcedAutoRotate) {
-                boolean isAutoRotate = (Settings.System.getInt(getContentResolver(),
-                        Settings.System.ACCELEROMETER_ROTATION, 0) == 1);
-                if (!isAutoRotate) {
-                    mForcedAutoRotate = true;
-                    Settings.System.putInt(getContentResolver(),
-                            Settings.System.ACCELEROMETER_ROTATION, 1);
+        if (mPermissionAllowsFeature) {
+            //IME softkeyboard is showing....toggle it
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.PIE_SOFTKEYBOARD_IS_SHOWING, 1);
+
+            int mKeyboardRotationTimeout = Settings.System.getInt(getContentResolver(),
+                    Settings.System.KEYBOARD_ROTATION_TIMEOUT, 0);
+            if (mKeyboardRotationTimeout > 0) {
+                mHandler.removeCallbacks(restoreAutoRotation);
+                if (!mForcedAutoRotate) {
+                    boolean isAutoRotate = (Settings.System.getInt(getContentResolver(),
+                            Settings.System.ACCELEROMETER_ROTATION, 0) == 1);
+                    if (!isAutoRotate) {
+                        mForcedAutoRotate = true;
+                        Settings.System.putInt(getContentResolver(),
+                                Settings.System.ACCELEROMETER_ROTATION, 1);
+                    }
                 }
             }
         }
@@ -1548,25 +1580,29 @@ public class InputMethodService extends AbstractInputMethodService {
             onWindowHidden();
             mWindowWasVisible = false;
         }
-        //IME softkeyboard is hiding....toggle it
-        Settings.System.putInt(getContentResolver(),
-                Settings.System.PIE_SOFTKEYBOARD_IS_SHOWING, 0);
+        if (mPermissionAllowsFeature) {
+            //IME softkeyboard is hiding....toggle it
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.PIE_SOFTKEYBOARD_IS_SHOWING, 0);
 
-        int mKeyboardRotationTimeout = Settings.System.getInt(getContentResolver(),
-                Settings.System.KEYBOARD_ROTATION_TIMEOUT, 0);
-        if (mKeyboardRotationTimeout > 0) {
-            mHandler.removeCallbacks(restoreAutoRotation);
-            if (mForcedAutoRotate) {
-                mHandler.postDelayed(restoreAutoRotation, mKeyboardRotationTimeout);
+            int mKeyboardRotationTimeout = Settings.System.getInt(getContentResolver(),
+                    Settings.System.KEYBOARD_ROTATION_TIMEOUT, 0);
+            if (mKeyboardRotationTimeout > 0) {
+                mHandler.removeCallbacks(restoreAutoRotation);
+                if (mForcedAutoRotate) {
+                    mHandler.postDelayed(restoreAutoRotation, mKeyboardRotationTimeout);
+                }
             }
         }
     }
  
     final Runnable restoreAutoRotation = new Runnable() {
         @Override public void run() {
-            Settings.System.putInt(getContentResolver(),
-                    Settings.System.ACCELEROMETER_ROTATION, 0);
-            mForcedAutoRotate = false;
+            if (mPermissionAllowsFeature) {
+                Settings.System.putInt(getContentResolver(),
+                        Settings.System.ACCELEROMETER_ROTATION, 0);
+                mForcedAutoRotate = false;
+            }
         }
     };
 
