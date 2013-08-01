@@ -22,6 +22,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Handler;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -135,20 +136,28 @@ public class MobileNetworkTile extends QuickSettingsTile implements NetworkSigna
 
     @Override
     void updateQuickSettings() {
-        TextView tv = (TextView) mTile.findViewById(R.id.rssi_textview);
         ImageView iv = (ImageView) mTile.findViewById(R.id.rssi_image);
+        if (iv != null) {
+            iv.setImageResource(mDrawable);
+        }
+
         ImageView iov = (ImageView) mTile.findViewById(R.id.rssi_overlay_image);
-        iv.setImageResource(mDrawable);
-        if (mDataTypeIconId > 0) {
+        if (mDataTypeIconId > 0 && iov != null) {
             iov.setImageResource(mDataTypeIconId);
         } else {
             iov.setImageDrawable(null);
         }
-        tv.setText(mLabel);
-        tv.setTextSize(1, mTileTextSize);
-        if (mTileTextColor != -2) {
-            tv.setTextColor(mTileTextColor);
+
+        TextView tv = (TextView) mTile.findViewById(R.id.rssi_textview);
+        if (tv != null) {
+            tv.setText(mLabel);
+            tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTileTextSize);
+            tv.setPadding(0, mTileTextPadding, 0, 0);
+            if (mTileTextColor != -2) {
+                tv.setTextColor(mTileTextColor);
+            }
         }
+
         mTile.setContentDescription(mContext.getResources().getString(
                 R.string.accessibility_quick_settings_mobile,
                 signalContentDescription, dataContentDescription,

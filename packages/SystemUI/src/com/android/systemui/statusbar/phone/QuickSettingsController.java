@@ -273,7 +273,7 @@ public class QuickSettingsController {
     }
 
     private void cleanTilesContent() {
-        SharedPreferences allPrefs = mContext.getSharedPreferences("QuickSettingsTilesContent", 0);
+        SharedPreferences allPrefs = mContext.getSharedPreferences("quick_settings_custom_shortcut", 0);
         Map<String, ?> allTiles = allPrefs.getAll();
         for (String mTileID : allTiles.keySet()){
             if (!tiles.contains(mTileID)){

@@ -20,33 +20,30 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/tile_imageview"
+        android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/ic_qs_shortcut_andy"
         android:scaleType="centerCrop"
         android:gravity="center"
         android:layout_gravity="center"
         />
 
    <ImageView
-        android:id="@+id/tile_overlay"
+        android:id="@+id/image_overlay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_qs_shortcut_andy"
         android:layout_gravity="left|top"
         android:visibility="gone"
         />
 
     <TextView
-        style="@style/TextAppearance.QuickSettings.TileView"
-        android:id="@+id/tile_textview"
+        style="@style/TextAppearance.QuickSettings.TileView.User"
+        android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|bottom"
         android:gravity="center"
-        android:text="@string/qs_shortcut_long_press"
-        android:background="#CC000000"
+        android:singleLine="true"
         />
 
 </FrameLayout>

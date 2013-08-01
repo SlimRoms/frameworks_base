@@ -24,12 +24,14 @@ import android.net.Uri;
 import android.os.RemoteException;
 import android.os.UserHandle;
 import android.provider.Settings;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.View.OnLayoutChangeListener;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.systemui.R;
@@ -51,6 +53,7 @@ public class QuickSettingsTile implements OnClickListener {
     protected int mTileLayout;
     protected int mDrawable;
     protected int mTileTextSize;
+    protected int mTileTextPadding;
     protected int mTileTextColor;
     public static int mTileSize = 141;
 
@@ -70,9 +73,12 @@ public class QuickSettingsTile implements OnClickListener {
         mLabel = mContext.getString(R.string.quick_settings_label_enabled);
         mStatusbarService = qsc.mStatusBarService;
         mQsc = qsc;
-        mTileLayout = R.layout.quick_settings_tile_generic;
-        mTileTextSize = ((QuickSettingsContainerView) mContainerView).updateTileTextSize();
-        mTileTextColor = ((QuickSettingsContainerView) mContainerView).updateTileTextColor();
+        mTileLayout = R.layout.quick_settings_tile_basic;
+
+        container.updateResources();
+        mTileTextSize = container.getTileTextSize();
+        mTileTextPadding = container.getTileTextPadding();
+        mTileTextColor = container.getTileTextColor();
         mTileSize = mContext.getResources().getDimensionPixelSize(R.dimen.quick_settings_cell_height);
     }
 
@@ -112,12 +118,18 @@ public class QuickSettingsTile implements OnClickListener {
     public void onChangeUri(ContentResolver resolver, Uri uri) {}
 
     void updateQuickSettings() {
-        TextView tv = (TextView) mTile.findViewById(R.id.tile_textview);
-        tv.setCompoundDrawablesWithIntrinsicBounds(0, mDrawable, 0, 0);
-        tv.setText(mLabel);
-        tv.setTextSize(1, mTileTextSize);
-        if (mTileTextColor != -2) {
-            tv.setTextColor(mTileTextColor);
+        TextView tv = (TextView) mTile.findViewById(R.id.text);
+        if (tv != null) {
+                tv.setText(mLabel);
+            tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTileTextSize);
+            tv.setPadding(0, mTileTextPadding, 0, 0);
+            if (mTileTextColor != -2) {
+                tv.setTextColor(mTileTextColor);
+            }
+        }
+        ImageView image = (ImageView) mTile.findViewById(R.id.image);
+        if (image != null) {
+            image.setImageResource(mDrawable);
         }
     }
 

@@ -21,6 +21,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LevelListDrawable;
 import android.os.Handler;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -55,7 +56,6 @@ public class BatteryTile extends QuickSettingsTile implements BatteryStateChange
         super(context, inflater, container, qsc);
 
         mController = controller;
-        mTileLayout = R.layout.quick_settings_tile_battery;
 
         batteryLevel = mController.getBatteryLevel();
         charging = mController.isBatteryStatusCharging();
@@ -97,7 +97,7 @@ public class BatteryTile extends QuickSettingsTile implements BatteryStateChange
                     batteryLevels;
         if(batteryLevel == 100) {
             mLabel = mContext.getString(R.string.quick_settings_battery_charged_label);
-        }else{
+        } else {
             mLabel = charging
                     ? mContext.getString(R.string.quick_settings_battery_charging_label,
                             batteryLevel)
@@ -111,14 +111,20 @@ public class BatteryTile extends QuickSettingsTile implements BatteryStateChange
     @Override
     void updateQuickSettings() {
         TextView tv = (TextView) mTile.findViewById(R.id.text);
-        tv.setText(mLabel);
-        tv.setTextSize(1, mTileTextSize);
-        if (mTileTextColor != -2) {
-            tv.setTextColor(mTileTextColor);
+        if (tv != null) {
+            tv.setText(mLabel);
+            tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTileTextSize);
+            tv.setPadding(0, mTileTextPadding, 0, 0);
+            if (mTileTextColor != -2) {
+                tv.setTextColor(mTileTextColor);
+            }
         }
+
         ImageView iv = (ImageView) mTile.findViewById(R.id.image);
-        iv.setImageDrawable(batteryIcon);
-        iv.setImageLevel(batteryLevel);
+        if (iv != null) {
+            iv.setImageDrawable(batteryIcon);
+            iv.setImageLevel(batteryLevel);
+        }
     }
 
 }
