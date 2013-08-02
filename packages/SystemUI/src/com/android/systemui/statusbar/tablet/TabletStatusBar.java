@@ -724,6 +724,10 @@ public class TabletStatusBar extends BaseStatusBar implements
     }
 
     @Override
+    public void toggleStatusBar(boolean enable) {
+    }
+
+    @Override
     protected void updateSearchPanel() {
         super.updateSearchPanel();
         mSearchPanelView.setStatusBarView(mStatusBarView);

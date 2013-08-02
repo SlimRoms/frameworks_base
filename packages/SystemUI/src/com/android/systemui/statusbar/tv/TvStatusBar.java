@@ -95,6 +95,10 @@ public class TvStatusBar extends BaseStatusBar {
     }
 
     @Override
+    public void toggleStatusBar(boolean enable) {
+    }
+
+    @Override
     public void toggleRecentApps() {
     }
 

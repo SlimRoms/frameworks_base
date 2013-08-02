@@ -1007,6 +1007,13 @@ public class PhoneStatusBar extends BaseStatusBar {
     }
 
     @Override
+    public void toggleStatusBar(boolean enable) {
+        Settings.System.putInt(mContext.getContentResolver(),
+                Settings.System.TOGGLE_NOTIFICATION_AND_QS_SHADE,
+                enable ? 1 : 0);
+    }
+
+    @Override
     public void toggleNotificationShade() {
         Settings.System.putInt(mContext.getContentResolver(),
                 Settings.System.TOGGLE_NOTIFICATION_AND_QS_SHADE,
