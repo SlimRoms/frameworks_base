@@ -391,8 +391,6 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
     private boolean mInputBoundToKeyguard;
 
     class SettingsObserver extends ContentObserver {
-        String mLastEnabled = "";
-
         SettingsObserver(Handler handler) {
             super(handler);
             ContentResolver resolver = mContext.getContentResolver();
@@ -406,15 +404,7 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
                     Settings.System.STATUS_BAR_IME_SWITCHER),
                     false, new ContentObserver(mHandler) {
                         public void onChange(boolean selfChange) {
-                            synchronized (mMethodMap) {
-                                boolean enabledChanged = false;
-                                String newEnabled = mSettings.getEnabledInputMethodsStr();
-                                if (!mLastEnabled.equals(newEnabled)) {
-                                    mLastEnabled = newEnabled;
-                                    enabledChanged = true;
-                                }
-                                updateFromSettingsLocked(enabledChanged);
-                            }
+                            updateFromSettingsLocked(true);
                         }
                     });
         }
