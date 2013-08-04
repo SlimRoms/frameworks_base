@@ -257,10 +257,6 @@
     <string name="permdesc_sendSms">אפשר ליישום לשלוח הודעות SMS.
 פעולה זו עלולה לגרור תשלומים בלתי מתוכננים. 
 יישומים זדוניים עשויים לגרום לחיובים כספיים באמצעות שלוחת הודעות ללא אישור.</string>
-    <string name="permlab_sendSmsNoConfirmation">שליחת הודעות SMS ללא אישור</string>
-    <string name="permdesc_sendSmsNoConfirmation">אפשר ליישום לשלוח הודעות SMS.
-פעולה זו עלולה לגרום לתשלומים בלתי מתוכננים.
-יישומים זדוניים עשויים לגרום לחיוב כספי באמצעות שליחת הודעות ללא אישור.</string>
     <string name="permlab_readSms">קריאת הודעות (SMS או MMS)</string>
     <string name="permdesc_readSms" product="tablet">אפשר ליישום לקרוא הודעות SMS השמורות על מכשיר הטאבלט או כרטיס ה-SIM.
 פעולה זו מאפשר ליישום לקרוא את כל הודעות ה-SMS, ללא קשר לתוכן וללא התחשבות בפרטיות.</string>
@@ -1506,7 +1502,6 @@
     <string name="vpn_lockdown_connecting">Always-on VPN connecting\u2026</string>
     <string name="vpn_lockdown_connected">Always-on VPN connected</string>
     <string name="vpn_lockdown_error">Always-on VPN error</string>
-    <string name="vpn_lockdown_reset">Touch to reset connection</string>
     <string name="upload_file">Choose file</string>
     <string name="no_file_chosen">No file chosen</string>
     <string name="reset">Reset</string>
