@@ -1523,20 +1523,16 @@ public final class PowerManager {
     }
 
     /**
-     * Gets the default button brightness value.
+     * Sets the keyboard visibility.
      * @hide
      */
-    public int getDefaultButtonBrightness() {
-        return mContext.getResources().getInteger(
-                com.android.internal.R.integer.config_buttonBrightnessSettingDefault);
-    }
-
-    /**
-     * Gets the default keyboard brightness value.
-     * @hide
-     */
-    public int getDefaultKeyboardBrightness() {
-        return mContext.getResources().getInteger(
-                com.android.internal.R.integer.config_keyboardBrightnessSettingDefault);
+    public void setKeyboardVisibility(boolean visible)
+    {
+        try {
+            if (mService != null) {
+                mService.setKeyboardVisibility(visible);
+            }
+        } catch (RemoteException e) {
+        }
     }
 }
