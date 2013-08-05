@@ -1982,7 +1982,7 @@ public final class PowerManagerService extends SystemService
                             keyboardBrightness = mKeyboardBrightness;
                         }
 
-                        mKeyboardLight.setBrightness(mKeyboardVisible ? keyboardBrightness : 0);
+                        //mKeyboardLight.setBrightness(mKeyboardVisible ? keyboardBrightness : 0);
                         if (mButtonTimeout != 0 && now > mLastUserActivityTime + mButtonTimeout) {
                              mButtonsLight.setBrightness(0);
                         } else {
@@ -2001,7 +2001,7 @@ public final class PowerManagerService extends SystemService
                         nextTimeout = mLastUserActivityTime + screenOffTimeout;
                         if (now < nextTimeout) {
                             mButtonsLight.setBrightness(0);
-                            mKeyboardLight.setBrightness(0);
+                            //mKeyboardLight.setBrightness(0);
                             mUserActivitySummary = USER_ACTIVITY_SCREEN_DIM;
                         }
                     }
