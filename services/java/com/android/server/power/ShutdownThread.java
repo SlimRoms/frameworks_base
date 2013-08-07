@@ -149,7 +149,7 @@ public final class ShutdownThread extends Thread {
             }
             if (mReboot && !mRebootSafeMode) {
                 int advancedReboot = Settings.Secure.getInt(context.getContentResolver(),
-                        Settings.Secure.ADVANCED_REBOOT, 0);
+                        Settings.Secure.ADVANCED_REBOOT, 1);
                 KeyguardManager km = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);
                 boolean locked = km.inKeyguardRestrictedInputMode();
 
