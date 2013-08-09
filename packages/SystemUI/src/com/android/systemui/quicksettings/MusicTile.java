@@ -90,10 +90,10 @@ public class MusicTile extends QuickSettingsTile {
 
     private void updateTile() {
         if (isMusicActive()) {
-            mDrawable = com.android.internal.R.drawable.ic_media_pause;
+            mDrawable = R.drawable.ic_qs_media_pause;
             mLabel = mContext.getString(R.string.quick_settings_music_pause);
         } else {
-            mDrawable = com.android.internal.R.drawable.ic_media_play;
+            mDrawable = R.drawable.ic_qs_media_play;
             mLabel = mContext.getString(R.string.quick_settings_music_play);
         }
         updateQuickSettings();
