@@ -3792,8 +3792,6 @@ public abstract class ViewGroup extends View implements ViewParent, ViewManager 
             childHasTransientStateChanged(view, false);
         }
 
-        onViewRemoved(view);
-
         needGlobalAttributesUpdate(false);
 
         removeFromArray(index);
