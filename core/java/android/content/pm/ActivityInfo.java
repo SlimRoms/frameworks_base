@@ -395,6 +395,7 @@ public class ActivityInfo extends ComponentInfo
      * Bit in {@link #configChanges} that indicates that the activity
      * can itself handle the inverted ui mode. Set from the
      * {@link android.R.attr#configChanges} attribute.
+     * @hide
      */
     public static final int CONFIG_UI_INVERTED_MODE = 0x0300;
     /**

@@ -284,6 +284,7 @@ public final class Settings {
      * Input: Nothing.
      * <p>
      * Output: Nothing.
+     * @hide
      */
     @SdkConstant(SdkConstantType.ACTIVITY_INTENT_ACTION)
     public static final String ACTION_NOTIFICATION_SHORTCUTS_SETTINGS =
@@ -3155,24 +3156,28 @@ public final class Settings {
         /**
          * Circle battery icon color
          * in statusbar
+         * @hide
          */
         public static final String STATUS_BAR_CIRCLE_BATTERY_COLOR = "status_bar_circle_battery_color";
 
         /**
          * Battery icon text color
          * in statusbar
+         * @hide
          */
         public static final String STATUS_BAR_BATTERY_TEXT_COLOR = "status_bar_battery_text_color";
 
         /**
          * Battery icon text charging color
          * in statusbar
+         * @hide
          */
         public static final String STATUS_BAR_BATTERY_TEXT_CHARGING_COLOR = "status_bar_battery_text_charging_color";
 
         /**
          * Circle battery animation speed during charge
          * in statusbar
+         * @hide
          */
         public static final String STATUS_BAR_CIRCLE_BATTERY_ANIMATIONSPEED = "status_bar_circle_battery_animationspeed";
 
@@ -3895,6 +3900,7 @@ public final class Settings {
         /**
          * Option To Colorize Navigation bar buttons in different modes
          * 0 = all, 1 = system icons, 2 = system icons + custom user icons
+         * @hide
          */
         public static final String NAVIGATION_BAR_BUTTON_TINT_MODE = "navigation_bar_button_tint_mode";
 
@@ -4376,6 +4382,7 @@ public final class Settings {
          * toggle to "fix" the following: (found in NotificationManagerService)
          *  new in 4.2: if there was supposed to be a sound and we're in vibrate mode,
          *  we always vibrate, even if no vibration was specified
+         * @hide
          */
         public static final String NOTIFICATION_CONVERT_SOUND_TO_VIBRATION = "convert_sound_to_vibration";
 
@@ -5081,11 +5088,13 @@ public final class Settings {
 
         /**
          * Whether lock pattern will show dots (0 = false, 1 = true)
+         * @hide
          */
         public static final String LOCK_DOTS_VISIBLE = "lock_pattern_dotsvisible";
 
         /**
          * Whether lockscreen error pattern is visible (0 = false, 1 = true)
+         * @hide
          */
         public static final String LOCK_SHOW_ERROR_PATH = "lock_pattern_show_error_path";
 

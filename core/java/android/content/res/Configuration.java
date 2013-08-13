@@ -433,24 +433,28 @@ public final class Configuration implements Parcelable, Comparable<Configuration
      * inverted framework
      * resource qualifier.
      * value indicating that no mode has been set.
+     * @hide
     */
     public static final int UI_INVERTED_MODE_UNDEFINED = 0;
     /** Constant for {@link #uiInvertedMode}
      * value that corresponds to the
      * inverted framework
      * resource qualifier.
+     * @hide
     */
     public static final int UI_INVERTED_MODE_NORMAL = 1;
     /** Constant for {@link #uiInvertedMode}
      * value that corresponds to the
      * inverted framework
      * resource qualifier.
+     * @hide
     */
     public static final int UI_INVERTED_MODE_YES = 2;
     /** Constant for {@link #uiInvertedMode}
      * value that corresponds to the
      * none inverted framework
      * resource qualifier.
+     * @hide
     */
     public static final int UI_INVERTED_MODE_NO = 3;
 
@@ -459,6 +463,7 @@ public final class Configuration implements Parcelable, Comparable<Configuration
      * This may be one of {@link #UI_INVERTED_MODE_UNDEFINED},
      * {@link #UI_INVERTED_MODE_NORMAL},
      * {@link #UI_INVERTED_MODE_YES}, {@link #UI_INVERTED_MODE_NO},
+     * @hide
      */
     public int uiInvertedMode;
 
