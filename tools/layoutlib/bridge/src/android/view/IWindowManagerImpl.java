@@ -20,6 +20,7 @@ import android.graphics.Point;
 import com.android.internal.view.IInputContext;
 import com.android.internal.view.IInputMethodClient;
 
+import android.content.Intent;
 import android.content.res.CompatibilityInfo;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -484,6 +485,12 @@ public class IWindowManagerImpl implements IWindowManager {
 
     @Override
     public void showAssistant() {
+
+    }
+
+    /* @hide */
+    @Override
+    public void showCustomIntent(Intent intent) {
 
     }
 

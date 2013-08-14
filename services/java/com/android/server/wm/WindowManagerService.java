@@ -9963,6 +9963,16 @@ public class WindowManagerService extends IWindowManager.Stub
     }
 
     @Override
+    public void showCustomIntent(Intent intent) {
+        // TODO: What permission?
+        if (mContext.checkCallingOrSelfPermission(android.Manifest.permission.DEVICE_POWER)
+                != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        mPolicy.showCustomIntent(intent);
+    }
+
+    @Override
     public void showAssistant() {
         // TODO: What permission?
         if (mContext.checkCallingOrSelfPermission(android.Manifest.permission.DEVICE_POWER)

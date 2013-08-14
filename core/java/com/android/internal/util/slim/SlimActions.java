@@ -17,6 +17,8 @@
 package com.android.internal.util.slim;
 
 import android.app.Activity;
+import android.app.ActivityManagerNative;
+import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -27,8 +29,10 @@ import android.os.PowerManager;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemClock;
+import android.os.UserHandle;
 import android.os.Vibrator;
 import android.util.Log;
+import android.view.IWindowManager;
 
 import com.android.internal.statusbar.IStatusBarService;
 
@@ -47,32 +51,70 @@ public class SlimActions {
             final IStatusBarService barService = IStatusBarService.Stub.asInterface(
                     ServiceManager.getService(Context.STATUS_BAR_SERVICE));
 
+            final IWindowManager windowManagerService = IWindowManager.Stub.asInterface(
+                    ServiceManager.getService("window"));
+
+            boolean isKeyguardShowing = false;
+            try {
+                isKeyguardShowing = windowManagerService.isKeyguardLocked();
+            } catch (RemoteException e) {
+            }
+
+            boolean isKeyguardSecure = false;
+            try {
+                isKeyguardSecure = windowManagerService.isKeyguardSecure();
+            } catch (RemoteException e) {
+            }
+
+            if (!action.equals(ButtonsConstants.ACTION_QS)
+                    && !action.equals(ButtonsConstants.ACTION_NOTIFICATIONS)) {
+                try {
+                    barService.collapsePanels();
+                } catch (RemoteException ex) {
+                }
+            }
+
             if (action.equals(ButtonsConstants.ACTION_POWER)) {
                 PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
                 pm.goToSleep(SystemClock.uptimeMillis());
                 return;
             } else if (action.equals(ButtonsConstants.ACTION_IME)) {
+                if (isKeyguardShowing) {
+                    return;
+                }
                 context.sendBroadcast(new Intent("android.settings.SHOW_INPUT_METHOD_PICKER"));
                 return;
             } else if (action.equals(ButtonsConstants.ACTION_KILL)) {
+                if (isKeyguardShowing) {
+                    return;
+                }
                 try {
                     barService.toggleKillApp();
                 } catch (RemoteException e) {
                 }
                 return;
             } else if (action.equals(ButtonsConstants.ACTION_WIDGETS)) {
+                if (isKeyguardShowing) {
+                    return;
+                }
                 try {
                     barService.toggleWidgets();
                 } catch (RemoteException e) {
                 }
                 return;
             } else if (action.equals(ButtonsConstants.ACTION_LAST_APP)) {
+                if (isKeyguardShowing) {
+                    return;
+                }
                 try {
                     barService.toggleLastApp();
                 } catch (RemoteException e) {
                 }
                 return;
             } else if (action.equals(ButtonsConstants.ACTION_RECENTS)) {
+                if (isKeyguardShowing) {
+                    return;
+                }
                 try {
                     barService.toggleRecentApps();
                 } catch (RemoteException e) {
@@ -85,34 +127,30 @@ public class SlimActions {
                 }
                 return;
             } else if (action.equals(ButtonsConstants.ACTION_NOTIFICATIONS)) {
+                if (isKeyguardShowing && isKeyguardSecure) {
+                    return;
+                }
                 try {
                     barService.toggleNotificationShade();
                 } catch (RemoteException e) {
                 }
                 return;
             } else if (action.equals(ButtonsConstants.ACTION_QS)) {
+                if (isKeyguardShowing && isKeyguardSecure) {
+                    return;
+                }
                 try {
                     barService.toggleQSShade();
                 } catch (RemoteException e) {
                 }
                 return;
             } else if (action.equals(ButtonsConstants.ACTION_ASSIST)) {
-                Intent intent = new Intent(Intent.ACTION_ASSIST);
-                Intent intentNS = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
-                try {
-                    if (intent != null) {
-                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                         context.startActivity(intent);
-                    }
-                } catch (ActivityNotFoundException e) {
-                    try {
-                        if (intentNS != null) {
-                             intentNS.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                             context.startActivity(intentNS);
-                        }
-                    } catch (ActivityNotFoundException f) {
-                    }
+                Intent intent = ((SearchManager) context.getSystemService(Context.SEARCH_SERVICE))
+                  .getAssistIntent(context, true, UserHandle.USER_CURRENT);
+                if (intent == null) {
+                    intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
                 }
+                startActivity(context, windowManagerService, isKeyguardShowing, intent);
                 return;
             } else if (action.equals(ButtonsConstants.ACTION_VIB)) {
                 AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
@@ -167,18 +205,42 @@ public class SlimActions {
                 }
             } else {
                 // we must have a custom uri
+                Intent intent = null;
                 try {
-                    Intent intent = Intent.parseUri(action, 0);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    context.startActivity(intent);
+                    intent = Intent.parseUri(action, 0);
                 } catch (URISyntaxException e) {
                     Log.e("SlimActions:", "URISyntaxException: [" + action + "]");
-                } catch (ActivityNotFoundException e){
-                    Log.e("SlimActions:", "ActivityNotFound: [" + action + "]");
+                    return;
                 }
+                startActivity(context, windowManagerService, isKeyguardShowing, intent);
                 return;
             }
 
+    }
+
+    private static void startActivity(Context context,
+            IWindowManager windowManagerService, boolean isKeyguardShowing, Intent intent) {
+        if (intent == null) {
+            return;
+        }
+        if (isKeyguardShowing) {
+            // Have keyguard show the bouncer and launch the activity if the user succeeds.
+            try {
+                windowManagerService.showCustomIntent(intent);
+            } catch (RemoteException e) {
+                // too bad, so sad...
+            }
+        } else {
+            // otherwise let us do it here
+            try {
+                ActivityManagerNative.getDefault().dismissKeyguardOnNextActivity();
+            } catch (RemoteException e) {
+                // too bad, so sad...
+            }
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivityAsUser(intent,
+                    new UserHandle(UserHandle.USER_CURRENT));
+        }
     }
 
 }

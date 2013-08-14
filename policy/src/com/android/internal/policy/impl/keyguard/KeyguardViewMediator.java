@@ -120,6 +120,7 @@ public class KeyguardViewMediator {
     private static final int SET_HIDDEN = 12;
     private static final int KEYGUARD_TIMEOUT = 13;
     private static final int SHOW_ASSISTANT = 14;
+    private static final int START_CUSTOM_INTENT = 15;
 
     /**
      * The default amount of time we stay awake (used for all key input)
@@ -1186,6 +1187,9 @@ public class KeyguardViewMediator {
                 case SHOW_ASSISTANT:
                     handleShowAssistant();
                     break;
+                case START_CUSTOM_INTENT:
+                    handleShowCustomIntent((Intent) msg.obj);
+                    break;
             }
         }
     };
@@ -1456,6 +1460,15 @@ public class KeyguardViewMediator {
 
     public boolean isDismissable() {
         return mKeyguardDonePending || !isSecure();
+    }
+
+    public void showCustomIntent(Intent intent) {
+        Message msg = mHandler.obtainMessage(START_CUSTOM_INTENT, intent);
+        mHandler.sendMessage(msg);
+    }
+
+    public void handleShowCustomIntent(Intent intent) {
+        mKeyguardViewManager.showCustomIntent(intent);
     }
 
     public void showAssistant() {

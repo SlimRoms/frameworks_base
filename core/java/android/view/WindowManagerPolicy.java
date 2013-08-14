@@ -17,6 +17,7 @@
 package android.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.CompatibilityInfo;
 import android.content.res.Configuration;
 import android.graphics.Rect;
@@ -1171,6 +1172,12 @@ public interface WindowManagerPolicy {
      * {@link android.content.Intent#ACTION_ASSIST}
      */
     public void showAssistant();
+
+    /**
+     * Ask keyguard to invoke a custom intent after dismissing keyguard
+     * @hide
+     */
+    public void showCustomIntent(Intent intent);
 
     /**
      * Returns whether a given window type can be magnified.
