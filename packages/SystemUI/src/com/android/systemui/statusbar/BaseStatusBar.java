@@ -1650,7 +1650,8 @@ public abstract class BaseStatusBar extends SystemUI implements
                     Settings.System.NAVIGATION_BAR_SHOW, showByDefault) == 1;
             boolean navBarCanMove = Settings.System.getInt(mContext.getContentResolver(),
                         Settings.System.NAVIGATION_BAR_CAN_MOVE, 1) == 1
-                        && screenLayout() != Configuration.SCREENLAYOUT_SIZE_LARGE;
+                        && screenLayout() != Configuration.SCREENLAYOUT_SIZE_LARGE
+                        && screenLayout() != Configuration.SCREENLAYOUT_SIZE_XLARGE;
             boolean navigationBarHeight = Settings.System.getInt(mContext.getContentResolver(),
                                 Settings.System.NAVIGATION_BAR_HEIGHT,
                                 mContext.getResources().getDimensionPixelSize(

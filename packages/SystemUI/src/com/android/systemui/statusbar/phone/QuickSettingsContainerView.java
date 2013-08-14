@@ -68,13 +68,20 @@ public class QuickSettingsContainerView extends FrameLayout {
         mNumColumns = Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.QUICK_TILES_PER_ROW,
                 mResources.getInteger(R.integer.quick_settings_num_columns));
+        // do not allow duplication on tablets or any device which do not have
+        // flipsettings
         mDuplicateColumnsLandscape = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.QUICK_TILES_PER_ROW_DUPLICATE_LANDSCAPE, 1) == 1;
+                Settings.System.QUICK_TILES_PER_ROW_DUPLICATE_LANDSCAPE, 1) == 1
+                        && mResources.getBoolean(R.bool.config_hasFlipSettingsPanel);
         requestLayout();
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        mNumColumns = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.QUICK_TILES_PER_ROW,
+                mResources.getInteger(R.integer.quick_settings_num_columns));
+
         if (mDuplicateColumnsLandscape && isLandscape()) {
             mNumFinalColumns = mNumColumns * 2;
         } else {
