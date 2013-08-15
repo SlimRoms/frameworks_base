@@ -1542,9 +1542,9 @@ public abstract class BaseStatusBar extends SystemUI implements
             mPieTriggerGravityLeftRight = Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.PIE_TRIGGER_GRAVITY_LEFT_RIGHT,
                     Gravity.CENTER_VERTICAL);
-            mPieImeIsShowing = Settings.System.getFloat(mContext.getContentResolver(),
+            mPieImeIsShowing = Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.PIE_SOFTKEYBOARD_IS_SHOWING, 0) == 1
-                    && Settings.System.getFloat(mContext.getContentResolver(),
+                    && Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.PIE_ADJUST_TRIGGER_FOR_IME, 1) == 1;
             attachPie();
         }

@@ -35,6 +35,8 @@ oneway interface IStatusBar
     void topAppWindowChanged(boolean menuVisible);
     void setImeWindowStatus(in IBinder token, int vis, int backDisposition);
     void setHardKeyboardStatus(boolean available, boolean enabled);
+    void setImeShowStatus(boolean enabled);
+    void setAutoRotate(boolean enabled);
     void toggleNotificationShade();
     void toggleQSShade();
     void toggleStatusBar(boolean enable);

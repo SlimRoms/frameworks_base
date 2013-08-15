@@ -996,6 +996,20 @@ public class PhoneStatusBar extends BaseStatusBar {
     }
 
     @Override
+    public void setImeShowStatus(boolean enabled) {
+        Settings.System.putInt(mContext.getContentResolver(),
+                Settings.System.PIE_SOFTKEYBOARD_IS_SHOWING,
+                enabled ? 1 : 0);
+    }
+
+    @Override
+    public void setAutoRotate(boolean enabled) {
+        Settings.System.putInt(mContext.getContentResolver(),
+                Settings.System.ACCELEROMETER_ROTATION,
+                enabled ? 1 : 0);
+    }
+
+    @Override
     public void toggleStatusBar(boolean enable) {
         Settings.System.putInt(mContext.getContentResolver(),
                 Settings.System.TOGGLE_NOTIFICATION_AND_QS_SHADE,
