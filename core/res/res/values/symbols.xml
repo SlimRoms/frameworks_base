@@ -892,6 +892,8 @@
   <java-symbol type="string" name="wireless_display_route_description" />
   <java-symbol type="string" name="policylab_enforceSelinux" />
   <java-symbol type="string" name="policydesc_enforceSelinux" />
+  <java-symbol type="string" name="policylab_enforceMmac" />
+  <java-symbol type="string" name="policydesc_enforceMmac" />
 
   <java-symbol type="plurals" name="abbrev_in_num_days" />
   <java-symbol type="plurals" name="abbrev_in_num_hours" />
