@@ -458,11 +458,7 @@ public class SearchPanelView extends FrameLayout implements
             ((ViewGroup) mSearchTargetsContainer).setLayoutTransition(transitioner);
         }
         mShowing = show;
-        boolean enabled = true;
-        if (mButtonsConfig != null && mButtonsConfig.size() == 0) {
-            enabled = false;
-        }
-        if (show && enabled) {
+        if (show) {
             maybeSwapSearchIcon();
             if (getVisibility() != View.VISIBLE) {
                 setVisibility(View.VISIBLE);
