@@ -2021,10 +2021,10 @@ public final class Settings {
         public static final String PHONE_BLACKLIST_PRIVATE_NUMBER_MODE = "phone_blacklist_private_number_enabled";
 
         /**
-         * Whether the blacklisting feature for phone calls from private numbers is enabled
+         * Whether the blacklisting feature for phone calls from unknown numbers is enabled
          * @hide
          */
-        public static final String PHONE_BLACKLIST_UNKNOWN_NUMBER_MODE = "phone_blacklist_private_number_enabled";
+        public static final String PHONE_BLACKLIST_UNKNOWN_NUMBER_MODE = "phone_blacklist_unknown_number_enabled";
 
         /**
          * Constants to be used for {@link PHONE_BLACKLIST_PRIVATE_NUMBER_MODE} and
@@ -5203,6 +5203,25 @@ public final class Settings {
         public static final String SETTINGS_CLASSNAME = "settings_classname";
 
         /**
+         * SELinux enforcing status.
+         * 1 - SELinux is in enforcing mode.
+         * 0 - SELinux is in permissive mode.
+         *
+         * @hide
+         */
+        public static final String SELINUX_ENFORCING = "selinux_enforcing";
+
+        /**
+         * Stores the values of the SELinux booleans. Stored as a comma
+         * seperated list of values, each value being of the form
+         * {@code boolean_name:value} where value is 1 if the boolean is set
+         * and 0 otherwise. Example: {@code bool1:1,bool2:0}.
+         *
+         * @hide
+         */
+        public static final String SELINUX_BOOLEANS = "selinux_booleans";
+
+        /**
          * @deprecated Use {@link android.provider.Settings.Global#USB_MASS_STORAGE_ENABLED} instead
          */
         @Deprecated
@@ -6022,6 +6041,8 @@ public final class Settings {
             TOUCH_EXPLORATION_ENABLED,
             ACCESSIBILITY_ENABLED,
             ACCESSIBILITY_SPEAK_PASSWORD,
+            SELINUX_ENFORCING,
+            SELINUX_BOOLEANS,
             TTS_USE_DEFAULTS,
             TTS_DEFAULT_RATE,
             TTS_DEFAULT_PITCH,
