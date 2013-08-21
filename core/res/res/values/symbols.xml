@@ -2392,4 +2392,9 @@
   <java-symbol type="array" name="origin_carrier_names" />
   <java-symbol type="array" name="locale_carrier_names" />
 
+  <java-symbol type="drawable" name="ic_lock_reboot" />
+  <java-symbol type="string" name="reboot_confirm" />
+  <java-symbol type="string" name="reboot_title" />
+  <java-symbol type="string" name="global_action_reboot" />
+
 </resources>

@@ -155,13 +155,22 @@ public final class ShutdownThread extends Thread {
         }
         final int longPressBehavior = context.getResources().getInteger(
                         com.android.internal.R.integer.config_longPressOnPowerBehavior);
-        int resourceId = mRebootSafeMode
-                ? com.android.internal.R.string.reboot_safemode_confirm
-                : (longPressBehavior == 2
-                        ? com.android.internal.R.string.shutdown_confirm_question
-                        : com.android.internal.R.string.shutdown_confirm);
-        if (showRebootOption && !mRebootSafeMode) {
+        final int resourceId;
+        final int resourceTitleId;
+
+        if (mRebootSafeMode) {
+            resourceTitleId = com.android.internal.R.string.reboot_safemode_title;
+            resourceId = com.android.internal.R.string.reboot_safemode_confirm;
+        } else if (mReboot) {
+            resourceTitleId = com.android.internal.R.string.reboot_title;
             resourceId = com.android.internal.R.string.reboot_confirm;
+        } else {
+            resourceTitleId = com.android.internal.R.string.power_off;
+            if (longPressBehavior == 2) {
+                resourceId = com.android.internal.R.string.shutdown_confirm_question;
+            } else {
+                resourceId = com.android.internal.R.string.shutdown_confirm;
+            }
         }
 
         Log.d(TAG, "Notifying thread to start shutdown longPressBehavior=" + longPressBehavior);
@@ -172,11 +181,7 @@ public final class ShutdownThread extends Thread {
                 sConfirmDialog.dismiss();
             }
             sConfirmDialog = new AlertDialog.Builder(context)
-                    .setTitle(mRebootSafeMode
-                            ? com.android.internal.R.string.reboot_safemode_title
-                            : showRebootOption
-                                    ? com.android.internal.R.string.reboot_title
-                                    : com.android.internal.R.string.power_off)
+                    .setTitle(resourceTitleId)
                     .setMessage(resourceId)
                     .setPositiveButton(com.android.internal.R.string.yes, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {

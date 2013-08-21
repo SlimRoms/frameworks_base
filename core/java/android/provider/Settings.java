@@ -6180,6 +6180,13 @@ public final class Settings {
         public static final String BUGREPORT_IN_POWER_MENU = "bugreport_in_power_menu";
 
         /**
+         * When the user has enabled the option to have a "reboot" command
+         * in the power menu.
+         * @hide
+         */
+        public static final String REBOOT_IN_POWER_MENU = "reboot_in_power_menu";
+
+        /**
          * Whether ADB is enabled.
          */
         public static final String ADB_ENABLED = "adb_enabled";
@@ -7749,6 +7756,7 @@ public final class Settings {
          */
         public static final String[] SETTINGS_TO_BACKUP = {
             BUGREPORT_IN_POWER_MENU,
+            REBOOT_IN_POWER_MENU,
             STAY_ON_WHILE_PLUGGED_IN,
             AUTO_TIME,
             AUTO_TIME_ZONE,
