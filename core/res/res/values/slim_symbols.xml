@@ -146,4 +146,8 @@
   <java-symbol type="anim" name="recent_screen_enter_left" />
   <java-symbol type="anim" name="recent_screen_fade_out" />
 
+  <!-- Button Brightness -->
+  <java-symbol type="integer" name="config_buttonBrightnessSettingDefault" />
+  <java-symbol type="bool" name="config_deviceHasVariableButtonBrightness" />
+
 </resources>
