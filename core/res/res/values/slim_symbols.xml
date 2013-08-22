@@ -118,4 +118,8 @@
   <!-- Hardware key rebinding -->
   <java-symbol type="integer" name="config_deviceHardwareKeys" />
 
+  <!-- Button Brightness -->
+  <java-symbol type="integer" name="config_buttonBrightnessSettingDefault" />
+  <java-symbol type="bool" name="config_deviceHasVariableButtonBrightness" />
+
 </resources>
