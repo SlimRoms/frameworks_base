@@ -55,4 +55,8 @@
    <!-- Wether doze feature is enabled by default in settings. -->
    <bool name="config_doze_enabled_by_default">true</bool>
 
+   <integer name="config_buttonBrightnessSettingDefault">255</integer>
+   <integer name="config_keyboardBrightnessSettingDefault">0</integer>
+   <bool name="config_deviceHasVariableButtonBrightness">false</bool>
+
 </resources>
