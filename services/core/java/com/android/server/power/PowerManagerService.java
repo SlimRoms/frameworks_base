@@ -243,6 +243,12 @@ public final class PowerManagerService extends SystemService
     private Light mButtonsLight;
     private Light mKeyboardLight;
 
+    private int mButtonTimeout;
+    private int mButtonBrightness;
+    private int mButtonBrightnessSettingDefault;
+    private int mKeyboardBrightness;
+    private int mKeyboardBrightnessSettingDefault;
+
     private final Object mLock = LockGuard.installNewLock(LockGuard.INDEX_POWER);
     private int mButtonTimeout;
     private int mButtonBrightness;
@@ -1981,12 +1987,13 @@ public final class PowerManagerService extends SystemService
                         if (mButtonBrightnessOverrideFromWindowManager >= 0) {
                             buttonBrightness = mButtonBrightnessOverrideFromWindowManager;
                             keyboardBrightness = mButtonBrightnessOverrideFromWindowManager;
+
                         } else {
                             buttonBrightness = mButtonBrightness;
                             keyboardBrightness = mKeyboardBrightness;
                         }
 
-                        //mKeyboardLight.setBrightness(mKeyboardVisible ? keyboardBrightness : 0);
+                        mKeyboardLight.setBrightness(mKeyboardVisible ? keyboardBrightness : 0);
                         if (mButtonTimeout != 0 && now > mLastUserActivityTime + mButtonTimeout) {
                              mButtonsLight.setBrightness(0);
                         } else {
@@ -1994,20 +2001,13 @@ public final class PowerManagerService extends SystemService
                             if (buttonBrightness != 0 && mButtonTimeout != 0) {
                                 nextTimeout = now + mButtonTimeout;
                             }
-                        if (now > mLastUserActivityTime + BUTTON_ON_DURATION) {
-                            mButtonsLight.setBrightness(0);
-                            mKeyboardLight.setBrightness(0);
-                        } else {
-                            mButtonsLight.setBrightness(mDisplayPowerRequest.screenBrightness);
-                            mKeyboardLight.setBrightness(mKeyboardVisible ? mDisplayPowerRequest.screenBrightness : 0);
-                            nextTimeout = now + BUTTON_ON_DURATION;
                         }
                         mUserActivitySummary = USER_ACTIVITY_SCREEN_BRIGHT;
                     } else {
                         nextTimeout = mLastUserActivityTime + screenOffTimeout;
                         if (now < nextTimeout) {
                             mButtonsLight.setBrightness(0);
-                            //mKeyboardLight.setBrightness(0);
+                            mKeyboardLight.setBrightness(0);
                             mUserActivitySummary = USER_ACTIVITY_SCREEN_DIM;
                         }
                     }
@@ -3165,6 +3165,16 @@ public final class PowerManagerService extends SystemService
                     || mDozeScreenBrightnessOverrideFromDreamManager != screenBrightness) {
                 mDozeScreenStateOverrideFromDreamManager = screenState;
                 mDozeScreenBrightnessOverrideFromDreamManager = screenBrightness;
+                mDirty |= DIRTY_SETTINGS;
+                updatePowerStateLocked();
+            }
+        }
+    }
+
+    private void setButtonBrightnessOverrideFromWindowManagerInternal(int brightness) {
+        synchronized (mLock) {
+            if (mButtonBrightnessOverrideFromWindowManager != brightness) {
+                mButtonBrightnessOverrideFromWindowManager = brightness;
                 mDirty |= DIRTY_SETTINGS;
                 updatePowerStateLocked();
             }
@@ -4347,8 +4357,9 @@ public final class PowerManagerService extends SystemService
                 }
                 if (mKeyboardVisible != visible) {
                     mKeyboardVisible = visible;
-                    if (!visible) {
-                        mKeyboardLight.turnOff();
+                    synchronized (mLock) {
+                        mDirty |= DIRTY_USER_ACTIVITY;
+                        updatePowerStateLocked();
                     }
                 }
             }
@@ -4760,16 +4771,8 @@ public final class PowerManagerService extends SystemService
         }
 
         @Override
-        public void setButtonBrightnessOverrideFromWindowManager(int screenBrightness) {
-            mContext.enforceCallingOrSelfPermission(android.Manifest.permission.DEVICE_POWER, null);
-
-            final long ident = Binder.clearCallingIdentity();
-            try {
-                setButtonBrightnessOverrideFromWindowManagerInternal(screenBrightness);
-            } finally {
-                Binder.restoreCallingIdentity(ident);
-            }
-
+        public void setButtonBrightnessOverrideFromWindowManager(int buttonBrightness) {
+            setButtonBrightnessOverrideFromWindowManagerInternal(buttonBrightness);
         }
 
         @Override
