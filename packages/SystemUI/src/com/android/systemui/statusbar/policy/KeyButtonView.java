@@ -53,7 +53,7 @@ public class KeyButtonView extends ImageView {
     private static final String TAG = "StatusBar.KeyButtonView";
 
     final float GLOW_MAX_SCALE_FACTOR = 1.8f;
-    static float BUTTON_QUIESCENT_ALPHA = 0.70f;
+    static float mButtonAlpha = 0.70f;
 
     long mDownTime;
     int mCode;
@@ -101,7 +101,7 @@ public class KeyButtonView extends ImageView {
 
         mGlowBG = a.getDrawable(R.styleable.KeyButtonView_glowBackground);
         if (mGlowBG != null) {
-            setDrawingAlpha(BUTTON_QUIESCENT_ALPHA);
+            setDrawingAlpha(mButtonAlpha);
             mGlowWidth = mGlowBG.getIntrinsicWidth();
             mGlowHeight = mGlowBG.getIntrinsicHeight();
         }
@@ -152,7 +152,7 @@ public class KeyButtonView extends ImageView {
     public void setGlowBackground(int id) {
         mGlowBG = getResources().getDrawable(id);
         if (mGlowBG != null) {
-            setDrawingAlpha(BUTTON_QUIESCENT_ALPHA);
+            setDrawingAlpha(mButtonAlpha);
             mGlowWidth = mGlowBG.getIntrinsicWidth();
             mGlowHeight = mGlowBG.getIntrinsicHeight();
             int defaultColor = mContext.getResources().getColor(
@@ -256,8 +256,8 @@ public class KeyButtonView extends ImageView {
                 if (pressed) {
                     if (mGlowScale < GLOW_MAX_SCALE_FACTOR) 
                         mGlowScale = GLOW_MAX_SCALE_FACTOR;
-                    if (mGlowAlpha < BUTTON_QUIESCENT_ALPHA)
-                        mGlowAlpha = BUTTON_QUIESCENT_ALPHA;
+                    if (mGlowAlpha < mButtonAlpha)
+                        mGlowAlpha = mButtonAlpha;
                     setDrawingAlpha(1f);
                     as.playTogether(
                         ObjectAnimator.ofFloat(this, "glowAlpha", 1f),
@@ -268,7 +268,7 @@ public class KeyButtonView extends ImageView {
                     as.playTogether(
                         ObjectAnimator.ofFloat(this, "glowAlpha", 0f),
                         ObjectAnimator.ofFloat(this, "glowScale", 1f),
-                        ObjectAnimator.ofFloat(this, "drawingAlpha", BUTTON_QUIESCENT_ALPHA)
+                        ObjectAnimator.ofFloat(this, "drawingAlpha", mButtonAlpha)
                     );
                     as.setDuration(mDurationSpeedOn);
                 }
@@ -419,7 +419,7 @@ public class KeyButtonView extends ImageView {
                     Settings.System.NAVIGATION_BAR_GLOW_DURATION[0], 10);
             mDurationSpeedOn = Settings.System.getInt(resolver,
                     Settings.System.NAVIGATION_BAR_GLOW_DURATION[1], 100);
-            BUTTON_QUIESCENT_ALPHA = (1-(Settings.System.getFloat(
+            mButtonAlpha = (1 - (Settings.System.getFloat(
                     resolver, Settings.System.NAVIGATION_BAR_BUTTON_ALPHA, 0.3f)));
 
             mGlowBGColor = Settings.System.getInt(resolver,
@@ -431,7 +431,7 @@ public class KeyButtonView extends ImageView {
 
             for (KeyButtonView kbv : mKeyButtonViews) {
 
-                kbv.setDrawingAlpha(BUTTON_QUIESCENT_ALPHA);
+                kbv.setDrawingAlpha(mButtonAlpha);
 
                 if (kbv.mGlowBG != null) {
                     kbv.mGlowBG.setColorFilter(null);

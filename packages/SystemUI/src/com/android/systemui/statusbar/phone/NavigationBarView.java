@@ -607,7 +607,18 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
             }
         }
 
-        getSearchLight().setVisibility(keyguardProbablyEnabled ? View.VISIBLE : View.GONE);
+        View searchLight = getSearchLight();
+        if (searchLight != null) {
+            searchLight.setVisibility(keyguardProbablyEnabled ? View.VISIBLE : View.GONE);
+            if (mNavBarButtonColor == -1) {
+                ((ImageView) searchLight).setColorFilter(null);
+            } else {
+                ((ImageView) searchLight).setColorFilter(mNavBarButtonColor, Mode.SRC_ATOP);
+            }
+            ((ImageView) searchLight).setAlpha((1 - (Settings.System.getFloat(
+                mContext.getContentResolver(),
+                Settings.System.NAVIGATION_BAR_BUTTON_ALPHA, 0.3f))));
+        }
         updateKeyguardAlpha();
     }
 

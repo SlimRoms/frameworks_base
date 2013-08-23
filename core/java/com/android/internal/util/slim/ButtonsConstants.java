@@ -20,23 +20,24 @@ public class ButtonsConstants {
 
     // key must fit with the values arrays from Settings to use
     // SlimActions.java actions
-    public static final String ACTION_HOME            = "**home**";
-    public static final String ACTION_BACK            = "**back**";
-    public static final String ACTION_SEARCH          = "**search**";
-    public static final String ACTION_MENU            = "**menu**";
-    public static final String ACTION_POWER           = "**power**";
-    public static final String ACTION_NOTIFICATIONS   = "**notifications**";
-    public static final String ACTION_QS              = "**quicksettings**";
-    public static final String ACTION_RECENTS         = "**recents**";
-    public static final String ACTION_SCREENSHOT      = "**screenshot**";
-    public static final String ACTION_IME             = "**ime**";
-    public static final String ACTION_LAST_APP        = "**lastapp**";
-    public static final String ACTION_KILL            = "**kill**";
-    public static final String ACTION_WIDGETS         = "**widgets**";
-    public static final String ACTION_ASSIST          = "**assist**";
-    public static final String ACTION_VIB             = "**ring_vib**";
-    public static final String ACTION_SILENT          = "**ring_silent**";
-    public static final String ACTION_VIB_SILENT      = "**ring_vib_silent**";
+    public static final String ACTION_HOME                 = "**home**";
+    public static final String ACTION_BACK                 = "**back**";
+    public static final String ACTION_SEARCH               = "**search**";
+    public static final String ACTION_MENU                 = "**menu**";
+    public static final String ACTION_POWER                = "**power**";
+    public static final String ACTION_NOTIFICATIONS        = "**notifications**";
+    public static final String ACTION_QS                   = "**quicksettings**";
+    public static final String ACTION_RECENTS              = "**recents**";
+    public static final String ACTION_SCREENSHOT           = "**screenshot**";
+    public static final String ACTION_IME                  = "**ime**";
+    public static final String ACTION_LAST_APP             = "**lastapp**";
+    public static final String ACTION_KILL                 = "**kill**";
+    public static final String ACTION_WIDGETS              = "**widgets**";
+    public static final String ACTION_ASSIST               = "**assist**";
+    public static final String ACTION_VIB                  = "**ring_vib**";
+    public static final String ACTION_SILENT               = "**ring_silent**";
+    public static final String ACTION_VIB_SILENT           = "**ring_vib_silent**";
+    public static final String ACTION_KEYGUARD_SEARCH      = "**keyguard_search**";
 
     // no action
     public static final String ACTION_NULL            = "**null**";

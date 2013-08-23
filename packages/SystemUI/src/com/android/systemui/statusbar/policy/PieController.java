@@ -526,16 +526,26 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
         for (int j = 0; j < buttonsConfig.size(); j++) {
             buttonConfig = buttonsConfig.get(j);
             if (secondLayer) {
-                mNavigationSliceSecondLayer.addItem(constructItem(buttonWidth,
-                        buttonConfig.getClickAction(),
-                        buttonConfig.getLongpressAction(),
-                        buttonConfig.getIcon(), minimumImageSize));
+                addItemToLayer(mNavigationSliceSecondLayer, buttonConfig, buttonWidth, minimumImageSize);
             } else {
-                mNavigationSlice.addItem(constructItem(buttonWidth,
-                        buttonConfig.getClickAction(),
-                        buttonConfig.getLongpressAction(),
-                        buttonConfig.getIcon(), minimumImageSize));
+                addItemToLayer(mNavigationSlice, buttonConfig, buttonWidth, minimumImageSize);
             }
+        }
+    }
+
+    private void addItemToLayer(PieSliceContainer layer, ButtonConfig buttonConfig,
+            int buttonWidth, int minimumImageSize) {
+        layer.addItem(constructItem(buttonWidth,
+                buttonConfig.getClickAction(),
+                buttonConfig.getLongpressAction(),
+                buttonConfig.getIcon(), minimumImageSize));
+
+        if (buttonConfig.getClickAction().equals(ButtonsConstants.ACTION_HOME)) {
+            layer.addItem(constructItem(buttonWidth,
+                    ButtonsConstants.ACTION_KEYGUARD_SEARCH,
+                    buttonConfig.getLongpressAction(),
+                    ButtonsConstants.ICON_EMPTY,
+                    minimumImageSize));
         }
     }
 
@@ -742,6 +752,10 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
             item = findItem(ButtonsConstants.ACTION_HOME, j);
             if (item != null) {
                 item.show(!disableHome);
+                // if the homebutton exists we can assume that the keyguard
+                // search button exists as well.
+                item = findItem(ButtonsConstants.ACTION_KEYGUARD_SEARCH, j);
+                item.show(disableHome);
             }
             item = findItem(ButtonsConstants.ACTION_RECENTS, j);
             if (item != null) {
