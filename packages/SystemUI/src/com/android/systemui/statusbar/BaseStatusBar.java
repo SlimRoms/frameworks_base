@@ -1681,10 +1681,10 @@ public abstract class BaseStatusBar extends SystemUI implements
                                     && navigationBarHeightLandscape);
 
             // let's set the triggers
-            if ((mForceBottomTrigger && !hasNavigationBar
-                    || mForceBottomTrigger && disableRightTriggerForNavbar
-                    || mForceBottomTrigger && ((expandedMode == 1 || expandedMode == 3) && expanded))
-                && !forceDisableBottomAndTopTrigger) {
+            if (!forceDisableBottomAndTopTrigger && (mForceBottomTrigger
+                    && (!hasNavigationBar
+                        || disableRightTriggerForNavbar
+                        || (expandedMode == 1 || expandedMode == 3) && expanded))) {
                 bottomTriggerEnabled = true;
             } else if (mForceBottomTrigger && hasNavigationBar) {
                 //do nothing all triggers are disabled and exit
