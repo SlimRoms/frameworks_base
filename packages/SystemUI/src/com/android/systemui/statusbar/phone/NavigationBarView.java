@@ -556,9 +556,9 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
     }
 
     private void updateKeyguardAlpha() {
-        if((mNavigationIconHints & StatusBarManager.NAVIGATION_HINT_BACK_ALT) != 0
+        if ((mNavigationIconHints & StatusBarManager.NAVIGATION_HINT_BACK_ALT) != 0
                 || (isKeyguardEnabled() && mAlphaMode == 0)
-                || (!isKeyguardEnabled() && mIsHome == false && mAlphaMode != 2)) {
+                || (!isKeyguardEnabled() && mIsHome == false)) {
             setBackgroundAlpha(1);
         } else {
             setBackgroundAlpha(mAlpha);
@@ -1001,7 +1001,7 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
         mNavBarColor = Settings.System.getInt(resolver,
                 Settings.System.NAVIGATION_BAR_TINT, -2);
 
-        mAlpha = 1 - Settings.System.getFloat(resolver,
+        mAlpha = 1.0f - Settings.System.getFloat(resolver,
                 Settings.System.NAVIGATION_BAR_ALPHA, 0.0f);
 
         mAlphaMode = Settings.System.getInt(resolver,
