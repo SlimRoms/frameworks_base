@@ -132,7 +132,7 @@ public class PhoneStatusBarView extends PanelBar {
         settingsObserver.observe();
         updateSettings();
         Drawable bg = mContext.getResources().getDrawable(R.drawable.status_bar_background);
-        if(bg instanceof ColorDrawable) {
+        if (bg instanceof ColorDrawable) {
             BackgroundAlphaColorDrawable bacd = new BackgroundAlphaColorDrawable(
                     mStatusBarColor != -2 ? mStatusBarColor : ((ColorDrawable) bg).getColor());
             setBackground(bacd);
@@ -353,7 +353,7 @@ public class PhoneStatusBarView extends PanelBar {
         if (bg == null)
             return;
 
-        if(bg instanceof BackgroundAlphaColorDrawable) {
+        if (bg instanceof BackgroundAlphaColorDrawable) {
             ((BackgroundAlphaColorDrawable) bg).setBgColor(mStatusBarColor);
         }
         int a = Math.round(alpha * 255);
@@ -361,9 +361,9 @@ public class PhoneStatusBarView extends PanelBar {
     }
 
     public void updateBackgroundAlpha() {
-        if(mFadingPanel != null || (isKeyguardEnabled() && mAlphaMode == 0)) {
+        if (mFadingPanel != null || (isKeyguardEnabled() && mAlphaMode == 0)) {
             setBackgroundAlpha(1);
-        } else if (isKeyguardEnabled() || mAlphaMode == 2) {
+        } else if (isKeyguardEnabled()) {
             setBackgroundAlpha(mAlpha);
         } else {
             removeCallbacks(mUpdateInHomeAlpha);
