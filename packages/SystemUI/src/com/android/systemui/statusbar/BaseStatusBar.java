@@ -26,6 +26,7 @@ import com.android.internal.widget.SizeAdaptiveLayout;
 import com.android.systemui.R;
 import com.android.systemui.SearchPanelView;
 import com.android.systemui.SystemUI;
+import com.android.systemui.statusbar.TransparencyManager;
 import com.android.systemui.recent.RecentTasksLoader;
 import com.android.systemui.recent.RecentsActivity;
 import com.android.systemui.recent.TaskDescription;
@@ -151,6 +152,7 @@ public abstract class BaseStatusBar extends SystemUI implements
     protected CommandQueue mCommandQueue;
     protected IStatusBarService mBarService;
     protected H mHandler = createHandler();
+    public TransparencyManager mTransparencyManager;
 
     // all notifications
     protected NotificationData mNotificationData = new NotificationData();
@@ -404,8 +406,12 @@ public abstract class BaseStatusBar extends SystemUI implements
             // If the system process isn't there we're doomed anyway.
         }
 
-        createAndAddWindows();
+        if (mTransparencyManager == null) {
+            mTransparencyManager = new TransparencyManager(mContext);
+        }
         mWidgetView = new WidgetView(mContext,null);
+
+        createAndAddWindows();
 
         disable(switches[0]);
         setSystemUiVisibility(switches[1], 0xffffffff);
@@ -674,8 +680,8 @@ public abstract class BaseStatusBar extends SystemUI implements
         // Provide SearchPanel with a temporary parent to allow layout params to work.
         LinearLayout tmpRoot = new LinearLayout(mContext);
 
-         boolean navbarCanMove = Settings.System.getInt(mContext.getContentResolver(),
-                        Settings.System.NAVIGATION_BAR_CAN_MOVE, 1) == 1;
+         boolean navbarCanMove = Settings.System.getIntForUser(mContext.getContentResolver(),
+                        Settings.System.NAVIGATION_BAR_CAN_MOVE, 1, UserHandle.USER_CURRENT) == 1;
 
          if (screenLayout() != Configuration.SCREENLAYOUT_SIZE_LARGE && !isScreenPortrait() && !navbarCanMove) {
                 mSearchPanelView = (SearchPanelView) LayoutInflater.from(mContext).inflate(
@@ -1516,7 +1522,8 @@ public abstract class BaseStatusBar extends SystemUI implements
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.NAVIGATION_BAR_SHOW), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.NAVIGATION_BAR_CAN_MOVE), false, this);
+                    Settings.System.NAVIGATION_BAR_CAN_MOVE), false, this,
+                    UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.NAVIGATION_BAR_HEIGHT), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
@@ -1563,7 +1570,7 @@ public abstract class BaseStatusBar extends SystemUI implements
         if (isPieEnabled()) {
             // Create our container, if it does not exist already
             if (mPieContainer == null) {
-                mPieContainer = new PieLayout(mContext);
+                mPieContainer = new PieLayout(mContext, mTransparencyManager);
                 WindowManager.LayoutParams lp = new WindowManager.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.MATCH_PARENT,
@@ -1650,8 +1657,8 @@ public abstract class BaseStatusBar extends SystemUI implements
                     com.android.internal.R.bool.config_showNavigationBar) ? 1 : 0;
             boolean hasNavigationBar = Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.NAVIGATION_BAR_SHOW, showByDefault) == 1;
-            boolean navBarCanMove = Settings.System.getInt(mContext.getContentResolver(),
-                        Settings.System.NAVIGATION_BAR_CAN_MOVE, 1) == 1
+            boolean navBarCanMove = Settings.System.getIntForUser(mContext.getContentResolver(),
+                        Settings.System.NAVIGATION_BAR_CAN_MOVE, 1, UserHandle.USER_CURRENT) == 1
                         && screenLayout() != Configuration.SCREENLAYOUT_SIZE_LARGE
                         && screenLayout() != Configuration.SCREENLAYOUT_SIZE_XLARGE;
             boolean navigationBarHeight = Settings.System.getInt(mContext.getContentResolver(),

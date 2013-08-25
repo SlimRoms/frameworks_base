@@ -246,8 +246,8 @@ public class SearchPanelView extends FrameLayout implements
         int endPosOffset;
         int middleBlanks = 0;
 
-        boolean navbarCanMove = Settings.System.getInt(mContext.getContentResolver(),
-                        Settings.System.NAVIGATION_BAR_CAN_MOVE, 1) == 1;
+        boolean navbarCanMove = Settings.System.getIntForUser(mContext.getContentResolver(),
+                        Settings.System.NAVIGATION_BAR_CAN_MOVE, 1, UserHandle.USER_CURRENT) == 1;
         boolean screenSizeTablet = screenLayout() == Configuration.SCREENLAYOUT_SIZE_LARGE
                                 || screenLayout() == Configuration.SCREENLAYOUT_SIZE_XLARGE;
 
@@ -612,9 +612,11 @@ public class SearchPanelView extends FrameLayout implements
         void observe() {
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.SYSTEMUI_NAVRING_CONFIG), false, this);
+                    Settings.System.SYSTEMUI_NAVRING_CONFIG), false, this,
+                    UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.NAVIGATION_BAR_CAN_MOVE), false, this);
+                    Settings.System.NAVIGATION_BAR_CAN_MOVE), false, this,
+                    UserHandle.USER_ALL);
         }
 
         void unobserve() {

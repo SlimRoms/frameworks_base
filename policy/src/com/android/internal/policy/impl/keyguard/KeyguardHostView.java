@@ -1194,7 +1194,7 @@ public class KeyguardHostView extends KeyguardViewBase {
 
         if (Settings.System.getIntForUser(mContext.getContentResolver(),
                 Settings.System.LOCKSCREEN_MAXIMIZE_WIDGETS, 0, UserHandle.USER_CURRENT) == 1) {
-            mSlidingChallengeLayout.showChallenge(false);
+            mSlidingChallengeLayout.fadeOutChallenge();
         }
     }
 

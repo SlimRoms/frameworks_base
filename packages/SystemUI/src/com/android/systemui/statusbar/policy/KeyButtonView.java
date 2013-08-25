@@ -31,6 +31,7 @@ import android.os.Handler;
 import android.os.RemoteException;
 import android.os.SystemClock;
 import android.os.ServiceManager;
+import android.os.UserHandle;
 import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -158,8 +159,8 @@ public class KeyButtonView extends ImageView {
             int defaultColor = mContext.getResources().getColor(
                     com.android.internal.R.color.white);
             ContentResolver resolver = mContext.getContentResolver();
-            mGlowBGColor = Settings.System.getInt(resolver,
-                    Settings.System.NAVIGATION_BAR_GLOW_TINT, defaultColor);
+            mGlowBGColor = Settings.System.getIntForUser(resolver,
+                    Settings.System.NAVIGATION_BAR_GLOW_TINT, defaultColor, UserHandle.USER_CURRENT);
 
             if (mGlowBGColor == Integer.MIN_VALUE) {
                 mGlowBGColor = defaultColor;
@@ -392,15 +393,15 @@ public class KeyButtonView extends ImageView {
             resolver.registerContentObserver(
                     Settings.System.getUriFor(
                     Settings.System.NAVIGATION_BAR_BUTTON_ALPHA),
-                    false, this);
+                    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(
                     Settings.System.getUriFor(
                     Settings.System.NAVIGATION_BAR_GLOW_TINT),
-                    false, this);
+                    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(
                     Settings.System.getUriFor(
                     Settings.System.NAVIGATION_BAR_GLOW_DURATION[1]),
-                    false, this);
+                    false, this, UserHandle.USER_ALL);
             updateSettings();
         }
 
@@ -415,15 +416,15 @@ public class KeyButtonView extends ImageView {
 
         void updateSettings() {
             ContentResolver resolver = mContext.getContentResolver();
-            mDurationSpeedOff = Settings.System.getInt(resolver,
-                    Settings.System.NAVIGATION_BAR_GLOW_DURATION[0], 10);
-            mDurationSpeedOn = Settings.System.getInt(resolver,
-                    Settings.System.NAVIGATION_BAR_GLOW_DURATION[1], 100);
-            mButtonAlpha = (1 - (Settings.System.getFloat(
-                    resolver, Settings.System.NAVIGATION_BAR_BUTTON_ALPHA, 0.3f)));
+            mDurationSpeedOff = Settings.System.getIntForUser(resolver,
+                    Settings.System.NAVIGATION_BAR_GLOW_DURATION[0], 10, UserHandle.USER_CURRENT);
+            mDurationSpeedOn = Settings.System.getIntForUser(resolver,
+                    Settings.System.NAVIGATION_BAR_GLOW_DURATION[1], 100, UserHandle.USER_CURRENT);
+            mButtonAlpha = (1 - (Settings.System.getFloatForUser(
+                    resolver, Settings.System.NAVIGATION_BAR_BUTTON_ALPHA, 0.3f, UserHandle.USER_CURRENT)));
 
-            mGlowBGColor = Settings.System.getInt(resolver,
-                    Settings.System.NAVIGATION_BAR_GLOW_TINT, -2);
+            mGlowBGColor = Settings.System.getIntForUser(resolver,
+                    Settings.System.NAVIGATION_BAR_GLOW_TINT, -2, UserHandle.USER_CURRENT);
             if (mGlowBGColor == -2) {
                 mGlowBGColor = mContext.getResources().getColor(
                     com.android.internal.R.color.white);

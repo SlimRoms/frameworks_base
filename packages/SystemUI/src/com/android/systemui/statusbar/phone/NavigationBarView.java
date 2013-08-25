@@ -28,14 +28,15 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
 import android.database.ContentObserver;
-import android.graphics.drawable.BitmapDrawable;
+import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.graphics.PorterDuff.Mode;
+import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.os.ServiceManager;
+import android.os.UserHandle;
 import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -59,6 +60,7 @@ import com.android.internal.statusbar.IStatusBarService;
 import com.android.systemui.R;
 import com.android.systemui.statusbar.BaseStatusBar;
 import com.android.systemui.statusbar.DelegateViewHelper;
+import com.android.systemui.statusbar.TransparencyManager;
 import com.android.systemui.statusbar.policy.KeyButtonView;
 import com.android.systemui.statusbar.policy.ExtensibleKeyButtonView;
 import com.android.systemui.statusbar.policy.DeadZone;
@@ -82,6 +84,7 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
     final static boolean ANIMATE_HIDE_TRANSITION = false; // turned off because it introduces unsightly delay when videos goes to full screen
 
     protected IStatusBarService mBarService;
+
     final Display mDisplay;
     View mCurrentView = null;
     View[] mRotatedViews = new View[4];
@@ -103,11 +106,17 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
     private Drawable mRecentIcon;
     private Drawable mRecentLandIcon;
 
+    private Drawable mBackgroundDrawable;
+    private ColorDrawable mBackgroundColorDrawable;
+    private ColorDrawable mOverlayDrawable;
+    private ColorDrawable mSecOverlayDrawable;
+    private ColorDrawable mUnderlayDrawable;
+
     private DeadZone mDeadZone;
 
     private SettingsObserver mSettingsObserver;
-    private BroadcastObserver mBroadcastObserver;
     private boolean mAttached = false;
+    private boolean mBackgroundAttached = false;
     private boolean mAppIsBinded = false;
 
     // workaround for LayoutTransitions leaving the nav buttons in a weird state (bug 5549288)
@@ -116,12 +125,10 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
 
     int mTablet_UI = 0;
 
-    private float mAlpha;
-    private int mAlphaMode;
     private int mNavBarColor;
     private int mNavBarButtonColor;
     private int mNavBarButtonColorMode;
-    private boolean mIsHome = true;
+    private boolean mColorMode;
 
     FrameLayout rot0;
     FrameLayout rot90;
@@ -233,7 +240,9 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
         mVertical = false;
         mShowMenu = false;
         mDelegateHelper = new DelegateViewHelper(this);
-
+        mOverlayDrawable = new ColorDrawable(TransparencyManager.DEFAULT_BACKGROUND_OVERLAY_COLOR);
+        mSecOverlayDrawable = new ColorDrawable(TransparencyManager.DEFAULT_BACKGROUND_OVERLAY_COLOR);
+        mUnderlayDrawable = new ColorDrawable(TransparencyManager.DEFAULT_BACKGROUND_OVERLAY_COLOR);
         getIcons(res);
     }
 
@@ -317,19 +326,41 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
         }
         setMenuVisibility(false, true);
 
-        Drawable bg = mContext.getResources().getDrawable(R.drawable.nav_bar_bg);
-        if(bg instanceof ColorDrawable) {
-            BackgroundAlphaColorDrawable bacd = new BackgroundAlphaColorDrawable(
-                    mNavBarColor != -2 ? mNavBarColor : ((ColorDrawable) bg).getColor());
-            setBackground(bacd);
+        if (mBackgroundAttached) {
+            updateBackgroundColor(!mColorMode);
+        } else {
+            attachBackground();
         }
-        updateKeyguardAlpha();
     }
 
     public void recreateNavigationBar() {
-        setBackgroundResource(0);
-        setBackgroundResource(R.drawable.nav_bar_bg);
+        mBackgroundAttached = false;
         updateSettings();
+    }
+
+    private void attachBackground() {
+        mBackgroundAttached = true;
+        mBackgroundColorDrawable = null;
+        mBackgroundDrawable = mContext.getResources().getDrawable(R.drawable.nav_bar_bg);
+        mBackgroundDrawable.setColorFilter(null);
+
+        if (mBackgroundDrawable instanceof ColorDrawable) {
+            mBackgroundColorDrawable = new ColorDrawable(
+                mNavBarColor != -2 ? mNavBarColor : ((ColorDrawable) mBackgroundDrawable).getColor());
+        } else {
+            if (mNavBarColor != -2) {
+                mBackgroundDrawable.setColorFilter(mNavBarColor, Mode.SRC_ATOP);
+            }
+        }
+
+        Drawable layer[] = new Drawable[] {
+            mUnderlayDrawable,
+            mOverlayDrawable,
+            mBackgroundColorDrawable != null ? mBackgroundColorDrawable : mBackgroundDrawable,
+            mSecOverlayDrawable,
+        };
+        LayerDrawable layerDrawable = new LayerDrawable(layer);
+        setBackground(layerDrawable);
     }
 
     private void addLightsOutButton(LinearLayout root, View v, boolean landscape, boolean empty) {
@@ -376,7 +407,7 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
                 v.setContentDescription(r.getString(R.string.accessibility_menu));
                 v.setGlowBackground(landscape ? R.drawable.ic_sysbar_highlight_land
                         : R.drawable.ic_sysbar_highlight);
-                if (mNavBarButtonColor == -1) {
+                if (mNavBarButtonColor == -2) {
                     v.setColorFilter(null);
                 } else {
                     v.setColorFilter(mNavBarButtonColor, Mode.SRC_ATOP);
@@ -395,7 +426,7 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
                 v.setContentDescription(r.getString(R.string.accessibility_menu));
                 v.setGlowBackground(landscape ? R.drawable.ic_sysbar_highlight_land
                         : R.drawable.ic_sysbar_highlight);
-                if (mNavBarButtonColor == -1) {
+                if (mNavBarButtonColor == -2) {
                     v.setColorFilter(null);
                 } else {
                     v.setColorFilter(mNavBarButtonColor, Mode.SRC_ATOP);
@@ -421,13 +452,13 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
         }
 
         if (iconUri != null && !iconUri.equals("empty")) {
-            if (mNavBarButtonColor == -1 || mNavBarButtonColorMode == 1) {
+            if (mNavBarButtonColor == -2 || mNavBarButtonColorMode == 1) {
                 v.setColorFilter(null);
             } else {
                 v.setColorFilter(mNavBarButtonColor, Mode.MULTIPLY);
             }
         } else if (clickAction.startsWith("**")) {
-            if (mNavBarButtonColor == -1) {
+            if (mNavBarButtonColor == -2) {
                 v.setColorFilter(null);
             } else {
                 v.setColorFilter(mNavBarButtonColor, Mode.SRC_ATOP);
@@ -441,7 +472,7 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
                 v.setPaddingRelative(appIconPadding[0], appIconPadding[1],
                         appIconPadding[2], appIconPadding[3]);
             }
-            if (mNavBarButtonColor == -1 || mNavBarButtonColorMode != 0) {
+            if (mNavBarButtonColor == -2 || mNavBarButtonColorMode != 0) {
                 v.setColorFilter(null);
             } else {
                 v.setColorFilter(mNavBarButtonColor, Mode.MULTIPLY);
@@ -543,26 +574,11 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
         }
 
         setDisabledFlags(mDisabledFlags, true);
-        updateKeyguardAlpha();
     }
 
     @Override
     public void setDisabledFlags(int disabledFlags) {
         setDisabledFlags(disabledFlags, false);
-    }
-
-    private boolean isKeyguardEnabled() {
-        return ((mDisabledFlags & View.STATUS_BAR_DISABLE_HOME) != 0);
-    }
-
-    private void updateKeyguardAlpha() {
-        if ((mNavigationIconHints & StatusBarManager.NAVIGATION_HINT_BACK_ALT) != 0
-                || (isKeyguardEnabled() && mAlphaMode == 0)
-                || (!isKeyguardEnabled() && mIsHome == false)) {
-            setBackgroundAlpha(1);
-        } else {
-            setBackgroundAlpha(mAlpha);
-        }
     }
 
     public void setDisabledFlags(int disabledFlags, boolean force) {
@@ -575,7 +591,8 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
         final boolean disableBack = ((disabledFlags & View.STATUS_BAR_DISABLE_BACK) != 0)
                 && ((mNavigationIconHints & StatusBarManager.NAVIGATION_HINT_BACK_ALT) == 0);
         final boolean disableSearch = !hasNavringTargets();
-        final boolean keyguardProbablyEnabled = isKeyguardEnabled() && hasNavringTargets();
+        final boolean keyguardProbablyEnabled =
+                (mDisabledFlags & View.STATUS_BAR_DISABLE_HOME) != 0 && hasNavringTargets();
 
         if (SLIPPERY_WHEN_DISABLED) {
             setSlippery(disableHome && disableRecent && disableBack && disableSearch);
@@ -610,16 +627,16 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
         View searchLight = getSearchLight();
         if (searchLight != null) {
             searchLight.setVisibility(keyguardProbablyEnabled ? View.VISIBLE : View.GONE);
-            if (mNavBarButtonColor == -1) {
+            if (mNavBarButtonColor == -2) {
                 ((ImageView) searchLight).setColorFilter(null);
             } else {
                 ((ImageView) searchLight).setColorFilter(mNavBarButtonColor, Mode.SRC_ATOP);
             }
-            ((ImageView) searchLight).setAlpha((1 - (Settings.System.getFloat(
+            ((ImageView) searchLight).setAlpha((1 - (Settings.System.getFloatForUser(
                 mContext.getContentResolver(),
-                Settings.System.NAVIGATION_BAR_BUTTON_ALPHA, 0.3f))));
+                Settings.System.NAVIGATION_BAR_BUTTON_ALPHA, 0.3f,
+                UserHandle.USER_CURRENT))));
         }
-        updateKeyguardAlpha();
     }
 
     public void setSlippery(boolean newSlippery) {
@@ -804,9 +821,6 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
         super.onAttachedToWindow();
         if (!mAttached) {
             mAttached = true;
-            // this takes care of activity broadcasts for alpha mode
-            mBroadcastObserver = new BroadcastObserver(new Handler());
-            mBroadcastObserver.observe();
 
             // this takes care of making the buttons
             mSettingsObserver = new SettingsObserver(new Handler());
@@ -829,7 +843,6 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
             mAttached = false;
             mContext.unregisterReceiver(mBroadcastReceiver);
             mContext.getContentResolver().unregisterContentObserver(mSettingsObserver);
-            mContext.getContentResolver().unregisterContentObserver(mBroadcastObserver);
         }
     }
 
@@ -839,8 +852,8 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
             mRotatedViews[i].setVisibility(View.GONE);
         }
 
-        if (mTablet_UI != 0 || Settings.System.getInt(mContext.getContentResolver(),
-                        Settings.System.NAVIGATION_BAR_CAN_MOVE, 1) != 1) {
+        if (mTablet_UI != 0 || Settings.System.getIntForUser(mContext.getContentResolver(),
+                        Settings.System.NAVIGATION_BAR_CAN_MOVE, 1, UserHandle.USER_CURRENT) != 1) {
             mCurrentView = mRotatedViews[Surface.ROTATION_0];
         } else {
             mCurrentView = mRotatedViews[rot];
@@ -887,17 +900,44 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
     /*
      * ]0 < alpha < 1[
      */
-    private void setBackgroundAlpha(float alpha) {
-        Drawable bg = getBackground();
-        if(bg == null) return;
+    public void setBackgroundAlpha(float alpha, int overlayColor,
+            int underlayColor, boolean toggleColor) {
+        if (mBackgroundDrawable == null) {
+            return;
+        }
 
-        if(bg instanceof BackgroundAlphaColorDrawable) {
-            if(mNavBarColor != -2) {
-                ((BackgroundAlphaColorDrawable) bg).setBgColor(mNavBarColor);
+        if (underlayColor == -2) {
+            mSecOverlayDrawable.setColor(overlayColor);
+            return;
+        }
+
+        if (mColorMode) {
+            updateBackgroundColor(toggleColor);
+        }
+
+        int a = Math.round(alpha * 255);
+        if (mBackgroundDrawable instanceof ColorDrawable) {
+            mBackgroundColorDrawable.setAlpha(a);
+        } else {
+            mBackgroundDrawable.setAlpha(a);
+        }
+
+        mOverlayDrawable.setColor(overlayColor);
+        mUnderlayDrawable.setColor(underlayColor);
+    }
+
+    private void updateBackgroundColor(boolean toggleColor) {
+        if (mBackgroundColorDrawable != null) {
+            mBackgroundColorDrawable.setColor(
+                toggleColor && mNavBarColor != -2 ?
+                mNavBarColor : ((ColorDrawable) mBackgroundDrawable).getColor());
+        } else {
+            if (toggleColor && mNavBarColor != -2) {
+                mBackgroundDrawable.setColorFilter(mNavBarColor, Mode.SRC_ATOP);
+            } else {
+                mBackgroundDrawable.setColorFilter(null);
             }
         }
-        int a = Math.round(alpha * 255);
-        bg.setAlpha(a);
     }
 
     private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
@@ -913,27 +953,6 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
         }
     };
 
-    class BroadcastObserver extends ContentObserver {
-        BroadcastObserver(Handler handler) {
-            super(handler);
-        }
-
-        void observe() {
-            ContentResolver resolver = mContext.getContentResolver();
-
-            resolver.registerContentObserver(
-                    Settings.System.getUriFor(Settings.System.IS_HOME), false,
-                    this);
-        }
-
-        @Override
-        public void onChange(boolean selfChange) {
-            mIsHome = Settings.System.getInt(getContext().getContentResolver(),
-                   Settings.System.IS_HOME, 1) == 1;
-            updateKeyguardAlpha();
-        }
-    }
-
     class SettingsObserver extends ContentObserver {
         SettingsObserver(Handler handler) {
             super(handler);
@@ -944,33 +963,22 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
 
             resolver.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.MENU_LOCATION),
-                    false,
-                    this);
+                    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.MENU_VISIBILITY),
-                    false,
-                    this);
+                    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.NAVIGATION_BAR_TINT),
-                    false,
-                    this);
+                    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.NAVIGATION_BAR_BUTTON_TINT),
-                    false,
-                    this);
+                    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.NAVIGATION_BAR_BUTTON_TINT_MODE),
-                    false,
-                    this);
+                    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(
-                    Settings.System.getUriFor(Settings.System.NAVIGATION_BAR_ALPHA),
-                    false,
-                    this);
-            resolver.registerContentObserver(
-                    Settings.System.getUriFor(Settings.System.STATUS_NAV_BAR_ALPHA_MODE),
-                    false,
-                    this);
-
+                    Settings.System.getUriFor(Settings.System.STATUS_NAV_BAR_COLOR_MODE),
+                    false, this, UserHandle.USER_ALL);
             updateSettings();
         }
 
@@ -983,29 +991,26 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
     protected void updateSettings() {
         ContentResolver resolver = mContext.getContentResolver();
 
-        mCurrentSetting = Settings.System.getInt(resolver,
-                Settings.System.MENU_LOCATION, SHOW_RIGHT_MENU);
+        mCurrentSetting = Settings.System.getIntForUser(resolver,
+                Settings.System.MENU_LOCATION, SHOW_RIGHT_MENU, UserHandle.USER_CURRENT);
 
-        mCurrentVisibility = Settings.System.getInt(resolver,
-                Settings.System.MENU_VISIBILITY, VISIBILITY_SYSTEM);
+        mCurrentVisibility = Settings.System.getIntForUser(resolver,
+                Settings.System.MENU_VISIBILITY, VISIBILITY_SYSTEM, UserHandle.USER_CURRENT);
 
-        mTablet_UI = Settings.System.getInt(resolver,
-                Settings.System.TABLET_UI, 0);
+        mTablet_UI = Settings.System.getIntForUser(resolver,
+                Settings.System.TABLET_UI, 0, UserHandle.USER_CURRENT);
 
-        mNavBarButtonColor = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.NAVIGATION_BAR_BUTTON_TINT, -1);
+        mNavBarButtonColor = Settings.System.getIntForUser(resolver,
+                Settings.System.NAVIGATION_BAR_BUTTON_TINT, -2, UserHandle.USER_CURRENT);
 
-        mNavBarButtonColorMode = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.NAVIGATION_BAR_BUTTON_TINT_MODE, 0);
+        mNavBarButtonColorMode = Settings.System.getIntForUser(resolver,
+                Settings.System.NAVIGATION_BAR_BUTTON_TINT_MODE, 0, UserHandle.USER_CURRENT);
 
-        mNavBarColor = Settings.System.getInt(resolver,
-                Settings.System.NAVIGATION_BAR_TINT, -2);
+        mColorMode = Settings.System.getIntForUser(resolver,
+                Settings.System.STATUS_NAV_BAR_COLOR_MODE, 1, UserHandle.USER_CURRENT) == 1;
 
-        mAlpha = 1.0f - Settings.System.getFloat(resolver,
-                Settings.System.NAVIGATION_BAR_ALPHA, 0.0f);
-
-        mAlphaMode = Settings.System.getInt(resolver,
-                Settings.System.STATUS_NAV_BAR_ALPHA_MODE, 1);
+        mNavBarColor = Settings.System.getIntForUser(resolver,
+                Settings.System.NAVIGATION_BAR_TINT, -2, UserHandle.USER_CURRENT);
 
         mButtonsConfig = ButtonsHelper.getNavBarConfig(mContext);
 
