@@ -38,11 +38,11 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.media.RemoteControlClient;
 import android.os.Looper;
 import android.os.Parcel;
@@ -487,9 +487,14 @@ public class KeyguardHostView extends KeyguardViewBase {
             }
         }
         if (back != null) {
-            back.setColorFilter(BACKGROUND_COLOR, PorterDuff.Mode.SRC_ATOP);
-            setBackground(back);
-            getBackground().setAlpha(bgAlpha);
+            back.setAlpha(bgAlpha);
+            Drawable overlay = new ColorDrawable(BACKGROUND_COLOR);
+            Drawable[] layers = new Drawable[] {
+                back,
+                overlay
+            };
+            LayerDrawable layerDrawable = new LayerDrawable(layers);
+            setBackground(layerDrawable);
         }
     }
 
