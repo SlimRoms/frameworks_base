@@ -392,11 +392,10 @@ public class PhoneStatusBarView extends PanelBar {
         mColorMode = Settings.System.getIntForUser(resolver,
                 Settings.System.STATUS_NAV_BAR_COLOR_MODE, 1, UserHandle.USER_CURRENT) == 1;
 
-        if (mBackgroundAttached) {
-            updateBackgroundColor(!mColorMode);
-        } else {
+        if (!mBackgroundAttached) {
             attachBackground();
         }
+        updateBackgroundColor(!mColorMode);
     }
 
 }

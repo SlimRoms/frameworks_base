@@ -3279,7 +3279,7 @@ public class PhoneStatusBar extends BaseStatusBar {
         }
     }
 
-    private void recreateStatusBar() {
+    private void recreateStatusBar(boolean recreateBackground) {
         mRecreating = true;
         mStatusBarContainer.removeAllViews();
 
@@ -3304,7 +3304,7 @@ public class PhoneStatusBar extends BaseStatusBar {
 
         if (mNavigationBarView != null) {
             // recreate and reposition navigationbar
-            mNavigationBarView.recreateNavigationBar();
+            mNavigationBarView.recreateNavigationBar(recreateBackground);
             repositionNavigationBar();
         }
 
@@ -3355,10 +3355,11 @@ public class PhoneStatusBar extends BaseStatusBar {
             || uiInvertedMode != mCurrUiInvertedMode) {
             if (uiInvertedMode != mCurrUiInvertedMode) {
                 mCurrUiInvertedMode = uiInvertedMode;
+                recreateStatusBar(false);
             } else {
                 mCurrentTheme = (CustomTheme) newTheme.clone();
+                recreateStatusBar(true);
             }
-            recreateStatusBar();
         } else {
 
             if (mClearButton instanceof TextView) {
@@ -3544,7 +3545,7 @@ public class PhoneStatusBar extends BaseStatusBar {
                                     Settings.System.QS_DISABLE_PANEL, 0) == 1;
 
             if (hideSettingsPanel != mHideSettingsPanel) {
-                recreateStatusBar();
+                recreateStatusBar(false);
             }
 
             setNotificationWallpaperHelper();
@@ -3565,7 +3566,7 @@ public class PhoneStatusBar extends BaseStatusBar {
                     && !mOldNavBarConfig.equals(navBarConfig)) {
                 mOldNavBarConfig = navBarConfig;
                 // recreate navigationbar
-                mNavigationBarView.recreateNavigationBar();
+                mNavigationBarView.recreateNavigationBar(false);
                 setDisableHomeLongpress();
             }
         }

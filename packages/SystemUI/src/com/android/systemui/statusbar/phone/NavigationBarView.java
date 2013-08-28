@@ -326,15 +326,16 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
         }
         setMenuVisibility(false, true);
 
-        if (mBackgroundAttached) {
-            updateBackgroundColor(!mColorMode);
-        } else {
+        if (!mBackgroundAttached) {
             attachBackground();
         }
+        updateBackgroundColor(!mColorMode);
     }
 
-    public void recreateNavigationBar() {
-        mBackgroundAttached = false;
+    public void recreateNavigationBar(boolean recreateBackground) {
+        if (recreateBackground) {
+            mBackgroundAttached = false;
+        }
         updateSettings();
     }
 
