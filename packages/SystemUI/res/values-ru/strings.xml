@@ -135,6 +135,7 @@
     <string name="accessibility_no_sim" msgid="8274017118472455155">"SIM-карта отсутствует."</string>
     <string name="accessibility_bluetooth_tether" msgid="4102784498140271969">"Bluetooth-модем"</string>
     <string name="accessibility_airplane_mode" msgid="834748999790763092">"Режим полета."</string>
+    <string name="accessibility_battery_level">Батарея <xliff:g id="number">%d</xliff:g> процент/а/ов.</string>
     <!-- String.format failed for translation -->
     <!-- no translation found for accessibility_battery_level (7451474187113371965) -->
     <skip />
@@ -181,6 +182,7 @@
     <string name="ethernet_label" msgid="7967563676324087464">"Ethernet"</string>
     <string name="quick_settings_airplane_mode_label" msgid="5510520633448831350">"Режим полета"</string>
     <string name="quick_settings_battery_charging_label" msgid="490074774465309209">"<xliff:g id="NUMBER">%d</xliff:g><xliff:g id="PERCENT">%%</xliff:g>"</string>
+    <string name="quick_settings_battery_charged_label">Заряжено</string>
     <!-- String.format failed for translation -->
     <!-- no translation found for quick_settings_battery_charged_label (8865413079414246081) -->
     <skip />

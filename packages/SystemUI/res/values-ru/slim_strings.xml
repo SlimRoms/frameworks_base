@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright (c) 2013, SlimRoms Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at 
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0 
+ *
+ * Unless required by applicable law or agreed to in writing, software 
+ * distributed under the License is distributed on an "AS IS" BASIS, 
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+ * See the License for the specific language governing permissions and 
+ * limitations under the License.
+ */
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Content description of the data connection type DC-HSPA+ for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_data_connection_DC">DCHSPAP</string>
+
+    <!-- Content description of the data connection type HSPA+ for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_data_connection_HP">HSPA+</string>
+
+    <!-- QuickSettings: Profile [CHAR LIMIT=NONE] -->
+    <string name="quick_settings_profile_label">Профиль</string>
+
+    <!-- QuickSettings -->
+    <string name="quick_settings_gps">GPS</string>
+    <string name="quick_settings_gps_off">GPS выкл</string>
+    <string name="quick_settings_power">Потушить экран</string>
+    <string name="quick_settings_ringer_on">Звук вкл</string>
+    <string name="quick_settings_ringer_off">Звук выкл</string>
+    <string name="quick_settings_vibration_on">Вибрация вкл</string>
+    <string name="quick_settings_vibration_off">Вибрация выкл</string>
+    <string name="quick_settings_label_enabled">Вкл</string>
+    <string name="quick_settings_label_disabled">Выкл</string>
+    <string name="quick_settings_ringer_normal">Звук</string>
+    <string name="quick_settings_lockscreen">Экран блокировки</string>
+    <string name="quick_settings_network_type">Режим сети</string>
+    <string name="quick_settings_report_bug">Сообщить ошибку</string>
+    <string name="quick_settings_music_play">Играть</string>
+    <string name="quick_settings_music_pause">Пауза</string>
+    <string name="quick_settings_mobile_data_on">Передача данных</string>
+    <string name="quick_settings_mobile_data_off">Передача данных\nвыкл</string>
+    <string name="quick_settings_reboot">Перезагрузить</string>
+    <string name="quick_settings_reboot_recovery">В рекавери</string>
+    <string name="quick_settings_sync">Синхро</string>
+    <string name="quick_settings_sync_off">Синхро выкл</string>
+    <string name="quick_settings_torch">Фонарь</string>
+    <string name="quick_settings_torch_off">Фонарь выкл</string>
+    <string name="quick_settings_nfc">NFC</string>
+    <string name="quick_settings_nfc_off">NFC Выкл</string>
+    <string name="quick_settings_fcharge">Быстрая зарядка</string>
+    <string name="quick_settings_screen_timeout">Задержка</string>
+    <string name="quick_settings_screen_timeout_summary">%1$d %2$s</string>
+    <string name="quick_settings_usb_tether_off_label">Отсоединено</string>
+    <string name="quick_settings_usb_tether_connected_label">USB-модем выкл</string>
+    <string name="quick_settings_usb_tether_on_label">USB-модем</string>
+    <string name="quick_settings_wifiap">Wi-Fi модем</string>
+    <string name="quick_settings_wifiap_off">Wi-Fi модем выкл</string>
+    <string name="quick_settings_lte">LTE</string>
+    <string name="quick_settings_lte_off">LTE выкл</string>
+    <string name="quick_settings_volume">Громкость</string>
+    <!-- Expanded desktop strings break the rules a bit - the icon identifies the feature, the string indicates current state -->
+    <string name="quick_settings_expanded_desktop">Расширенный</string>
+    <string name="quick_settings_expanded_desktop_off">Обычный</string>
+    <string name="quick_settings_expanded_desktop_disabled">Отключен</string>
+
+    <string name="powerwidget_screen_timeout_toast">Время гашения экрана: %1$d %2$s</string>
+
+    <string name="widgets">Виджеты</string>
+    <string name="app_killed_message">Приложение закрыто</string>
+
+    <!-- Label in drop down to identify brightness slider -->
+    <string name="brightness_label">Яркость</string>
+
+    <!-- Recents Ram Bar -->
+    <string name="memory">RAM</string>
+    <!-- [CHAR LIMIT=10] Running services, summary of background processes -->
+    <string name="service_free_mem"><xliff:g id="memory">%1$s</xliff:g> свободно</string>
+    <!-- [CHAR LIMIT=10] Running services, summary of foreground processes -->
+    <string name="service_used_mem"><xliff:g id="memory">%1$s</xliff:g> занято</string>
+
+    <!-- Quiet hours quicksettings tile -->
+    <string name="quick_settings_quiethours">Тихие часы</string>
+    <string name="quick_settings_quiethours_off">Тихие часы выкл.</string>
+
+    <!-- App Shortcut tile -->
+    <string name="ok">ОК</string>
+    <string name="cancel">Отмена</string>
+    <string name="empty_tile_title">Пусто</string>
+    <string name="profile_applist_title">Приложения</string>
+    <string name="picker_activities">Действие</string>
+    <string name="select_custom_app_title">Выбрать приложение</string>
+    <string name="select_custom_activity_title">Выбрать действие</string>
+    <string name="quicksettings_shortcuts_edit_title">Изменить ярлык</string>
+    <string name="quicksettings_shortcuts_edit_msg">Изменить или выбрать приложение или значок</string>
+    <string name="qs_shortcut_long_press">Долгое нажатие</string>
+    <string name="icon_picker_type">Выбрать тип значка:</string>
+    <string name="icon_picker_choose_icon_title">Выбрать значок</string>
+    <string name="icon_default">По умолчанию</string>
+    <string name="icon_presets">Системные значки</string>
+    <string name="icon_custom">Галерея</string>
+    <string name="customshortcut_chooser_title">Выбор ярлыков</string>
+    <string name="quicksettings_shortcuts_title">Ярлыки</string>
+    <string name="quicksettings_shortcuts_icon_picker_alarm">Часы</string>
+    <string name="quicksettings_shortcuts_icon_picker_andy">Andy</string>
+    <string name="quicksettings_shortcuts_icon_picker_battery">Батарея</string>
+    <string name="quicksettings_shortcuts_icon_picker_browser">Браузер</string>
+    <string name="quicksettings_shortcuts_icon_picker_calendar">Календарь</string>
+    <string name="quicksettings_shortcuts_icon_picker_camera">Камера</string>
+    <string name="quicksettings_shortcuts_icon_picker_cloud">Cloud</string>
+    <string name="quicksettings_shortcuts_icon_picker_contact">Контакт</string>
+    <string name="quicksettings_shortcuts_icon_picker_directdial">Быстрый набор</string>
+    <string name="quicksettings_shortcuts_icon_picker_directmessage">Быстрое сообщение</string>
+    <string name="quicksettings_shortcuts_icon_picker_drive">Drive</string>
+    <string name="quicksettings_shortcuts_icon_picker_dropbox">Dropbox</string>
+    <string name="quicksettings_shortcuts_icon_picker_email">Email</string>
+    <string name="quicksettings_shortcuts_icon_picker_email2">Альтернативный Email</string>
+    <string name="quicksettings_shortcuts_icon_picker_evernote">Evernote</string>
+    <string name="quicksettings_shortcuts_icon_picker_facebook">Facebook</string>
+    <string name="quicksettings_shortcuts_icon_picker_favorite">Избранный</string>
+    <string name="quicksettings_shortcuts_icon_picker_file_browser">Файловый менеджер</string>
+    <string name="quicksettings_shortcuts_icon_picker_file_browser2">Альтернативный файловый менеджер</string>
+    <string name="quicksettings_shortcuts_icon_picker_fitness">Fitness</string>
+    <string name="quicksettings_shortcuts_icon_picker_gallery">Gallery</string>
+    <string name="quicksettings_shortcuts_icon_picker_gears">Gears</string>
+    <string name="quicksettings_shortcuts_icon_picker_google_small">Google</string>
+    <string name="quicksettings_shortcuts_icon_picker_gplus">Google Plus</string>
+    <string name="quicksettings_shortcuts_icon_picker_gtalk">GTalk</string>
+    <string name="quicksettings_shortcuts_icon_picker_help">Справка</string>
+    <string name="quicksettings_shortcuts_icon_picker_joystick">Джойстик</string>
+    <string name="quicksettings_shortcuts_icon_picker_key">Ключи/Учетные записи</string>
+    <string name="quicksettings_shortcuts_icon_picker_laptop">Ноутбук</string>
+    <string name="quicksettings_shortcuts_icon_picker_notes">Заметки</string>
+    <string name="quicksettings_shortcuts_icon_picker_luggage">Путешествия</string>
+    <string name="quicksettings_shortcuts_icon_picker_maps">Карты</string>
+    <string name="quicksettings_shortcuts_icon_picker_market">Market</string>
+    <string name="quicksettings_shortcuts_icon_picker_movie">Видео</string>
+    <string name="quicksettings_shortcuts_icon_picker_music">Музыка</string>
+    <string name="quicksettings_shortcuts_icon_picker_nav">Навигация</string>
+    <string name="quicksettings_shortcuts_icon_picker_phone">Телефон</string>
+    <string name="quicksettings_shortcuts_icon_picker_package">Package</string>
+    <string name="quicksettings_shortcuts_icon_picker_pinterest">Pinterest</string>
+    <string name="quicksettings_shortcuts_icon_picker_play">Play</string>
+    <string name="quicksettings_shortcuts_icon_picker_pocket">Pocket</string>
+    <string name="quicksettings_shortcuts_icon_picker_podcast">Подкасты</string>
+    <string name="quicksettings_shortcuts_icon_picker_quicksettings">Быстрые настройки</string>
+    <string name="quicksettings_shortcuts_icon_picker_rss">Подписка RSS</string>
+    <string name="quicksettings_shortcuts_icon_picker_sdcard">SDCard</string>
+    <string name="quicksettings_shortcuts_icon_picker_search">Поиск</string>
+    <string name="quicksettings_shortcuts_icon_picker_sms">Сообщения</string>
+    <string name="quicksettings_shortcuts_icon_picker_tasks">Задания</string>
+    <string name="quicksettings_shortcuts_icon_picker_terminal">Терминал</string>
+    <string name="quicksettings_shortcuts_icon_picker_transit">Транзит</string>
+    <string name="quicksettings_shortcuts_icon_picker_tv">TV</string>
+    <string name="quicksettings_shortcuts_icon_picker_twitter">Twitter</string>
+    <string name="quicksettings_shortcuts_icon_picker_unlock">Разблокировка</string>
+
+    <!-- Notification drawer toasts -->
+    <string name="calendar_error_alert">Календарь не найден.</string>
+    <string name="clock_error_alert">Часы не найдены.</string>
+    <string name="qs_shortcut_error">Выберите действие для ярлыка, чтобы изменить его значок!</string>
+
+    <!-- Battery status in pie controls -->
+    <string name="pie_battery_status_charging">Зарядка (<xliff:g id="percent">%d</xliff:g>%%)</string>
+    <string name="pie_battery_status_full">Заряжено</string>
+    <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% осталось</string>
+
+    <!-- Phone status in pie controls -->
+    <string name="pie_phone_status_no_service">Нет сигнала</string>
+    <string name="pie_phone_status_airplane_mode">Режим полета включен</string>
+    <string name="pie_phone_status_emergency_only">Только экстренные вызовы</string>
+
+</resources>
