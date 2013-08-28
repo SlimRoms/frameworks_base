@@ -738,6 +738,7 @@
     <string name="imProtocolYahoo" msgid="8271439408469021273">"Yahoo"</string>
     <string name="imProtocolSkype" msgid="9019296744622832951">"Skype"</string>
     <string name="imProtocolQq" msgid="8887484379494111884">"QQ"</string>
+    <string name="imProtocolGoogleTalk" msgid="3808393979157698766">"Google Talk"</string>
     <!-- no translation found for imProtocolGoogleTalk (493902321140277304) -->
     <skip />
     <string name="imProtocolIcq" msgid="1574870433606517315">"ICQ"</string>
@@ -883,6 +884,7 @@
     <string name="autofill_address_summary_name_format" msgid="3268041054899214945">"$1$2$3"</string>
     <string name="autofill_address_summary_separator" msgid="7483307893170324129">", "</string>
     <string name="autofill_address_summary_format" msgid="4874459455786827344">"$1$2$3"</string>
+
     <string name="autofill_province" msgid="2231806553863422300">"Провинция"</string>
     <string name="autofill_postal_code" msgid="4696430407689377108">"Почтовый индекс"</string>
     <string name="autofill_state" msgid="6988894195520044613">"Штат"</string>
@@ -1312,6 +1314,7 @@
     <string name="action_mode_done" msgid="7217581640461922289">"Готово"</string>
     <string name="progress_unmounting" product="nosdcard" msgid="3923810448507612746">"Отключение USB-накопителя..."</string>
     <string name="progress_unmounting" product="default" msgid="1327894998409537190">"Отключение SD-карты..."</string>
+    <string name="progress_nomediapresent" product="default">Подключенных носителей не обнаружено\u2026</string>
     <string name="progress_erasing" product="nosdcard" msgid="4521573321524340058">"Очистка USB-накопителя..."</string>
     <string name="progress_erasing" product="default" msgid="6596988875507043042">"Очистка SD-карты..."</string>
     <string name="format_error" product="nosdcard" msgid="6299769563624776948">"Не удалось очистить USB-накопитель."</string>
