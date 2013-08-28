@@ -25,14 +25,12 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
 import android.database.ContentObserver;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
-import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.os.ServiceManager;
@@ -62,13 +60,8 @@ import com.android.systemui.statusbar.BaseStatusBar;
 import com.android.systemui.statusbar.DelegateViewHelper;
 import com.android.systemui.statusbar.TransparencyManager;
 import com.android.systemui.statusbar.policy.KeyButtonView;
-import com.android.systemui.statusbar.policy.ExtensibleKeyButtonView;
 import com.android.systemui.statusbar.policy.DeadZone;
 
-import java.io.File;
-import java.io.FileDescriptor;
-import java.io.PrintWriter;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -295,7 +288,7 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
 
             for (int j = 0; j < mButtonsConfig.size(); j++) {
                 buttonConfig = mButtonsConfig.get(j);
-                ExtensibleKeyButtonView v = generateKey(landscape,
+                KeyButtonView v = generateKey(landscape,
                         buttonConfig.getClickAction(),
                         buttonConfig.getLongpressAction(),
                         buttonConfig.getIcon());
@@ -439,12 +432,13 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
         return null;
     }
 
-    private ExtensibleKeyButtonView generateKey(boolean landscape, String clickAction,
+    private KeyButtonView generateKey(boolean landscape, String clickAction,
             String longpress,
             String iconUri) {
 
-        ExtensibleKeyButtonView v = new ExtensibleKeyButtonView(mContext, null, clickAction,
-                longpress);
+        KeyButtonView v = new KeyButtonView(mContext, null);
+        v.setClickAction(clickAction);
+        v.setLongpressAction(longpress);
         v.setLayoutParams(getLayoutParams(landscape, 80));
 
         Drawable d = ButtonsHelper.getButtonIconImage(mContext, clickAction, iconUri);

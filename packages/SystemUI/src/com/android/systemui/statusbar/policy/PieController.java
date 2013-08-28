@@ -18,18 +18,13 @@
 package com.android.systemui.statusbar.policy;
 
 import android.app.Activity;
-import android.app.ActivityManager;
-import android.app.ActivityOptions;
-import android.app.SearchManager;
 import android.app.StatusBarManager;
-import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
 import android.database.ContentObserver;
 import android.graphics.Bitmap;
@@ -37,16 +32,10 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.Point;
 import android.graphics.PorterDuff.Mode;
-import android.hardware.input.InputManager;
-import android.net.Uri;
 import android.os.BatteryManager;
 import android.os.Handler;
 import android.os.IBinder;
-import android.os.Message;
-import android.os.PowerManager;
-import android.os.RemoteException;
 import android.os.ServiceManager;
-import android.os.SystemClock;
 import android.os.UserHandle;
 import android.os.Vibrator;
 import android.provider.Settings;
@@ -57,9 +46,6 @@ import android.util.Log;
 import android.util.Slog;
 import android.view.HapticFeedbackConstants;
 import android.view.IWindowManager;
-import android.view.InputDevice;
-import android.view.KeyCharacterMap;
-import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.SoundEffectConstants;
 import android.view.View;
@@ -79,10 +65,6 @@ import com.android.systemui.statusbar.pie.PieLayout.PieSlice;
 import com.android.systemui.statusbar.pie.PieSliceContainer;
 import com.android.systemui.statusbar.pie.PieSysInfo;
 
-import java.io.File;
-import java.io.FileDescriptor;
-import java.io.PrintWriter;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 /**
@@ -98,11 +80,10 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
 
     private boolean mSecondLayerActive;
 
+    private Handler mHandler = new Handler();
+
     public static final float EMPTY_ANGLE = 10;
     public static final float START_ANGLE = 180 + EMPTY_ANGLE;
-
-    private static final int MSG_INJECT_KEY_DOWN = 1066;
-    private static final int MSG_INJECT_KEY_UP = 1067;
 
     private Context mContext;
     private PieLayout mPieContainer;
@@ -206,40 +187,6 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
 
     public Tracker buildTracker(Position position) {
         return new Tracker(position);
-    }
-
-    private class H extends Handler {
-        public void handleMessage(Message m) {
-            final InputManager inputManager = InputManager.getInstance();
-            switch (m.what) {
-                case MSG_INJECT_KEY_DOWN:
-                    inputManager.injectInputEvent((KeyEvent) m.obj,
-                            InputManager.INJECT_INPUT_EVENT_MODE_ASYNC);
-                    break;
-                case MSG_INJECT_KEY_UP:
-                    inputManager.injectInputEvent((KeyEvent) m.obj,
-                            InputManager.INJECT_INPUT_EVENT_MODE_ASYNC);
-                    break;
-            }
-        }
-    }
-    private H mHandler = new H();
-
-    private void injectKeyDelayed(int keyCode, long when) {
-        mHandler.removeMessages(MSG_INJECT_KEY_DOWN);
-        mHandler.removeMessages(MSG_INJECT_KEY_UP);
-
-        KeyEvent down = new KeyEvent(when, when + 10, KeyEvent.ACTION_DOWN, keyCode, 0, 0,
-                KeyCharacterMap.VIRTUAL_KEYBOARD, 0,
-                KeyEvent.FLAG_FROM_SYSTEM | KeyEvent.FLAG_VIRTUAL_HARD_KEY,
-                InputDevice.SOURCE_KEYBOARD);
-        KeyEvent up = new KeyEvent(when, when + 30, KeyEvent.ACTION_UP, keyCode, 0, 0,
-                KeyCharacterMap.VIRTUAL_KEYBOARD, 0,
-                KeyEvent.FLAG_FROM_SYSTEM | KeyEvent.FLAG_VIRTUAL_HARD_KEY,
-                InputDevice.SOURCE_KEYBOARD);
-
-        mHandler.sendMessageDelayed(Message.obtain(mHandler, MSG_INJECT_KEY_DOWN, down), 10);
-        mHandler.sendMessageDelayed(Message.obtain(mHandler, MSG_INJECT_KEY_UP, up), 30);
     }
 
     private final class SettingsObserver extends ContentObserver {
@@ -794,40 +741,25 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
     @Override
     public void onLongClick(PieItem item) {
         String type = (String) item.longTag;
-        mPieContainer.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
-        mPieContainer.playSoundEffect(SoundEffectConstants.CLICK);
-        processAction(type);
+        if (!SlimActions.isActionKeyEvent(type)) {
+            mPieContainer.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
+        }
+        if (!type.equals(ButtonsConstants.ACTION_MENU)) {
+            mPieContainer.playSoundEffect(SoundEffectConstants.CLICK);
+        }
+        SlimActions.processAction(mContext, type);
     }
 
     @Override
     public void onClick(PieItem item) {
         String type = (String) item.tag;
-        mPieContainer.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-        mPieContainer.playSoundEffect(SoundEffectConstants.CLICK);
-        processAction(type);
-    }
-
-    private void processAction(String type) {
-        long when = SystemClock.uptimeMillis();
-
-        if (type == null) {
-            return;
-        } else if (type.equals(ButtonsConstants.ACTION_HOME)) {
-            injectKeyDelayed(KeyEvent.KEYCODE_HOME, when);
-            return;
-        } else if (type.equals(ButtonsConstants.ACTION_BACK)) {
-            injectKeyDelayed(KeyEvent.KEYCODE_BACK, when);
-            return;
-        } else if (type.equals(ButtonsConstants.ACTION_SEARCH)) {
-            injectKeyDelayed(KeyEvent.KEYCODE_SEARCH, when);
-            return;
-        } else if (type.equals(ButtonsConstants.ACTION_MENU)) {
-            injectKeyDelayed(KeyEvent.KEYCODE_MENU, when);
-            return;
-        } else {
-            SlimActions.processAction(mContext, type);
-            return;
+        if (!SlimActions.isActionKeyEvent(type)) {
+            mPieContainer.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
         }
+        if (!type.equals(ButtonsConstants.ACTION_MENU)) {
+            mPieContainer.playSoundEffect(SoundEffectConstants.CLICK);
+        }
+        SlimActions.processAction(mContext, type);
     }
 
     private void doHapticTriggerFeedback() {

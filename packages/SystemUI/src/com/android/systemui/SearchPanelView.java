@@ -17,47 +17,31 @@
 package com.android.systemui;
 
 import android.animation.LayoutTransition;
-import android.app.ActivityManager;
-import android.app.ActivityManager.RunningAppProcessInfo;
-import android.app.ActivityManagerNative;
 import android.app.ActivityOptions;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.IActivityManager;
 import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.ContentResolver;
 import android.content.ComponentName;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.content.ServiceConnection;
 import android.database.ContentObserver;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.StateListDrawable;
-import android.media.AudioManager;
-import android.media.ToneGenerator;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
-import android.os.PowerManager;
-import android.os.Process;
-import android.os.RemoteException;
 import android.os.ServiceManager;
-import android.os.SystemClock;
 import android.os.UserHandle;
 import android.os.Vibrator;
 import android.provider.Settings;
@@ -66,7 +50,6 @@ import android.util.EventLog;
 import android.util.Slog;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.HapticFeedbackConstants;
 import android.view.IWindowManager;
 import android.view.MotionEvent;
 import android.view.View;
@@ -75,8 +58,6 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.ViewTreeObserver.OnPreDrawListener;
 import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.android.systemui.EventLogTags;
 import com.android.systemui.R;
@@ -96,9 +77,7 @@ import com.android.internal.widget.multiwaveview.TargetDrawable;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.net.URISyntaxException;
 
 public class SearchPanelView extends FrameLayout implements
         StatusBarPanel, ActivityOptions.OnAnimationStartedListener {
@@ -205,8 +184,8 @@ public class SearchPanelView extends FrameLayout implements
             final int resId = mGlowPadView.getResourceIdForTarget(target);
             mTarget = target;
             if (!mLongPress) {
-               SlimActions.processAction(mContext, intentList.get(target));
-               mHandler.removeCallbacks(SetLongPress);
+                SlimActions.processAction(mContext, intentList.get(target));
+                mHandler.removeCallbacks(SetLongPress);
             }
         }
 
