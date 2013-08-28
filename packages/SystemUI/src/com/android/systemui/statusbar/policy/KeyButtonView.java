@@ -331,7 +331,6 @@ public class KeyButtonView extends ImageView {
                     if (mCode != 0) {
                         if (doIt) {
                             sendEvent(KeyEvent.ACTION_UP, 0);
-                            sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_CLICKED);
                         } else {
                             sendEvent(KeyEvent.ACTION_UP, KeyEvent.FLAG_CANCELED);
                         }
@@ -340,6 +339,9 @@ public class KeyButtonView extends ImageView {
                         if (doIt) {
                             performClick();
                         }
+                    }
+                    if (doIt) {
+                        sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_CLICKED);
                     }
                 }
                 if (mSupportsLongpress) {

@@ -50,6 +50,7 @@ import android.view.MotionEvent;
 import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
+import android.view.accessibility.AccessibilityEvent;
 import android.widget.ImageView;
 
 import com.android.internal.util.slim.ButtonConfig;
@@ -747,6 +748,7 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
         if (!type.equals(ButtonsConstants.ACTION_MENU)) {
             mPieContainer.playSoundEffect(SoundEffectConstants.CLICK);
         }
+        mPieContainer.sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_LONG_CLICKED);
         SlimActions.processAction(mContext, type);
     }
 
@@ -759,6 +761,7 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
         if (!type.equals(ButtonsConstants.ACTION_MENU)) {
             mPieContainer.playSoundEffect(SoundEffectConstants.CLICK);
         }
+        mPieContainer.sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_CLICKED);
         SlimActions.processAction(mContext, type);
     }
 
