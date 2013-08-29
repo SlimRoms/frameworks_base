@@ -37,6 +37,7 @@ public class ButtonsConstants {
     public static final String ACTION_VIB                  = "**ring_vib**";
     public static final String ACTION_SILENT               = "**ring_silent**";
     public static final String ACTION_VIB_SILENT           = "**ring_vib_silent**";
+    public static final String ACTION_EXPANDED_DESKTOP     = "**expanded_desktop**";
     public static final String ACTION_KEYGUARD_SEARCH      = "**keyguard_search**";
 
     // no action

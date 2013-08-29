@@ -34,11 +34,14 @@ import android.os.ServiceManager;
 import android.os.SystemClock;
 import android.os.UserHandle;
 import android.os.Vibrator;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.InputDevice;
 import android.view.IWindowManager;
 import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
+import android.view.WindowManagerGlobal;
+import android.widget.Toast;
 
 import com.android.internal.statusbar.IStatusBarService;
 
@@ -226,6 +229,30 @@ public class SlimActions {
                         }
                     }
                 }
+            } else if (action.equals(ButtonsConstants.ACTION_EXPANDED_DESKTOP)) {
+                    if (Settings.System.getInt(context.getContentResolver(),
+                            Settings.System.EXPANDED_DESKTOP_MODE, 0) == 0) {
+                        boolean hasNavBar = false;
+                        try {
+                            if (WindowManagerGlobal.getWindowManagerService().hasNavigationBar()) {
+                                hasNavBar = true;
+                            }
+                        } catch (RemoteException e) {
+                        }
+                        // Expanded desktop is going to turn on, default to 2 or 3 since
+                        // EXPANDED_DESKTOP_MODE has not been set
+                        Settings.System.putInt(context.getContentResolver(),
+                            Settings.System.EXPANDED_DESKTOP_MODE, hasNavBar ? 3 : 2);
+                        Toast.makeText(context,
+                            hasNavBar ? com.android.internal.R.string.expanded_mode_default_with_navbar_set
+                            : com.android.internal.R.string.expanded_mode_default_set,
+                            Toast.LENGTH_LONG).show();
+                    }
+                    Settings.System.putInt(
+                            context.getContentResolver(),
+                            Settings.System.EXPANDED_DESKTOP_STATE,
+                            Settings.System.getInt(context.getContentResolver(),
+                            Settings.System.EXPANDED_DESKTOP_STATE, 0) == 1 ? 0 : 1);
             } else {
                 // we must have a custom uri
                 Intent intent = null;

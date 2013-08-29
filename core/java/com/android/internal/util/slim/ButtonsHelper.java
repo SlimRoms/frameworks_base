@@ -415,6 +415,9 @@ public class ButtonsHelper {
         } else if (clickAction.equals(ButtonsConstants.ACTION_VIB_SILENT)) {
             resId = systemUiResources.getIdentifier(
                         SYSTEMUI_METADATA_NAME + ":drawable/ic_navbar_ring_vib_silent", null, null);
+        } else if (clickAction.equals(ButtonsConstants.ACTION_EXPANDED_DESKTOP)) {
+            resId = systemUiResources.getIdentifier(
+                        SYSTEMUI_METADATA_NAME + ":drawable/ic_sysbar_expanded_desktop", null, null);
         } else {
             resId = systemUiResources.getIdentifier(
                         SYSTEMUI_METADATA_NAME + ":drawable/ic_sysbar_null", null, null);

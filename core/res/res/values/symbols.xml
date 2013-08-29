@@ -1924,6 +1924,7 @@
 
   <!-- Expanded desktop default set -->
   <java-symbol type="string" name="expanded_mode_default_set" />
+  <java-symbol type="string" name="expanded_mode_default_with_navbar_set" />
 
   <!-- Lockscreen -->
   <java-symbol type="bool" name="config_disableHomeUnlockSetting" />

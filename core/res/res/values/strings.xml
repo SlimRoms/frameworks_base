@@ -3995,7 +3995,8 @@
     <string name="app_killed_message">Application killed</string>
 
     <!-- Notification for Expanded desktop default -->
-    <string name="expanded_mode_default_set">Expanded desktop set to hide StatusBar only. Configure in Power menu settings</string>
+    <string name="expanded_mode_default_set">Expanded desktop set to hide statusbar only. Configure in Power menu settings</string>
+    <string name="expanded_mode_default_with_navbar_set">Expanded desktop set to hide status and navigation bar. Configure in Power menu settings</string>
 
     <!-- Title for a button to choose the currently selected activity
          as the default in the activity resolver. [CHAR LIMIT=25] -->
