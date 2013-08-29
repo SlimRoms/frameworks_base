@@ -250,7 +250,6 @@
   <java-symbol type="bool" name="config_duplicate_port_omadm_wappush" />
   <java-symbol type="bool" name="config_enable_emergency_call_while_sim_locked" />
   <java-symbol type="bool" name="config_enable_puk_unlock_screen" />
-  <java-symbol type="bool" name="config_hotswapCapable" />
   <java-symbol type="bool" name="config_mms_content_disposition_support" />
   <java-symbol type="bool" name="config_showMenuShortcutsWhenKeyboardPresent" />
   <java-symbol type="bool" name="config_sip_wifi_only" />
@@ -319,7 +318,6 @@
   <java-symbol type="dimen" name="fastscroll_thumb_width" />
   <java-symbol type="dimen" name="password_keyboard_spacebar_vertical_correction" />
   <java-symbol type="dimen" name="search_view_preferred_width" />
-  <java-symbol type="dimen" name="status_bar_height" />
   <java-symbol type="dimen" name="textview_error_popup_default_width" />
   <java-symbol type="dimen" name="toast_y_offset" />
   <java-symbol type="dimen" name="volume_panel_top" />
@@ -789,8 +787,6 @@
   <java-symbol type="string" name="short_format_month" />
   <java-symbol type="string" name="shutdown_confirm" />
   <java-symbol type="string" name="shutdown_confirm_question" />
-  <java-symbol type="string" name="shutdown_confirm_reboot" />
-  <java-symbol type="string" name="shutdown_confirm_reboot_question" />
   <java-symbol type="string" name="shutdown_progress" />
   <java-symbol type="string" name="sim_added_message" />
   <java-symbol type="string" name="sim_added_title" />
@@ -891,10 +887,6 @@
   <java-symbol type="string" name="action_bar_home_description_format" />
   <java-symbol type="string" name="action_bar_home_subtitle_description_format" />
   <java-symbol type="string" name="wireless_display_route_description" />
-  <java-symbol type="string" name="policylab_enforceSelinux" />
-  <java-symbol type="string" name="policydesc_enforceSelinux" />
-  <java-symbol type="string" name="policylab_enforceMmac" />
-  <java-symbol type="string" name="policydesc_enforceMmac" />
 
   <java-symbol type="plurals" name="abbrev_in_num_days" />
   <java-symbol type="plurals" name="abbrev_in_num_hours" />
@@ -1215,8 +1207,6 @@
   <java-symbol type="dimen" name="config_minScalingSpan" />
   <java-symbol type="dimen" name="config_minScalingTouchMajor" />
 
-  <java-symbol type="string" name="config_fastChargePath" />
-
   <!-- From android.policy -->
   <java-symbol type="anim" name="app_starting_exit" />
   <java-symbol type="anim" name="lock_screen_behind_enter" />
@@ -1286,17 +1276,12 @@
   <java-symbol type="dimen" name="kg_edge_swipe_region_size" />
   <java-symbol type="dimen" name="kg_squashed_layout_threshold" />
   <java-symbol type="dimen" name="kg_small_widget_height" />
-  <java-symbol type="dimen" name="lockscreen_target_inset" />
   <java-symbol type="drawable" name="ic_jog_dial_sound_off" />
   <java-symbol type="drawable" name="ic_jog_dial_sound_on" />
   <java-symbol type="drawable" name="ic_jog_dial_unlock" />
   <java-symbol type="drawable" name="ic_jog_dial_vibrate_on" />
   <java-symbol type="drawable" name="ic_lock_airplane_mode" />
   <java-symbol type="drawable" name="ic_lock_airplane_mode_off" />
-  <java-symbol type="drawable" name="ic_lockscreen_lock_pressed" />
-  <java-symbol type="drawable" name="ic_lockscreen_target_activated" />
-  <java-symbol type="drawable" name="ic_lockscreen_unlock_activated" />
-  <java-symbol type="drawable" name="ic_lockscreen_unlock_normal" />
   <java-symbol type="drawable" name="ic_menu_cc" />
   <java-symbol type="drawable" name="jog_tab_bar_left_unlock" />
   <java-symbol type="drawable" name="jog_tab_bar_right_sound_off" />
@@ -1361,7 +1346,6 @@
   <java-symbol type="id" name="keyguard_widget_pager_delete_target" />
   <java-symbol type="id" name="keyguard_bouncer_frame" />
   <java-symbol type="id" name="app_widget_container" />
-  <java-symbol type="id" name="app_widget_container_carousel" />
   <java-symbol type="id" name="view_flipper" />
   <java-symbol type="id" name="carrier_text" />
   <java-symbol type="id" name="emergency_call_button" />
@@ -1370,8 +1354,6 @@
   <java-symbol type="id" name="lockPatternView" />
   <java-symbol type="id" name="forgot_password_button" />
   <java-symbol type="id" name="glow_pad_view" />
-  <java-symbol type="id" name="keyguard_glow_pad_container" />
-  <java-symbol type="id" name="keyguard_message_and_shortcuts" />
   <java-symbol type="id" name="delete_button" />
   <java-symbol type="id" name="keyguard_user_avatar" />
   <java-symbol type="id" name="keyguard_user_name" />
@@ -1389,10 +1371,8 @@
   <java-symbol type="id" name="keyguard_user_selector" />
   <java-symbol type="id" name="key_enter" />
   <java-symbol type="id" name="keyguard_selector_view_frame" />
-  <java-symbol type="id" name="shortcuts" />
   <java-symbol type="integer" name="config_carDockRotation" />
   <java-symbol type="integer" name="config_defaultUiModeType" />
-  <java-symbol type="integer" name="config_uiInvertedMode" />
   <java-symbol type="integer" name="config_deskDockRotation" />
   <java-symbol type="integer" name="config_doubleTapOnHomeBehavior" />
   <java-symbol type="integer" name="config_lidKeyboardAccessibility" />
@@ -1404,7 +1384,6 @@
   <java-symbol type="layout" name="global_actions_item" />
   <java-symbol type="layout" name="global_actions_silent_mode" />
   <java-symbol type="layout" name="keyguard_selector_view" />
-  <java-symbol type="layout" name="keyguard_shortcuts" />
   <java-symbol type="layout" name="keyguard_pattern_view" />
   <java-symbol type="layout" name="keyguard_password_view" />
   <java-symbol type="layout" name="keyguard_pin_view" />
@@ -1560,7 +1539,6 @@
   <java-symbol type="array" name="config_notificationFallbackVibePattern" />
   <java-symbol type="bool" name="config_animateScreenLights" />
   <java-symbol type="bool" name="config_automatic_brightness_available" />
-  <java-symbol type="bool" name="config_automatic_adjust_brightness_available" />
   <java-symbol type="bool" name="config_enableFusedLocationOverlay" />
   <java-symbol type="bool" name="config_enableGeocoderOverlay" />
   <java-symbol type="bool" name="config_enableGeofenceOverlay" />
@@ -1571,7 +1549,6 @@
   <java-symbol type="bool" name="config_wifi_dual_band_support" />
   <java-symbol type="bool" name="config_wimaxEnabled" />
   <java-symbol type="bool" name="show_ongoing_ime_switcher" />
-  <java-symbol type="bool" name="config_slimPie" />
   <java-symbol type="color" name="config_defaultNotificationColor" />
   <java-symbol type="drawable" name="ic_notification_ime_default" />
   <java-symbol type="drawable" name="ic_notify_wifidisplay" />
@@ -1654,7 +1631,6 @@
   <java-symbol type="string" name="config_geocoderProviderPackageName" />
   <java-symbol type="string" name="config_geofenceProviderPackageName" />
   <java-symbol type="string" name="config_networkLocationProviderPackageName" />
-  <java-symbol type="string" name="config_geofenceProvider" />
   <java-symbol type="string" name="config_wimaxManagerClassname" />
   <java-symbol type="string" name="config_wimaxNativeLibLocation" />
   <java-symbol type="string" name="config_wimaxServiceClassname" />
@@ -1731,14 +1707,11 @@
   <java-symbol type="string" name="config_dreamsDefaultComponent" />
   <java-symbol type="string" name="enable_explore_by_touch_warning_title" />
   <java-symbol type="string" name="enable_explore_by_touch_warning_message" />
-  <java-symbol type="string" name="notify_turn_wifi_ap_off_title" />
 
   <java-symbol type="layout" name="resolver_grid" />
-  <java-symbol type="layout" name="resolver_grid_alt" />
   <java-symbol type="id" name="resolver_grid" />
   <java-symbol type="id" name="button_once" />
   <java-symbol type="id" name="button_always" />
-  <java-symbol type="id" name="checkbox_always" />
   <java-symbol type="integer" name="config_maxResolverActivityColumns" />
 
   <!-- From SystemUI -->
@@ -1795,7 +1768,6 @@
   <!-- From Settings -->
   <java-symbol type="array" name="config_mobile_hotspot_provision_app" />
   <java-symbol type="bool" name="config_intrusiveNotificationLed" />
-  <java-symbol type="bool" name="config_intrusiveBatteryLed" />
   <java-symbol type="dimen" name="preference_fragment_padding_bottom" />
   <java-symbol type="dimen" name="preference_fragment_padding_side" />
   <java-symbol type="drawable" name="expander_ic_maximized" />
@@ -1863,99 +1835,6 @@
 
   <!-- From PinyinIME(!!!) -->
   <java-symbol type="string" name="inputMethod" />
-
-  <!-- Config.xml entries -->
-  <java-symbol type="integer" name="config_backKillTimeout" />
-  <java-symbol type="bool" name="config_hasRotationLockSwitch" />
-  <java-symbol type="bool" name="config_show_cmIMESwitcher"/>
-  <java-symbol type="bool" name="config_noDelayInATwoDP" />
-  <java-symbol type="string" name="config_deviceKeyHandlerLib" />
-  <java-symbol type="string" name="config_deviceKeyHandlerClass" />
-
-  <!-- Config Power Menu -->
-  <java-symbol type="drawable" name="ic_lock_profile" />
-  <java-symbol type="drawable" name="ic_lock_reboot" />
-  <java-symbol type="drawable" name="ic_lock_screenshot" />
-  <java-symbol type="string" name="config_legacyUmsLunFile" />
-
-  <!-- Telephony -->
-  <java-symbol type="bool" name="config_smsSamsungCdmaAlternateMessageIDEncoding" />
-  <java-symbol type="bool" name="config_samsung_stk" />
-  <java-symbol type="array" name="config_telephony_set_audioparameters" />
-
-  <!-- Hardware Key ReMapping -->
-  <java-symbol type="integer" name="config_deviceHardwareKeys" />
-
-  <!-- Notification vibrate alert during call -->
-  <java-symbol type="array" name="config_notificationNoAlertsVibePattern" />
-
-  <!-- Power menu -->
-  <java-symbol type="string" name="global_action_screenshot" />
-  <java-symbol type="string" name="global_action_choose_profile" />
-  <java-symbol type="string" name="global_action_reboot" />
-  <java-symbol type="string" name="global_actions" />
-  <java-symbol type="string" name="global_actions_toggle_expanded_desktop_mode" />
-  <java-symbol type="string" name="global_actions_expanded_desktop_mode_off_status" />
-  <java-symbol type="string" name="global_actions_expanded_desktop_mode_on_status" />
-  <java-symbol type="drawable" name="ic_lock_expanded_desktop" />
-  <java-symbol type="drawable" name="ic_lock_expanded_desktop_off" />
-
-  <java-symbol type="array" name="notification_light_package_mapping" />
-  <java-symbol type="array" name="shutdown_reboot_actions" />
-  <java-symbol type="array" name="shutdown_reboot_options" />
-  <java-symbol type="bool" name="config_multiColorBatteryLed" />
-  <java-symbol type="string" name="reboot_progress" />
-  <java-symbol type="string" name="reboot_system" />
-  <java-symbol type="string" name="wildcardProfile" />
-  <java-symbol type="xml" name="profile_default" />
-  <java-symbol type="string" name="profile_picker_title" />
-  <java-symbol type="string" name="profile_none" />
-
-  <!-- Power widget -->
-  <java-symbol type="string" name="hour" />
-  <java-symbol type="string" name="hours" />
-  <java-symbol type="string" name="minute" />
-  <java-symbol type="string" name="minutes" />
-  <java-symbol type="string" name="second" />
-  <java-symbol type="string" name="seconds" />
-
-  <!-- Developer settings - Kill app back press -->
-  <java-symbol type="string" name="app_killed_message" />
-
-  <!-- Expanded desktop default set -->
-  <java-symbol type="string" name="expanded_mode_default_set" />
-  <java-symbol type="string" name="expanded_mode_default_with_navbar_set" />
-
-  <!-- Lockscreen -->
-  <java-symbol type="bool" name="config_disableHomeUnlockSetting" />
-  <java-symbol type="id" name="expand_challenge_handle" />
-  <!-- Lock screen always show battery -->
-  <java-symbol type="string" name="lockscreen_discharging" />
-
-  <!-- HW rotation lock -->
-  <java-symbol type="string" name="toast_rotation_unlocked" />
-  <java-symbol type="string" name="toast_rotation_locked" />
-
-  <!-- Wifi -->
-  <java-symbol type="bool" name="config_wifiApStartInterface" />
-
-  <!-- Wifi -->
-  <java-symbol type="bool" name="config_wifiApStartInterface" />
-  <java-symbol type="bool" name="config_wifiApFirmwareReload" />
-
-  <!-- Disable hardware keyboard -->
-  <java-symbol type="bool" name="config_forceDisableHardwareKeyboard" />
-
-  <!-- Stylus gestures -->
-  <java-symbol type="bool" name="config_stylusGestures" />
-
-  <!-- Panel auto brightness -->
-  <java-symbol type="integer" name="config_panelAutoBrightnessValue" />
-
-  <!-- Privacy Guard -->
-  <java-symbol type="string" name="privacy_guard_notification" />
-  <java-symbol type="string" name="privacy_guard_notification_detail" />
-  <java-symbol type="drawable" name="stat_notify_privacy_guard" />
 
   <!-- From Chromium-WebView -->
   <java-symbol type="attr" name="actionModeWebSearchDrawable" />

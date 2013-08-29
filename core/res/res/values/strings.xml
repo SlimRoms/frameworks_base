@@ -68,23 +68,6 @@
          could not be performed because FDN is enabled. This will be displayed in a toast. -->
     <string name="mmiFdnError">Operation is restricted to fixed dialing numbers only.</string>
 
-    <!-- Names of default profiles. -->
-    <string name="profileNameDefault">Default</string>
-    <string name="profileNameWork">Work</string>
-    <string name="profileNameHome">Home</string>
-    <string name="profileNameSilent">Silent</string>
-    <string name="profileNameNight">Night</string>
-
-    <!-- Names of application groups. -->
-    <string name="profileGroupPhone">Phone</string>
-    <string name="profileGroupCalendar">Calendar</string>
-    <string name="profileGroupGmail">Gmail</string>
-    <string name="profileGroupEmail">Email</string>
-    <string name="profileGroupSMS">SMS</string>
-
-    <!-- Name of wildcard profile. -->
-    <string name="wildcardProfile">Other</string>
-
     <!-- Displayed when a phone feature such as call barring was activated. -->
     <string name="serviceEnabled">Service was enabled.</string>
     <!-- Displayed in front of the list of a set of service classes
@@ -309,40 +292,6 @@
     <string name="screen_lock">Screen lock</string>
     <!-- Button to turn off the phone, within the Phone Options dialog -->
     <string name="power_off">Power off</string>
-
-    <!-- Button to reboot the phone, within the Phone Options dialog -->
-    <string name="reboot_system" product="tablet">Reboot tablet</string>
-    <string name="reboot_system" product="default">Reboot phone</string>
-    <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
-
-    <!-- label for item that screenshots in phone options dialog -->
-    <string name="global_action_screenshot">Screenshot</string>
-
-    <!-- label for item that toggles expand desktop mode -->
-    <string name="global_actions_toggle_expanded_desktop_mode">Expanded desktop</string>
-    <!-- status message in phone options dialog for when expand desktop mode is on -->
-    <string name="global_actions_expanded_desktop_mode_on_status">Enabled</string>
-    <!-- status message in phone options dialog for when expand desktop mode is off -->
-    <string name="global_actions_expanded_desktop_mode_off_status">Disabled</string>
-
-    <!-- Button to reboot the phone, within the Reboot Options dialog -->
-    <string name="reboot_reboot">Reboot</string>
-    <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
-    <string name="reboot_recovery">Recovery</string>
-    <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
-    <string name="reboot_bootloader">Bootloader</string>
-    <!-- Button to reboot the phone into bootmenu, within the Reboot Options dialog -->
-    <string name="reboot_bootmenu">Bootmenu</string>
-    <!-- Button to reboot the phone into fastboot, within the Reboot Options dialog -->
-    <string name="reboot_fastboot">Fastboot</string>
-    <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
-    <string name="reboot_download">Download</string>
-
-    <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
-    <string name="reboot_progress">Rebooting\u2026</string>
-    <!-- Reboot Confirmation Dialog.  When the user chooses to reboot the phone, there will be a confirmation dialog.  This is the message. -->
-    <string name="reboot_confirm">Your phone will reboot.</string>
-
     <!-- Spoken description for ringer silent option. [CHAR LIMIT=NONE] -->
     <string name="silent_mode_silent">Ringer off</string>
     <!-- Spoken description for ringer vibrate option. [CHAR LIMIT=NONE] -->
@@ -360,24 +309,11 @@
          be a confirmation dialog.  This is the message. -->
     <string name="shutdown_confirm" product="default">Your phone will shut down.</string>
 
-    <!-- Reboot Confirmation Dialog.  When the user chooses to reboot the phone, there will
-         be a confirmation dialog.  This is the message. -->
-    <string name="shutdown_confirm_reboot" product="tablet">Your tablet will reboot now.</string>
-    <!-- Reboot Confirmation Dialog.  When the user chooses to reboot the phone, there will
-         be a confirmation dialog.  This is the message. -->
-    <string name="shutdown_confirm_reboot" product="default">Your phone will reboot now.</string>
-
     <!-- Shutdown Confirmation Dialog.  When the user chooses to power off the phone, it asks
          the user if they'd like to shut down.  This is the message.  This is used instead of
          shutdown_confirm when the system is configured to use long press to go directly to the
          power off dialog instead of the global actions menu. -->
     <string name="shutdown_confirm_question">Do you want to shut down?</string>
-
-    <!-- Reboot Confirmation Dialog.  When the user chooses to reboot the phone, it asks
-         the user if they'd like to reboot.  This is the message.  This is used instead of
-         shutdown_confirm_reboot when the system is configured to use long press to go directly to the
-         reboot dialog instead of the global actions menu. -->
-    <string name="shutdown_confirm_reboot_question">Do you want to reboot?</string>
 
     <!-- Title of dialog to confirm rebooting into safe mode. [CHAR LIMIT=50] -->
     <string name="reboot_safemode_title">Reboot to safe mode</string>
@@ -420,6 +356,7 @@
         current device state, to send as an e-mail message.  It will take a little
         time from starting the bug report until it is ready to be sent; please be
         patient.</string>
+
     <!-- label for item that enables silent mode in phone options dialog -->
     <string name="global_action_toggle_silent_mode">Silent mode</string>
 
@@ -1139,11 +1076,6 @@
     <string name="permdesc_movePackage">Allows the app to move app resources from internal to external media and vice versa.</string>
 
     <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <string name="permlab_preventpower">prevent power key</string>
-    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <string name="permdesc_preventpower">Allows an application to override the power key</string>
-
-    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permlab_readLogs">read sensitive log data</string>
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_readLogs" product="tablet">Allows the app to read from the
@@ -1515,18 +1447,6 @@
     <string name="permlab_vibrate">control vibration</string>
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_vibrate">Allows the app to control the vibrator.</string>
-
-    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <string name="permlab_fm_radio_receiver">control FM receiver</string>
-    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <string name="permdesc_fm_radio_receiver">Allows the application to control
-        the FM receiver.</string>
-
-    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <string name="permlab_fm_radio_transmitter">control FM transmitter</string>
-    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <string name="permdesc_fm_radio_transmitter">Allows the application to control
-        the FM transmitter.</string>
 
     <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permlab_flashlight">control flashlight</string>
@@ -1967,14 +1887,6 @@
     <string name="policylab_disableKeyguardFeatures">Disable features in keyguard</string>
     <!-- Description of policy access to disable all device cameras [CHAR LIMIT=110]-->
     <string name="policydesc_disableKeyguardFeatures">Prevent use of some features in keyguard.</string>
-    <!-- Title of policy access to start enforcing SELinux policy [CHAR LIMIT=30]-->
-    <string name="policylab_enforceSelinux">Enforce SELinux</string>
-    <!-- Description of policy access to start enforcing SELinux policy [CHAR LIMIT=110]-->
-    <string name="policydesc_enforceSelinux">Toggle SELinux policy enforcing or permissive mode.</string>
-    <!-- Title of policy access to start enforcing MMAC policy [CHAR LIMIT=30]-->
-    <string name="policylab_enforceMmac">Enforce MMAC</string>
-    <!-- Description of policy access to start enforcing MMAC policy [CHAR LIMIT=110]-->
-    <string name="policydesc_enforceMmac">Toggle MMAC policy enforcing or permissive mode.</string>
 
     <!-- The order of these is important, don't reorder without changing Contacts.java --> <skip />
     <!-- Phone number types from android.provider.Contacts. This could be used when adding a new phone number for a contact, for example. -->
@@ -2254,7 +2166,6 @@
     <!-- When the lock screen is showing and the phone plugged in, and the battery
          is not fully charged, show the current charge %.  -->
     <string name="lockscreen_plugged_in">Charging, <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
-    <string name="lockscreen_discharging">Discharging, <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
     <!-- When the lock screen is showing, the phone is plugged in and the battery is fully
          charged, say that it is charged. -->
     <string name="lockscreen_charged">Charged</string>
@@ -3461,9 +3372,9 @@
     <string name="extmedia_format_button_format">Format</string>
 
     <!-- Title of notification shown when ADB is actively connected to the phone. -->
-    <string name="adb_active_notification_title">Android debugging enabled</string>
+    <string name="adb_active_notification_title">USB debugging connected</string>
     <!-- Message of notification shown when ADB is actively connected to the phone. -->
-    <string name="adb_active_notification_message">Select to disable debugging.</string>
+    <string name="adb_active_notification_message">Touch to disable USB debugging.</string>
 
     <!-- Used to replace %s in urls retreived from the signin server with locales.  For Some        -->
     <!-- devices we don't support all the locales we ship to and need to replace the '%s' with a    -->
@@ -3991,13 +3902,6 @@
     <!-- STK setup Call -->
     <string name="SetupCallDefault">Accept call?</string>
 
-    <!-- Long-press back kill application -->
-    <string name="app_killed_message">Application killed</string>
-
-    <!-- Notification for Expanded desktop default -->
-    <string name="expanded_mode_default_set">Expanded desktop set to hide statusbar only. Configure in Power menu settings</string>
-    <string name="expanded_mode_default_with_navbar_set">Expanded desktop set to hide status and navigation bar. Configure in Power menu settings</string>
-
     <!-- Title for a button to choose the currently selected activity
          as the default in the activity resolver. [CHAR LIMIT=25] -->
     <string name="activity_resolver_use_always">Always</string>
@@ -4201,7 +4105,6 @@
     <string name="user_switched">Current user <xliff:g id="name" example="Bob">%1$s</xliff:g>.</string>
     <!-- Default name of the owner user [CHAR LIMIT=20] -->
     <string name="owner_name" msgid="3879126011135546571">Owner</string>
-
     <!-- Error message title [CHAR LIMIT=35] -->
     <string name="error_message_title">Error</string>
     <!-- Message informing user that app is not permitted to access accounts. [CHAR LIMIT=none] -->
@@ -4209,40 +4112,4 @@
     <!-- Message informing user that the requested activity could not be found [CHAR LIMIT=none] -->
     <string name="app_not_found">No application found to handle this action</string>
     <string name="revoke">Revoke</string>
-
-    <!-- label for item that reboots the phone in phone options dialog -->
-    <string name="global_action_reboot">Reboot</string>
-
-    <!-- label for item that opens the profile choosing dialog -->
-    <string name="global_action_choose_profile">Profile</string>
-
-    <!-- In WiFi AP notification -->
-    <string name="notify_turn_wifi_ap_off_title">Turn Wi-Fi AP off</string>
-
-    <!-- Hardware Rotation lock string -->
-    <string name="toast_rotation_unlocked">Display rotation unlocked</string>
-    <string name="toast_rotation_locked">Display rotation locked</string>
-
-    <!-- The title of the profile picker dialog. -->
-    <string name="profile_picker_title">Profiles</string>
-
-    <!-- The item label for the no profile selection item. -->
-    <string name="profile_none">None</string>
-
-    <!-- Privacy Guard -->
-    <string name="permlab_changePrivacyGuardState">enable or disable privacy guard</string>
-    <string name="permdesc_changePrivacyGuardState">Allows the application to change whether another application runs with Privacy Guard. When an application is running with Privacy Guard, it will not have access to personal data such as contacts, call logs or messages.</string>
-    <string name="privacy_guard_notification">Privacy Guard active</string>
-    <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> will not be able to access personal data</string>
-
-    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <string name="permlab_cancelNotifications">cancel application notifications</string>
-    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <string name="permdesc_cancelNotifications">Allows the app to cancel notifications created by other apps.</string>
-
-    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <string name="permlab_interceptSmsSent">intercept outgoing SMS</string>
-    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <string name="permdesc_interceptSmsSent">Allows the app to intercept an outgoing SMS. Malicious apps may use this to prevent outgoing SMS messages.</string>
-
 </resources>
