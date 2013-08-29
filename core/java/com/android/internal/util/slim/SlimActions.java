@@ -88,17 +88,19 @@ public class SlimActions {
 
             // process the actions
             if (action.equals(ButtonsConstants.ACTION_HOME)) {
-                injectKeyDelayed(KeyEvent.KEYCODE_HOME, false);
+                injectKeyDelayed(KeyEvent.KEYCODE_HOME, false, false);
                 return;
             } else if (action.equals(ButtonsConstants.ACTION_BACK)) {
-                injectKeyDelayed(KeyEvent.KEYCODE_BACK, false);
+                injectKeyDelayed(KeyEvent.KEYCODE_BACK, false, false);
                 return;
             } else if (action.equals(ButtonsConstants.ACTION_SEARCH)) {
-                injectKeyDelayed(KeyEvent.KEYCODE_SEARCH, false);
+                injectKeyDelayed(KeyEvent.KEYCODE_SEARCH, false, false);
                 return;
             } else if (action.equals(ButtonsConstants.ACTION_MENU)) {
-                injectKeyDelayed(KeyEvent.KEYCODE_MENU, false);
+                injectKeyDelayed(KeyEvent.KEYCODE_MENU, false, false);
                 return;
+            } else if (action.equals(ButtonsConstants.ACTION_POWER_MENU)) {
+                injectKeyDelayed(KeyEvent.KEYCODE_POWER, false, true);
             } else if (action.equals(ButtonsConstants.ACTION_POWER)) {
                 PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
                 pm.goToSleep(SystemClock.uptimeMillis());
@@ -298,6 +300,7 @@ public class SlimActions {
                 || action.equals(ButtonsConstants.ACTION_BACK)
                 || action.equals(ButtonsConstants.ACTION_SEARCH)
                 || action.equals(ButtonsConstants.ACTION_MENU)
+                || action.equals(ButtonsConstants.ACTION_POWER_MENU)
                 || action.equals(ButtonsConstants.ACTION_NULL)) {
             return true;
         }
@@ -321,7 +324,7 @@ public class SlimActions {
     }
     private static H mHandler = new H();
 
-    private static void injectKeyDelayed(int keyCode, boolean longpress) {
+    private static void injectKeyDelayed(int keyCode, boolean longpress, boolean sendOnlyDownMessage) {
         long when = SystemClock.uptimeMillis();
         int downflags = KeyEvent.FLAG_FROM_SYSTEM | KeyEvent.FLAG_VIRTUAL_HARD_KEY;
         if (longpress) {
@@ -334,12 +337,15 @@ public class SlimActions {
                 KeyCharacterMap.VIRTUAL_KEYBOARD, 0,
                 downflags,
                 InputDevice.SOURCE_KEYBOARD);
+        mHandler.sendMessageDelayed(Message.obtain(mHandler, MSG_INJECT_KEY_DOWN, down), 10);
+
+        if (sendOnlyDownMessage) {
+            return;
+        }
         KeyEvent up = new KeyEvent(when, when + 30, KeyEvent.ACTION_UP, keyCode, 0, 0,
                 KeyCharacterMap.VIRTUAL_KEYBOARD, 0,
                 KeyEvent.FLAG_FROM_SYSTEM | KeyEvent.FLAG_VIRTUAL_HARD_KEY,
                 InputDevice.SOURCE_KEYBOARD);
-
-        mHandler.sendMessageDelayed(Message.obtain(mHandler, MSG_INJECT_KEY_DOWN, down), 10);
         mHandler.sendMessageDelayed(Message.obtain(mHandler, MSG_INJECT_KEY_UP, up), 30);
     }
 
