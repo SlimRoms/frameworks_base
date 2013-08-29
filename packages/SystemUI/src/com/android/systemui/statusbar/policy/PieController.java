@@ -745,11 +745,8 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
         if (!SlimActions.isActionKeyEvent(type)) {
             mPieContainer.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
         }
-        if (!type.equals(ButtonsConstants.ACTION_MENU)) {
-            mPieContainer.playSoundEffect(SoundEffectConstants.CLICK);
-        }
         mPieContainer.sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_LONG_CLICKED);
-        SlimActions.processAction(mContext, type);
+        SlimActions.processAction(mContext, type, true);
     }
 
     @Override
@@ -762,7 +759,7 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
             mPieContainer.playSoundEffect(SoundEffectConstants.CLICK);
         }
         mPieContainer.sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_CLICKED);
-        SlimActions.processAction(mContext, type);
+        SlimActions.processAction(mContext, type, false);
     }
 
     private void doHapticTriggerFeedback() {

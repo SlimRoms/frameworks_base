@@ -61,8 +61,8 @@ public class KeyButtonView extends ImageView {
 
     long mDownTime;
     int mCode;
-    String mClickAction;
-    String mLongpressAction;
+    String mClickAction = ButtonsConstants.ACTION_NULL;
+    String mLongpressAction = ButtonsConstants.ACTION_NULL;
     int mTouchSlop;
     Drawable mGlowBG;
     static int mGlowBGColor = Integer.MIN_VALUE;
@@ -82,7 +82,11 @@ public class KeyButtonView extends ImageView {
             mIsLongpressed = true;
             if (isPressed()) {
                 sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_LONG_CLICKED);
+                if (SlimActions.isActionKeyEvent(mLongpressAction)) {
+                    setHapticFeedbackEnabled(false);
+                }
                 performLongClick();
+                setHapticFeedbackEnabled(true);
             }
         }
     };
@@ -151,8 +155,8 @@ public class KeyButtonView extends ImageView {
     }
 
     public void setLongpressAction(String action) {
+        mLongpressAction = action;
         if (!action.equals(ButtonsConstants.ACTION_NULL)) {
-            mLongpressAction = action;
             mSupportsLongpress = true;
             setOnLongClickListener(mLongPressListener);
         }
@@ -298,9 +302,6 @@ public class KeyButtonView extends ImageView {
                 setPressed(true);
                 if (mCode != 0) {
                     sendEvent(KeyEvent.ACTION_DOWN, 0, mDownTime);
-                } else if (!SlimActions.isActionKeyEvent(mClickAction)) {
-                    // Provide the same haptic feedback that the system offers for virtual keys.
-                    performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 }
                 if (mSupportsLongpress) {
                     removeCallbacks(mCheckLongPress);
@@ -337,6 +338,9 @@ public class KeyButtonView extends ImageView {
                     } else {
                         // no key code, it is a custom click action
                         if (doIt) {
+                            if (!SlimActions.isActionKeyEvent(mClickAction)) {
+                                performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                            }
                             performClick();
                         }
                     }
@@ -356,7 +360,7 @@ public class KeyButtonView extends ImageView {
     private OnClickListener mClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            SlimActions.processAction(mContext, mClickAction);
+            SlimActions.processAction(mContext, mClickAction, false);
             return;
         }
     };
@@ -364,7 +368,7 @@ public class KeyButtonView extends ImageView {
     private OnLongClickListener mLongPressListener = new OnLongClickListener() {
         @Override
         public boolean onLongClick(View v) {
-            SlimActions.processAction(mContext, mLongpressAction);
+            SlimActions.processAction(mContext, mLongpressAction, true);
             return true;
         }
     };

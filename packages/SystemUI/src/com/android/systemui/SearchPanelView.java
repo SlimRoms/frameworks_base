@@ -50,8 +50,10 @@ import android.util.EventLog;
 import android.util.Slog;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.HapticFeedbackConstants;
 import android.view.IWindowManager;
 import android.view.MotionEvent;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
@@ -146,8 +148,11 @@ public class SearchPanelView extends FrameLayout implements
                 if (!mSearchPanelLock) {
                     mLongPress = true;
                     mBar.hideSearchPanel();
+                    if (!SlimActions.isActionKeyEvent(longList.get(mTarget))) {
+                        performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
+                    }
                     sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_LONG_CLICKED);
-                    SlimActions.processAction(mContext, longList.get(mTarget));
+                    SlimActions.processAction(mContext, longList.get(mTarget), true);
                     mSearchPanelLock = true;
                  }
             }
@@ -186,8 +191,14 @@ public class SearchPanelView extends FrameLayout implements
             final int resId = mGlowPadView.getResourceIdForTarget(target);
             mTarget = target;
             if (!mLongPress) {
+                if (!SlimActions.isActionKeyEvent(intentList.get(target))) {
+                    performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                }
+                if (!intentList.get(target).equals(ButtonsConstants.ACTION_MENU)) {
+                    playSoundEffect(SoundEffectConstants.CLICK);
+                }
                 sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_CLICKED);
-                SlimActions.processAction(mContext, intentList.get(target));
+                SlimActions.processAction(mContext, intentList.get(target), false);
                 mHandler.removeCallbacks(SetLongPress);
             }
         }
