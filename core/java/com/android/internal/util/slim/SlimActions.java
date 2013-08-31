@@ -105,6 +105,10 @@ public class SlimActions {
                 PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
                 pm.goToSleep(SystemClock.uptimeMillis());
                 return;
+            } else if (action.equals(ButtonsConstants.ACTION_TORCH)) {
+                Intent i = new Intent(TorchConstants.ACTION_TOGGLE_STATE);
+                context.sendBroadcast(i);
+                return;
             } else if (action.equals(ButtonsConstants.ACTION_IME)) {
                 if (isKeyguardShowing) {
                     return;

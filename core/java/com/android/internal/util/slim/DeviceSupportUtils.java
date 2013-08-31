@@ -106,8 +106,9 @@ public class DeviceSupportUtils {
     }
 
     private static boolean isSupportedFeature(Context context, String action) {
-        // placeholder which will be filled with calls to
-        // DeviceSupportsUtil.java
+        if (action.equals(ButtonsConstants.ACTION_TORCH) && !deviceSupportsTorch(context)) {
+            return false;
+        }
         return true;
     }
 
