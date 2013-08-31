@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/* //device/apps/common/assets/res/any/strings.xml
+**
+** Copyright 2013, SlimRoms project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Names of default profiles. -->
+    <string name="profileNameDefault">По умолчанию</string>
+    <string name="profileNameWork">Работа</string>
+    <string name="profileNameHome">Дом</string>
+    <string name="profileNameSilent">Без звука</string>
+    <string name="profileNameNight">Ночь</string>
+
+    <!-- Names of application groups. -->
+    <string name="profileGroupPhone">Телефон</string>
+    <string name="profileGroupCalendar">Календарь</string>
+    <string name="profileGroupGmail">Gmail</string>
+    <string name="profileGroupEmail">Email</string>
+    <string name="profileGroupSMS">SMS</string>
+
+    <!-- Name of wildcard profile. -->
+    <string name="wildcardProfile">Другой</string>
+
+    <!-- Button to reboot the phone, within the Phone Options dialog -->
+    <string name="reboot_system" product="tablet">Перезагрузка планшета</string>
+    <string name="reboot_system" product="default">Перезагрузка телефона</string>
+    <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
+    <!-- label for item that screenshots in phone options dialog -->
+    <string name="global_action_screenshot">Снимок экрана</string>
+
+    <string name="global_actions_toggle_expanded_desktop_mode">Расширенный экран</string>
+    <string name="global_actions_expanded_desktop_mode_on_status">Включен</string>
+    <string name="global_actions_expanded_desktop_mode_off_status">Выключен</string>
+
+    <!-- Button to reboot the phone, within the Reboot Options dialog -->
+    <string name="reboot_reboot">Перезагрузка</string>
+    <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
+    <string name="reboot_recovery">Рекавери</string>
+    <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
+    <string name="reboot_bootloader">Бутлоадер</string>
+    <!-- Button to reboot the phone into bootmenu, within the Reboot Options dialog -->
+    <string name="reboot_bootmenu">Загрузочное меню</string>
+    <!-- Button to reboot the phone into fastboot, within the Reboot Options dialog -->
+    <string name="reboot_fastboot">Fastboot</string>
+    <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
+    <string name="reboot_download">Скачивание</string>
+
+    <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
+    <string name="reboot_progress">Перезагрузка\u2026</string>
+    <!-- Reboot Confirmation Dialog.  When the user chooses to reboot the phone, there will be a confirmation dialog.  This is the message. -->
+    <string name="reboot_confirm">Ваш телефон будет перезагружен.</string>
+
+    <!-- Reboot Confirmation Dialog.  When the user chooses to reboot the phone, there will
+         be a confirmation dialog.  This is the message. -->
+    <string name="shutdown_confirm_reboot" product="tablet">Ваш планшет будет перезагружен.</string>
+    <!-- Reboot Confirmation Dialog.  When the user chooses to reboot the phone, there will
+         be a confirmation dialog.  This is the message. -->
+    <string name="shutdown_confirm_reboot" product="default">Ваш телефон будет перезагружен.</string>
+
+    <!-- Reboot Confirmation Dialog.  When the user chooses to reboot the phone, it asks
+         the user if they'd like to reboot.  This is the message.  This is used instead of
+         shutdown_confirm_reboot when the system is configured to use long press to go directly to the
+         reboot dialog instead of the global actions menu. -->
+    <string name="shutdown_confirm_reboot_question">Перезагрузиться?</string>
+
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_preventpower">переопределить кнопку питания</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_preventpower">Разрешать приложению переопределять кнопку питания</string>
+
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_fm_radio_receiver">Управление FM-приемником</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_fm_radio_receiver">Разрешает приложению управлять FM-приемником.</string>
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_fm_radio_transmitter">Управление FM-передатчиком</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_fm_radio_transmitter">Разрешает приложению управлять FM-передатчиком.</string>
+
+    <!-- Title of policy access to start enforcing SELinux policy [CHAR LIMIT=30]-->
+    <string name="policylab_enforceSelinux">Принудительный SELinux</string>
+    <!-- Description of policy access to start enforcing SELinux policy [CHAR LIMIT=110]-->
+    <string name="policydesc_enforceSelinux">Переключать политику SELinux между обязательной и необязательной.</string>
+    <!-- Title of policy access to start enforcing MMAC policy [CHAR LIMIT=30]-->
+    <string name="policylab_enforceMmac">Принудительный MMAC</string>
+    <!-- Description of policy access to start enforcing MMAC policy [CHAR LIMIT=110]-->
+    <string name="policydesc_enforceMmac">Переключать политику MMAC между обязательной и необязательной.</string>
+
+    <string name="lockscreen_discharging">Не заряжается (<xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g>)</string>
+
+    <!-- Long-press back kill application -->
+    <string name="app_killed_message">Приложение закрыто</string>
+    <string name="expanded_mode_default_set">Расширенный экран скрывает только строку состояния. Переключается в настройках меню "Параметры устройства"</string>
+    <string name="expanded_mode_default_with_navbar_set">Расширенный экран скрывает только строки состояния и навигации. Переключается в настройках меню "Параметры устройства"</string>
+
+    <!-- label for item that reboots the phone in phone options dialog -->
+    <string name="global_action_reboot">Перезагрузка</string>
+
+    <!-- label for item that opens the profile choosing dialog -->
+    <string name="global_action_choose_profile">Выбрать профиль</string>
+    <!-- In WiFi AP notification -->
+    <string name="notify_turn_wifi_ap_off_title">Отключить точку доступа Wi-Fi</string>
+
+    <!-- Hardware Rotation lock string -->
+    <string name="toast_rotation_unlocked">Поворот экрана разрешен</string>
+    <string name="toast_rotation_locked">Поворот экрана запрещен</string>
+
+    <!-- The title of the profile picker dialog. -->
+    <string name="profile_picker_title">Профили</string>
+
+    <!-- The item label for the no profile selection item. -->
+    <string name="profile_none">Нет</string>
+
+    <!-- Privacy Guard -->
+    <string name="permlab_changePrivacyGuardState">Включить/выключить защиту личных данных</string>
+    <string name="permdesc_changePrivacyGuardState">Разрешает запуск приложения под защитой личных данных. Такое приложение не будет иметь доступа к личным данным, вроде контактов, журналов звонков или сообщений.</string>
+    <string name="privacy_guard_notification">Защита личных данных включена</string>
+    <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> не сможет иметь доступ к личным данным</string>
+
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_cancelNotifications">Отключить уведомления приложений</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_cancelNotifications">Разрешает отключать уведомления, созданные другими приложениями.</string>
+
+    <string name="permlab_interceptSmsSent">Перехватывать исходящие SMS</string>
+
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_interceptSmsSent">Разрешает перехватывать исходящие SMS. Вредоносные приложения могут использовать это разрешение для запрета отсылки сообщений.</string>
+</resources>
