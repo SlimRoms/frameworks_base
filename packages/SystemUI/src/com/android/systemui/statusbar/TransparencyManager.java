@@ -241,7 +241,7 @@ public class TransparencyManager {
     protected void updateSettings() {
         ContentResolver resolver = mContext.getContentResolver();
 
-        final float defaultAlpha = new Float(mContext.getResources().getInteger(
+        final float defaultAlpha = 1 - new Float(mContext.getResources().getInteger(
                 R.integer.status_nav_bar_transparency) / 255);
 
         mNavbarInfo.alpha = 1 - Settings.System.getFloatForUser(resolver,
