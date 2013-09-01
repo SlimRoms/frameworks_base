@@ -1841,7 +1841,4 @@
   <java-symbol type="attr" name="actionModeWebSearchDrawable" />
   <java-symbol type="string" name="websearch" />
 
-  <!-- Irda Service -->
-  <java-symbol type="bool" name="config_enableIrdaManagerService" />
-
 </resources>

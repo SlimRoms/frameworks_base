@@ -109,9 +109,11 @@
   <java-symbol type="string" name="privacy_guard_notification_detail" />
   <java-symbol type="drawable" name="stat_notify_privacy_guard" />
 
-  <!-- From Chromium-WebView -->
-  <java-symbol type="attr" name="actionModeWebSearchDrawable" />
-  <java-symbol type="string" name="websearch" />
+  <!-- Irda Service -->
+  <java-symbol type="bool" name="config_enableIrdaManagerService" />
+
+  <!-- Package Manager -->
+  <java-symbol type="array" name="config_disabledComponents" />
 
   <java-symbol type="bool" name="config_hotswapCapable" />
   <java-symbol type="dimen" name="status_bar_height" />
