@@ -25,12 +25,12 @@
         android:state_enabled="true"
         android:state_active="true"
         android:state_focused="false"
-        android:drawable="@drawable/ic_navbar_power_menu" />
+        android:drawable="@drawable/ic_navbar_power_menu_activated" />
 
     <item
         android:state_enabled="true"
         android:state_active="false"
         android:state_focused="true"
-        android:drawable="@drawable/ic_navbar_power_menu" />
+        android:drawable="@drawable/ic_navbar_power_menu_activated" />
 
 </selector>
