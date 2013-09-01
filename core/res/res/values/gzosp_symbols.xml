@@ -32,4 +32,8 @@
     <java-symbol type="array" name="config_rebootActionsList" />
     <java-symbol type="array" name="values_globalActionsList" />
 
+    <!-- Package Manager -->
+    <java-symbol type="array" name="config_disabledComponents" />
+    <java-symbol type="array" name="config_forceEnabledComponents" />
+
 </resources>
