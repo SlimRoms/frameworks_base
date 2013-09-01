@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
+<<<<<<< HEAD
 /* Copyright 2014, SlimRoms project
+=======
+/* Copyright 2013, SlimRoms project
+>>>>>>> 23fbd8e... PackageManager: allow build-time disabling of components
 **
 ** Licensed under the Apache License, Version 2.0 (the "License");
 ** you may not use this file except in compliance with the License.
@@ -19,5 +23,8 @@
 
   <!-- Config IME switcher -->
   <java-symbol type="bool" name="config_show_IMESwitcher" />
+
+  <!-- Package Manager -->
+  <java-symbol type="array" name="config_disabledComponents" />
 
 </resources>
