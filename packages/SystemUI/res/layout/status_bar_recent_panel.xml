@@ -25,6 +25,7 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     systemui:recentItemLayout="@layout/status_bar_recent_item"
+    android:fitsSystemWindows="true"
     >
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,7 +37,7 @@
                 android:id="@+id/ram_usage_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@*android:dimen/status_bar_height"
+                android:layout_marginTop="-5dp"
                 android:orientation="horizontal"
                 android:clipChildren="false"
                 android:clipToPadding="false"
@@ -96,9 +97,7 @@
                     android:fadingEdgeLength="@dimen/status_bar_recents_scroll_fading_edge_length"
                     android:layout_gravity="bottom|start"
                     android:clipToPadding="false"
-                    android:clipChildren="false"
-                    android:fitsSystemWindows="true">
-
+                    android:clipChildren="false">
 
                     <LinearLayout android:id="@+id/recents_linear_layout"
                         android:layout_width="match_parent"
