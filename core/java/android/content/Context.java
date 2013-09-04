@@ -2300,16 +2300,6 @@ public abstract class Context {
     public static final String USER_SERVICE = "user";
 
     /**
-     * Determine whether the application or calling application has
-     * privacy guard. This is a privacy feature intended to permit the user
-     * to control access to personal data. Applications and content providers
-     * can check this value if they wish to honor privacy guard.
-     *
-     * @hide
-     */
-    public abstract boolean isPrivacyGuardEnabled();
-
-    /**
      * Use with {@link #getSystemService} to retrieve a
      * {@link android.app.AppOpsManager} for tracking application operations
      * on the device.
