@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-<<<<<<< HEAD
 /* Copyright 2014, SlimRoms project
-=======
-/* Copyright 2013, SlimRoms project
->>>>>>> 23fbd8e... PackageManager: allow build-time disabling of components
 **
 ** Licensed under the Apache License, Version 2.0 (the "License");
 ** you may not use this file except in compliance with the License.
@@ -26,5 +22,16 @@
 
   <!-- Package Manager -->
   <java-symbol type="array" name="config_disabledComponents" />
+
+  <!-- Privacy Guard -->
+  <java-symbol type="string" name="privacy_guard_notification" />
+  <java-symbol type="string" name="privacy_guard_notification_detail" />
+  <java-symbol type="string" name="privacy_guard_custom_notification_detail" />
+  <java-symbol type="drawable" name="stat_notify_privacy_guard" />
+  <java-symbol type="drawable" name="stat_notify_privacy_guard_off" />
+  <java-symbol type="drawable" name="stat_notify_privacy_guard_custom" />
+  <java-symbol type="drawable" name="stat_notify_privacy_guard_plus" />
+  <java-symbol type="drawable" name="stat_notify_privacy_guard_off_plus" />
+  <java-symbol type="drawable" name="stat_notify_privacy_guard_custom_plus" />
 
 </resources>
