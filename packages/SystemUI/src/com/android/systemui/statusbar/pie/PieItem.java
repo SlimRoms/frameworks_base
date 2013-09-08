@@ -196,20 +196,23 @@ public class PieItem extends PieLayout.PieDrawable {
 
     public void setImageDrawable(Drawable drawable) {
         if (mView instanceof ImageView) {
-            ImageView imageView = (ImageView)mView;
+            ImageView imageView = (ImageView) mView;
             imageView.setImageDrawable(drawable);
         }
     }
 
     public void setColor(int color) {
         if (mView instanceof ImageView) {
+            ImageView imageView = (ImageView) mView;
+            Drawable drawable = imageView.getDrawable();
+            if (drawable == null) {
+                return;
+            }
+
             int drawableColorMode = (Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.PIE_ICON_COLOR_MODE, 0));
             int drawableColor = (Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.PIE_ICON_COLOR, -2));
-
-            ImageView imageView = (ImageView) mView;
-            Drawable drawable = imageView.getDrawable();
 
             if (drawableColor != -2) {
                 color = drawableColor;
