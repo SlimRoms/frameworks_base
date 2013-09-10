@@ -127,21 +127,19 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
     FrameLayout rot90;
 
     // Definitions for navbar menu button customization
-    public final static int SHOW_LEFT_MENU = 1;
-    public final static int SHOW_RIGHT_MENU = 0;
-    public final static int SHOW_BOTH_MENU = 2;
-    public final static int SHOW_DONT = 4;
+    private final static int SHOW_RIGHT_MENU = 0;
+    private final static int SHOW_LEFT_MENU = 1;
+    private final static int SHOW_BOTH_MENU = 2;
 
-    public final static int VISIBILITY_SYSTEM = 0;
-    public final static int VISIBILITY_SYSTEM_AND_INVIZ = 3;
-    public final static int VISIBILITY_NEVER = 1;
-    public final static int VISIBILITY_ALWAYS = 2;
+    private final static int MENU_VISIBILITY_ALWAYS = 0;
+    private final static int MENU_VISIBILITY_NEVER = 1;
+    private final static int MENU_VISIBILITY_SYSTEM = 2;
 
-    public static final int KEY_MENU_RIGHT = 2;
-    public static final int KEY_MENU_LEFT = 5;
+    private static final int KEY_MENU_RIGHT = 0;
+    private static final int KEY_MENU_LEFT = 1;
 
-    private int mCurrentVisibility;
-    private int mCurrentSetting;
+    private int mMenuVisibility;
+    private int mMenuSetting;
 
     private class H extends Handler {
         public void handleMessage(Message m) {
@@ -277,11 +275,9 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
                     .findViewById(R.id.lights_out));
 
             // add left menu
-            if (mCurrentSetting != SHOW_DONT) {
-                View leftmenuKey = generateKey(landscape, KEY_MENU_LEFT);
-                addButton(navButtonLayout, leftmenuKey, landscape);
-                addLightsOutButton(lightsOut, leftmenuKey, landscape, true);
-            }
+            View leftMenuKeyView = generateMenuKey(landscape, KEY_MENU_LEFT);
+            addButton(navButtonLayout, leftMenuKeyView, landscape);
+            addLightsOutButton(lightsOut, leftMenuKeyView, landscape, true);
 
             mAppIsBinded = false;
             ButtonConfig buttonConfig;
@@ -311,13 +307,12 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
                 }
 
             }
-            if (mCurrentSetting != SHOW_DONT) {
-                View rightMenuKey = generateKey(landscape, KEY_MENU_RIGHT);
-                addButton(navButtonLayout, rightMenuKey, landscape);
-                addLightsOutButton(lightsOut, rightMenuKey, landscape, true);
-            }
+
+            View rightMenuKeyView = generateMenuKey(landscape, KEY_MENU_RIGHT);
+            addButton(navButtonLayout, rightMenuKeyView, landscape);
+            addLightsOutButton(lightsOut, rightMenuKeyView, landscape, true);
         }
-        setMenuVisibility(false, true);
+        setMenuVisibility(mShowMenu, true);
 
         if (!mBackgroundAttached) {
             attachBackground();
@@ -381,55 +376,28 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
         }
     }
 
-    private View generateKey(boolean landscape, int keyId) {
-        KeyButtonView v = null;
-        Resources r = getResources();
-
-        int btnWidth = 80;
-
-        switch (keyId) {
-
-            case KEY_MENU_RIGHT:
-                v = new KeyButtonView(mContext, null);
-                v.setLayoutParams(getLayoutParams(landscape, 40));
-
-                v.setId(R.id.menu);
-                v.setCode(KeyEvent.KEYCODE_MENU);
-                v.setImageResource(landscape ? R.drawable.ic_sysbar_menu_land
-                        : R.drawable.ic_sysbar_menu);
-                v.setVisibility(View.INVISIBLE);
-                v.setContentDescription(r.getString(R.string.accessibility_menu));
-                v.setGlowBackground(landscape ? R.drawable.ic_sysbar_highlight_land
-                        : R.drawable.ic_sysbar_highlight);
-                if (mNavBarButtonColor == -2) {
-                    v.setColorFilter(null);
-                } else {
-                    v.setColorFilter(mNavBarButtonColor, Mode.SRC_ATOP);
-                }
-                return v;
-
-            case KEY_MENU_LEFT:
-                v = new KeyButtonView(mContext, null);
-                v.setLayoutParams(getLayoutParams(landscape, 40));
-
-                v.setId(R.id.menu_left);
-                v.setCode(KeyEvent.KEYCODE_MENU);
-                v.setImageResource(landscape ? R.drawable.ic_sysbar_menu_land
-                        : R.drawable.ic_sysbar_menu);
-                v.setVisibility(View.INVISIBLE);
-                v.setContentDescription(r.getString(R.string.accessibility_menu));
-                v.setGlowBackground(landscape ? R.drawable.ic_sysbar_highlight_land
-                        : R.drawable.ic_sysbar_highlight);
-                if (mNavBarButtonColor == -2) {
-                    v.setColorFilter(null);
-                } else {
-                    v.setColorFilter(mNavBarButtonColor, Mode.SRC_ATOP);
-                }
-                return v;
-
+    private View generateMenuKey(boolean landscape, int keyId) {
+        KeyButtonView v = new KeyButtonView(mContext, null);
+        v.setLayoutParams(getLayoutParams(landscape, 40));
+        v.setCode(KeyEvent.KEYCODE_MENU);
+        v.setImageResource(landscape ? R.drawable.ic_sysbar_menu_land
+                : R.drawable.ic_sysbar_menu);
+        v.setVisibility(View.INVISIBLE);
+        v.setContentDescription(getResources().getString(R.string.accessibility_menu));
+        v.setGlowBackground(landscape ? R.drawable.ic_sysbar_highlight_land
+                : R.drawable.ic_sysbar_highlight);
+        if (mNavBarButtonColor == -2) {
+            v.setColorFilter(null);
+        } else {
+            v.setColorFilter(mNavBarButtonColor, Mode.SRC_ATOP);
         }
 
-        return null;
+        if (keyId == KEY_MENU_LEFT) {
+            v.setId(R.id.menu_left);
+        } else {
+            v.setId(R.id.menu);
+        }
+        return v;
     }
 
     private KeyButtonView generateKey(boolean landscape, String clickAction,
@@ -632,6 +600,8 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
                 Settings.System.NAVIGATION_BAR_BUTTON_ALPHA, 0.3f,
                 UserHandle.USER_CURRENT))));
         }
+
+        setMenuVisibility(mShowMenu, true);
     }
 
     public void setSlippery(boolean newSlippery) {
@@ -656,78 +626,25 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
     }
 
     public void setMenuVisibility(final boolean show, final boolean force) {
-        if (!force && mShowMenu == show)
-            return;
-
-        if (mCurrentSetting == SHOW_DONT) {
+        if (!force && mShowMenu == show
+            || mMenuVisibility == MENU_VISIBILITY_NEVER) {
             return;
         }
 
+        View leftMenuKeyView = getLeftMenuButton();
+        View rightMenuKeyView = getRightMenuButton();
+
+        if (leftMenuKeyView != null && rightMenuKeyView != null) {
+            final boolean disableRecent = ((mDisabledFlags & View.STATUS_BAR_DISABLE_RECENT) != 0);
+            boolean showLeftMenuButton = (mMenuVisibility == MENU_VISIBILITY_ALWAYS || show)
+                && (mMenuSetting == SHOW_LEFT_MENU || mMenuSetting == SHOW_BOTH_MENU) && !disableRecent;
+            boolean showRightMenuButton = (mMenuVisibility == MENU_VISIBILITY_ALWAYS || show)
+                && (mMenuSetting == SHOW_RIGHT_MENU || mMenuSetting == SHOW_BOTH_MENU) && !disableRecent;
+
+            leftMenuKeyView.setVisibility(showLeftMenuButton ? View.VISIBLE : View.INVISIBLE);
+            rightMenuKeyView.setVisibility(showRightMenuButton ? View.VISIBLE : View.INVISIBLE);
+        }
         mShowMenu = show;
-        boolean localShow = show;
-
-        ImageView leftButton = (ImageView) getLeftMenuButton();
-        ImageView rightButton = (ImageView) getRightMenuButton();
-
-        switch (mCurrentVisibility) {
-            case VISIBILITY_SYSTEM:
-                leftButton
-                        .setImageResource(mVertical ? R.drawable.ic_sysbar_menu_land
-                                : R.drawable.ic_sysbar_menu);
-                rightButton
-                        .setImageResource(mVertical ? R.drawable.ic_sysbar_menu_land
-                                : R.drawable.ic_sysbar_menu);
-                break;
-            case VISIBILITY_ALWAYS:
-                leftButton
-                        .setImageResource(mVertical ? R.drawable.ic_sysbar_menu_land
-                                : R.drawable.ic_sysbar_menu);
-                rightButton
-                        .setImageResource(mVertical ? R.drawable.ic_sysbar_menu_land
-                                : R.drawable.ic_sysbar_menu);
-                localShow = true;
-                break;
-            case VISIBILITY_NEVER:
-                leftButton
-                        .setImageResource(R.drawable.ic_sysbar_menu_inviz);
-                rightButton
-                        .setImageResource(R.drawable.ic_sysbar_menu_inviz);
-                localShow = true;
-                break;
-            case VISIBILITY_SYSTEM_AND_INVIZ:
-                if (localShow) {
-                    leftButton
-                            .setImageResource(mVertical ? R.drawable.ic_sysbar_menu_land
-                                    : R.drawable.ic_sysbar_menu);
-                    ((ImageView) getRightMenuButton())
-                            .setImageResource(mVertical ? R.drawable.ic_sysbar_menu_land
-                                    : R.drawable.ic_sysbar_menu);
-                } else {
-                    localShow = true;
-                    leftButton
-                            .setImageResource(R.drawable.ic_sysbar_menu_inviz);
-                    rightButton
-                            .setImageResource(R.drawable.ic_sysbar_menu_inviz);
-                }
-                break;
-        }
-
-        // do this after just in case show was changed
-        switch (mCurrentSetting) {
-            case SHOW_BOTH_MENU:
-                leftButton.setVisibility(localShow ? View.VISIBLE : View.INVISIBLE);
-                rightButton.setVisibility(localShow ? View.VISIBLE : View.INVISIBLE);
-                break;
-            case SHOW_LEFT_MENU:
-                leftButton.setVisibility(localShow ? View.VISIBLE : View.INVISIBLE);
-                rightButton.setVisibility(View.INVISIBLE);
-                break;
-            default:
-            case SHOW_RIGHT_MENU:
-                leftButton.setVisibility(View.INVISIBLE);
-                rightButton.setVisibility(localShow ? View.VISIBLE : View.INVISIBLE);
-                break;
-        }
     }
 
     public void setLowProfile(final boolean lightsOut) {
@@ -986,11 +903,11 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
     protected void updateSettings() {
         ContentResolver resolver = mContext.getContentResolver();
 
-        mCurrentSetting = Settings.System.getIntForUser(resolver,
+        mMenuSetting = Settings.System.getIntForUser(resolver,
                 Settings.System.MENU_LOCATION, SHOW_RIGHT_MENU, UserHandle.USER_CURRENT);
 
-        mCurrentVisibility = Settings.System.getIntForUser(resolver,
-                Settings.System.MENU_VISIBILITY, VISIBILITY_SYSTEM, UserHandle.USER_CURRENT);
+        mMenuVisibility = Settings.System.getIntForUser(resolver,
+                Settings.System.MENU_VISIBILITY, MENU_VISIBILITY_SYSTEM, UserHandle.USER_CURRENT);
 
         mTablet_UI = Settings.System.getIntForUser(resolver,
                 Settings.System.TABLET_UI, 0, UserHandle.USER_CURRENT);

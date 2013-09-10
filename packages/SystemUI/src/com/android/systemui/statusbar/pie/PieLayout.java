@@ -64,7 +64,7 @@ public class PieLayout extends FrameLayout implements View.OnTouchListener {
     public static final float PIE_CONTROL_SIZE_DEFAULT = 0.97f;
     // default icon start factor when icon should start to resize
     // related to PIE_SIZE value
-    public static final float PIE_ICON_START_SIZE_FACTOR = 0.95f;
+    public static final float PIE_ICON_START_SIZE_FACTOR = 0.97f;
 
     private TransparencyManager mTransparencyManager;
 

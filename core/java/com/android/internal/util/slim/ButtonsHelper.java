@@ -378,7 +378,7 @@ public class ButtonsHelper {
                         SYSTEMUI_METADATA_NAME + ":drawable/ic_sysbar_screenshot", null, null);
         } else if (clickAction.equals(ButtonsConstants.ACTION_MENU)) {
             resId = systemUiResources.getIdentifier(
-                        SYSTEMUI_METADATA_NAME + ":drawable/ic_sysbar_menu_big", null, null);
+                        SYSTEMUI_METADATA_NAME + ":drawable/ic_sysbar_menu", null, null);
         } else if (clickAction.equals(ButtonsConstants.ACTION_IME)) {
             resId = systemUiResources.getIdentifier(
                         SYSTEMUI_METADATA_NAME + ":drawable/ic_sysbar_ime_switcher", null, null);

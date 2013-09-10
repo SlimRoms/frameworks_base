@@ -86,6 +86,10 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
     public static final float EMPTY_ANGLE = 10;
     public static final float START_ANGLE = 180 + EMPTY_ANGLE;
 
+    private final static int MENU_VISIBILITY_ALWAYS = 0;
+    private final static int MENU_VISIBILITY_NEVER = 1;
+    private final static int MENU_VISIBILITY_SYSTEM = 2;
+
     private Context mContext;
     private PieLayout mPieContainer;
     /**
@@ -102,10 +106,13 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
     // all pie slices that are managed by the controller
     private PieSliceContainer mNavigationSlice;
     private PieSliceContainer mNavigationSliceSecondLayer;
+    private PieItem mMenuButton;
     private PieSysInfo mSysInfo;
 
     private int mNavigationIconHints = 0;
     private int mDisabledFlags = 0;
+    private boolean mShowMenu = false;
+    private int mShowMenuVisibility;
     private Drawable mBackIcon;
     private Drawable mBackAltIcon;
     private boolean mIconResize = false;
@@ -229,6 +236,9 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.PIE_SECOND_LAYER_ACTIVE), false, this,
+                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.PIE_MENU), false, this,
                     UserHandle.USER_ALL);
         }
 
@@ -454,7 +464,12 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
             getCustomActionsAndConstruct(resolver, true, minimumImageSize);
         }
 
+        mShowMenuVisibility = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.PIE_MENU, MENU_VISIBILITY_SYSTEM,
+                UserHandle.USER_CURRENT);
+
         setNavigationIconHints(mNavigationIconHints, true);
+        setMenuVisibility(mShowMenu);
     }
 
     private void getCustomActionsAndConstruct(ContentResolver resolver,
@@ -468,7 +483,7 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
             buttonsConfig = ButtonsHelper.getPieConfig(mContext);
         }
 
-        int buttonWidth = 7 / buttonsConfig.size();
+        int buttonWidth = 10 / buttonsConfig.size();
         ButtonConfig buttonConfig;
 
         for (int j = 0; j < buttonsConfig.size(); j++) {
@@ -478,6 +493,14 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
             } else {
                 addItemToLayer(mNavigationSlice, buttonConfig, buttonWidth, minimumImageSize);
             }
+        }
+
+        if (!secondLayer) {
+            mMenuButton = constructItem(1, ButtonsConstants.ACTION_MENU,
+                    ButtonsConstants.ACTION_NULL,
+                    ButtonsConstants.ICON_EMPTY,
+                    minimumImageSize);
+            mNavigationSlice.addItem(mMenuButton);
         }
     }
 
@@ -520,7 +543,8 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
             view.setImageDrawable(d);
         }
 
-        if (iconUri != null && !iconUri.equals("empty")) {
+        if (iconUri != null && !iconUri.equals(ButtonsConstants.ICON_EMPTY)
+            && !iconUri.startsWith(ButtonsConstants.SYSTEM_ICON_IDENTIFIER)) {
             if (clickAction.equals(ButtonsConstants.ACTION_BACK)) {
                 // back icon image needs to be handled seperatly
                 // all other is handled in PieItem
@@ -557,8 +581,8 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
         }
         Bitmap bitmap = ((BitmapDrawable) dOriginal).getBitmap();
         if (useSystemDimens) {
-            width = height = mContext.getResources()
-                .getDimensionPixelSize(com.android.internal.R.dimen.app_icon_size);
+            width = height = (int) (mContext.getResources()
+                .getDimensionPixelSize(com.android.internal.R.dimen.app_icon_size) * 0.9f);
         } else {
             width = bitmap.getWidth();
             height = bitmap.getHeight();
@@ -566,7 +590,8 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
         width = (int) (width * mIconResizeFactor);
         height = (int) (height * mIconResizeFactor);
 
-        Drawable dResized = new BitmapDrawable(mContext.getResources(), Bitmap.createScaledBitmap(bitmap, width, height, false));
+        Drawable dResized = new BitmapDrawable(mContext.getResources(),
+            Bitmap.createScaledBitmap(bitmap, width, height, false));
         if (d == null) {
             view.setImageDrawable(dResized);
             return null;
@@ -710,12 +735,24 @@ public class PieController implements BaseStatusBar.NavigationBarCallback,
                 item.show(!disableRecent);
             }
         }
+        setMenuVisibility(mShowMenu, true);
     }
 
     @Override
     public void setMenuVisibility(boolean showMenu) {
-        // this call may come from outside
-        // nothing to do here
+        setMenuVisibility(showMenu, false);
+    }
+
+    private void setMenuVisibility(boolean showMenu, boolean force) {
+        if (!force && mShowMenu == showMenu) {
+            return;
+        }
+        if (mMenuButton != null) {
+            final boolean disableRecent = ((mDisabledFlags & View.STATUS_BAR_DISABLE_RECENT) != 0);
+            mMenuButton.show((showMenu || mShowMenuVisibility == MENU_VISIBILITY_ALWAYS)
+                && mShowMenuVisibility != MENU_VISIBILITY_NEVER && !disableRecent);
+        }
+        mShowMenu = showMenu;
     }
 
     @Override
