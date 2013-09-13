@@ -328,16 +328,15 @@ public class PackageInfo implements Parcelable {
         dest.writeTypedArray(configPreferences, parcelableFlags);
         dest.writeTypedArray(reqFeatures, parcelableFlags);
         dest.writeInt(installLocation);
+        dest.writeInt(requiredForAllUsers ? 1 : 0);
+        dest.writeString(restrictedAccountType);
+        dest.writeString(requiredAccountType);
 
         /* Theme-specific. */
         dest.writeInt((isThemeApk)? 1 : 0);
         dest.writeInt((drmProtectedThemeApk)? 1 : 0);
         dest.writeTypedArray(themeInfos, parcelableFlags);
         dest.writeString(lockedZipFilePath);
-
-        dest.writeInt(requiredForAllUsers ? 1 : 0);
-        dest.writeString(restrictedAccountType);
-        dest.writeString(requiredAccountType);
     }
 
     public static final Parcelable.Creator<PackageInfo> CREATOR
@@ -376,15 +375,14 @@ public class PackageInfo implements Parcelable {
         configPreferences = source.createTypedArray(ConfigurationInfo.CREATOR);
         reqFeatures = source.createTypedArray(FeatureInfo.CREATOR);
         installLocation = source.readInt();
+        requiredForAllUsers = source.readInt() != 0;
+        restrictedAccountType = source.readString();
+        requiredAccountType = source.readString();
 
         /* Theme-specific. */
         isThemeApk = (source.readInt() != 0);
         drmProtectedThemeApk = (source.readInt() != 0);
         themeInfos = source.createTypedArray(ThemeInfo.CREATOR);
         lockedZipFilePath = source.readString();
-
-        requiredForAllUsers = source.readInt() != 0;
-        restrictedAccountType = source.readString();
-        requiredAccountType = source.readString();
     }
 }
