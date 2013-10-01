@@ -55,6 +55,7 @@
     <string name="quick_settings_fcharge">Fast charge</string>
     <string name="quick_settings_screen_timeout">Timeout</string>
     <string name="quick_settings_screen_timeout_summary">%1$d %2$s</string>
+    <string name="quick_settings_screen_timeout_summary_never">Never</string>
     <string name="quick_settings_usb_tether_off_label">Disconnected</string>
     <string name="quick_settings_usb_tether_connected_label">Tethering off</string>
     <string name="quick_settings_usb_tether_on_label">Tethering</string>
@@ -70,6 +71,7 @@
     <string name="quick_settings_expanded_desktop_disabled">Disabled</string>
 
     <string name="powerwidget_screen_timeout_toast">Screen timeout set to: %1$d %2$s</string>
+    <string name="powerwidget_screen_timeout_never_toast">Screen set to always on</string>
 
     <!-- Text to display next to the minimal graphical battery meter.  [CHAR LIMIT=3] -->
     <string name="status_bar_settings_battery_meter_min_format" translatable="false">
