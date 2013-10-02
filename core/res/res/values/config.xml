@@ -1880,4 +1880,9 @@
 
     <!-- set this value to true to set network mode as global during boot up -->
     <bool name="config_global_phone_enabled">false</bool>
+
+
+    <!-- bool value to for enabling motion accelerometer -->
+    <bool name="use_motion_accel">false</bool>
+
 </resources>
