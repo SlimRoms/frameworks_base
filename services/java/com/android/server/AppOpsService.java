@@ -939,9 +939,13 @@ public class AppOpsService extends IAppOpsService.Stub {
     }
 
     @Override
+    public List<AppOpsManager.PackageOps> getPrivacyGuardOpsForPackage(int uid, String packageName) {
+        return getOpsForPackage(uid, packageName, PRIVACY_GUARD_OP_STATES);
+    }
+
+    @Override
     public boolean getPrivacyGuardSettingForPackage(int uid, String packageName) {
         for (int op : PRIVACY_GUARD_OP_STATES) {
-            int switchOp = AppOpsManager.opToSwitch(op);
             if (checkOperation(op, uid, packageName)
                     != AppOpsManager.MODE_ALLOWED) {
                 return true;
