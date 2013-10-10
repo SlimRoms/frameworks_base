@@ -62,7 +62,7 @@ public class AppOpsManager {
 
     // when adding one of these:
     //  - increment _NUM_OP
-    //  - add rows to sOpToSwitch, sOpNames, sOpPerms
+    //  - add rows to sOpToSwitch, sOpNames, sOpPerms, sPrivacyGuardOp
     //  - add descriptive strings to Settings/res/values/arrays.xml
     public static final int OP_NONE = -1;
     public static final int OP_COARSE_LOCATION = 0;
@@ -104,7 +104,7 @@ public class AppOpsManager {
      * switch to determine whether it is allowed.  Generally this is
      * a 1:1 mapping, but for some things (like location) that have
      * multiple low-level operations being tracked that should be
-     * presented to hte user as one switch then this can be used to
+     * presented to the user as one switch then this can be used to
      * make them all controlled by the same single operation.
      */
     private static int[] sOpToSwitch = new int[] {
@@ -218,6 +218,54 @@ public class AppOpsManager {
     };
 
     /**
+     * Privacy Guard Ops and states need to
+     * match general Ops map. Unused Ops are flagged as OP_NONE
+     */
+    private static final int[] sPrivacyGuardOp = new int[] {
+            OP_COARSE_LOCATION,
+            OP_COARSE_LOCATION,
+            OP_COARSE_LOCATION,
+            OP_NONE,
+            OP_READ_CONTACTS,
+            OP_WRITE_CONTACTS,
+            OP_READ_CALL_LOG,
+            OP_WRITE_CALL_LOG,
+            OP_READ_CALENDAR,
+            OP_WRITE_CALENDAR,
+            OP_COARSE_LOCATION,
+            OP_NONE,
+            OP_COARSE_LOCATION,
+            OP_NONE,
+            OP_READ_SMS,
+            OP_WRITE_SMS,
+            OP_READ_SMS,
+            OP_READ_SMS,
+            OP_READ_SMS,
+            OP_READ_SMS,
+            OP_WRITE_SMS,
+            OP_READ_SMS,
+            OP_WRITE_SMS,
+            OP_NONE,
+            OP_NONE,
+            OP_NONE,
+            OP_NONE,
+            OP_NONE,
+            OP_NONE,
+            OP_NONE,
+            OP_NONE,
+    };
+
+    /**
+     * Privacy Guard states
+     */
+    public static final int PRIVACY_GUARD_DISABLED      = 0;
+    public static final int PRIVACY_GUARD_DISABLED_PLUS = 1;
+    public static final int PRIVACY_GUARD_ENABLED       = 2;
+    public static final int PRIVACY_GUARD_ENABLED_PLUS  = 3;
+    public static final int PRIVACY_GUARD_CUSTOM        = 4;
+    public static final int PRIVACY_GUARD_CUSTOM_PLUS   = 5;
+
+    /**
      * Retrieve the op switch that controls the given operation.
      */
     public static int opToSwitch(int op) {
@@ -237,6 +285,19 @@ public class AppOpsManager {
      */
     public static String opToPermission(int op) {
         return sOpPerms[op];
+    }
+
+    /**
+     * Retrieve the permission associated privacy guard operation,
+     * or OP_NONE if there is not one.
+     */
+    public static int getPrivacyGuardOp(String permission) {
+        for (int i=0; i<sOpPerms.length; i++) {
+            if (sOpPerms[i] != null && sOpPerms[i].equals(permission)) {
+                return sPrivacyGuardOp[i];
+            }
+        }
+        return OP_NONE;
     }
 
     /**
@@ -540,27 +601,48 @@ public class AppOpsManager {
         finishOp(op, Process.myUid(), mContext.getBasePackageName());
     }
 
-    public List<AppOpsManager.PackageOps> getPrivacyGuardOpsForPackage(int uid, String packageName) {
+    public List<Integer> getPrivacyGuardOpsForPackage(String packageName) {
         try {
-            return mService.getPrivacyGuardOpsForPackage(uid, packageName);
+            return mService.getPrivacyGuardOpsForPackage(packageName);
         } catch (RemoteException e) {
         }
         return null;
     }
 
-    public boolean getPrivacyGuardSettingForPackage(int uid, String packageName) {
+    public int getPrivacyGuardSettingForPackage(int uid, String packageName) {
         try {
             return mService.getPrivacyGuardSettingForPackage(uid, packageName);
         } catch (RemoteException e) {
         }
-        return false;
+        return PRIVACY_GUARD_DISABLED;
     }
 
     public void setPrivacyGuardSettingForPackage(int uid, String packageName,
-            boolean state) {
+            boolean state, boolean forceAll) {
         try {
-            mService.setPrivacyGuardSettingForPackage(uid, packageName, state);
+            mService.setPrivacyGuardSettingForPackage(uid, packageName, state, forceAll);
         } catch (RemoteException e) {
         }
+    }
+
+    /**
+     * Retrieve the privacy guard state associated icons for notification and settings
+     */
+    public static int getPrivacyGuardIconResId(int pgState) {
+        switch (pgState) {
+            case PRIVACY_GUARD_DISABLED:
+                return com.android.internal.R.drawable.stat_notify_privacy_guard_off;
+            case PRIVACY_GUARD_ENABLED:
+                return com.android.internal.R.drawable.stat_notify_privacy_guard;
+            case PRIVACY_GUARD_CUSTOM:
+                return com.android.internal.R.drawable.stat_notify_privacy_guard_custom;
+            case PRIVACY_GUARD_DISABLED_PLUS:
+                return com.android.internal.R.drawable.stat_notify_privacy_guard_off_plus;
+            case PRIVACY_GUARD_ENABLED_PLUS:
+                return com.android.internal.R.drawable.stat_notify_privacy_guard_plus;
+            case PRIVACY_GUARD_CUSTOM_PLUS:
+                return com.android.internal.R.drawable.stat_notify_privacy_guard_custom_plus;
+        }
+        return com.android.internal.R.drawable.stat_notify_privacy_guard_off;
     }
 }

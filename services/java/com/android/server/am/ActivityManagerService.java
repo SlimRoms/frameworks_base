@@ -1431,15 +1431,20 @@ public final class ActivityManagerService  extends ActivityManagerNative
 
                 try {
                     Context context = mContext.createPackageContext(process.info.packageName, 0);
-                    String text = mContext.getString(R.string.privacy_guard_notification_detail,
+
+                    String text = mContext.getString(
+                            msg.arg1 == AppOpsManager.PRIVACY_GUARD_ENABLED ?
+                            R.string.privacy_guard_notification_detail
+                            : R.string.privacy_guard_custom_notification_detail,
                             context.getApplicationInfo().loadLabel(context.getPackageManager()));
+
                     String title = mContext.getString(R.string.privacy_guard_notification);
 
-                    Intent infoIntent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                    Intent infoIntent = new Intent(Settings.ACTION_APP_OPS_DETAILS_SETTINGS,
                             Uri.fromParts("package", root.packageName, null));
 
                     Notification notification = new Notification();
-                    notification.icon = com.android.internal.R.drawable.stat_notify_privacy_guard;
+                    notification.icon = AppOpsManager.getPrivacyGuardIconResId(msg.arg1);
                     notification.when = 0;
                     notification.flags = Notification.FLAG_ONGOING_EVENT;
                     notification.priority = Notification.PRIORITY_LOW;
