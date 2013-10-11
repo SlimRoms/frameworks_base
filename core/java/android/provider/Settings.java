@@ -3303,6 +3303,13 @@ public final class Settings {
          */
         public static final String RECENTS_RAM_BAR_ACTIVE_APPS_COLOR = "recents_ram_bar_active_apps_color";
 
+	/**
+         *
+         * Whether to show Recents clear all button on right side of screen
+         * @hide
+         */
+        public static final String RECENTS_CLEAR_ALL_ON_RIGHT = "recents_clear_all_on_right";
+
         /**
          * Override and forcefully disable the fullscreen keyboard
          * @hide

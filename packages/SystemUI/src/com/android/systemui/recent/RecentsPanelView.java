@@ -42,6 +42,7 @@ import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -341,6 +342,7 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
         if (show) {
             mWaitingToShow = true;
             refreshRecentTasksList(recentTaskDescriptions, firstScreenful);
+            setClearAllButtonLocation();
             showIfReady();
         } else {
             showImpl(false);
@@ -553,6 +555,17 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
                 h.iconView.setVisibility(View.VISIBLE);
             }
         }
+    }
+
+    private void setClearAllButtonLocation() {
+        final float scale = getResources().getDisplayMetrics().density;
+        final int size = (int) (50 * scale + 0.5f);
+        final boolean setToRight = Settings.System.getIntForUser(getContext().getContentResolver(),
+            Settings.System.RECENTS_CLEAR_ALL_ON_RIGHT, 0, UserHandle.USER_CURRENT) == 1;
+
+        mClearRecents.setLayoutParams(
+                new FrameLayout.LayoutParams(size, size,
+                Gravity.BOTTOM | (setToRight ? Gravity.RIGHT : Gravity.LEFT)));
     }
 
     private void updateThumbnail(ViewHolder h, Bitmap thumbnail, boolean show, boolean anim) {
@@ -875,11 +888,6 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
 
             long usedMem = 0;
             long freeMem = 0;
-
-            DisplayMetrics metrics = new DisplayMetrics();
-            WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
-            wm.getDefaultDisplay().getMetrics(metrics);
-            float logicalDensity = metrics.density;
 
             mRamUsageBar.setVisibility(View.VISIBLE);
             updateMemoryInfo();
