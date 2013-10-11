@@ -148,4 +148,19 @@
   <java-symbol type="layout" name="resolver_grid_alt" />
   <java-symbol type="id" name="checkbox_always" />
   <java-symbol type="bool" name="config_intrusiveBatteryLed" />
+
+  <!-- Keyguard random NumPadKeys -->
+  <java-symbol type="string" name="keyboardview_keycode_random" />
+  <java-symbol type="id" name="key_random" />
+  <java-symbol type="id" name="key0" />
+  <java-symbol type="id" name="key1" />
+  <java-symbol type="id" name="key2" />
+  <java-symbol type="id" name="key3" />
+  <java-symbol type="id" name="key4" />
+  <java-symbol type="id" name="key5" />
+  <java-symbol type="id" name="key6" />
+  <java-symbol type="id" name="key7" />
+  <java-symbol type="id" name="key8" />
+  <java-symbol type="id" name="key9" />
+
 </resources>

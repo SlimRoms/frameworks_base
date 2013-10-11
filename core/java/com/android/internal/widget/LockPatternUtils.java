@@ -895,6 +895,20 @@ public class LockPatternUtils {
     }
 
     /**
+     * @return Whether the numeric pin password is enabled,
+     * or if it is set as a backup for biometric weak
+     */
+    public boolean isLockNumericPasswordEnabled() {
+        long mode = getLong(PASSWORD_TYPE_KEY, 0);
+        long backupMode = getLong(PASSWORD_TYPE_ALTERNATE_KEY, 0);
+        final boolean passwordEnabled = mode == DevicePolicyManager.PASSWORD_QUALITY_NUMERIC;
+        final boolean backupEnabled = backupMode == DevicePolicyManager.PASSWORD_QUALITY_NUMERIC;
+
+        return savedPasswordExists() && (passwordEnabled ||
+                (usingBiometricWeak() && backupEnabled));
+    }
+
+    /**
      * @return Whether the lock pattern is enabled, or if it is set as a backup for biometric weak
      */
     public boolean isLockPatternEnabled() {
