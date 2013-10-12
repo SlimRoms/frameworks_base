@@ -140,4 +140,9 @@
 
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_interceptSmsSent">Разрешает перехватывать исходящие SMS. Вредоносные приложения могут использовать это разрешение для запрета отсылки сообщений.</string>
+
+    <string name="privacy_guard_custom_notification_detail"><xliff:g id="app">%1$s</xliff:g> не сможет использовать собственные разрешения</string>
+
+    <!-- Description of the Random button in a KeyboardView. [CHAR LIMIT=NONE] -->
+    <string name="keyboardview_keycode_random">Перезагрузить порядок кнопок</string>
 </resources>
