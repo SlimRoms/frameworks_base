@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2012-2013 SlimRoms Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="accessibility_data_connection_HP">HSPA+</string>
+    <string name="quick_settings_profile_label">مشخصات</string>
+    <string name="quick_settings_gps">جی‌پی‌اس</string>
+    <string name="quick_settings_gps_off">جی‌پی‌اس خاموش</string>
+    <string name="quick_settings_power">برق</string>
+    <string name="quick_settings_ringer_on">صدا روشن</string>
+    <string name="quick_settings_ringer_off">صدا خاموش</string>
+    <string name="quick_settings_vibration_on">لرزش روشن</string>
+    <string name="quick_settings_vibration_off">لرزش خاموش</string>
+    <string name="quick_settings_label_enabled">روشن</string>
+    <string name="quick_settings_label_disabled">خاموش</string>
+    <string name="quick_settings_ringer_normal">زنگ</string>
+    <string name="quick_settings_lockscreen">قفل صفحه نمایش</string>
+    <string name="quick_settings_network_type">حالت شبکه</string>
+    <string name="quick_settings_report_bug">گزارش اشکال</string>
+    <string name="quick_settings_music_play">پخش</string>
+    <string name="quick_settings_mobile_data_on">اینترنت موبایل</string>
+    <string name="quick_settings_mobile_data_off">اینترنت موبال خاموش</string>
+    <string name="quick_settings_reboot">راه اندازی مجدد سیستم</string>
+    <string name="quick_settings_reboot_recovery">راه اندازی مجدد سیستم بازیابی</string>
+    <string name="quick_settings_sync">همگام‌سازی</string>
+    <string name="quick_settings_sync_off">همگام‌سازی خاموش</string>
+    <string name="quick_settings_torch">چراغ‌قوه</string>
+    <string name="quick_settings_torch_off">چراغ‌قوه خاموش</string>
+    <string name="quick_settings_nfc">NFC</string>
+    <string name="quick_settings_nfc_off">NFC خاموش</string>
+    <string name="quick_settings_fcharge">شارژ سریع</string>
+    <string name="quick_settings_screen_timeout">وقفه</string>
+    <string name="quick_settings_screen_timeout_summary">%1$d %2$s</string>
+    <string name="quick_settings_usb_tether_off_label">اتصال قطع شد</string>
+    <string name="quick_settings_usb_tether_connected_label">Tethering خاموش</string>
+    <string name="quick_settings_usb_tether_on_label">اتصال به اینترنت با تلفن همراه</string>
+    <string name="quick_settings_wifiap">نقطه اتصال وای‌فای</string>
+    <string name="quick_settings_wifiap_off">قطع نقطه اتصال وای‌فای</string>
+    <string name="quick_settings_lte">LTE</string>
+    <string name="quick_settings_lte_off">LTE خاموش</string>
+    <string name="quick_settings_volume">میزان صدا</string>
+    <string name="quick_settings_expanded_desktop">گسترش یافته</string>
+    <string name="quick_settings_expanded_desktop_off">معمولی</string>
+    <string name="powerwidget_screen_timeout_toast">خاموشی صفحه نمایش در: %1$d %2$s</string>
+    <string name="brightness_label">روشنایی</string>
+    <string name="empty_tile_title">خالی</string>
+    <string name="quicksettings_shortcuts_icon_picker_facebook">فیس‌بوک</string>
+    <string name="quicksettings_shortcuts_icon_picker_favorite">مورد علاقه</string>
+    <string name="quicksettings_shortcuts_icon_picker_file_browser">مرورگر فایل</string>
+    <string name="quicksettings_shortcuts_icon_picker_file_browser2">جایگزین مرورگر فایل</string>
+    <string name="quicksettings_shortcuts_icon_picker_fitness">تناسب اندام</string>
+    <string name="quicksettings_shortcuts_icon_picker_gears">ادوات</string>
+    <string name="quicksettings_shortcuts_icon_picker_google_small">گوگل</string>
+    <string name="quicksettings_shortcuts_icon_picker_gplus">گوگل پلاس</string>
+    <string name="quicksettings_shortcuts_icon_picker_gtalk">GTalk</string>
+    <string name="quicksettings_shortcuts_icon_picker_help">راهنما</string>
+    <string name="quicksettings_shortcuts_icon_picker_joystick">جوی‌استیک</string>
+    <string name="quicksettings_shortcuts_icon_picker_key">کلیدها/حسابها</string>
+    <string name="quicksettings_shortcuts_icon_picker_laptop">لپ‌تاپ</string>
+    <string name="quicksettings_shortcuts_icon_picker_notes">یادداشت‌ها</string>
+    <string name="quicksettings_shortcuts_icon_picker_luggage">سفر</string>
+    <string name="quicksettings_shortcuts_icon_picker_maps">نقشه‌ها</string>
+    <string name="quicksettings_shortcuts_icon_picker_market">بازار</string>
+    <string name="quicksettings_shortcuts_icon_picker_movie">فیلم</string>
+    <string name="quicksettings_shortcuts_icon_picker_music">موسیقی</string>
+    <string name="quicksettings_shortcuts_icon_picker_nav">ناوبری</string>
+    <string name="quicksettings_shortcuts_icon_picker_phone">تلفن</string>
+    <string name="quicksettings_shortcuts_icon_picker_package">بسته</string>
+    <string name="quicksettings_shortcuts_icon_picker_pinterest">Pinterest</string>
+    <string name="quicksettings_shortcuts_icon_picker_play">پخش</string>
+    <string name="quicksettings_shortcuts_icon_picker_pocket">Pocket</string>
+    <string name="quicksettings_shortcuts_icon_picker_podcast">پادکست</string>
+    <string name="quicksettings_shortcuts_icon_picker_quicksettings">تنظیمات سریع</string>
+    <string name="quicksettings_shortcuts_icon_picker_rss">آر‌اس‌اس</string>
+    <string name="quicksettings_shortcuts_icon_picker_sdcard">اس‌دی‌کارد</string>
+    <string name="quicksettings_shortcuts_icon_picker_search">جستجو</string>
+    <string name="quicksettings_shortcuts_icon_picker_sms">پیام‌رسانی</string>
+    <string name="quicksettings_shortcuts_icon_picker_tasks">وظایف</string>
+    <string name="quicksettings_shortcuts_icon_picker_terminal">ترمینال</string>
+    <string name="quicksettings_shortcuts_icon_picker_transit">حمل‌و‌نقل</string>
+    <string name="quicksettings_shortcuts_icon_picker_tv">تلویزیون</string>
+    <string name="quicksettings_shortcuts_icon_picker_twitter">توییتر</string>
+    <string name="quicksettings_shortcuts_icon_picker_unlock">بازگشایی قفل</string>
+    <string name="calendar_error_alert">هیچ نرم افزار تقویم نصب شده.</string>
+    <string name="clock_error_alert">نرم افزار DeskClock نصب شده.</string>
+    <string name="qs_shortcut_error">ابتدا میانبر را انتخاب کنید تا شکلک آن تغییر یابد!</string>
+    <string name="pie_battery_status_charging">درحال شارژ (<xliff:g id="percent">%d</xliff:g>%%)</string>
+    <string name="pie_battery_status_full">شارژ شد</string>
+    <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% باقی‌مانده</string>
+    <string name="pie_phone_status_no_service">بدون سرویس</string>
+    <string name="pie_phone_status_airplane_mode">حالت هواپیما</string>
+    <string name="pie_phone_status_emergency_only">فقط تماس‌های اضطراری</string>
+</resources>

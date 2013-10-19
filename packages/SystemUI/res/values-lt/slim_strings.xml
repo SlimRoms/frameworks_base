@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2012-2013 SlimRoms Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="accessibility_data_connection_HP">HSPA+</string>
+    <string name="quick_settings_profile_label">Profilis</string>
+    <string name="quick_settings_gps">GPS</string>
+    <string name="quick_settings_gps_off">GPS išjungtas</string>
+    <string name="quick_settings_power">Maitinimas</string>
+    <string name="quick_settings_ringer_on">Garsas įjungtas</string>
+    <string name="quick_settings_ringer_off">Garsas išjungtas</string>
+    <string name="quick_settings_vibration_on">Vibracija įjungta</string>
+    <string name="quick_settings_vibration_off">Vibracija išjungta</string>
+    <string name="quick_settings_label_enabled">Įjungta</string>
+    <string name="quick_settings_label_disabled">Išjungta</string>
+    <string name="quick_settings_ringer_normal">Garsas</string>
+    <string name="quick_settings_lockscreen">Ekrano užraktas</string>
+    <string name="quick_settings_network_type">Tinklo režimas</string>
+    <string name="quick_settings_report_bug">Pranešti apie problemą</string>
+    <string name="quick_settings_mobile_data_on">Mobilieji duomenys</string>
+    <string name="quick_settings_mobile_data_off">Mobilieji duomenys išjungti</string>
+    <string name="quick_settings_reboot">Perkrauti sistemą</string>
+    <string name="quick_settings_reboot_recovery">Perkrauti recovery</string>
+    <string name="quick_settings_sync">Sinchronizavimas</string>
+    <string name="quick_settings_sync_off">Sinchronizavimas išjungtas</string>
+    <string name="quick_settings_torch">Deglas</string>
+    <string name="quick_settings_torch_off">Deglas išjungtas</string>
+    <string name="quick_settings_nfc">NFC</string>
+    <string name="quick_settings_nfc_off">NFC išjungtas</string>
+    <string name="quick_settings_fcharge">Greitasis įkrovimas</string>
+    <string name="quick_settings_screen_timeout">Skirtasis laikas</string>
+    <string name="quick_settings_screen_timeout_summary">%1$d %2$s</string>
+    <string name="quick_settings_usb_tether_off_label">Atsijungta</string>
+    <string name="quick_settings_usb_tether_connected_label">Susiejimas išjungtas</string>
+    <string name="quick_settings_usb_tether_on_label">Susiejimas</string>
+    <string name="quick_settings_wifiap">Wi-Fi AP</string>
+    <string name="quick_settings_wifiap_off">Wi-Fi AP išjungta</string>
+    <string name="quick_settings_lte">LTE</string>
+    <string name="quick_settings_lte_off">LTE išjungta</string>
+    <string name="quick_settings_volume">Garsumas</string>
+    <string name="quick_settings_expanded_desktop">Išplėstas</string>
+    <string name="quick_settings_expanded_desktop_off">Įprastas</string>
+    <string name="powerwidget_screen_timeout_toast">Ekrano išsijungimo laikas nustatytas: %1$d %2$s</string>
+    <string name="widgets">Valdikliai</string>
+    <string name="app_killed_message">Programa išjungta</string>
+    <string name="brightness_label">Skaistis</string>
+    <string name="memory">RAM</string>
+    <string name="service_free_mem"><xliff:g id="memory">%1$s</xliff:g> laisva</string>
+    <string name="service_used_mem"><xliff:g id="memory">%1$s</xliff:g> panaudota</string>
+    <string name="quick_settings_quiethours">Tyliosios valandos</string>
+    <string name="quick_settings_quiethours_off">Tyliosios valandos išjungtos</string>
+    <string name="calendar_error_alert">Kalendoriaus programėlė neįdiegta.</string>
+    <string name="clock_error_alert">Darbalaukio laikrodžio programėlė neįdiegta.</string>
+</resources>
