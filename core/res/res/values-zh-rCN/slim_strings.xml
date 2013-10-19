@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2012-2013 SlimRoms Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="profileNameDefault">默认</string>
+    <string name="profileNameWork">工作</string>
+    <string name="profileNameHome">住宅</string>
+    <string name="profileNameSilent">静音</string>
+    <string name="profileNameNight">夜晚</string>
+    <string name="profileGroupPhone">电话</string>
+    <string name="profileGroupCalendar">日历</string>
+    <string name="profileGroupGmail">Gmail</string>
+    <string name="profileGroupEmail">电子邮件</string>
+    <string name="profileGroupSMS">短信</string>
+    <string name="wildcardProfile">其他</string>
+    <string name="reboot_system" product="tablet">重新启动平板电脑</string>
+    <string name="reboot_system" product="default">重新启动平板电脑</string>
+    <string name="global_action_screenshot">屏幕截图</string>
+    <string name="global_actions_toggle_expanded_desktop_mode">拓展桌面</string>
+    <string name="global_actions_expanded_desktop_mode_on_status">启用</string>
+    <string name="global_actions_expanded_desktop_mode_off_status">禁用</string>
+    <string name="reboot_reboot">重启</string>
+    <string name="reboot_recovery">恢复模式</string>
+    <string name="reboot_bootloader">Bootloader</string>
+    <string name="reboot_bootmenu">Bootmenu</string>
+    <string name="reboot_fastboot">Fastboot</string>
+    <string name="reboot_download">下载模式</string>
+    <string name="reboot_progress">Rebooting\u2026</string>
+    <string name="reboot_confirm">你的电话将会重启。</string>
+    <string name="shutdown_confirm_reboot" product="tablet">你的平板现在将重新重启。</string>
+    <string name="shutdown_confirm_reboot" product="default">你的平板现在将重新重启。</string>
+    <string name="shutdown_confirm_reboot_question">你想要重启吗？</string>
+    <string name="permlab_preventpower">禁用电源键</string>
+    <string name="permdesc_preventpower">允许应用程序使用电源键</string>
+    <string name="permlab_fm_radio_receiver">控制FM调频收音机</string>
+    <string name="permdesc_fm_radio_receiver">允许应用程序控制FM调频收音机。</string>
+    <string name="permlab_fm_radio_transmitter">控制FM调频发射</string>
+    <string name="permdesc_fm_radio_transmitter">允许应用程序控制FM调频发射。</string>
+    <string name="lockscreen_discharging">未连接充电电源, <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
+    <string name="app_killed_message">应用程序已清除</string>
+    <string name="expanded_mode_default_set">扩展桌面来隐藏状态栏。在电源菜单设置中启用</string>
+    <string name="global_action_reboot">重启</string>
+    <string name="global_action_choose_profile">配置文件</string>
+    <string name="toast_rotation_unlocked">屏幕旋转启用</string>
+    <string name="toast_rotation_locked">屏幕旋转锁定</string>
+</resources>

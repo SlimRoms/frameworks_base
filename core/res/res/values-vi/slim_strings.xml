@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2012-2013 SlimRoms Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="profileNameDefault">Mặc định</string>
+    <string name="profileNameWork">Cơ quan</string>
+    <string name="profileNameHome">Nhà</string>
+    <string name="profileNameSilent">Im lặng</string>
+    <string name="profileNameNight">Ban đêm</string>
+    <string name="profileGroupPhone">Điện thoại</string>
+    <string name="profileGroupCalendar">Lịch</string>
+    <string name="profileGroupGmail">Gmail</string>
+    <string name="profileGroupEmail">Email</string>
+    <string name="profileGroupSMS">Tin nhắn</string>
+    <string name="wildcardProfile">Khác</string>
+    <string name="reboot_system" product="tablet">Khởi động lại máy tính bảng</string>
+    <string name="reboot_system" product="default">Khởi động lại máy tính bảng</string>
+    <string name="global_action_screenshot">Chụp màn hình</string>
+    <string name="global_actions_toggle_expanded_desktop_mode">Mở rộng màn hình</string>
+    <string name="global_actions_expanded_desktop_mode_on_status">Đã Kích hoạt</string>
+    <string name="global_actions_expanded_desktop_mode_off_status">Đã tắt</string>
+    <string name="reboot_reboot">Khởi động lại</string>
+    <string name="reboot_recovery">Recovery</string>
+    <string name="reboot_bootloader">Bootloader</string>
+    <string name="reboot_bootmenu">Menu Kh.động</string>
+    <string name="reboot_fastboot">Chế độ Fastboot</string>
+    <string name="reboot_download">C.độ Tải xuống</string>
+    <string name="reboot_progress">K.động lại\u2026</string>
+    <string name="reboot_confirm">Điện thoại của bạn sẽ khởi động lại.</string>
+    <string name="shutdown_confirm_reboot" product="tablet">Máy tính bảng sẽ khởi động lại ngay bây giờ.</string>
+    <string name="shutdown_confirm_reboot" product="default">Máy tính bảng sẽ khởi động lại ngay bây giờ.</string>
+    <string name="shutdown_confirm_reboot_question">Bạn có muốn khởi động lại?</string>
+    <string name="permlab_preventpower">Tắt phím Nguồn</string>
+    <string name="permdesc_preventpower">Cho phép một ứng dụng ngắt chức năng phím nguồn</string>
+    <string name="permlab_fm_radio_receiver">kiểm soát thu sóng FM</string>
+    <string name="permdesc_fm_radio_receiver">Cho phép các ứng dụng kiểm soát máy thu FM.</string>
+    <string name="permlab_fm_radio_transmitter">kiểm soát máy phát FM</string>
+    <string name="permdesc_fm_radio_transmitter">Cho phép ứng dụng kiểm soát bộ phát FM.</string>
+    <string name="lockscreen_discharging">Đang xả pin, <xliff:g id="NUMBER">%d</xliff:g><xliff:g id="PERCENT">%%</xliff:g></string>
+    <string name="app_killed_message">Đã đóng ứng dụng</string>
+    <string name="expanded_mode_default_set">Mở rộng hình nền để ẩn thanh trạng thái. Cấu hình tại mục Tùy chỉnh phím Nguồn</string>
+    <string name="global_action_reboot">Khởi động lại</string>
+    <string name="global_action_choose_profile">Cấu hình</string>
+    <string name="toast_rotation_unlocked">Xoay màn hình mở khóa</string>
+    <string name="toast_rotation_locked">Xoay màn hình khóa</string>
+</resources>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2012-2013 SlimRoms Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="profileNameDefault">Predeterminado</string>
+    <string name="profileNameWork">Trabajo</string>
+    <string name="profileNameHome">Casa</string>
+    <string name="profileNameSilent">Silencio</string>
+    <string name="profileNameNight">Noche</string>
+    <string name="profileGroupPhone">Teléfono</string>
+    <string name="profileGroupCalendar">Calendario</string>
+    <string name="profileGroupGmail">Gmail</string>
+    <string name="profileGroupEmail">Correo</string>
+    <string name="profileGroupSMS">SMS</string>
+    <string name="wildcardProfile">Otros</string>
+    <string name="reboot_system" product="tablet">Reiniciar tablet</string>
+    <string name="reboot_system" product="default">Reiniciar teléfono</string>
+    <string name="global_action_screenshot">Captura de pantalla</string>
+    <string name="global_actions_toggle_expanded_desktop_mode">Escritorio ampliado</string>
+    <string name="global_actions_expanded_desktop_mode_on_status">Activado</string>
+    <string name="global_actions_expanded_desktop_mode_off_status">Desactivado</string>
+    <string name="reboot_reboot">Reiniciar</string>
+    <string name="reboot_recovery">Modo recovery</string>
+    <string name="reboot_bootloader">Modo bootloader</string>
+    <string name="reboot_bootmenu">Menú de arranque</string>
+    <string name="reboot_fastboot">Fastboot</string>
+    <string name="reboot_download">Modo download</string>
+    <string name="reboot_progress">Reiniciando\u2026</string>
+    <string name="reboot_confirm">El teléfono se reiniciará.</string>
+    <string name="shutdown_confirm_reboot" product="tablet">La tablet se reiniciará ahora.</string>
+    <string name="shutdown_confirm_reboot" product="default">La teléfono se reiniciará ahora.</string>
+    <string name="shutdown_confirm_reboot_question">¿Desea reiniciar?</string>
+    <string name="permlab_preventpower">Evitar que se use la tecla Encender/Apagar</string>
+    <string name="permdesc_preventpower">Permite a una aplicación reemplazar la función de la tecla Encender/Apagar</string>
+    <string name="permlab_fm_radio_receiver">Control del receptor de FM</string>
+    <string name="permdesc_fm_radio_receiver">Permite a la aplicación controlar el receptor de FM.</string>
+    <string name="permlab_fm_radio_transmitter">control del trasmisor de FM</string>
+    <string name="permdesc_fm_radio_transmitter">Permite a la aplicación controlar el trasmisor de FM.</string>
+    <string name="lockscreen_discharging">Descarga, <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
+    <string name="app_killed_message">Aplicación Cerrada</string>
+    <string name="expanded_mode_default_set">Escritorio expandido para ocultar la barra de Estado. Configurar en ajustes de menú de energía</string>
+    <string name="global_action_reboot">Reiniciar</string>
+    <string name="global_action_choose_profile">Perfil</string>
+    <string name="toast_rotation_unlocked">Rotación de pantalla desbloqueada</string>
+    <string name="toast_rotation_locked">Rotación de pantalla bloqueada</string>
+</resources>
