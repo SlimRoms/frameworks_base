@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2012-2013 SlimRoms Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="accessibility_data_connection_HP">HSPA+</string>
+    <string name="quick_settings_profile_label">Profil</string>
+    <string name="quick_settings_gps">GPS</string>
+    <string name="quick_settings_gps_off">GPS éteint</string>
+    <string name="quick_settings_power">Bouton Power</string>
+    <string name="quick_settings_ringer_on">Son activé</string>
+    <string name="quick_settings_ringer_off">Son désactivé</string>
+    <string name="quick_settings_vibration_on">Vibreur activé</string>
+    <string name="quick_settings_vibration_off">Vibreur désactivé</string>
+    <string name="quick_settings_label_enabled">Activé</string>
+    <string name="quick_settings_label_disabled">Désactivé</string>
+    <string name="quick_settings_ringer_normal">Son</string>
+    <string name="quick_settings_lockscreen">Écran de verrouillage</string>
+    <string name="quick_settings_network_type">Mode réseau</string>
+    <string name="quick_settings_report_bug">Signaler un bug</string>
+    <string name="quick_settings_music_play">Lire</string>
+    <string name="quick_settings_music_pause">Pause</string>
+    <string name="quick_settings_mobile_data_on">Données mobiles</string>
+    <string name="quick_settings_mobile_data_off">Données mobiles désactivées</string>
+    <string name="quick_settings_reboot">Redémarrage système</string>
+    <string name="quick_settings_reboot_recovery">Redémarrage recovery</string>
+    <string name="quick_settings_sync">Synchronisation</string>
+    <string name="quick_settings_sync_off">Synchronisation désactivée</string>
+    <string name="quick_settings_torch">Lampe</string>
+    <string name="quick_settings_torch_off">Lampe désactivée</string>
+    <string name="quick_settings_nfc">NFC</string>
+    <string name="quick_settings_nfc_off">NFC désactivé</string>
+    <string name="quick_settings_fcharge">Charge rapide</string>
+    <string name="quick_settings_screen_timeout">Délai d\'attente</string>
+    <string name="quick_settings_screen_timeout_summary">%1$d %2$s</string>
+    <string name="quick_settings_usb_tether_off_label">Déconnecté</string>
+    <string name="quick_settings_usb_tether_connected_label">Partage de connexion désactivé</string>
+    <string name="quick_settings_usb_tether_on_label">Partage de connexion</string>
+    <string name="quick_settings_wifiap">Point d\'accès Wi-Fi</string>
+    <string name="quick_settings_wifiap_off">Point d\'accès Wi-Fi désactivé</string>
+    <string name="quick_settings_lte">LTE</string>
+    <string name="quick_settings_lte_off">LTE désactivé</string>
+    <string name="quick_settings_volume">Volume</string>
+    <string name="quick_settings_expanded_desktop">Etendu</string>
+    <string name="quick_settings_expanded_desktop_off">Normal</string>
+    <string name="powerwidget_screen_timeout_toast">Délai extinction écran: %1$d %2$s</string>
+    <string name="widgets">Widgets</string>
+    <string name="app_killed_message">Application arrêtée</string>
+    <string name="brightness_label">Luminosité</string>
+    <string name="memory">RAM</string>
+    <string name="service_free_mem"><xliff:g id="mémoire">%1$s</xliff:g> libre</string>
+    <string name="service_used_mem"><xliff:g id="mémoire">%1$s</xliff:g> utilisée</string>
+    <string name="quick_settings_quiethours">Période silencieuse</string>
+    <string name="quick_settings_quiethours_off">Période silencieuse désactivée</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Annuler</string>
+    <string name="empty_tile_title">Vide</string>
+    <string name="profile_applist_title">Applications</string>
+    <string name="picker_activities">Activités</string>
+    <string name="select_custom_app_title">Sélectionnez une application personnalisée</string>
+    <string name="select_custom_activity_title">Sélectionnez une activité personnalisée</string>
+    <string name="quicksettings_shortcuts_edit_title">Modifier le raccourci</string>
+    <string name="quicksettings_shortcuts_edit_msg">Sélectionner ou modifier l\'application ou l\'icône désirée</string>
+    <string name="qs_shortcut_long_press">Appui long</string>
+    <string name="icon_picker_type">Sélectionner le type d\'icône:</string>
+    <string name="icon_picker_choose_icon_title">Choisir l\'icône</string>
+    <string name="icon_default">Par défaut</string>
+    <string name="icon_presets">Icônes système</string>
+    <string name="icon_custom">Galerie</string>
+    <string name="customshortcut_chooser_title">Sélecteur de raccourcis</string>
+    <string name="quicksettings_shortcuts_title">Raccourcis</string>
+    <string name="quicksettings_shortcuts_icon_picker_alarm">Alarme</string>
+    <string name="quicksettings_shortcuts_icon_picker_andy">Andy</string>
+    <string name="quicksettings_shortcuts_icon_picker_battery">Batterie</string>
+    <string name="quicksettings_shortcuts_icon_picker_browser">Navigateur</string>
+    <string name="quicksettings_shortcuts_icon_picker_calendar">Calendrier</string>
+    <string name="quicksettings_shortcuts_icon_picker_camera">Appareil photo</string>
+    <string name="quicksettings_shortcuts_icon_picker_cloud">Nuage</string>
+    <string name="quicksettings_shortcuts_icon_picker_contact">Contact</string>
+    <string name="quicksettings_shortcuts_icon_picker_directdial">Raccourci appel</string>
+    <string name="quicksettings_shortcuts_icon_picker_directmessage">Raccourci message</string>
+    <string name="quicksettings_shortcuts_icon_picker_drive">Drive</string>
+    <string name="quicksettings_shortcuts_icon_picker_dropbox">Dropbox</string>
+    <string name="quicksettings_shortcuts_icon_picker_email">E-mail</string>
+    <string name="quicksettings_shortcuts_icon_picker_email2">Courriel supplémentaire</string>
+    <string name="quicksettings_shortcuts_icon_picker_evernote">Evernote</string>
+    <string name="quicksettings_shortcuts_icon_picker_facebook">Facebook</string>
+    <string name="quicksettings_shortcuts_icon_picker_favorite">Favori</string>
+    <string name="quicksettings_shortcuts_icon_picker_file_browser">Navigateur de fichiers</string>
+    <string name="quicksettings_shortcuts_icon_picker_file_browser2">Fichier navigateur alternatif</string>
+    <string name="quicksettings_shortcuts_icon_picker_fitness">Fitness</string>
+    <string name="quicksettings_shortcuts_icon_picker_gallery">Galerie</string>
+    <string name="quicksettings_shortcuts_icon_picker_gears">Engrenages</string>
+    <string name="quicksettings_shortcuts_icon_picker_google_small">Google</string>
+    <string name="quicksettings_shortcuts_icon_picker_gplus">Google Plus</string>
+    <string name="quicksettings_shortcuts_icon_picker_gtalk">GTalk</string>
+    <string name="quicksettings_shortcuts_icon_picker_help">Aide</string>
+    <string name="quicksettings_shortcuts_icon_picker_joystick">Manette de jeu</string>
+    <string name="quicksettings_shortcuts_icon_picker_key">Manette de jeu</string>
+    <string name="quicksettings_shortcuts_icon_picker_laptop">Ordinateur portable</string>
+    <string name="quicksettings_shortcuts_icon_picker_notes">Remarques</string>
+    <string name="quicksettings_shortcuts_icon_picker_luggage">Voyage</string>
+    <string name="quicksettings_shortcuts_icon_picker_maps">Cartes</string>
+    <string name="quicksettings_shortcuts_icon_picker_market">Marché</string>
+    <string name="quicksettings_shortcuts_icon_picker_movie">Films</string>
+    <string name="quicksettings_shortcuts_icon_picker_music">Musique</string>
+    <string name="quicksettings_shortcuts_icon_picker_nav">Navigation</string>
+    <string name="quicksettings_shortcuts_icon_picker_phone">Téléphone</string>
+    <string name="quicksettings_shortcuts_icon_picker_package">Paquet</string>
+    <string name="quicksettings_shortcuts_icon_picker_pinterest">Pinterest</string>
+    <string name="quicksettings_shortcuts_icon_picker_play">Lire</string>
+    <string name="quicksettings_shortcuts_icon_picker_pocket">Poche</string>
+    <string name="quicksettings_shortcuts_icon_picker_podcast">Podcast</string>
+    <string name="quicksettings_shortcuts_icon_picker_quicksettings">Paramètres rapides</string>
+    <string name="quicksettings_shortcuts_icon_picker_rss">Flux RSS</string>
+    <string name="quicksettings_shortcuts_icon_picker_sdcard">carte SD</string>
+    <string name="quicksettings_shortcuts_icon_picker_search">Chercher</string>
+    <string name="quicksettings_shortcuts_icon_picker_sms">SMS/MMS</string>
+    <string name="quicksettings_shortcuts_icon_picker_tasks">Tâches</string>
+    <string name="quicksettings_shortcuts_icon_picker_terminal">Terminal</string>
+    <string name="quicksettings_shortcuts_icon_picker_transit">Transport en commun</string>
+    <string name="quicksettings_shortcuts_icon_picker_tv">TV</string>
+    <string name="quicksettings_shortcuts_icon_picker_twitter">Twitter</string>
+    <string name="quicksettings_shortcuts_icon_picker_unlock">Déverrouiller</string>
+    <string name="calendar_error_alert">Aucune application de calendrier installée.</string>
+    <string name="clock_error_alert">Aucune app DeskClock installée.</string>
+    <string name="qs_shortcut_error">Choisir la cible du raccourci tout d\'abord de changer son icône !</string>
+    <string name="pie_battery_status_charging">Chargement (<xliff:g id="percent"> %d </xliff:g> %%)</string>
+    <string name="pie_battery_status_full">Chargée</string>
+    <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% restant</string>
+    <string name="pie_phone_status_no_service">Aucun service</string>
+    <string name="pie_phone_status_airplane_mode">Mode avion actif</string>
+    <string name="pie_phone_status_emergency_only">Appels d\'urgence uniquement</string>
+</resources>

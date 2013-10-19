@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2012-2013 SlimRoms Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="accessibility_data_connection_HP">HSPA+</string>
+    <string name="quick_settings_profile_label">Profiel</string>
+    <string name="quick_settings_gps">GPS</string>
+    <string name="quick_settings_gps_off">GPS uitschakelen</string>
+    <string name="quick_settings_power">Power</string>
+    <string name="quick_settings_ringer_on">Geluid aan</string>
+    <string name="quick_settings_ringer_off">Geluid uit</string>
+    <string name="quick_settings_vibration_on">Trillen aan</string>
+    <string name="quick_settings_vibration_off">Trillen uit</string>
+    <string name="quick_settings_label_enabled">Aan</string>
+    <string name="quick_settings_label_disabled">Uit</string>
+    <string name="quick_settings_ringer_normal">Geluid</string>
+    <string name="quick_settings_lockscreen">Vergrendel scherm</string>
+    <string name="quick_settings_network_type">Netwerkmodus</string>
+    <string name="quick_settings_report_bug">Meld bug</string>
+    <string name="quick_settings_music_play">Afspelen</string>
+    <string name="quick_settings_mobile_data_on">Mobiele data</string>
+    <string name="quick_settings_mobile_data_off">Mobiele Data uit</string>
+    <string name="quick_settings_reboot">Systeem opnieuw opstarten</string>
+    <string name="quick_settings_reboot_recovery">Herstarten in Recovery</string>
+    <string name="quick_settings_sync">Synchroniseren</string>
+    <string name="quick_settings_sync_off">Synchroniseren uit</string>
+    <string name="quick_settings_torch">Fakkel</string>
+    <string name="quick_settings_torch_off">Fakkel uit</string>
+    <string name="quick_settings_nfc">NFC</string>
+    <string name="quick_settings_nfc_off">NFC uit</string>
+    <string name="quick_settings_fcharge">Snelladen</string>
+    <string name="quick_settings_screen_timeout">Timeout</string>
+    <string name="quick_settings_screen_timeout_summary">%1$d %2$s</string>
+    <string name="quick_settings_usb_tether_off_label">Verbinding verbroken</string>
+    <string name="quick_settings_usb_tether_connected_label">Tethering uit</string>
+    <string name="quick_settings_usb_tether_on_label">Tethering</string>
+    <string name="quick_settings_wifiap">WiFi-AP</string>
+    <string name="quick_settings_wifiap_off">Wi-Fi AP uit</string>
+    <string name="quick_settings_lte">LTE</string>
+    <string name="quick_settings_lte_off">LTE uit</string>
+    <string name="quick_settings_volume">Volume</string>
+    <string name="quick_settings_expanded_desktop">Uitgebreid</string>
+    <string name="quick_settings_expanded_desktop_off">Normaal</string>
+    <string name="powerwidget_screen_timeout_toast">Scherm time-out ingesteld op: %1$d %2$s</string>
+    <string name="widgets">Widgets</string>
+    <string name="app_killed_message">App beëindigd</string>
+    <string name="brightness_label">Helderheid</string>
+    <string name="memory">RAM</string>
+    <string name="service_free_mem"><xliff:g id="memory">%1$s</xliff:g> beschikbaar</string>
+    <string name="service_used_mem"><xliff:g id="memory">%1$s</xliff:g> gebruikt</string>
+    <string name="quick_settings_quiethours">Stille uren</string>
+    <string name="quick_settings_quiethours_off">Stille uren uit</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Annuleren</string>
+    <string name="empty_tile_title">Leeg</string>
+    <string name="profile_applist_title">Toepassingen</string>
+    <string name="picker_activities">Activiteiten</string>
+    <string name="select_custom_app_title">Selecteer aangepaste toepassing</string>
+    <string name="select_custom_activity_title">Selecteer aangepaste activiteit</string>
+    <string name="quicksettings_shortcuts_edit_title">Sneltoets bewerken</string>
+    <string name="quicksettings_shortcuts_edit_msg">Selecteer of wijzig de gewenste toepassing of het pictogram</string>
+    <string name="qs_shortcut_long_press">Lang indrukken</string>
+    <string name="icon_picker_type">Selecteer pictogram type:</string>
+    <string name="icon_picker_choose_icon_title">Pictogram kiezen</string>
+    <string name="icon_default">Standaard</string>
+    <string name="icon_presets">Systeempictogrammen</string>
+    <string name="icon_custom">Galerij</string>
+    <string name="customshortcut_chooser_title">Snelkoppelingen Kiezer</string>
+    <string name="quicksettings_shortcuts_title">Sneltoetsen</string>
+    <string name="quicksettings_shortcuts_icon_picker_alarm">Alarm</string>
+    <string name="quicksettings_shortcuts_icon_picker_andy">Andy</string>
+    <string name="quicksettings_shortcuts_icon_picker_battery">Accu</string>
+    <string name="quicksettings_shortcuts_icon_picker_browser">Browser</string>
+    <string name="quicksettings_shortcuts_icon_picker_calendar">Agenda</string>
+    <string name="quicksettings_shortcuts_icon_picker_camera">Camera</string>
+    <string name="quicksettings_shortcuts_icon_picker_cloud">Cloud</string>
+    <string name="quicksettings_shortcuts_icon_picker_contact">Contact</string>
+    <string name="quicksettings_shortcuts_icon_picker_directdial">Direct bellen</string>
+    <string name="quicksettings_shortcuts_icon_picker_directmessage">Direct bericht</string>
+    <string name="quicksettings_shortcuts_icon_picker_drive">Drive</string>
+    <string name="quicksettings_shortcuts_icon_picker_dropbox">Dropbox</string>
+    <string name="quicksettings_shortcuts_icon_picker_email">E-mail</string>
+    <string name="quicksettings_shortcuts_icon_picker_email2">Alternatieve e-mail</string>
+    <string name="quicksettings_shortcuts_icon_picker_evernote">Evernote</string>
+    <string name="quicksettings_shortcuts_icon_picker_facebook">Facebook</string>
+    <string name="quicksettings_shortcuts_icon_picker_favorite">Favoriet</string>
+    <string name="quicksettings_shortcuts_icon_picker_file_browser">Bestands Browser</string>
+    <string name="quicksettings_shortcuts_icon_picker_file_browser2">Alternatieve Bestands Browser</string>
+    <string name="quicksettings_shortcuts_icon_picker_fitness">Fitness</string>
+    <string name="quicksettings_shortcuts_icon_picker_gallery">Galerij</string>
+    <string name="quicksettings_shortcuts_icon_picker_gears">Gears</string>
+    <string name="quicksettings_shortcuts_icon_picker_google_small">Google</string>
+    <string name="quicksettings_shortcuts_icon_picker_gplus">Google Plus</string>
+    <string name="quicksettings_shortcuts_icon_picker_gtalk">GTalk</string>
+    <string name="quicksettings_shortcuts_icon_picker_help">Help</string>
+    <string name="quicksettings_shortcuts_icon_picker_joystick">Joystick</string>
+    <string name="quicksettings_shortcuts_icon_picker_key">Toetsen/Accounts</string>
+    <string name="quicksettings_shortcuts_icon_picker_laptop">Laptop</string>
+    <string name="quicksettings_shortcuts_icon_picker_notes">Opmerkingen</string>
+    <string name="quicksettings_shortcuts_icon_picker_luggage">Reizen</string>
+    <string name="quicksettings_shortcuts_icon_picker_maps">Kaarten</string>
+    <string name="quicksettings_shortcuts_icon_picker_market">Play Store</string>
+    <string name="quicksettings_shortcuts_icon_picker_movie">Films</string>
+    <string name="quicksettings_shortcuts_icon_picker_music">Muziek</string>
+    <string name="quicksettings_shortcuts_icon_picker_nav">Navigatie</string>
+    <string name="quicksettings_shortcuts_icon_picker_phone">Telefoon</string>
+    <string name="quicksettings_shortcuts_icon_picker_package">Pakket</string>
+    <string name="quicksettings_shortcuts_icon_picker_pinterest">Pinterest</string>
+    <string name="quicksettings_shortcuts_icon_picker_play">Afspelen</string>
+    <string name="quicksettings_shortcuts_icon_picker_pocket">Zak</string>
+    <string name="quicksettings_shortcuts_icon_picker_podcast">Podcast</string>
+    <string name="quicksettings_shortcuts_icon_picker_quicksettings">Snelle instellingen</string>
+    <string name="quicksettings_shortcuts_icon_picker_rss">RSS-Feed</string>
+    <string name="quicksettings_shortcuts_icon_picker_sdcard">SD Kaart</string>
+    <string name="quicksettings_shortcuts_icon_picker_search">Zoeken</string>
+    <string name="quicksettings_shortcuts_icon_picker_sms">Berichten</string>
+    <string name="quicksettings_shortcuts_icon_picker_tasks">Taken</string>
+    <string name="quicksettings_shortcuts_icon_picker_terminal">Terminal</string>
+    <string name="quicksettings_shortcuts_icon_picker_transit">Transit</string>
+    <string name="quicksettings_shortcuts_icon_picker_tv">TV</string>
+    <string name="quicksettings_shortcuts_icon_picker_twitter">Twitter</string>
+    <string name="quicksettings_shortcuts_icon_picker_unlock">Ontgrendelen</string>
+    <string name="calendar_error_alert">Geen Kalender app geïnstalleerd.</string>
+    <string name="clock_error_alert">Geen DeskClock app geïnstalleerd.</string>
+    <string name="qs_shortcut_error">Kies eerst snelkoppeling doel om het pictogram te veranderen!</string>
+    <string name="pie_battery_status_charging">Opladen (<xliff:g id="percent"> %d </xliff:g> %%)</string>
+    <string name="pie_battery_status_full">Opgeladen</string>
+    <string name="pie_battery_status_discharging"><xliff:g id="procent"> %d </xliff:g> %% resterende</string>
+    <string name="pie_phone_status_no_service">Geen service</string>
+    <string name="pie_phone_status_airplane_mode">Vliegtuig-modus aan</string>
+    <string name="pie_phone_status_emergency_only">Alleen noodoproepen</string>
+</resources>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2012-2013 SlimRoms Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="accessibility_data_connection_HP">HSPA +</string>
+    <string name="quick_settings_profile_label">Profil</string>
+    <string name="quick_settings_gps">GPS</string>
+    <string name="quick_settings_gps_off">GPS ki</string>
+    <string name="quick_settings_power">Energia</string>
+    <string name="quick_settings_ringer_on">Hang bekapcsolása</string>
+    <string name="quick_settings_ringer_off">Hang kikapcsolása</string>
+    <string name="quick_settings_vibration_on">Rezgés bekapcsolása</string>
+    <string name="quick_settings_vibration_off">Rezgés kikapcsolása</string>
+    <string name="quick_settings_label_enabled">Be</string>
+    <string name="quick_settings_label_disabled">Ki</string>
+    <string name="quick_settings_ringer_normal">Hang</string>
+    <string name="quick_settings_lockscreen">Zárolási képernyő</string>
+    <string name="quick_settings_network_type">Hálózat mód</string>
+    <string name="quick_settings_report_bug">Hiba bejelentése</string>
+    <string name="quick_settings_mobile_data_on">Mobil adat</string>
+    <string name="quick_settings_mobile_data_off">Mobil adat ki</string>
+    <string name="quick_settings_reboot">Rendszer újraindítása</string>
+    <string name="quick_settings_reboot_recovery">Újraindítás helyreállító módban</string>
+    <string name="quick_settings_sync">Szinkronizálás</string>
+    <string name="quick_settings_sync_off">Szinkronizálás ki</string>
+    <string name="quick_settings_torch">Zseblámpa</string>
+    <string name="quick_settings_torch_off">Zseblámpa ki</string>
+    <string name="quick_settings_nfc">NFC</string>
+    <string name="quick_settings_nfc_off">NFC ki</string>
+    <string name="quick_settings_fcharge">Gyorstöltés</string>
+    <string name="quick_settings_screen_timeout">Időkorlát</string>
+    <string name="quick_settings_screen_timeout_summary">%1$d %2$s</string>
+    <string name="quick_settings_usb_tether_off_label">Leválasztva</string>
+    <string name="quick_settings_usb_tether_connected_label">Megosztás ki</string>
+    <string name="quick_settings_usb_tether_on_label">Megosztás</string>
+    <string name="quick_settings_wifiap">Wi-Fi hozzáférési pont</string>
+    <string name="quick_settings_wifiap_off">Wi-Fi hozzáférési pont ki</string>
+    <string name="quick_settings_lte">LTE</string>
+    <string name="quick_settings_lte_off">LTE ki</string>
+    <string name="quick_settings_volume">Hangerő</string>
+    <string name="quick_settings_expanded_desktop">Kiterjesztett</string>
+    <string name="quick_settings_expanded_desktop_off">Normál</string>
+    <string name="powerwidget_screen_timeout_toast">Képernyő kikapcsolási időkorlát: %1$d %2$s</string>
+    <string name="widgets">Widgetek</string>
+    <string name="app_killed_message">Alkalmazás megszakítva</string>
+    <string name="brightness_label">Fényerő</string>
+    <string name="memory">RAM</string>
+    <string name="service_free_mem"><xliff:g id="memory">%1$s</xliff:g> szabad</string>
+    <string name="service_used_mem"><xliff:g id="memory">%1$s</xliff:g> használt</string>
+    <string name="quick_settings_quiethours">Csendes órák</string>
+    <string name="quick_settings_quiethours_off">Csendes órák vége</string>
+    <string name="calendar_error_alert">Nincs naptári alkalmazás telepítve.</string>
+    <string name="clock_error_alert">Nincs asztali óra alkalmazás telepítve.</string>
+</resources>

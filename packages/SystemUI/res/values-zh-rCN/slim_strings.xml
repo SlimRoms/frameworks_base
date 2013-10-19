@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2012-2013 SlimRoms Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="accessibility_data_connection_HP">HSPA+</string>
+    <string name="quick_settings_profile_label">情景模式</string>
+    <string name="quick_settings_gps">GPS</string>
+    <string name="quick_settings_gps_off">GPS关闭</string>
+    <string name="quick_settings_power">电源</string>
+    <string name="quick_settings_ringer_on">打开声音</string>
+    <string name="quick_settings_ringer_off">静音</string>
+    <string name="quick_settings_vibration_on">打开振动</string>
+    <string name="quick_settings_vibration_off">关闭振动</string>
+    <string name="quick_settings_label_enabled">开</string>
+    <string name="quick_settings_label_disabled">关</string>
+    <string name="quick_settings_ringer_normal">铃声</string>
+    <string name="quick_settings_lockscreen">锁屏</string>
+    <string name="quick_settings_network_type">网络模式</string>
+    <string name="quick_settings_report_bug">报告Bug</string>
+    <string name="quick_settings_music_play">播放</string>
+    <string name="quick_settings_mobile_data_on">移动数据</string>
+    <string name="quick_settings_mobile_data_off">关闭移动数据</string>
+    <string name="quick_settings_reboot">重新启动系统</string>
+    <string name="quick_settings_reboot_recovery">重启到恢复模式</string>
+    <string name="quick_settings_sync">同步</string>
+    <string name="quick_settings_sync_off">关闭同步</string>
+    <string name="quick_settings_torch">手电筒</string>
+    <string name="quick_settings_torch_off">关闭手电筒</string>
+    <string name="quick_settings_nfc">近距离无线通讯</string>
+    <string name="quick_settings_nfc_off">近距离无线通讯 已关闭</string>
+    <string name="quick_settings_fcharge">快速充电</string>
+    <string name="quick_settings_screen_timeout">超时</string>
+    <string name="quick_settings_usb_tether_off_label">已断开连接</string>
+    <string name="quick_settings_usb_tether_connected_label">网络共享已关闭</string>
+    <string name="quick_settings_usb_tether_on_label">网络共享</string>
+    <string name="quick_settings_wifiap">Wi-Fi 热点</string>
+    <string name="quick_settings_wifiap_off">关闭Wi-Fi热点</string>
+    <string name="quick_settings_lte">LTE</string>
+    <string name="quick_settings_lte_off">LTE 关闭</string>
+    <string name="quick_settings_volume">音量</string>
+    <string name="quick_settings_expanded_desktop">扩展的</string>
+    <string name="quick_settings_expanded_desktop_off">正常</string>
+    <string name="powerwidget_screen_timeout_toast">屏幕超时设置为: %1$d %2$s</string>
+    <string name="widgets">窗口小部件</string>
+    <string name="app_killed_message">已清除的应用程序</string>
+    <string name="brightness_label">亮度</string>
+    <string name="memory">RAM</string>
+    <string name="service_free_mem">可用：<xliff:g id="MEMORY">%1$s</xliff:g></string>
+    <string name="service_used_mem">已用：<xliff:g id="MEMORY">%1$s</xliff:g></string>
+    <string name="quick_settings_quiethours">静音时间</string>
+    <string name="quick_settings_quiethours_off">关闭静音时间</string>
+    <string name="ok">确认</string>
+    <string name="cancel">取消</string>
+    <string name="empty_tile_title">空</string>
+    <string name="profile_applist_title">应用程序</string>
+    <string name="picker_activities">进程</string>
+    <string name="select_custom_app_title">选择自定义应用程序</string>
+    <string name="select_custom_activity_title">选择自定义进程</string>
+    <string name="quicksettings_shortcuts_edit_title">编辑快捷方式</string>
+    <string name="quicksettings_shortcuts_edit_msg">选择或更改所需的应用程序或图标</string>
+    <string name="qs_shortcut_long_press">长按</string>
+    <string name="icon_picker_type">选择图标类型：</string>
+    <string name="icon_picker_choose_icon_title">选择图标</string>
+    <string name="icon_default">默认​​​​​</string>
+    <string name="icon_presets">系统图标</string>
+    <string name="icon_custom">图库</string>
+    <string name="customshortcut_chooser_title">快捷方式选择器</string>
+    <string name="quicksettings_shortcuts_title">快捷方式</string>
+    <string name="quicksettings_shortcuts_icon_picker_alarm">闹钟</string>
+    <string name="quicksettings_shortcuts_icon_picker_battery">电池</string>
+    <string name="quicksettings_shortcuts_icon_picker_browser">浏览器</string>
+    <string name="quicksettings_shortcuts_icon_picker_calendar">日历</string>
+    <string name="quicksettings_shortcuts_icon_picker_camera">相机</string>
+    <string name="quicksettings_shortcuts_icon_picker_cloud">云服务</string>
+    <string name="quicksettings_shortcuts_icon_picker_contact">联系人</string>
+    <string name="quicksettings_shortcuts_icon_picker_directdial">直接拨号</string>
+    <string name="quicksettings_shortcuts_icon_picker_directmessage">直接发送短信</string>
+    <string name="quicksettings_shortcuts_icon_picker_dropbox">Dropbox</string>
+    <string name="quicksettings_shortcuts_icon_picker_email">电子邮件</string>
+    <string name="quicksettings_shortcuts_icon_picker_email2">备用电子邮件</string>
+    <string name="quicksettings_shortcuts_icon_picker_evernote">Evernote</string>
+    <string name="quicksettings_shortcuts_icon_picker_facebook">Facebook</string>
+    <string name="quicksettings_shortcuts_icon_picker_favorite">最爱</string>
+    <string name="quicksettings_shortcuts_icon_picker_file_browser">文件浏览器</string>
+    <string name="quicksettings_shortcuts_icon_picker_file_browser2">备用文件浏览器</string>
+    <string name="quicksettings_shortcuts_icon_picker_gallery">图库</string>
+    <string name="quicksettings_shortcuts_icon_picker_google_small">谷歌</string>
+    <string name="quicksettings_shortcuts_icon_picker_gplus">Google+</string>
+    <string name="quicksettings_shortcuts_icon_picker_gtalk">GTalk</string>
+    <string name="quicksettings_shortcuts_icon_picker_help">帮助</string>
+    <string name="quicksettings_shortcuts_icon_picker_joystick">虚拟手柄</string>
+    <string name="quicksettings_shortcuts_icon_picker_laptop">笔记本电脑</string>
+    <string name="quicksettings_shortcuts_icon_picker_notes">备注</string>
+    <string name="quicksettings_shortcuts_icon_picker_maps">地图</string>
+    <string name="quicksettings_shortcuts_icon_picker_market">电子市场</string>
+    <string name="quicksettings_shortcuts_icon_picker_movie">电影</string>
+    <string name="quicksettings_shortcuts_icon_picker_music">音乐</string>
+    <string name="quicksettings_shortcuts_icon_picker_nav">导航</string>
+    <string name="quicksettings_shortcuts_icon_picker_phone">电话</string>
+    <string name="quicksettings_shortcuts_icon_picker_pinterest">Pinterest</string>
+    <string name="quicksettings_shortcuts_icon_picker_play">播放</string>
+    <string name="quicksettings_shortcuts_icon_picker_pocket">Pocket</string>
+    <string name="quicksettings_shortcuts_icon_picker_podcast">播客</string>
+    <string name="quicksettings_shortcuts_icon_picker_quicksettings">快速设置</string>
+    <string name="quicksettings_shortcuts_icon_picker_rss">Rss 订阅源</string>
+    <string name="quicksettings_shortcuts_icon_picker_sdcard">SD卡</string>
+    <string name="quicksettings_shortcuts_icon_picker_search">搜索​​​​</string>
+    <string name="quicksettings_shortcuts_icon_picker_sms">短信</string>
+    <string name="quicksettings_shortcuts_icon_picker_tasks">任务</string>
+    <string name="quicksettings_shortcuts_icon_picker_terminal">终端调试</string>
+    <string name="quicksettings_shortcuts_icon_picker_tv">电视</string>
+    <string name="quicksettings_shortcuts_icon_picker_twitter">Twitter</string>
+    <string name="quicksettings_shortcuts_icon_picker_unlock">解锁</string>
+    <string name="calendar_error_alert">未安装日历应用程序</string>
+    <string name="clock_error_alert">未安装DeskClock应用程序。</string>
+    <string name="qs_shortcut_error">先选择快捷方式才能更改其图标 ！</string>
+    <string name="pie_battery_status_charging">正在充电 (<xliff:g id="percent">%d</xliff:g>%%)</string>
+    <string name="pie_battery_status_full">充电完成</string>
+    <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% 剩余</string>
+    <string name="pie_phone_status_no_service">无信号</string>
+    <string name="pie_phone_status_airplane_mode">打开飞行模式</string>
+    <string name="pie_phone_status_emergency_only">只能拨打紧急呼救电话</string>
+</resources>
