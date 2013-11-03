@@ -36,4 +36,17 @@
   <java-symbol type="drawable" name="stat_notify_privacy_guard_off_plus" />
   <java-symbol type="drawable" name="stat_notify_privacy_guard_custom_plus" />
 
+  <!-- Config Power Menu -->
+  <java-symbol type="drawable" name="ic_lock_reboot" />
+  <java-symbol type="drawable" name="ic_lock_screenshot" />
+  <java-symbol type="string" name="global_action_reboot" />
+  <java-symbol type="string" name="global_actions" />
+  <java-symbol type="string" name="global_action_screenshot" />
+
+  <java-symbol type="array" name="shutdown_reboot_actions" />
+  <java-symbol type="array" name="shutdown_reboot_options" />
+
+  <java-symbol type="string" name="reboot_progress" />
+  <java-symbol type="string" name="reboot_system" />
+
 </resources>
