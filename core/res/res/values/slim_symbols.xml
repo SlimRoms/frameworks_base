@@ -75,4 +75,6 @@
   <java-symbol type="array" name="notification_light_package_mapping" />
   <java-symbol type="array" name="config_notificationNoAlertsVibePattern" />
 
+  <!-- Samsung STK Support -->
+  <java-symbol type="bool" name="config_samsung_stk" />
 </resources>
