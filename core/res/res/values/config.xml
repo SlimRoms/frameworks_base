@@ -2479,4 +2479,7 @@
     <!-- Zero Balance feature enable config -->
     <bool name="config_zero_balance_operator">false</bool>
     <bool name="config_passpoint_setting_on">false</bool>
+
+    <!-- Boolean to enable stk functionality on Samsung phones -->
+    <bool name="config_samsung_stk">false</bool>
 </resources>

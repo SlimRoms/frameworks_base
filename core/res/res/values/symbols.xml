@@ -2416,4 +2416,8 @@
   <java-symbol type="string" name="operator_ping_url" />
   <java-symbol type="bool" name="config_zero_balance_operator"/>
   <java-symbol type="bool" name="config_passpoint_setting_on" />
+
+  <!-- Config.xml entries -->
+  <java-symbol type="bool" name="config_samsung_stk" />
+
 </resources>
