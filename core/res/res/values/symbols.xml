@@ -2758,6 +2758,8 @@
   <java-symbol type="string" name="def_wifi_wifihotspot_pass" />
   <java-symbol type="string" name="def_wifi_direct_name" />
 
+  <java-symbol type="bool" name="config_samsung_stk" />
+
   <java-symbol type="bool" name="config_useSystemClockforRotationSensor" />
   <java-symbol type="layout" name="notification_material_action_emphasized" />
 
