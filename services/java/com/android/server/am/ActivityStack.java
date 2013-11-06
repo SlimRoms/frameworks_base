@@ -220,7 +220,7 @@ final class ActivityStack {
     /**
      * Is the privacy guard currently enabled?
      */
-    String mPrivacyGuardPackageName = null;
+    static String sPrivacyGuardPackageName = null;
 
     /**
      * Save the most recent screenshot for reuse. This keeps Recents from taking two identical
@@ -1674,23 +1674,23 @@ final class ActivityStack {
             1, UserHandle.USER_CURRENT) == 0) {
             return;
         }
-        if (mPrivacyGuardPackageName != null && mPrivacyGuardPackageName.equals(next.packageName)) {
+        if (sPrivacyGuardPackageName != null && sPrivacyGuardPackageName.equals(next.packageName)) {
             return;
         }
 
         int privacy = mService.mAppOpsService.getPrivacyGuardSettingForPackage(
                 next.app.uid, next.packageName);
 
-        if (mPrivacyGuardPackageName != null && privacy == AppOpsManager.PRIVACY_GUARD_DISABLED) {
+        if (sPrivacyGuardPackageName != null && privacy == AppOpsManager.PRIVACY_GUARD_DISABLED) {
             Message msg = mService.mHandler.obtainMessage(
                     ActivityManagerService.CANCEL_PRIVACY_NOTIFICATION_MSG, next.userId);
             msg.sendToTarget();
-            mPrivacyGuardPackageName = null;
+            sPrivacyGuardPackageName = null;
         } else if (privacy > AppOpsManager.PRIVACY_GUARD_DISABLED) {
             Message msg = mService.mHandler.obtainMessage(
                     ActivityManagerService.POST_PRIVACY_NOTIFICATION_MSG, privacy, 0, next);
             msg.sendToTarget();
-            mPrivacyGuardPackageName = next.packageName;
+            sPrivacyGuardPackageName = next.packageName;
         }
     }
 
