@@ -1030,7 +1030,9 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
             if (!mHasTelephony) return;
             final boolean inAirplaneMode = serviceState.getState() == ServiceState.STATE_POWER_OFF;
             mAirplaneState = inAirplaneMode ? ToggleAction.State.On : ToggleAction.State.Off;
-            mAirplaneModeOn.updateState(mAirplaneState);
+            if (mAirplaneModeOn != null) {
+                mHandler.sendEmptyMessage(MESSAGE_REFRESH_AIRPLANEMODE);
+            }
             mAdapter.notifyDataSetChanged();
         }
     };
@@ -1054,6 +1056,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
     private static final int MESSAGE_DISMISS = 0;
     private static final int MESSAGE_REFRESH = 1;
     private static final int MESSAGE_SHOW = 2;
+    private static final int MESSAGE_REFRESH_AIRPLANEMODE = 3;
     private static final int DIALOG_DISMISS_DELAY = 300; // ms
 
     private Handler mHandler = new Handler() {
@@ -1072,6 +1075,10 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
             case MESSAGE_SHOW:
                 handleShow();
                 break;
+            case MESSAGE_REFRESH_AIRPLANEMODE:
+	        mAirplaneModeOn.updateState(mAirplaneState);
+	        mAdapter.notifyDataSetChanged();
+	        break;
             }
         }
     };
