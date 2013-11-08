@@ -56,4 +56,7 @@ interface INotificationManager
     void setHaloWhitelistStatus(String pkg, boolean status);
     boolean isHaloPolicyBlack();
     boolean isPackageAllowedForHalo(String pkg);
+
+    StatusBarNotification[] getActiveNotificationsFromSystemListener(in INotificationListener token);
+    void cancelNotificationFromSystemListener(in INotificationListener token, String pkg, String tag, int id);
 }
