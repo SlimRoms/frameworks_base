@@ -2668,6 +2668,12 @@ public final class Settings {
         public static final String VOLUME_KEYS_CONTROL_MEDIA_STREAM = "volume_keys_control_media_stream";
 
         /**
+         * Volume rocker wake
+         * @hide
+         */
+        public static final String VOLUME_WAKE_SCREEN = "volume_wake_screen";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
