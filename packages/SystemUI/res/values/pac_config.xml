@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2013 SlimRoms Project
+<!-- Copyright (C) 2006 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -14,10 +14,9 @@
      limitations under the License.
 -->
 
-<selector xmlns:android="http://schemas.android.com/apk/res/android"
-        android:exitFadeDuration="@android:integer/config_mediumAnimTime">
+<resources>
 
-    <item android:state_pressed="true"  android:drawable="@*android:drawable/notification_item_background_color_pressed" />
+    <!-- configurable width dimension for the app sidebar trigger area -->
+    <dimen name="config_app_sidebar_trigger_width">8dip</dimen>
 
-</selector>
-
+</resources>

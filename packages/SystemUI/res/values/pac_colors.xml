@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2013 SlimRoms Project
+<!-- Copyright (C) 2006 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -14,10 +14,15 @@
      limitations under the License.
 -->
 
-<selector xmlns:android="http://schemas.android.com/apk/res/android"
-        android:exitFadeDuration="@android:integer/config_mediumAnimTime">
+<resources>
 
-    <item android:state_pressed="true"  android:drawable="@*android:drawable/notification_item_background_color_pressed" />
+    <!-- app sidebar trigger region color -->
+    <color name="trigger_region_color">#8015a0e5</color>
 
-</selector>
+    <!-- app sidebar item text color -->
+    <color name="sidebar_item_text_color">#ffffffff</color>
 
+    <!-- app sidebar item text shadow color -->
+    <color name="sidebar_item_text_shadow_color">#ff000000</color>
+
+</resources>
