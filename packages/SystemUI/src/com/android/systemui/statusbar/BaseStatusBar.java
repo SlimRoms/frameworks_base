@@ -33,7 +33,17 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.content.ServiceConnection;
+<<<<<<< HEAD
 import android.database.ContentObserver;
+=======
+import android.content.res.Resources;
+import android.content.ServiceConnection;
+import android.database.ContentObserver;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PixelFormat;
+>>>>>>> 624757b... 4.4 implementation of active display
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Build;
@@ -55,6 +65,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.Slog;
 import android.view.Display;
+import android.view.Gravity;
 import android.view.IWindowManager;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -85,6 +96,8 @@ import com.android.systemui.statusbar.phone.KeyguardTouchDelegate;
 import com.android.systemui.statusbar.phone.NavigationBarOverlay;
 import com.android.systemui.statusbar.policy.NotificationRowLayout;
 import com.android.systemui.statusbar.policy.PieController;
+
+import com.android.systemui.statusbar.policy.activedisplay.ActiveDisplayView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -201,6 +214,8 @@ public abstract class BaseStatusBar extends SystemUI implements
     private boolean mDeviceProvisioned = false;
 
     private RecentController mRecents;
+
+    protected ActiveDisplayView mActiveDisplayView;
 
     public IStatusBarService getStatusBarService() {
         return mBarService;
@@ -1441,6 +1456,44 @@ public abstract class BaseStatusBar extends SystemUI implements
         if (lastAppId != 0) {
             am.moveTaskToFront(lastAppId, am.MOVE_TASK_NO_USER_ACTION);
         }
+    }
+
+    protected static void setSystemUIVisibility(View v, int visibility) {
+        v.setSystemUiVisibility(visibility);
+    }
+
+    protected void addActiveDisplayView() {
+        mActiveDisplayView = (ActiveDisplayView)View.inflate(mContext, R.layout.active_display, null);
+        int activeDisplayVis = View.SYSTEM_UI_FLAG_LOW_PROFILE
+                             | View.SYSTEM_UI_FLAG_FULLSCREEN
+                             | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                             | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
+        setSystemUIVisibility(mActiveDisplayView, activeDisplayVis);
+        mActiveDisplayView.setStatusBar(this);
+        mWindowManager.addView(mActiveDisplayView, getActiveDisplayViewLayoutParams());
+    }
+
+    protected void removeActiveDisplayView() {
+        if (mActiveDisplayView != null)
+            mWindowManager.removeView(mActiveDisplayView);
+    }
+
+    protected WindowManager.LayoutParams getActiveDisplayViewLayoutParams() {
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams(
+                LayoutParams.MATCH_PARENT,
+                LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.TYPE_STATUS_BAR_PANEL,
+                0
+                | WindowManager.LayoutParams.FLAG_TOUCHABLE_WHEN_WAKING
+                | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+                | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH
+                | WindowManager.LayoutParams.FLAG_SPLIT_TOUCH,
+                PixelFormat.OPAQUE);
+        lp.gravity = Gravity.TOP | Gravity.FILL_VERTICAL | Gravity.FILL_HORIZONTAL;
+        lp.setTitle("ActiveDisplayView");
+
+        return lp;
     }
 
 }
