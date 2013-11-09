@@ -57,6 +57,7 @@ public class CommandQueue extends IStatusBar.Stub {
     private static final int MSG_CANCEL_PRELOAD_RECENT_APPS = 15 << MSG_SHIFT;
     private static final int MSG_SET_NAVIGATION_ICON_HINTS  = 16 << MSG_SHIFT;
     private static final int MSG_SET_WINDOW_STATE           = 17 << MSG_SHIFT;
+    private static final int MSG_SET_AUTOROTATE_STATUS      = 18 << MSG_SHIFT;
 
     public static final int FLAG_EXCLUDE_NONE = 0;
     public static final int FLAG_EXCLUDE_SEARCH_PANEL = 1 << 0;
@@ -100,6 +101,7 @@ public class CommandQueue extends IStatusBar.Stub {
         public void cancelPreloadRecentApps();
         public void setNavigationIconHints(int hints);
         public void setWindowState(int window, int state);
+        public void setAutoRotate(boolean enabled);
     }
 
     public CommandQueue(Callbacks callbacks, StatusBarIconList list) {
@@ -241,6 +243,14 @@ public class CommandQueue extends IStatusBar.Stub {
         }
     }
 
+    public void setAutoRotate(boolean enabled) {
+        synchronized (mList) {
+            mHandler.removeMessages(MSG_SET_AUTOROTATE_STATUS);
+            mHandler.obtainMessage(MSG_SET_AUTOROTATE_STATUS,
+                enabled ? 1 : 0, 0, null).sendToTarget();
+        }
+    }
+
     private final class H extends Handler {
         public void handleMessage(Message msg) {
             final int what = msg.what & MSG_MASK;
@@ -323,6 +333,9 @@ public class CommandQueue extends IStatusBar.Stub {
                     break;
                 case MSG_SET_WINDOW_STATE:
                     mCallbacks.setWindowState(msg.arg1, msg.arg2);
+                    break;
+                case MSG_SET_AUTOROTATE_STATUS:
+                    mCallbacks.setAutoRotate(msg.arg1 != 0);
                     break;
             }
         }
