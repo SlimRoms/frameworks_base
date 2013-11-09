@@ -24,4 +24,7 @@
   <java-symbol type="string" name="privacy_guard_dialog_title" />
   <java-symbol type="string" name="privacy_guard_dialog_summary" />
 
+  <!-- Config IME switcher -->
+  <java-symbol type="bool" name="config_show_IMESwitcher" />
+
 </resources>
