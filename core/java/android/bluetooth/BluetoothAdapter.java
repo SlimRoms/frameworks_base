@@ -1386,6 +1386,9 @@ public final class BluetoothAdapter {
         } else if (profile == BluetoothProfile.HANDSFREE_CLIENT) {
             BluetoothHandsfreeClient hfpclient = new BluetoothHandsfreeClient(context, listener);
             return true;
+        } else if (profile == BluetoothProfile.HID_DEVICE) {
+            BluetoothHidDevice hidd = new BluetoothHidDevice(context, listener);
+            return true;
         } else {
             return false;
         }
@@ -1449,6 +1452,10 @@ public final class BluetoothAdapter {
             case BluetoothProfile.HANDSFREE_CLIENT:
                 BluetoothHandsfreeClient hfpclient = (BluetoothHandsfreeClient)proxy;
                 hfpclient.close();
+                break;
+            case BluetoothProfile.HID_DEVICE:
+                BluetoothHidDevice hidd = (BluetoothHidDevice) proxy;
+                hidd.close();
                 break;
         }
     }
