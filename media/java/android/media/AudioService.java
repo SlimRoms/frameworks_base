@@ -4123,6 +4123,25 @@ public class AudioService extends IAudioService.Stub {
                         }
                     }
                 }
+            } else if (action.equals(Intent.ACTION_HEADSET_PLUG)) {
+                state = intent.getIntExtra("state", 0);
+                if (state == 1) {
+                    // Headset plugged in
+                    adjustCurrentStreamVolume();
+                    // TODO: Cap volume at safe levels
+
+                    Intent playerIntent = new Intent(Intent.ACTION_MAIN);
+                    playerIntent.addCategory(Intent.CATEGORY_APP_MUSIC);
+                    playerIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    try {
+                        context.startActivity(playerIntent);
+                    } catch (ActivityNotFoundException e) {
+                        Log.w(TAG, "No music player found to start after headset connection");
+                    }
+                } else {
+                    // Headset disconnected
+                    adjustCurrentStreamVolume();
+                }
             } else if (action.equals(Intent.ACTION_USB_AUDIO_ACCESSORY_PLUG) ||
                            action.equals(Intent.ACTION_USB_AUDIO_DEVICE_PLUG)) {
                 state = intent.getIntExtra("state", 0);
@@ -4213,6 +4232,7 @@ public class AudioService extends IAudioService.Stub {
                         0,
                         null,
                         SAFE_VOLUME_CONFIGURE_TIMEOUT_MS);
+                adjustCurrentStreamVolume();
             } else if (action.equals(Intent.ACTION_SCREEN_ON)) {
                 AudioSystem.setParameters("screen_state=on");
             } else if (action.equals(Intent.ACTION_SCREEN_OFF)) {
@@ -4242,6 +4262,21 @@ public class AudioService extends IAudioService.Stub {
                         mStreamStates[AudioSystem.STREAM_MUSIC], 0);
             }
         }
+
+        private void adjustCurrentStreamVolume() {
+            VolumeStreamState streamState;
+            int device;
+
+            for (int stream = 0; stream < AudioSystem.getNumStreamTypes(); stream++) {
+                if (stream == mStreamVolumeAlias[stream]) {
+                    streamState = mStreamStates[mStreamVolumeAlias[stream]];
+                    device = getDeviceForStream(stream);
+                    // apply stored value for device
+                    streamState.applyDeviceVolume(device);
+                }
+            }
+        }
+
     }
 
     //==========================================================================================
