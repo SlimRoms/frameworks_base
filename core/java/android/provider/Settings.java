@@ -2803,6 +2803,32 @@ public final class Settings {
          */
         public static final String POWER_UI_LOW_BATTERY_WARNING_POLICY = "power_ui_low_battery_warning_policy";
 
+
+        /**
+         * Hide carrier information on notification drawer
+         * @hide
+         */
+        public static final String NOTIFICATION_HIDE_CARRIER = "notification_hide_carrier";
+
+
+        /**
+          * Stores values for notification shortcut targets
+          * @hide
+          */
+        public static final String NOTIFICATION_SHORTCUTS_CONFIG = "notification_shortcuts_config";
+
+        /**
+         * Stores the value for notification shortcuts icon color
+         * @hide
+         */
+        public static final String NOTIFICATION_SHORTCUTS_COLOR = "notification_shortcuts_color";
+
+        /**
+         * Whether to colorize the default application icons
+         * @hide
+         */
+        public static final String NOTIFICATION_SHORTCUTS_COLOR_MODE = "notification_shortcuts_color_mode";
+
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
