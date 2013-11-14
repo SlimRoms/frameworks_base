@@ -5607,6 +5607,12 @@ public class WindowManagerService extends IWindowManager.Stub
         }
     }
 
+    /* @hide */
+     @Override
+    public void toggleGlobalMenu() {
+        mPolicy.toggleGlobalMenu();
+    }
+
     void dispatchNewAnimatorScaleLocked(Session session) {
         mH.obtainMessage(H.NEW_ANIMATOR_SCALE, session).sendToTarget();
     }
