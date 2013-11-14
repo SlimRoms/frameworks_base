@@ -28,7 +28,7 @@ oneway interface IStatusBar
     void removeIcon(int index);
     void disable(int state);
     void animateExpandNotificationsPanel();
-    void animateExpandSettingsPanel();
+    void animateExpandSettingsPanel(boolean flip);
     void animateCollapsePanels();
     void setSystemUiVisibility(int vis, int mask);
     void topAppWindowChanged(boolean menuVisible);
@@ -47,5 +47,10 @@ oneway interface IStatusBar
     void showScreenPinningRequest();
     void setAutoRotate(boolean enabled);
     void showCustomIntentAfterKeyguard(inout Intent intent);
+    void toggleNotificationShade();
+    void toggleQSShade();
+    void toggleScreenshot();
+    void toggleLastApp();
+    void toggleKillApp();
 }
 

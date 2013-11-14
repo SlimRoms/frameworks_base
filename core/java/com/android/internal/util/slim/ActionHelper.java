@@ -64,6 +64,45 @@ public class ActionHelper {
                     Settings.System.LOCKSCREEN_SHORTCUTS, config);
     }
 
+    // get @ButtonConfig with description if needed and other then an app description
+    public static ArrayList<ButtonConfig> getNavBarConfigWithDescription(
+            Context context, String values, String entries) {
+        return (getButtonsConfigValues(context,
+            getNavBarProvider(context), values, entries, false));
+    }
+
+    public static void setNavBarConfig(Context context,
+            ArrayList<ButtonConfig> buttonsConfig, boolean reset) {
+        String config;
+        if (reset) {
+            config = ButtonsConstants.NAVIGATION_CONFIG_DEFAULT;
+        } else {
+            config = setButtonsConfig(buttonsConfig, false);
+        }
+        Settings.System.putString(context.getContentResolver(),
+                    Settings.System.NAVIGATION_BAR_CONFIG,
+                    config);
+    }
+
+    public static ArrayList<ButtonConfig> getNavRingConfigWithDescription(
+            Context context, String values, String entries) {
+        return (getButtonsConfigValues(context,
+            getNavRingProvider(context), values, entries, false));
+    }
+
+    public static void setNavRingConfig(Context context,
+            ArrayList<ButtonConfig> buttonsConfig, boolean reset) {
+        String config;
+        if (reset) {
+            config = ButtonsConstants.NAV_RING_CONFIG_DEFAULT;
+        } else {
+            config = setButtonsConfig(buttonsConfig, false);
+        }
+        Settings.System.putString(context.getContentResolver(),
+                    Settings.System.NAVRING_CONFIG,
+                    config);
+    }
+
     // General methods to retrieve the correct icon for the respective action.
     public static Drawable getActionIconImage(Context context,
             String clickAction, String customIcon) {
