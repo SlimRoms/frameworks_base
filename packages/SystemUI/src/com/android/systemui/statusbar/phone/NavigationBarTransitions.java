@@ -25,7 +25,10 @@ import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 
 import com.android.internal.statusbar.IStatusBarService;
+import com.android.systemui.statusbar.policy.KeyButtonView;
 import com.android.systemui.R;
+
+import java.util.List;
 
 public final class NavigationBarTransitions extends BarTransitions {
 
