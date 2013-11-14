@@ -194,6 +194,51 @@ public class StatusBarManagerService extends IStatusBarService.Stub {
     }
 
     @Override
+    public void toggleNotificationShade() {
+        if (mBar != null) {
+            try {
+                mBar.toggleNotificationShade();
+            } catch (RemoteException ex) {}
+        }
+    }
+
+    @Override
+    public void toggleQSShade() {
+        if (mBar != null) {
+            try {
+                mBar.toggleQSShade();
+            } catch (RemoteException ex) {}
+        }
+    }
+
+    @Override
+    public void toggleScreenshot() {
+        if (mBar != null) {
+            try {
+                mBar.toggleScreenshot();
+            } catch (RemoteException ex) {}
+        }
+    }
+
+    @Override
+    public void toggleLastApp() {
+        if (mBar != null) {
+            try {
+                mBar.toggleLastApp();
+            } catch (RemoteException ex) {}
+        }
+    }
+
+    @Override
+    public void toggleKillApp() {
+        if (mBar != null) {
+            try {
+                mBar.toggleKillApp();
+            } catch (RemoteException ex) {}
+        }
+    }
+
+    @Override
     public void disable(int what, IBinder token, String pkg) {
         disableInternal(mCurrentUserId, what, token, pkg);
     }
