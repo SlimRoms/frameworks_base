@@ -85,7 +85,7 @@ public class BarTransitions {
         if (!HIGH_END && (mode == MODE_LIGHTS_OUT_TRANSPARENT)) {
             mode = MODE_LIGHTS_OUT;
         }
-        if (mMode == mode) return;
+        //if (mMode == mode && mode != MODE_WARNING) return;
         int oldMode = mMode;
         mMode = mode;
         if (DEBUG) Log.d(mTag, String.format("%s -> %s animate=%s",
