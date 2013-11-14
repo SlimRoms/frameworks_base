@@ -19,6 +19,7 @@ package android.view;
 import com.android.internal.view.IInputContext;
 import com.android.internal.view.IInputMethodClient;
 
+import android.content.Intent;
 import android.content.res.CompatibilityInfo;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -127,6 +128,13 @@ interface IWindowManager
     void dismissKeyguard();
     void keyguardGoingAway(boolean disableWindowAnimations,
             boolean keyguardGoingToNotificationShade);
+
+    /**
+     * Tell keyguard to show a custom intent after asking for the user's
+     * credentials.
+     * @hide
+     */
+    void showCustomIntentOnKeyguard(inout Intent intent);
 
     void closeSystemDialogs(String reason);
 

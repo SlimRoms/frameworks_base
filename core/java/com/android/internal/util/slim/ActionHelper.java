@@ -37,6 +37,7 @@ import java.util.ArrayList;
 public class ActionHelper {
 
     private static final String SYSTEMUI_METADATA_NAME = "com.android.systemui";
+    private static final String SETTINGS_METADATA_NAME = "com.android.settings";
 
     // get and set the lockcreen shortcut configs from provider and return propper arraylist objects
     // @ActionConfig
@@ -64,6 +65,151 @@ public class ActionHelper {
                     Settings.System.LOCKSCREEN_SHORTCUTS, config);
     }
 
+    // get and set the navbar configs from provider and return propper arraylist objects
+    // @ActionConfig
+    public static ArrayList<ActionConfig> getNavBarConfig(Context context) {
+        return (getButtonsConfigValues(context,
+            getNavBarProvider(context), null, null, false));
+    }
+
+    // get @ActionConfig with description if needed and other then an app description
+    public static ArrayList<ActionConfig> getNavBarConfigWithDescription(
+            Context context, String values, String entries) {
+        return (getButtonsConfigValues(context,
+            getNavBarProvider(context), values, entries, false));
+    }
+
+    private static String getNavBarProvider(Context context) {
+        String config = Settings.System.getStringForUser(
+                    context.getContentResolver(),
+                    Settings.System.NAVIGATION_BAR_CONFIG,
+                    UserHandle.USER_CURRENT);
+        if (config == null) {
+            config = ActionConstants.NAVIGATION_CONFIG_DEFAULT;
+        }
+        return config;
+    }
+
+    public static void setNavBarConfig(Context context,
+            ArrayList<ActionConfig> actionConfig, boolean reset) {
+        String config;
+        if (reset) {
+            config = ActionConstants.NAVIGATION_CONFIG_DEFAULT;
+        } else {
+            config = setButtonsConfig(actionConfig, false);
+        }
+        Settings.System.putString(context.getContentResolver(),
+                    Settings.System.NAVIGATION_BAR_CONFIG,
+                    config);
+    }
+
+    // get and set the navring configs from provider and return propper arraylist objects
+    // @ActionConfig
+    public static ArrayList<ActionConfig> getNavRingConfig(Context context) {
+        return (getButtonsConfigValues(context,
+            getNavRingProvider(context), null, null, false));
+    }
+
+    public static ArrayList<ActionConfig> getNavRingConfigWithDescription(
+            Context context, String values, String entries) {
+        return (getButtonsConfigValues(context,
+            getNavRingProvider(context), values, entries, false));
+    }
+
+    private static String getNavRingProvider(Context context) {
+        String config = Settings.System.getStringForUser(
+                    context.getContentResolver(),
+                    Settings.System.NAVRING_CONFIG,
+                    UserHandle.USER_CURRENT);
+        if (config == null) {
+            config = ActionConstants.NAV_RING_CONFIG_DEFAULT;
+        }
+        return config;
+    }
+
+    public static void setNavRingConfig(Context context,
+            ArrayList<ActionConfig> actionConfig, boolean reset) {
+        String config;
+        if (reset) {
+            config = ActionConstants.NAV_RING_CONFIG_DEFAULT;
+        } else {
+            config = setButtonsConfig(actionConfig, false);
+        }
+        Settings.System.putString(context.getContentResolver(),
+                    Settings.System.NAVRING_CONFIG,
+                    config);
+    }
+
+    private static ArrayList<ActionConfig> getButtonsConfigValues(Context context, String config,
+                String values, String entries, boolean isShortcut) {
+        // init vars to fill with them later the config values
+        int counter = 0;
+        ArrayList<ActionConfig> actionConfigList = new ArrayList<ActionConfig>();
+        ActionConfig actionConfig = null;
+
+        PackageManager pm = context.getPackageManager();
+        Resources settingsResources = null;
+        try {
+            settingsResources = pm.getResourcesForApplication(SETTINGS_METADATA_NAME);
+        } catch (Exception e) {
+            Log.e("ActionHelper:", "can't access settings resources",e);
+        }
+
+        // Split out the config to work with and add to the list
+        for (String configValue : config.split("\\" + ActionConstants.ACTION_DELIMITER)) {
+            counter++;
+            if (counter == 1) {
+                actionConfig = new ActionConfig(configValue,
+                            getProperSummary(pm, settingsResources,
+                            configValue, values, entries), null, null, null);
+            }
+            if (counter == 2) {
+                if (isShortcut) {
+                    actionConfig.setIcon(configValue);
+                    actionConfigList.add(actionConfig);
+                    //reset counter due that shortcut iteration of one button is finished
+                    counter = 0;
+                } else {
+                    actionConfig.setLongpressAction(configValue);
+                    actionConfig.setLongpressActionDescription(
+                            getProperSummary(pm, settingsResources,
+                            configValue, values, entries));
+                }
+            }
+            if (counter == 3) {
+                actionConfig.setIcon(configValue);
+                actionConfigList.add(actionConfig);
+                //reset counter due that iteration of full config button is finished
+                counter = 0;
+            }
+        }
+
+        return actionConfigList;
+    }
+
+    
+
+    private static String setButtonsConfig(
+            ArrayList<ActionConfig> actionConfig, boolean isShortcut) {
+        String finalConfig = "";
+        ActionConfig config;
+
+        for (int i = 0; i < actionConfig.size(); i++) {
+            if (i != 0) {
+                finalConfig += ActionConstants.ACTION_DELIMITER;
+            }
+            config = actionConfig.get(i);
+            finalConfig += config.getClickAction() + ActionConstants.ACTION_DELIMITER;
+            if (!isShortcut) {
+                finalConfig += config.getLongpressAction()
+                    + ActionConstants.ACTION_DELIMITER;
+            }
+            finalConfig += config.getIcon();
+        }
+
+        return finalConfig;
+    }
+
     // General methods to retrieve the correct icon for the respective action.
     public static Drawable getActionIconImage(Context context,
             String clickAction, String customIcon) {
@@ -78,7 +224,7 @@ public class ActionHelper {
         try {
             systemUiResources = pm.getResourcesForApplication(SYSTEMUI_METADATA_NAME);
         } catch (Exception e) {
-            Log.e("ButtonsHelper:", "can't access systemui resources",e);
+            Log.e("ActionHelper:", "can't access systemui resources",e);
             return null;
         }
 
@@ -183,6 +329,58 @@ public class ActionHelper {
                         SYSTEMUI_METADATA_NAME + ":drawable/ic_sysbar_null", null, null);
         }
         return resId;
+    }
+
+    private static String getProperSummary(PackageManager pm,
+            Resources settingsResources, String action, String values, String entries) {
+
+        if (pm == null || settingsResources == null || action == null) {
+            return null;
+        }
+
+        if (values != null && entries != null) {
+            int resIdEntries = -1;
+            int resIdValues = -1;
+
+            resIdEntries = settingsResources.getIdentifier(
+                        SETTINGS_METADATA_NAME + ":array/" + entries, null, null);
+
+            resIdValues = settingsResources.getIdentifier(
+                        SETTINGS_METADATA_NAME + ":array/" + values, null, null);
+
+            if (resIdEntries > 0 && resIdValues > 0) {
+                try {
+                    String[] entriesArray = settingsResources.getStringArray(resIdEntries);
+                    String[] valuesArray = settingsResources.getStringArray(resIdValues);
+                    for (int i = 0; i < valuesArray.length; i++) {
+                        if (action.equals(valuesArray[i])) {
+                            return entriesArray[i];
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return getFriendlyNameForUri(pm, action);
+    }
+
+    private static String getFriendlyNameForUri(PackageManager pm, String uri) {
+        if (uri == null || uri.startsWith("**")) {
+            return null;
+        }
+
+        try {
+            Intent intent = Intent.parseUri(uri, 0);
+            if (Intent.ACTION_MAIN.equals(intent.getAction())) {
+                return getFriendlyActivityName(pm, intent, false);
+            }
+            return getFriendlyShortcutName(pm, intent);
+        } catch (URISyntaxException e) {
+        }
+
+        return uri;
     }
 
 }
