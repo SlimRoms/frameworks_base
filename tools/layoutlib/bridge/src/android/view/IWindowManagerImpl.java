@@ -493,4 +493,20 @@ public class IWindowManagerImpl implements IWindowManager {
         // TODO Auto-generated method stub
         return null;
     }
+
+    @Override
+    public boolean isRotationFrozen() throws RemoteException {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public void setTouchExplorationEnabled(boolean enabled) {
+    }
+
+    /* @hide */
+    @Override
+    public void showCustomIntentOnKeyguard(Intent intent) {
+
+    }
 }
