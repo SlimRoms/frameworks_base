@@ -112,6 +112,17 @@ public class TvStatusBar extends BaseStatusBar {
     public void showCustomIntentAfterKeyguard(Intent intent) {
     }
 
+    public void toggleNotificationShade() {
+    }
+
+    @Override // CommandQueue
+    public void toggleQSShade() {
+    }
+
+    @Override
+    protected void createAndAddWindows() {
+    }
+
     @Override
     protected WindowManager.LayoutParams getSearchLayoutParams(
             LayoutParams layoutParams) {

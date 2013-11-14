@@ -1094,6 +1094,29 @@ public class KeyguardHostView extends KeyguardViewBase {
         mViewStateManager.showBouncer(show);
     }
 
+    public void showCustomIntent(Intent intent) {
+        startActivity(intent);
+    }
+
+    public void showAssistant() {
+        final Intent intent = ((SearchManager) mContext.getSystemService(Context.SEARCH_SERVICE))
+          .getAssistIntent(mContext, true, UserHandle.USER_CURRENT);
+        startActivity(intent);
+    }
+
+    private void startActivity(Intent intent) {
+        if (intent == null) return;
+
+        final ActivityOptions opts = ActivityOptions.makeCustomAnimation(mContext,
+                R.anim.keyguard_action_assist_enter, R.anim.keyguard_action_assist_exit,
+                getHandler(), null);
+
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        mActivityLauncher.launchActivityWithAnimation(
+                intent, false, opts.toBundle(), null, null);
+    }
+
     @Override
     public void onExternalMotionEvent(MotionEvent event) {
         mAppWidgetContainer.handleExternalCameraEvent(event);

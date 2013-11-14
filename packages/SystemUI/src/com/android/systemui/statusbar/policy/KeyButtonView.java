@@ -21,11 +21,17 @@ import android.animation.ObjectAnimator;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.hardware.input.InputManager;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.SystemClock;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.HapticFeedbackConstants;
@@ -39,6 +45,9 @@ import android.view.ViewConfiguration;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.ImageView;
+
+import com.android.internal.util.slim.ButtonsConstants;
+import com.android.internal.util.slim.SlimActions;
 
 import com.android.systemui.R;
 
@@ -66,6 +75,7 @@ public class KeyButtonView extends ImageView {
 
     private final Runnable mCheckLongPress = new Runnable() {
         public void run() {
+            mIsLongpressed = true;
             if (isPressed()) {
                 // Log.d("KeyButtonView", "longpressed: " + this);
                 if (isLongClickable()) {
@@ -75,6 +85,8 @@ public class KeyButtonView extends ImageView {
                     sendEvent(KeyEvent.ACTION_DOWN, KeyEvent.FLAG_LONG_PRESS);
                     sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_LONG_CLICKED);
                 }
+                performLongClick();
+                setHapticFeedbackEnabled(true);
             }
         }
     };
@@ -122,6 +134,44 @@ public class KeyButtonView extends ImageView {
         super.onWindowVisibilityChanged(visibility);
         if (visibility != View.VISIBLE) {
             jumpDrawablesToCurrentState();
+        }
+    }
+
+    public void setCode(int code) {
+        mCode = code;
+    }
+
+    public void setClickAction(String action) {
+        mClickAction = action;
+        setOnClickListener(mClickListener);
+    }
+
+    public void setLongpressAction(String action) {
+        mLongpressAction = action;
+        if (!action.equals(ButtonsConstants.ACTION_NULL)) {
+            mSupportsLongpress = true;
+            setOnLongClickListener(mLongPressListener);
+        }
+    }
+
+    public void setGlowBackground(int id) {
+        mGlowBG = getResources().getDrawable(id);
+        if (mGlowBG != null) {
+            setDrawingAlpha(mQuiescentAlpha);
+            mGlowWidth = mGlowBG.getIntrinsicWidth();
+            mGlowHeight = mGlowBG.getIntrinsicHeight();
+            int defaultColor = mContext.getResources().getColor(
+                    com.android.internal.R.color.white);
+            mGlowBGColor = Settings.System.getIntForUser(mContext.getContentResolver(),
+                    Settings.System.NAVIGATION_BAR_GLOW_TINT,
+                    -2, UserHandle.USER_CURRENT);
+
+            if (mGlowBGColor == -2) {
+                mGlowBGColor = defaultColor;
+            }
+            mGlowBG.setColorFilter(null);
+            mGlowBG.setColorFilter(mGlowBGColor, Mode.SRC_ATOP);
+
         }
     }
 
@@ -182,14 +232,11 @@ public class KeyButtonView extends ImageView {
 
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-                //Log.d("KeyButtonView", "press");
                 mDownTime = SystemClock.uptimeMillis();
+                mIsLongpressed = false;
                 setPressed(true);
                 if (mCode != 0) {
                     sendEvent(KeyEvent.ACTION_DOWN, 0, mDownTime);
-                } else {
-                    // Provide the same haptic feedback that the system offers for virtual keys.
-                    performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 }
                 if (mSupportsLongpress) {
                     removeCallbacks(mCheckLongPress);
@@ -219,18 +266,25 @@ public class KeyButtonView extends ImageView {
             case MotionEvent.ACTION_UP:
                 final boolean doIt = isPressed();
                 setPressed(false);
-                if (mCode != 0) {
-                    if (doIt) {
-                        sendEvent(KeyEvent.ACTION_UP, 0);
-                        sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_CLICKED);
-                        playSoundEffect(SoundEffectConstants.CLICK);
+                if (!mIsLongpressed) {
+                    if (mCode != 0) {
+                        if (doIt) {
+                            sendEvent(KeyEvent.ACTION_UP, 0);
+                        } else {
+                            sendEvent(KeyEvent.ACTION_UP, KeyEvent.FLAG_CANCELED);
+                        }
                     } else {
-                        sendEvent(KeyEvent.ACTION_UP, KeyEvent.FLAG_CANCELED);
+                        // no key code, it is a custom click action
+                        if (doIt) {
+                            if (mClickAction != null
+                                && !SlimActions.isActionKeyEvent(mClickAction)) {
+                                performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                            }
+                            performClick();
+                        }
                     }
-                } else {
-                    // no key code, just a regular ImageView
                     if (doIt) {
-                        performClick();
+                        sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_CLICKED);
                     }
                 }
                 if (mSupportsLongpress) {
@@ -246,7 +300,23 @@ public class KeyButtonView extends ImageView {
         mAudioManager.playSoundEffect(soundConstant, ActivityManager.getCurrentUser());
     };
 
-    public void sendEvent(int action, int flags) {
+    private OnClickListener mClickListener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            SlimActions.processAction(mContext, mClickAction, false);
+            return;
+        }
+    };
+
+    private OnLongClickListener mLongPressListener = new OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View v) {
+            SlimActions.processAction(mContext, mLongpressAction, true);
+            return true;
+        }
+    };
+
+    void sendEvent(int action, int flags) {
         sendEvent(action, flags, SystemClock.uptimeMillis());
     }
 

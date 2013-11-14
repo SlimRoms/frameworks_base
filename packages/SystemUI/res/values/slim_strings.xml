@@ -74,4 +74,7 @@
     <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_ambient_display_changed_on">Ambient Display turned on.</string>
 
+    <!-- Kill app toast -->
+    <string name="app_killed_message">App Killed</string>
+
 </resources>
