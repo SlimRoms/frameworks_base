@@ -130,4 +130,7 @@
     <color name="segmented_button_unselected">#B3B0BEC5</color><!-- 70% blue grey 200 -->
     <color name="volume_panel_divider">#1FFFFFFF</color><!-- 12% white -->
 
+    <!-- Navigation bar -->
+    <color name="navigationbar_button_default_color">#FFFFFFFF</color>
+
 </resources>
