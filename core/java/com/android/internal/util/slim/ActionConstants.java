@@ -19,7 +19,7 @@ package com.android.internal.util.slim;
 public class ActionConstants {
 
     // key must fit with the values arrays from Settings to use
-    // SlimActions.java actions
+    // Action.java actions
     public static final String ACTION_HOME                 = "**home**";
     public static final String ACTION_BACK                 = "**back**";
     public static final String ACTION_SEARCH               = "**search**";
