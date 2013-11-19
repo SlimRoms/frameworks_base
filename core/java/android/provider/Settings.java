@@ -2723,6 +2723,27 @@ public final class Settings {
         public static final String POWER_MENU_CONFIG = "power_menu_config";
 
         /**
+         * Text color for advanced power menu
+         *
+         * @hide
+         */
+        public static final String POWER_MENU_TEXT_COLOR = "power_menu_text_color";
+
+        /**
+         * Icon color for advanced power menu
+         *
+         * @hide
+         */
+        public static final String POWER_MENU_ICON_COLOR = "power_menu_icon_color";
+
+        /**
+         * Icon color mode for advanced power menu
+         *
+         * @hide
+         */
+        public static final String POWER_MENU_ICON_COLOR_MODE = "power_menu_icon_color_mode";
+
+        /**
          * Volume rocker wake
          * @hide
          */
