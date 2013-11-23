@@ -101,12 +101,14 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
     private Action mSilentModeAction;
     private ToggleAction mAirplaneModeOn;
+    private ToggleAction mExpandDesktopModeOn;
 
     private MyAdapter mAdapter;
 
     private boolean mKeyguardShowing = false;
     private boolean mDeviceProvisioned = false;
     private ToggleAction.State mAirplaneState = ToggleAction.State.Off;
+    private ToggleAction.State mExpandDesktopState = ToggleAction.State.Off;
     private boolean mIsWaitingForEcmExit = false;
     private boolean mHasTelephony;
     private boolean mHasVibrator;
@@ -333,6 +335,12 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                             config.getClickAction(), config.getIcon(), true),
                             config.getClickActionDescription());
                 mItems.add(mAirplaneModeOn);
+            // expanded desktop mode
+            } else if (config.getClickAction().equals(PolicyConstants.ACTION_EXPANDED_DESKTOP)) {
+                constructExpandedDesktopToggle(PolicyHelper.getPowerMenuIconImage(mContext,
+                            config.getClickAction(), config.getIcon(), true),
+                            config.getClickActionDescription());
+                mItems.add(mExpandDesktopModeOn);
             // silent mode
             } else if ((config.getClickAction().equals(PolicyConstants.ACTION_SOUND)) && (mShowSilentToggle)) {
                 mItems.add(mSilentModeAction);
@@ -434,6 +442,30 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         onAirplaneModeChanged();
     }
 
+    private void constructExpandedDesktopToggle(Drawable icon, String description) {
+        mExpandDesktopModeOn = new ToggleAction(
+                icon,
+                icon,
+                description,
+                R.string.global_actions_expanded_desktop_mode_on_status,
+                R.string.global_actions_expanded_desktop_mode_off_status) {
+
+            void onToggle(boolean on) {
+                SlimActions.processAction(
+                    mContext, PolicyConstants.ACTION_EXPANDED_DESKTOP, false);
+            }
+
+            public boolean showDuringKeyguard() {
+                return true;
+            }
+
+            public boolean showBeforeProvisioning() {
+                return false;
+            }
+        };
+        onExpandDesktopModeChanged();
+    }
+
     private UserInfo getCurrentUser() {
         try {
             return ActivityManagerNative.getDefault().getCurrentUser();
@@ -486,6 +518,9 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         refreshSilentMode();
         if (mAirplaneModeOn != null) {
             mAirplaneModeOn.updateState(mAirplaneState);
+        }
+        if (mExpandDesktopModeOn != null) {
+            mExpandDesktopModeOn.updateState(mExpandDesktopState);
         }
         mAdapter.notifyDataSetChanged();
         mDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
@@ -1038,6 +1073,17 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         mAirplaneState = airplaneModeOn ? ToggleAction.State.On : ToggleAction.State.Off;
         if (mAirplaneModeOn != null) {
             mAirplaneModeOn.updateState(mAirplaneState);
+        }
+    }
+
+    private void onExpandDesktopModeChanged() {
+        boolean expandDesktopModeOn = Settings.System.getIntForUser(
+                mContext.getContentResolver(),
+                Settings.System.EXPANDED_DESKTOP_STATE,
+                0, UserHandle.USER_CURRENT) == 1;
+        mExpandDesktopState = expandDesktopModeOn ? ToggleAction.State.On : ToggleAction.State.Off;
+        if (mExpandDesktopModeOn != null) {
+            mExpandDesktopModeOn.updateState(mExpandDesktopState);
         }
     }
 

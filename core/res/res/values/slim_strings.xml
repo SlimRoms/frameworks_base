@@ -61,4 +61,10 @@
     <!-- In WiFi AP notification -->
     <string name="notify_turn_wifi_ap_off_title">Turn Wi-Fi AP off</string>
 
+    <!-- status message in phone options dialog for when expanded desktop is on -->
+    <string name="global_actions_expanded_desktop_mode_on_status">Expanded desktop is ON</string>
+
+    <!-- status message in phone options dialog for when expanded desktop is off -->
+    <string name="global_actions_expanded_desktop_mode_off_status">Expanded desktop is OFF</string>
+
 </resources>
