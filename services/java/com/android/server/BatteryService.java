@@ -799,21 +799,26 @@ public final class BatteryService extends Binder {
 
             // Battery light enabled
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.BATTERY_LIGHT_ENABLED), false, this);
+                    Settings.System.BATTERY_LIGHT_ENABLED), false, this,
+                    UserHandle.USER_ALL);
 
             // Low battery pulse
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.BATTERY_LIGHT_PULSE), false, this);
+                    Settings.System.BATTERY_LIGHT_PULSE), false, this,
+                    UserHandle.USER_ALL);
 
             // Light colors
             if (mMultiColorLed) {
                 // Register observer if we have a multi color led
                 resolver.registerContentObserver(Settings.System.getUriFor(
-                        Settings.System.BATTERY_LIGHT_LOW_COLOR), false, this);
+                        Settings.System.BATTERY_LIGHT_LOW_COLOR), false, this,
+                    UserHandle.USER_ALL);
                 resolver.registerContentObserver(Settings.System.getUriFor(
-                        Settings.System.BATTERY_LIGHT_MEDIUM_COLOR), false, this);
+                        Settings.System.BATTERY_LIGHT_MEDIUM_COLOR), false, this,
+                    UserHandle.USER_ALL);
                 resolver.registerContentObserver(Settings.System.getUriFor(
-                        Settings.System.BATTERY_LIGHT_FULL_COLOR), false, this);
+                        Settings.System.BATTERY_LIGHT_FULL_COLOR), false, this,
+                    UserHandle.USER_ALL);
             }
 
             // Quiet Hours
@@ -842,23 +847,31 @@ public final class BatteryService extends Binder {
             Resources res = mContext.getResources();
 
             // Battery light enabled
-            mLightEnabled = Settings.System.getInt(resolver,
-                    Settings.System.BATTERY_LIGHT_ENABLED, 1) != 0;
+            mLightEnabled = Settings.System.getIntForUser(resolver,
+                    Settings.System.BATTERY_LIGHT_ENABLED, 1,
+                    UserHandle.USER_CURRENT_OR_SELF) != 0;
 
             // Low battery pulse
-            mLedPulseEnabled = Settings.System.getInt(resolver,
-                        Settings.System.BATTERY_LIGHT_PULSE, 1) != 0;
+            mLedPulseEnabled = Settings.System.getIntForUser(resolver,
+                        Settings.System.BATTERY_LIGHT_PULSE, 1,
+                    UserHandle.USER_CURRENT_OR_SELF) != 0;
 
             // Light colors
-            mBatteryLowARGB = Settings.System.getInt(resolver,
+            mBatteryLowARGB = Settings.System.getIntForUser(resolver,
                     Settings.System.BATTERY_LIGHT_LOW_COLOR,
-                    res.getInteger(com.android.internal.R.integer.config_notificationsBatteryLowARGB));
-            mBatteryMediumARGB = Settings.System.getInt(resolver,
+                    res.getInteger(
+                        com.android.internal.R.integer.config_notificationsBatteryLowARGB),
+                    UserHandle.USER_CURRENT_OR_SELF);
+            mBatteryMediumARGB = Settings.System.getIntForUser(resolver,
                     Settings.System.BATTERY_LIGHT_MEDIUM_COLOR,
-                    res.getInteger(com.android.internal.R.integer.config_notificationsBatteryMediumARGB));
-            mBatteryFullARGB = Settings.System.getInt(resolver,
+                    res.getInteger(
+                        com.android.internal.R.integer.config_notificationsBatteryMediumARGB),
+                    UserHandle.USER_CURRENT_OR_SELF);
+            mBatteryFullARGB = Settings.System.getIntForUser(resolver,
                     Settings.System.BATTERY_LIGHT_FULL_COLOR,
-                    res.getInteger(com.android.internal.R.integer.config_notificationsBatteryFullARGB));
+                    res.getInteger(
+                        com.android.internal.R.integer.config_notificationsBatteryFullARGB),
+                    UserHandle.USER_CURRENT_OR_SELF);
 
             // Quiet Hours
             mQuietHoursEnabled = Settings.System.getIntForUser(resolver,
