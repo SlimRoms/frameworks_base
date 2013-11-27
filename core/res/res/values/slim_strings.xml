@@ -67,4 +67,7 @@
     <!-- status message in phone options dialog for when expanded desktop is off -->
     <string name="global_actions_expanded_desktop_mode_off_status">Expanded desktop is OFF</string>
 
+    <!-- Description of accessibility direction for targets [CHAR LIMIT=NONE] -->
+    <string name="accessibility_target_direction">Swipe to activate a target</string>
+
 </resources>
