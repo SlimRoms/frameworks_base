@@ -28,4 +28,7 @@
     <!--ScreenShot Trash-->
     <string name="screenshot_notification_delete">Delete</string>
 
+    <!-- Content description of the data connection type HSPA+ for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_data_connection_HP">HSPA+</string>
+
 </resources>
