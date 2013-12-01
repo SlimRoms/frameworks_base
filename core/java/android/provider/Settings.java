@@ -2950,6 +2950,14 @@ public final class Settings {
         public static final String MUSIC_TILE_MODE = "music_tile_mode";
 
         /**
+         * Show icon when stylus is used?
+         * 0 = no
+         * 1 = yes
+         * @hide
+         */
+        public static final String STYLUS_ICON_ENABLED = "stylus_icon_enabled";
+
+        /**
          * QuickSettings network modes to switch
          * @hide
          */
