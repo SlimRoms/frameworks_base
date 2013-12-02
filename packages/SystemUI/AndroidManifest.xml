@@ -34,6 +34,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.MANAGE_NETWORK_POLICY" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 
     <!-- Physical hardware -->
     <uses-permission android:name="android.permission.MANAGE_USB" />
@@ -73,6 +74,13 @@
 
     <!-- Kill app permission -->
     <uses-permission android:name="android.permission.FORCE_STOP_PACKAGES" />
+
+    <!-- Sync -->
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+
+    <!-- Reboot -->
+    <uses-permission android:name="android.permission.REBOOT" />
 
     <application
         android:persistent="true"
