@@ -6582,7 +6582,7 @@ public final class ActivityManagerService extends ActivityManagerNative
                                 },
                                 0, null, null,
                                 new String[] {android.Manifest.permission.RECEIVE_BOOT_COMPLETED},
-                                AppOpsManager.OP_NONE, null, true, false,
+                                AppOpsManager.OP_BOOT_COMPLETED, null, true, false,
                                 MY_PID, Process.SYSTEM_UID, userId);
                     }
                 }
@@ -20455,7 +20455,7 @@ public final class ActivityManagerService extends ActivityManagerNative
                 broadcastIntentLocked(null, null, intent,
                         null, null, 0, null, null,
                         new String[] {android.Manifest.permission.RECEIVE_BOOT_COMPLETED},
-                        AppOpsManager.OP_NONE, null, true, false, MY_PID, Process.SYSTEM_UID,
+                        AppOpsManager.OP_BOOT_COMPLETED, null, true, false, MY_PID, Process.SYSTEM_UID,
                         userId);
             }
         }
