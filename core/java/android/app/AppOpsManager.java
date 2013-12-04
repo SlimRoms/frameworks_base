@@ -230,7 +230,9 @@ public class AppOpsManager {
     /** @hide */
     public static final int OP_WRITE_MMS = 52;
     /** @hide */
-    public static final int _NUM_OP = 53;
+    public static final int OP_BOOT_COMPLETED = 53;
+    /** @hide */
+    public static final int _NUM_OP = 54;
 
     /** Access to coarse location information. */
     public static final String OPSTR_COARSE_LOCATION =
@@ -345,6 +347,8 @@ public class AppOpsManager {
             "android:read_mms";
     private static final String OPSTR_WRITE_MMS =
             "android:write_mms";
+    private static final String OPSTR_BOOT_COMPLETED =
+            "android:boot_completed";
 
     /**
      * This maps each operation to the operation that serves as the
@@ -408,6 +412,7 @@ public class AppOpsManager {
             OP_SEND_MMS,
             OP_READ_MMS,
             OP_WRITE_MMS,
+            OP_BOOT_COMPLETED,
     };
 
     /**
@@ -464,6 +469,7 @@ public class AppOpsManager {
             null,
             null,
             OPSTR_ACTIVATE_VPN,
+            null,
             null,
             null,
             null,
@@ -528,6 +534,7 @@ public class AppOpsManager {
         OPSTR_SEND_MMS,
         OPSTR_READ_MMS,
         OPSTR_WRITE_MMS,
+        OPSTR_BOOT_COMPLETED,
     };
 
     /**
@@ -588,6 +595,7 @@ public class AppOpsManager {
             "SEND_MMS",
             "READ_MMS",
             "WRITE_MMS",
+            "BOOT_COMPLETED",
     };
 
     /**
@@ -648,6 +656,7 @@ public class AppOpsManager {
             android.Manifest.permission.SEND_SMS,
             android.Manifest.permission.READ_SMS,
             android.Manifest.permission.WRITE_SMS,
+            android.Manifest.permission.RECEIVE_BOOT_COMPLETED,
     };
 
     /**
@@ -709,6 +718,7 @@ public class AppOpsManager {
             null, //SEND_MMS
             null, //READ_MMS
             null, //WRITE_MMS
+            null, //BOOT_COMPLETED
     };
 
     /**
@@ -769,6 +779,7 @@ public class AppOpsManager {
             false, // SEND_MMS
             false, // READ_MMS
             false, // WRITE_MMS
+            false, // BOOT_COMPLETED
     };
 
     /**
@@ -899,6 +910,7 @@ public class AppOpsManager {
             AppOpsManager.MODE_ALLOWED,
             AppOpsManager.MODE_ALLOWED,
             AppOpsManager.MODE_ALLOWED,
+            AppOpsManager.MODE_ALLOWED,
     };
 
     /**
@@ -959,6 +971,7 @@ public class AppOpsManager {
             AppOpsManager.MODE_ASK,     // OP_SEND_MMS
             AppOpsManager.MODE_ASK,     // OP_READ_MMS
             AppOpsManager.MODE_ASK,     // OP_WRITE_MMS
+            AppOpsManager.MODE_ALLOWED, // OP_BOOT_COMPLETED
     };
 
     /**
@@ -1018,6 +1031,7 @@ public class AppOpsManager {
         true,     // OP_SEND_MMS
         true,     // OP_READ_MMS
         true,     // OP_WRITE_MMS
+        false,    // OP_BOOT_COMPLETED
     };
 
     /**
@@ -1081,6 +1095,7 @@ public class AppOpsManager {
             false,     // OP_SEND_MMS
             false,     // OP_READ_MMS
             false,     // OP_WRITE_MMS
+            false,     // OP_BOOT_COMPLETED
     };
 
     private static HashMap<String, Integer> sOpStrToOp = new HashMap<String, Integer>();
