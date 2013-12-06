@@ -201,7 +201,7 @@ public class KeyguardViewMediator {
 
     // cached value of whether we are showing (need to know this to quickly
     // answer whether the input should be restricted)
-    private boolean mShowing = false;
+    private boolean mShowing;
 
     // true if the keyguard is hidden by another window
     private boolean mHidden = false;
@@ -252,6 +252,11 @@ public class KeyguardViewMediator {
      * The volume applied to the lock/unlock sounds.
      */
     private final float mLockSoundVolume;
+
+    /**
+     * For managing external displays
+     */
+    private KeyguardDisplayManager mKeyguardDisplayManager;
 
     /**
      * Cache of avatar drawables, for use by KeyguardMultiUserAvatar.
@@ -305,6 +310,11 @@ public class KeyguardViewMediator {
          * Report that the keyguard is dismissable, pending the next keyguardDone call.
          */
         void keyguardDonePending();
+
+        /**
+         * Report when keyguard is actually gone
+         */
+        void keyguardGone();
     }
 
     KeyguardUpdateMonitorCallback mUpdateCallback = new KeyguardUpdateMonitorCallback() {
@@ -458,6 +468,11 @@ public class KeyguardViewMediator {
         public void keyguardDonePending() {
             mKeyguardDonePending = true;
         }
+
+        @Override
+        public void keyguardGone() {
+            mKeyguardDisplayManager.hide();
+        }
     };
 
     private void userActivity() {
@@ -484,6 +499,8 @@ public class KeyguardViewMediator {
 
         mContext.registerReceiver(mBroadcastReceiver, new IntentFilter(DELAYED_KEYGUARD_ACTION));
 
+        mKeyguardDisplayManager = new KeyguardDisplayManager(context);
+
         mAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
         mUpdateMonitor = KeyguardUpdateMonitor.getInstance(context);
@@ -491,6 +508,10 @@ public class KeyguardViewMediator {
         mLockPatternUtils = lockPatternUtils != null
                 ? lockPatternUtils : new LockPatternUtils(mContext);
         mLockPatternUtils.setCurrentUser(UserHandle.USER_OWNER);
+
+        // Assume keyguard is showing (unless it's disabled) until we know for sure...
+        mShowing = (mUpdateMonitor.isDeviceProvisioned() || mLockPatternUtils.isSecure())
+                && !mLockPatternUtils.isLockScreenDisabled();
 
         WindowManager wm = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
 
@@ -1228,6 +1249,7 @@ public class KeyguardViewMediator {
 
             mShowKeyguardWakeLock.release();
         }
+        mKeyguardDisplayManager.show();
     }
 
     /**

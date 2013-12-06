@@ -20,7 +20,6 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningAppProcessInfo;
 import android.app.ActivityManagerNative;
-import android.app.KeyguardManager;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
@@ -80,6 +79,7 @@ import com.android.systemui.R;
 import com.android.systemui.RecentsComponent;
 import com.android.systemui.SearchPanelView;
 import com.android.systemui.SystemUI;
+import com.android.systemui.statusbar.phone.KeyguardTouchDelegate;
 import com.android.systemui.statusbar.policy.NotificationRowLayout;
 
 import java.util.ArrayList;
@@ -142,7 +142,6 @@ public abstract class BaseStatusBar extends SystemUI implements
     protected boolean mUseHeadsUp = false;
 
     protected IDreamManager mDreamManager;
-    KeyguardManager mKeyguardManager;
     PowerManager mPowerManager;
     protected int mRowHeight;
 
@@ -235,7 +234,6 @@ public abstract class BaseStatusBar extends SystemUI implements
 
         mDreamManager = IDreamManager.Stub.asInterface(
                 ServiceManager.checkService(DreamService.DREAM_SERVICE));
-        mKeyguardManager = (KeyguardManager) mContext.getSystemService(Context.KEYGUARD_SERVICE);
         mPowerManager = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
 
         mProvisioningObserver.onChange(false); // set up
@@ -806,6 +804,7 @@ public abstract class BaseStatusBar extends SystemUI implements
                     // the stack trace isn't very helpful here.  Just log the exception message.
                     Log.w(TAG, "Sending contentIntent failed: " + e);
                 }
+                KeyguardTouchDelegate.getInstance(mContext).dismiss();
             }
 
             try {
@@ -1110,10 +1109,12 @@ public abstract class BaseStatusBar extends SystemUI implements
         boolean isAllowed = notification.extras.getInt(Notification.EXTRA_AS_HEADS_UP,
                 Notification.HEADS_UP_ALLOWED) != Notification.HEADS_UP_NEVER;
 
+        final KeyguardTouchDelegate keyguard = KeyguardTouchDelegate.getInstance(mContext);
         boolean interrupt = (isFullscreen || (isHighPriority && isNoisy))
                 && isAllowed
                 && mPowerManager.isScreenOn()
-                && !mKeyguardManager.isKeyguardLocked();
+                && !keyguard.isShowingAndNotHidden()
+                && !keyguard.isInputRestricted();
         try {
             interrupt = interrupt && !mDreamManager.isDreaming();
         } catch (RemoteException e) {
@@ -1141,8 +1142,7 @@ public abstract class BaseStatusBar extends SystemUI implements
     }
 
     public boolean inKeyguardRestrictedInputMode() {
-        KeyguardManager km = (KeyguardManager) mContext.getSystemService(Context.KEYGUARD_SERVICE);
-        return km.inKeyguardRestrictedInputMode();
+        return KeyguardTouchDelegate.getInstance(mContext).isInputRestricted();
     }
 
     public void setInteracting(int barWindow, boolean interacting) {
