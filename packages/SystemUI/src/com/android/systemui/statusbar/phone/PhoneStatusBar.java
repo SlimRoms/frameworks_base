@@ -230,7 +230,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
 
     // settings
     QuickSettingsController mQS;
-    boolean mHasSettingsPanel, mHasFlipSettings;
+    boolean mHasSettingsPanel, mHideSettingsPanel, mHasFlipSettings;
     SettingsPanelView mSettingsPanel;
     View mFlipSettingsView;
     QuickSettingsContainerView mSettingsContainer;
@@ -476,6 +476,14 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
                     Settings.System.QUICK_TILES_BG_PRESSED_COLOR))
                 || uri.equals(Settings.System.getUriFor(
                     Settings.System.QUICK_TILES_BG_ALPHA))) {
+
+                String qsConfig = Settings.System.getStringForUser(mContext.getContentResolver(),
+                        Settings.System.QUICK_SETTINGS_TILES, UserHandle.USER_CURRENT);
+                boolean hideSettingsPanel = qsConfig != null && qsConfig.isEmpty();
+                if (hideSettingsPanel != mHideSettingsPanel) {
+                    recreateStatusBar(false);
+                    return;
+                }
                 if (mQS != null) {
                     mQS.setupQuickSettings();
                 }
@@ -782,8 +790,14 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
         mClearButton.setEnabled(false);
         mDateView = (DateView)mStatusBarWindow.findViewById(R.id.date);
 
-        mHasSettingsPanel = res.getBoolean(R.bool.config_hasSettingsPanel);
-        mHasFlipSettings = res.getBoolean(R.bool.config_hasFlipSettingsPanel);
+        String qsConfig = Settings.System.getStringForUser(mContext.getContentResolver(),
+                Settings.System.QUICK_SETTINGS_TILES, UserHandle.USER_CURRENT);
+        mHideSettingsPanel = qsConfig != null && qsConfig.isEmpty();
+
+        mHasSettingsPanel =
+                res.getBoolean(R.bool.config_hasSettingsPanel) && !mHideSettingsPanel;
+        mHasFlipSettings =
+                res.getBoolean(R.bool.config_hasFlipSettingsPanel) && !mHideSettingsPanel;
 
         mDateTimeView = mNotificationPanelHeader.findViewById(R.id.datetime);
         if (mDateTimeView != null) {
@@ -955,6 +969,16 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
         mCloseViewHeight = res.getDimensionPixelSize(R.dimen.close_handle_height);
         updateCarrierMargin(false);
 
+        // when we recreate statusbar shutdown quick settings before
+        // we eventually recreate them
+        if (mQS != null) {
+            mQS.shutdown();
+            mQS = null;
+            if (mSettingsPanel != null) {
+                mSettingsPanel.setQuickSettings(mQS);
+            }
+        }
+
         // Quick Settings (where available, some restrictions apply)
         if (mHasSettingsPanel) {
             // first, figure out where quick settings should be inflated
@@ -982,11 +1006,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
                                 R.color.notification_panel_solid_background)));
                     }
                 }
-            }
-
-            if (mQS != null) {
-                mQS.shutdown();
-                mQS = null;
             }
 
             // wherever you find it, Quick Settings needs a container to survive
@@ -2583,6 +2602,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
 
     @Override  // CommandQueue
     public void toggleQSShade() {
+        if (mHideSettingsPanel) {
+            return;
+        }
         int msg = 0;
         if (mHasFlipSettings) {
             msg = (mExpandedVisible)
