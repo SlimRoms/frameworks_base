@@ -2093,4 +2093,5 @@
   <java-symbol type="string" name="config_partial_segment_expire_age" />
   <java-symbol type="bool" name="config_global_phone_enabled" />
   <java-symbol type="bool" name="use_motion_accel" />
+  <java-symbol type="bool" name="config_enable_mms_with_mobile_data_off" />
 </resources>
