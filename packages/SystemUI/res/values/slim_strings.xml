@@ -21,4 +21,6 @@
     <!-- Content description of the superuser tile -->
     <string name="accessibility_su_active">Superuser session active</string>
 
+    <!-- TRDS -->
+    <string name="quick_settings_trds_label">TRDS</string>
 </resources>
