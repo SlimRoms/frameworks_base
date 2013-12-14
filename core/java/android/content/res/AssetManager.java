@@ -252,6 +252,12 @@ public final class AssetManager implements AutoCloseable {
         }
     }
 
+    /*package*/ final void recreateStringBlocks() {
+        synchronized (this) {
+            makeStringBlocks(sSystem.mStringBlocks);
+        }
+    }
+
     /*package*/ final void makeStringBlocks(StringBlock[] seed) {
         final int seedNum = (seed != null) ? seed.length : 0;
         final int num = getStringBlockCount();
@@ -701,7 +707,7 @@ public final class AssetManager implements AutoCloseable {
             int orientation, int touchscreen, int density, int keyboard,
             int keyboardHidden, int navigation, int screenWidth, int screenHeight,
             int smallestScreenWidthDp, int screenWidthDp, int screenHeightDp,
-            int screenLayout, int uiMode, int majorVersion);
+            int screenLayout, int uiThemeMode, int uiMode, int majorVersion);
 
     /**
      * Retrieve the resource identifier for the given resource name.

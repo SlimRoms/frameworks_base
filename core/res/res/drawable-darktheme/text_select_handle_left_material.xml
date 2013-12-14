@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bitmap android:src="@android:drawable/textfield_multiline_focused_holo_light" android:tint="@android:color/dim_foreground_light"
+  xmlns:android="http://schemas.android.com/apk/res/android" />

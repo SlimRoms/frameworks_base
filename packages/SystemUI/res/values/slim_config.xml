@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /*
-** Copyright 2015, The SlimROMS Project
+** Copyright 2015, SlimRoms
 **
 ** Licensed under the Apache License, Version 2.0 (the "License");
 ** you may not use this file except in compliance with the License.
@@ -23,6 +23,9 @@
 
     <!-- Doze: alternate schedule -->
     <string name="doze_pulse_schedule_alternate" translatable="false">1s</string>
+
+    <!-- TRDS tile: number of days to show after feature is used. -->
+    <integer name="days_to_show_trds_tile">14</integer>
 
 </resources>
 

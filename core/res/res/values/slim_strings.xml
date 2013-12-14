@@ -163,4 +163,7 @@
     <string name="permlab_changeHeadsUpState">enable or disable heads up</string>
     <string name="permdesc_changeHeadsUpState">Allows the application to change whether another application is allowed to show normal notifications as heads up notification.</string>
 
+    <!-- Error description on theme switch with lightsensor mode enabled -->
+    <string name="theme_auto_switch_mode_error">Automatic light condition change mode is enabled. Manual switching is not possible.</string>
+
 </resources>
