@@ -47,6 +47,7 @@ import com.android.systemui.qs.tiles.LocationTile;
 import com.android.systemui.qs.tiles.NotificationsTile;
 import com.android.systemui.qs.tiles.RoamingTile;
 import com.android.systemui.qs.tiles.RotationLockTile;
+import com.android.systemui.qs.tiles.TrdsTile;
 import com.android.systemui.qs.tiles.WifiTile;
 import com.android.systemui.settings.CurrentUserTracker;
 import com.android.systemui.statusbar.policy.BluetoothController;
@@ -292,6 +293,7 @@ public class QSTileHost implements QSTile.Host {
                 == TelephonyManager.MultiSimVariants.DSDA))
             return new DdsTile(this);
         else if (tileSpec.equals("apn")) return new ApnTile(this);
+        else if (tileSpec.equals("trds")) return new TrdsTile(this);
         else if (tileSpec.startsWith(IntentTile.PREFIX)) return IntentTile.create(this,tileSpec);
         else throw new IllegalArgumentException("Bad tile spec: " + tileSpec);
     }
