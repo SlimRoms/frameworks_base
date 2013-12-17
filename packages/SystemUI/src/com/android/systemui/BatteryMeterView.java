@@ -404,6 +404,76 @@ public class BatteryMeterView extends View implements DemoMode {
 
     private boolean mDemoMode;
     private BatteryTracker mDemoTracker = new BatteryTracker();
+    protected class CircleBatteryMeterDrawable implements BatteryMeterDrawable {
+
+        public static final float STROKE_WITH = 6.5f;
+
+        private boolean mDisposed;
+
+        // state variables
+        private int     mAnimOffset;    // current level of charging animation
+        private boolean mIsAnimating;   // stores charge-animation status to reliably
+                                        //remove callbacks
+
+        private int     mCircleSize;    // draw size of circle
+        private RectF   mRectLeft;      // contains the precalculated rect used in drawArc(),
+                                        // derived from mCircleSize
+        private float   mTextX, mTextY; // precalculated position for drawText() to appear centered
+
+        private Paint   mTextPaint;
+        private Paint   mFrontPaint;
+        private Paint   mBackPaint;
+        private Paint   mBoltPaint;
+
+        private final RectF mBoltFrame = new RectF();
+        private final float[] mBoltPoints;
+        private final Path mBoltPath = new Path();
+
+        public CircleBatteryMeterDrawable(Context ctx) {
+            super();
+            mDisposed = false;
+
+            Resources res = getResources();
+
+            mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            mTextPaint.setColor(res.getColor(R.color.status_bar_clock_color));
+            Typeface font = Typeface.create("sans-serif-condensed", Typeface.NORMAL);
+            mTextPaint.setTypeface(font);
+            mTextPaint.setTextAlign(Paint.Align.CENTER);
+
+            mFrontPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            mFrontPaint.setStrokeCap(Paint.Cap.BUTT);
+            mFrontPaint.setDither(true);
+            mFrontPaint.setStrokeWidth(0);
+            mFrontPaint.setStyle(Paint.Style.STROKE);
+            mFrontPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_ATOP));
+
+            mBackPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            mBackPaint.setColor(res.getColor(R.color.batterymeter_frame_color));
+            mBackPaint.setStrokeCap(Paint.Cap.BUTT);
+            mBackPaint.setDither(true);
+            mBackPaint.setStrokeWidth(0);
+            mBackPaint.setStyle(Paint.Style.STROKE);
+            mBackPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.XOR));
+
+            mBoltPaint = new Paint();
+            mBoltPaint.setAntiAlias(true);
+            mBoltPaint.setColor(getColorForLevel(50));
+            mBoltPoints = loadBoltPoints(res);
+        }
+
+        @Override
+        public void onDraw(Canvas c) {
+            if (mDisposed) return;
+
+            if (mRectLeft == null) {
+                initSizeBasedStuff();
+            }
+
+            final int status = mTracker.status;
+            final int level = mTracker.level;
+            updateChargeAnim(status);
+>>>>>>> 3927261... systemui: Use the same color for circle battery than clock color
 
     @Override
     public void dispatchDemoCommand(String command, Bundle args) {
