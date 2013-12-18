@@ -32,6 +32,7 @@
         android:layout_height="match_parent"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
+        android:background="@drawable/ic_notify_button_bg"
         android:enabled="false"
         >
         <com.android.systemui.statusbar.policy.ClockStock
@@ -41,8 +42,9 @@
             android:layout_marginEnd="8dp"
             android:singleLine="true"
             android:textAppearance="@style/TextAppearance.StatusBar.Expanded.Clock"
-            android:layout_centerVertical="true"
             android:background="@drawable/ic_notify_button_bg"
+            android:layout_centerVertical="true"
+            android:clickable="true"
             />
 
         <com.android.systemui.statusbar.policy.DateView
@@ -51,8 +53,10 @@
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.StatusBar.Expanded.Date"
             android:layout_toEndOf="@id/clock"
-            android:layout_centerVertical="true"
             android:background="@drawable/ic_notify_button_bg"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:layout_centerVertical="true"
             />
     </RelativeLayout>
 
