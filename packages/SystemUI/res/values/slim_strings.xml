@@ -104,4 +104,5 @@
     <string name="quick_settings_quick_record_rec">Recording...</string>
     <string name="quick_settings_quick_record_save">Saved</string>
     <string name="quick_settings_quick_record_play">Playing...</string>
+    <string name="quick_settings_custom_toggle">Custom</string>
 </resources>
