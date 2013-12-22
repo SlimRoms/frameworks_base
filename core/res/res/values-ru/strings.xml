@@ -1664,4 +1664,8 @@
   </plurals>
     <string name="restr_pin_try_later" msgid="973144472490532377">"Повторите попытку позже."</string>
     <string name="immersive_mode_confirmation" msgid="7227416894979047467">"Чтобы вернуться в обычный режим, проведите пальцем вниз."</string>
+    <string name="progress_nomediapresent" product="default">Подключенных носителей не обнаружено\u2026</string>
+    <!-- Longer version of toast bar message when hiding the transient navigation bar (if room) -->
+    <string name="transient_navigation_confirmation_long">Проведите пальцем от края экрана, чтобы активировать системную панель</string>
+    <add-resource type="bool" name="config_hotswapCapable"></add-resource>
 </resources>
