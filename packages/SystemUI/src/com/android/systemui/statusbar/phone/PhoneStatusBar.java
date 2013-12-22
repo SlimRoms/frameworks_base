@@ -263,6 +263,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
     private boolean mShowCarrierInPanel = false;
 
     private boolean mRecreating = false;
+    private boolean mTickerInProgress = false;
+    private final Object mLock = new Object();
 
     // position
     int[] mPositionTmp = new int[2];
@@ -2854,15 +2856,21 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
         // not for you
         if (!notificationIsForCurrentUser(n)) return;
 
-        // Show the ticker if one is requested. Also don't do this
-        // until status bar window is attached to the window manager,
-        // because...  well, what's the point otherwise?  And trying to
-        // run a ticker without being attached will crash!
-        if (n.getNotification().tickerText != null && mStatusBarWindow.getWindowToken() != null) {
-            if (0 == (mDisabled & (StatusBarManager.DISABLE_NOTIFICATION_ICONS
-                            | StatusBarManager.DISABLE_NOTIFICATION_TICKER))) {
-                mTicker.addEntry(n);
+        mTickerInProgress = true;
+        synchronized(mLock) {
+            // Show the ticker if one is requested. Also don't do this
+            // until status bar window is attached to the window manager,
+            // because...  well, what's the point otherwise?  And trying to
+            // run a ticker without being attached will crash!
+            if (n.getNotification().tickerText != null
+                        && mStatusBarWindow.getWindowToken() != null) {
+                if (0 == (mDisabled & (StatusBarManager.DISABLE_NOTIFICATION_ICONS
+                                | StatusBarManager.DISABLE_NOTIFICATION_TICKER))) {
+                    mTicker.addEntry(n);
+                }
             }
+            mTickerInProgress = false;
+            mLock.notifyAll();
         }
     }
 
@@ -3441,6 +3449,15 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
 
     private void recreateStatusBar(boolean recreateNavigationBar) {
         mRecreating = true;
+        synchronized(mLock){
+            while (mTickerInProgress){
+                try {
+                    mLock.wait();
+                } catch (InterruptedException e) {
+                    // bad bad
+                }
+            }
+        }
         mStatusBarContainer.removeAllViews();
         mStatusBarView.postInvalidate();
         updateDisplaySize();
