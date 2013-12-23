@@ -3150,6 +3150,13 @@ public final class Settings {
         public static final String POWER_UI_LOW_BATTERY_WARNING_POLICY =
                 "power_ui_low_battery_warning_policy";
 
+        /**
+         * Volume key controls ringtone or media sound stream
+         *
+         * @hide
+         */
+        public static final String VOLUME_KEYS_CONTROL_MEDIA_STREAM = "volume_keys_control_media_stream";
+
 
         /**
          * Hide carrier information on notification drawer
