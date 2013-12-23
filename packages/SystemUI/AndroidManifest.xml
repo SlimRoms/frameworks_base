@@ -86,6 +86,9 @@
     <!-- Reboot -->
     <uses-permission android:name="android.permission.REBOOT" />
 
+    <!-- Record Audio QuickRecord -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
     <application
         android:persistent="true"
         android:allowClearUserData="false"
