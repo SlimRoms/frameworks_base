@@ -62,7 +62,6 @@
     <string name="quick_settings_nfc">NFC</string>
     <string name="quick_settings_nfc_off">NFC ki</string>
     <string name="quick_settings_screen_timeout">Késleltetés</string>
-    <string name="quick_settings_screen_timeout_summary" translatable="false">%1$d %2$s</string>
     <string name="quick_settings_screen_timeout_summary_never">Soha</string>
     <string name="quick_settings_usb_tether_off_label">Szétkapcsolt</string>
     <string name="quick_settings_usb_tether_connected_label">Megosztás ki</string>
