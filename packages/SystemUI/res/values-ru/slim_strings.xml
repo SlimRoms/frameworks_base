@@ -67,4 +67,24 @@
     <string name="shortcut_screenshot">Снимок экрана</string>
     <string name="quick_settings_screen_sleep">Потушить экран</string>
 
+    <string name="cancel">Отмена</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="shortcut_chamber">Тайная комната</string>
+    <string name="chamber_disabled">Тайная комната закрыта</string>
+    <string name="chamber_title">Введите строку настроек</string>
+    <string name="chamber_message">Введите строку настроек, которая является либо функцией флажка (вкл/выкл), либо настройкой списка. Например, quiet_hours_ringer и тому подобное. Настройки можно найти в файле исходного кода Settings.java. ВНИМАНИЕ: Эта функция опасна!</string>
+    <string name="chamber_invalid">Введено неверное значение. Будьте внимательны.</string>
+    <string name="chamber_checkbox">Флажок</string>
+    <string name="chamber_chk_message">Это настройка флажка?</string>
+    <string name="chamber_int">Вводимые значения</string>
+    <string name="chamber_int_message">Введите значения, между которыми вы бы хотели переключаться, через запятую. Цветовые настройки задаются шестнадцатеричными значениями, например, #FF00aacc или базовыми значениями, как red, green, или yellow.</string>
+    <string name="quick_settings_theme_switch_dark">Темная тема</string>
+    <string name="quick_settings_theme_switch_light">Светлая тема</string>
+    <string name="quick_settings_quick_record_nofile">Долгое нажатие</string>
+    <string name="quick_settings_quick_record_def">Быстрая запись</string>
+    <string name="quick_settings_quick_record_rec">Записывается...</string>
+    <string name="quick_settings_quick_record_save">Сохранено</string>
+    <string name="quick_settings_quick_record_play">Воспроизводится...</string>
+
 </resources>
