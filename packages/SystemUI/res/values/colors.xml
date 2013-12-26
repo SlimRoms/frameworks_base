@@ -77,4 +77,11 @@
     <!-- Used by selector -->
     <color name="card_pressed">#7e3c3c3c</color>
 
+    <!-- app sidebar -->
+    <color name="app_sidebar_info_bubble_text_color">#ff0099cc</color>
+    <color name="app_sidebar_info_bubble_text_shadow_color">#ff333333</color>
+    <color name="trigger_region_color">#8015a0e5</color>
+    <color name="sidebar_item_text_color">#ffffffff</color>
+    <color name="sidebar_item_text_shadow_color">#ff000000</color>
+
 </resources>
