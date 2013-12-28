@@ -6,5 +6,5 @@
     <translate android:interpolator="@anim/decelerate_interpolator" android:duration="350" android:fromXDelta="-39.999996%" android:toXDelta="-39.999996%" />
     <translate android:interpolator="@anim/accelerate_interpolator" android:duration="350" android:startOffset="350" android:fromXDelta="39.999996%" android:toXDelta="35.000004%" />
     <alpha android:duration="250" android:fromAlpha="0.996" android:toAlpha="0.996" />
-    <alpha android:duration="200" android:fillBefore="true" android:fillAfter="true" android:startOffset="300" android:fromAlpha="0.996" android:toAlpha="0.0" android:fillEnabled="true" />
+    <alpha android:duration="250" android:fillBefore="true" android:fillAfter="true" android:startOffset="250" android:fromAlpha="0.996" android:toAlpha="0.0" android:fillEnabled="true" />
 </set>
