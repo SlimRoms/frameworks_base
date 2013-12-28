@@ -2093,4 +2093,6 @@
   <public type="bool" name="config_useFixedVolume" id="0x1110056" />
   <public type="array" name="networkAttributes" id="0x107000b" />
 
+  <java-symbol type="bool" name="config_forceDisableHardwareKeyboard" />
+
 </resources>
