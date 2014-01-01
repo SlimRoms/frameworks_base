@@ -120,7 +120,7 @@ public class StatusHeaderMachine {
 
         // When all else fails, just be yourself
         Log.w(TAG, "No drawable for status  bar when it is " + hour + "!");
-        return loadOrFetch(DRAWABLE_DEFAULT);
+        return loadOrFetch(DRAWABLE_AFTERNOON);
     }
 
     private Drawable loadOrFetch(int resId) {
