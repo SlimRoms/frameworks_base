@@ -2980,6 +2980,12 @@ public final class Settings {
         public static final String CUSTOM_TOGGLE_EXTRAS = "custom_toggle_extras";
 
         /**
+         * Contact strings for infinite toggles
+         * @hide
+         */
+        public static final String TILE_CONTACT_ACTIONS = "tile_contact_actions";
+
+        /**
          * Show icon when stylus is used?
          * 0 = no
          * 1 = yes
