@@ -3246,6 +3246,13 @@ public final class Settings {
                 "lockscreen_quick_unlock_control";
 
         /**
+         * Whether incomming call UI stays in background
+         *
+         * @hide
+         */
+        public static final String CALL_UI_IN_BACKGROUND = "call_ui_in_background";
+
+        /**
          * Enable Stylus Gestures
          *
          * @hide
