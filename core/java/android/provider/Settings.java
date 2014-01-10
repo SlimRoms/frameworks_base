@@ -3240,13 +3240,6 @@ public final class Settings {
                 "lockscreen_quick_unlock_control";
 
         /**
-         * Should the non-intrsive incall ui be used
-         *
-         * @hide
-         */
-        public static final String NON_INTRUSIVE_INCALL = "non_intrusive_incall";
-
-        /**
          * Enable Stylus Gestures
          *
          * @hide
