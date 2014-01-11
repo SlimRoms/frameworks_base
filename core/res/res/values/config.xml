@@ -1351,4 +1351,7 @@
     <!-- Enable statusbar double tap gesture to put device to sleep -->
     <bool name="config_disableDoubleTapSleepGesture">false</bool>
 
+    <!-- Force permanent menu key -->
+    <bool name="config_force_permanent_menu_key">false</bool>
+
 </resources>

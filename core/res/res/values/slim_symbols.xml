@@ -95,4 +95,7 @@
   <!-- Statusbar double tap gesture -->
   <java-symbol type="bool" name="config_disableDoubleTapSleepGesture" />
 
+  <!-- Force permanent menu key -->
+  <java-symbol type="bool" name="config_force_permanent_menu_key" />
+
 </resources>
