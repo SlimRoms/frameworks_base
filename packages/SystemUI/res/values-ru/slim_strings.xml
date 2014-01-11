@@ -64,7 +64,7 @@
     <string name="shortcut_reboot">Перезагрузка (немедленно)</string>
     <string name="shortcut_last_app">Предыдущее приложение</string>
     <string name="shortcut_screenshot">Снимок экрана</string>
-    <string name="quick_settings_screen_sleep">Потушить экран</string>
+    <string name="shortcut_screensleep">Потушить экран</string>
 
     <string name="cancel">Отмена</string>
     <string name="yes">Да</string>
