@@ -56,6 +56,7 @@
     <string name="quick_settings_battery_charging">Зарядка</string>
     <string name="quick_settings_battery_discharging">Не заряжается</string>
     <string name="screenshot_notification_delete">Удалить</string>
+    <string name="screenshot_delete_confirmation">Снимок экрана удален</string>
     <string name="shortcut_picker">Ярлыки Slim</string>
     <string name="shortcut_immersive">Переключить обычный режим</string>
     <string name="shortcut_quiethours">Переключение \"тихих часов\"</string>
