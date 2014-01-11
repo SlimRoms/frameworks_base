@@ -98,4 +98,9 @@
   <!-- Force permanent menu key -->
   <java-symbol type="bool" name="config_force_permanent_menu_key" />
 
+  <!-- Advanced Reboot -->
+  <java-symbol type="array" name="shutdown_reboot_options" />
+  <java-symbol type="array" name="shutdown_reboot_actions" />
+  <java-symbol type="string" name="reboot_system" />
+
 </resources>
