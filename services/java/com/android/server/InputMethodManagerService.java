@@ -391,6 +391,8 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
     private final IPackageManager mIPackageManager;
 
     class SettingsObserver extends ContentObserver {
+        String mLastEnabled = "";
+
         SettingsObserver(Handler handler) {
             super(handler);
             ContentResolver resolver = mContext.getContentResolver();
@@ -402,11 +404,24 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
                     Settings.Secure.SELECTED_INPUT_METHOD_SUBTYPE), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_IME_SWITCHER),
-                    false, this, UserHandle.USER_ALL);
+                    false, new ContentObserver(mHandler) {
+                        public void onChange(boolean selfChange) {
+                            updateFromSettingsLocked(true);
+                        }
+                    }, UserHandle.USER_ALL);
         }
 
-        @Override public void onChange(boolean selfChange) {
-            updateFromSettingsLocked(true);
+        @Override
+        public void onChange(boolean selfChange) {
+            synchronized (mMethodMap) {
+                boolean enabledChanged = false;
+                String newEnabled = mSettings.getEnabledInputMethodsStr();
+                if (!mLastEnabled.equals(newEnabled)) {
+                    mLastEnabled = newEnabled;
+                    enabledChanged = true;
+                }
+                updateFromSettingsLocked(enabledChanged);
+            }
         }
     }
 
