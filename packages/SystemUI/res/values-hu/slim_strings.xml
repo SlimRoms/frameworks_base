@@ -31,6 +31,17 @@
     <!-- Content description of the data connection type HSPA+ for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_data_connection_HP">HSPA+</string>
 
+    <!-- Dialog Cancel/OK -->
+    <string name="cancel">Mégsem</string>
+    <string name="dlg_ok">Ok</string>
+    <string name="yes">Igen</string>
+    <string name="no">Nem</string>
+
+    <!-- Off/On/Toggle -->
+    <string name="off">Ki</string>
+    <string name="on">Be</string>
+    <string name="toggle">Kapcsoló</string>
+
     <!-- Slim Shortcut Actions -->
     <string name="shortcut_picker">Slim Parancsikonok</string>
     <string name="shortcut_immersive">Immersive mód kapcsoló</string>
@@ -39,7 +50,11 @@
     <string name="shortcut_torch">Zseblámpa kapcsoló</string>
     <string name="shortcut_reboot">Újraindítás (azonnal)</string>
     <string name="shortcut_last_app">Utolsó alkalmazás</string>
+    <string name="shortcut_power_menu">Kikapcsolási Menü</string>
     <string name="shortcut_screenshot">Képernyőkép</string>
+    <string name="shortcut_screensleep">Alvás</string>
+    <string name="shortcut_volume">Hangerő</string>
+    <string name="shortcut_toggle_title">Művelet végrehajtása</string>
     <string name="shortcut_chamber">Titkok kamrája</string>
     <string name="chamber_disabled">Titkok kamrája zárva</string>
     <string name="chamber_title">Beállítás karakterek bevitele</string>
@@ -49,6 +64,9 @@
     <string name="chamber_chk_message">Ez a beállítás jelölőnégyzet beállítás?</string>
     <string name="chamber_int">Érték bevitel</string>
     <string name="chamber_int_message">Add meg az értékeket amik között változtatod a beállításokat. Értékeket vesszővel válaszd el. Színeket hex-értékben add meg, pl. #FF00aacc vagy alapszínként vörös, zöld és sárga.</string>
+    <string name="chamber_name_title">Parancsikon neve</string>
+    <string name="chamber_name_message">Adj nevet a parancsikonnak.</string>
+    <string name="chamber_name_toast">Alapértelmezett név használata</string>
 
     <!-- Quick Settings -->
     <string name="quick_settings_gps">GPS</string>
@@ -95,5 +113,6 @@
     <string name="quick_settings_quick_record_rec">Felvétel...</string>
     <string name="quick_settings_quick_record_save">Mentve</string>
     <string name="quick_settings_quick_record_play">Lejátszás...</string>
+    <string name="quick_settings_custom_toggle">Egyéni</string>
 
 </resources>
