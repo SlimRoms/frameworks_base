@@ -76,4 +76,10 @@
     <!-- Error description on theme switch with ligtsensor mode enabled -->
     <string name="theme_auto_switch_mode_error">Automatikus fényviszonyok állítása engedélyezve. Kézi állítás nem lehetséges.</string>
 
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_preventpower">bekapcsológomb megakadályozása</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_preventpower">Lehetővé teszi, hogy alkalmazás felülírja a bekapcsológombot</string>
+
+
 </resources>
