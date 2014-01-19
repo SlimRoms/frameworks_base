@@ -3891,6 +3891,18 @@ public final class Settings {
         public static final String ACTIVE_DISPLAY_THRESHOLD = "active_display_threshold";
 
         /**
+         * Enable blocking wakelock
+         * @hide
+         */
+        public static final String WAKELOCK_BLOCKING_ENABLED = "wakelock_blocking_enabled";
+
+        /**
+         * List of wakelock blocks selected
+         * @hide
+         */
+        public static final String WAKELOCK_BLOCKING_LIST = "wakelock_blocking_list";
+
+        /**
          * Timeout of the display when there is no user interaction
          * @hide
          */
