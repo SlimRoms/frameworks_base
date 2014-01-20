@@ -32,7 +32,13 @@
     <string name="faceunlock_multiple_failures" msgid="754137583022792429">"Все попытки войти с помощью Фейсконтроля использованы"</string>
     <string name="keyguard_charged" msgid="3272223906073492454">"Батарея заряжена"</string>
     <string name="keyguard_plugged_in" msgid="8117572000639998388">"Идет зарядка (<xliff:g id="NUMBER">%d</xliff:g><xliff:g id="PERCENT">%%</xliff:g>)"</string>
-    <string name="keyguard_low_battery" msgid="8143808018719173859">"Подключите зарядное устройство."</string>
+
+    <!-- When the lock screen is showing and the phone is discharging, and always show battery is turned on, show the current charge %.  -->
+    <string name="keyguard_discharging">Разряжается, <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
+
+    <!-- When the lock screen is showing and the battery is low, warn user to plug in the phone soon, and show the current charge %. -->
+    <string name="keyguard_low_battery">Подключите зарядное устройство, <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
+
     <string name="keyguard_instructions_when_pattern_disabled" msgid="1332288268600329841">"Для разблокировки нажмите \"Меню\"."</string>
     <string name="keyguard_network_locked_message" msgid="9169717779058037168">"Сеть заблокирована"</string>
     <string name="keyguard_missing_sim_message_short" msgid="494980561304211931">"Нет SIM-карты"</string>

@@ -97,5 +97,6 @@
     <string name="quick_settings_quick_record_save">Сохранено</string>
     <string name="quick_settings_quick_record_play">Воспроизводится...</string>
     <string name="quick_settings_custom_toggle">Свой ярлык</string>
+    <string name="quick_settings_contact_toggle">Контакт</string>
 
 </resources>
