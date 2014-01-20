@@ -65,4 +65,7 @@
   <java-symbol type="string" name="def_wifi_wifihotspot_pass" />
   <java-symbol type="string" name="def_wifi_direct_name" />
 
+  <!-- sim refresh for dual mode card -->
+  <java-symbol type="bool" name="config_sim_refresh_for_dual_mode_card" />
+
 </resources>

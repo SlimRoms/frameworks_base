@@ -1891,7 +1891,6 @@
     <!-- set this value to true to set network mode as global during boot up -->
     <bool name="config_global_phone_enabled">false</bool>
 
-
     <!-- bool value to for enabling motion accelerometer -->
     <bool name="use_motion_accel">false</bool>
 
@@ -1961,4 +1960,7 @@
         <item>Trying to delete call log</item>
         <item>Trying to turn on mobile data</item>
     </string-array>
+
+    <!-- Configuartion to support SIM refresh in STK command for dual mode card.-->
+    <bool name="config_sim_refresh_for_dual_mode_card">true</bool>
 </resources>
