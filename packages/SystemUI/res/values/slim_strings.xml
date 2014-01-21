@@ -78,4 +78,10 @@
          all of the currently visible notifications. [CHAR LIMIT=10]-->
     <string name="clear_recents">Close all recent</string>
 
+    <!-- Kill app toast -->
+    <string name="app_killed_message">App Killed</string>
+
+    <!-- Screenshot -->
+    <string name="shortcut_screenshot">Screenshot</string>
+
 </resources>
