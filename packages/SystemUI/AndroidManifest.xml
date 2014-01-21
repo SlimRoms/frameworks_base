@@ -128,6 +128,9 @@
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
 
+    <!-- Kill app permission -->
+    <uses-permission android:name="android.permission.FORCE_STOP_PACKAGES" />
+
     <application
         android:name=".SystemUIApplication"
         android:persistent="true"
@@ -234,6 +237,21 @@
                 <action android:name="com.android.systemui.recents.action.CONFIG_CHANGED_FOR_USER" />
             </intent-filter>
         </receiver>
+
+        <!-- Screenshot Activity -->
+        <activity
+            android:name="com.android.systemui.shortcuts.Screenshot"
+            android:label="@string/shortcut_screenshot"
+            android:icon="@drawable/ic_sysbar_screenshot"
+            android:theme="@android:style/Theme.NoDisplay"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="com.android.systemui.SHORTCUT" />
+                <category android:name="com.android.systemui.SHORTCUT_EXTRA" />
+            </intent-filter>
+        </activity>
 
         <!-- started from UsbDeviceSettingsManager -->
         <activity android:name=".usb.UsbConfirmActivity"
