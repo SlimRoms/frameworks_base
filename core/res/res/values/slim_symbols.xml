@@ -115,4 +115,7 @@
   <java-symbol type="string" name="notification_flashlight_on_summary" />
   <java-symbol type="drawable" name="ic_signal_flashlight_disable" />
 
+  <!-- Hardware key rebinding -->
+  <java-symbol type="integer" name="config_deviceHardwareKeys" />
+
 </resources>
