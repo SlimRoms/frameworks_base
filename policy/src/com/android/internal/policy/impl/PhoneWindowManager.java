@@ -759,6 +759,14 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         mHandler.removeCallbacks(mScreenshotRunnable);
     }
 
+    private final Runnable mGlobalMenu = new Runnable() {
+        @Override
+        public void run() {
+            sendCloseSystemWindows(SYSTEM_DIALOG_REASON_GLOBAL_ACTIONS);
+            showGlobalActionsDialog(false);
+        }
+    };
+
     private final Runnable mPowerLongPress = new Runnable() {
         @Override
         public void run() {
@@ -781,7 +789,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     performAuditoryFeedbackForAccessibilityIfNeed();
                 }
                 sendCloseSystemWindows(SYSTEM_DIALOG_REASON_GLOBAL_ACTIONS);
-                showGlobalActionsDialog();
+                showGlobalActionsDialog(true);
                 break;
             case LONG_PRESS_POWER_SHUT_OFF:
             case LONG_PRESS_POWER_SHUT_OFF_NO_CONFIRM:
@@ -801,13 +809,13 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         }
     };
 
-    void showGlobalActionsDialog() {
+    void showGlobalActionsDialog(boolean pokeWakeLock) {
         if (mGlobalActions == null) {
             mGlobalActions = new GlobalActions(mContext, mWindowManagerFuncs);
         }
         final boolean keyguardShowing = keyguardIsShowingTq();
         mGlobalActions.showDialog(keyguardShowing, isDeviceProvisioned());
-        if (keyguardShowing) {
+        if (keyguardShowing && pokeWakeLock) {
             // since it took two seconds of long press to bring this up,
             // poke the wake lock so they have some time to see the dialog.
             mPowerManager.userActivity(SystemClock.uptimeMillis(), false);
@@ -4182,6 +4190,15 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             }
 
             case KeyEvent.KEYCODE_POWER: {
+                // If we send a power key event just to show up the global menu
+                // show it up immediatelly and return.
+                // The virtual keypress event can only be called by the system
+                // (in our case navigation bar, navigation ring, quicksettings shorcuts)
+                // so we are safe here and we will not break 3rd party apps.
+                if (down && event.getDeviceId() == KeyCharacterMap.VIRTUAL_KEYBOARD) {
+                    mHandler.post(mGlobalMenu);
+                    return result;
+                }
                 if ((mTopFullscreenOpaqueWindowState != null &&
                         (mTopFullscreenOpaqueWindowState.getAttrs().flags
                         & WindowManager.LayoutParams.PREVENT_POWER_KEY) != 0)) {
