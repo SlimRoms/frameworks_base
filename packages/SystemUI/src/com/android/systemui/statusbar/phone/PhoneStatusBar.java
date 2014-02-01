@@ -1264,12 +1264,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mNavigationBarView.reorient();
 
         View home = mNavigationBarView.getHomeButton();
-        View recent = mNavigationBarView.getRecentsButton();
         if (home != null) {
             home.setOnTouchListener(mHomeSearchActionListener);
-        }
-        if (recent != null) {
-            recent.setOnTouchListener(mRecentsPreloadOnTouchListener);
         }
         mNavigationBarView.getSearchLight().setOnTouchListener(mHomeSearchActionListener);
         setDisableHomeLongpress();
