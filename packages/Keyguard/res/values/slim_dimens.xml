@@ -7,4 +7,16 @@
     <!-- Additional inset used for targets with icons loaded from files -->
     <item type="dimen" name="lockscreen_target_icon_file_inset">2dp</item>
 
+    <!-- Height of a small notification in the status bar -->
+    <dimen name="notification_min_height">64dp</dimen>
+
+    <!-- Height of a large notification in the status bar -->
+    <dimen name="notification_max_height">256dp</dimen>
+
+    <!-- Height of a small notification in the status bar plus glow, padding, etc -->
+    <dimen name="notification_row_min_height">70dp</dimen>
+
+    <!-- Height of a large notification in the status bar plus glow, padding, etc -->
+    <dimen name="notification_row_max_height">260dp</dimen>
+
 </resources>

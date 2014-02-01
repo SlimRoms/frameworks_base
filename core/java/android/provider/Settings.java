@@ -3798,6 +3798,67 @@ public final class Settings {
         public static final String LOCKSCREEN_ROTATION_ENABLED = "lockscreen_rotation_enabled";
 
         /**
+         * Enables/disables lockscreen notifications
+         * @hide
+         */
+        public static final String LOCKSCREEN_NOTIFICATIONS = "lockscreen_notifications";
+
+        /**
+         * Notification types to display on lockscreen
+         * @hide
+         */
+        public static final String LOCKSCREEN_NOTIFICATIONS_TYPE = "lockscreen_notifications_type";
+
+        /**
+         * Turn screen on when device is pulled out of pocket
+         * @hide
+         */
+        public static final String LOCKSCREEN_NOTIFICATIONS_POCKET_MODE =
+                "lockscreen_notifications_pocket_mode";
+
+        /**
+         * Wakes the device when a new notifications is received
+         * @hide
+         */
+        public static final String LOCKSCREEN_NOTIFICATIONS_WAKE_ON_NOTIFICATION =
+                "lockscreen_notifications_wake_on_notification";
+
+        /**
+         * Privacy Mode Option
+         * @hide
+         */
+        public static final String LOCKSCREEN_NOTIFICATIONS_PRIVACY_MODE =
+                "lockscreen_notifications_privacy_mode";
+
+        /**
+         * Sets the count of notifications shown at once
+         * @hide
+         */
+        public static final String LOCKSCREEN_NOTIFICATIONS_HEIGHT =
+                "lockscreen_notifications_height";
+
+        /**
+         * Changes the offset of the notifications to the top of the screen
+         * @hide
+         */
+        public static final String LOCKSCREEN_NOTIFICATIONS_OFFSET_TOP =
+                "lockscreen_notifications_offset_top";
+
+        /**
+         * A list of packages to exclude from being displayed as lockscreen notifications.
+         * This should be a string of packages separated by |
+         * @hide
+         */
+        public static final String LOCKSCREEN_NOTIFICATIONS_EXCLUDED_APPS =
+                "lockscreen_notifications_excluded_apps";
+
+        /**
+         * Set a custom notification background color
+         * @hide
+         */
+        public static final String LOCKSCREEN_NOTIFICATIONS_COLOR = "lockscreen_notifications_color";
+
+        /**
           * Always show the battery status on the lockscreen
           * @hide
           */
@@ -7880,6 +7941,11 @@ public final class Settings {
          * @param resolver to access the database with
          * @param name to look up in the table
          * @return the corresponding value, or null if not present
+         */
+
+        /**
+         * Screenshot toggle delay
+         * @hide
          */
         public static String getString(ContentResolver resolver, String name) {
             return getStringForUser(resolver, name, UserHandle.myUserId());
