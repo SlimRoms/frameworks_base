@@ -3099,9 +3099,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     public void updateExpandedViewPos(int thingy) {
         if (SPEW) Log.v(TAG, "updateExpandedViewPos");
 
+        final int minHeight = (int)(mNotificationPanelMinHeightFrac * mCurrentDisplaySize.y);
         // on larger devices, the notification panel is propped open a bit
-        mNotificationPanel.setMinimumHeight(
-                (int)(mNotificationPanelMinHeightFrac * mCurrentDisplaySize.y));
+        mNotificationPanel.setIsDynamicHeight(minHeight > 0);
+        mNotificationPanel.setContainerMinimumHeight(minHeight);
 
         FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) mNotificationPanel.getLayoutParams();
         lp.gravity = mNotificationPanelGravity;
@@ -3113,6 +3114,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             lp.gravity = mSettingsPanelGravity;
             lp.setMarginEnd(mNotificationPanelMarginPx);
             mSettingsPanel.setLayoutParams(lp);
+            mSettingsPanel.setIsDynamicHeight(minHeight > 0);
         }
 
         if (ENABLE_HEADS_UP && mHeadsUpNotificationView != null) {
