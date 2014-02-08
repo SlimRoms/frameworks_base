@@ -24,6 +24,8 @@ public class PolicyConstants {
     public static final String ACTION_AIRPLANE   = "**airplane**";
     public static final String ACTION_SOUND      = "**sound**";
     public static final String ACTION_EXPANDED_DESKTOP     = "**expanded_desktop**";
+    public static final String ACTION_PIE                  = "**pie**";
+    public static final String ACTION_NAVBAR               = "**nav_bar**";
 
     public static final String ACTION_DELIMITER  = "|";
     public static final String ICON_EMPTY = "empty";
