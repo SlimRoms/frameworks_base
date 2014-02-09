@@ -70,9 +70,7 @@
     <string name="shortcut_reboot">Перезагрузка</string>
     <string name="shortcut_recovery">В рекавери</string>
     <string name="shortcut_last_app">Предыдущее приложение</string>
-    <string name="shortcut_power_menu">Меню управления питанием</string>
     <string name="shortcut_screenshot">Снимок экрана</string>
-    <string name="shortcut_screensleep">Потушить экран</string>
     <string name="shortcut_volume">Громкость</string>
     <string name="shortcut_toggle_title">Действие</string>
 
@@ -104,4 +102,13 @@
     <string name="quick_settings_custom_toggle">Свой ярлык</string>
     <string name="quick_settings_contact_toggle">Контакт</string>
 
+    <!-- Battery status in pie controls -->
+    <string name="pie_battery_status_charging">Заряжается (<xliff:g id="percent">%d</xliff:g>%%)</string>
+    <string name="pie_battery_status_full">Заряжено</string>
+    <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% осталось</string>
+
+    <!-- Phone status in pie controls -->
+    <string name="pie_phone_status_no_service">Вне зоны обслуживания</string>
+    <string name="pie_phone_status_airplane_mode">Включен режим полета</string>
+    <string name="pie_phone_status_emergency_only">Только экстренные вызовы</string>
 </resources>
