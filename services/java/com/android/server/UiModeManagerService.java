@@ -53,6 +53,7 @@ import java.io.PrintWriter;
 
 import com.android.internal.R;
 import com.android.internal.app.DisableCarModeActivity;
+import com.android.internal.statusbar.IStatusBarService;
 import com.android.server.TwilightService.TwilightState;
 
 final class UiModeManagerService extends IUiModeManager.Stub
@@ -283,6 +284,7 @@ final class UiModeManagerService extends IUiModeManager.Stub
                 filter.addAction(Intent.ACTION_SCREEN_ON);
                 mContext.registerReceiver(mBroadcastReceiver, filter);
                 registerLightSensor();
+                return;
             }
         } else {
             if (mAttached) {
@@ -294,7 +296,8 @@ final class UiModeManagerService extends IUiModeManager.Stub
         }
 
         if (mUiThemeAutoMode == 2) {
-            updateTwilightThemeAutoMode();
+            updateTwilight();
+            return;
         }
 
         synchronized (mLock) {
@@ -318,7 +321,7 @@ final class UiModeManagerService extends IUiModeManager.Stub
 
             if (mAllowConfigChange) {
                 mAllowConfigChange = false;
-                mHandler.postDelayed(mReleaseUiThemeModeBlock, 5000);
+                mHandler.postDelayed(mReleaseUiThemeModeBlock, 3000);
                 synchronized (mLock) {
                     if (mSystemReady) {
                         sendConfigurationLocked();
@@ -514,11 +517,22 @@ final class UiModeManagerService extends IUiModeManager.Stub
                 || mSetUiThemeMode != mConfiguration.uiThemeMode) {
             mSetUiMode = mConfiguration.uiMode;
 
-            mSetUiThemeMode = mConfiguration.uiThemeMode;
-            Settings.Secure.putIntForUser(mContext.getContentResolver(),
-                    Settings.Secure.UI_THEME_MODE, mSetUiThemeMode,
-                    UserHandle.USER_CURRENT);
+            if (mSetUiThemeMode != mConfiguration.uiThemeMode) {
+                final IStatusBarService barService = IStatusBarService.Stub.asInterface(
+                        ServiceManager.getService(Context.STATUS_BAR_SERVICE));
+                try {
+                    if (barService != null) {
+                        barService.collapsePanels();
+                    }
+                } catch (RemoteException e) {
+                    Slog.w(TAG, "Failure communicating with statusbar service", e);
+                }
 
+                mSetUiThemeMode = mConfiguration.uiThemeMode;
+                Settings.Secure.putIntForUser(mContext.getContentResolver(),
+                        Settings.Secure.UI_THEME_MODE, mSetUiThemeMode,
+                        UserHandle.USER_CURRENT);
+            }
             try {
                 ActivityManagerNative.getDefault().updateConfiguration(mConfiguration);
             } catch (RemoteException e) {
