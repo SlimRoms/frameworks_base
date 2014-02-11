@@ -48,10 +48,6 @@ public class ThemeTile extends QuickSettingsTile {
         mOnClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // SlimAction can take care of it
-                // will collapse as well automatically
-                // the drawer to reconstruct it or show
-                // the toast message if not possible
                 SlimActions.processAction(mContext, ButtonsConstants.ACTION_THEME_SWITCH, false);
             }
         };
