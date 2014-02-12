@@ -67,6 +67,24 @@
     <!-- status message in phone options dialog for when expanded desktop is off -->
     <string name="global_actions_expanded_desktop_mode_off_status">Kiterjeszett képernyő Ki</string>
 
+    <!-- status message in phone options dialog for when pie is on -->
+    <string name="global_actions_pie_mode_on_status">SlimPie BE</string>
+
+    <!-- status message in phone options dialog for when pie is off -->
+    <string name="global_actions_pie_mode_off_status">SlimPie KI</string>
+
+    <!-- Error message if user want to try to disable all navigation options -->
+    <string name="disable_pie_navigation_error">Nem lehet letiltani a PIE vezérlést. Nincs más engedélyezett navigáció. Elösször engedélyezd a navigációs sávot a PIE kikapcsolásához.</string>
+
+    <!-- status message in phone options dialog for when navigation bar is on -->
+    <string name="global_actions_nav_bar_mode_on_status">Navigációs sáv BE</string>
+
+    <!-- status message in phone options dialog for when navigation bar is off -->
+    <string name="global_actions_nav_bar_mode_off_status">Navigációs ásv KI</string>
+
+    <!-- Error message if user want to try to disable all navigation options -->
+    <string name="disable_navigation_pie_error">Nem lehet letiltani a navigációs sávot. Nincs más engedélyezett navigáció. Elösször engedélyezd a PIE vezérélést a navigációs sáv kikapcsolásához.</string>
+
     <!-- Description of accessibility direction for targets [CHAR LIMIT=NONE] -->
     <string name="accessibility_target_direction">Húzásra aktiválja az elemet</string>
 
