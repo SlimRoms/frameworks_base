@@ -27,6 +27,7 @@
 
     <!--ScreenShot Trash-->
     <string name="screenshot_notification_delete">Törlés</string>
+    <string name="screenshot_delete_confirmation">Képernyőkép törölve</string>
 
     <!-- Content description of the data connection type HSPA+ for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_data_connection_HP">HSPA+</string>
@@ -104,6 +105,11 @@
     <string name="quick_settings_expanded_desktop_off">Normál</string>
     <string name="quick_settings_music_play">Lejátszás</string>
     <string name="quick_settings_music_pause">Szünet</string>
+    <string name="quick_settings_music_schedule_title">Elalvás kapcsoló</string>
+    <string name="quick_settings_music_schedule_in_progress">Időzítés folyamatban</string>
+    <string name="quick_settings_music_schedule_start">Időzítés kezdete</string>
+    <string name="quick_settings_music_schedule_cancel">Idözítő törölve</string>
+    <string name="quick_settings_music_schedule_update">Idözítő frissítése</string>
     <string name="quick_settings_reboot_recovery">Recovery</string>
     <string name="quick_settings_reboot">Újraindítás</string>
     <string name="quick_settings_theme_switch_dark">Sötét téma</string>
@@ -114,5 +120,16 @@
     <string name="quick_settings_quick_record_save">Mentve</string>
     <string name="quick_settings_quick_record_play">Lejátszás...</string>
     <string name="quick_settings_custom_toggle">Egyéni</string>
+    <string name="quick_settings_contact_toggle">Kapcsolat</string>
+
+    <!-- Battery status in pie controls -->
+    <string name="pie_battery_status_charging">Töltés (<xliff:g id="percent">%d</xliff:g>%%)</string>
+    <string name="pie_battery_status_full">Feltöltve</string>
+    <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% hátralévő</string>
+
+    <!-- Phone status in pie controls -->
+    <string name="pie_phone_status_no_service">Nincs szolgáltatás</string>
+    <string name="pie_phone_status_airplane_mode">Repülőgép mód be</string>
+    <string name="pie_phone_status_emergency_only">Csak vészhívás</string>
 
 </resources>
