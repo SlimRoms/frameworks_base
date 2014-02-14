@@ -96,6 +96,7 @@ public class KeyguardHostView extends KeyguardViewBase {
     private KeyguardSecurityViewFlipper mSecurityViewContainer;
     private KeyguardSelectorView mKeyguardSelectorView;
     private KeyguardTransportControlView mTransportControl;
+    private ChallengeLayout mChallenge;
     private boolean mIsVerifyUnlockOnly;
     private View mExpandChallengeView;
     private boolean mEnableFallback; // TODO: This should get the value from KeyguardPatternView
@@ -403,12 +404,10 @@ public class KeyguardHostView extends KeyguardViewBase {
 
         mMultiPaneChallengeLayout =
                 (MultiPaneChallengeLayout) findViewById(R.id.multi_pane_challenge);
-        ChallengeLayout challenge = mSlidingChallengeLayout != null ? mSlidingChallengeLayout :
+        mChallenge = mSlidingChallengeLayout != null ? mSlidingChallengeLayout :
                 mMultiPaneChallengeLayout;
-        challenge.setOnBouncerStateChangedListener(mViewStateManager);
-        mAppWidgetContainer.setBouncerAnimationDuration(challenge.getBouncerAnimationDuration());
         mViewStateManager.setPagedView(mAppWidgetContainer);
-        mViewStateManager.setChallengeLayout(challenge);
+        mViewStateManager.setChallengeLayout(mChallenge);
         mSecurityViewContainer = (KeyguardSecurityViewFlipper) findViewById(R.id.view_flipper);
         mKeyguardSelectorView = (KeyguardSelectorView) findViewById(R.id.keyguard_selector_view);
         mViewStateManager.setSecurityViewContainer(mSecurityViewContainer);
@@ -467,6 +466,9 @@ public class KeyguardHostView extends KeyguardViewBase {
 
         // This needs to be called after the pages are all added.
         mViewStateManager.showUsabilityHints(mContext);
+
+        mAppWidgetContainer.setBouncerAnimationDuration(mChallenge.getBouncerAnimationDuration());
+        mChallenge.setOnBouncerStateChangedListener(mViewStateManager);
     }
 
     private void maybeEnableAddButton() {
