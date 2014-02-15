@@ -50,9 +50,7 @@
     <string name="shortcut_torch">Int. Linterna</string>
     <string name="shortcut_reboot">Reiniciar (instantáneo)</string>
     <string name="shortcut_last_app">Ultima ap.</string>
-    <string name="shortcut_power_menu">Menú de apagado</string>
     <string name="shortcut_screenshot">Captura Pantalla</string>
-    <string name="shortcut_screensleep">Apagar pantalla</string>
     <string name="shortcut_volume">Volumen</string>
     <string name="shortcut_toggle_title">Acción a realizar</string>
     <string name="shortcut_chamber">Chamber of Secrets</string>

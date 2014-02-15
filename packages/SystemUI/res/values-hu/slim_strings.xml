@@ -51,9 +51,7 @@
     <string name="shortcut_torch">Zseblámpa kapcsoló</string>
     <string name="shortcut_reboot">Újraindítás (azonnal)</string>
     <string name="shortcut_last_app">Utolsó alkalmazás</string>
-    <string name="shortcut_power_menu">Kikapcsolási Menü</string>
     <string name="shortcut_screenshot">Képernyőkép</string>
-    <string name="shortcut_screensleep">Alvás</string>
     <string name="shortcut_volume">Hangerő</string>
     <string name="shortcut_toggle_title">Művelet végrehajtása</string>
     <string name="shortcut_chamber">Titkok kamrája</string>
