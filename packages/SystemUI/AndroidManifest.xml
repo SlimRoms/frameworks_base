@@ -196,7 +196,7 @@
                 android:excludeFromRecents="true">
         </activity>
 
-        <activity android:name=".recent.RecentsActivity"
+        <!--<activity android:name=".recent.RecentsActivity"
                 android:label="@string/accessibility_desc_recent_apps"
                 android:theme="@style/RecentsStyle"
                 android:excludeFromRecents="true"
@@ -215,10 +215,10 @@
                 <action android:name="com.android.systemui.recent.action.PRELOAD" />
                 <action android:name="com.android.systemui.recent.action.CANCEL_PRELOAD" />
             </intent-filter>
-        </receiver>
+        </receiver>-->
 
         <!-- Alternate Recents -->
-        <activity android:name=".recents.RecentsActivity"
+        <!--<activity android:name=".recents.RecentsActivity"
                   android:label="@string/accessibility_desc_recent_apps"
                   android:exported="false"
                   android:launchMode="singleInstance"
@@ -240,7 +240,7 @@
                 <action android:name="com.android.systemui.recents.action.PRELOAD_RECENTS_FOR_USER" />
                 <action android:name="com.android.systemui.recents.action.CONFIG_CHANGED_FOR_USER" />
             </intent-filter>
-        </receiver>
+        </receiver>-->
 
         <!-- Screenshot Activity -->
         <activity
