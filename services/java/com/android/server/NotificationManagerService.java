@@ -793,7 +793,7 @@ public class NotificationManagerService extends INotificationManager.Stub
         for (NotificationListenerInfo info : toRemove) {
             final ComponentName component = info.component;
             final int oldUser = info.userid;
-            if (!info.isSystem) {
+            if (!info.isSystem && !component.getPackageName().equals("HaloComponent")) {
                 Slog.v(TAG, "disabling notification listener for user " + oldUser + ": " + component);
                 unregisterListenerService(component, info.userid);
             }
@@ -819,8 +819,9 @@ public class NotificationManagerService extends INotificationManager.Stub
             final ComponentName component, final int userid) {
         final int permission = mContext.checkCallingPermission(
                 android.Manifest.permission.SYSTEM_NOTIFICATION_LISTENER);
-        if (permission == PackageManager.PERMISSION_DENIED)
+	if (permission == PackageManager.PERMISSION_DENIED && !component.getPackageName().equals("HaloComponent")) {
             checkCallerIsSystem();
+        }        
 
         synchronized (mNotificationList) {
             try {
