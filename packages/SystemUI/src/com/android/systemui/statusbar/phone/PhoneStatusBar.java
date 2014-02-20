@@ -3231,6 +3231,15 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         @Override
         public void tickerStarting() {
+            mTicking = true;
+            mStatusBarContents.setVisibility(View.GONE);
+            mCenterClockLayout.setVisibility(View.GONE);
+            mTickerView.setVisibility(View.VISIBLE);
+            mTickerView.startAnimation(loadAnim(com.android.internal.R.anim.push_up_in, null));
+            mStatusBarContents.startAnimation(loadAnim(com.android.internal.R.anim.push_up_out, null));
+            mCenterClockLayout.startAnimation(
+                loadAnim(com.android.internal.R.anim.push_up_out,
+                null));
 	    if (!mHaloActive) {
                 mStatusBarContents.setVisibility(View.GONE);
                 mTickerView.setVisibility(View.VISIBLE);
@@ -3241,6 +3250,15 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         @Override
         public void tickerDone() {
+            mStatusBarContents.setVisibility(View.VISIBLE);
+            mCenterClockLayout.setVisibility(View.VISIBLE);
+            mTickerView.setVisibility(View.GONE);
+            mStatusBarContents.startAnimation(loadAnim(com.android.internal.R.anim.push_down_in, null));
+            mTickerView.startAnimation(loadAnim(com.android.internal.R.anim.push_down_out,
+                        mTickingDoneListener));
+            mCenterClockLayout.startAnimation(
+                loadAnim(com.android.internal.R.anim.push_down_in,
+                null));
 	    if (!mHaloActive) {
                 mStatusBarContents.setVisibility(View.VISIBLE);
                 mTickerView.setVisibility(View.GONE);
