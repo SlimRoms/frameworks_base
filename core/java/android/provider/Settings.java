@@ -2524,6 +2524,12 @@ public final class Settings {
          */
         public static final String BATTERY_LIGHT_FULL_COLOR = "battery_light_full_color";
 
+        /**
+        * ToastAnimation
+        * @hide
+        */
+        public static final String TOAST_ANIMATION = "toast_animation";
+
         /** Sprint MWI Quirk: Show message wait indicator notifications
          * @hide
          */
