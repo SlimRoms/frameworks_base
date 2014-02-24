@@ -17,6 +17,7 @@
     <string name="accessibility_data_connection_HP">HSPA+</string>
     <string name="quick_settings_gps">GPS</string>
     <string name="quick_settings_gps_off">GPS выкл</string>
+    <string name="quick_settings_screen_sleep">Потушить экран</string>
     <string name="quick_settings_ringer_on">Звук вкл</string>
     <string name="quick_settings_ringer_off">Звук выкл</string>
     <string name="quick_settings_vibration_on">Вибрация вкл</string>
