@@ -102,6 +102,17 @@
     <string name="quick_settings_quick_record_play">Воспроизводится...</string>
     <string name="quick_settings_custom_toggle">Свой ярлык</string>
     <string name="quick_settings_contact_toggle">Контакт</string>
+    <string name="quick_settings_reminder">Напоминание</string>
+    <string name="quick_settings_reminder_title">Название:</string>
+    <string name="quick_settings_reminder_message">Сообщение:</string>
+    <string name="quick_settings_reminder_time">Время напоминания</string>
+    <string name="quick_settings_reminder_set">Установить время</string>
+    <string name="quick_settings_reminder_update">Обновить время</string>
+    <string name="quick_settings_reminder_no_expire">Нет уведомления</string>
+    <string name="quick_settings_reminder_dismiss">Удалить напоминание</string>
+    <string name="quick_settings_reminder_dismiss_message">Удалить текущее напоминание?</string>
+    <string name="quick_settings_reminder_help_title">Касание:</string>
+    <string name="quick_settings_reminder_help_message">Коснитесь здесь, чтобы установить напоминание. Долгое нажатие удалит текущее напоминание.</string>
 
     <!-- Battery status in pie controls -->
     <string name="pie_battery_status_charging">Заряжается (<xliff:g id="percent">%d</xliff:g>%%)</string>
