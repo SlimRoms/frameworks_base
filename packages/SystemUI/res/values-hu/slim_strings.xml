@@ -119,6 +119,17 @@
     <string name="quick_settings_quick_record_play">Lejátszás...</string>
     <string name="quick_settings_custom_toggle">Egyéni</string>
     <string name="quick_settings_contact_toggle">Kapcsolat</string>
+    <string name="quick_settings_reminder">Emlékeztető</string>
+    <string name="quick_settings_reminder_title">Címe:</string>
+    <string name="quick_settings_reminder_message">Üzenet:</string>
+    <string name="quick_settings_reminder_time">Emlékeztető idő</string>
+    <string name="quick_settings_reminder_set">Idő beállítása</string>
+    <string name="quick_settings_reminder_update">Frissítés ideje</string>
+    <string name="quick_settings_reminder_no_expire">Nincs értesítés</string>
+    <string name="quick_settings_reminder_dismiss">Emlékeztető törlése</string>
+    <string name="quick_settings_reminder_dismiss_message">Törlöd az aktuális emlékeztetőt?</string>
+    <string name="quick_settings_reminder_help_title">Érintés:</string>
+    <string name="quick_settings_reminder_help_message">Érintsd meg az értesítés beállításához. Hosszan nyomva törlöd az aktuális értesítőt.</string>
 
     <!-- Battery status in pie controls -->
     <string name="pie_battery_status_charging">Töltés (<xliff:g id="percent">%d</xliff:g>%%)</string>
