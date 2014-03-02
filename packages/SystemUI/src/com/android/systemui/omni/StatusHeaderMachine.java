@@ -42,14 +42,14 @@ public class StatusHeaderMachine {
     // Night starts at 22:00
     private static final int TIME_NIGHT = 22;
     private static final int DRAWABLE_NIGHT = R.drawable.notifhead_night;
-    // Morning starts at 06:00
-    private static final int TIME_MORNING = 6;
+    // Morning starts at 05:00
+    private static final int TIME_MORNING = 5;
     private static final int DRAWABLE_MORNING = R.drawable.notifhead_morning;
     // Afternoon starts at 12:00
     private static final int TIME_AFTERNOON = 12;
     private static final int DRAWABLE_AFTERNOON = R.drawable.notifhead_afternoon;
-    // Evening starts at 18:00
-    private static final int TIME_EVENING = 18;
+    // Evening starts at 17:00
+    private static final int TIME_EVENING = 17;
     private static final int DRAWABLE_EVENING = R.drawable.notifhead_evening;
 
     // Special events
