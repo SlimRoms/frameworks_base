@@ -286,9 +286,11 @@ public class KeyButtonView extends ImageView {
             case MotionEvent.ACTION_DOWN:
                 mIsLongpressed = false;
                 setPressed(true);
-                if (mClickAction != null && mClickAction.equals(ButtonsConstants.ACTION_RECENTS)
+                if (!sPreloadedRecentApps
+                        && (mClickAction != null
+                                && mClickAction.equals(ButtonsConstants.ACTION_RECENTS)
                             || mLongpressAction != null
-                                    && mLongpressAction.equals(ButtonsConstants.ACTION_RECENTS)) {
+                                    && mLongpressAction.equals(ButtonsConstants.ACTION_RECENTS))) {
                     preloadRecentApps();
                 }
                 if (mSupportsLongpress) {
