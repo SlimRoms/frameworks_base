@@ -65,6 +65,11 @@
             android:layout_height="@dimen/notification_panel_header_height"
             />
 
+        <include layout="@layout/notification_reminder"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            />
+
         <TextView
             android:id="@+id/emergency_calls_only"
             android:textAppearance="@style/TextAppearance.StatusBar.Expanded.Network.EmergencyOnly"
