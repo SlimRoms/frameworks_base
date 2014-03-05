@@ -445,6 +445,15 @@ public class StatusBarManagerService extends IStatusBarService.Stub
     }
 
     @Override
+    public void toggleSmartPulldown() {
+        if (mBar != null) {
+            try {
+                mBar.toggleSmartPulldown();
+            } catch (RemoteException ex) {}
+        }
+    }
+
+    @Override
     public void toggleScreenshot() {
         if (mBar != null) {
             try {

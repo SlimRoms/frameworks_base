@@ -45,6 +45,7 @@ public class ButtonsConstants {
     public static final String ACTION_KEYGUARD_SEARCH      = "**keyguard_search**";
     public static final String ACTION_PIE                  = "**pie**";
     public static final String ACTION_NAVBAR               = "**nav_bar**";
+    public static final String ACTION_SMART_PULLDOWN       = "**smart_pulldown**";
 
     // no action
     public static final String ACTION_NULL            = "**null**";
