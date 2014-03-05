@@ -99,6 +99,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.android.internal.statusbar.StatusBarIcon;
@@ -166,6 +167,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private static final int MSG_OPEN_QS_PANEL = 1003;
     private static final int MSG_FLIP_TO_NOTIFICATION_PANEL = 1004;
     private static final int MSG_FLIP_TO_QS_PANEL = 1005;
+    private static final int MSG_SMART_PULLDOWN = 1006;
     // 1020-1030 reserved for BaseStatusBar
 
     private static final boolean CLOSE_PANEL_WHEN_EMPTIED = true;
@@ -2996,6 +2998,26 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
         mHandler.removeMessages(msg);
         mHandler.sendEmptyMessage(msg);
+    }
+
+    @Override  // CommandQueue
+    public void toggleSmartPulldown() {
+        int smartPulldownMode = Settings.System.getIntForUser(
+                mContext.getContentResolver(), Settings.System.QS_SMART_PULLDOWN,
+                0, UserHandle.USER_CURRENT);
+        if (smartPulldownMode == 1 && !hasClearableNotifications()) {
+            toggleQSShade();
+        } else if (smartPulldownMode == 2 && !hasVisibleNotifications()) {
+            toggleQSShade();
+        } else if (smartPulldownMode == 0) {
+            Toast.makeText(mContext,
+                    R.string.smart_pulldown_disabled,
+                    Toast.LENGTH_LONG).show();
+        } else {
+            toggleNotificationShade();
+        }
+        mHandler.removeMessages(MSG_SMART_PULLDOWN);
+        mHandler.sendEmptyMessage(MSG_SMART_PULLDOWN);
     }
 
     private int computeBarMode(int oldVis, int newVis, BarTransitions transitions,
