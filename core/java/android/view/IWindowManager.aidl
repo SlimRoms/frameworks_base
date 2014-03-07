@@ -326,4 +326,9 @@ interface IWindowManager
      * @hide
      */
     void toggleStatusBar();
+
+    /**
+     * @hide
+     */
+    void updateStatusBarNavBarHeight();
 }
