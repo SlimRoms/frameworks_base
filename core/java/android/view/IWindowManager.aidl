@@ -331,4 +331,11 @@ interface IWindowManager
      * @hide
      */
     void updateStatusBarNavBarHeight();
+
+    /**
+     * Get current system ui visibility mode.
+     *
+     * @hide
+     */
+    int getSystemUIVisibility();
 }

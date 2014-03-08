@@ -10942,6 +10942,11 @@ public class WindowManagerService extends IWindowManager.Stub
     @Override
     public void updateStatusBarNavBarHeight() {
         mPolicy.updateStatusBarNavBarHeight();
+
+    /* @hide */
+    @Override
+    public int getSystemUIVisibility() {
+        return mLastStatusBarVisibility;
     }
 
 }
