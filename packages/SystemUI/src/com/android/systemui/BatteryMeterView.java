@@ -473,7 +473,6 @@ public class BatteryMeterView extends View implements DemoMode {
             final int status = mTracker.status;
             final int level = mTracker.level;
             updateChargeAnim(status);
->>>>>>> 3927261... systemui: Use the same color for circle battery than clock color
 
     @Override
     public void dispatchDemoCommand(String command, Bundle args) {
