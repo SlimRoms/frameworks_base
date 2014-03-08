@@ -535,4 +535,10 @@ public class IWindowManagerImpl implements IWindowManager {
     @Override
     public void toggleStatusBar() {
     }
+
+    /* @hide */
+    @Override
+    public int getSystemUIVisibility() {
+        return 0;
+    }
 }
