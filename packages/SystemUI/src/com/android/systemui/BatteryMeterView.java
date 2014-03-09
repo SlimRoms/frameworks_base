@@ -1,18 +1,18 @@
 /*
- * Copyright (C) 2013 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+* Copyright (C) 2013 The Android Open Source Project
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
 
 package com.android.systemui;
 
@@ -53,18 +53,18 @@ public class BatteryMeterView extends View implements DemoMode {
     public static final boolean SINGLE_DIGIT_PERCENT = false;
     public boolean SHOW_100_PERCENT = false;
 
-    public static final int BATTERY_STYLE_NORMAL                = 0;
-    public static final int BATTERY_STYLE_PERCENT               = 1;
-    public static final int BATTERY_STYLE_ICON_PERCENT          = 2;
-    public static final int BATTERY_STYLE_CIRCLE                = 3;
-    public static final int BATTERY_STYLE_CIRCLE_PERCENT        = 4;
-    public static final int BATTERY_STYLE_DOTTED_CIRCLE         = 5;
+    public static final int BATTERY_STYLE_NORMAL = 0;
+    public static final int BATTERY_STYLE_PERCENT = 1;
+    public static final int BATTERY_STYLE_ICON_PERCENT = 2;
+    public static final int BATTERY_STYLE_CIRCLE = 3;
+    public static final int BATTERY_STYLE_CIRCLE_PERCENT = 4;
+    public static final int BATTERY_STYLE_DOTTED_CIRCLE = 5;
     public static final int BATTERY_STYLE_DOTTED_CIRCLE_PERCENT = 6;
 
     public static final int FULL = 96;
     public static final int EMPTY = 4;
 
-    public static final float SUBPIXEL = 0.4f;  // inset rects for softer edges
+    public static final float SUBPIXEL = 0.4f; // inset rects for softer edges
 
     int[] mColors;
 
@@ -404,75 +404,6 @@ public class BatteryMeterView extends View implements DemoMode {
 
     private boolean mDemoMode;
     private BatteryTracker mDemoTracker = new BatteryTracker();
-    protected class CircleBatteryMeterDrawable implements BatteryMeterDrawable {
-
-        public static final float STROKE_WITH = 6.5f;
-
-        private boolean mDisposed;
-
-        // state variables
-        private int     mAnimOffset;    // current level of charging animation
-        private boolean mIsAnimating;   // stores charge-animation status to reliably
-                                        //remove callbacks
-
-        private int     mCircleSize;    // draw size of circle
-        private RectF   mRectLeft;      // contains the precalculated rect used in drawArc(),
-                                        // derived from mCircleSize
-        private float   mTextX, mTextY; // precalculated position for drawText() to appear centered
-
-        private Paint   mTextPaint;
-        private Paint   mFrontPaint;
-        private Paint   mBackPaint;
-        private Paint   mBoltPaint;
-
-        private final RectF mBoltFrame = new RectF();
-        private final float[] mBoltPoints;
-        private final Path mBoltPath = new Path();
-
-        public CircleBatteryMeterDrawable(Context ctx) {
-            super();
-            mDisposed = false;
-
-            Resources res = getResources();
-
-            mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-            mTextPaint.setColor(res.getColor(R.color.status_bar_clock_color));
-            Typeface font = Typeface.create("sans-serif-condensed", Typeface.NORMAL);
-            mTextPaint.setTypeface(font);
-            mTextPaint.setTextAlign(Paint.Align.CENTER);
-
-            mFrontPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-            mFrontPaint.setStrokeCap(Paint.Cap.BUTT);
-            mFrontPaint.setDither(true);
-            mFrontPaint.setStrokeWidth(0);
-            mFrontPaint.setStyle(Paint.Style.STROKE);
-            mFrontPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_ATOP));
-
-            mBackPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-            mBackPaint.setColor(res.getColor(R.color.batterymeter_frame_color));
-            mBackPaint.setStrokeCap(Paint.Cap.BUTT);
-            mBackPaint.setDither(true);
-            mBackPaint.setStrokeWidth(0);
-            mBackPaint.setStyle(Paint.Style.STROKE);
-            mBackPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.XOR));
-
-            mBoltPaint = new Paint();
-            mBoltPaint.setAntiAlias(true);
-            mBoltPaint.setColor(getColorForLevel(50));
-            mBoltPoints = loadBoltPoints(res);
-        }
-
-        @Override
-        public void onDraw(Canvas c) {
-            if (mDisposed) return;
-
-            if (mRectLeft == null) {
-                initSizeBasedStuff();
-            }
-
-            final int status = mTracker.status;
-            final int level = mTracker.level;
-            updateChargeAnim(status);
 
     @Override
     public void dispatchDemoCommand(String command, Bundle args) {
@@ -612,3 +543,5 @@ public class BatteryMeterView extends View implements DemoMode {
         postInvalidate();
     }
 }
+
+
