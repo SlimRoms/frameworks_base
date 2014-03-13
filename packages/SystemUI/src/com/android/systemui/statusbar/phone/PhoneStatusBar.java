@@ -113,7 +113,6 @@ import com.android.internal.util.slim.ButtonsHelper;
 import com.android.internal.util.slim.DeviceUtils;
 
 import com.android.systemui.BatteryMeterView;
-import com.android.systemui.statusbar.AppSidebar;
 import com.android.systemui.BatteryCircleMeterView;
 import com.android.systemui.DemoMode;
 import com.android.systemui.EventLogTags;
@@ -523,8 +522,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_CUSTOM_HEADER), false, this);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.APP_SIDEBAR_POSITION), false, this);
             update();
         }
 
@@ -653,13 +650,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
             mFlipInterval = Settings.System.getIntForUser(mContext.getContentResolver(),
                         Settings.System.REMINDER_ALERT_INTERVAL, 1500, UserHandle.USER_CURRENT);
-
-            int sidebarPosition = Settings.System.getInt(
-                    resolver, Settings.System.APP_SIDEBAR_POSITION, AppSidebar.SIDEBAR_POSITION_LEFT);
-            if (sidebarPosition != mSidebarPosition) {
-                mSidebarPosition = sidebarPosition;
-                mWindowManager.updateViewLayout(mAppSidebar, getAppSidebarLayoutParams(sidebarPosition));
-            }
 
             int reminderHolder = Settings.System.getIntForUser(mContext.getContentResolver(),
                         Settings.System.REMINDER_ALERT_ENABLED, 0, UserHandle.USER_CURRENT);
@@ -1078,15 +1068,12 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         attachPieContainer(isPieEnabled());
 
         if (mRecreating) {
-            removeSidebarView();
         } else {
             addActiveDisplayView();
             /* ChaosLab: GestureAnywhere - BEGIN */
             addGestureAnywhereView();
             /* ChaosLab: GestureAnywhere - END */
         }
-
-        addSidebarView();
 
         // figure out which pixel-format to use for the status bar.
         mPixelFormat = PixelFormat.OPAQUE;
@@ -1401,7 +1388,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         // receive broadcasts
         IntentFilter filter = new IntentFilter();
-        filter.addAction(Intent.ACTION_CONFIGURATION_CHANGED);
         filter.addAction(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
         filter.addAction(Intent.ACTION_SCREEN_OFF);
         filter.addAction(Intent.ACTION_SCREEN_ON);
@@ -3827,26 +3813,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 notifyNavigationBarScreenOn(false);
                 notifyHeadsUpScreenOn(false);
                 finishBarAnimations();
-            }
-            else if (Intent.ACTION_CONFIGURATION_CHANGED.equals(action)) {
-                Configuration config = mContext.getResources().getConfiguration();
-                try {
-                    // position app sidebar on left if in landscape orientation and device has a navbar
-                    if (mWindowManagerService.hasNavigationBar() &&
-                            config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                        mWindowManager.updateViewLayout(mAppSidebar,
-                                getAppSidebarLayoutParams(AppSidebar.SIDEBAR_POSITION_LEFT));
-                        mHandler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                mAppSidebar.setPosition(AppSidebar.SIDEBAR_POSITION_LEFT);
-                            }
-                        }, 500);
-                    }
-                } catch (RemoteException e) {
-                }
-             }
-             else if (Intent.ACTION_SCREEN_ON.equals(action)) {
+            } else if (Intent.ACTION_SCREEN_ON.equals(action)) {
                 mScreenOn = true;
                 // work around problem where mDisplay.getRotation() is not stable while screen is off (bug 7086018)
                 repositionNavigationBar();

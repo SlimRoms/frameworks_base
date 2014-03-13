@@ -20,4 +20,3 @@
     <item android:state_pressed="true"  android:drawable="@*android:drawable/notification_item_background_color_pressed" />
 
 </selector>
-
