@@ -83,7 +83,6 @@
         <ImageView
         android:id="@+id/spacer"
         android:background="@drawable/ic_notify_button_bg"
-<<<<<<< HEAD
         android:orientation="vertical"
         >
         <TextView
