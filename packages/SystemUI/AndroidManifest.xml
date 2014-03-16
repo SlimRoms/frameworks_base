@@ -90,9 +90,6 @@
     <!-- Record Audio QuickRecord -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
-    <!-- Active display -->
-    <uses-permission android:name="android.permission.SYSTEM_NOTIFICATION_LISTENER" />
-
     <application
         android:persistent="true"
         android:allowClearUserData="false"
@@ -429,16 +426,5 @@
                 <category android:name="android.intent.category.DESK_DOCK" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
-=======
-
-        <activity android:name=".statusbar.policy.activedisplay.DummyActivity"
-                  android:label=""
-                  android:taskAffinity=""
-                  android:excludeFromRecents="true"
-                  android:exported="true"
-                  android:theme="@style/Theme.DummyActivity">
-        </activity>
->>>>>>> 624757b... 4.4 implementation of active display
     </application>
 </manifest>
