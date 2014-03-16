@@ -203,7 +203,6 @@
     <protected-broadcast android:name="android.intent.action.PROXY_CHANGE" />
 
     <protected-broadcast android:name="android.os.UpdateLock.UPDATE_LOCK_CHANGED" />
-    <protected-broadcast android:name="android.intent.action.NAVBAR_EDIT" />
 
     <protected-broadcast android:name="android.intent.action.DREAMING_STARTED" />
     <protected-broadcast android:name="android.intent.action.DREAMING_STOPPED" />
@@ -238,10 +237,6 @@
     <protected-broadcast android:name="android.intent.action.AIRPLANE_MODE" />
     <protected-broadcast android:name="android.intent.action.ADVANCED_SETTINGS" />
     <protected-broadcast android:name="android.intent.action.BUGREPORT_FINISHED" />
-
-    <protected-broadcast android:name="com.android.server.ThemeManager.action.THEME_APPLIED" />
-    <protected-broadcast android:name="com.android.server.ThemeManager.action.THEME_NOT_APPLIED" />
-
 
     <protected-broadcast android:name="android.intent.action.ACTION_IDLE_MAINTENANCE_START" />
     <protected-broadcast android:name="android.intent.action.ACTION_IDLE_MAINTENANCE_END" />
@@ -898,7 +893,7 @@
         android:label="@string/permlab_preventpower"
         android:description="@string/permdesc_preventpower" />
 
-    <!-- Allows access to the vibrator -->
+<!-- Allows access to the vibrator -->
     <permission android:name="android.permission.VIBRATE"
         android:permissionGroup="android.permission-group.AFFECTS_BATTERY"
         android:protectionLevel="normal"
@@ -1166,7 +1161,7 @@
          href="{@docRoot}guide/topics/manifest/uses-sdk-element.html#target">{@code
          targetSdkVersion}</a> is 4 or higher.-->
     <permission android:name="android.permission.READ_EXTERNAL_STORAGE"
-        android:permissionGroup="android.permission-group.SYSTEM_TOOLS"
+        android:permissionGroup="android.permission-group.STORAGE"
         android:label="@string/permlab_sdcardRead"
         android:description="@string/permdesc_sdcardRead"
         android:protectionLevel="normal" />
@@ -1971,8 +1966,7 @@
 
     <!-- Must be required by a {@link android.nfc.cardemulation.HostApduService}
          or {@link android.nfc.cardemulation.OffHostApduService} to ensure that only
-         the system can bind to it.
-         @hide -->
+         the system can bind to it. -->
     <permission android:name="android.permission.BIND_NFC_SERVICE"
         android:label="@string/permlab_bindNfcService"
         android:description="@string/permdesc_bindNfcService"
@@ -2005,6 +1999,14 @@
         android:label="@string/permlab_bindWallpaper"
         android:description="@string/permdesc_bindWallpaper"
         android:protectionLevel="signature|system" />
+
+    <!-- Must be required by a {@link com.android.media.remotedisplay.RemoteDisplayProvider},
+         to ensure that only the system can bind to it.
+         @hide -->
+    <permission android:name="android.permission.BIND_REMOTE_DISPLAY"
+        android:label="@string/permlab_bindRemoteDisplay"
+        android:description="@string/permdesc_bindRemoteDisplay"
+        android:protectionLevel="signature" />
 
     <!-- Must be required by device administration receiver, to ensure that only the
          system can interact with it. -->
@@ -2203,14 +2205,6 @@
         android:description="@string/permdesc_broadcastPackageRemoved"
         android:protectionLevel="signature" />
 
-    <!-- Allows an application to intercept and rewrite outgoing SMS
-         @hide -->
-    <permission android:name="android.permission.INTERCEPT_SMS"
-        android:permissionGroup="android.permission-group.MESSAGES"
-        android:label="@string/permlab_interceptSmsSent"
-        android:description="@string/permdesc_interceptSmsSent"
-        android:protectionLevel="signature" />
-
     <!-- Allows an application to broadcast an SMS receipt notification.
     <p>Not for use by third-party applications. -->
     <permission android:name="android.permission.BROADCAST_SMS"
@@ -2394,26 +2388,6 @@
         android:label="@string/permlab_copyProtectedData"
         android:description="@string/permlab_copyProtectedData"
         android:protectionLevel="signature" />
-
-    <!-- Permission for reading writing revoked permissions
-         @hide -->
-    <permission android:name="android.permission.REVOKE_PERMISSIONS"
-        android:label="@string/permlab_revokePermissions"
-        android:description="@string/permdesc_revokePermissions"
-        android:protectionLevel="signature" />
-
-    <!-- Permission for reading writing revoked permissions
-         @hide -->
-    <permission android:name="android.permission.ACCESS_THEME_SERVICE"
-        android:label="@string/permlab_accessThemeService"
-        android:description="@string/permdesc_accessThemeService"
-        android:protectionLevel="signature" />
-
-    <!-- Internal permission protecting access to internal notification listener
-        @hide
-    -->
-    <permission android:name="android.permission.SYSTEM_NOTIFICATION_LISTENER"
-        android:protectionLevel="signature|system" />
 
     <!-- Internal permission protecting access to the encryption methods
         @hide
@@ -2723,6 +2697,15 @@
         <service android:name="android.hardware.location.GeofenceHardwareService"
             android:permission="android.permission.LOCATION_HARDWARE"
             android:exported="false" />
+
+        <service android:name="com.android.internal.backup.LocalTransportService"
+                android:permission="android.permission.CONFIRM_FULL_BACKUP"
+                android:exported="false">
+            <intent-filter>
+                <action android:name="android.backup.TRANSPORT_HOST" />
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>
