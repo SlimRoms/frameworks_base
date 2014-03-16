@@ -38,11 +38,11 @@
     <string name="config_statusBarComponent" translatable="false">com.android.systemui.statusbar.phone.PhoneStatusBar</string>
 
     <!-- Whether or not we show the number in the bar. -->
-    <bool name="config_statusBarShowNumber">false</bool>
+    <bool name="config_statusBarShowNumber">true</bool>
 
     <!-- How many icons may be shown at once in the system bar. Includes any
          slots that may be reused for things like IME control. -->
-    <integer name="config_maxNotificationIcons">5</integer>
+    <integer name="config_maxNotificationIcons">7</integer>
 
     <!-- Show phone (voice) signal strength instead of data in mobile RSSI. -->
     <bool name="config_showPhoneRSSIForData">false</bool>
@@ -54,7 +54,7 @@
     <bool name="config_showRotationLock">true</bool>
 
     <!-- Amount of time to hold off before showing the search panel when the user presses home -->
-    <integer name="config_show_search_delay">200</integer>
+    <integer name="config_show_search_delay">250</integer>
 
     <!-- Vibration duration for MultiWaveView used in SearchPanelView -->
     <integer translatable="false" name="config_vibration_duration">0</integer>
@@ -96,7 +96,7 @@
 
     <integer name="blinds_pop_duration_ms">10</integer>
 
-    <!-- Disable the separate quick settings panel -->
+    <!-- Enable the separate quick settings panel -->
     <bool name="config_hasSettingsPanel">true</bool>
 
     <!-- Enable the "flip settings" panel -->
