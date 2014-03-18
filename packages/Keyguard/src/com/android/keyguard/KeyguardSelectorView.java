@@ -124,11 +124,11 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
                     break;
                 }
             } else {
-                if (target == mTargetOffset) {
+                if (target == 0) {
                     mCallback.userActivity(0);
                     mCallback.dismiss(false);
                 } else {
-                    int realTarget = target - mTargetOffset - 1;
+                    int realTarget = target - 1;
                     String targetUri = realTarget < mStoredTargets.length
                             ? mStoredTargets[realTarget] : null;
 
