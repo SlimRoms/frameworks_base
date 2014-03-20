@@ -390,7 +390,8 @@ public final class BluetoothHandsfreeClient implements BluetoothProfile {
                             try {
                                 if (mService == null) {
                                     if (VDBG) Log.d(TAG,"Binding service...");
-                                    if (!mContext.bindService(new Intent(IBluetoothHandsfreeClient.class.getName()), mConnection, 0)) {
+                                    if (!mContext.bindServiceAsUser(new Intent(IBluetoothHandsfreeClient.class.getName()), mConnection, 0,
+                                            android.os.Process.myUserHandle())) {
                                         Log.e(TAG, "Could not bind to Bluetooth Handsfree Client Service");
                                     }
                                 }
@@ -419,7 +420,8 @@ public final class BluetoothHandsfreeClient implements BluetoothProfile {
             }
         }
 
-        if (!context.bindService(new Intent(IBluetoothHandsfreeClient.class.getName()), mConnection, 0)) {
+        if (!context.bindServiceAsUser(new Intent(IBluetoothHandsfreeClient.class.getName()), mConnection, 0,
+                android.os.Process.myUserHandle())) {
             Log.e(TAG, "Could not bind to Bluetooth Handsfree Client Service");
         }
     }
