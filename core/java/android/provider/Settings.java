@@ -3511,6 +3511,13 @@ public final class Settings {
         public static final String QUIET_HOURS_DIM = "quiet_hours_dim";
 
         /**
+         * Whether lockscreen rotation is enabled
+         * 0 = off, 1 = on, 2 = portrait, 3 = landscape
+         * @hide
+         */
+        public static final String LOCKSCREEN_ROTATION_ENABLED = "lockscreen_rotation_enabled";
+
+        /**
           * Always show the battery status on the lockscreen
           * @hide
           */

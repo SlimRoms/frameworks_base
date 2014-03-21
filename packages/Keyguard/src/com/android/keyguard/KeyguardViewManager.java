@@ -43,6 +43,8 @@ import android.os.IBinder;
 import android.os.Parcelable;
 import android.os.RemoteException;
 import android.os.SystemProperties;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.util.Log;
 import android.util.Slog;
 import android.util.SparseArray;
@@ -71,6 +73,11 @@ public class KeyguardViewManager {
 
     // Timeout used for keypresses
     static final int DIGIT_PRESS_WAKE_MILLIS = 5000;
+
+    private static final int ROTATION_OFF = 0;
+    private static final int ROTATION_ON = 1;
+    private static final int ROTATION_PORTRAIT = 2;
+    private static final int ROTATION_LANDSCAPE = 3;
 
     private final Context mContext;
     private final ViewManager mViewManager;
@@ -120,10 +127,10 @@ public class KeyguardViewManager {
     public synchronized void show(Bundle options) {
         if (DEBUG) Log.d(TAG, "show(); mKeyguardView==" + mKeyguardView);
 
-        boolean enableScreenRotation = shouldEnableScreenRotation();
+        int rotationAngles = shouldEnableScreenRotation();
 
-        maybeCreateKeyguardLocked(enableScreenRotation, false, options);
-        maybeEnableScreenRotation(enableScreenRotation);
+        maybeCreateKeyguardLocked(rotationAngles, false, options);
+        maybeEnableScreenRotation(rotationAngles);
 
         // Disable common aspects of the system/status/navigation bars that are not appropriate or
         // useful on any keyguard screen but can be re-shown by dialogs or SHOW_WHEN_LOCKED
@@ -143,10 +150,15 @@ public class KeyguardViewManager {
         mKeyguardView.requestFocus();
     }
 
-    private boolean shouldEnableScreenRotation() {
+    private int shouldEnableScreenRotation() {
         Resources res = mContext.getResources();
-        return SystemProperties.getBoolean("lockscreen.rot_override",false)
+        boolean enableScreenRotation = SystemProperties.getBoolean("lockscreen.rot_override",false)
                 || res.getBoolean(R.bool.config_enableLockScreenRotation);
+        return Settings.System.getIntForUser(
+                mContext.getContentResolver(),
+                Settings.System.LOCKSCREEN_ROTATION_ENABLED,
+                enableScreenRotation ? ROTATION_ON : ROTATION_OFF,
+                UserHandle.USER_CURRENT);
     }
 
     private boolean shouldEnableTranslucentDecor() {
@@ -305,7 +317,7 @@ public class KeyguardViewManager {
 
     SparseArray<Parcelable> mStateContainer = new SparseArray<Parcelable>();
 
-    private void maybeCreateKeyguardLocked(boolean enableScreenRotation, boolean force,
+    private void maybeCreateKeyguardLocked(int rotationAngles, boolean force,
             Bundle options) {
         if (mKeyguardHost != null) {
             mKeyguardHost.saveHierarchyState(mStateContainer);
@@ -331,8 +343,21 @@ public class KeyguardViewManager {
                     stretch, stretch, type, flags, PixelFormat.TRANSLUCENT);
             lp.softInputMode = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE;
             lp.windowAnimations = R.style.Animation_LockScreen;
-            lp.screenOrientation = enableScreenRotation ?
-                    ActivityInfo.SCREEN_ORIENTATION_USER : ActivityInfo.SCREEN_ORIENTATION_NOSENSOR;
+
+            switch (rotationAngles) {
+                case ROTATION_OFF:
+                    lp.screenOrientation = ActivityInfo.SCREEN_ORIENTATION_NOSENSOR;
+                    break;
+                case ROTATION_ON:
+                    lp.screenOrientation = ActivityInfo.SCREEN_ORIENTATION_USER;
+                    break;
+                case ROTATION_PORTRAIT:
+                    lp.screenOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT;
+                    break;
+                case ROTATION_LANDSCAPE:
+                    lp.screenOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE;
+                    break;
+            }
 
             if (ActivityManager.isHighEndGfx()) {
                 lp.flags |= WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
@@ -413,14 +438,29 @@ public class KeyguardViewManager {
         mWindowLayoutParams.userActivityTimeout = KeyguardViewMediator.AWAKE_INTERVAL_DEFAULT_MS;
     }
 
-    private void maybeEnableScreenRotation(boolean enableScreenRotation) {
+    private void maybeEnableScreenRotation(int rotationAngles) {
         // TODO: move this outside
-        if (enableScreenRotation) {
-            if (DEBUG) Log.d(TAG, "Rotation sensor for lock screen On!");
-            mWindowLayoutParams.screenOrientation = ActivityInfo.SCREEN_ORIENTATION_USER;
-        } else {
-            if (DEBUG) Log.d(TAG, "Rotation sensor for lock screen Off!");
-            mWindowLayoutParams.screenOrientation = ActivityInfo.SCREEN_ORIENTATION_NOSENSOR;
+        switch (rotationAngles) {
+            case ROTATION_OFF:
+                if (DEBUG) Log.d(TAG, "Rotation sensor for lock screen Off!");
+                mWindowLayoutParams.screenOrientation
+                        = ActivityInfo.SCREEN_ORIENTATION_NOSENSOR;
+                break;
+            case ROTATION_ON:
+                if (DEBUG) Log.d(TAG, "Rotation sensor for lock screen On!");
+                mWindowLayoutParams.screenOrientation
+                        = ActivityInfo.SCREEN_ORIENTATION_USER;
+                break;
+            case ROTATION_PORTRAIT:
+                if (DEBUG) Log.d(TAG, "Rotation sensor for lock screen Portrait!");
+                mWindowLayoutParams.screenOrientation
+                        = ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT;
+                break;
+            case ROTATION_LANDSCAPE:
+                if (DEBUG) Log.d(TAG, "Rotation sensor for lock screen Landscape!");
+                mWindowLayoutParams.screenOrientation
+                        = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE;
+                break;
         }
         mViewManager.updateViewLayout(mKeyguardHost, mWindowLayoutParams);
     }
