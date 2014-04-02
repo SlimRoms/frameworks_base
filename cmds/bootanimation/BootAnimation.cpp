@@ -596,10 +596,13 @@ bool BootAnimation::movie()
 
     mZip->endIteration(cookie);
 
+#ifndef CONTINUOUS_SPLASH
     glShadeModel(GL_FLAT);
     glDisable(GL_DITHER);
     glDisable(GL_SCISSOR_TEST);
     glDisable(GL_BLEND);
+
+#endif
 
     glBindTexture(GL_TEXTURE_2D, 0);
     glEnable(GL_TEXTURE_2D);
