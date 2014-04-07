@@ -69,4 +69,5 @@
   <java-symbol type="drawable" name="stat_notify_privacy_guard_custom_plus" />
   <java-symbol type="drawable" name="stat_notify_privacy_guard_custom_plus_light" />
 
+  <java-symbol type="string" name="usb_charging_notification_title" />
 </resources>

@@ -1,0 +1,59 @@
+From d651b3b7a0465610b31152d87599230d95c7a202 Mon Sep 17 00:00:00 2001
+From: padarshr <padarshr@codeaurora.org>
+Date: Mon, 7 Apr 2014 14:01:26 +0530
+Subject: [PATCH] usb: Show notification in 'charging only' mode.
+
+Show correct notification in 'charging only' mode.
+
+Change-Id: I93a04efe52e8280da95438ceb02b4054610a4d6e
+---
+ core/java/android/hardware/usb/UsbManager.java                 | 8 ++++++++
+ core/res/res/values/strings.xml                                | 2 ++
+ core/res/res/values/symbols.xml                                | 1 +
+ services/usb/java/com/android/server/usb/UsbDeviceManager.java | 7 ++++++-
+ 4 files changed, 17 insertions(+), 1 deletion(-)
+
+diff --git a/core/java/android/hardware/usb/UsbManager.java b/core/java/android/hardware/usb/UsbManager.java
+index f64ef87..2ca9f57 100644
+--- a/core/java/android/hardware/usb/UsbManager.java
++++ b/core/java/android/hardware/usb/UsbManager.java
+@@ -180,6 +180,14 @@
+     public static final String USB_FUNCTION_PTP = "ptp";
+ 
+     /**
++     * Name of the CHARGING USB function.
++     * Used in extras for the {@link #ACTION_USB_STATE} broadcast
++     *
++     * {@hide}
++     */
++    public static final String USB_FUNCTION_CHARGING = "charging";
++
++    /**
+      * Name of the audio source USB function.
+      * Used in extras for the {@link #ACTION_USB_STATE} broadcast
+      *
+
+diff --git a/services/usb/java/com/android/server/usb/UsbDeviceManager.java b/services/usb/java/com/android/server/usb/UsbDeviceManager.java
+index f3fa747..117f1b1 100644
+--- a/services/usb/java/com/android/server/usb/UsbDeviceManager.java
++++ b/services/usb/java/com/android/server/usb/UsbDeviceManager.java
+@@ -1,4 +1,7 @@
+ /*
++ * Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
++ * Not a Contribution.
++ *
+  * Copyright (C) 2011 The Android Open Source Project
+  *
+  * Licensed under the Apache License, Version 2.0 (the "License");
+@@ -699,7 +702,9 @@ private void updateUsbNotification() {
+             int id = 0;
+             Resources r = mContext.getResources();
+             if (mConnected) {
+-                if (containsFunction(mCurrentFunctions, UsbManager.USB_FUNCTION_MTP)) {
++                if (containsFunction(mCurrentFunctions, UsbManager.USB_FUNCTION_CHARGING)) {
++                    id = com.android.internal.R.string.usb_charging_notification_title;
++                } else if (containsFunction(mCurrentFunctions, UsbManager.USB_FUNCTION_MTP)) {
+                     id = com.android.internal.R.string.usb_mtp_notification_title;
+                 } else if (containsFunction(mCurrentFunctions, UsbManager.USB_FUNCTION_PTP)) {
+                     id = com.android.internal.R.string.usb_ptp_notification_title;
+
