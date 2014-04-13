@@ -130,4 +130,7 @@
     <!-- Smart PullDown Warning -->
     <string name="smart_pulldown_disabled">\"Умные\" уведомления отключены</string>
 
+    <!-- Navigation bar IME navigation -->
+    <string name="accessibility_ime_navigation_left">Курсор влево</string>
+    <string name="accessibility_ime_navigation_right">Курсор вправо</string>
 </resources>
