@@ -1872,4 +1872,7 @@
     <string-array name="config_disabledComponents" translatable="false">
     </string-array>
 
+    <!-- Is the device LTE capable -->
+    <bool name="config_lte_capable">true</bool>
+
 </resources>
