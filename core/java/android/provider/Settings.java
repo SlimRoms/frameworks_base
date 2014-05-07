@@ -3464,6 +3464,34 @@ public final class Settings {
                 "notification_shortcuts_color_mode";
 
         /**
+         * Sensitivity of all system shake events
+         * @hide
+         */
+        public static final String SHAKE_SENSITIVITY = "shake_sensitivity";
+
+        /**
+         * Apps where shake events are disabled
+         * @hide
+         */
+        public static final String DISABLED_SHAKE_APPS = "disabled_shake_apps";
+
+        /**
+         * Whether to enable the shake listener actions.
+         * @hide
+         */
+        public static final String SHAKE_LISTENER_ENABLED = "shake_listener_enabled";
+
+        /**
+         * Shake events for shaking along the x, y, and z axis.
+         * @hide
+         */
+        public static final String[] SHAKE_EVENTS_REGULAR = new String[] {
+            "shake_events_regular_x",
+            "shake_events_regular_y",
+            "shake_events_regular_z"
+        };
+
+        /**
          * Whether to enable quiet hours.
          * @hide
          */
@@ -4876,6 +4904,16 @@ public final class Settings {
          * @hide
          */
         public static final String LOCK_BEFORE_UNLOCK = "lock_before_unlock";
+
+        /**
+         * Shake events for x,y,z cords
+         * @hide
+         */
+        public static final String[] LOCK_SHAKE_EVENTS = new String[] {
+            "lock_shake_events_x",
+            "lock_shake_events_y",
+            "lock_shake_events_z"
+        };
 
         /**
          *Whether shaking the device enables a secure screen
