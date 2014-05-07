@@ -881,6 +881,7 @@ public class KeyguardViewMediator {
         synchronized (KeyguardViewMediator.this) {
             if (mHidden != isHidden) {
                 mHidden = isHidden;
+                KeyguardHostView.setShakeBypassed(mHidden);
                 updateActivityLockScreenState();
                 adjustStatusBarLocked();
             }
