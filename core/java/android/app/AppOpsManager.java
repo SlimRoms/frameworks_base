@@ -232,7 +232,9 @@ public class AppOpsManager {
     /** @hide */
     public static final int OP_BOOT_COMPLETED = 53;
     /** @hide */
-    public static final int _NUM_OP = 54;
+    public static final int OP_NFC_CHANGE = 54;
+    /** @hide */
+    public static final int _NUM_OP = 55;
 
     /** Access to coarse location information. */
     public static final String OPSTR_COARSE_LOCATION =
@@ -349,6 +351,8 @@ public class AppOpsManager {
             "android:write_mms";
     private static final String OPSTR_BOOT_COMPLETED =
             "android:boot_completed";
+    private static final String OPSTR_NFC_CHANGE =
+            "android:nfc_change";
 
     /**
      * This maps each operation to the operation that serves as the
@@ -413,6 +417,7 @@ public class AppOpsManager {
             OP_READ_MMS,
             OP_WRITE_MMS,
             OP_BOOT_COMPLETED,
+            OP_NFC_CHANGE,
     };
 
     /**
@@ -469,6 +474,7 @@ public class AppOpsManager {
             null,
             null,
             OPSTR_ACTIVATE_VPN,
+            null,
             null,
             null,
             null,
@@ -535,6 +541,7 @@ public class AppOpsManager {
         OPSTR_READ_MMS,
         OPSTR_WRITE_MMS,
         OPSTR_BOOT_COMPLETED,
+        OPSTR_NFC_CHANGE,
     };
 
     /**
@@ -596,6 +603,7 @@ public class AppOpsManager {
             "READ_MMS",
             "WRITE_MMS",
             "BOOT_COMPLETED",
+            "NFC_CHANGE",
     };
 
     /**
@@ -657,6 +665,7 @@ public class AppOpsManager {
             android.Manifest.permission.READ_SMS,
             android.Manifest.permission.WRITE_SMS,
             android.Manifest.permission.RECEIVE_BOOT_COMPLETED,
+            android.Manifest.permission.NFC,
     };
 
     /**
@@ -719,6 +728,7 @@ public class AppOpsManager {
             null, //READ_MMS
             null, //WRITE_MMS
             null, //BOOT_COMPLETED
+            null, //NFC_CHANGE
     };
 
     /**
@@ -780,6 +790,7 @@ public class AppOpsManager {
             false, // READ_MMS
             false, // WRITE_MMS
             false, // BOOT_COMPLETED
+            false, // NFC_CHANGE
     };
 
     /**
@@ -911,6 +922,7 @@ public class AppOpsManager {
             AppOpsManager.MODE_ALLOWED,
             AppOpsManager.MODE_ALLOWED,
             AppOpsManager.MODE_ALLOWED,
+            AppOpsManager.MODE_ALLOWED,
     };
 
     /**
@@ -972,6 +984,7 @@ public class AppOpsManager {
             AppOpsManager.MODE_ASK,     // OP_READ_MMS
             AppOpsManager.MODE_ASK,     // OP_WRITE_MMS
             AppOpsManager.MODE_ALLOWED, // OP_BOOT_COMPLETED
+            AppOpsManager.MODE_ASK,     // OP_NFC_CHANGE
     };
 
     /**
@@ -1032,6 +1045,7 @@ public class AppOpsManager {
         true,     // OP_READ_MMS
         true,     // OP_WRITE_MMS
         false,    // OP_BOOT_COMPLETED
+        true,     // OP_NFC_CHANGE
     };
 
     /**
@@ -1096,6 +1110,7 @@ public class AppOpsManager {
             false,     // OP_READ_MMS
             false,     // OP_WRITE_MMS
             false,     // OP_BOOT_COMPLETED
+            false,     // OP_NFC_CHANGE
     };
 
     private static HashMap<String, Integer> sOpStrToOp = new HashMap<String, Integer>();
