@@ -52,6 +52,7 @@
     <string name="privacy_guard_notification">Защита личных данных включена</string>
     <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> не сможет иметь доступ к личным данным</string>
     <string name="privacy_guard_custom_notification_detail"><xliff:g id="app">%1$s</xliff:g> не сможет использовать собственные разрешения</string>
+    <string name="default_string">По умолчанию</string>
     <string name="accessibility_target_direction">Проведите по экрану для выбора действия</string>
     <string name="stylus_app_not_installed">%s не установлен</string>
     <string name="theme_auto_switch_mode_error">Автоматические переключение в зависимости от освещения включено. Ручное переключение невозможно.</string>
