@@ -211,5 +211,9 @@
     <color name="power_menu_icon_default_color">#ffffffff</color>
     <color name="power_menu_text_default_color">#ffffffff</color>
 
+    <!-- TRDS colors -->
+    <color name="trds_background">#ffffffff</color>
+    <color name="trds_text">#ff000000</color>
+
 </resources>
 
