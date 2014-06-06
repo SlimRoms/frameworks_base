@@ -2274,10 +2274,6 @@ public abstract class AbsListView extends AdapterView<ListAdapter> implements Te
                 }
             }
 
-            if (mListAnimationMode != 0 && !mIsWidget) {
-                child = setAnimation(child);
-            }
-
             // Scrap view implies temporary detachment.
             isScrap[0] = true;
             return transientView;
@@ -2285,8 +2281,13 @@ public abstract class AbsListView extends AdapterView<ListAdapter> implements Te
         }
 
         final View scrapView = mRecycler.getScrapView(position);
-        final View child = mAdapter.getView(position, scrapView, this);
+        View child = mAdapter.getView(position, scrapView, this);
+
         if (scrapView != null) {
+            if (mListAnimationMode != 0 && !mIsWidget) {
+                child = setAnimation(child);
+            }
+
             if (child != scrapView) {
                 // Failed to re-bind the data, return scrap to the heap.
                 mRecycler.addScrapView(scrapView, position);
