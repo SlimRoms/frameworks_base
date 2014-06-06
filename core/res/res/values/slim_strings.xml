@@ -163,4 +163,9 @@
     <string name="permlab_changeHeadsUpState">enable or disable heads up</string>
     <string name="permdesc_changeHeadsUpState">Allows the application to change whether another application is allowed to show normal notifications as heads up notification.</string>
 
+    <!-- Title of an application permission, listed so the user can choose whether they want the application to do this. -->
+    <string name="permlab_useHardwareFramework">use hardware framework</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_useHardwareFramework">Allows an app access to the CM hardware framework.</string>
+
 </resources>
