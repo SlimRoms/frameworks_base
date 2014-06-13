@@ -38,7 +38,6 @@
     <!-- Error message if user want to try to disable all navigation options -->
     <string name="disable_navigation_pie_error">Нельзя отключить строку навигации, поскольку не включено иной навигации. Сначала включите управление pie.</string>
     <string name="reboot_reboot">Перезагрузка</string>
-    <string name="reboot_bootloader">Бутлоадер</string>
     <string name="reboot_bootmenu">Загрузочное меню</string>
     <string name="reboot_fastboot">Fastboot</string>
     <string name="reboot_download">Режим прошивки</string>
