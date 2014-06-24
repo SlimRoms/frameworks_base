@@ -130,4 +130,14 @@
   <java-symbol type="anim" name="recent_screen_enter_left" />
   <java-symbol type="anim" name="recent_screen_fade_out" />
 
+  <!-- Button and keyboard backlight -->
+  <java-symbol type="bool" name="config_deviceHasVariableButtonBrightness" />
+  <java-symbol type="integer" name="config_buttonBrightnessSettingDefault" />
+  <java-symbol type="integer" name="config_keyboardBrightnessSettingDefault" />
+
+  <!-- Config.xml entries -->
+  <java-symbol type="bool" name="config_samsung_stk" />
+  <java-symbol type="bool" name="config_smsSamsungCdmaAlternateMessageIDEncoding" />
+  <java-symbol type="string" name="config_legacyUmsLunFile" />
+
 </resources>
