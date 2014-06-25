@@ -27,16 +27,16 @@
     <string name="global_actions_pie_mode_off_status">SlimPie отключен</string>
 
     <!-- Error message if user want to try to disable all navigation options -->
-    <string name="disable_pie_navigation_error">Нельзя отключить управление pie, поскольку не включено иной навигации. Сначала включите строку навигации.</string>
+    <string name="disable_pie_navigation_error">Нельзя отключить управление pie, поскольку не включено иной навигации. Сначала включите панель навигации.</string>
 
     <!-- status message in phone options dialog for when navigation bar is on -->
-    <string name="global_actions_nav_bar_mode_on_status">Строка навигации включена</string>
+    <string name="global_actions_nav_bar_mode_on_status">Панель навигации включена</string>
 
     <!-- status message in phone options dialog for when navigation bar is off -->
-    <string name="global_actions_nav_bar_mode_off_status">Строка навигации отключена</string>
+    <string name="global_actions_nav_bar_mode_off_status">Панель навигации отключена</string>
 
     <!-- Error message if user want to try to disable all navigation options -->
-    <string name="disable_navigation_pie_error">Нельзя отключить строку навигации, поскольку не включено иной навигации. Сначала включите управление pie.</string>
+    <string name="disable_navigation_pie_error">Нельзя отключить панель навигации, поскольку не включено иной навигации. Сначала включите управление pie.</string>
     <string name="reboot_reboot">Перезагрузка</string>
     <string name="reboot_bootmenu">Загрузочное меню</string>
     <string name="reboot_fastboot">Fastboot</string>
