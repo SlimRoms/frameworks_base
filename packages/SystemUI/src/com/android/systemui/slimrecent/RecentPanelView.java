@@ -77,6 +77,7 @@ public class RecentPanelView {
     public static final int EXPANDED_STATE_EXPANDED  = 1;
     public static final int EXPANDED_STATE_COLLAPSED = 2;
     public static final int EXPANDED_STATE_BY_SYSTEM = 4;
+    public static final int EXPANDED_STATE_TOPTASK   = 8;
 
     public static final int EXPANDED_MODE_AUTO    = 0;
     private static final int EXPANDED_MODE_ALWAYS = 1;
@@ -118,11 +119,7 @@ public class RecentPanelView {
     private int mMainGravity;
     private float mScaleFactor;
     private int mExpandedMode = EXPANDED_MODE_AUTO;
-
-    private TaskDescription mLastTopmostTask;
-    private int mLastTopmostExpandedState;
-    private TaskDescription mTaskToRestore;
-    private int mStateToRestore;
+    private boolean mShowTopTask;
 
     private PopupMenu mPopup;
 
@@ -635,12 +632,6 @@ public class RecentPanelView {
         int firstItems = 0;
         final int firstExpandedItems =
                 mContext.getResources().getInteger(R.integer.expanded_items_default);
-
-        // Also show the topmost task?
-        boolean showTopmost = Settings.System.getIntForUser(mContext.getContentResolver(),
-                Settings.System.RECENT_PANEL_SHOW_TOPMOST, 0,
-                UserHandle.USER_CURRENT) == 1;
-
         boolean loadOneExcluded = true;
         // Get current task list. We do not need to do it in background. We only load MAX_TASKS.
         for (int i = 0, index = 0; i < numTasks && (index < MAX_TASKS); ++i) {
@@ -659,23 +650,12 @@ public class RecentPanelView {
             // Never load the current home activity.
             if (isCurrentHomeActivity(intent.getComponent(), homeInfo)) {
                 loadOneExcluded = false;
-
-                //We're on Homescreen, so restore expanded state of last topmost task
-                mTaskToRestore = mLastTopmostTask;
-                mStateToRestore = mLastTopmostExpandedState;
-                mLastTopmostTask = null;
-
                 continue;
             }
 
             // Don't load excluded activities.
             if (!loadOneExcluded && (recentInfo.baseIntent.getFlags()
                     & Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS) != 0) {
-
-                mTaskToRestore = mLastTopmostTask;
-                mStateToRestore = mLastTopmostExpandedState;
-                mLastTopmostTask = null;
-
                 continue;
             }
 
@@ -694,55 +674,39 @@ public class RecentPanelView {
                     }
                 }
 
-                if (i == 0) {
-                    // Save the first task for later use.
-                    mFirstTask = item;
-                }
-
-                if (i > 0 || showTopmost) {
+                if (i == 0 ) {
+                    if (mShowTopTask) {
+                        // User want to see actual running task. Set it here
+                        int oldState = getExpandedState(item);
+                        if ((oldState & EXPANDED_STATE_TOPTASK) == 0) {
+                            oldState |= EXPANDED_STATE_TOPTASK;
+                        }
+                        item.setExpandedState(oldState);
+                        mTasks.add(item);
+                        mFirstTask = null;
+                    } else {
+                        // Skip the first task for our list but save it for later use.
+                        mFirstTask = item;
+                    }
+                } else {
                     // FirstExpandedItems value forces to show always the app screenshot
                     // if the old state is not known and the user has set expanded mode to auto.
                     // On all other items we check if they were expanded from the user
                     // in last known recent app list and restore the state. This counts as well
                     // if expanded mode is always or never.
-
                     int oldState = getExpandedState(item);
                     if ((oldState & EXPANDED_STATE_BY_SYSTEM) != 0) {
                         oldState &= ~EXPANDED_STATE_BY_SYSTEM;
+                    }
+                    if ((oldState & EXPANDED_STATE_TOPTASK) != 0) {
+                        oldState &= ~EXPANDED_STATE_TOPTASK;
                     }
                     if (DEBUG) Log.v(TAG, "old expanded state = " + oldState);
                     if (firstItems < firstExpandedItems) {
                         if (mExpandedMode != EXPANDED_MODE_NEVER) {
                             oldState |= EXPANDED_STATE_BY_SYSTEM;
                         }
-                        //Handle expanded state of topmost task:
-                        //Topmost Task is always shown collapsed,
-                        //we're saving its expanded state and restore it later
-                        if (i == 0) {
-                            if (mLastTopmostTask == null) {
-                                //No topmost task saved, do this now...
-                                mLastTopmostTask = item;
-                                mLastTopmostExpandedState = oldState;
-                            } else if (!mLastTopmostTask.identifier.equals(mFirstTask.identifier)) {
-                                //Topmost task has changed! Restore the state of the last one
-                                //in one of the next loop iterations...
-                                mTaskToRestore = mLastTopmostTask;
-                                mStateToRestore = mLastTopmostExpandedState;
-
-                                //item holds our new topmost task,
-                                //save the item and its expanded state...
-                                mLastTopmostTask = item;
-                                mLastTopmostExpandedState = oldState;
-                            }
-                            //now set the state of topmost task to collapsed
-                            item.setExpandedState(EXPANDED_STATE_COLLAPSED);
-                        } else if ((mTaskToRestore != null)
-                                && (item.identifier.equals(mTaskToRestore.identifier))) {
-                            item.setExpandedState(mStateToRestore);
-                            mTaskToRestore = null;
-                        } else {
-                            item.setExpandedState(oldState);
-                        }
+                        item.setExpandedState(oldState);
                         // The first tasks are always added to the task list.
                         mTasks.add(item);
                     } else {
@@ -883,6 +847,10 @@ public class RecentPanelView {
 
     protected void setExpandedMode(int mode) {
         mExpandedMode = mode;
+    }
+
+    protected void setShowTopTask(boolean enabled) {
+        mShowTopTask = enabled;
     }
 
     protected boolean hasFavorite() {

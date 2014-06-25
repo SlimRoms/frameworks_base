@@ -512,6 +512,9 @@ public class RecentController implements RecentPanelView.OnExitListener,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.RECENT_PANEL_EXPANDED_MODE),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.RECENT_PANEL_SHOW_TOPMOST),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -552,6 +555,9 @@ public class RecentController implements RecentPanelView.OnExitListener,
                     resolver, Settings.System.RECENT_PANEL_EXPANDED_MODE,
                     mRecentPanelView.EXPANDED_MODE_AUTO,
                     UserHandle.USER_CURRENT));
+                mRecentPanelView.setShowTopTask(Settings.System.getIntForUser(
+                    resolver, Settings.System.RECENT_PANEL_SHOW_TOPMOST, 0,
+                    UserHandle.USER_CURRENT) == 1);
             }
         }
     }
