@@ -3725,6 +3725,12 @@ public final class Settings {
         public static final String QUIET_HOURS_HAPTIC = "quiet_hours_haptic";
 
         /**
+         * @hide
+         */
+        public static final String PROXIMITY_ON_WAKE = "proximity_on_wake";
+
+
+        /**
          * Whether to disable system sounds during quiet hours.
          * 0 = Setting disabled
          * 1 = Setting enabled but inactive
