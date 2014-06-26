@@ -62,4 +62,6 @@ interface IPowerManager
     void updateBlockedUids(int uid, boolean isBlocked);
 
     void cpuBoost(int duration);
+
+    void wakeUpWithProximityCheck(long time);
 }
