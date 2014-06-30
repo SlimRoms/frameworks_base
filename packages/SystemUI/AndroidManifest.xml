@@ -90,6 +90,9 @@
     <!-- Record Audio QuickRecord -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
+    <!-- Heads up -->
+    <uses-permission android:name="android.permission.CHANGE_HEADS_UP_STATE" />
+
     <application
         android:persistent="true"
         android:allowClearUserData="false"

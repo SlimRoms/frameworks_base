@@ -101,4 +101,9 @@
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_preventpower">Allows an application to override the power key</string>
 
+    <!-- Heads up -->
+    <string name="permlab_changeHeadsUpState">enable or disable heads up</string>
+    <string name="permdesc_changeHeadsUpState">Allows the application to change whether another application is allowed to show normal notifications as heads up notification.</string>
+
+
 </resources>
