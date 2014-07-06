@@ -24,6 +24,7 @@ import android.bluetooth.BluetoothDevice;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.media.RemoteController.OnClientUpdateListener;
 import android.os.Binder;
 import android.os.Build;
@@ -38,6 +39,7 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Surface;
+import android.view.View;
 import android.view.VolumePanel;
 import android.view.WindowManager;
 
@@ -518,10 +520,12 @@ public class AudioManager {
                  * Adjust the volume in on key down since it is more
                  * responsive to the user.
                  */
+                Configuration config = mContext.getResources().getConfiguration();
                 int direction;
                 int rotation = mWindowManager.getDefaultDisplay().getRotation();
-                if (rotation == Surface.ROTATION_90
-                        || rotation == Surface.ROTATION_180) {
+                if ((rotation == Surface.ROTATION_90
+                        || rotation == Surface.ROTATION_180)
+                        && config.getLayoutDirection() == View.LAYOUT_DIRECTION_LTR) {
                     direction = keyCode == KeyEvent.KEYCODE_VOLUME_UP
                             ? ADJUST_LOWER
                             : ADJUST_RAISE;
