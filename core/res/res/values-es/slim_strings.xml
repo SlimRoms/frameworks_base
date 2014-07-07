@@ -80,4 +80,8 @@
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_preventpower">Permite a una aplicación utilizar el botón de encendido</string>
 
+    <!-- Heads up -->
+    <string name="permlab_changeHeadsUpState">habilitar o deshabilitar "heads up"</string>
+    <string name="permdesc_changeHeadsUpState">Permite a la aplicación cambiar si tiene permisos para mostrar notificaciones normales como "heads up".</string>
+
 </resources>
