@@ -20,6 +20,8 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.hardware.display.DisplayManager;
+import android.hardware.display.WifiDisplayStatus;
 import android.net.ConnectivityManager;
 import android.nfc.NfcAdapter;
 import android.os.Vibrator;
@@ -42,6 +44,12 @@ public class DeviceUtils {
     private static final int DEVICE_PHONE  = 0;
     private static final int DEVICE_HYBRID = 1;
     private static final int DEVICE_TABLET = 2;
+
+    public static boolean deviceSupportsRemoteDisplay(Context ctx) {
+        DisplayManager dm = (DisplayManager) ctx.getSystemService(Context.DISPLAY_SERVICE);
+        return (dm.getWifiDisplayStatus().getFeatureState()
+                != WifiDisplayStatus.FEATURE_STATE_UNAVAILABLE);
+    }
 
     public static boolean deviceSupportsUsbTether(Context context) {
         ConnectivityManager cm =
