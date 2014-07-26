@@ -3507,6 +3507,13 @@ public final class Settings {
                 "notification_shortcuts_color_mode";
 
         /**
+         * Whether heads up notification is shown on the bottom of the screen (default = disabled)
+         *
+         * @hide
+         */
+        public static final String HEADS_UP_GRAVITY_BOTTOM = "heads_up_gravity_bottom";
+
+        /**
          * Whether heads up notification is expanded by default (default = disabled)
          *
          * @hide
