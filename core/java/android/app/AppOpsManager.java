@@ -242,7 +242,9 @@ public class AppOpsManager {
     /** @hide */
     public static final int OP_DELETE_CALL_LOG = 58;
     /** @hide */
-    public static final int _NUM_OP = 59;
+    public static final int OP_DATA_CONNECT_CHANGE = 59;
+    /** @hide */
+    public static final int _NUM_OP = 60;
 
     /** Access to coarse location information. */
     public static final String OPSTR_COARSE_LOCATION =
@@ -369,6 +371,8 @@ public class AppOpsManager {
             "android:delete_contacts";
     private static final String OPSTR_DELETE_CALL_LOG =
             "android:delete_call_log";
+    private static final String OPSTR_DATA_CONNECT_CHANGE =
+            "android:data_connect_change";
 
     /**
      * This maps each operation to the operation that serves as the
@@ -438,6 +442,7 @@ public class AppOpsManager {
             OP_DELETE_MMS,
             OP_DELETE_CONTACTS,
             OP_DELETE_CALL_LOG,
+            OP_DATA_CONNECT_CHANGE,
     };
 
     /**
@@ -494,6 +499,7 @@ public class AppOpsManager {
             null,
             null,
             OPSTR_ACTIVATE_VPN,
+            null,
             null,
             null,
             null,
@@ -570,6 +576,7 @@ public class AppOpsManager {
         OPSTR_DELETE_MMS,
         OPSTR_DELETE_CONTACTS,
         OPSTR_DELETE_CALL_LOG,
+        OPSTR_DATA_CONNECT_CHANGE,
     };
 
     /**
@@ -636,6 +643,7 @@ public class AppOpsManager {
             "DELETE_MMS",
             "DELETE_CONTACTS",
             "DELETE_CALL_LOG",
+            "DATA_CONNECT_CHANGE",
     };
 
     /**
@@ -702,6 +710,7 @@ public class AppOpsManager {
             android.Manifest.permission.WRITE_SMS,
             android.Manifest.permission.WRITE_CONTACTS,
             android.Manifest.permission.WRITE_CALL_LOG,
+            android.Manifest.permission.MODIFY_PHONE_STATE,
     };
 
     /**
@@ -769,6 +778,7 @@ public class AppOpsManager {
             null, //DELETE_MMS
             null, //DELETE_CONTACTS
             null, //DELETE_CALL_LOG
+            null, //DATA_CONNECT_CHANGE
     };
 
     /**
@@ -835,6 +845,7 @@ public class AppOpsManager {
             false, //DELETE_MMS
             false, //DELETE_CONTACTS
             false, //DELETE_CALL_LOG
+            false, //DATA_CONNECT_CHANGE
     };
 
     /**
@@ -971,6 +982,7 @@ public class AppOpsManager {
             AppOpsManager.MODE_ALLOWED,
             AppOpsManager.MODE_ALLOWED,
             AppOpsManager.MODE_ALLOWED,
+            AppOpsManager.MODE_ALLOWED,
     };
 
     /**
@@ -1037,6 +1049,7 @@ public class AppOpsManager {
             AppOpsManager.MODE_ASK,     // OP_DELETE_MMS
             AppOpsManager.MODE_ASK,     // OP_DELETE_CONTACTS
             AppOpsManager.MODE_ASK,     // OP_DELETE_CALL_LOG
+            AppOpsManager.MODE_ASK,     // OP_DATA_CONNECT_CHANGE
     };
 
     /**
@@ -1102,6 +1115,7 @@ public class AppOpsManager {
         true,     // OP_DELETE_MMS
         true,     // OP_DELETE_CONTACTS
         true,     // OP_DELETE_CALL_LOG
+        true,     // OP_DATA_CONNECT_CHANGE
     };
 
     /**
@@ -1171,6 +1185,7 @@ public class AppOpsManager {
             false,     // OP_DELETE_MMS
             false,     // OP_DELETE_CONTACTS
             false,     // OP_DELETE_CALL_LOG
+            false,     // OP_DATA_CONNECT_CHANGE
     };
 
     private static HashMap<String, Integer> sOpStrToOp = new HashMap<String, Integer>();
