@@ -1220,7 +1220,7 @@ public class TelephonyManager {
      * @hide
      */
     public int getDataNetworkType() {
-        return getDataNetworkType(getDefaultSubscription());
+        return getDataNetworkType(SubscriptionManager.getDefaultDataSubId());
     }
 
     /**
@@ -1392,7 +1392,7 @@ public class TelephonyManager {
             case NETWORK_TYPE_GSM:
                 return "GSM";
             case NETWORK_TYPE_TD_SCDMA:
-                return "TD_SCDMA";
+                return "TD-SCDMA";
             default:
                 return "UNKNOWN";
         }
@@ -2371,8 +2371,13 @@ public class TelephonyManager {
      * <p>Requires Permission: {@link android.Manifest.permission#ACCESS_COARSE_LOCATION}
      */
     public List<CellInfo> getAllCellInfo() {
+        return getAllCellInfo(getDefaultSubscription());
+    }
+
+    /** {@hide} */
+    public List<CellInfo> getAllCellInfo(long subId) {
         try {
-            return getITelephony().getAllCellInfo();
+            return getITelephony().getAllCellInfoUsingSubId(subId);
         } catch (RemoteException ex) {
             return null;
         } catch (NullPointerException ex) {
@@ -2842,12 +2847,7 @@ public class TelephonyManager {
 
     /** @hide */
     public int getSimCount() {
-        if(isMultiSimEnabled()) {
-        //TODO Need to get it from Telephony Devcontroller
-            return 2;
-        } else {
-           return 1;
-        }
+        return getPhoneCount();
     }
 
     /**
