@@ -61,12 +61,12 @@ public class NetworkControllerImpl extends BroadcastReceiver
         implements NetworkController, DemoMode {
     // debug
     static final String TAG = "StatusBar.NetworkController";
-    static final boolean DEBUG = false;
+    static final boolean DEBUG = true;
     static final boolean CHATTY = false; // additional diagnostics, but not logspew
 
     // telephony
     boolean mHspaDataDistinguishable;
-    final TelephonyManager mPhone;
+    private TelephonyManager mPhone;
     boolean mDataConnected;
     IccCardConstants.State mSimState = IccCardConstants.State.READY;
     int mPhoneState = TelephonyManager.CALL_STATE_IDLE;
@@ -86,6 +86,8 @@ public class NetworkControllerImpl extends BroadcastReceiver
     int mDataTypeIconId;
     int mQSDataTypeIconId;
     int mAirplaneIconId;
+    int mNoSimIconId;
+    int mLastSimIconId;
     boolean mDataActive;
     boolean mNoSim;
     int mLastSignalLevel;
@@ -100,8 +102,8 @@ public class NetworkControllerImpl extends BroadcastReceiver
     String mContentDescriptionDataType;
 
     // wifi
-    final WifiManager mWifiManager;
-    AsyncChannel mWifiChannel;
+    protected WifiManager mWifiManager;
+    protected AsyncChannel mWifiChannel;
     boolean mWifiEnabled, mWifiConnected;
     int mWifiRssi, mWifiLevel;
     String mWifiSsid;
@@ -110,39 +112,40 @@ public class NetworkControllerImpl extends BroadcastReceiver
     int mWifiActivity = WifiManager.DATA_ACTIVITY_NONE;
 
     // bluetooth
-    private boolean mBluetoothTethered = false;
-    private int mBluetoothTetherIconId =
+    protected boolean mBluetoothTethered = false;
+    protected int mBluetoothTetherIconId =
         com.android.internal.R.drawable.stat_sys_tether_bluetooth;
 
     //wimax
-    private boolean mWimaxSupported = false;
-    private boolean mIsWimaxEnabled = false;
-    private boolean mWimaxConnected = false;
-    private boolean mWimaxIdle = false;
-    private int mWimaxIconId = 0;
-    private int mWimaxSignal = 0;
-    private int mWimaxState = 0;
-    private int mWimaxExtraState = 0;
+    protected boolean mWimaxSupported = false;
+    protected boolean mIsWimaxEnabled = false;
+    protected boolean mWimaxConnected = false;
+    protected boolean mWimaxIdle = false;
+    protected int mWimaxIconId = 0;
+    protected int mWimaxSignal = 0;
+    protected int mWimaxState = 0;
+    protected int mWimaxExtraState = 0;
+    protected int mDataServiceState = ServiceState.STATE_OUT_OF_SERVICE;
 
     // data connectivity (regardless of state, can we access the internet?)
     // state of inet connection - 0 not connected, 100 connected
-    private boolean mConnected = false;
-    private int mConnectedNetworkType = ConnectivityManager.TYPE_NONE;
-    private String mConnectedNetworkTypeName;
-    private int mLastConnectedNetworkType = ConnectivityManager.TYPE_NONE;
+    protected boolean mConnected = false;
+    protected int mConnectedNetworkType = ConnectivityManager.TYPE_NONE;
+    protected String mConnectedNetworkTypeName;
+    protected int mLastConnectedNetworkType = ConnectivityManager.TYPE_NONE;
 
-    private int mInetCondition = 0;
-    private int mLastInetCondition = 0;
-    private static final int INET_CONDITION_THRESHOLD = 50;
+    protected int mInetCondition = 0;
+    protected int mLastInetCondition = 0;
+    protected static final int INET_CONDITION_THRESHOLD = 50;
 
-    private boolean mAirplaneMode = false;
-    private boolean mLastAirplaneMode = true;
+    protected boolean mAirplaneMode = false;
+    protected boolean mLastAirplaneMode = true;
 
     private Locale mLocale = null;
     private Locale mLastLocale = null;
 
     // our ui
-    Context mContext;
+    protected Context mContext;
     ArrayList<TextView> mCombinedLabelViews = new ArrayList<TextView>();
     ArrayList<TextView> mMobileLabelViews = new ArrayList<TextView>();
     ArrayList<TextView> mWifiLabelViews = new ArrayList<TextView>();
@@ -158,7 +161,7 @@ public class NetworkControllerImpl extends BroadcastReceiver
     int mLastDataTypeIconId = -1;
     String mLastCombinedLabel = "";
 
-    private boolean mHasMobileDataFeature;
+    protected boolean mHasMobileDataFeature;
 
     boolean mDataAndWifiStacked = false;
 
@@ -198,13 +201,7 @@ public class NetworkControllerImpl extends BroadcastReceiver
         updateWimaxIcons();
 
         // telephony
-        mPhone = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
-        mPhone.listen(mPhoneStateListener,
-                          PhoneStateListener.LISTEN_SERVICE_STATE
-                        | PhoneStateListener.LISTEN_SIGNAL_STRENGTHS
-                        | PhoneStateListener.LISTEN_CALL_STATE
-                        | PhoneStateListener.LISTEN_DATA_CONNECTION_STATE
-                        | PhoneStateListener.LISTEN_DATA_ACTIVITY);
+        registerPhoneStateListener(context);
         mHspaDataDistinguishable = mContext.getResources().getBoolean(
                 R.bool.config_hspa_data_distinguishable);
         mNetworkNameSeparator = mContext.getString(R.string.status_bar_network_name_separator);
@@ -232,6 +229,9 @@ public class NetworkControllerImpl extends BroadcastReceiver
         filter.addAction(ConnectivityManager.INET_CONDITION_ACTION);
         filter.addAction(Intent.ACTION_CONFIGURATION_CHANGED);
         filter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
+
+        filter.addAction(TelephonyIntents.ACTION_SUBINFO_RECORD_UPDATED);
+
         mWimaxSupported = mContext.getResources().getBoolean(
                 com.android.internal.R.bool.config_wimaxEnabled);
         if(mWimaxSupported) {
@@ -271,6 +271,28 @@ public class NetworkControllerImpl extends BroadcastReceiver
 
     public boolean isEmergencyOnly() {
         return (mServiceState != null && mServiceState.isEmergencyOnly());
+    }
+
+    protected void createWifiHandler() {
+        // wifi
+        mWifiManager = (WifiManager) mContext.getSystemService(Context.WIFI_SERVICE);
+        Handler handler = new WifiHandler();
+        mWifiChannel = new AsyncChannel();
+        Messenger wifiMessenger = mWifiManager.getWifiServiceMessenger();
+        if (wifiMessenger != null) {
+            mWifiChannel.connect(mContext, handler, wifiMessenger);
+        }
+    }
+
+    protected void registerPhoneStateListener(Context context) {
+        // telephony
+        mPhone = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
+        mPhone.listen(mPhoneStateListener,
+                          PhoneStateListener.LISTEN_SERVICE_STATE
+                        | PhoneStateListener.LISTEN_SIGNAL_STRENGTHS
+                        | PhoneStateListener.LISTEN_CALL_STATE
+                        | PhoneStateListener.LISTEN_DATA_CONNECTION_STATE
+                        | PhoneStateListener.LISTEN_DATA_ACTIVITY);
     }
 
     public void addCombinedLabelView(TextView v) {
@@ -552,7 +574,7 @@ public class NetworkControllerImpl extends BroadcastReceiver
         }
     };
 
-    private final void updateSimState(Intent intent) {
+    protected void updateSimState(Intent intent) {
         String stateExtra = intent.getStringExtra(IccCardConstants.INTENT_KEY_ICC_STATE);
         if (IccCardConstants.INTENT_VALUE_ICC_ABSENT.equals(stateExtra)) {
             mSimState = IccCardConstants.State.ABSENT;
@@ -607,7 +629,7 @@ public class NetworkControllerImpl extends BroadcastReceiver
         return retVal;
     }
 
-    private void updateAirplaneMode() {
+    protected void updateAirplaneMode() {
         mAirplaneMode = (Settings.Global.getInt(mContext.getContentResolver(),
             Settings.Global.AIRPLANE_MODE_ON, 0) == 1);
     }
@@ -787,7 +809,7 @@ public class NetworkControllerImpl extends BroadcastReceiver
                                 R.string.accessibility_data_connection_lte);
                     }
                     break;
-                default:
+                case TelephonyManager.NETWORK_TYPE_GPRS:
                     if (!mShowAtLeastThreeGees) {
                         mDataIconList = TelephonyIcons.DATA_G[inetCondition];
                         mDataTypeIconId = showDataTypeIcon ?
@@ -803,6 +825,13 @@ public class NetworkControllerImpl extends BroadcastReceiver
                         mContentDescriptionDataType = mContext.getString(
                                 R.string.accessibility_data_connection_3g);
                     }
+                    break;
+                default:
+                    if (DEBUG) {
+                        Log.e(TAG, "updateDataNetType unknown radio:" + mDataNetType);
+                    }
+                    mDataNetType = TelephonyManager.NETWORK_TYPE_UNKNOWN;
+                    mDataTypeIconId = 0;
                     break;
             }
         }
@@ -949,7 +978,7 @@ public class NetworkControllerImpl extends BroadcastReceiver
         }
     }
 
-    private void updateWifiState(Intent intent) {
+    protected void updateWifiState(Intent intent) {
         final String action = intent.getAction();
         if (action.equals(WifiManager.WIFI_STATE_CHANGED_ACTION)) {
             mWifiEnabled = intent.getIntExtra(WifiManager.EXTRA_WIFI_STATE,
@@ -984,7 +1013,7 @@ public class NetworkControllerImpl extends BroadcastReceiver
         updateWifiIcons();
     }
 
-    private void updateWifiIcons() {
+    protected void updateWifiIcons() {
         int inetCondition = inetConditionForNetwork(ConnectivityManager.TYPE_WIFI);
         if (mWifiConnected) {
             mWifiIconId = WifiIcons.WIFI_SIGNAL_STRENGTH[inetCondition][mWifiLevel];
@@ -1020,7 +1049,7 @@ public class NetworkControllerImpl extends BroadcastReceiver
 
 
     // ===== Wimax ===================================================================
-    private final void updateWimaxState(Intent intent) {
+    protected final void updateWimaxState(Intent intent) {
         final String action = intent.getAction();
         boolean wasConnected = mWimaxConnected;
         if (action.equals(WimaxManagerConstants.NET_4G_STATE_CHANGED_ACTION)) {
@@ -1044,7 +1073,7 @@ public class NetworkControllerImpl extends BroadcastReceiver
         updateWimaxIcons();
     }
 
-    private void updateWimaxIcons() {
+    protected void updateWimaxIcons() {
         if (mIsWimaxEnabled) {
             if (mWimaxConnected) {
                 int inetCondition = inetConditionForNetwork(ConnectivityManager.TYPE_WIMAX);
@@ -1065,7 +1094,7 @@ public class NetworkControllerImpl extends BroadcastReceiver
 
     // ===== Full or limited Internet connectivity ==================================
 
-    private void updateConnectivity(Intent intent) {
+    protected void updateConnectivity(Intent intent) {
         if (CHATTY) {
             Log.d(TAG, "updateConnectivity: intent=" + intent);
         }
@@ -1507,7 +1536,7 @@ public class NetworkControllerImpl extends BroadcastReceiver
         pw.println("");
     }
 
-    private String getResourceName(int resId) {
+    protected String getResourceName(int resId) {
         if (resId != 0) {
             final Resources res = mContext.getResources();
             try {
