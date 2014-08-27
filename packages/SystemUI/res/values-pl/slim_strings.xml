@@ -59,16 +59,16 @@
     <string name="shortcut_chamber">Komnata tajemnic</string>
     <string name="chamber_disabled">Komnata tajemnic jest zamknięta</string>
     <string name="chamber_title">Wejście do komnaty </string>
-    <string name="chamber_message">Input a Settings string that is either an on and off (checkbox) function or possibly a list-preference. For example, quiet_hours_ringer or similar. Settings can be found in the Settings.java file. WARNING: This process is dangerous!</string>
+    <string name="chamber_message">Wpisz ciąg znaków ustawienia, które jest przełącznikiem włącz/wyłącz lub listą wyboru. Na przykład, quiet_hours_ringer lub podobne. Ustawienia znajdziesz w pliku Settings.java. UWAGA: Ten proces jest niebezpieczny!</string>
     <string name="chamber_invalid">Wprowadzono niepoprawne dane. Bądź ostrożny.</string>
-    <string name="chamber_invalid_setting">Try toggling the setting manually to ensure the settings database for this action exists.</string>
-    <string name="chamber_checkbox">Checkbox</string>
-    <string name="chamber_chk_message">Is this setting a checkbox setting?</string>
-    <string name="chamber_int">Input values</string>
-    <string name="chamber_int_message">Input the values you\'d like the setting to toggle between. Separate each value with a comma. Color settings accept hex-values such as #FF00aacc or basic color values like red, green, and yellow.</string>
-    <string name="chamber_name_title">Shortcut name</string>
-    <string name="chamber_name_message">Give the shortcut a name to display with the icon.</string>
-    <string name="chamber_name_toast">Using default name</string>
+    <string name="chamber_invalid_setting">Spróbuj ręcznie przełączyć to ustawienie aby upewnić się, że to działania istnieje w bazie danych ustawień.</string>
+    <string name="chamber_checkbox">Pole wyboru</string>
+    <string name="chamber_chk_message">Czy to ustawienie jest ustawieniem z polem wyboru?</string>
+    <string name="chamber_int">Wprowadź wartości</string>
+    <string name="chamber_int_message">Wprowadź wartości, między którymi chcesz się przełączać. Oddziel każdą wartość przecinkiem. Ustawienia koloru przyjmują wartości hex takie jak #FF00aacc lub podstawowe nazwy kolorów jak red, green and yellow.</string>
+    <string name="chamber_name_title">Nazwa skrótu</string>
+    <string name="chamber_name_message">Nadaj skrótowi nazwę, która będzie wyświetlona wraz z ikoną.</string>
+    <string name="chamber_name_toast">Użyj domyślnej nazwy</string>
 
     <!-- Quick Settings -->
     <string name="quick_settings_gps">GPS</string>
