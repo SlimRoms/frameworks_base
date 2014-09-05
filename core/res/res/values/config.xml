@@ -2087,5 +2087,6 @@
         <item>Trying to toast window</item>
         <item>Trying to project media</item>
         <item>Trying to activate vpn</item>
+        <item>Trying to turn on/off Wifi</item>
     </string-array>
 </resources>
