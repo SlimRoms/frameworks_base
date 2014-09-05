@@ -86,4 +86,6 @@
   <!-- Enabled ESN Tracker -->
   <java-symbol type="bool" name="config_telephony_ESN_Tracker_enabled" />
 
+  <java-symbol type="bool" name="def_telephony_spn_spec_enabled" />
+
 </resources>
