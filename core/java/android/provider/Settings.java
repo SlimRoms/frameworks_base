@@ -3550,6 +3550,18 @@ public final class Settings {
         public static final String HEADS_UP_SHOW_UPDATE = "heads_up_show_update";
 
         /**
+         * Heads Up background color
+         * @hide
+         */
+        public static final String HEADS_UP_BG_COLOR = "heads_up_bg_color";
+
+        /**
+         * Heads Up text color
+         * @hide
+         */
+        public static final String HEADS_UP_TEXT_COLOR = "heads_up_text_color";
+
+        /**
          * Sensitivity of all system shake events
          * @hide
          */
