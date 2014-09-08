@@ -152,4 +152,7 @@
 
   <!-- Proximity check timeout -->
   <java-symbol type="integer" name="config_proximityCheckTimeout" />
+
+  <!-- Smart cover -->
+  <java-symbol type="array" name="config_smartCoverWindowCoords" />
 </resources>

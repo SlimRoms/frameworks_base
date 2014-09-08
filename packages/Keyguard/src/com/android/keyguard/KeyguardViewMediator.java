@@ -251,6 +251,8 @@ public class KeyguardViewMediator {
     private int mUnlockSoundId;
     private int mLockSoundStreamId;
 
+    private int mLidState = WindowManagerPolicy.WindowManagerFuncs.LID_ABSENT;
+
     /**
      * The volume applied to the lock/unlock sounds.
      */
@@ -513,6 +515,8 @@ public class KeyguardViewMediator {
         IntentFilter filter = new IntentFilter();
         filter.addAction(SHAKE_SECURE_TIMER);
         filter.addAction(DELAYED_KEYGUARD_ACTION);
+        mContext.registerReceiver(mBroadcastReceiver,
+                new IntentFilter(WindowManagerPolicy.ACTION_LID_STATE_CHANGED));
         mContext.registerReceiver(mBroadcastReceiver, filter);
 
         mKeyguardDisplayManager = new KeyguardDisplayManager(context);
@@ -1059,9 +1063,18 @@ public class KeyguardViewMediator {
                     KeyguardHostView.shakeSecureNow();
                     adjustStatusBarLocked();
                 }
+            } else if (WindowManagerPolicy.ACTION_LID_STATE_CHANGED.equals(intent.getAction())) {
+                final int state = intent.getIntExtra(WindowManagerPolicy.EXTRA_LID_STATE,
+                        WindowManagerPolicy.WindowManagerFuncs.LID_ABSENT);
+                synchronized (KeyguardViewMediator.this) {
+                    if(state != mLidState) {
+                        mLidState = state;
+                        mUpdateMonitor.dispatchLidStateChange(state);
+                        }
+                    }
+                }
             }
-        }
-    };
+        };
 
     public void keyguardDone(boolean authenticated, boolean wakeup) {
         if (DEBUG) Log.d(TAG, "keyguardDone(" + authenticated + ")");
