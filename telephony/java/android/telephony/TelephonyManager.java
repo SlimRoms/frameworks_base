@@ -3378,6 +3378,12 @@ public class TelephonyManager {
     /** @hide */
     @SystemApi
     public void setDataEnabled(boolean enable) {
+        setDataEnabledUsingSubId(getDefaultSubscription(), enable);
+    }
+
+    /** @hide */
+    @SystemApi
+    public void setDataEnabledUsingSubId(long subId, boolean enable) {
         try {
             AppOpsManager appOps = (AppOpsManager)mContext.getSystemService(Context.APP_OPS_SERVICE);
             if (enable) {
@@ -3386,7 +3392,7 @@ public class TelephonyManager {
                     return;
                 }
             }
-            getITelephony().setDataEnabled(enable);
+            getITelephony().setDataEnabledUsingSubId(subId, enable);
         } catch (RemoteException e) {
             Log.e(TAG, "Error calling setDataEnabled", e);
         }
