@@ -83,4 +83,7 @@
 
   <java-symbol type="bool" name="config_feature_iwlan_enabled" />
 
+  <!-- Enabled ESN Tracker -->
+  <java-symbol type="bool" name="config_telephony_ESN_Tracker_enabled" />
+
 </resources>
