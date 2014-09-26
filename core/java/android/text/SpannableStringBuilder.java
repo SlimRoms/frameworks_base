@@ -497,16 +497,22 @@ public class SpannableStringBuilder implements CharSequence, GetChars, Spannable
 
         if (adjustSelection) {
             if (selectionStart > start && selectionStart < end) {
-                final int offset = (selectionStart - start) * newLen / origLen;
-                selectionStart = start + offset;
-
+                float fDiff = selectionStart - start;
+                float fNewLen = newLen;
+                float fOrigLen = origLen;
+                float fOffset = fDiff * fNewLen / fOrigLen;
+                final int iOffset = (int)Math.floor(fOffset);
+                selectionStart = start + iOffset;
                 setSpan(false, Selection.SELECTION_START, selectionStart, selectionStart,
                         Spanned.SPAN_POINT_POINT);
             }
             if (selectionEnd > start && selectionEnd < end) {
-                final int offset = (selectionEnd - start) * newLen / origLen;
-                selectionEnd = start + offset;
-
+                float fDiff = selectionEnd - start;
+                float fNewLen = newLen;
+                float fOrigLen = origLen;
+                float fOffset = fDiff * fNewLen / fOrigLen;
+                final int iOffset = (int)Math.floor(fOffset);
+                selectionEnd = start + iOffset;
                 setSpan(false, Selection.SELECTION_END, selectionEnd, selectionEnd,
                         Spanned.SPAN_POINT_POINT);
             }
