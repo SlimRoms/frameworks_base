@@ -382,6 +382,12 @@ public class KeyguardViewManager {
         }
     }
 
+    private static void sendToSleep(Context context) {
+        final PowerManager pm;
+        pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+        pm.goToSleep(SystemClock.uptimeMillis());
+    }
+
     SparseArray<Parcelable> mStateContainer = new SparseArray<Parcelable>();
 
     private void maybeCreateKeyguardLocked(int rotationAngles, boolean force,
