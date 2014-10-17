@@ -3349,6 +3349,13 @@ public final class Settings {
                 "status_bar_circle_battery_animationspeed";
 
         /**
+        * Whether to enable ticker animation
+        *
+        * @hide
+        */
+       public static final String TICKER_ENABLED = "ticker_enabled";
+
+        /**
         * Whether to control brightness from status bar
         *
         * @hide
