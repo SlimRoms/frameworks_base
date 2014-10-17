@@ -2137,6 +2137,13 @@ public final class Settings {
         public static final String QS_SMART_PULLDOWN = "qs_smart_pulldown";
 
         /**
+        * Whether to enable ticker animation
+        *
+        * @hide
+        */
+       public static final String TICKER_ENABLED = "ticker_enabled";
+
+        /**
          * Whether to control brightness from status bar
          *
          * @hide
