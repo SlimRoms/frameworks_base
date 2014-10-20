@@ -390,6 +390,9 @@ public class MSimSignalClusterView
         if (mWifi != null) {
             mWifi.setImageDrawable(null);
         }
+        if (mWifiActivity != null) {
+            mWifiActivity.setImageDrawable(null);
+        }
         if (mAirplane != null) {
             mAirplane.setImageDrawable(null);
         }
