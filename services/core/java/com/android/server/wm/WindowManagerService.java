@@ -6268,6 +6268,10 @@ public class WindowManagerService extends IWindowManager.Stub
                             ws.isDisplayedLw()) {
                         screenshotReady = true;
                     }
+
+                    if (ws.isFullscreen(dw, dh) && ws.isOpaqueDrawn()){
+                        break;
+                    }
                 }
 
                 if (appToken != null && appWin == null) {
