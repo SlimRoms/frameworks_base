@@ -22,7 +22,6 @@ import android.app.ActivityManagerNative;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.RemoteException;
@@ -63,7 +62,6 @@ public class QuickSettingsTile implements OnClickListener {
 
     protected PhoneStatusBar mStatusbarService;
     protected QuickSettingsController mQsc;
-    protected SharedPreferences mPrefs;
 
     public QuickSettingsTile(Context context, QuickSettingsController qsc) {
         this(context, qsc, R.layout.quick_settings_tile_basic);
@@ -78,7 +76,6 @@ public class QuickSettingsTile implements OnClickListener {
         mStatusbarService = qsc.mStatusBarService;
         mQsc = qsc;
         mTileLayout = layout;
-        mPrefs = mContext.getSharedPreferences("quicksettings", Context.MODE_PRIVATE);
     }
 
     public void setupQuickSettingsTile(LayoutInflater inflater,
