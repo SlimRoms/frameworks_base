@@ -844,7 +844,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         observer.observe();
 
         // Lastly, call to the icon policy to install/update all the icons.
-        mIconPolicy = new PhoneStatusBarPolicy(mContext, mCastController, mSuController);
+        mIconPolicy = new PhoneStatusBarPolicy(mContext, mCastController, mHotspotController, mSuController);
         mSettingsObserver.onChange(false); // set up
 
         // If system disabled system wide notification alert
