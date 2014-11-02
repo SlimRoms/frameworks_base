@@ -141,4 +141,6 @@
   <!-- Proximity check timeout -->
   <java-symbol type="integer" name="config_proximityCheckTimeout" />
 
+  <java-symbol type="string" name="usb_choose_notification_title" />
+
 </resources>

@@ -143,4 +143,7 @@
     <string name="app_ops_delete_call_log">delete call log</string>
     <string name="app_ops_get_usage_stat">get your usage statistic</string>
 
+    <!-- USB_PREFERENCES: Notification for when no USB options chosen.  This is the title -->
+    <string name="usb_choose_notification_title">Touch for choose USB options.</string>
+
 </resources>
