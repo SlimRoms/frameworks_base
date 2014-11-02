@@ -106,4 +106,6 @@
   <!-- config softap extention feature -->
   <java-symbol type="bool" name="config_softap_extention" />
 
+  <java-symbol type="string" name="usb_choose_notification_title" />
+
 </resources>
