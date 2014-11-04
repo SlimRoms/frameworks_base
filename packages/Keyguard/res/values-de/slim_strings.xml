@@ -19,8 +19,5 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="keyboardview_keycode_random">Перезагрузить произвольные кнопки</string>
-  <string name="missed_call">пропущенный звонок</string>
-  <string name="message_from">сообщение от</string>
-  <string name="message_from_person">сообщение от %1$s</string>
+  <string name="keyboardview_keycode_random">Zufällige Knöpfe aktualisieren</string>
 </resources>
