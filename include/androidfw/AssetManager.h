@@ -236,9 +236,11 @@ public:
 private:
     struct asset_path
     {
+        asset_path() : path(""), type(kFileTypeRegular), idmap(""), isSystemOverlay(false) {}
         String8 path;
         FileType type;
         String8 idmap;
+        bool isSystemOverlay;
     };
 
     Asset* openInPathLocked(const char* fileName, AccessMode mode,
@@ -278,7 +280,7 @@ private:
     const ResTable* getResTable(bool required = true) const;
     void setLocaleLocked(const char* locale);
     void updateResourceParamsLocked() const;
-    bool appendPathToResTable(const asset_path& ap, size_t* entryIdx) const;
+    bool appendPathToResTable(const asset_path& ap) const;
 
     Asset* openIdmapLocked(const struct asset_path& ap) const;
 
