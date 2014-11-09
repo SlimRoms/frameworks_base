@@ -19,8 +19,17 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="keyboardview_keycode_random">Zufällige Knöpfe aktualisieren</string>
-  <string name="missed_call">Verpasster Anruf</string>
-  <string name="message_from">Nachricht von</string>
-  <string name="message_from_person">Nachricht von %1$s</string>
+  <string name="keyboardview_keycode_random">Επαναφόρτωση τυχαίων κουμπιών</string>
+  <plurals name="missed_calls">
+    <item quantity="one">%d αναπάντητη κλήση</item>
+    <item quantity="other">%d αναπάντητη κλήση</item>
+  </plurals>
+  <plurals name="unread_messages">
+    <item quantity="one">%d μη αναγνωσμένα μηνύματα</item>
+    <item quantity="other">%d μη αναγνωσμένα μηνύματα</item>
+  </plurals>
+  <string name="missed_call">Αναπάντητη κλήση</string>
+  <string name="message_from">μήνυμα από</string>
+  <string name="message_from_person">μήνυμα από %1$s</string>
+  <string name="full_wday_month_day_no_year">EEEEMMMMd</string>
 </resources>

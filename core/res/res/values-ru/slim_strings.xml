@@ -29,6 +29,8 @@
   <string name="reboot_system" product="default">Перезагрузка телефона</string>
   <string name="global_action_screenshot">Снимок экрана</string>
   <string name="reboot_reboot">Перезагрузка</string>
+  <string name="reboot_recovery">Recovery</string>
+  <string name="reboot_bootloader">Bootloader</string>
   <string name="reboot_bootmenu">Загрузочное меню</string>
   <string name="reboot_fastboot">Fastboot</string>
   <string name="reboot_download">Режим прошивки</string>

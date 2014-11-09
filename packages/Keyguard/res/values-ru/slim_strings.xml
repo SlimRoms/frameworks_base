@@ -23,4 +23,5 @@
   <string name="missed_call">пропущенный звонок</string>
   <string name="message_from">сообщение от</string>
   <string name="message_from_person">сообщение от %1$s</string>
+  <string name="full_wday_month_day_no_year">EEEEMMMMd</string>
 </resources>

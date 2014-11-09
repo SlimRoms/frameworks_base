@@ -19,8 +19,17 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="keyboardview_keycode_random">Zufällige Knöpfe aktualisieren</string>
-  <string name="missed_call">Verpasster Anruf</string>
-  <string name="message_from">Nachricht von</string>
-  <string name="message_from_person">Nachricht von %1$s</string>
+  <string name="keyboardview_keycode_random">Recargar botones al azar</string>
+  <plurals name="missed_calls">
+    <item quantity="one">%d llamada perdida</item>
+    <item quantity="other">%d llamadas perdidas</item>
+  </plurals>
+  <plurals name="unread_messages">
+    <item quantity="one">%d mensaje no leído</item>
+    <item quantity="other">%d mensajes no leídos</item>
+  </plurals>
+  <string name="missed_call">llamadas perdidas</string>
+  <string name="message_from">Mensaje de</string>
+  <string name="message_from_person">mensaje de %1$s</string>
+  <string name="full_wday_month_day_no_year">EEEEMMMMd</string>
 </resources>
