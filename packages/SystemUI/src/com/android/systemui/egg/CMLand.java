@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 The Android Open Source Project
+ * Copyright (C) 2014 The CyanogenMod Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,29 +16,33 @@
 
 package com.android.systemui.egg;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.TextView;
-
 import com.android.systemui.R;
 
-public class LLandActivity extends Activity {
-    CMLand mLand;
+import android.content.Context;
+import android.util.AttributeSet;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.cmland);
-        mLand = (CMLand) findViewById(R.id.world);
-        mLand.setScoreField((TextView) findViewById(R.id.score));
-        mLand.setSplash(findViewById(R.id.welcome));
-        //Log.v(CMLand.TAG, "focus: " + mLand.requestFocus());
+public class CMLand extends LLand {
+    public static final String TAG = "CMLand";
+
+    public CMLand(Context context) {
+        super(context, null);
+    }
+
+    public CMLand(Context context, AttributeSet attrs) {
+        super(context, attrs, 0);
+    }
+
+    public CMLand(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
     }
 
     @Override
-    public void onPause() {
-        mLand.stop();
-        super.onPause();
+    protected int getEggPlayer() {
+        return R.drawable.cid;
+    }
+
+    @Override
+    protected int getEggPlayerColor() {
+        return 0xFF33B5E7;
     }
 }
