@@ -24,16 +24,16 @@ import android.widget.TextView;
 import com.android.systemui.R;
 
 public class LLandActivity extends Activity {
-    LLand mLand;
+    SlimLand mLand;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lland);
-        mLand = (LLand) findViewById(R.id.world);
+        setContentView(R.layout.slimland);
+        mLand = (SlimLand) findViewById(R.id.world);
         mLand.setScoreField((TextView) findViewById(R.id.score));
         mLand.setSplash(findViewById(R.id.welcome));
-        //Log.v(LLand.TAG, "focus: " + mLand.requestFocus());
+        //Log.v(SlimLand.TAG, "focus: " + mLand.requestFocus());
     }
 
     @Override
