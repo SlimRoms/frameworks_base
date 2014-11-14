@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     Copyright (C) 2016 The SlimRoms Project
+     Copyright (C) 2012-2014 SlimRoms
+
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
      You may obtain a copy of the License at
+
           http://www.apache.org/licenses/LICENSE-2.0
+
      Unless required by applicable law or agreed to in writing, software
      distributed under the License is distributed on an "AS IS" BASIS,
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -13,13 +16,13 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <!-- Kill app toast -->
-    <string name="app_killed_message">App Killed</string>
-
-    <!-- Screenshot -->
-    <string name="shortcut_screenshot">Screenshot</string>
-
-    <!-- Battery level for expanded quick settings [CHAR LIMIT=2] -->
-    <string name="battery_level_template"><xliff:g id="level" example="45">%d</xliff:g>%%</string>
-
+    <array name="batterymeter_inverted_bolt_points" translatable="false">
+        <item>743</item><item>73</item>
+        <item>743</item><item>292</item>
+        <item>442</item><item>201</item>
+        <item>442</item><item>400</item>
+        <item>0</item><item>20</item>
+        <item>369</item><item>157</item>
+        <item>369</item><item>0</item>
+    </array>
 </resources>
