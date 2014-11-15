@@ -78,7 +78,7 @@ public class PermissionDialog extends BasePermissionDialog {
                     res.getString(com.android.internal.R.string.deny),
                     mHandler.obtainMessage(ACTION_IGNORED));
 
-        setTitle(res.getString(com.android.internal.R.string.permission));
+        setTitle(res.getString(com.android.internal.R.string.privacy_guard_dialog_title));
         WindowManager.LayoutParams attrs = getWindow().getAttributes();
         attrs.setTitle("Permission info: " + getAppName(mPackageName));
         attrs.privateFlags |= WindowManager.LayoutParams.PRIVATE_FLAG_SYSTEM_ERROR
@@ -95,7 +95,8 @@ public class PermissionDialog extends BasePermissionDialog {
         String name = getAppName(mPackageName);
         if(name == null)
             name = mPackageName;
-        tv.setText(name + ": " + mOpLabels[mCode]);
+        tv.setText(mContext.getString(com.android.internal.R.string.privacy_guard_dialog_summary,
+                name, mOpLabels[mCode]));
         setView(mView);
 
         // After the timeout, pretend the user clicked the quit button
