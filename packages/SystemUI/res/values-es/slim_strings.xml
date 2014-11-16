@@ -80,8 +80,8 @@
   <string name="quick_settings_usb_tether_off_label">Desconectado</string>
   <string name="quick_settings_usb_tether_connected_label">Tethering desactivado</string>
   <string name="quick_settings_usb_tether_on_label">Tethering</string>
-  <string name="quick_settings_wifiap">AP Wi-Fi</string>
-  <string name="quick_settings_wifiap_off">AP Wi-Fi apagado</string>
+  <string name="quick_settings_wifiap">Punto de acceso Wi-Fi</string>
+  <string name="quick_settings_wifiap_off">Punto de acceso Wi-Fi</string>
   <string name="quick_settings_quiethours">Descanso activado</string>
   <string name="quick_settings_quiethours_off">Descanso desactivado</string>
   <string name="quick_settings_lte">LTE</string>
