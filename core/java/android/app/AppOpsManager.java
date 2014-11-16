@@ -1485,20 +1485,37 @@ public class AppOpsManager {
     /**
      * Retrieve the privacy guard state associated icons for notification and settings
      */
-    public static int getPrivacyGuardIconResId(int pgState) {
+    public static int getPrivacyGuardIconResId(int pgState, boolean light) {
         switch (pgState) {
             case PRIVACY_GUARD_DISABLED:
                 return com.android.internal.R.drawable.stat_notify_privacy_guard_off;
             case PRIVACY_GUARD_ENABLED:
-                return com.android.internal.R.drawable.stat_notify_privacy_guard;
+                if (light) {
+                    return com.android.internal.R.drawable.stat_notify_privacy_guard_light;
+                } else {
+                    return com.android.internal.R.drawable.stat_notify_privacy_guard;
+                }
             case PRIVACY_GUARD_CUSTOM:
-                return com.android.internal.R.drawable.stat_notify_privacy_guard_custom;
+                if (light) {
+                    return com.android.internal.R.drawable.stat_notify_privacy_guard_custom_light;
+                } else {
+                    return com.android.internal.R.drawable.stat_notify_privacy_guard_custom;
+                }
             case PRIVACY_GUARD_DISABLED_PLUS:
                 return com.android.internal.R.drawable.stat_notify_privacy_guard_off_plus;
             case PRIVACY_GUARD_ENABLED_PLUS:
-                return com.android.internal.R.drawable.stat_notify_privacy_guard_plus;
+                if (light) {
+                    return com.android.internal.R.drawable.stat_notify_privacy_guard_plus_light;
+                } else {
+                    return com.android.internal.R.drawable.stat_notify_privacy_guard_plus;
+                }
             case PRIVACY_GUARD_CUSTOM_PLUS:
-                return com.android.internal.R.drawable.stat_notify_privacy_guard_custom_plus;
+                if (light) {
+                    return com.android.internal.R.drawable.stat_notify_privacy_guard_custom_plus_light;
+                } else {
+                    return com.android.internal.R.drawable.stat_notify_privacy_guard_custom_plus;
+                }
+
         }
         return com.android.internal.R.drawable.stat_notify_privacy_guard_off;
     }

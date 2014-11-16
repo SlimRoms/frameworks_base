@@ -1865,7 +1865,7 @@ public final class ActivityManagerService extends ActivityManagerNative
                             Uri.fromParts("package", root.packageName, null));
 
                     Notification notification = new Notification();
-                    notification.icon = AppOpsManager.getPrivacyGuardIconResId(msg.arg1);
+                    notification.icon = AppOpsManager.getPrivacyGuardIconResId(msg.arg1, false);
                     notification.when = 0;
                     notification.flags = Notification.FLAG_ONGOING_EVENT;
                     notification.priority = Notification.PRIORITY_LOW;
