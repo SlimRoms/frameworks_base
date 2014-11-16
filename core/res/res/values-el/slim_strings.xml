@@ -19,12 +19,20 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="permlab_changePrivacyGuardState">Ενεργοποίηση ή απενεργοποίηση της προστασίας απορρήτου</string>
+  <string name="permdesc_changePrivacyGuardState">Επιτρέπει στην εφαρμογή τον χειρισμό άλλων εφαρμογών πού τρέχουν με την Προστασία Απορρήτου. Όταν μια εφαρμογή τρέχει με την Προστασία Απορρήτου, δεν θα έχει πρόσβαση στα προσωπικά σας δεδομένα όπως επαφές, μηνύματα ή το αρχείο κλήσεων.</string>
+  <string name="privacy_guard_notification">Προστασία Απορρήτου ενεργή</string>
+  <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> δεν θα μπορεί να έχει πρόσβαση στα προσωπικά σας δεδομένα</string>
+  <string name="privacy_guard_custom_notification_detail"><xliff:g id="app"> %1$s </xliff:g> δεν θα είναι σε θέση να έχουν πρόσβαση σε προσαρμοσμένα δικαιώματα</string>
+  <string name="default_string">Προεπιλογή</string>
   <string name="reboot_system" product="tablet">Επανεκκίνηση tablet</string>
   <string name="reboot_system" product="default">Επανεκκίνηση τηλεφώνου</string>
   <string name="global_action_screenshot">Στιγμιότυπο οθόνης</string>
   <string name="reboot_reboot">Επανεκκίνηση</string>
   <string name="reboot_recovery">Ανάκτηση</string>
   <string name="reboot_bootloader">Bootloader</string>
+  <string name="reboot_bootmenu">Μενού εκκίνησης</string>
+  <string name="reboot_fastboot">Γρήγορη εκκίνηση</string>
   <string name="reboot_download">Λήψη</string>
   <string name="reboot_progress">Επανεκκίνηση\u2026</string>
   <string name="reboot_confirm">Το τηλέφωνό σας θα επανεκκινήσει.</string>
@@ -33,5 +41,17 @@
   <string name="notify_turn_wifi_ap_off_title">Απενεργοποιήστε το Wi-Fi AP</string>
   <string name="global_actions_expanded_desktop_mode_on_status">Εκτεταμένη επιφάνεια εργασίας είναι ενεργή</string>
   <string name="global_actions_expanded_desktop_mode_off_status">Εκτεταμένη επιφάνεια εργασίας είναι ανενεργή</string>
+  <string name="global_actions_pie_mode_on_status">Το SlimPie είναι ενεργό</string>
+  <string name="global_actions_pie_mode_off_status">Το SlimPie είναι ανενεργό</string>
+  <string name="disable_pie_navigation_error">Δεν μπορείτε να απενεργοποιήσετε τα Pie control. Δεν υπαρχει αλλη γραμμη πλοήγησης ενεργοποιημένη. Ενεργοποιήσετε πρώτα την γραμμή πλοήγησης για να απενεργοποιήσετε τα Pie control.</string>
+  <string name="global_actions_nav_bar_mode_on_status">Η μπάρα πλοήγησης είναι ενεργή</string>
+  <string name="global_actions_nav_bar_mode_off_status">Η μπάρα πλοήγησης είναι ανενεργή</string>
+  <string name="disable_navigation_pie_error">Δεν μπορείτε να απενεργοποιήσετε τη μπάρα πλοήγησης. Δεν υπάρχει άλλη μπάρα πλοήγησης ενεργοποιημένη . Ενεργοποίηστε πρώτα τα Pie control  για να απενεργοποιήσετε τη μπάρα πλοήγησης.</string>
+  <string name="accessibility_target_direction">Χτύπημα για να ενεργοποιήσετε έναν στόχο</string>
   <string name="stylus_app_not_installed">%s δεν έχει εγκατασταθεί</string>
+  <string name="theme_auto_switch_mode_error">Η λειτουργία αλλαγής αυτόματου φωτισμού είναι ενεργοποιημένη . Μη αυτόματες εναλλαγές, δεν είναι δυνατές.</string>
+  <string name="permlab_preventpower">Παράκαμψη πλήκτρου λειτουργίας</string>
+  <string name="permdesc_preventpower">Επιτρέπει σε μια εφαρμογή να παρακάμψει το πλήκτρο λειτουργίας</string>
+  <string name="permlab_changeHeadsUpState">ενεργοποιήση ή απενεργοποιήση του heads up</string>
+  <string name="permdesc_changeHeadsUpState">Επιτρέπει στην εφαρμογή να αλλάξει πότε σε μια άλλη εφαρμογή επιτρέπεται να εμφανίζονται κανονικές ειδοποιήσεις σαν ειδοποιήσεις heads up.</string>
 </resources>
