@@ -427,6 +427,8 @@ public interface WindowManagerPolicy {
 
         /** Unregister a system listener for touch events */
         void unregisterPointerEventListener(PointerEventListener listener);
+
+        void addSystemUIVisibilityFlag(int flags);
     }
 
     public interface PointerEventListener {
