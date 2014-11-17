@@ -902,6 +902,18 @@ public class AppOpsManager {
             OP_NONE,
             OP_NONE,
             OP_NONE,
+            OP_NONE,
+            OP_NONE,
+            OP_NONE,
+            OP_NONE,
+            OP_NONE,
+            OP_NONE,
+            OP_NONE,
+            OP_NONE,
+            OP_NONE,
+            OP_NONE,
+            OP_NONE,
+            OP_NONE,
     };
 
     /**
