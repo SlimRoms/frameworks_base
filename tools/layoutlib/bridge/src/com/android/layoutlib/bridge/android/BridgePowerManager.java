@@ -145,4 +145,15 @@ public class BridgePowerManager implements IPowerManager {
     public void wakeUp(long time) throws RemoteException {
         // pass for now.
     }
+
+    @Override
+    public void setKeyboardVisibility(boolean visible) {
+        // pass for now
+    }
+
+    @Override
+    public void setKeyboardLight(boolean on, int key) {
+        // pass for now
+    }
+
 }
