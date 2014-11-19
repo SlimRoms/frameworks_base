@@ -50,4 +50,8 @@
     <!-- USB_PREFERENCES: Notification for when the user connects the phone to a computer via USB in CHARGING mode.  This is the title -->
     <string name="usb_charging_notification_title">Connected in charging mode</string>
 
+    <!-- Text of the checkbox for the permission confirmation dialog to remember the user's choice. [CHAR LIMIT=40] -->
+    <string name="permission_remember_choice">Remember</string>
+    <string name="permission">Permission</string>
+
 </resources>

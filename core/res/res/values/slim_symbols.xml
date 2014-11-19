@@ -73,4 +73,16 @@
   <java-symbol type="drawable" name="stat_notify_privacy_guard_custom_plus_light" />
 
   <java-symbol type="string" name="usb_charging_notification_title" />
+
+  <java-symbol type="id" name="permission_text" />
+  <java-symbol type="id" name="permission_remember_layout" />
+  <java-symbol type="id" name="permission_remember_choice_checkbox" />
+  <java-symbol type="id" name="permission_remember_choice_text" />
+
+  <java-symbol type="string" name="allow" />
+  <java-symbol type="string" name="deny" />
+  <java-symbol type="string" name="permission" />
+  <java-symbol type="layout" name="permission_confirmation_dialog" />
+  <java-symbol type="array" name="app_ops_labels" />
+
 </resources>
