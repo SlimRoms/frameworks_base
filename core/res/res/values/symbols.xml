@@ -515,7 +515,6 @@
   <java-symbol type="string" name="autofill_zip_code_re" />
   <java-symbol type="string" name="badPin" />
   <java-symbol type="string" name="badPuk" />
-  <java-symbol type="string" name="lockscreen_sim_error_message_short" />
   <java-symbol type="string" name="byteShort" />
   <java-symbol type="string" name="capability_desc_canRequestEnhancedWebAccessibility" />
   <java-symbol type="string" name="capability_title_canRequestFilterKeyEvents" />
@@ -923,12 +922,6 @@
   <java-symbol type="string" name="default_audio_route_name_dock_speakers" />
   <java-symbol type="string" name="default_media_route_name_hdmi" />
   <java-symbol type="string" name="default_audio_route_category_name" />
-  <java-symbol type="string" name="stk_cc_ss_to_dial" />
-  <java-symbol type="string" name="stk_cc_ss_to_ss" />
-  <java-symbol type="string" name="stk_cc_ss_to_ussd" />
-  <java-symbol type="string" name="stk_cc_ussd_to_dial" />
-  <java-symbol type="string" name="stk_cc_ussd_to_ss" />
-  <java-symbol type="string" name="stk_cc_ussd_to_ussd" />
   <java-symbol type="string" name="safe_media_volume_warning" />
   <java-symbol type="string" name="media_route_status_scanning" />
   <java-symbol type="string" name="media_route_status_connecting" />
@@ -1513,12 +1506,7 @@
   <java-symbol type="string" name="global_action_toggle_silent_mode" />
   <java-symbol type="string" name="global_action_lockdown" />
   <java-symbol type="string" name="invalidPuk" />
-  <java-symbol type="string" name="lockscreen_missing_sim_message_short" />
-  <java-symbol type="string" name="lockscreen_permanent_disabled_sim_message_short" />
   <java-symbol type="string" name="lockscreen_carrier_default" />
-  <java-symbol type="string" name="lockscreen_sim_locked_message" />
-  <java-symbol type="string" name="lockscreen_sim_puk_locked_message" />
-  <java-symbol type="string" name="lockscreen_airplane_mode_on" />
   <java-symbol type="style" name="Animation.LockScreen" />
   <java-symbol type="style" name="Theme.Dialog.RecentApplications" />
   <java-symbol type="style" name="Theme.ExpandedMenu" />
@@ -1674,8 +1662,6 @@
   <java-symbol type="string" name="config_geocoderProviderPackageName" />
   <java-symbol type="string" name="config_geofenceProviderPackageName" />
   <java-symbol type="string" name="config_networkLocationProviderPackageName" />
-  <java-symbol type="string" name="config_geofenceServicesProvider" />
-  <java-symbol type="string" name="config_comboNetworkLocationProvider" />
   <java-symbol type="string" name="config_wimaxManagerClassname" />
   <java-symbol type="string" name="config_wimaxNativeLibLocation" />
   <java-symbol type="string" name="config_wimaxServiceClassname" />
