@@ -99,4 +99,19 @@
     <!-- WiFi turn off notification action text -->
     <string name="notify_turn_wifi_off_title">Turn Wi-Fi off</string>
 
+    <!-- Reboot menu -->
+    <!-- Button to reboot the phone, within the Reboot Options dialog -->
+    <string name="reboot_reboot">Reboot</string>
+    <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
+    <string name="reboot_recovery">Recovery</string>
+    <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
+    <string name="reboot_bootloader">Bootloader</string>
+    <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
+    <string name="reboot_download">Download</string>
+    <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
+    <string name="reboot_progress">Rebooting\u2026</string>
+    <!-- Button to reboot the phone, within the Phone Options dialog -->
+    <string name="reboot_system" product="tablet">Reboot tablet</string>
+    <string name="reboot_system" product="default">Reboot phone</string>
+
 </resources>
