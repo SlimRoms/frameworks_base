@@ -19,6 +19,8 @@ import android.os.SystemProperties;
 
 public class BuildInfo {
 
+    public static final String BUILD_TYPE_UNOFFICIAL = "UNOFFICIAL";
+
     private static final String BUILD_TYPE_PROP = "ro.slim.buildtype";
     private static final String SLIM_VERSION_PROP = "ro.slim.version";
 

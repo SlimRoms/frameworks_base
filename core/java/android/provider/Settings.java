@@ -5570,38 +5570,13 @@ public final class Settings {
         public static final String SMS_DEFAULT_APPLICATION = "sms_default_application";
 
         /**
-         * Specifies the package name currently configured to be the default dialer application
+         * Whether to include options in power menu for rebooting into recovery and bootloader
          * @hide
          */
-        public static final String DIALER_DEFAULT_APPLICATION = "dialer_default_application";
+        public static final String ADVANCED_REBOOT = "advanced_reboot";
 
         /**
-         * Specifies the package name currently configured to be the emergency assistance application
-         *
-         * @see android.telephony.TelephonyManager#ACTION_EMERGENCY_ASSISTANCE
-         *
-         * @hide
-         */
-        public static final String EMERGENCY_ASSISTANCE_APPLICATION = "emergency_assistance_application";
-
-        /**
-         * Specifies whether the current app context on scren (assist data) will be sent to the
-         * assist application (active voice interaction service).
-         *
-         * @hide
-         */
-        public static final String ASSIST_STRUCTURE_ENABLED = "assist_structure_enabled";
-
-        /**
-         * Specifies whether a screenshot of the screen contents will be sent to the assist
-         * application (active voice interaction service).
-         *
-         * @hide
-         */
-        public static final String ASSIST_SCREENSHOT_ENABLED = "assist_screenshot_enabled";
-
-        /**
-         * Names of the service components that the current user has explicitly allowed to
+         * Names of the packages that the current user has explicitly allowed to
          * see all of the user's notifications, separated by ':'.
          *
          * @hide
@@ -5777,8 +5752,10 @@ public final class Settings {
             MOUNT_UMS_AUTOSTART,
             MOUNT_UMS_PROMPT,
             MOUNT_UMS_NOTIFY_ENABLED,
+            UI_NIGHT_MODE,
             SLEEP_TIMEOUT,
-            DOUBLE_TAP_TO_WAKE,
+            PRIVACY_GUARD_DEFAULT,
+            ADVANCED_REBOOT
         };
 
         /**
