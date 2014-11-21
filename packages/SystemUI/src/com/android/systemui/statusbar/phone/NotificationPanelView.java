@@ -21,11 +21,17 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.database.ContentObserver;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.net.Uri;
+import android.os.Handler;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.MathUtils;
 import android.view.MotionEvent;
@@ -177,6 +183,10 @@ public class NotificationPanelView extends PanelView implements
     private float mKeyguardStatusBarAnimateAlpha = 1f;
     private int mOldLayoutDirection;
 
+    private Handler mHandler = new Handler();
+    private SettingsObserver mSettingsObserver;
+    private boolean mOneFingerQuickSettingsIntercept;
+
     public NotificationPanelView(Context context, AttributeSet attrs) {
         super(context, attrs);
         setWillNotDraw(!DEBUG);
@@ -232,6 +242,7 @@ public class NotificationPanelView extends PanelView implements
                 }
             }
         });
+        mSettingsObserver = new SettingsObserver(mHandler);
     }
 
     @Override
@@ -322,11 +333,14 @@ public class NotificationPanelView extends PanelView implements
     @Override
     public void onAttachedToWindow() {
         mSecureCameraLaunchManager.create();
+        mSettingsObserver.observe();
+
     }
 
     @Override
     public void onDetachedFromWindow() {
         mSecureCameraLaunchManager.destroy();
+        mSettingsObserver.unobserve();
     }
 
     private void startQsSizeChangeAnimation(int oldHeight, final int newHeight) {
@@ -683,7 +697,8 @@ public class NotificationPanelView extends PanelView implements
         boolean twoFingerQsEvent = mTwoFingerQsExpandPossible
                 && (event.getActionMasked() == MotionEvent.ACTION_POINTER_DOWN
                 && event.getPointerCount() == 2);
-        boolean oneFingerQsOverride = event.getActionMasked() == MotionEvent.ACTION_DOWN
+        boolean oneFingerQsOverride = mOneFingerQuickSettingsIntercept
+                && event.getActionMasked() == MotionEvent.ACTION_DOWN
                 && shouldQuickSettingsIntercept(event.getX(), event.getY(), -1, false);
         if ((twoFingerQsEvent || oneFingerQsOverride)
                 && event.getY(event.getActionIndex()) < mStatusBarMinHeight) {
@@ -1309,7 +1324,7 @@ public class NotificationPanelView extends PanelView implements
         final float w = getMeasuredWidth();
         float region = (w * (1.f/3.f)); // TODO overlay region fraction?
         final boolean showQsOverride = isLayoutRtl() ? (x < region) : (w - region < x)
-                && mStatusBarState == StatusBarState.SHADE;
+                        && mStatusBarState == StatusBarState.SHADE;
 
         if (mQsExpanded) {
             return onHeader || (mScrollView.isScrolledToBottom() && yDiff < 0) && isInQsArea(x, y);
@@ -1967,6 +1982,7 @@ public class NotificationPanelView extends PanelView implements
         mKeyguardStatusView.refreshTime();
     }
 
+
     @Override
     public void onEmptySpaceClicked(float x, float y) {
         onEmptySpaceClick(x);
@@ -1995,6 +2011,42 @@ public class NotificationPanelView extends PanelView implements
             p.setColor(Color.CYAN);
             canvas.drawLine(0, mNotificationStackScroller.getTopPadding(), getWidth(),
                     mNotificationStackScroller.getTopPadding(), p);
+        }
+    }
+
+    class SettingsObserver extends ContentObserver {
+        SettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        void observe() {
+            ContentResolver resolver = mContext.getContentResolver();
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN),
+                    false, this, UserHandle.USER_ALL);
+            update();
+        }
+
+        void unobserve() {
+            ContentResolver resolver = mContext.getContentResolver();
+            resolver.unregisterContentObserver(this);
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            update();
+        }
+
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
+            update();
+        }
+
+        public void update() {
+            ContentResolver resolver = mContext.getContentResolver();
+            mOneFingerQuickSettingsIntercept = Settings.System.getIntForUser(
+                    resolver, Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN, 1,
+                    UserHandle.USER_CURRENT) == 1;
         }
     }
 }
