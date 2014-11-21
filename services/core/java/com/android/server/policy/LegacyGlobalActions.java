@@ -373,7 +373,7 @@ class LegacyGlobalActions implements DialogInterface.OnDismissListener, DialogIn
         @Override
         public void onPress() {
             // shutdown by making sure radio and power are handled accordingly.
-            mWindowManagerFuncs.shutdown(false /* confirm */);
+            mWindowManagerFuncs.reboot(false /* confirm */);
         }
     }
 
