@@ -95,6 +95,7 @@
   <java-symbol type="string" name="stk_cc_ussd_to_dial" />
   <java-symbol type="string" name="stk_cc_ussd_to_ss" />
   <java-symbol type="string" name="stk_cc_ussd_to_ussd" />
+  <java-symbol type="string" name="stk_cc_ss_to_dial" />
 
   <java-symbol type="string" name="lockscreen_missing_sim_message_short" />
   <java-symbol type="string" name="lockscreen_permanent_disabled_sim_message_short" />
