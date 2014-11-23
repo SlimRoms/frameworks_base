@@ -24,6 +24,7 @@
   <string name="privacy_guard_notification">Ochrana soukromí aktivní</string>
   <string name="privacy_guard_notification_detail">Aplikaci <xliff:g id="app">%1$s</xliff:g> nebude umožňen přístup k osobním údajům</string>
   <string name="privacy_guard_custom_notification_detail">Aplikace<xliff:g id="app">%1$s</xliff:g> nebude mít přístup k vlastním oprávněním</string>
+  <string name="default_string">Výchozí</string>
   <string name="reboot_system" product="tablet">Restartovat tablet</string>
   <string name="reboot_system" product="default">Restartovat telefon</string>
   <string name="global_action_screenshot">Snímek obrazovky</string>
@@ -40,9 +41,17 @@
   <string name="notify_turn_wifi_ap_off_title">Vypnout</string>
   <string name="global_actions_expanded_desktop_mode_on_status">Zapnuto</string>
   <string name="global_actions_expanded_desktop_mode_off_status">Vypnuto</string>
+  <string name="global_actions_pie_mode_on_status">SlimPie je zapnuto</string>
+  <string name="global_actions_pie_mode_off_status">SlimPie je vypnuto</string>
+  <string name="disable_pie_navigation_error">Nelze vypnout SlimPie. Žádný jiný způsob navigace není povolen. Nejprve povolte navigační panel pro vypnuti kruhové nabídky.</string>
+  <string name="global_actions_nav_bar_mode_on_status">Navigační panel je zapnutý</string>
+  <string name="global_actions_nav_bar_mode_off_status">Navigační panel je vypnutý</string>
+  <string name="disable_navigation_pie_error">Nelze vypnout navigační panel.  Žádný jiný způsob navigace není povolen. Nejprve povolte SlimPie pro vypnutí navigačního panelu.</string>
   <string name="accessibility_target_direction">Přejeďte pro aktivaci objektu</string>
   <string name="stylus_app_not_installed">Aplikace %s není nainstalována</string>
   <string name="theme_auto_switch_mode_error">Automatický režim změny světelných podmínek je povolen. Ruční přepnutí není možné.</string>
   <string name="permlab_preventpower">zachovat tlačítko vypínání</string>
   <string name="permdesc_preventpower">Umožní změnit chování tlačítka pro zapínání a vypínání</string>
+  <string name="permlab_changeHeadsUpState">Povolit nebo zakázat heads up</string>
+  <string name="permdesc_changeHeadsUpState">Umožňuje změnit, zda jiná aplikace má dovoleno zobrazovat normální upozornění jako heads up.</string>
 </resources>
