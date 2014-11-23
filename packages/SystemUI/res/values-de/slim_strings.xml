@@ -41,17 +41,17 @@
   <string name="shortcut_last_app">Letzte App</string>
   <string name="shortcut_screenshot">Bildschirmfoto</string>
   <string name="shortcut_volume">Lautstärke</string>
-  <string name="shortcut_toggle_title">Aktion ausführen</string>
+  <string name="shortcut_toggle_title">Auszuführende Aktion</string>
   <string name="shortcut_chamber">Kammer des Schreckens</string>
   <string name="chamber_disabled">Kammer des Schreckens geschlossen</string>
-  <string name="chamber_title">Eingangseinstellungen String</string>
+  <string name="chamber_title">Einstellungs-String eingeben</string>
   <string name="chamber_message">Geben Sie eine Zeichenfolge ein, die entweder eine ein- und ausschalten Funktion (Checkbox), oder möglicherweise eine Listenvorgaben ist. Zum Beispiel quiet_hours_ringer oder ähnliches. Die Einstellungen können in der Settings.java Datei gefunden werden. WARNUNG: Dieser Vorgang ist gefährlich!</string>
   <string name="chamber_invalid">Dies ist eine ungültige Eingabe. Seien Sie vorsichtig.</string>
   <string name="chamber_invalid_setting">Testen Sie die Einstellung selbst, um sicherzustellen, dass die Einstellungs-Datenbank für diese Aktion existiert.</string>
   <string name="chamber_checkbox">Checkbox</string>
   <string name="chamber_chk_message">Ist diese Einstellung eine Checkbox-Einstellung?</string>
   <string name="chamber_int">Eingabewerte</string>
-  <string name="chamber_int_message">Geben Sie die gewünschten Werte ein, für Einstellung zwischen denen Sie umschalten möchten. Trennen Sie die einzelnen Werte durch ein Komma. Um Farbeinstellungen zu übernehmen verwenden Sie Hex-Werte wie #FF00aacc oder Grundfarbwerte wie rot, grün und gelb.</string>
+  <string name="chamber_int_message">Geben Sie die Werte ein, zwischen denen die Einstellung umschalten soll. Trennen Sie die Einzelwerte durch Kommas. Bei Farbeinstellungen werden hexadezimale Werte, wie #FF00aacc, oder Grundfarbwerte, wie rot, grün und gelb, akzeptiert.</string>
   <string name="chamber_name_title">Name der Verknüpfung</string>
   <string name="chamber_name_message">Geben Sie der Verknüpfung einen Namen, der mit dem Symbol angezeigt wird.</string>
   <string name="chamber_name_toast">Standardnamen verwenden</string>
@@ -125,5 +125,5 @@
   <string name="accessibility_ime_navigation_right">Pfeiltaste rechts</string>
   <string name="status_bar_notification_heads_up_enable_title">Heads-Up aktivieren</string>
   <string name="status_bar_notification_heads_up_disable_title">Heads-Up deaktivieren</string>
-  <string name="heads_up_snooze_message">Heads up ist deaktiviert für <xliff:g id="number">%d</xliff:g> Minuten.</string>
+  <string name="heads_up_snooze_message">Heads-Up ist für <xliff:g id="number">%d</xliff:g> Minuten deaktiviert.</string>
 </resources>

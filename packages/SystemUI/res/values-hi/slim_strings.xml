@@ -80,6 +80,7 @@
   <string name="quick_settings_usb_tether_off_label">डिस्कनेक्टेड</string>
   <string name="quick_settings_usb_tether_connected_label">तेथरिंग बंद</string>
   <string name="quick_settings_usb_tether_on_label">तेथरिंग</string>
+  <string name="quick_settings_wifiap">वाई-फाई हॉटस्पॉट</string>
   <string name="quick_settings_quiethours">क्वाइट हॉर्स</string>
   <string name="quick_settings_quiethours_off">क्वाइट हॉर्स बंद</string>
   <string name="quick_settings_lte">LTE</string>
@@ -99,11 +100,13 @@
   <string name="quick_settings_reboot">रीबूट करें</string>
   <string name="quick_settings_theme_switch_dark">डार्क थीम</string>
   <string name="quick_settings_theme_switch_light">लाइट थीम</string>
+  <string name="quick_settings_quick_record_deleted">मिटा दिया...</string>
   <string name="quick_settings_quick_record_nofile">लॉन्ग-प्रेस</string>
   <string name="quick_settings_quick_record_def">त्वरित रिकॉर्ड</string>
   <string name="quick_settings_quick_record_rec">रिकॉर्डिंग...</string>
   <string name="quick_settings_quick_record_save">सेव्ड</string>
   <string name="quick_settings_quick_record_play">बजाना...</string>
+  <string name="quick_settings_quick_record_dialog_cancel">बंद करें</string>
   <string name="quick_settings_custom_toggle">निजीकृत</string>
   <string name="quick_settings_contact_toggle">संपर्क</string>
   <string name="quick_settings_reminder">अनुस्मारक</string>
@@ -119,6 +122,8 @@
   <string name="quick_settings_reminder_noti_dismiss">बर्खास्त</string>
   <string name="quick_settings_reminder_noti_later">समय अद्यतन</string>
   <string name="quick_settings_reminder_help_message">अनुस्मारक सेट या परिवर्तित करने के लिए ऊपर खाली जगह पर टच  करे. वर्तमान अनुस्मारक हटाने के लिए देर तक दबाएं.</string>
+  <string name="quick_settings_network_adb_disabled_label">औफ</string>
+  <string name="quick_settings_network_adb_enabled_label">औन</string>
   <string name="pie_battery_status_charging">चार्जिंग (<xliff:g id="percent">%d</xliff:g>%%)</string>
   <string name="pie_battery_status_full">चार्जड</string>
   <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% शेष</string>

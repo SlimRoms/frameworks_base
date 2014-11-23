@@ -52,6 +52,6 @@
   <string name="theme_auto_switch_mode_error">Automatische Lichtverhältnis Änderung ist aktiviert. Ein manuelles Wechseln ist nicht möglich.</string>
   <string name="permlab_preventpower">Power-Taste sperren</string>
   <string name="permdesc_preventpower">Ermöglicht es einer Anwendung, die Power-Taste zu überschreiben</string>
-  <string name="permlab_changeHeadsUpState">Heads Up ein- oder ausschalten</string>
+  <string name="permlab_changeHeadsUpState">Heads-Up ein- oder ausschalten</string>
   <string name="permdesc_changeHeadsUpState">Ermöglicht der App festzulegen, ob andere Apps normale Benachrichtigungen als Heads-Up-Meldung anzeigen dürfen.</string>
 </resources>
