@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ActivityManagerNative;
 import android.app.AlarmManager;
+import android.app.AppOpsManager;
 import android.app.IAlarmManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -34,6 +35,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.PowerManager;
+import android.os.Process;
 import android.os.SystemClock;
 import android.os.SystemProperties;
 import android.os.UserHandle;
@@ -147,6 +149,8 @@ class AlarmManagerService extends SystemService {
     // May only use on mHandler's thread, locking not required.
     private final SparseArray<AlarmManager.AlarmClockInfo> mHandlerSparseAlarmClockArray =
             new SparseArray<>();
+
+    private AppOpsManager mAppOps;
 
     // Alarm delivery ordering bookkeeping
     static final int PRIO_TICK = 0;
@@ -525,7 +529,7 @@ class AlarmManagerService extends SystemService {
                 }
                 setImplLocked(a.type, a.when, whenElapsed, a.windowLength, maxElapsed,
                         a.repeatInterval, a.operation, batch.standalone, doValidate, a.workSource,
-                        a.alarmClock, a.userId);
+                        a.alarmClock, a.userId, false);
             }
         }
     }
@@ -629,6 +633,8 @@ class AlarmManagerService extends SystemService {
         } else {
             Slog.w(TAG, "Failed to open alarm driver. Falling back to a handler.");
         }
+
+        mAppOps = (AppOpsManager) getContext().getSystemService(Context.APP_OPS_SERVICE);
 
         publishBinderService(Context.ALARM_SERVICE, mService);
     }
@@ -740,6 +746,24 @@ class AlarmManagerService extends SystemService {
 
         final int userId = UserHandle.getCallingUserId();
 
+        boolean wakeupFiltered = false;
+        if (operation.getCreatorUid() >= Process.FIRST_APPLICATION_UID &&
+                (type == AlarmManager.RTC_WAKEUP
+                        || type == AlarmManager.ELAPSED_REALTIME_WAKEUP)
+                && mAppOps.checkOpNoThrow(AppOpsManager.OP_ALARM_WAKEUP,
+                        operation.getCreatorUid(),
+                        operation.getCreatorPackage())
+                != AppOpsManager.MODE_ALLOWED) {
+
+            if (type == AlarmManager.RTC_WAKEUP) {
+                type = AlarmManager.RTC;
+            } else {
+                type = AlarmManager.ELAPSED_REALTIME;
+            }
+
+            wakeupFiltered = true;
+        }
+
         synchronized (mLock) {
             if (DEBUG_BATCH) {
                 Slog.v(TAG, "set(" + operation + ") : type=" + type
@@ -748,17 +772,28 @@ class AlarmManagerService extends SystemService {
                         + " interval=" + interval + " standalone=" + isStandalone);
             }
             setImplLocked(type, triggerAtTime, triggerElapsed, windowLength, maxElapsed,
-                    interval, operation, isStandalone, true, workSource, alarmClock, userId);
+                    interval, operation, isStandalone, true, workSource, alarmClock, userId,
+                    wakeupFiltered);
         }
     }
 
     private void setImplLocked(int type, long when, long whenElapsed, long windowLength,
             long maxWhen, long interval, PendingIntent operation, boolean isStandalone,
             boolean doValidate, WorkSource workSource, AlarmManager.AlarmClockInfo alarmClock,
-            int userId) {
+            int userId, boolean wakeupFiltered) {
         Alarm a = new Alarm(type, when, whenElapsed, windowLength, maxWhen, interval,
                 operation, workSource, alarmClock, userId);
-        removeLocked(operation);
+
+        // Remove this alarm if already scheduled.
+        final boolean foundExistingWakeup = removeWithStatusLocked(operation);
+
+        // note AppOp for accounting purposes
+        // skip if the alarm already existed
+        if (!foundExistingWakeup && wakeupFiltered) {
+            mAppOps.noteOpNoThrow(AppOpsManager.OP_ALARM_WAKEUP,
+                    operation.getCreatorUid(),
+                    operation.getCreatorPackage());
+        }
 
         int whichBatch = (isStandalone) ? -1 : attemptCoalesceLocked(whenElapsed, maxWhen);
         if (whichBatch < 0) {
@@ -1252,6 +1287,10 @@ class AlarmManagerService extends SystemService {
     }
 
     private void removeLocked(PendingIntent operation) {
+        removeWithStatusLocked(operation);
+    }
+
+    private boolean removeWithStatusLocked(PendingIntent operation) {
         boolean didRemove = false;
         for (int i = mAlarmBatches.size() - 1; i >= 0; i--) {
             Batch b = mAlarmBatches.get(i);
@@ -1269,6 +1308,8 @@ class AlarmManagerService extends SystemService {
             rescheduleKernelAlarmsLocked();
             updateNextAlarmClockLocked();
         }
+
+        return didRemove;
     }
 
     void removeLocked(String packageName) {
@@ -1446,7 +1487,7 @@ class AlarmManagerService extends SystemService {
                     setImplLocked(alarm.type, alarm.when + delta, nextElapsed, alarm.windowLength,
                             maxTriggerTime(nowELAPSED, nextElapsed, alarm.repeatInterval),
                             alarm.repeatInterval, alarm.operation, batch.standalone, true,
-                            alarm.workSource, alarm.alarmClock, alarm.userId);
+                            alarm.workSource, alarm.alarmClock, alarm.userId, false);
                 }
 
                 if (alarm.wakeup) {
@@ -1670,6 +1711,10 @@ class AlarmManagerService extends SystemService {
                         ActivityManagerNative.noteWakeupAlarm(
                                 alarm.operation, -1, null);
                     }
+                    // AppOps accounting
+                    mAppOps.noteOpNoThrow(AppOpsManager.OP_ALARM_WAKEUP,
+                            alarm.operation.getCreatorUid(),
+                            alarm.operation.getCreatorPackage());
                 }
             } catch (PendingIntent.CanceledException e) {
                 if (alarm.repeatInterval > 0) {
