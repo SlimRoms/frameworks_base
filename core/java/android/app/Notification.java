@@ -898,6 +898,12 @@ public class Notification implements Parcelable
     public static final String EXTRA_FORCE_SHOW_LIGHTS = "android.forceShowLights";
 
     /**
+     * Value that indicates this notification is a privacy guard notification.
+     * @hide
+     */
+    public static final String PRIVACY_GUARD_NOTIFICATION = "android.privacyGuard";
+
+    /**
      * Structure to encapsulate a named action that can be shown as part of this notification.
      * It must include an icon, a label, and a {@link PendingIntent} to be fired when the action is
      * selected by the user.
