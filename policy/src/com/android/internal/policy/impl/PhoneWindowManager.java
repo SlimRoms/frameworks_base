@@ -4453,9 +4453,13 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 && (keyCode == KeyEvent.KEYCODE_VOLUME_UP
                 || keyCode == KeyEvent.KEYCODE_VOLUME_DOWN);
 
+        final boolean isHomeWakeKey = !isScreenOn()
+                && (keyCode == KeyEvent.KEYCODE_HOME);
+
         boolean isWakeKey = (policyFlags & WindowManagerPolicy.FLAG_WAKE) != 0
                 || event.isWakeKey()
-                || isVolumeWakeKey;
+                || isVolumeWakeKey
+                || isHomeWakeKey;
 
         if (interactive || (isInjected && !isWakeKey)) {
             // When the device is interactive or the key is injected pass the
