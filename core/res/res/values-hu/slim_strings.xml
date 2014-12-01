@@ -24,6 +24,7 @@
   <string name="privacy_guard_notification">Privacy Guard aktív</string>
   <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> nem lesz képes hozzáférni az adatokhoz</string>
   <string name="privacy_guard_custom_notification_detail"><xliff:g id="app">%1$s</xliff:g> nem lesz képes hozzáférni az egyéni jogosultságokhoz</string>
+  <string name="default_string">Alapértelmezett</string>
   <string name="reboot_system" product="tablet">Tablet újraindítása</string>
   <string name="reboot_system" product="default">Telefon újraindítása</string>
   <string name="global_action_screenshot">Képernyőkép</string>
@@ -51,4 +52,6 @@
   <string name="theme_auto_switch_mode_error">Automatikus fényviszonyok állítása engedélyezve. Kézi állítás nem lehetséges.</string>
   <string name="permlab_preventpower">bekapcsológomb megakadályozása</string>
   <string name="permdesc_preventpower">Lehetővé teszi, hogy alkalmazás felülírja a bekapcsológombot</string>
+  <string name="permlab_changeHeadsUpState">lebegő értesítések engedélyezése vagy tiltása</string>
+  <string name="permdesc_changeHeadsUpState">Lehetővé teszi az alkalmazás számára, hogy egy másik alkalmazás normál értesítéseit mint lebegő értesítéseket jelenítse meg.</string>
 </resources>

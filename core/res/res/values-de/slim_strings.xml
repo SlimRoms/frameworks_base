@@ -41,12 +41,12 @@
   <string name="notify_turn_wifi_ap_off_title">Zugangspunkt deaktivieren</string>
   <string name="global_actions_expanded_desktop_mode_on_status">Erweiterter Desktop ist AN</string>
   <string name="global_actions_expanded_desktop_mode_off_status">Erweiterter Desktop ist AUS</string>
-  <string name="global_actions_pie_mode_on_status">SlimPie ist AN</string>
-  <string name="global_actions_pie_mode_off_status">SlimPie ist AUS</string>
-  <string name="disable_pie_navigation_error">Sie können SlimPie nicht deaktivieren. Es ist keine andere Navigation aktiviert. Aktivieren Sie zunächst die Navigationsleiste um SlimPie zu deaktivieren.</string>
+  <string name="global_actions_pie_mode_on_status">SlimPIE ist AN</string>
+  <string name="global_actions_pie_mode_off_status">SlimPIE ist AUS</string>
+  <string name="disable_pie_navigation_error">Sie können SlimPIE nicht deaktivieren. Es ist keine andere Navigation aktiviert. Aktivieren Sie zunächst die Navigationsleiste um SlimPIE zu deaktivieren.</string>
   <string name="global_actions_nav_bar_mode_on_status">Navigationsleiste ist AN</string>
   <string name="global_actions_nav_bar_mode_off_status">Navigationsleiste ist AUS</string>
-  <string name="disable_navigation_pie_error">Die Navigationsleiste kann nicht deaktivieret werden. Es ist keine andere Navigation aktiviert. Aktivieren Sie zunächst SlimPie um die Navigationsleiste zu deaktivieren.</string>
+  <string name="disable_navigation_pie_error">Die Navigationsleiste kann nicht deaktivieret werden. Es ist keine andere Navigation aktiviert. Aktivieren Sie zunächst SlimPIE um die Navigationsleiste zu deaktivieren.</string>
   <string name="accessibility_target_direction">Streichen, um ein Ziel zu aktivieren</string>
   <string name="stylus_app_not_installed">%s ist nicht installiert</string>
   <string name="theme_auto_switch_mode_error">Automatische Lichtverhältnis Änderung ist aktiviert. Ein manuelles Wechseln ist nicht möglich.</string>

@@ -35,8 +35,10 @@
   <string name="shortcut_immersive">Immersive mód kapcsoló</string>
   <string name="shortcut_quiethours">Csendes órák kapcsoló</string>
   <string name="shortcut_rotation">Forgatás zároló kapcsoló</string>
+  <string name="shortcut_shakeevent">Rázási cselekvések</string>
   <string name="shortcut_torch">Zseblámpa kapcsoló</string>
   <string name="shortcut_reboot">Újraindítás (azonnal)</string>
+  <string name="shortcut_recovery">Recovery</string>
   <string name="shortcut_last_app">Utolsó alkalmazás</string>
   <string name="shortcut_screenshot">Képernyőkép</string>
   <string name="shortcut_volume">Hangerő</string>
@@ -46,6 +48,7 @@
   <string name="chamber_title">Beállítás karakterek bevitele</string>
   <string name="chamber_message">Írja be a Beállítások karaktereit amely ki- és bekapcsolja (jelölőnégyzet) a funkciót vagy esetleg listából választ. Például quiet_hours_ringer vagy hasonló. Beállítások a Settings.java fájlban találhatóak. FIGYELEM: Ez a folyamat veszélyes!</string>
   <string name="chamber_invalid">Érvénytelen bevitel. Légy óvatos!</string>
+  <string name="chamber_invalid_setting">Teszteld a beállítást annak érdekében, hogy az alapértelmezett adatbázis létezik ehhez a művelethez.</string>
   <string name="chamber_checkbox">Jelölőnégyzet</string>
   <string name="chamber_chk_message">Ez a beállítás jelölőnégyzet beállítás?</string>
   <string name="chamber_int">Érték bevitel</string>
@@ -77,10 +80,14 @@
   <string name="quick_settings_usb_tether_off_label">Szétkapcsolt</string>
   <string name="quick_settings_usb_tether_connected_label">Megosztás ki</string>
   <string name="quick_settings_usb_tether_on_label">Megosztás</string>
+  <string name="quick_settings_wifiap">Wi-Fi hotspot</string>
+  <string name="quick_settings_wifiap_off">Wi-Fi hotspot</string>
   <string name="quick_settings_quiethours">Csendes órák</string>
   <string name="quick_settings_quiethours_off">Csendes órák ki</string>
   <string name="quick_settings_lte">LTE</string>
   <string name="quick_settings_lte_off">LTE ki</string>
+  <string name="quick_settings_shakeevents">Rázási cselekvések</string>
+  <string name="quick_settings_shakeevents_off">rázási cselekvések kikapcsolva</string>
   <string name="quick_settings_volume">Hangerő</string>
   <string name="quick_settings_expanded_desktop">Kiterjesztett</string>
   <string name="quick_settings_expanded_desktop_off">Normál</string>
@@ -95,11 +102,14 @@
   <string name="quick_settings_reboot">Újraindítás</string>
   <string name="quick_settings_theme_switch_dark">Sötét téma</string>
   <string name="quick_settings_theme_switch_light">Világos téma</string>
+  <string name="quick_settings_quick_record_deleted">Törölve</string>
   <string name="quick_settings_quick_record_nofile">Hosszan nyomás</string>
   <string name="quick_settings_quick_record_def">Gyors felvétel</string>
   <string name="quick_settings_quick_record_rec">Felvétel...</string>
   <string name="quick_settings_quick_record_save">Mentve</string>
   <string name="quick_settings_quick_record_play">Lejátszás...</string>
+  <string name="quick_settings_quick_record_dialog_cancel">Bezárás</string>
+  <string name="quick_settings_quick_record_dialog">Indítsa el a felvételt \ törléséhez nyomja meg hosszan</string>
   <string name="quick_settings_custom_toggle">Egyéni</string>
   <string name="quick_settings_contact_toggle">Kapcsolat</string>
   <string name="quick_settings_reminder">Emlékeztető</string>
@@ -112,11 +122,21 @@
   <string name="quick_settings_reminder_dismiss">Emlékeztető törlése</string>
   <string name="quick_settings_reminder_dismiss_message">Törlöd az aktuális emlékeztetőt?</string>
   <string name="quick_settings_reminder_help_title">Érintés:</string>
+  <string name="quick_settings_reminder_noti_dismiss">Elvetés</string>
+  <string name="quick_settings_reminder_noti_later">Frissítés ideje</string>
   <string name="quick_settings_reminder_help_message">Érintsd meg az értesítés beállításához. Hosszan nyomva törlöd az aktuális értesítőt.</string>
+  <string name="quick_settings_network_adb_disabled_label">Tiltva</string>
+  <string name="quick_settings_network_adb_enabled_label">Engedélyezve</string>
   <string name="pie_battery_status_charging">Töltés (<xliff:g id="percent">%d</xliff:g>%%)</string>
   <string name="pie_battery_status_full">Feltöltve</string>
   <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% hátralévő</string>
   <string name="pie_phone_status_no_service">Nincs szolgáltatás</string>
   <string name="pie_phone_status_airplane_mode">Repülőgép mód be</string>
   <string name="pie_phone_status_emergency_only">Csak vészhívás</string>
+  <string name="smart_pulldown_disabled">Intelligens legördülő ki van kapcsolva</string>
+  <string name="accessibility_ime_navigation_left">Kurzor balra</string>
+  <string name="accessibility_ime_navigation_right">Kurzor jobbra</string>
+  <string name="status_bar_notification_heads_up_enable_title">Lebegő értesítések engedélyezése</string>
+  <string name="status_bar_notification_heads_up_disable_title">Lebegő értesítés kikapcsolása</string>
+  <string name="heads_up_snooze_message">Lebegő értesítés kikapcsolva <xliff:g id="number">%d</xliff:g> percre.</string>
 </resources>
