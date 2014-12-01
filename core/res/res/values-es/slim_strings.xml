@@ -19,7 +19,7 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="permlab_changePrivacyGuardState">habilita o deshabilita privacy guard</string>
+  <string name="permlab_changePrivacyGuardState">Habilitar o deshabilitar la Protección de Privacidad</string>
   <string name="permdesc_changePrivacyGuardState">Permite cambiar que aplicaciones se lanzan con Privacy Guard. Cuando una aplicación está en ejecución con Privacy Guard, no tendrá acceso a los datos personales tales como contactos, histórico de llamadas o mensajes.</string>
   <string name="privacy_guard_notification">Privacy Guard activo</string>
   <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> no tendrá acceso a los datos personales</string>
