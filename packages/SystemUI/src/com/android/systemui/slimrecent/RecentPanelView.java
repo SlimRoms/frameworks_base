@@ -621,9 +621,7 @@ public class RecentPanelView {
         mContext.getSystemService(Context.ACTIVITY_SERVICE);
 
         final List<ActivityManager.RecentTaskInfo> recentTasks =
-                am.getRecentTasksForUser(MAX_TASKS, ActivityManager.RECENT_IGNORE_UNAVAILABLE
-                        | ActivityManager.RECENT_WITH_EXCLUDED
-                        | ActivityManager.RECENT_DO_NOT_COUNT_EXCLUDED,
+                am.getRecentTasksForUser(MAX_TASKS, ActivityManager.RECENT_IGNORE_UNAVAILABLE,
                         UserHandle.CURRENT.getIdentifier());
         final int numTasks = recentTasks.size();
         ActivityInfo homeInfo = new Intent(Intent.ACTION_MAIN)
@@ -632,7 +630,6 @@ public class RecentPanelView {
         int firstItems = 0;
         final int firstExpandedItems =
                 mContext.getResources().getInteger(R.integer.expanded_items_default);
-        boolean loadOneExcluded = true;
         // Get current task list. We do not need to do it in background. We only load MAX_TASKS.
         for (int i = 0, index = 0; i < numTasks && (index < MAX_TASKS); ++i) {
             if (mCancelledByUser) {
@@ -649,17 +646,8 @@ public class RecentPanelView {
 
             // Never load the current home activity.
             if (isCurrentHomeActivity(intent.getComponent(), homeInfo)) {
-                loadOneExcluded = false;
                 continue;
             }
-
-            // Don't load excluded activities.
-            if (!loadOneExcluded && (recentInfo.baseIntent.getFlags()
-                    & Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS) != 0) {
-                continue;
-            }
-
-            loadOneExcluded = false;
 
             TaskDescription item = createTaskDescription(recentInfo.id,
                     recentInfo.persistentId, recentInfo.baseIntent,
