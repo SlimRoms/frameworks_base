@@ -25473,6 +25473,7 @@ package android.provider {
     field public static final java.lang.String SCREEN_OFF_TIMEOUT = "screen_off_timeout";
     field public static final deprecated java.lang.String SETTINGS_CLASSNAME = "settings_classname";
     field public static final java.lang.String SETUP_WIZARD_HAS_RUN = "setup_wizard_has_run";
+    field public static final java.lang.String SHOW_ALARM_ICON = "show_alarm_icon";
     field public static final java.lang.String SHOW_GTALK_SERVICE_STATUS = "SHOW_GTALK_SERVICE_STATUS";
     field public static final deprecated java.lang.String SHOW_PROCESSES = "show_processes";
     field public static final deprecated java.lang.String SHOW_WEB_SUGGESTIONS = "show_web_suggestions";
