@@ -236,6 +236,7 @@ public class KeyguardViewMediator extends SystemUI {
 
     /** Cached value of #isInputRestricted */
     private boolean mInputRestricted;
+
     // true if the keyguard is hidden by another window
     private boolean mOccluded = false;
 
@@ -523,7 +524,6 @@ public class KeyguardViewMediator extends SystemUI {
         public boolean isInputRestricted() {
             return KeyguardViewMediator.this.isInputRestricted();
         }
-
     };
 
     public void userActivity() {
