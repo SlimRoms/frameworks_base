@@ -50,4 +50,7 @@
     <java-symbol type="string" name="reboot_system" />
     <java-symbol type="string" name="reboot_progress" />
 
+    <!-- Blur effects -->
+    <java-symbol type="bool" name="config_ui_blur_enabled" />
+
 </resources>
