@@ -2072,6 +2072,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         return mWakeUpComingFromTouch;
     }
 
+    void setBlur(float b){
+        mStatusBarWindowManager.setBlur(b);
+    }
+
     public boolean isFalsingThresholdNeeded() {
         return getBarState() == StatusBarState.KEYGUARD;
     }
