@@ -171,4 +171,7 @@
   <java-symbol type="integer" name="config_outdoorAmbientLux" />
   <java-symbol type="drawable" name="expander_open_mtrl_alpha" />
 
+    <!-- Blur effects -->
+    <java-symbol type="bool" name="config_ui_blur_enabled" />
+
 </resources>
