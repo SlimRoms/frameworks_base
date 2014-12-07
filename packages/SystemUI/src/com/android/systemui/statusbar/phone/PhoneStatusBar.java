@@ -3543,6 +3543,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 mCenterClockLayout.setVisibility(View.GONE);
                 mCenterClockLayout.startAnimation(
                     loadAnim(com.android.internal.R.anim.push_up_out, null));
+            }
         }
 
         @Override
