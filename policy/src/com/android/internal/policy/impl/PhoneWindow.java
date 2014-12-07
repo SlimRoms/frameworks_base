@@ -86,6 +86,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -1732,8 +1733,18 @@ public class PhoneWindow extends Window implements MenuBuilder.Callback {
         switch (keyCode) {
             case KeyEvent.KEYCODE_VOLUME_UP:
             case KeyEvent.KEYCODE_VOLUME_DOWN: {
-                int direction = keyCode == KeyEvent.KEYCODE_VOLUME_UP ? AudioManager.ADJUST_RAISE
-                        : AudioManager.ADJUST_LOWER;
+                Configuration config = getContext().getResources().getConfiguration();
+                int rotation = getWindowManager().getDefaultDisplay().getRotation();
+                int direction;
+                if ((rotation == Surface.ROTATION_90
+                        || rotation == Surface.ROTATION_180)
+                        && config.getLayoutDirection() == View.LAYOUT_DIRECTION_LTR) {
+                    direction = keyCode == KeyEvent.KEYCODE_VOLUME_DOWN
+                            ? AudioManager.ADJUST_RAISE : AudioManager.ADJUST_LOWER;
+                } else {
+                    direction = keyCode == KeyEvent.KEYCODE_VOLUME_UP
+                            ? AudioManager.ADJUST_RAISE : AudioManager.ADJUST_LOWER;
+                }
                 // If we have a session send it the volume command, otherwise
                 // use the suggested stream.
                 if (mMediaController != null) {
