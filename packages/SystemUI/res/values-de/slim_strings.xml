@@ -107,6 +107,7 @@
   <string name="quick_settings_quick_record_save">Gespeichert</string>
   <string name="quick_settings_quick_record_play">Wird abgespielt...</string>
   <string name="quick_settings_quick_record_dialog_cancel">Schließen</string>
+  <string name="quick_settings_quick_record_dialog">Aufnahme starten\nZum Löschen lange drücken</string>
   <string name="quick_settings_custom_toggle">Benutzerdefiniert</string>
   <string name="quick_settings_contact_toggle">Kontakt</string>
   <string name="quick_settings_reminder">Erinnerung</string>
@@ -114,8 +115,14 @@
   <string name="quick_settings_reminder_message">Nachricht:</string>
   <string name="quick_settings_reminder_time">Erinnerungszeit</string>
   <string name="quick_settings_reminder_set">Uhrzeit einstellen</string>
+  <string name="quick_settings_reminder_update">Erinnerungstakt</string>
   <string name="quick_settings_reminder_no_expire">Keine Benachrichtigung</string>
+  <string name="quick_settings_reminder_dismiss">Erinnerung löschen</string>
+  <string name="quick_settings_reminder_dismiss_message">Aktuelle Erinnerung löschen?</string>
+  <string name="quick_settings_reminder_help_title">Berühren</string>
   <string name="quick_settings_reminder_noti_dismiss">Schließen</string>
+  <string name="quick_settings_reminder_noti_later">Erinnerungstakt</string>
+  <string name="quick_settings_reminder_help_message">Freien Platz darüber berühren, um Erinnerung einzurichten oder zu ändern. Lange drücken, um die aktuelle Erinnerung zu löschen.</string>
   <string name="quick_settings_network_adb_disabled_label">Deaktiviert</string>
   <string name="quick_settings_network_adb_enabled_label">Aktiviert</string>
   <string name="pie_battery_status_charging">Laden (<xliff:g id="percent">%d</xliff:g>%%)</string>
