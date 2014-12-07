@@ -25,8 +25,8 @@
   <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> hat keinen Zugriff auf persönliche Daten</string>
   <string name="privacy_guard_custom_notification_detail"><xliff:g id="app">%1$s</xliff:g> hat keinen Zugriff auf benutzerdefinierte Berechtigungen</string>
   <string name="default_string">Standard</string>
-  <string name="reboot_system" product="tablet">Tablet neustarten</string>
-  <string name="reboot_system" product="default">Telefon neustarten</string>
+  <string name="reboot_system" product="tablet">Tablet neu starten</string>
+  <string name="reboot_system" product="default">Telefon neu starten</string>
   <string name="global_action_screenshot">Bildschirmfoto</string>
   <string name="reboot_reboot">Neustart</string>
   <string name="reboot_recovery">Recovery</string>
@@ -34,7 +34,7 @@
   <string name="reboot_bootmenu">Bootmenü</string>
   <string name="reboot_fastboot">Fastboot</string>
   <string name="reboot_download">Download</string>
-  <string name="reboot_progress">Neustarten\u2026</string>
+  <string name="reboot_progress">Neu starten\u2026</string>
   <string name="reboot_confirm">Ihr Telefon wird neu gestartet.</string>
   <string name="global_action_reboot">Neustart</string>
   <string name="global_action_choose_profile">Profil</string>

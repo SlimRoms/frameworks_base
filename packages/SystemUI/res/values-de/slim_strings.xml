@@ -18,7 +18,7 @@
  */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="quick_settings_battery_charging">Lade</string>
+  <string name="quick_settings_battery_charging">Laden</string>
   <string name="quick_settings_battery_discharging">Entladen</string>
   <string name="app_killed_message">App beendet</string>
   <string name="screenshot_notification_delete">Löschen</string>
@@ -114,8 +114,14 @@
   <string name="quick_settings_reminder_message">Nachricht:</string>
   <string name="quick_settings_reminder_time">Erinnerungszeit</string>
   <string name="quick_settings_reminder_set">Uhrzeit einstellen</string>
+  <string name="quick_settings_reminder_update">Erinnerungstakt</string>
   <string name="quick_settings_reminder_no_expire">Keine Benachrichtigung</string>
+  <string name="quick_settings_reminder_dismiss">Erinnerung löschen</string>
+  <string name="quick_settings_reminder_dismiss_message">Aktuelle Erinnerung löschen?</string>
+  <string name="quick_settings_reminder_help_title">Berühren</string>
   <string name="quick_settings_reminder_noti_dismiss">Schließen</string>
+  <string name="quick_settings_reminder_noti_later">Erinnerungstakt</string>
+  <string name="quick_settings_reminder_help_message">Freien Platz darüber berühren, um Erinnerung einzurichten oder zu ändern. Lange drücken, um die aktuelle Erinnerung zu löschen.</string>
   <string name="quick_settings_network_adb_disabled_label">Deaktiviert</string>
   <string name="quick_settings_network_adb_enabled_label">Aktiviert</string>
   <string name="pie_battery_status_charging">Laden (<xliff:g id="percent">%d</xliff:g>%%)</string>
