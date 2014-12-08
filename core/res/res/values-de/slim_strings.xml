@@ -44,4 +44,5 @@
   <string name="app_ops_make_phone_call">Telefonnummern direkt wählen</string>
   <string name="app_ops_modify_settings">Systemeinstellungen ändern</string>
   <string name="app_ops_start_at_bootup">beim Start ausführen</string>
+  <string name="notify_turn_wifi_ap_off_title">Zugangspunkt deaktivieren</string>
 </resources>

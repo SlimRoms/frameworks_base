@@ -39,4 +39,11 @@
   <string name="reboot_progress">Újraindulás\u2026</string>
   <string name="reboot_confirm">A telefon újra fog indulni.</string>
   <string name="global_action_reboot">Újraindítás</string>
+  <string name="app_ops_access_camera">hozzáférés a kamerához</string>
+  <string name="app_ops_access_location">hozzáférés a helyadatokhoz</string>
+  <string name="app_ops_access_notifications">értesítések olvasása</string>
+  <string name="app_ops_alarm_wakeup">felébresztheti az eszközt</string>
+  <string name="app_ops_make_phone_call">hívást kezdeményezhet</string>
+  <string name="app_ops_modify_calendar">frissítheti a naptárat</string>
+  <string name="app_ops_modify_call_log">frissítheti a hívásnaplót</string>
 </resources>

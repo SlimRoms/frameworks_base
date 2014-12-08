@@ -89,4 +89,6 @@
   <string name="app_ops_delete_contacts">Borrar contacto</string>
   <string name="app_ops_delete_call_log">Borrar el registro de llamadas</string>
   <string name="app_ops_get_usage_stat">Estadísticas de utilización</string>
+  <string name="usb_choose_notification_title">Toca para elegir opciones USB</string>
+  <string name="notify_turn_wifi_ap_off_title">Desactivar punto Wi-Fi </string>
 </resources>

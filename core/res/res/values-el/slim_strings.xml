@@ -81,7 +81,12 @@
   <string name="app_ops_write_sms">εγγραφή ενός μηνύματος SMS</string>
   <string name="app_ops_toggle_nfc">εναλλαγή Nfc</string>
   <string name="app_ops_mute_microphone">σίγαση ή απενεργοποίηση του μικροφώνου</string>
+  <string name="app_ops_toast_window">έλεγχος τόστ μηνυμάτων</string>
+  <string name="app_ops_vpn">έλεγχος σύνδεσης vpn</string>
   <string name="app_ops_delete_sms">διαγραφή μηνύματος SMS</string>
   <string name="app_ops_delete_mms">διαγραφή μηνύματος MMS</string>
   <string name="app_ops_delete_contacts">διαγραφή μιας επαφής</string>
+  <string name="app_ops_delete_call_log">Καθαρισμός ιστορικού κλήσεων</string>
+  <string name="app_ops_get_usage_stat">πάρετε τη στατιστική χρήσης σας</string>
+  <string name="notify_turn_wifi_ap_off_title">Απενεργοποιήστε το Wi-Fi AP</string>
 </resources>

@@ -89,4 +89,6 @@
   <string name="app_ops_delete_contacts">mazat kontakty</string>
   <string name="app_ops_delete_call_log">mazat výpis hovorů</string>
   <string name="app_ops_get_usage_stat">získat statistiky používání</string>
+  <string name="usb_choose_notification_title">Klepněte pro možnosti nastavení USB.</string>
+  <string name="notify_turn_wifi_ap_off_title">Vypnout Wi-Fi přístupový bod</string>
 </resources>
