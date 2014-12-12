@@ -21,4 +21,11 @@
     <!--ScreenShot Trash-->
     <string name="screenshot_notification_delete">Delete</string>
     <string name="screenshot_delete_confirmation">Screenshot deleted.</string>
+
+    <!-- Heads up -->
+    <string name="heads_up_snooze_message">Heads up is disabled for <xliff:g id="number">%d</xliff:g> minutes.</string>
+    <string name="heads_up_snooze_button_title">Snooze heads up</string>
+    <string name="notification_inspect_heads_up_title_enabled">Enable heads up for this application</string>
+    <string name="notification_inspect_heads_up_title_disabled">Disable heads up for this application</string>
+
 </resources>
