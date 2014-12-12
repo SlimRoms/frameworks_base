@@ -121,6 +121,7 @@
     <!-- Screen Capturing -->
     <uses-permission android:name="android.permission.MANAGE_MEDIA_PROJECTION" />
 
+<<<<<<< HEAD
     <!-- Visualizer tile -->
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -131,6 +132,10 @@
 
     <!-- Kill app permission -->
     <uses-permission android:name="android.permission.FORCE_STOP_PACKAGES" />
+=======
+    <!-- Heads up -->
+    <uses-permission android:name="android.permission.CHANGE_HEADS_UP_STATE" />
+>>>>>>> c424b88... Frameworks: Slim heads up customizations for LP (1/2)
 
     <application
         android:name=".SystemUIApplication"
