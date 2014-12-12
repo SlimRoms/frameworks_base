@@ -106,4 +106,8 @@
     <string name="app_ops_delete_call_log">delete call log</string>
     <string name="app_ops_get_usage_stat">get your usage statistic</string>
 
+    <!-- Heads up -->
+    <string name="permlab_changeHeadsUpState">enable or disable heads up</string>
+    <string name="permdesc_changeHeadsUpState">Allows the application to change whether another application is allowed to show normal notifications as heads up notification.</string>
+
 </resources>
