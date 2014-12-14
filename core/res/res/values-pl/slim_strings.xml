@@ -89,4 +89,6 @@
   <string name="app_ops_delete_contacts">usuwanie kontaktów</string>
   <string name="app_ops_delete_call_log">usuwanie dziennika połączeń</string>
   <string name="app_ops_get_usage_stat">uzyskiwanie Twoich statystyk użytkowania</string>
+  <string name="usb_choose_notification_title">Dotknij by wybrać opcje USB.</string>
+  <string name="notify_turn_wifi_ap_off_title">Wyłącz punkt dostępu Wi-Fi</string>
 </resources>

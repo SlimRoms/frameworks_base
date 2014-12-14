@@ -20,4 +20,8 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="screenshot_notification_delete">Supprimer</string>
   <string name="screenshot_delete_confirmation">Capture d\'écran supprimée.</string>
+  <string name="heads_up_snooze_message">Les notifications flottantes sont désactivées pour <xliff:g id="number">%d</xliff:g> minutes.</string>
+  <string name="heads_up_snooze_button_title">Reporter les notifications flottantes</string>
+  <string name="notification_inspect_heads_up_title_enabled">Activer les notifications flottantes pour cette application</string>
+  <string name="notification_inspect_heads_up_title_disabled">Désactiver les notifications flottantes pour cette application</string>
 </resources>
