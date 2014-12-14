@@ -264,9 +264,12 @@ public class CommandQueue extends IStatusBar.Stub {
     }
 
     public void showCustomIntentAfterKeyguard(Intent intent) {
-        mHandler.removeMessages(MSG_START_CUSTOM_INTENT_AFTER_KEYGUARD);
-        Message m = mHandler.obtainMessage(MSG_START_CUSTOM_INTENT_AFTER_KEYGUARD, 0, 0, intent);
-        m.sendToTarget();
+        synchronized (mList) {
+            mHandler.removeMessages(MSG_START_CUSTOM_INTENT_AFTER_KEYGUARD);
+            Message m = mHandler.obtainMessage(
+                    MSG_START_CUSTOM_INTENT_AFTER_KEYGUARD, 0, 0, intent);
+            m.sendToTarget();
+        }
     }
 
     public void hideHeadsUpCandidate(String packageName) {
