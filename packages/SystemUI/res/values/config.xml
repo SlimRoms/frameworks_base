@@ -149,7 +149,6 @@
     <!-- milliseconds before the heads up notification accepts touches. -->
     <integer name="heads_up_sensitivity_delay">700</integer>
 
-<<<<<<< HEAD
     <!-- Show emergency call label only without carrier label on expanded notification area -->
     <bool name="config_showEmergencyCallLabelOnly">true</bool>
     <bool name="config_showDataConnectionView">true</bool>
@@ -175,10 +174,9 @@
         <item>0</item>
     </integer-array>
     <bool name="config_showRsrpSignalLevelforLTE">false</bool>
-=======
+
     <!-- milliseconds how long heads up should be in snooze. -->
     <integer name="heads_up_snooze_time">300000</integer>
->>>>>>> c424b88... Frameworks: Slim heads up customizations for LP (1/2)
 
     <!-- The duration in seconds to wait before the dismiss buttons are shown. -->
     <integer name="recents_task_bar_dismiss_delay_seconds">1</integer>
@@ -211,7 +209,7 @@
      from home. -->
     <integer name="recents_task_enter_from_home_duration">225</integer>
 
-    <!-- The stagger for each task when animating the task from the bottom of the screen when 
+    <!-- The stagger for each task when animating the task from the bottom of the screen when
      transitioning from home. -->
     <integer name="recents_task_enter_from_home_stagger_delay">12</integer>
 
