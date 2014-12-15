@@ -174,7 +174,7 @@ public class TileUtils {
             category.title = resolved.activityInfo.loadLabel(pm);
             category.priority = SETTING_PKG.equals(
                     resolved.activityInfo.applicationInfo.packageName) ? resolved.priority :
-                    (SLIM_SETTING_PKG.equals(resolver.activityInfo.applicationInfo.packageName) ?
+                    (SLIM_SETTING_PKG.equals(resolved.activityInfo.applicationInfo.packageName) ?
                             resolved.priority : 0);
             if (DEBUG) Log.d(LOG_TAG, "Adding category " + category.title);
         }

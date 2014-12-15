@@ -69,6 +69,10 @@ public class AppOpsManager {
      * will do this for you).
      */
 
+    /** {@hide} */
+    public static final String ACTION_SU_SESSION_CHANGED =
+            "android.intent.action.SU_SESSION_CHANGED";
+
     final Context mContext;
     final IAppOpsService mService;
     final ArrayMap<OnOpChangedListener, IAppOpsCallback> mModeWatchers
@@ -102,6 +106,13 @@ public class AppOpsManager {
      * with appop permissions, and callers must explicitly check for it and deal with it.
      */
     public static final int MODE_DEFAULT = 3;
+
+    /**
+     * @hide Result from {@link #checkOp}, {@link #noteOp}, {@link #startOp}:
+     * AppOps Service should show a dialog box on screen to get user
+     * permission.
+     */
+    public static final int MODE_ASK = 4;
 
     // when adding one of these:
     //  - increment _NUM_OP
@@ -244,7 +255,9 @@ public class AppOpsManager {
     /** @hide BLUETOOTH_ADMIN . */
     public static final int OP_BLUETOOTH_ADMIN = 65;
     /** @hide */
-    public static final int _NUM_OP = 66;
+    public static final int OP_SU = 66;
+    /** @hide */
+    public static final int _NUM_OP = 67;
 
     /** Access to coarse location information. */
     public static final String OPSTR_COARSE_LOCATION = "android:coarse_location";
@@ -348,6 +361,8 @@ public class AppOpsManager {
     /** @hide BLUETOOTH_ADMIN . */
     public static final String OPSTR_BLUETOOTH_ADMIN
             = "android:bluetooth_admin";
+    private static final String OPSTR_SU =
+            "android:su";
 
     private static final int[] RUNTIME_PERMISSIONS_OPS = {
             // Contacts
@@ -461,6 +476,7 @@ public class AppOpsManager {
             OP_RUN_IN_BACKGROUND,
             OP_CHANGE_WIFI_STATE,
             OP_BLUETOOTH_ADMIN,
+            OP_SU
     };
 
     /**
@@ -534,6 +550,7 @@ public class AppOpsManager {
             null,
             OPSTR_CHANGE_WIFI_STATE,
             OPSTR_BLUETOOTH_ADMIN,
+            OPSTR_SU,
     };
 
     /**
@@ -607,6 +624,7 @@ public class AppOpsManager {
             "RUN_IN_BACKGROUND",
             "CHANGE_WIFI_STATE",
             "BLUETOOTH_ADMIN",
+            "SU",
     };
 
     /**
@@ -680,6 +698,7 @@ public class AppOpsManager {
             null, // no permission for running in background
             android.Manifest.permission.CHANGE_WIFI_STATE,
             android.Manifest.permission.BLUETOOTH_ADMIN,
+            null,
     };
 
     /**
@@ -754,6 +773,7 @@ public class AppOpsManager {
             null, // RUN_IN_BACKGROUND
             null, // OP_CHANGE_WIFI_STATE
             null, // OP_BLUETOOTH_ADMIN
+            UserManager.DISALLOW_SU, //SU TODO: this should really be investigated.
     };
 
     /**
@@ -827,6 +847,7 @@ public class AppOpsManager {
             false, // RUN_IN_BACKGROUND
             false, // OP_CHANGE_WIFI_STATE
             false, // OP_BLUETOOTH_ADMIN
+            false, //SU
     };
 
     /**
@@ -899,6 +920,7 @@ public class AppOpsManager {
             AppOpsManager.MODE_ALLOWED,  // OP_RUN_IN_BACKGROUND
             AppOpsManager.MODE_ALLOWED,  //OP_CHANGE_WIFI_STATE
             AppOpsManager.MODE_ALLOWED,  //OP_BLUETOOTH_ADMIN
+            AppOpsManager.MODE_ASK, // OP_SU
     };
 
     /**
@@ -975,6 +997,7 @@ public class AppOpsManager {
             false,
             false, //OP_CHANGE_WIFI_STATE
             false, //OP_BLUETOOTH_ADMIN
+            false,     // OP_SU
     };
 
     /**
@@ -986,6 +1009,8 @@ public class AppOpsManager {
      * Mapping from a permission to the corresponding app op.
      */
     private static HashMap<String, Integer> sRuntimePermToOp = new HashMap<>();
+
+    private static HashMap<String, Integer> sNameToOp = new HashMap<String, Integer>();
 
     static {
         if (sOpToSwitch.length != _NUM_OP) {
@@ -1029,6 +1054,9 @@ public class AppOpsManager {
             if (sOpPerms[op] != null) {
                 sRuntimePermToOp.put(sOpPerms[op], op);
             }
+        }
+        for (int i = 0; i < _NUM_OP; i++) {
+            sNameToOp.put(sOpNames[i], i);
         }
     }
 
@@ -1188,9 +1216,11 @@ public class AppOpsManager {
         private final int mDuration;
         private final int mProxyUid;
         private final String mProxyPackageName;
+        private final int mAllowedCount;
+        private final int mIgnoredCount;
 
         public OpEntry(int op, int mode, long time, long rejectTime, int duration,
-                int proxyUid, String proxyPackage) {
+                int proxyUid, String proxyPackage, int allowedCount, int ignoredCount) {
             mOp = op;
             mMode = mode;
             mTime = time;
@@ -1198,6 +1228,8 @@ public class AppOpsManager {
             mDuration = duration;
             mProxyUid = proxyUid;
             mProxyPackageName = proxyPackage;
+            mAllowedCount = allowedCount;
+            mIgnoredCount = ignoredCount;
         }
 
         public int getOp() {
@@ -1232,6 +1264,14 @@ public class AppOpsManager {
             return mProxyPackageName;
         }
 
+        public int getAllowedCount() {
+            return mAllowedCount;
+        }
+
+        public int getIgnoredCount() {
+            return mIgnoredCount;
+        }
+
         @Override
         public int describeContents() {
             return 0;
@@ -1246,6 +1286,8 @@ public class AppOpsManager {
             dest.writeInt(mDuration);
             dest.writeInt(mProxyUid);
             dest.writeString(mProxyPackageName);
+            dest.writeInt(mAllowedCount);
+            dest.writeInt(mIgnoredCount);
         }
 
         OpEntry(Parcel source) {
@@ -1256,6 +1298,8 @@ public class AppOpsManager {
             mDuration = source.readInt();
             mProxyUid = source.readInt();
             mProxyPackageName = source.readString();
+            mAllowedCount = source.readInt();
+            mIgnoredCount = source.readInt();
         }
 
         public static final Creator<OpEntry> CREATOR = new Creator<OpEntry>() {
@@ -1289,6 +1333,15 @@ public class AppOpsManager {
     AppOpsManager(Context context, IAppOpsService service) {
         mContext = context;
         mService = service;
+    }
+
+    /**
+     * Map a non-localized name for the operation back to the Op number
+     * @hide
+     */
+    public static int nameToOp(String name) {
+        Integer val = sNameToOp.get(name);
+        return val != null ? val : OP_NONE;
     }
 
     /**
