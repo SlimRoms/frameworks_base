@@ -100,6 +100,10 @@ public class PermissionDialog extends BasePermissionDialog {
         myHandle.sendMessageDelayed(myHandle.obtainMessage(IGNORED_REQ_TIMEOUT), TIMEOUT_WAIT);
     }
 
+    public void ignore() {
+        mHandler.sendMessage(mHandler.obtainMessage(ACTION_IGNORED_TIMEOUT));
+    }
+
     private final Handler myHandle = new Handler() {
         public void handleMessage(Message mess) {
             int runSet;

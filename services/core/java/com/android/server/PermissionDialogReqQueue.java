@@ -88,4 +88,10 @@ public class PermissionDialogReqQueue {
             }
         }
     }
+
+    public void ignore() {
+        if (mDialog != null) {
+            mDialog.ignore();
+        }
+    }
 }
