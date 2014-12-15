@@ -2099,6 +2099,13 @@ public final class Settings {
         public static final String HEADS_UP_NOTIFCATION_DECAY = "heads_up_notification_decay";
 
         /**
+         * Defines the status and navigation bar color is battery safe mode is enabled.
+         *
+         * @hide
+         */
+        public static final String BATTERY_SAVER_MODE_COLOR = "battery_save_mode_color";
+
+        /**
          * Whether to enable ticker animation in statusbar
          *
          * @hide
