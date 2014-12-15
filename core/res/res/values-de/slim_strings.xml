@@ -40,9 +40,13 @@
   <string name="reboot_confirm">Ihr Telefon wird neu gestartet.</string>
   <string name="global_action_reboot">Neustart</string>
   <string name="app_ops_access_camera">Zugriff auf die Kamera</string>
+  <string name="app_ops_access_location">Ihren Standort abrufen</string>
   <string name="app_ops_alarm_wakeup">Das Gerät aufwecken</string>
+  <string name="app_ops_keep_device_awake">den Ruhezustand Ihres Gerätes verhindern</string>
   <string name="app_ops_make_phone_call">Telefonnummern direkt wählen</string>
   <string name="app_ops_modify_settings">Systemeinstellungen ändern</string>
   <string name="app_ops_start_at_bootup">beim Start ausführen</string>
   <string name="notify_turn_wifi_ap_off_title">Zugangspunkt deaktivieren</string>
+  <string name="permlab_changeHeadsUpState">Heads-Up ein- oder ausschalten</string>
+  <string name="permdesc_changeHeadsUpState">Ermöglicht der App festzulegen, ob andere Apps normale Benachrichtigungen als Heads-Up-Meldung anzeigen dürfen.</string>
 </resources>

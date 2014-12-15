@@ -36,7 +36,7 @@
   <string name="reboot_bootmenu">Menu de démarrage</string>
   <string name="reboot_fastboot">Fastboot</string>
   <string name="reboot_download">Download</string>
-  <string name="reboot_progress">Redémarrage</string>
+  <string name="reboot_progress">Redémarrage en cours\u2026</string>
   <string name="reboot_confirm">Votre téléphone va redémarrer.</string>
   <string name="global_action_reboot">Redémarrer</string>
   <string name="app_ops_access_camera">accéder à l\'appareil photo</string>
