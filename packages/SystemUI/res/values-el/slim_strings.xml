@@ -20,4 +20,5 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="screenshot_notification_delete">Διαγραφή</string>
   <string name="screenshot_delete_confirmation">Το στιγμιότυπο οθόνης διαγράφηκε.</string>
+  <string name="heads_up_snooze_message">Heads up είναι απενεργοποιημένο για <xliff:g id="number"> %d </xliff:g> λεπτά.</string>
 </resources>
