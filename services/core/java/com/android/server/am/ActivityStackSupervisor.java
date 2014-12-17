@@ -2723,6 +2723,10 @@ public final class ActivityStackSupervisor implements DisplayListener {
         BinderInternal.modifyDelayedGcParams();
 
         mPm.cpuBoost(2000 * 1000);
+
+        /* Delay Binder Explicit GC during application launch */
+        BinderInternal.modifyDelayedGcParams();
+
         if (DEBUG_TASKS) Slog.d(TAG, "No task found");
         return null;
     }
