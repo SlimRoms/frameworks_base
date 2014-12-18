@@ -65,6 +65,10 @@
   <java-symbol type="string" name="config_deviceKeyHandlerLib" />
   <java-symbol type="string" name="config_deviceKeyHandlerClass" />
 
+  <!-- Hardware key entries -->
+  <java-symbol type="integer" name="config_deviceHardwareKeys" />
+  <java-symbol type="integer" name="config_deviceHardwareWakeKeys" />
+
   <java-symbol type="bool" name="config_doze_enabled_by_default" />
 
   <!-- Notification and battery light -->
