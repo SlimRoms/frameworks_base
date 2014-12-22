@@ -123,4 +123,5 @@
     <!-- label for item that reboots the phone in phone options dialog -->
     <string name="global_action_reboot">Reboot</string>
 
+    <string name="default_string">Default</string>
 </resources>
