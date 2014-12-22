@@ -26,6 +26,8 @@
     <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> will not be able to access personal data</string>
     <string name="privacy_guard_custom_notification_detail"><xliff:g id="app">%1$s</xliff:g> will not be able to access custom permissions</string>
 
+    <string name="default_string">Default</string>
+
     <!-- USB_PREFERENCES: Notification for when the user connects the phone to a computer via USB in CHARGING mode.  This is the title -->
     <string name="usb_charging_notification_title">Connected in charging mode</string>
 
