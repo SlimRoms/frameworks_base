@@ -2106,6 +2106,12 @@ public final class Settings {
         public static final String HEADS_UP_NOTIFCATION_DECAY = "heads_up_notification_decay";
 
         /**
+         * Timeout for ambient display notification
+         * @hide
+         */
+        public static final String DOZE_TIMEOUT = "doze_timeout";
+
+        /**
          * Defines the status and navigation bar color is battery safe mode is enabled.
          *
          * @hide
