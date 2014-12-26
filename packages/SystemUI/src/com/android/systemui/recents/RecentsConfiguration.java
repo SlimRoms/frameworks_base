@@ -77,6 +77,7 @@ public class RecentsConfiguration {
 
     /** Search bar */
     int searchBarAppWidgetId = -1;
+    public boolean searchBarVisible;
     public int searchBarSpaceHeightPx;
 
     /** Task stack */
@@ -211,7 +212,6 @@ public class RecentsConfiguration {
         maxNumTasksToLoad = ActivityManager.getMaxRecentTasksStatic();
 
         // Search Bar
-        searchBarSpaceHeightPx = res.getDimensionPixelSize(R.dimen.recents_search_bar_space_height);
         searchBarAppWidgetId = settings.getInt(Constants.Values.App.Key_SearchAppWidgetId, -1);
 
         // Task stack
@@ -307,6 +307,14 @@ public class RecentsConfiguration {
                 Settings.Global.DEVELOPMENT_SETTINGS_ENABLED) != 0;
         lockToAppEnabled = ssp.getSystemSetting(context,
                 Settings.System.LOCK_TO_APP_ENABLED) != 0;
+
+        searchBarVisible = ssp.getSystemSetting(context,
+                Settings.System.RECENTS_SHOW_SEARCH_BAR) == 1;
+        if (searchBarVisible)
+            searchBarSpaceHeightPx = context.getResources()
+                    .getDimensionPixelSize(R.dimen.recents_search_bar_space_height);
+        else
+            searchBarSpaceHeightPx = 0;
     }
 
     /** Called when the configuration has changed, and we want to reset any configuration specific
