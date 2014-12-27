@@ -21,4 +21,7 @@
   <string name="screenshot_notification_delete">Διαγραφή</string>
   <string name="screenshot_delete_confirmation">Το στιγμιότυπο οθόνης διαγράφηκε.</string>
   <string name="heads_up_snooze_message">Heads up είναι απενεργοποιημένο για <xliff:g id="number"> %d </xliff:g> λεπτά.</string>
+  <string name="heads_up_snooze_button_title">Αναβολή heads up</string>
+  <string name="notification_inspect_heads_up_title_enabled">Ενεργοποίηση heads up για αυτήν την εφαρμογή</string>
+  <string name="notification_inspect_heads_up_title_disabled">Απενεργοποίηση heads up για αυτήν την εφαρμογή</string>
 </resources>

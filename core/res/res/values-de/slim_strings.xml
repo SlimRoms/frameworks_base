@@ -45,6 +45,8 @@
   <string name="app_ops_keep_device_awake">den Ruhezustand Ihres Gerätes verhindern</string>
   <string name="app_ops_make_phone_call">Telefonnummern direkt wählen</string>
   <string name="app_ops_modify_settings">Systemeinstellungen ändern</string>
+  <string name="app_ops_play_audio">Audioinhalte wiedergeben</string>
+  <string name="app_ops_read_mms">Ihre MMS-Nachrichten lesen</string>
   <string name="app_ops_start_at_bootup">beim Start ausführen</string>
   <string name="notify_turn_wifi_ap_off_title">Zugangspunkt deaktivieren</string>
   <string name="permlab_changeHeadsUpState">Heads-Up ein- oder ausschalten</string>

@@ -82,7 +82,7 @@
   <string name="app_ops_toggle_nfc">Cambiar NFC</string>
   <string name="app_ops_mute_microphone">Silenciar o activar el micrófono</string>
   <string name="app_ops_toast_window">Controlar mensajes emergentes</string>
-  <string name="app_ops_project_media">Controlar proyecto multimedia</string>
+  <string name="app_ops_project_media">Controlar medios del proyecto</string>
   <string name="app_ops_vpn">Controlar conexión VPN</string>
   <string name="app_ops_delete_sms">Borrar SMS</string>
   <string name="app_ops_delete_mms">Borrar MMS</string>
@@ -91,4 +91,6 @@
   <string name="app_ops_get_usage_stat">Estadísticas de utilización</string>
   <string name="usb_choose_notification_title">Toca para elegir opciones USB</string>
   <string name="notify_turn_wifi_ap_off_title">Desactivar punto Wi-Fi </string>
+  <string name="permlab_changeHeadsUpState">habilitar o deshabilitar avisos</string>
+  <string name="permdesc_changeHeadsUpState">Permite que la aplicación cambie si otra aplicación muestra notificaciones normales como avisos</string>
 </resources>

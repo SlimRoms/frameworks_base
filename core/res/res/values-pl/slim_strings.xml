@@ -91,4 +91,6 @@
   <string name="app_ops_get_usage_stat">uzyskiwanie Twoich statystyk użytkowania</string>
   <string name="usb_choose_notification_title">Dotknij by wybrać opcje USB.</string>
   <string name="notify_turn_wifi_ap_off_title">Wyłącz punkt dostępu Wi-Fi</string>
+  <string name="permlab_changeHeadsUpState">włącz lub wyłącz wyskakujące powiadomienia</string>
+  <string name="permdesc_changeHeadsUpState">Pozwala aplikacji zdecydować czy inna aplikacja będzie mogła wyświetlić normalne powiadomienia jako wyskakujące powiadomienia.</string>
 </resources>

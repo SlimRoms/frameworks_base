@@ -19,9 +19,9 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="permlab_changePrivacyGuardState">activer ou désactiver Privacy Guard</string>
-  <string name="permdesc_changePrivacyGuardState">Autorise l\'application à déterminer si une autre application est lancée avec Privacy Guard. Lorsqu\'une application est lancée avec Privacy Guard, elle n\'aura pas accès aux données personnelles comme les contacts, le journal d\'appels, ou les messages.</string>
-  <string name="privacy_guard_notification">Privacy Guard est activé</string>
+  <string name="permlab_changePrivacyGuardState">activer ou désactiver la protection des données</string>
+  <string name="permdesc_changePrivacyGuardState">Autorise l\'application à déterminer si une autre application est lancée avec la protection des données. Lorsqu\'une application est lancée avec la protection des données, elle n\'aura pas accès aux données personnelles telles que les contacts, le journal d\'appels, ou les messages.</string>
+  <string name="privacy_guard_notification">Protection des données active</string>
   <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> ne pourra pas accéder à vos données personnelles</string>
   <string name="privacy_guard_custom_notification_detail"><xliff:g id="app"> %1$s </xliff:g> ne sera pas en mesure d\'accéder aux autorisations personnalisées</string>
   <string name="usb_charging_notification_title">Connecté en mode charge</string>
@@ -31,7 +31,7 @@
   <string name="reboot_system" product="tablet">Redémarrer la tablette</string>
   <string name="reboot_system" product="default">Redémarrer le téléphone</string>
   <string name="reboot_reboot">Redémarrage</string>
-  <string name="reboot_recovery">Recovery</string>
+  <string name="reboot_recovery">Récupération</string>
   <string name="reboot_bootloader">Bootloader</string>
   <string name="reboot_bootmenu">Menu de démarrage</string>
   <string name="reboot_fastboot">Fastboot</string>
@@ -91,4 +91,6 @@
   <string name="app_ops_get_usage_stat">obtenir vos statistiques d\'utilisation</string>
   <string name="usb_choose_notification_title">Toucher pour choisir les options de l\'USB.</string>
   <string name="notify_turn_wifi_ap_off_title">Désactiver le point d\'accès Wi-Fi</string>
+  <string name="permlab_changeHeadsUpState">activer ou désactiver les notif. flottantes</string>
+  <string name="permdesc_changeHeadsUpState">Autorise l\'application à choisir si une application sera autorisée à afficher ses notifications sous forme de notifications flottantes.</string>
 </resources>

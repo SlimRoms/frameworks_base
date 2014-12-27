@@ -91,4 +91,6 @@
   <string name="app_ops_get_usage_stat">získat statistiky používání</string>
   <string name="usb_choose_notification_title">Klepněte pro možnosti nastavení USB.</string>
   <string name="notify_turn_wifi_ap_off_title">Vypnout Wi-Fi přístupový bod</string>
+  <string name="permlab_changeHeadsUpState">povolit či zakázat plovoucí oznámení</string>
+  <string name="permdesc_changeHeadsUpState">Umožňuje aplikaci změnit, zda jiná aplikace má dovoleno zobrazovat normální upozornění jako plovoucí.</string>
 </resources>

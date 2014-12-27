@@ -82,6 +82,7 @@
   <string name="app_ops_toggle_nfc">εναλλαγή Nfc</string>
   <string name="app_ops_mute_microphone">σίγαση ή απενεργοποίηση του μικροφώνου</string>
   <string name="app_ops_toast_window">έλεγχος τόστ μηνυμάτων</string>
+  <string name="app_ops_project_media">έλεγχος του έργου των μέσων ενημέρωσης</string>
   <string name="app_ops_vpn">έλεγχος σύνδεσης vpn</string>
   <string name="app_ops_delete_sms">διαγραφή μηνύματος SMS</string>
   <string name="app_ops_delete_mms">διαγραφή μηνύματος MMS</string>

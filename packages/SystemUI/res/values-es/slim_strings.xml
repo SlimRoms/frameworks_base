@@ -20,4 +20,8 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="screenshot_notification_delete">Borrar</string>
   <string name="screenshot_delete_confirmation">Captura de pantalla eliminada.</string>
+  <string name="heads_up_snooze_message">Avisos deshabilitados durante <xliff:g id="number">%d</xliff:g> minutos</string>
+  <string name="heads_up_snooze_button_title">Posponer notificaciones de aviso</string>
+  <string name="notification_inspect_heads_up_title_enabled">Habilitar avisos para esta aplicación</string>
+  <string name="notification_inspect_heads_up_title_disabled">Deshabilitar avisos para esta aplicación</string>
 </resources>
