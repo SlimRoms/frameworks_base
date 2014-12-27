@@ -20,4 +20,8 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="screenshot_notification_delete">Smazat</string>
   <string name="screenshot_delete_confirmation">Snímek obrazovky smazán.</string>
+  <string name="heads_up_snooze_message">Plovoucí oznámení jsou zakázána na <xliff:g id="number">%d</xliff:g> minut.</string>
+  <string name="heads_up_snooze_button_title">Odložit plovoucí oznámení</string>
+  <string name="notification_inspect_heads_up_title_enabled">Povolit plovoucí oznámení pro tuto aplikaci</string>
+  <string name="notification_inspect_heads_up_title_disabled">Zakázat plovoucí oznámení pro tuto aplikaci</string>
 </resources>

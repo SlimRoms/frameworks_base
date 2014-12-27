@@ -20,4 +20,8 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="screenshot_notification_delete">Удалить</string>
   <string name="screenshot_delete_confirmation">Снимок экрана удален.</string>
+  <string name="heads_up_snooze_message">Уведомления \"поверх\" отключены на <xliff:g id="number">%d</xliff:g> минут.</string>
+  <string name="heads_up_snooze_button_title">Отложить</string>
+  <string name="notification_inspect_heads_up_title_enabled">Включить уведомления \"поверх\" для этого приложения</string>
+  <string name="notification_inspect_heads_up_title_disabled">Отключить уведомления \"поверх\" для этого приложения</string>
 </resources>

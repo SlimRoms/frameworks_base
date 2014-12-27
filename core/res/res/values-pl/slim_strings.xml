@@ -94,6 +94,7 @@
   <string name="app_ops_toggle_nfc">przełączanie Nfc</string>
   <string name="app_ops_mute_microphone">włączanie i wyłączanie mikrofonu</string>
   <string name="app_ops_toast_window">kontrola wyskakujących wiadomości</string>
+  <string name="app_ops_project_media">kontrola projektu multimedialnego</string>
   <string name="app_ops_vpn">kontrolowanie połączeń VPN</string>
   <string name="app_ops_delete_sms">usuwanie wiadomości SMS</string>
   <string name="app_ops_delete_mms">usuwanie wiadomości MMS</string>
@@ -102,4 +103,6 @@
   <string name="app_ops_get_usage_stat">uzyskiwanie Twoich statystyk użytkowania</string>
   <string name="usb_choose_notification_title">Dotknij by wybrać opcje USB.</string>
   <string name="notify_turn_wifi_ap_off_title">Wyłącz Wi-Fi AP</string>
+  <string name="permlab_changeHeadsUpState">włącz lub wyłącz wyskakujące powiadomienia</string>
+  <string name="permdesc_changeHeadsUpState">Pozwala aplikacji zdecydować czy inna aplikacja będzie mogła wyświetlić normalne powiadomienia jako wyskakujące powiadomienia.</string>
 </resources>
