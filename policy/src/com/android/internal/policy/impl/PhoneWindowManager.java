@@ -911,7 +911,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             if (mStatusBar != null && !mStatusBar.isVisibleLw()) {
                 flags |= EdgeGesturePosition.TOP.FLAG;
             }
-            if (mNavigationBar != null && !mNavigationBar.isVisibleLw()) {
+            if (mNavigationBar != null && !mNavigationBar.isVisibleLw() && !isStatusBarKeyguard()) {
                 if (mNavigationBarOnBottom) {
                     flags |= EdgeGesturePosition.BOTTOM.FLAG;
                 } else {
