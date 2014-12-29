@@ -27,6 +27,7 @@ import android.graphics.drawable.RippleDrawable;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.provider.Settings;
 import android.util.MathUtils;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -129,7 +130,9 @@ public class QSTileView extends ViewGroup {
         }
         if (mDualLabel != null) {
             labelText = mDualLabel.getText();
-            labelDescription = mLabel.getContentDescription();
+            if (mLabel != null) {
+                labelDescription = mLabel.getContentDescription();
+            }
             removeView(mDualLabel);
             mDualLabel = null;
         }
@@ -175,14 +178,12 @@ public class QSTileView extends ViewGroup {
     public boolean setDual(boolean dual) {
         final boolean changed = dual != mDual;
         mDual = dual;
-        if (changed) {
-            recreateLabel();
-        }
         if (mTileBackground instanceof RippleDrawable) {
             setRipple((RippleDrawable) mTileBackground);
         }
         if (dual) {
             mTopBackgroundView.setOnClickListener(mClickPrimary);
+            mTopBackgroundView.setOnLongClickListener(mLongClick);
             setOnClickListener(null);
             setClickable(false);
             setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
@@ -198,6 +199,10 @@ public class QSTileView extends ViewGroup {
         mTopBackgroundView.setFocusable(dual);
         setFocusable(!dual);
         mDivider.setVisibility(dual ? VISIBLE : GONE);
+        if (changed) {
+            recreateLabel();
+            updateTopPadding();
+        }
         postInvalidate();
         return changed;
     }
@@ -282,10 +287,18 @@ public class QSTileView extends ViewGroup {
 
     private void updateRippleSize(int width, int height) {
         // center the touch feedback on the center of the icon, and dial it down a bit
+        boolean useFourColumns = Settings.Secure.getInt(
+            mContext.getContentResolver(), Settings.Secure.QS_USE_FOUR_COLUMNS,
+                0) == 1;
         final int cx = width / 2;
-        final int cy = mDual ? mIcon.getTop() + mIcon.getHeight() / 2 : height / 2;
-        final int rad = (int)(mIcon.getHeight() * 1.25f);
-        mRipple.setHotspotBounds(cx - rad, cy - rad, cx + rad, cy + rad);
+        final int cy = mDual ? mIcon.getTop() + mIcon.getHeight() : height / 2;
+        if (useFourColumns) {
+            int rad = (int)(mIcon.getHeight() * 1f);
+            mRipple.setHotspotBounds(cx - rad, cy - rad, cx + rad, cy + rad);
+        } else {
+            int rad = (int)(mIcon.getHeight() * 1.25f);
+            mRipple.setHotspotBounds(cx - rad, cy - rad, cx + rad, cy + rad);
+        }
     }
 
     private static void layout(View child, int left, int top) {
