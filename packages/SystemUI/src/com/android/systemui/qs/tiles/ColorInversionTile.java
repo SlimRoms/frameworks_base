@@ -16,6 +16,8 @@
 
 package com.android.systemui.qs.tiles;
 
+import android.content.Intent;
+import android.provider.Settings;
 import android.provider.Settings.Secure;
 
 import com.android.systemui.R;
@@ -25,6 +27,8 @@ import com.android.systemui.qs.UsageTracker;
 
 /** Quick settings tile: Invert colors **/
 public class ColorInversionTile extends QSTile<QSTile.BooleanState> {
+    private static final Intent ACCESSIBILITY_SETTINGS
+            = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
 
     private final AnimationIcon mEnable
             = new AnimationIcon(R.drawable.ic_invert_colors_enable_animation);
@@ -91,22 +95,14 @@ public class ColorInversionTile extends QSTile<QSTile.BooleanState> {
 
     @Override
     protected void handleLongClick() {
-        if (mState.value) return;  // don't allow usage reset if inversion is active
-        final String title = mContext.getString(R.string.quick_settings_reset_confirmation_title,
-                mState.label);
-        mUsageTracker.showResetConfirmation(title, new Runnable() {
-            @Override
-            public void run() {
-                refreshState();
-            }
-        });
+        mHost.startSettingsActivity(ACCESSIBILITY_SETTINGS);
     }
 
     @Override
     protected void handleUpdateState(BooleanState state, Object arg) {
         final int value = arg instanceof Integer ? (Integer) arg : mSetting.getValue();
         final boolean enabled = value != 0;
-        state.visible = enabled || mUsageTracker.isRecentlyUsed();
+        state.visible = true;
         state.value = enabled;
         state.label = mContext.getString(R.string.quick_settings_inversion_label);
         state.icon = enabled ? mEnable : mDisable;

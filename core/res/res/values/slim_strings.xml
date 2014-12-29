@@ -81,6 +81,13 @@
     <string name="app_ops_write_mms">write an MMS message</string>
     <string name="app_ops_write_sms">write an SMS message</string>
 
+    <!-- ADB over network notification -->
+    <string name="adb_net_active_notification_title">ADB over network enabled</string>
+    <!-- ADB over USB and network notification -->
+    <string name="adb_both_active_notification_title">ADB over USB &amp; network enabled</string>
+    <!-- ADB notification message-->
+    <string name="adb_active_generic_notification_message">Touch to disable debugging.</string>
+
     <!-- USB_PREFERENCES: Notification for when the user connects the phone to a computer via USB in CHARGING mode.  This is the title -->
     <string name="usb_charging_notification_title">Connected in charging mode</string>
 
@@ -117,6 +124,7 @@
 
     <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
     <string name="reboot_progress">Rebooting\u2026</string>
+    <string name="reboot_progress_custom">Rebooting into %1$s</string>
     <!-- Reboot Confirmation Dialog.  When the user chooses to reboot the phone, there will be a confirmation dialog.  This is the message. -->
     <string name="reboot_confirm">Your phone will reboot.</string>
 

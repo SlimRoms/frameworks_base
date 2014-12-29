@@ -88,6 +88,7 @@ public final class ShutdownThread extends Thread {
     private static boolean mReboot;
     private static boolean mRebootSafeMode;
     private static String mRebootReason;
+    private static String mRebootTitle;
 
     // Provides shutdown assurance in case the system_server is killed
     public static final String SHUTDOWN_ACTION_PROPERTY = "sys.shutdown.requested";
@@ -209,9 +210,14 @@ public final class ShutdownThread extends Thread {
 
                                     String actions[] = context.getResources().getStringArray(
                                             com.android.internal.R.array.shutdown_reboot_actions);
+                                    String options[] = context.getResources().getStringArray(
+                                            com.android.internal.R.array.shutdown_reboot_options);
 
                                     if (actions != null && which < actions.length)
                                         mRebootReason = actions[which];
+
+                                    if (options != null && which < options.length)
+                                        mRebootTitle = options[which];
 
                                     mReboot = true;
                                     beginShutdownSequence(context);
@@ -352,7 +358,13 @@ public final class ShutdownThread extends Thread {
             ProgressDialog pd = new ProgressDialog(context);
             if (mReboot) {
                 pd.setTitle(context.getText(com.android.internal.R.string.reboot_system));
-                pd.setMessage(context.getText(com.android.internal.R.string.reboot_progress));
+                if (mRebootTitle != null) {
+                    pd.setMessage(String.format(context.getString(
+                            com.android.internal.R.string.reboot_progress_custom), mRebootTitle));
+                    mRebootTitle = null;
+                } else {
+                    pd.setMessage(context.getText(com.android.internal.R.string.reboot_progress));
+                }
             } else {
                 pd.setTitle(context.getText(com.android.internal.R.string.power_off));
                 pd.setMessage(context.getText(com.android.internal.R.string.shutdown_progress));
