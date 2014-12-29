@@ -230,6 +230,16 @@ public class NotificationPanelView extends PanelView implements
         mQsContainer = (QSContainer) findViewById(R.id.quick_settings_container);
         mQsPanel = (QSPanel) findViewById(R.id.quick_settings_panel);
         mTaskManagerPanel = (LinearLayout) findViewById(R.id.task_manager_panel);
+        mQsPanel.setDetailCallback(new QSPanel.DetailCallback() {
+            @Override
+            public void onDetailChanged(boolean showing) {
+                mQsPanel.setTopOfContainer(mQsContainer.getTop());
+                mQsPanel.setDetailOffset(mScrollView.getScrollY());
+                if (!showing) {
+                    mHandler.removeCallbacks(mCloseQsRunnable);
+                }
+            }
+        });
         mClockView = (TextView) findViewById(R.id.clock_view);
         mScrollView = (ObservableScrollView) findViewById(R.id.scroll_view);
         mScrollView.setListener(this);
@@ -642,6 +652,9 @@ public class NotificationPanelView extends PanelView implements
     }
 
     private boolean flingExpandsQs(float vel) {
+        if (isQsDetailShowing() && mStatusBarState == StatusBarState.SHADE) {
+            return false;
+        }
         if (isBelowFalsingThreshold()) {
             return false;
         }
@@ -773,6 +786,9 @@ public class NotificationPanelView extends PanelView implements
         // If we are already running a QS expansion, make sure that we keep the panel open.
         if (mQsExpansionAnimator != null) {
             expands = true;
+        }
+        if (isQsDetailShowing()) {
+            expands = false;
         }
         return expands;
     }
@@ -1013,7 +1029,7 @@ public class NotificationPanelView extends PanelView implements
             return true;
         }
     };
-    
+
     private void animateHeaderSlidingIn() {
         mHeaderAnimatingIn = true;
         getViewTreeObserver().addOnPreDrawListener(mStartHeaderSlidingIn);
@@ -1727,9 +1743,30 @@ public class NotificationPanelView extends PanelView implements
     public void onReset(ExpandableView view) {
     }
 
+    private Runnable mCloseQsRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (isQsDetailShowing()
+                    && !mTracking
+                    && (!mQsTracking || mStatusBarState == StatusBarState.KEYGUARD)
+                    && !mIntercepting
+                    && mQsExpansionAnimator == null) {
+                if (mStatusBarState == StatusBarState.SHADE) {
+                    closeQsDetail();
+                }
+                animateCloseQs();
+            }
+        }
+    };
+
     @Override
     public void onScrollChanged() {
+        mQsPanel.setDetailOffset(mScrollView.getScrollY());
         if (mQsExpanded) {
+            if (isQsDetailShowing()) {
+                mHandler.removeCallbacks(mCloseQsRunnable);
+                mHandler.postDelayed(mCloseQsRunnable, 200);
+            }
             requestScrollerTopPaddingUpdate(false /* animate */);
             requestPanelHeightUpdate();
         }
