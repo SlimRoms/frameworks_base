@@ -561,11 +561,6 @@ public class TelephonyManager {
      */
     public static final String EXTRA_DATA_FAILURE_CAUSE = PhoneConstants.DATA_FAILURE_CAUSE_KEY;
 
-    /**
-     * @hide
-     */
-    public static final String EXTRA_IS_FORWARDED = "is_forwarded";
-
     //
     //
     // Device Info
@@ -3403,17 +3398,6 @@ public class TelephonyManager {
             return getITelephony().isDataConnectivityPossible();
         } catch (RemoteException e) {
             Log.e(TAG, "Error calling ITelephony#isDataConnectivityPossible", e);
-        }
-        return false;
-    }
-
-    /** @hide */
-    @SystemApi
-    public boolean isDataPossibleForSubscription(long subId, String apnType) {
-        try {
-            return getITelephony().isDataPossibleForSubscription(subId, apnType);
-        } catch (RemoteException e) {
-            Log.e(TAG, "Error calling ITelephony#isDataPossibleForSubscription", e);
         }
         return false;
     }

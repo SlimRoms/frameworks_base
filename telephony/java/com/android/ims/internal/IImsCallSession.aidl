@@ -55,13 +55,6 @@ interface IImsCallSession {
     ImsCallProfile getLocalCallProfile();
 
     /**
-     * Gets the remote call profile that this session is associated with
-     *
-     * @return the local call profile that this session is associated with
-     */
-    ImsCallProfile getRemoteCallProfile();
-
-    /**
      * Gets the value associated with the specified property of this session.
      *
      * @return the string value associated with the specified property
@@ -225,20 +218,6 @@ interface IImsCallSession {
      * @param result.
      */
     void sendDtmf(char c, in Message result);
-
-    /**
-     * Start a DTMF code. According to <a href="http://tools.ietf.org/html/rfc2833">RFC 2833</a>,
-     * event 0 ~ 9 maps to decimal value 0 ~ 9, '*' to 10, '#' to 11, event 'A' ~ 'D' to 12 ~ 15,
-     * and event flash to 16. Currently, event flash is not supported.
-     *
-     * @param c the DTMF to send. '0' ~ '9', 'A' ~ 'D', '*', '#' are valid inputs.
-     */
-    void startDtmf(char c);
-
-    /**
-     * Stop a DTMF code.
-     */
-    void stopDtmf();
 
     /**
      * Sends an USSD message.

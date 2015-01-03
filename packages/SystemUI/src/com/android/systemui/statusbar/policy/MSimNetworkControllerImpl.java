@@ -838,7 +838,7 @@ public class MSimNetworkControllerImpl extends NetworkControllerImpl {
                     mQSDataTypeIconId = R.drawable.stat_sys_data_fully_connected_roam;
                 }
             }
-        } else if (isRoaming(phoneId)) {
+        } else if (mPhone.isNetworkRoaming(phoneId)) {
             mMSimDataTypeIconId[phoneId] = R.drawable.stat_sys_data_fully_connected_roam;
             if (phoneId == dataSub) {
                 mQSDataTypeIconId = R.drawable.stat_sys_data_fully_connected_roam;
@@ -1185,7 +1185,7 @@ public class MSimNetworkControllerImpl extends NetworkControllerImpl {
                         mQSDataTypeIconId = R.drawable.stat_sys_data_fully_connected_roam;
                     }
                 }
-            } else if (isRoaming(phoneId)) {
+            } else if (mPhone.isNetworkRoaming(phoneId)) {
                 mMSimDataTypeIconId[phoneId] = R.drawable.stat_sys_data_fully_connected_roam;
                 if (phoneId == dataSub) {
                     mQSDataTypeIconId = R.drawable.stat_sys_data_fully_connected_roam;
