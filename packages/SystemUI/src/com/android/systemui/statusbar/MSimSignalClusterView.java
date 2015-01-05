@@ -99,6 +99,7 @@ public class MSimSignalClusterView
     private int mDataActivityId[];
     private ViewGroup mDataGroup[];
     private ImageView mDataActivity[];
+    private boolean mShowNetworkActivity = false;
 
     //spacer
     private View mSpacer;
@@ -167,6 +168,7 @@ public class MSimSignalClusterView
             mMobileSignalVoiceId[i] = 0;
         }
 
+        mShowNetworkActivity = context.getResources().getBoolean(R.bool.config_ShowNetworkActivity);
         mStyle = context.getResources().getInteger(R.integer.status_bar_style);
         mShowTwoBars = context.getResources().getIntArray(
                 R.array.config_showVoiceAndDataForSub);
@@ -246,7 +248,9 @@ public class MSimSignalClusterView
     public void setWifiIndicators(boolean visible, int strengthIcon, int activityIcon,
             String contentDescription) {
         mWifiVisible = visible;
-        mWifiActivityId = activityIcon;
+        if (mShowNetworkActivity) {
+            mWifiActivityId = activityIcon;
+        }
         mWifiStrengthId = strengthIcon;
         mWifiDescription = contentDescription;
         for (int i = 0; i < mNumPhones; i++) {
@@ -261,18 +265,20 @@ public class MSimSignalClusterView
         mMobileVisible = visible;
         mMobileStrengthId[phoneId] = strengthIcon;
         mMobileTypeId[phoneId] = typeIcon;
-        mMobileActivityId[phoneId] = activityIcon;
+        if (mShowNetworkActivity) {
+            mMobileActivityId[phoneId] = activityIcon;
+        }
         mMobileDescription[phoneId] = contentDescription;
         mMobileTypeDescription = typeContentDescription;
         mNoSimIconId[phoneId] = noSimIcon;
 
-        if (showMobileActivity()) {
-            mDataActivityId[phoneId] = 0;
-            mDataVisible[phoneId] = false;
-        } else {
+        if (mShowNetworkActivity) {
             mMobileActivityId[phoneId] = 0;
             mDataActivityId[phoneId] = activityIcon;
             mDataVisible[phoneId] = (activityIcon != 0) ? true : false;
+        } else {
+            mDataActivityId[phoneId] = 0;
+            mDataVisible[phoneId] = false;
         }
         if (mStyle == STATUS_BAR_STYLE_CDMA_1X_COMBINED) {
             if (phoneId == PhoneConstants.PHONE_ID1) {
@@ -512,7 +518,9 @@ public class MSimSignalClusterView
 
     private void updateData(int phoneId) {
         if (mDataVisible[phoneId]) {
-            mDataActivity[phoneId].setImageResource(mDataActivityId[phoneId]);
+            if (mShowNetworkActivity) {
+                    mDataActivity[phoneId].setImageResource(mDataActivityId[phoneId]);
+            }
             mDataGroup[phoneId].setVisibility(View.VISIBLE);
         } else {
             mDataGroup[phoneId].setVisibility(View.GONE);

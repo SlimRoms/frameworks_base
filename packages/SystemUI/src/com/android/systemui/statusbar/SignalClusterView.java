@@ -87,6 +87,7 @@ public class SignalClusterView
     private String mWifiDescription, mMobileDescription, mMobileTypeDescription;
     private boolean mRoaming;
     private boolean mIsMobileTypeIconWide;
+    private boolean mShowNetworkActivity = false;
 
     ViewGroup mWifiGroup, mMobileGroup;
     ImageView mVpn, mWifi, mMobile, mMobileType, mAirplane, mNoSimSlot;
@@ -107,6 +108,7 @@ public class SignalClusterView
     public SignalClusterView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
+        mShowNetworkActivity = context.getResources().getBoolean(R.bool.config_ShowNetworkActivity);
         mStyle = context.getResources().getInteger(R.integer.status_bar_style);
         mShowTwoBars = context.getResources().getIntArray(
                 R.array.config_showVoiceAndDataForSub);
@@ -208,7 +210,9 @@ public class SignalClusterView
             String contentDescription) {
         mWifiVisible = visible;
         mWifiStrengthId = strengthIcon;
-        mWifiActivityId = activityIcon;
+        if (mShowNetworkActivity) {
+            mWifiActivityId = activityIcon;
+        }
         mWifiDescription = contentDescription;
 
         apply();
@@ -221,7 +225,9 @@ public class SignalClusterView
             boolean isTypeIconWide, int noSimIcon) {
         mMobileVisible = visible;
         mMobileStrengthId = strengthIcon;
-        mMobileActivityId = activityIcon;
+        if (mShowNetworkActivity) {
+            mMobileActivityId = activityIcon;
+        }
         mMobileTypeId = typeIcon;
         mMobileDescription = contentDescription;
         mMobileTypeDescription = typeContentDescription;
@@ -229,13 +235,13 @@ public class SignalClusterView
         mIsMobileTypeIconWide = isTypeIconWide;
         mNoSimIconId = noSimIcon;
 
-        if (showMobileActivity()) {
-            mDataActivityId = 0;
-            mDataVisible = false;
-        } else {
+        if (mShowNetworkActivity) {
             mMobileActivityId = 0;
             mDataActivityId = activityIcon;
             mDataVisible = (activityIcon != 0) ? true : false;
+        } else {
+            mDataActivityId = 0;
+            mDataVisible = false;
         }
 
         if (mStyle == STATUS_BAR_STYLE_CDMA_1X_COMBINED) {
@@ -349,7 +355,9 @@ public class SignalClusterView
         if (DEBUG) Log.d(TAG, String.format("vpn: %s", mVpnVisible ? "VISIBLE" : "GONE"));
         if (mWifiVisible) {
             mWifi.setImageResource(mWifiStrengthId);
-            mWifiActivity.setImageResource(mWifiActivityId);
+            if (mShowNetworkActivity) {
+                mWifiActivity.setImageResource(mWifiActivityId);
+            }
             mWifiGroup.setContentDescription(mWifiDescription);
             mWifiGroup.setVisibility(View.VISIBLE);
         } else {
@@ -445,7 +453,9 @@ public class SignalClusterView
 
     private void updateData() {
         if (mDataVisible) {
-            mDataActivity.setImageResource(mDataActivityId);
+            if (mShowNetworkActivity) {
+                mDataActivity.setImageResource(mDataActivityId);
+            }
             mDataGroup.setVisibility(View.VISIBLE);
         } else {
             mDataGroup.setVisibility(View.GONE);

@@ -170,6 +170,7 @@
         <item>0</item>
     </integer-array>
     <bool name="config_showRsrpSignalLevelforLTE">false</bool>
+    <bool name="config_ShowNetworkActivity">false</bool>
 
     <!-- The duration in seconds to wait before the dismiss buttons are shown. -->
     <integer name="recents_task_bar_dismiss_delay_seconds">1</integer>
