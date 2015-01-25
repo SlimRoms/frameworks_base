@@ -26,7 +26,7 @@
     android:gravity="start|center_vertical"
     android:drawablePadding="8dp"
     android:paddingStart="8dp"
-    android:textColor="@color/Widget.Material.Light.Button_TS"
+    android:textColor="@color/exposed_Widget.Material.Light.Button_TS"
     android:textSize="@dimen/notification_text_size"
     android:singleLine="true"
     android:ellipsize="end"
