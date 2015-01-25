@@ -32,4 +32,5 @@
     <color name="exposed_TextAppearance.StatusBar.EventContent">#999999</color>
     <color name="exposed_TextAppearance.StatusBar.EventContent.Emphasis">#CCCCCC</color>
     <color name="exposed_TextAppearance.EasyCorrectSuggestion">#88C8C8C8</color>
+    <color name="exposed_Widget.Material.Light.Button_TS">#555555</color>
 </resources>
