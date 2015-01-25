@@ -24,6 +24,7 @@
   <string name="privacy_guard_notification">Защита личных данных включена</string>
   <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> не сможет иметь доступ к личным данным</string>
   <string name="privacy_guard_custom_notification_detail"><xliff:g id="app">%1$s</xliff:g> не сможет получить доступ к пользовательским разрешениям</string>
+  <string name="default_string">По умолчанию</string>
   <string name="usb_charging_notification_title">Подключен в режиме зарядки</string>
   <string name="progress_nomediapresent" product="default">Отсутствует внешний накопитель</string>
   <string name="permission_remember_choice">Запомнить</string>

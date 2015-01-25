@@ -23,8 +23,12 @@
   <string name="permdesc_changePrivacyGuardState">Програма може вибрати, чи буде друга програма працювати в захищеному режимі. Коли програму запущено в захищеному режимі, вона не отримає доступ до персональних даних, таких як контакти, повідомлення чи журнал дзвінків.</string>
   <string name="privacy_guard_notification">Сторож Приватності активний</string>
   <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> буде заборонено доступ до персональних даних</string>
+  <string name="privacy_guard_custom_notification_detail"><xliff:g id="app">%1$s</xliff:g> не зможуть отримати доступ до користувацьких дозволів</string>
+  <string name="default_string">По замовчуванню</string>
+  <string name="usb_charging_notification_title">Підключено в режимі зарядки</string>
   <string name="progress_nomediapresent" product="default">Немає зовнішнього носія\u2026</string>
   <string name="permission_remember_choice">Запам\'ятати мій вибір</string>
+  <string name="permission">Дозвіл</string>
   <string name="reboot_system" product="tablet">Перезавантаження планшету</string>
   <string name="reboot_system" product="default">Перезавантаження телефону</string>
   <string name="reboot_reboot">Перезавантаження</string>
@@ -77,4 +81,17 @@
   <string name="app_ops_write_mms">створити MMS-повідомлення</string>
   <string name="app_ops_write_sms">створити SMS-повідомлення</string>
   <string name="app_ops_toggle_nfc">увімк. вимк. NFC</string>
+  <string name="app_ops_mute_microphone">увімк. або вимк. мікрофона</string>
+  <string name="app_ops_toast_window">керування спливаючими сповіщеннями</string>
+  <string name="app_ops_project_media">керування медіа проектом</string>
+  <string name="app_ops_vpn">керування vpn-підключенням</string>
+  <string name="app_ops_delete_sms">видалити SMS-повідомлення</string>
+  <string name="app_ops_delete_mms">видалити MMS-повідомлення</string>
+  <string name="app_ops_delete_contacts">видалити контакт</string>
+  <string name="app_ops_delete_call_log">видалити журнал викликів</string>
+  <string name="app_ops_get_usage_stat">отримати вашу статистику використання</string>
+  <string name="usb_choose_notification_title">Натисніть для вибору налаштувань USB.</string>
+  <string name="notify_turn_wifi_ap_off_title">Вимкнути точку доступу Wi-Fi</string>
+  <string name="permlab_changeHeadsUpState">увімк. або вимк. спливаючі сповіщення</string>
+  <string name="permdesc_changeHeadsUpState">Дозволити програмі змінювати вигляд сповіщень: показувати сповіщення як звичайні або спливаючі.</string>
 </resources>

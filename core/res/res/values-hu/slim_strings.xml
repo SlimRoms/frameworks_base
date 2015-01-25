@@ -24,6 +24,7 @@
   <string name="privacy_guard_notification">Adatvédelem aktív</string>
   <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> nem fog hozzáférni a személyes adataihoz</string>
   <string name="privacy_guard_custom_notification_detail"><xliff:g id="app">%1$s</xliff:g> nem lesz képes hozzáférni az egyéni jogosultságokhoz</string>
+  <string name="default_string">Alapértelmezett</string>
   <string name="usb_charging_notification_title">jelzés,ha a telefon USB töltés módban csatlakozik a PC-hez</string>
   <string name="progress_nomediapresent" product="default">Nincs eltávolítható memóriakártya\u2026</string>
   <string name="permission_remember_choice">emlékezzen</string>
@@ -43,7 +44,54 @@
   <string name="app_ops_access_location">hozzáférés a helyadatokhoz</string>
   <string name="app_ops_access_notifications">értesítések olvasása</string>
   <string name="app_ops_alarm_wakeup">felébresztheti az eszközt</string>
+  <string name="app_ops_draw_on_top">előtérben marad</string>
+  <string name="app_ops_keep_device_awake">készülék ébrentartása</string>
   <string name="app_ops_make_phone_call">hívást kezdeményezhet</string>
   <string name="app_ops_modify_calendar">frissítheti a naptárat</string>
   <string name="app_ops_modify_call_log">frissítheti a hívásnaplót</string>
+  <string name="app_ops_modify_clipboard">módosíthatja a vágólapot</string>
+  <string name="app_ops_modify_contacts">frissítheti a névjegyzéket</string>
+  <string name="app_ops_modify_settings">frissítheti a rendszerbeállításokat</string>
+  <string name="app_ops_play_audio">zene lejátszása</string>
+  <string name="app_ops_post_notification">értesítés küldése</string>
+  <string name="app_ops_read_calendar">naptár olvasása</string>
+  <string name="app_ops_read_call_log">hívásnapló olvasása</string>
+  <string name="app_ops_read_clipboard">vágólap olvasása</string>
+  <string name="app_ops_read_contacts">névjegyek olvasása</string>
+  <string name="app_ops_read_mms">MMS üzenetek olvasása</string>
+  <string name="app_ops_read_sms">SMS üzenetek olvasása</string>
+  <string name="app_ops_receive_sms">SMS üzenet fogadása</string>
+  <string name="app_ops_record_audio">Hangfelvétel</string>
+  <string name="app_ops_send_mms">MMS üzenet küldése</string>
+  <string name="app_ops_send_sms">SMS üzenet küldése</string>
+  <string name="app_ops_start_at_bootup">bekapcsoláskor elindul</string>
+  <string name="app_ops_toggle_bluetooth">Bluetooth kapcsolása</string>
+  <string name="app_ops_toggle_mobile_data">mobilinternet kapcsolása</string>
+  <string name="app_ops_toggle_wifi">WiFi kapcsolása</string>
+  <string name="app_ops_use_alarm_volume">ébresztőhang vezérlése</string>
+  <string name="app_ops_use_audio_focus">hang fókusz vezérlése</string>
+  <string name="app_ops_use_bluetooth_volume">Bluetooth hangerő vezérlése</string>
+  <string name="app_ops_use_master_volume">fő hangerő vezérlése</string>
+  <string name="app_ops_use_media_buttons">média gombok használata</string>
+  <string name="app_ops_use_media_volume">média hangerő vezérlése</string>
+  <string name="app_ops_use_notification_volume">értesítési hangerő vezérlése</string>
+  <string name="app_ops_use_ring_volume">csengőhang hangerejének vezérlése</string>
+  <string name="app_ops_use_vibrate">érintési visszajelzés használata</string>
+  <string name="app_ops_use_voice_volume">hívás közbeni hang vezérlése</string>
+  <string name="app_ops_write_mms">MMS írása</string>
+  <string name="app_ops_write_sms">SMS írása</string>
+  <string name="app_ops_toggle_nfc">NFC kapcsolása</string>
+  <string name="app_ops_mute_microphone">mikrofon ki/bekapcsolása</string>
+  <string name="app_ops_toast_window">felugró üzenetek olvasása</string>
+  <string name="app_ops_project_media">hozzáférés a médiákhoz</string>
+  <string name="app_ops_vpn">hozzáférés a VPN kapcsolathoz</string>
+  <string name="app_ops_delete_sms">SMS üzenet törlése</string>
+  <string name="app_ops_delete_mms">MMS-üzenetek törlése</string>
+  <string name="app_ops_delete_contacts">kapcsolat törlése</string>
+  <string name="app_ops_delete_call_log">Hívásnapló törlése</string>
+  <string name="app_ops_get_usage_stat">hozzáférés a használati statisztikához</string>
+  <string name="usb_choose_notification_title">érintsd meg az USB opciók kiválasztásához.</string>
+  <string name="notify_turn_wifi_ap_off_title">Wi-Fi AP kikapcsolás</string>
+  <string name="permlab_changeHeadsUpState">lebegő értesítések engedélyezése vagy tiltása</string>
+  <string name="permdesc_changeHeadsUpState">Lehetővé teszi az alkalmazás számára, hogy egy másik alkalmazás normál értesítéseit mint lebegő értesítéseket jelenítse meg.</string>
 </resources>

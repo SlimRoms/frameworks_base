@@ -24,6 +24,7 @@
   <string name="privacy_guard_notification">Protection des données active</string>
   <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> ne pourra pas accéder à vos données personnelles</string>
   <string name="privacy_guard_custom_notification_detail"><xliff:g id="app"> %1$s </xliff:g> ne sera pas en mesure d\'accéder aux autorisations personnalisées</string>
+  <string name="default_string">Par défaut</string>
   <string name="usb_charging_notification_title">Connecté en mode charge</string>
   <string name="progress_nomediapresent" product="default">Aucun support amovible présent\u2026</string>
   <string name="permission_remember_choice">Mémoriser</string>

@@ -18,5 +18,10 @@
  */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="screenshot_notification_delete">Видалити</string>
   <string name="screenshot_delete_confirmation">Скріншот видалений.</string>
+  <string name="heads_up_snooze_message">Спливаючі сповіщення вимкнено на <xliff:g id="number">%d</xliff:g> хвилин.</string>
+  <string name="heads_up_snooze_button_title">Відкласти</string>
+  <string name="notification_inspect_heads_up_title_enabled">Увімкнути спливаючі сповіщення для цієї програми</string>
+  <string name="notification_inspect_heads_up_title_disabled">Вимкнути спливаючі сповіщення для цієї програми</string>
 </resources>

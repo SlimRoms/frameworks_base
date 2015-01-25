@@ -20,4 +20,8 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="screenshot_notification_delete">Törlés</string>
   <string name="screenshot_delete_confirmation">Képernyőkép törölve.</string>
+  <string name="heads_up_snooze_message">Lebegő értesítés kikapcsolva <xliff:g id="number">%d</xliff:g> percre.</string>
+  <string name="heads_up_snooze_button_title">Szundi heads up</string>
+  <string name="notification_inspect_heads_up_title_enabled">Heads-up engedélyezése ennek az alkalmazásnak</string>
+  <string name="notification_inspect_heads_up_title_disabled">Heads-up tiltása ennek az alkalmazásnak</string>
 </resources>
