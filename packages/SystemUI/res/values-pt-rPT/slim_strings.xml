@@ -21,6 +21,7 @@
   <string name="screenshot_notification_delete">Eliminar</string>
   <string name="screenshot_delete_confirmation">Captura de ecrã eliminada.</string>
   <string name="heads_up_snooze_message">Notificações pop-up estão desativadas por <xliff:g id="number">%d</xliff:g> minutos.</string>
+  <string name="heads_up_snooze_button_title">Pop-up de dormitar</string>
   <string name="notification_inspect_heads_up_title_enabled">Ativar notificações pop-up para esta aplicação</string>
   <string name="notification_inspect_heads_up_title_disabled">Desativar notificações pop-up para esta aplicação</string>
 </resources>
