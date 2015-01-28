@@ -19,22 +19,13 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <!-- BatteryMeterView parameters -->
-    <array name="batterymeter_color_levels">
-        <item>15</item>
-        <item>100</item>
-    </array>
-    <array name="batterymeter_color_values">
-        <item>#FFFFFFFF</item>
-        <item>#FFFFFFFF</item>
-    </array>
-    <array name="batterymeter_bolt_points">
-        <item>73</item> <item>0</item>
-        <item>392</item><item>0</item>
-        <item>201</item><item>259</item>
-        <item>442</item><item>259</item>
-        <item>4</item>  <item>703</item>
-        <item>157</item><item>334</item>
-        <item>0</item>  <item>334</item>
+    <array name="batterymeter_inverted_bolt_points" translatable="false">
+        <item>743</item><item>73</item>
+        <item>743</item><item>292</item>
+        <item>442</item><item>201</item>
+        <item>442</item><item>400</item>
+        <item>0</item><item>20</item>
+        <item>369</item><item>157</item>
+        <item>369</item><item>0</item>
     </array>
 </resources>
