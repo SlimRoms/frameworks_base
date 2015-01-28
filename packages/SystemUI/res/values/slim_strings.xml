@@ -28,4 +28,7 @@
     <string name="notification_inspect_heads_up_title_enabled">Enable heads up for this application</string>
     <string name="notification_inspect_heads_up_title_disabled">Disable heads up for this application</string>
 
+    <!-- Battery level text while charging [CHAR LIMIT=2] -->
+    <string name="battery_level_template_charging"><xliff:g id="level" example="45">%d</xliff:g>~</string>
+
 </resources>
