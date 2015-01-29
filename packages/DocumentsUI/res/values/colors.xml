@@ -29,5 +29,7 @@
 
     <!-- 10% alpha of material_deep_teal_500 -->
     <color name="item_doc_list_background_activated">#1a009688</color>
-
+    <!-- exposed colors in main activity and font color docGrid-->
+    <color name="exposed_activity_background_color">#ffffffff</color>
+    <color name="exposed_font_color_doc_grid">#ffffffff</color>
 </resources>
