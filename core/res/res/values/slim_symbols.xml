@@ -171,4 +171,17 @@
   <java-symbol type="integer" name="config_outdoorAmbientLux" />
   <java-symbol type="drawable" name="expander_open_mtrl_alpha" />
 
+  <!-- Config Power Menu -->
+  <java-symbol type="drawable" name="ic_lock_power_off_alpha" />
+  <java-symbol type="drawable" name="ic_lock_reboot_alpha" />
+  <java-symbol type="drawable" name="ic_lock_screenshot" />
+  <java-symbol type="drawable" name="ic_lock_airplane_mode_off_am_alpha" />
+  <java-symbol type="drawable" name="ic_lock_lock_alpha" />
+  <java-symbol type="color" name="global_menu_icon" />
+  <java-symbol type="color" name="global_menu_icon_enabled" />
+  <!-- Used to color the tri state sound options -->
+  <java-symbol type="id" name="image1" />
+  <java-symbol type="id" name="image2" />
+  <java-symbol type="id" name="image3" />
+
 </resources>
