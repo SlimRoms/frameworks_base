@@ -174,4 +174,8 @@
     <color name="Pink_800">#ffad1457</color>
     <color name="Red_700">#ffc53929</color>
     <color name="Red_800">#ffb93221</color>
+
+    <!-- Slim's drag sort list view -->
+    <color name="dslv_icon_dark">#ff009688</color>
+
 </resources>
