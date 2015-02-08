@@ -34,6 +34,7 @@ import android.graphics.RectF;
 import android.graphics.Shader.TileMode;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.VectorDrawable;
 import android.util.TypedValue;
 
 public class ImageHelper {
@@ -77,6 +78,9 @@ public class ImageHelper {
     public static Drawable resize(Context context, Drawable image, int size) {
         if (image == null || context == null) {
             return null;
+        }
+        if (image instanceof VectorDrawable) {
+            return image;
         }
 
         int newSize = Converter.dpToPx(context, size);

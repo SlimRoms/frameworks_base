@@ -41,6 +41,8 @@ import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
 import android.view.WindowManagerGlobal;
 
+import com.android.internal.statusbar.IStatusBarService;
+
 import java.net.URISyntaxException;
 
 public class Action {
@@ -65,6 +67,12 @@ public class Action {
                         WindowManagerGlobal.getWindowManagerService().isKeyguardLocked();
             } catch (RemoteException e) {
                 Log.w("Action", "Error getting window manager service", e);
+            }
+
+            IStatusBarService barService = IStatusBarService.Stub.asInterface(
+                    ServiceManager.getService(Context.STATUS_BAR_SERVICE));
+            if (barService == null) {
+                return;
             }
 
             // process the actions
@@ -209,6 +217,12 @@ public class Action {
                         (PowerManager) context.getSystemService(Context.POWER_SERVICE);
                 if (!powerManager.isScreenOn()) {
                     powerManager.wakeUp(SystemClock.uptimeMillis());
+                }
+                return;
+            } else if (action.equals(ActionConstants.ACTION_SCREENSHOT)) {
+                try {
+                    barService.toggleScreenshot();
+                } catch (RemoteException e) {
                 }
                 return;
             } else {

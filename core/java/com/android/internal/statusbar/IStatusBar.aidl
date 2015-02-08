@@ -44,5 +44,6 @@ oneway interface IStatusBar
     void cancelPreloadRecentApps();
     void showScreenPinningRequest();
     void setAutoRotate(boolean enabled);
+    void toggleScreenshot();
 }
 

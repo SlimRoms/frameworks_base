@@ -62,4 +62,5 @@ interface IStatusBarService
     void preloadRecentApps();
     void cancelPreloadRecentApps();
     void setAutoRotate(boolean enabled);
+    void toggleScreenshot();
 }
