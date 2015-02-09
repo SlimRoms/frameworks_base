@@ -2924,7 +2924,6 @@
         android:description="@string/permdesc_bindCarrierMessagingService"
         android:protectionLevel="signature|system" />
 
-<<<<<<< HEAD
     <!-- Allows an application to use the system Torch service
         @hide-->
     <permission android:name="android.permission.ACCESS_TORCH_SERVICE"
