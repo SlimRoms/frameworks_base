@@ -13,4 +13,6 @@ LOCAL_JAVA_LIBRARIES := android.policy telephony-common org.codeaurora.Performan
 
 LOCAL_JAVA_LIBRARIES += services.accessibility
 
+LOCAL_JAVA_LIBRARIES += org.cyanogenmod.hardware
+
 include $(BUILD_STATIC_JAVA_LIBRARY)
