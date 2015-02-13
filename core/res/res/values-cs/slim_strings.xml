@@ -24,6 +24,7 @@
   <string name="privacy_guard_notification">Ochrana soukromí aktivní</string>
   <string name="privacy_guard_notification_detail">Aplikaci <xliff:g id="app">%1$s</xliff:g> nebude umožňen přístup k osobním údajům</string>
   <string name="privacy_guard_custom_notification_detail">Aplikace<xliff:g id="app">%1$s</xliff:g> nebude mít přístup k vlastním oprávněním</string>
+  <string name="default_string">Výchozí</string>
   <string name="usb_charging_notification_title">V režimu nabíjení</string>
   <string name="progress_nomediapresent" product="default">Není dostupné žádné vyměnitelné médium\u2026</string>
   <string name="permission_remember_choice">Zapamatovat</string>
