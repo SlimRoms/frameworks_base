@@ -858,6 +858,8 @@ public class RenderScript {
 
     long     mDev;
     long     mContext;
+    private boolean mDestroyed = false;
+
     @SuppressWarnings({"FieldCanBeLocal"})
     MessageThread mMessageThread;
 
@@ -1295,6 +1297,38 @@ public class RenderScript {
         nContextFinish();
     }
 
+    private void helpDestroy() {
+        boolean shouldDestroy = false;
+        synchronized(this) {
+            if (!mDestroyed) {
+                shouldDestroy = true;
+                mDestroyed = true;
+            }
+        }
+
+        if (shouldDestroy) {
+            nContextFinish();
+
+            nContextDeinitToClient(mContext);
+            mMessageThread.mRun = false;
+            try {
+                mMessageThread.join();
+            } catch(InterruptedException e) {
+            }
+
+            nContextDestroy();
+
+            nDeviceDestroy(mDev);
+            mDev = 0;
+        }
+    }
+
+    protected void finalize() throws Throwable {
+        helpDestroy();
+        super.finalize();
+    }
+
+
     /**
      * Destroys this RenderScript context.  Once this function is called,
      * using this context or any objects belonging to this context is
@@ -1303,19 +1337,7 @@ public class RenderScript {
      */
     public void destroy() {
         validate();
-        nContextFinish();
-
-        nContextDeinitToClient(mContext);
-        mMessageThread.mRun = false;
-        try {
-            mMessageThread.join();
-        } catch(InterruptedException e) {
-        }
-
-        nContextDestroy();
-
-        nDeviceDestroy(mDev);
-        mDev = 0;
+        helpDestroy();
     }
 
     boolean isAlive() {
