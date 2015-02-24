@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -37,6 +38,8 @@ import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
 import android.os.SystemProperties;
+import android.os.UserHandle;
+import android.database.ContentObserver;
 import android.provider.Settings;
 import android.provider.Telephony;
 import android.telephony.PhoneStateListener;
@@ -113,13 +116,40 @@ public class MSimNetworkControllerImpl extends NetworkControllerImpl {
     ArrayList<MSimSignalCluster> mSimSignalClusters = new ArrayList<MSimSignalCluster>();
     ArrayList<TextView> mSubsLabelViews = new ArrayList<TextView>();
 
+    // Whether the direction arrows are enabled by the user
+    boolean mDirectionArrowsEnabled = false;
+
     public interface MSimSignalCluster {
         void setWifiIndicators(boolean visible, int strengthIcon, int activityIcon,
-                String contentDescription);
+                int inetCondition, String contentDescription);
         void setMobileDataIndicators(boolean visible, int strengthIcon, int activityIcon,
-                int typeIcon, int roamingIcon, String contentDescription, String typeContentDescription,
-                int phoneId, int noSimIcon);
+                int inetCondition, int typeIcon, int roamingIcon, String contentDescription,
+                String typeContentDescription, int phoneId, int noSimIcon);
         void setIsAirplaneMode(boolean is, int airplaneIcon);
+    }
+
+    private final class SettingsObserver extends ContentObserver {
+        SettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        void observe() {
+            ContentResolver resolver = mContext.getContentResolver();
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_SHOW_NETWORK_ACTIVITY),
+                    false, this, UserHandle.USER_ALL);
+            mDirectionArrowsEnabled = Settings.System.getIntForUser(resolver,
+                    Settings.System.STATUS_BAR_SHOW_NETWORK_ACTIVITY,
+                    1, UserHandle.USER_CURRENT) == 1 ? true : false;
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            mDirectionArrowsEnabled = Settings.System.getIntForUser(mContext.getContentResolver(),
+                    Settings.System.STATUS_BAR_SHOW_NETWORK_ACTIVITY,
+                    1, UserHandle.USER_CURRENT) == 1 ? true : false;
+            refreshViews();
+        }
     }
 
     /**
@@ -165,6 +195,9 @@ public class MSimNetworkControllerImpl extends NetworkControllerImpl {
         mSpn = new String[numPhones];
         mPlmn = new String[numPhones];
 
+        // Register settings observer and set initial preferences
+        SettingsObserver settingsObserver = new SettingsObserver(new Handler());
+        settingsObserver.observe();
 
         for (int i=0; i < numPhones; i++) {
             mMSimSignalStrength[i] = new SignalStrength();
@@ -304,12 +337,14 @@ public class MSimNetworkControllerImpl extends NetworkControllerImpl {
                 // only show wifi in the cluster if connected or if wifi-only
                 mWifiEnabled && (mWifiConnected || !mHasMobileDataFeature || mAppopsStrictEnabled),
                 mWifiIconId,
+                mInetCondition,
                 mWifiActivityIconId,
                 mContentDescriptionWifi);
         cluster.setMobileDataIndicators(
                 mHasMobileDataFeature,
                 mMSimPhoneSignalIconId[phoneId],
                 mMSimMobileActivityIconId[phoneId],
+                mInetCondition,
                 mMSimDataTypeIconId[phoneId],
                 mMSimDataRoamIconId[phoneId],
                 mMSimContentDescriptionPhoneSignal[phoneId],
@@ -321,6 +356,7 @@ public class MSimNetworkControllerImpl extends NetworkControllerImpl {
             cluster.setMobileDataIndicators(
                     true,
                     mAlwaysShowCdmaRssi ? mPhoneSignalIconId : mWimaxIconId,
+                    mInetCondition,
                     mMSimMobileActivityIconId[phoneId],
                     mMSimDataTypeIconId[phoneId],
                     mMSimDataRoamIconId[phoneId],
@@ -334,6 +370,7 @@ public class MSimNetworkControllerImpl extends NetworkControllerImpl {
                     mHasMobileDataFeature,
                     mShowPhoneRSSIForData ? mMSimPhoneSignalIconId[phoneId]
                         : mMSimDataSignalIconId[phoneId],
+                    mInetCondition,
                     mMSimMobileActivityIconId[phoneId],
                     mMSimDataTypeIconId[phoneId],
                     mMSimDataRoamIconId[phoneId],
@@ -1074,6 +1111,24 @@ public class MSimNetworkControllerImpl extends NetworkControllerImpl {
             // Now for things that should only be shown when actually using mobile data.
             if (mMSimDataConnected[phoneId]) {
                 mMSimcombinedSignalIconId[phoneId] = mMSimDataSignalIconId[phoneId];
+                if (mDirectionArrowsEnabled) {
+                    switch (mDataActivity) {
+                        case TelephonyManager.DATA_ACTIVITY_IN:
+                            mMSimMobileActivityIconId[phoneId] = R.drawable.stat_sys_signal_in;
+                            break;
+                        case TelephonyManager.DATA_ACTIVITY_OUT:
+                            mMSimMobileActivityIconId[phoneId] = R.drawable.stat_sys_signal_out;
+                            break;
+                        case TelephonyManager.DATA_ACTIVITY_INOUT:
+                            mMSimMobileActivityIconId[phoneId] = R.drawable.stat_sys_signal_inout;
+                            break;
+                        default:
+                            mMSimMobileActivityIconId[phoneId] = R.drawable.stat_sys_signal_none;
+                            break;
+                    }
+                } else {
+                    mMSimMobileActivityIconId[phoneId] = 0;
+                }
 
                 combinedLabel = mobileLabel;
                 mMSimcombinedActivityIconId[phoneId] = mMSimMobileActivityIconId[phoneId];
@@ -1097,19 +1152,23 @@ public class MSimNetworkControllerImpl extends NetworkControllerImpl {
                     wifiLabel += "xxxxXXXXxxxxXXXX";
                 }
 
-                switch (mWifiActivity) {
-                    case WifiManager.DATA_ACTIVITY_IN:
-                        mWifiActivityIconId = R.drawable.stat_sys_signal_in;
-                        break;
-                    case WifiManager.DATA_ACTIVITY_OUT:
-                        mWifiActivityIconId = R.drawable.stat_sys_signal_out;
-                        break;
-                    case WifiManager.DATA_ACTIVITY_INOUT:
-                        mWifiActivityIconId = R.drawable.stat_sys_signal_inout;
-                        break;
-                    case WifiManager.DATA_ACTIVITY_NONE:
-                        mWifiActivityIconId = R.drawable.stat_sys_signal_none;
-                        break;
+                if (mDirectionArrowsEnabled) {
+                    switch (mWifiActivity) {
+                        case WifiManager.DATA_ACTIVITY_IN:
+                            mWifiActivityIconId = R.drawable.stat_sys_signal_in;
+                            break;
+                        case WifiManager.DATA_ACTIVITY_OUT:
+                            mWifiActivityIconId = R.drawable.stat_sys_signal_out;
+                            break;
+                        case WifiManager.DATA_ACTIVITY_INOUT:
+                            mWifiActivityIconId = R.drawable.stat_sys_signal_inout;
+                            break;
+                        case WifiManager.DATA_ACTIVITY_NONE:
+                            mWifiActivityIconId = R.drawable.stat_sys_signal_none;
+                            break;
+                    }
+                } else {
+                    mWifiActivityIconId = 0;
                 }
             }
 
