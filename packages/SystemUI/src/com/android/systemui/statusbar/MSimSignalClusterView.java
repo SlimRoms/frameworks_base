@@ -61,6 +61,7 @@ public class MSimSignalClusterView
 
     private boolean mWifiVisible = false;
     private int mWifiStrengthId = 0, mWifiActivityId = 0;
+    private int mInetCondition = 0;
     private boolean mMobileVisible = false;
     private int[] mMobileStrengthId;
     private int[] mMobileActivityId;
@@ -252,10 +253,11 @@ public class MSimSignalClusterView
     }
 
     @Override
-    public void setWifiIndicators(boolean visible, int strengthIcon, int activityIcon,
-            String contentDescription) {
+    public void setWifiIndicators(boolean visible, int strengthIcon, int inetCondition,
+            int activityIcon, String contentDescription) {
         mWifiVisible = visible;
         mWifiActivityId = activityIcon;
+        mInetCondition = inetCondition;
         mWifiStrengthId = strengthIcon;
         mWifiDescription = contentDescription;
         for (int i = 0; i < mNumPhones; i++) {
@@ -265,12 +267,13 @@ public class MSimSignalClusterView
 
     @Override
     public void setMobileDataIndicators(boolean visible, int strengthIcon, int activityIcon,
-            int typeIcon, int roamingIcon, String contentDescription, String typeContentDescription,
-            int phoneId, int noSimIcon) {
+            int inetCondition, int typeIcon, int roamingIcon, String contentDescription,
+            String typeContentDescription, int phoneId, int noSimIcon) {
         mMobileVisible = visible;
         mMobileStrengthId[phoneId] = strengthIcon;
         mMobileTypeId[phoneId] = typeIcon;
         mMobileActivityId[phoneId] = activityIcon;
+        mInetCondition = inetCondition;
         mMobileRoamId[phoneId] = roamingIcon;
         mMobileDescription[phoneId] = contentDescription;
         mMobileTypeDescription = typeContentDescription;
