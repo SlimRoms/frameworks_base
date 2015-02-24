@@ -57,6 +57,7 @@ public class SignalClusterView
     private boolean mVpnVisible = false;
     private boolean mWifiVisible = false;
     private int mWifiStrengthId = 0, mWifiActivityId = 0;
+    private int mInetCondition = 0;
     private boolean mMobileVisible = false;
     private int mMobileStrengthId = 0, mMobileTypeId = 0, mMobileActivityId = 0;
     private int mNoSimIconId = 0;
@@ -204,10 +205,12 @@ public class SignalClusterView
     }
 
     @Override
-    public void setWifiIndicators(boolean visible, int strengthIcon, int activityIcon,
+    public void setWifiIndicators(boolean visible, int strengthIcon, int inetCondition,
+            int activityIcon,
             String contentDescription) {
         mWifiVisible = visible;
         mWifiStrengthId = strengthIcon;
+        mInetCondition = inetCondition;
         mWifiActivityId = activityIcon;
         mWifiDescription = contentDescription;
 
@@ -215,11 +218,12 @@ public class SignalClusterView
     }
 
     @Override
-    public void setMobileDataIndicators(boolean visible, int strengthIcon,
+    public void setMobileDataIndicators(boolean visible, int strengthIcon, int inetCondition,
             int activityIcon, int typeIcon, String contentDescription,
             String typeContentDescription, boolean roaming,
             boolean isTypeIconWide, int noSimIcon) {
         mMobileVisible = visible;
+        mInetCondition = inetCondition;
         mMobileStrengthId = strengthIcon;
         mMobileActivityId = activityIcon;
         mMobileTypeId = typeIcon;
