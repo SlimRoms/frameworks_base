@@ -101,4 +101,7 @@
     <string name="pie_phone_status_airplane_mode">Airplane mode on</string>
     <string name="pie_phone_status_emergency_only">Emergency calls only</string>
 
+    <!-- No interuptions except alarms -->
+    <string name="zen_no_interruptions_but_alarm">No interruptions. Except alarms.</string>
+
 </resources>
