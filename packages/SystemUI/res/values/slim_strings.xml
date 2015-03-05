@@ -146,4 +146,7 @@
     <string name="select_application">Select application</string>
     <string name="lockscreen_target_empty">Empty</string>
 
+    <!-- No interuptions except alarms -->
+    <string name="zen_no_interruptions_but_alarm">No interruptions. Except alarms.</string>
+
 </resources>
