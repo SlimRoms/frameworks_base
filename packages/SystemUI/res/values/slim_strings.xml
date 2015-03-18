@@ -21,4 +21,10 @@
     <!-- Content description of the superuser tile -->
     <string name="accessibility_su_active">Superuser session active</string>
 
+    <!-- Battery level for expanded quick settings [CHAR LIMIT=2] -->
+    <string name="battery_level_template"><xliff:g id="level" example="45">%d</xliff:g>%%</string>
+
+    <!-- Battery level text while charging [CHAR LIMIT=2] -->
+    <string name="battery_level_template_charging"><xliff:g id="level" example="45">%d</xliff:g>~</string>
+
 </resources>
