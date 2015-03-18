@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /*
- * Copyright 2010, The Android Open Source Project
+ * Copyright 2010, The Android Open Source Proje
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -130,4 +130,7 @@
     <color name="segmented_button_unselected">#B3B0BEC5</color><!-- 70% blue grey 200 -->
     <color name="volume_panel_divider">#1FFFFFFF</color><!-- 12% white -->
 
+    <!-- SLIM ROMS ADDITONS -->
+    <color name="exposed_kg_batt_level">#ffffffff</color>
+    <color name="exposed_kg_carrier_text">#ffffffff</color>
 </resources>
