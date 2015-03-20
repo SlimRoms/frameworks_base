@@ -25,6 +25,7 @@
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/stat.h>
 
 #include <private/android_filesystem_config.h> // for AID_SYSTEM
 #include <private/regionalization/Enviroment.h>
@@ -164,11 +165,38 @@ static void verifySystemIdmaps(const char* overlay_dir)
                     exit(1);
                 }
 
-                execl(AssetManager::IDMAP_BIN, AssetManager::IDMAP_BIN, "--scan",
-                        overlay_dir, AssetManager::TARGET_PACKAGE_NAME,
-                        AssetManager::TARGET_APK_PATH, AssetManager::IDMAP_DIR, (char*)NULL);
-                ALOGE("failed to execl for idmap: %s", strerror(errno));
-                exit(1); // should never get here
+                // Generic idmap parameters
+                const char* argv[7];
+                int argc = 0;
+                struct stat st;
+                //struct stat slim_st;
+
+                memset(argv, NULL, sizeof(argv));
+                argv[argc++] = AssetManager::IDMAP_BIN;
+                argv[argc++] = "--scan";
+                argv[argc++] = AssetManager::TARGET_PACKAGE_NAME;
+                argv[argc++] = AssetManager::TARGET_APK_PATH;
+                argv[argc++] = AssetManager::IDMAP_DIR;
+
+                // Directories to scan for overlays
+                // /vendor/overlay
+                if (stat(AssetManager::OVERLAY_DIR, &st) == 0) {
+                    argv[argc++] = AssetManager::OVERLAY_DIR;
+                }
+                // /system/slim/overlay
+                //const char* SLIM_OVERLAY_DIR = "/system/slim/overlay";
+                //if (stat(SLIM_OVERLAY_DIR, &slim_st) == 0) {
+                  //  argv[argc++] = SLIM_OVERLAY_DIR;
+                //}
+
+                // Finally, invoke idmap (if any overlay directory exists)
+                if (argc > 5) {
+                    execv(AssetManager::IDMAP_BIN, (char* const*)argv);
+                    ALOGE("failed to execl for idmap: %s", strerror(errno));
+                    exit(1); // should never get here
+                } else {
+                    exit(0);
+                }
             }
             break;
         default: // parent
