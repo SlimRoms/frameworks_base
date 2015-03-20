@@ -161,11 +161,37 @@ static void verifySystemIdmaps()
                     exit(1);
                 }
 
-                execl(AssetManager::IDMAP_BIN, AssetManager::IDMAP_BIN, "--scan",
-                        AssetManager::OVERLAY_DIR, AssetManager::TARGET_PACKAGE_NAME,
-                        AssetManager::TARGET_APK_PATH, AssetManager::IDMAP_DIR, (char*)NULL);
-                ALOGE("failed to execl for idmap: %s", strerror(errno));
-                exit(1); // should never get here
+                // Generic idmap parameters
+                const char* argv[7];
+                int argc = 0;
+                struct stat st;
+
+                memset(argv, NULL, sizeof(argv));
+                argv[argc++] = AssetManager::IDMAP_BIN;
+                argv[argc++] = "--scan";
+                argv[argc++] = AssetManager::TARGET_PACKAGE_NAME;
+                argv[argc++] = AssetManager::TARGET_APK_PATH;
+                argv[argc++] = AssetManager::IDMAP_DIR;
+
+                // Directories to scan for overlays
+                // /vendor/overlay
+                if (stat(AssetManager::OVERLAY_DIR, &st) == 0) {
+                    argv[argc++] = AssetManager::OVERLAY_DIR;
+                }
+
+                // /data/system/overlay/enabled
+                if (stat(AssetManager::DATA_OVERLAY_DIR, &st) == 0) {
+                    argv[argc++] = AssetManager::DATA_OVERLAY_DIR;
+                }
+
+                // Finally, invoke idmap (if any overlay directory exists)
+                if (argc > 5) {
+                    execv(AssetManager::IDMAP_BIN, (char* const*)argv);
+                    ALOGE("failed to execl for idmap: %s", strerror(errno));
+                    exit(1); // should never get here
+                } else {
+                    exit(0);
+                }
             }
             break;
         default: // parent
