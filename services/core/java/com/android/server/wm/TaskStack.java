@@ -126,8 +126,14 @@ public class TaskStack {
             return false;
         }
 
+<<<<<<< HEAD
         mDimLayer.setBounds(bounds);
         mAnimationBackgroundSurface.setBounds(bounds);
+=======
+        mDimLayer.setBounds(bounds, false);
+        mAnimationBackgroundSurface.setBounds(bounds, false);
+        mBlurLayer.setBounds(bounds);
+>>>>>>> 4a6db04... DimLayer : remove unnecessary surface transaction calls
         mBounds.set(bounds);
 
         return true;
