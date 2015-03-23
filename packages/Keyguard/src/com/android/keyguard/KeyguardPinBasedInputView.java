@@ -140,6 +140,11 @@ public abstract class KeyguardPinBasedInputView extends KeyguardAbsKeyInputView
         mQuickUnlock = Settings.Secure.getIntForUser(mContext.getContentResolver(),
                 Settings.Secure.LOCKSCREEN_QUICK_UNLOCK_CONTROL, 1, UserHandle.USER_CURRENT) == 1;
 
+        if (quickUnlock) {
+            View v = findViewById(R.id.key_enter);
+            v.setVisibility(View.INVISIBLE);
+        }
+
         mOkButton = findViewById(R.id.key_enter);
         if (mOkButton != null) {
             mOkButton.setOnClickListener(new View.OnClickListener() {
