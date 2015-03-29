@@ -39,6 +39,7 @@ import android.os.Message;
 import android.os.UserHandle;
 import android.provider.Settings.Global;
 import android.provider.Settings.Secure;
+import android.provider.Settings.System;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.ZenModeConfig;
 import android.telecom.TelecomManager;
@@ -80,6 +81,7 @@ public class ZenModeHelper implements AudioManagerInternal.RingerModeDelegate {
     private int mPreviousRingerMode = -1;
     private boolean mEffectsSuppressed;
     private int mPreviousZenMode = -1;
+    private boolean mAllowLights;
 
     public ZenModeHelper(Context context, Looper looper) {
         mContext = context;
@@ -248,6 +250,15 @@ public class ZenModeHelper implements AudioManagerInternal.RingerModeDelegate {
         final int newMode = Global.getInt(mContext.getContentResolver(),
                 Global.ZEN_MODE, Global.ZEN_MODE_OFF);
         setZenMode(newMode, "setting");
+    }
+
+    public boolean getAreLightsAllowed() {
+        return mAllowLights;
+    }
+
+    public void readLightsAllowedModeFromSetting() {
+        mAllowLights = System.getIntForUser(mContext.getContentResolver(),
+                System.ALLOW_LIGHTS, 1, UserHandle.USER_CURRENT) == 1;
     }
 
     private void applyRestrictions() {
@@ -521,6 +532,7 @@ public class ZenModeHelper implements AudioManagerInternal.RingerModeDelegate {
 
     private class SettingsObserver extends ContentObserver {
         private final Uri ZEN_MODE = Global.getUriFor(Global.ZEN_MODE);
+        private final Uri ALLOW_LIGHTS = System.getUriFor(System.ALLOW_LIGHTS);
 
         public SettingsObserver(Handler handler) {
             super(handler);
@@ -529,6 +541,7 @@ public class ZenModeHelper implements AudioManagerInternal.RingerModeDelegate {
         public void observe() {
             final ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(ZEN_MODE, false /*notifyForDescendents*/, this);
+            resolver.registerContentObserver(ALLOW_LIGHTS, false /*notifyForDescendents*/, this);
             update(null);
         }
 
@@ -540,6 +553,8 @@ public class ZenModeHelper implements AudioManagerInternal.RingerModeDelegate {
         public void update(Uri uri) {
             if (ZEN_MODE.equals(uri)) {
                 readZenModeFromSetting();
+            } else if (ALLOW_LIGHTS.equals(uri)) {
+                readLightsAllowedModeFromSetting();
             }
         }
     }
