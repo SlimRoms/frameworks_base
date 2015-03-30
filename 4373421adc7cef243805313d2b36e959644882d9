@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_70ee7824",
+        "filename": "packages/SystemUI/res/values/custom_colors.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2015-03-30T22:29:02Z",
+      "side": 1,
+      "message": "frameworks/base/packages/SystemUI/res/values/custom_colors.xml:37: error: Resource entry exposed_kg_batt_level is already defined.\nframeworks/base/packages/SystemUI/res/values/colors.xml:134: Originally defined here.\n\nframeworks/base/packages/SystemUI/res/values/custom_colors.xml:38: error: Resource entry exposed_kg_carrier_text is already defined.\nframeworks/base/packages/SystemUI/res/values/colors.xml:135: Originally defined here.",
+      "revId": "4373421adc7cef243805313d2b36e959644882d9",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
