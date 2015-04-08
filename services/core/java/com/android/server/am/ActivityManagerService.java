@@ -4187,6 +4187,7 @@ public final class ActivityManagerService extends ActivityManagerNative
         if (task.inRecents) {
             int taskIndex = mRecentTasks.indexOf(task);
             if (taskIndex >= 0) {
+                trimRecentBitmaps();
                 if (!isAffiliated) {
                     // Simple case: this is not an affiliated task, so we just move it to the front.
                     mRecentTasks.remove(taskIndex);
@@ -4276,6 +4277,16 @@ public final class ActivityManagerService extends ActivityManagerNative
         if (needAffiliationFix) {
             if (DEBUG_RECENTS) Slog.d(TAG, "addRecent: regrouping affiliations");
             cleanupRecentTasksLocked(task.userId);
+        }
+    }
+
+    void trimRecentBitmaps() {
+        int N = mRecentTasks.size();
+        for (int i = 0; i < N; i++) {
+            final TaskRecord tr = mRecentTasks.get(i);
+            if (i > MAX_RECENT_BITMAPS) {
+                tr.freeLastThumbnail();
+            }
         }
     }
 
