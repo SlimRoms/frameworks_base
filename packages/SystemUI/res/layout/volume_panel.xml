@@ -20,10 +20,11 @@
     android:layout_height="wrap_content"
     android:orientation="vertical" >
 
-    <FrameLayout
-        android:id="@+id/slider_panel"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/slider_panel_expand"
         android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
         android:background="@color/system_secondary_color"
         android:paddingTop="8dp"
         android:paddingStart="8dp"
