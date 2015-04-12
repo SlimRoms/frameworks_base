@@ -3995,8 +3995,6 @@
     <string name="usb_mtp_notification_title">Connected as a media device</string>
     <!-- USB_PREFERENCES: Notification for when the user connects the phone to a computer via USB in PTP mode.  This is the title -->
     <string name="usb_ptp_notification_title">Connected as a camera</string>
-    <!-- USB_PREFERENCES: Notification for when the user connects the phone to a computer via USB in CHARGING mode.  This is the title -->
-    <string name="usb_charging_notification_title">Connected in charging mode</string>
     <!-- USB_PREFERENCES: Notification for when the user connects the phone to a computer via USB in mass storage mode (for installer CD image).  This is the title -->
     <string name="usb_cd_installer_notification_title">Connected as an installer</string>
     <!-- USB_PREFERENCES: Notification for when a USB accessory is attached.  This is the title -->
@@ -4310,8 +4308,6 @@
     <string name="progress_unmounting" product="nosdcard">Unmounting USB storage\u2026</string>
     <!-- Text for progress dialog while unmounting SD card [CHAR LIMIT=NONE] -->
     <string name="progress_unmounting" product="default">Unmounting SD card\u2026</string>
-    <!-- Text for progress dialog while formatting SD card [CHAR LIMIT=NONE] -->
-    <string name="progress_nomediapresent" product="default">No removable media present\u2026</string>
     <!-- Text for progress dialog while erasing USB storage volume [CHAR LIMIT=NONE] -->
     <string name="progress_erasing" product="nosdcard">Erasing USB storage\u2026</string>
     <!-- Text for progress dialog while erasing SD card [CHAR LIMIT=NONE] -->
@@ -5201,15 +5197,4 @@
     <string name="China_Mobile">China Mobile</string>
     <string name="China_Unicom">China Unicom</string>
     <string name="China_Telecom">China Telecom</string>
-
-    <!-- Text of the checkbox for the permission confirmation dialog to remember the user's choice. [CHAR LIMIT=40] -->
-    <string name="permission_remember_choice">Remember</string>
-    <string name="permission">Permission</string>
-
-    <!-- Default wi-fi hotspot ssid -->
-    <string name="def_wifi_wifihotspot_ssid" translatable="false"></string>
-    <!-- Default wi-fi hotspot pass -->
-    <string name="def_wifi_wifihotspot_pass" translatable="false"></string>
-    <!-- Default wi-fi direct name -->
-    <string name="def_wifi_direct_name" translatable="false"></string>
 </resources>

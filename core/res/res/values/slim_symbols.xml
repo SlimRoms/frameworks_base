@@ -27,4 +27,30 @@
   <!-- Config IME switcher -->
   <java-symbol type="bool" name="config_show_IMESwitcher" />
 
+  <java-symbol type="id" name="permission_text" />
+  <java-symbol type="id" name="permission_remember_layout" />
+  <java-symbol type="id" name="permission_remember_choice_checkbox" />
+  <java-symbol type="id" name="permission_remember_choice_text" />
+  <java-symbol type="bool" name="skip_radio_power_off_on_sim_refresh_reset" />
+  <java-symbol type="bool" name="config_ascii_7bit_support_for_long_message" />
+  <java-symbol type="bool" name="config_lte_capable" />
+  <java-symbol type="bool" name="config_send_sms1x_on_voice_call" />
+
+  <java-symbol type="string" name="allow" />
+  <java-symbol type="string" name="deny" />
+  <java-symbol type="string" name="permission" />
+  <java-symbol type="string" name="progress_nomediapresent" />
+  <java-symbol type="layout" name="permission_confirmation_dialog" />
+  <java-symbol type="array" name="app_ops_labels" />
+  <java-symbol type="string" name="usb_charging_notification_title" />
+
+  <java-symbol type="string" name="config_partial_segment_expire_age" />
+  <java-symbol type="bool" name="config_global_phone_enabled" />
+  <java-symbol type="bool" name="use_motion_accel" />
+  <java-symbol type="bool" name="config_enable_mms_with_mobile_data_off" />
+  <java-symbol type="bool" name="set_wifi_hotspot_security_none" />
+  <java-symbol type="string" name="def_wifi_wifihotspot_ssid" />
+  <java-symbol type="string" name="def_wifi_wifihotspot_pass" />
+  <java-symbol type="string" name="def_wifi_direct_name" />
+
 </resources>

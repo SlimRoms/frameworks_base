@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-/* Copyright (c) 2014, The Linux Foundation. All rights reserved.
-** Not a Contribution.
-**
-** Copyright 2012, The Android Open Source Project
+/* Copyright 2012, The Android Open Source Project
 **
 ** Licensed under the Apache License, Version 2.0 (the "License");
 ** you may not use this file except in compliance with the License.
@@ -224,10 +221,6 @@
   <java-symbol type="id" name="profile_badge_line2" />
   <java-symbol type="id" name="profile_badge_line3" />
   <java-symbol type="id" name="transitionPosition" />
-  <java-symbol type="id" name="permission_text" />
-  <java-symbol type="id" name="permission_remember_layout" />
-  <java-symbol type="id" name="permission_remember_choice_checkbox" />
-  <java-symbol type="id" name="permission_remember_choice_text" />
 
   <java-symbol type="attr" name="actionModeShareDrawable" />
   <java-symbol type="attr" name="alertDialogCenterButtons" />
@@ -352,11 +345,6 @@
   <java-symbol type="integer" name="config_wifi_framework_max_connection_errors_to_blacklist" />
   <java-symbol type="integer" name="config_wifi_framework_max_auth_errors_to_blacklist" />
   <java-symbol type="integer" name="config_wifi_framework_network_black_list_min_time_milli" />
-  <java-symbol type="bool" name="skip_radio_power_off_on_sim_refresh_reset" />
-  <java-symbol type="bool" name="config_ascii_7bit_support_for_long_message" />
-  <java-symbol type="bool" name="config_lte_capable" />
-  <java-symbol type="bool" name="config_send_sms1x_on_voice_call" />
-  <java-symbol type="bool" name="set_wifi_hotspot_security_none" />
   <java-symbol type="bool" name="config_radio_reset_on_regular_deactivation" />
   <java-symbol type="bool" name="config_restricted_merge" />
 
@@ -464,9 +452,6 @@
   <java-symbol type="string" name="CLIRDefaultOnNextCallOff" />
   <java-symbol type="string" name="CLIRDefaultOnNextCallOn" />
   <java-symbol type="string" name="CLIRPermanent" />
-  <java-symbol type="string" name="def_wifi_wifihotspot_ssid" />
-  <java-symbol type="string" name="def_wifi_wifihotspot_pass" />
-  <java-symbol type="string" name="def_wifi_direct_name" />
   <java-symbol type="string" name="def_custom_sys_ringtone" />
   <java-symbol type="string" name="def_custom_sys_ringtone2" />
   <java-symbol type="string" name="def_custom_sys_ringtone3" />
@@ -495,7 +480,6 @@
   <java-symbol type="string" name="activitychooserview_choose_application" />
   <java-symbol type="string" name="activitychooserview_choose_application_error" />
   <java-symbol type="string" name="alternate_eri_file" />
-  <java-symbol type="string" name="allow" />
   <java-symbol type="string" name="alwaysUse" />
   <java-symbol type="string" name="autofill_address_line_1_label_re" />
   <java-symbol type="string" name="autofill_address_line_1_re" />
@@ -599,7 +583,6 @@
   <java-symbol type="string" name="db_default_sync_mode" />
   <java-symbol type="string" name="db_wal_sync_mode" />
   <java-symbol type="string" name="decline" />
-  <java-symbol type="string" name="deny" />
   <java-symbol type="string" name="description_target_unlock_tablet" />
   <java-symbol type="string" name="display_manager_built_in_display_name" />
   <java-symbol type="string" name="display_manager_hdmi_display_name" />
@@ -754,7 +737,6 @@
   <java-symbol type="string" name="orgTypeWork" />
   <java-symbol type="string" name="passwordIncorrect" />
   <java-symbol type="string" name="perms_description_app" />
-  <java-symbol type="string" name="permission" />
   <java-symbol type="string" name="perms_new_perm_prefix" />
   <java-symbol type="string" name="petabyteShort" />
   <java-symbol type="string" name="peerTtyModeFull" />
@@ -817,7 +799,6 @@
   <java-symbol type="string" name="mobile_provisioning_url" />
   <java-symbol type="string" name="mobile_redirected_provisioning_url" />
   <java-symbol type="string" name="quick_contacts_not_available" />
-  <java-symbol type="string" name="progress_nomediapresent" />
   <java-symbol type="string" name="reboot_confirm" />
   <java-symbol type="string" name="reboot_safemode_confirm" />
   <java-symbol type="string" name="reboot_safemode_title" />
@@ -1339,7 +1320,6 @@
   <java-symbol type="layout" name="locale_picker_item" />
   <java-symbol type="layout" name="media_controller" />
   <java-symbol type="layout" name="overlay_display_window" />
-  <java-symbol type="layout" name="permission_confirmation_dialog" />
   <java-symbol type="layout" name="preference" />
   <java-symbol type="layout" name="preference_header_item" />
   <java-symbol type="layout" name="preference_list_content" />
@@ -1608,7 +1588,6 @@
   <java-symbol type="anim" name="rotation_animation_jump_exit" />
   <java-symbol type="anim" name="rotation_animation_xfade_exit" />
   <java-symbol type="anim" name="rotation_animation_enter" />
-  <java-symbol type="array" name="app_ops_labels" />
   <java-symbol type="array" name="config_autoBrightnessButtonBacklightValues" />
   <java-symbol type="array" name="config_autoBrightnessKeyboardBacklightValues" />
   <java-symbol type="array" name="config_autoBrightnessLcdBacklightValues" />
@@ -1812,7 +1791,6 @@
   <java-symbol type="string" name="usb_notification_message" />
   <java-symbol type="string" name="use_physical_keyboard" />
   <java-symbol type="string" name="usb_ptp_notification_title" />
-  <java-symbol type="string" name="usb_charging_notification_title" />
   <java-symbol type="string" name="vpn_text" />
   <java-symbol type="string" name="vpn_text_long" />
   <java-symbol type="string" name="vpn_title" />
@@ -2192,9 +2170,6 @@
   <java-symbol type="bool" name="config_switch_phone_on_voice_reg_state_change" />
   <java-symbol type="string" name="whichHomeApplicationNamed" />
   <java-symbol type="bool" name="config_sms_force_7bit_encoding" />
-  <java-symbol type="string" name="config_partial_segment_expire_age" />
-  <java-symbol type="bool" name="config_global_phone_enabled" />
-  <java-symbol type="bool" name="use_motion_accel" />
 
   <!-- sim refresh for dual mode card -->
   <java-symbol type="bool" name="config_sim_refresh_for_dual_mode_card" />
@@ -2244,8 +2219,6 @@
   <java-symbol type="bool" name="config_protocol_errors_perm_failure" />
   <!-- config softap extention feature -->
   <java-symbol type="bool" name="config_softap_extention" />
-
-  <java-symbol type="bool" name="config_enable_mms_with_mobile_data_off" />
 
   <!-- cpu boost for AppLaunch -->
   <java-symbol type="bool" name="config_enableCpuBoostForAppLaunch" />
