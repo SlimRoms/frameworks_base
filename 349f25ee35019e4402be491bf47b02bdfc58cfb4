@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_08894fca",
+        "filename": "packages/SystemUI/res/values/slim_strings.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2015-04-14T07:01:50Z",
+      "side": 1,
+      "message": "it\u0027s 2015 here",
+      "revId": "349f25ee35019e4402be491bf47b02bdfc58cfb4",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
