@@ -110,4 +110,6 @@
   <java-symbol type="drawable" name="ic_shortcut_action_screenshot" />
   <java-symbol type="drawable" name="ic_shortcut_action_search" />
 
+  <java-symbol type="drawable" name="expander_open_mtrl_alpha" />
+
 </resources>
