@@ -169,5 +169,6 @@
   <java-symbol type="integer" name="config_dayColorTemperature" />
   <java-symbol type="integer" name="config_nightColorTemperature" />
   <java-symbol type="integer" name="config_outdoorAmbientLux" />
+  <java-symbol type="drawable" name="expander_open_mtrl_alpha" />
 
 </resources>
