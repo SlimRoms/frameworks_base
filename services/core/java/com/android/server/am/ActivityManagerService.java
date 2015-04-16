@@ -14991,7 +14991,7 @@ public final class ActivityManagerService extends ActivityManagerNative
             }
         }
 
-        for (int i=0; i<cpr.connections.size(); i++) {
+        for (int i = cpr.connections.size() - 1; i >= 0; i--) {
             ContentProviderConnection conn = cpr.connections.get(i);
             if (conn.waiting) {
                 // If this connection is waiting for the provider, then we don't
@@ -15083,10 +15083,11 @@ public final class ActivityManagerService extends ActivityManagerNative
         boolean restart = false;
 
         // Remove published content providers.
-        for (int i=app.pubProviders.size()-1; i>=0; i--) {
+        for (int i = app.pubProviders.size() - 1; i >= 0; i--) {
             ContentProviderRecord cpr = app.pubProviders.valueAt(i);
             final boolean always = app.bad || !allowRestart;
-            if (removeDyingProviderLocked(app, cpr, always) || always) {
+            boolean inLaunching = removeDyingProviderLocked(app, cpr, always);
+            if ((inLaunching || always) && !cpr.connections.isEmpty()) {
                 // We left the provider in the launching list, need to
                 // restart it.
                 restart = true;
@@ -15104,7 +15105,7 @@ public final class ActivityManagerService extends ActivityManagerNative
 
         // Unregister from connected content providers.
         if (!app.conProviders.isEmpty()) {
-            for (int i=0; i<app.conProviders.size(); i++) {
+            for (int i = app.conProviders.size() - 1; i >= 0; i--) {
                 ContentProviderConnection conn = app.conProviders.get(i);
                 conn.provider.connections.remove(conn);
                 stopAssociationLocked(app.uid, app.processName, conn.provider.uid,
@@ -15119,9 +15120,8 @@ public final class ActivityManagerService extends ActivityManagerNative
         // XXX Commented out for now.  Trying to figure out a way to reproduce
         // the actual situation to identify what is actually going on.
         if (false) {
-            for (int i=0; i<mLaunchingProviders.size(); i++) {
-                ContentProviderRecord cpr = (ContentProviderRecord)
-                        mLaunchingProviders.get(i);
+            for (int i = mLaunchingProviders.size() - 1; i >= 0; i--) {
+                ContentProviderRecord cpr = mLaunchingProviders.get(i);
                 if (cpr.connections.size() <= 0 && !cpr.hasExternalProcessHandles()) {
                     synchronized (cpr) {
                         cpr.launchingApp = null;
@@ -15134,7 +15134,7 @@ public final class ActivityManagerService extends ActivityManagerNative
         skipCurrentReceiverLocked(app);
 
         // Unregister any receivers.
-        for (int i=app.receivers.size()-1; i>=0; i--) {
+        for (int i = app.receivers.size() - 1; i >= 0; i--) {
             removeReceiverLocked(app.receivers.valueAt(i));
         }
         app.receivers.clear();
@@ -15152,7 +15152,7 @@ public final class ActivityManagerService extends ActivityManagerNative
             }
         }
 
-        for (int i = mPendingProcessChanges.size()-1; i>=0; i--) {
+        for (int i = mPendingProcessChanges.size() - 1; i >= 0; i--) {
             ProcessChangeItem item = mPendingProcessChanges.get(i);
             if (item.pid == app.pid) {
                 mPendingProcessChanges.remove(i);
@@ -15227,18 +15227,14 @@ public final class ActivityManagerService extends ActivityManagerNative
         // and if any run in this process then either schedule a restart of
         // the process or kill the client waiting for it if this process has
         // gone bad.
-        int NL = mLaunchingProviders.size();
         boolean restart = false;
-        for (int i=0; i<NL; i++) {
+        for (int i = mLaunchingProviders.size() - 1; i >= 0; i--) {
             ContentProviderRecord cpr = mLaunchingProviders.get(i);
             if (cpr.launchingApp == app) {
-                if (!alwaysBad && !app.bad) {
+                if (!alwaysBad && !app.bad && !cpr.connections.isEmpty()) {
                     restart = true;
                 } else {
                     removeDyingProviderLocked(app, cpr, true);
-                    // cpr should have been removed from mLaunchingProviders
-                    NL = mLaunchingProviders.size();
-                    i--;
                 }
             }
         }
