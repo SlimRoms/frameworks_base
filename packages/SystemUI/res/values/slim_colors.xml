@@ -20,4 +20,7 @@
     <color name="visualizer_fill_color">#96FFFFFF</color>
     <color name="battery_level_color">#ffffffff</color>
 
+    <!-- Quick tile text color when the tile is disabled -->
+    <color name="qs_tile_text_disabled">#ff747474</color>
+
 </resources>
