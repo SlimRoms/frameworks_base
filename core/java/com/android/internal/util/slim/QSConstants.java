@@ -46,6 +46,7 @@ public class QSConstants {
     public static final String TILE_SCREEN_TIMEOUT = "screen_timeout";
     public static final String TILE_USB_TETHER = "usb_tether";
     public static final String TILE_REBOOT = "reboot";
+    public static final String TILE_AMBIENT_DISPLAY = "ambient_display";
 
     // Order matters
     protected static final ArrayList<String> TILES_DEFAULT = new ArrayList<String>();
@@ -82,5 +83,6 @@ public class QSConstants {
         TILES_AVAILABLE.add(TILE_SCREEN_TIMEOUT);
         TILES_AVAILABLE.add(TILE_USB_TETHER);
         TILES_AVAILABLE.add(TILE_REBOOT);
+        TILES_AVAILABLE.add(TILE_AMBIENT_DISPLAY);
     }
 }
