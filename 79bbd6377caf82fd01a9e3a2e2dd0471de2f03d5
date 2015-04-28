@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a202591_8a5e77e8",
+        "filename": "core/java/android/provider/Settings.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2994,
+      "author": {
+        "id": 1000053
+      },
+      "writtenOn": "2015-04-28T00:35:30Z",
+      "side": 1,
+      "message": "line to long",
+      "range": {
+        "startLine": 2994,
+        "startChar": 35,
+        "endLine": 2994,
+        "endChar": 66
+      },
+      "revId": "79bbd6377caf82fd01a9e3a2e2dd0471de2f03d5",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a202591_6a631bb2",
+        "filename": "packages/SystemUI/res/values/colors.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1000053
+      },
+      "writtenOn": "2015-04-28T00:35:30Z",
+      "side": 1,
+      "message": "move to slim_colors.xml",
+      "range": {
+        "startLine": 133,
+        "startChar": 28,
+        "endLine": 133,
+        "endChar": 31
+      },
+      "revId": "79bbd6377caf82fd01a9e3a2e2dd0471de2f03d5",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
