@@ -218,7 +218,7 @@ public class DozeService extends DreamService {
             // Here we need a wakelock to stay awake until the pulse is finished.
             mWakeLock.acquire();
             mPulsing = true;
-            if (!mDozeParameters.getProxCheckBeforePulse()) {
+            if (!mDozeParameters.getProxCheckBeforePulse(reason)) {
                 // skip proximity check
                 continuePulsing(reason);
                 return;
