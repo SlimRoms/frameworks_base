@@ -28,6 +28,8 @@ import android.content.res.Configuration;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.ColorDrawable;
 import android.os.RemoteException;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
@@ -41,7 +43,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.systemui.R;
-import com.android.systemui.recents.model.RecentsTaskLoader;
+import com.android.systemui.statusbar.phone.NavigationCoordinator;
 
 import java.util.ArrayList;
 
@@ -216,17 +218,46 @@ public class ScreenPinningRequest implements View.OnClickListener {
                         .setVisibility(View.INVISIBLE);
             }
 
-            final int description = mAccessibilityService.isEnabled()
-                    ? R.string.screen_pinning_description_accessible
-                    : R.string.screen_pinning_description;
+            final boolean barShowing = isBarShowing();
+            final int description = getPinningDescription(barShowing);
+
+            if (barShowing) {
+                final int backBgVis =
+                        mAccessibilityService.isEnabled() ? View.INVISIBLE : View.VISIBLE;
+                mLayout.findViewById(R.id.screen_pinning_back_bg).setVisibility(backBgVis);
+                mLayout.findViewById(R.id.screen_pinning_back_bg_light).setVisibility(backBgVis);
+            } else {
+                ((ViewGroup) buttons.getParent()).removeView(buttons);
+            }
             ((TextView) mLayout.findViewById(R.id.screen_pinning_description))
                     .setText(description);
-            final int backBgVisibility =
-                    mAccessibilityService.isEnabled() ? View.INVISIBLE : View.VISIBLE;
-            mLayout.findViewById(R.id.screen_pinning_back_bg).setVisibility(backBgVisibility);
-            mLayout.findViewById(R.id.screen_pinning_back_bg_light).setVisibility(backBgVisibility);
 
             addView(mLayout, getRequestLayoutParams(isLandscape));
+        }
+
+        private int getPinningDescription(boolean barShowing) {
+            // hardware keys and no bar showing
+            if (!barShowing) {
+                return com.android.internal.R.string.lock_to_app_hardkey_description;
+            }
+
+            int barMode = Settings.System.getIntForUser(mContext.getContentResolver(),
+                    Settings.System.NAVIGATION_BAR_MODE, 0, UserHandle.USER_CURRENT);
+            if (barMode == NavigationCoordinator.NAVIGATION_MODE_AOSP) {  // aosp style
+                return com.android.internal.R.string.lock_to_app_navbar_description;
+            } else if (barMode == NavigationCoordinator.NAVIGATION_MODE_NX) {  // nx style
+                return com.android.internal.R.string.lock_to_app_nx_description;
+            }
+            // sanity check
+            return com.android.internal.R.string.lock_to_app_navbar_description;
+        }
+
+        private boolean isBarShowing() {
+            boolean hasBar = mContext.getResources().getBoolean(
+                    com.android.internal.R.bool.config_showNavigationBar);
+            return hasBar
+                    || (!hasBar && Settings.System.getIntForUser(mContext.getContentResolver(),
+                            Settings.System.DEV_FORCE_SHOW_NAVBAR, 0, UserHandle.USER_CURRENT) == 1);
         }
 
         private void swapChildrenIfRtlAndVertical(View group) {
