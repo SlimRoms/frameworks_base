@@ -20,7 +20,7 @@
 
 <com.android.systemui.statusbar.phone.NavigationBarView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:systemui="http://schemas.android.com/apk/res-auto"
+    xmlns:systemui="http://schemas.android.com/apk/res/com.android.systemui"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:background="@drawable/system_bar_background"
@@ -52,10 +52,11 @@
                 android:layout_width="@dimen/navigation_key_width"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_sysbar_back"
-                systemui:keyCode="4"
                 android:layout_weight="0"
                 android:scaleType="center"
                 android:contentDescription="@string/accessibility_back"
+                systemui:longPressUri="@string/longpress_uri_back"
+                systemui:doubleTapUri="@string/doubletap_uri_back"
                 />
             <View 
                 android:layout_width="0dp"
@@ -67,11 +68,11 @@
                 android:layout_width="@dimen/navigation_key_width"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_sysbar_home"
-                systemui:keyCode="3"
-                systemui:keyRepeat="false"
                 android:layout_weight="0"
                 android:scaleType="center"
                 android:contentDescription="@string/accessibility_home"
+                systemui:longPressUri="@string/longpress_uri_home"
+                systemui:doubleTapUri="@string/doubletap_uri_home"
                 />
             <View 
                 android:layout_width="0dp"
@@ -86,9 +87,11 @@
                 android:layout_weight="0"
                 android:scaleType="center"
                 android:contentDescription="@string/accessibility_recent"
+                systemui:longPressUri="@string/longpress_uri_recent"
+                systemui:doubleTapUri="@string/doubletap_uri_recent"
                 />
             <FrameLayout
-                android:layout_width="@dimen/navigation_side_padding"
+                android:layout_width=@dimen/navigation_side_padding"
                 android:layout_height="match_parent"
                 android:layout_weight="0" >
                 <com.android.systemui.statusbar.policy.KeyButtonView
@@ -100,8 +103,8 @@
                     android:visibility="invisible"
                     android:scaleType="centerInside"
                     android:layout_gravity="end"
-                    systemui:keyCode="82" />
-
+		            systemui:longPressUri="@string/longpress_uri_menu"
+                    systemui:doubleTapUri="@string/doubletap_uri_menu" />
                 <com.android.systemui.statusbar.policy.KeyButtonView
                     android:id="@+id/ime_switcher"
                     android:layout_width="@dimen/navigation_extra_key_width"
@@ -214,7 +217,8 @@
                     android:scaleType="centerInside"
                     android:layout_gravity="top"
                     android:visibility="invisible"
-                    systemui:keyCode="82" />
+		            systemui:longPressUri="@string/longpress_uri_menu"
+                    systemui:doubleTapUri="@string/doubletap_uri_menu" />
             </FrameLayout>
 
             <com.android.systemui.statusbar.policy.KeyButtonView android:id="@+id/recent_apps"
@@ -224,6 +228,8 @@
                 android:scaleType="center"
                 android:layout_weight="0"
                 android:contentDescription="@string/accessibility_recent"
+                systemui:longPressUri="@string/longpress_uri_recent"
+                systemui:doubleTapUri="@string/doubletap_uri_recent"
                 />
             <View 
                 android:layout_height="match_parent"
@@ -236,10 +242,10 @@
                 android:layout_width="match_parent"
                 android:src="@drawable/ic_sysbar_home_land"
                 android:scaleType="center"
-                systemui:keyCode="3"
-                systemui:keyRepeat="false"
                 android:layout_weight="0"
                 android:contentDescription="@string/accessibility_home"
+                systemui:longPressUri="@string/longpress_uri_home"
+                systemui:doubleTapUri="@string/doubletap_uri_home"
                 />
             <View 
                 android:layout_height="match_parent"
@@ -252,9 +258,10 @@
                 android:layout_width="match_parent"
                 android:src="@drawable/ic_sysbar_back_land"
                 android:scaleType="center"
-                systemui:keyCode="4"
                 android:layout_weight="0"
                 android:contentDescription="@string/accessibility_back"
+                systemui:longPressUri="@string/longpress_uri_back"
+                systemui:doubleTapUri="@string/doubletap_uri_back"
                 />
             <View
                 android:layout_height="@dimen/navigation_side_padding"
