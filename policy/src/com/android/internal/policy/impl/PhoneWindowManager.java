@@ -1,4 +1,7 @@
 /*
+ * Copyright (C) 2008 The Android Open Source Project
+ * Copyright (C) 2012-2013 The CyanogenMod Project
+ * Copyright (C) 2014-2015 The TeamEos Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -121,6 +124,8 @@ import java.io.PrintWriter;
 import java.util.HashSet;
 import java.util.List;
 import java.lang.reflect.Constructor;
+
+import com.android.internal.util.actions.ActionHandler;
 
 import static android.view.WindowManager.LayoutParams.*;
 import static android.view.WindowManagerPolicy.WindowManagerFuncs.LID_ABSENT;
@@ -629,6 +634,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private static final int MSG_POWER_LONG_PRESS = 14;
     private boolean mHasPermanentMenuKey;
 
+    private HardkeyActionHandler mKeyHandler;
+
     private class PolicyHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
@@ -676,8 +683,46 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 case MSG_POWER_LONG_PRESS:
                     powerLongPress();
                     break;
+                case HardkeyActionHandler.MSG_FIRE_HOME:
+                    launchHomeFromHotKey();
+                    break;
+                case HardkeyActionHandler.MSG_UPDATE_MENU_KEY:
+                    synchronized (mLock) {
+                        mHasPermanentMenuKey = msg.arg1 == 1;
+                    }
+                    break;
+                case HardkeyActionHandler.MSG_DO_HAPTIC_FB:
+                    performHapticFeedbackLw(null,
+                            HapticFeedbackConstants.LONG_PRESS, false);
+                    break;
             }
         }
+    }
+
+    private BroadcastReceiver mActionsReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (context == null || intent == null) {
+                return;
+            }
+            if (!isCallerAllowed(context)) {
+                return;
+            }
+            String action = intent.getAction();
+            if (ActionHandler.INTENT_SHOW_POWER_MENU.equals(action)) {
+                mHandler.removeMessages(MSG_DISPATCH_SHOW_GLOBAL_ACTIONS);
+                mHandler.sendEmptyMessage(MSG_DISPATCH_SHOW_GLOBAL_ACTIONS);
+            }
+        }
+    };
+
+    private boolean isCallerAllowed(Context ctx) {
+        if (ctx.getPackageName().equals("com.android.systemui")
+                || (ctx.getPackageName().equals("com.android.keyguard")
+                || (ctx.getApplicationInfo().uid == 1000))) {
+            return true;
+        }
+        return false;
     }
 
     private UEventObserver mHDMIObserver = new UEventObserver() {
@@ -734,7 +779,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.DEV_FORCE_SHOW_NAVBAR), false, this,
                     UserHandle.USER_ALL);
-
             updateSettings();
         }
 
@@ -1272,6 +1316,11 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         try {
             mOrientationListener.setCurrentRotation(windowManager.getRotation());
         } catch (RemoteException ex) { }
+        // only hardkey devices
+        if (!mContext.getResources().getBoolean(
+                com.android.internal.R.bool.config_showNavigationBar)) {
+            mKeyHandler = new HardkeyActionHandler(mContext, mHandler);
+        }
         mSettingsObserver = new SettingsObserver(mHandler);
         mSettingsObserver.observe();
         mShortcutManager = new ShortcutManager(context, mHandler);
@@ -1380,6 +1429,11 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         // register for multiuser-relevant broadcasts
         filter = new IntentFilter(Intent.ACTION_USER_SWITCHED);
         context.registerReceiver(mMultiuserReceiver, filter);
+
+        // ActionHandler broadcasts these actions
+        filter = new IntentFilter();
+        filter.addAction(ActionHandler.INTENT_SHOW_POWER_MENU);
+        context.registerReceiver(mActionsReceiver, filter);
 
         // monitor for system gestures
         mSystemGestures = new SystemGesturesPointerEventListener(context,
@@ -2537,11 +2591,28 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         final int flags = event.getFlags();
         final boolean down = event.getAction() == KeyEvent.ACTION_DOWN;
         final boolean canceled = event.isCanceled();
+        final boolean longPress = (flags & KeyEvent.FLAG_LONG_PRESS) != 0;
+        final boolean virtualKey = event.getDeviceId() == KeyCharacterMap.VIRTUAL_KEYBOARD;
 
         if (DEBUG_INPUT) {
             Log.d(TAG, "interceptKeyTi keyCode=" + keyCode + " down=" + down + " repeatCount="
                     + repeatCount + " keyguardOn=" + keyguardOn + " mHomePressed=" + mHomePressed
                     + " canceled=" + canceled);
+        }
+
+        // we only handle events from hardware key devices that originate from
+        // real button
+        // pushes. We ignore virtual key events as well since it didn't come
+        // from a hard key or
+        // it's the key handler synthesizing a back or menu key event for
+        // dispatch
+        // if keyguard is showing and secure, don't intercept and let aosp keycode
+        // implementation handle event
+        if (mKeyHandler != null && !keyguardOn && !virtualKey) {
+            boolean handled = mKeyHandler.handleKeyEvent(win, keyCode, repeatCount, down, canceled,
+                    longPress, keyguardOn);
+            if (handled)
+                return -1;
         }
 
         // If we think we might have a volume down & power key chord on the way

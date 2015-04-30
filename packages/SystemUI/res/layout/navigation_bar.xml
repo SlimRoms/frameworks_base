@@ -20,7 +20,7 @@
 
 <com.android.systemui.statusbar.phone.NavigationBarView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:systemui="http://schemas.android.com/apk/res-auto"
+    xmlns:systemui="http://schemas.android.com/apk/res/com.android.systemui"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:background="@drawable/system_bar_background"
@@ -52,7 +52,6 @@
                 android:layout_width="@dimen/navigation_key_width"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_sysbar_back"
-                systemui:keyCode="4"
                 android:layout_weight="0"
                 android:scaleType="center"
                 android:contentDescription="@string/accessibility_back"
@@ -67,8 +66,6 @@
                 android:layout_width="@dimen/navigation_key_width"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_sysbar_home"
-                systemui:keyCode="3"
-                systemui:keyRepeat="false"
                 android:layout_weight="0"
                 android:scaleType="center"
                 android:contentDescription="@string/accessibility_home"
@@ -99,9 +96,7 @@
                     android:src="@drawable/ic_sysbar_menu"
                     android:visibility="invisible"
                     android:scaleType="centerInside"
-                    android:layout_gravity="end"
-                    systemui:keyCode="82" />
-
+                    android:layout_gravity="end"/>
                 <com.android.systemui.statusbar.policy.KeyButtonView
                     android:id="@+id/ime_switcher"
                     android:layout_width="@dimen/navigation_extra_key_width"
@@ -213,8 +208,7 @@
                     android:src="@drawable/ic_sysbar_menu_land"
                     android:scaleType="centerInside"
                     android:layout_gravity="top"
-                    android:visibility="invisible"
-                    systemui:keyCode="82" />
+                    android:visibility="invisible"/>
             </FrameLayout>
 
             <com.android.systemui.statusbar.policy.KeyButtonView android:id="@+id/recent_apps"
@@ -236,8 +230,6 @@
                 android:layout_width="match_parent"
                 android:src="@drawable/ic_sysbar_home_land"
                 android:scaleType="center"
-                systemui:keyCode="3"
-                systemui:keyRepeat="false"
                 android:layout_weight="0"
                 android:contentDescription="@string/accessibility_home"
                 />
@@ -252,7 +244,6 @@
                 android:layout_width="match_parent"
                 android:src="@drawable/ic_sysbar_back_land"
                 android:scaleType="center"
-                systemui:keyCode="4"
                 android:layout_weight="0"
                 android:contentDescription="@string/accessibility_back"
                 />
