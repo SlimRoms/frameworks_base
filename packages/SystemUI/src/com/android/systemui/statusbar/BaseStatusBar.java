@@ -78,6 +78,7 @@ import android.view.accessibility.AccessibilityManager;
 import android.view.animation.AnimationUtils;
 import android.widget.DateTimeView;
 import android.widget.ImageView;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RemoteViews;
 import android.widget.TextView;
@@ -162,6 +163,9 @@ public abstract class BaseStatusBar extends SystemUI implements
     protected SearchPanelView mSearchPanelView;
 
     protected int mCurrentUserId = 0;
+
+    protected FrameLayout mStatusBarWindowContent;
+
     final protected SparseArray<UserInfo> mCurrentProfiles = new SparseArray<UserInfo>();
 
     protected int mLayoutDirection = -1; // invalid
@@ -542,6 +546,8 @@ public abstract class BaseStatusBar extends SystemUI implements
         mLocale = currentConfig.locale;
         mLayoutDirection = TextUtils.getLayoutDirectionFromLocale(mLocale);
         mFontScale = currentConfig.fontScale;
+
+        mStatusBarWindowContent = new FrameLayout(mContext);
 
         mUserManager = (UserManager) mContext.getSystemService(Context.USER_SERVICE);
 
