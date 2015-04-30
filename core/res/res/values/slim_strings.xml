@@ -124,4 +124,12 @@
     <string name="global_action_reboot">Reboot</string>
 
     <string name="default_string">Default</string>
+
+    <!-- Screen Pinning -->
+    <string name="lock_to_app_navbar_description">Screen pinning locks the display in a single view.\n\nTo unpin, long press Overview.</string>
+    <string name="lock_to_app_nx_description">Screen pinning locks the display in a single view.\n\nTo unpin, long press the right side or left side of the NX Gesture Bar.</string>
+    <string name="lock_to_app_hardkey_description">Screen pinning locks the display in a single view.\n\nTo unpin, long press the Back button.</string>
+    <string name="lock_to_app_navbar_toast">To unpin this screen, long press Overview.</string>
+    <string name="lock_to_app_nx_toast">To unpin, long press the right or left side of the NX Gesture Bar.</string>
+    <string name="lock_to_app_hardkey_toast">To unpin this screen, long press the Back button.</string>
 </resources>
