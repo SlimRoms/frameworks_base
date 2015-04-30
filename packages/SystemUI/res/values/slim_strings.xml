@@ -25,4 +25,14 @@
     <string name="screenshot_notification_delete">Delete</string>
     <string name="screenshot_delete_confirmation">Screenshot deleted.</string>
 
+    <!-- Softkey action uri's -->
+    <string name="longpress_uri_back">softkey_longpress_back</string>
+    <string name="longpress_uri_home">softkey_longpress_home</string>
+    <string name="longpress_uri_recent">softkey_longpress_recent</string>
+    <string name="longpress_uri_menu">softkey_longpress_menu</string>
+    <string name="doubletap_uri_back">softkey_doubletap_back</string>
+    <string name="doubletap_uri_home">softkey_doubletap_home</string>
+    <string name="doubletap_uri_recent">softkey_doubletap_recent</string>
+    <string name="doubletap_uri_menu">softkey_doubletap_menu</string>
+
 </resources>
