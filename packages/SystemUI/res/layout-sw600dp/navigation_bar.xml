@@ -19,7 +19,7 @@
 <!--  navigation bar for sw600dp (small tablets) -->
 <com.android.systemui.statusbar.phone.NavigationBarView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:systemui="http://schemas.android.com/apk/res-auto"
+    xmlns:systemui="http://schemas.android.com/apk/res/com.android.systemui"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:background="@drawable/system_bar_background"
@@ -58,7 +58,6 @@
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_sysbar_back"
                 android:scaleType="centerInside"
-                systemui:keyCode="4"
                 android:layout_weight="0"
                 android:contentDescription="@string/accessibility_back"
                 />
@@ -67,8 +66,6 @@
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_sysbar_home"
                 android:scaleType="centerInside"
-                systemui:keyCode="3"
-                systemui:keyRepeat="true"
                 android:layout_weight="0"
                 android:contentDescription="@string/accessibility_home"
                 />
@@ -96,7 +93,6 @@
                     android:src="@drawable/ic_sysbar_menu"
                     android:scaleType="centerInside"
                     android:layout_marginEnd="2dp"
-                    systemui:keyCode="82"
                     android:visibility="invisible"
                     android:contentDescription="@string/accessibility_menu"
                     />
@@ -203,7 +199,6 @@
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_sysbar_back"
                 android:scaleType="centerInside"
-                systemui:keyCode="4"
                 android:layout_weight="0"
                 android:contentDescription="@string/accessibility_back"
                 />
@@ -212,8 +207,6 @@
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_sysbar_home"
                 android:scaleType="centerInside"
-                systemui:keyCode="3"
-                systemui:keyRepeat="true"
                 android:layout_weight="0"
                 android:contentDescription="@string/accessibility_home"
                 />
@@ -241,7 +234,6 @@
                     android:layout_marginEnd="2dp"
                     android:src="@drawable/ic_sysbar_menu"
                     android:scaleType="centerInside"
-                    systemui:keyCode="82"
                     android:visibility="invisible"
                     android:contentDescription="@string/accessibility_menu" />
                 <com.android.systemui.statusbar.policy.KeyButtonView
