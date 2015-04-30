@@ -36,6 +36,7 @@ public class DelegateViewHelper {
     private boolean mStarted;
     private boolean mSwapXY = false;
     private boolean mDisabled;
+    private boolean mForceDisabled;
 
     public DelegateViewHelper(View sourceView) {
         setSourceView(sourceView);
@@ -49,8 +50,12 @@ public class DelegateViewHelper {
         mBar = phoneStatusBar;
     }
 
+    public void setForceDisabled(boolean doForceDisable) {
+        mForceDisabled = doForceDisable;
+    }
+
     public boolean onInterceptTouchEvent(MotionEvent event) {
-        if (mSourceView == null || mDelegateView == null || mBar.shouldDisableNavbarGestures()) {
+        if (mSourceView == null || mDelegateView == null || mBar.shouldDisableNavbarGestures() || mForceDisabled) {
             return false;
         }
 
