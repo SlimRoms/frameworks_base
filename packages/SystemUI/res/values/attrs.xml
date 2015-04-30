@@ -20,6 +20,10 @@
         <attr name="keyCode" format="integer" />
         <!-- does this button generate longpress / repeat events? -->
         <attr name="keyRepeat" format="boolean" />
+        <!-- observed uri for long press actions -->
+        <attr name="longPressUri" format="reference" />
+        <!-- observed uri for double tap actions -->
+        <attr name="doubleTapUri" format="reference" />
     </declare-styleable>
     <declare-styleable name="ToggleSlider">
         <attr name="text" format="string" />
