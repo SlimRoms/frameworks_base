@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a202591_17a3af9f",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1000053
+      },
+      "writtenOn": "2015-05-02T16:46:26Z",
+      "side": 1,
+      "message": "Use SettingsOberserver. Don\u0027t add any unneeded observers",
+      "range": {
+        "startLine": 453,
+        "startChar": 4,
+        "endLine": 474,
+        "endChar": 5
+      },
+      "revId": "ec964c1fb8b206050f818b2f3f04588d82ee7d36",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a202591_f79f134f",
+        "filename": "services/core/java/com/android/server/wm/WindowManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 11003,
+      "author": {
+        "id": 1000053
+      },
+      "writtenOn": "2015-05-02T16:46:26Z",
+      "side": 1,
+      "message": "whitespace",
+      "revId": "ec964c1fb8b206050f818b2f3f04588d82ee7d36",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
