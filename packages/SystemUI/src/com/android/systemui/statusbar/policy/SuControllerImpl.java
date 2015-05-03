@@ -18,12 +18,17 @@ package com.android.systemui.statusbar.policy;
 
 import android.app.ActivityManager;
 import android.app.AppOpsManager;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.StatusBarManager;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Handler;
 import android.os.UserHandle;
 import android.os.UserManager;
@@ -50,6 +55,10 @@ public class SuControllerImpl implements SuController {
     private AppOpsManager mAppOpsManager;
 
     private boolean mHasActiveSuSessions;
+
+    public static final int SU_INDICATOR_NONE         = 0;
+    public static final int SU_INDICATOR_ICON         = 1;
+    public static final int SU_INDICATOR_NOTIFICATION = 2;
 
     public SuControllerImpl(Context context) {
         mContext = context;
@@ -92,7 +101,7 @@ public class SuControllerImpl implements SuController {
         callback.onSuSessionsChanged();
     }
 
-    private void fireCallbacks() {
+    public void fireCallbacks() {
         for (Callback callback : mCallbacks) {
             callback.onSuSessionsChanged();
         }
@@ -127,11 +136,63 @@ public class SuControllerImpl implements SuController {
         return false;
     }
 
+    private String getActivePackageNames() {
+        List<AppOpsManager.PackageOps> packages
+                = mAppOpsManager.getPackagesForOps(mSuOpArray);
+        StringBuilder sb = new StringBuilder();
+        PackageManager pm = mContext.getPackageManager();
+        // AppOpsManager can return null when there is no requested data.
+        if (packages != null) {
+            final int numPackages = packages.size();
+            for (int packageInd = 0; packageInd < numPackages; packageInd++) {
+                AppOpsManager.PackageOps packageOp = packages.get(packageInd);
+                if (packageOp != null) {
+                    ApplicationInfo ai;
+                    try {
+                        ai = pm.getApplicationInfo(packageOp.getPackageName(), 0);
+                    } catch (NameNotFoundException e) {
+                        ai = null;
+                    }
+                    CharSequence name = (ai == null ?
+                        packageOp.getPackageName() : pm.getApplicationLabel(ai));
+                    if (sb.toString().contains(",")) {
+                        sb.append(", " + name);
+                    } else {
+                        sb.append(name);
+                    }
+                }
+            }
+        }
+        return sb.toString();
+    }
+
+    public void updateNotification() {
+        NotificationManager manager =
+            (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
+        if (!hasActiveSuSessions()) {
+            manager.cancelAll();
+            return;
+        }
+        if (Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.SU_INDICATOR, 1, UserHandle.USER_CURRENT)
+                != SU_INDICATOR_NOTIFICATION) {
+            manager.cancelAll();
+            return;
+        }
+        Notification.Builder mBuilder =
+            new Notification.Builder(mContext)
+            .setSmallIcon(R.drawable.stat_sys_su)
+            .setContentTitle(mContext.getString(R.string.su_session_active))
+            .setContentText(getActivePackageNames());
+        manager.notify(1001, mBuilder.build());
+    }
+
     private void updateActiveSuSessions() {
         boolean hadActiveSuSessions = mHasActiveSuSessions;
         mHasActiveSuSessions = hasActiveSuSessions();
         if (mHasActiveSuSessions != hadActiveSuSessions) {
             fireCallbacks();
+            updateNotification();
         }
     }
 }
