@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a202591_ad04a87e",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-04T01:37:33Z",
+      "side": 1,
+      "message": "Why are you adding screen brightness bits?",
+      "range": {
+        "startLine": 443,
+        "startChar": 0,
+        "endLine": 443,
+        "endChar": 63
+      },
+      "revId": "809fd39a479d758fbf143617987d4d5c86a136f3",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a202591_8d09ec97",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-04T01:37:33Z",
+      "side": 1,
+      "message": "same?",
+      "range": {
+        "startLine": 452,
+        "startChar": 20,
+        "endLine": 452,
+        "endChar": 44
+      },
+      "revId": "809fd39a479d758fbf143617987d4d5c86a136f3",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
