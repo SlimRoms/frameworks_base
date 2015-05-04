@@ -2556,6 +2556,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     R.integer.def_enable_accessiblity);
             loadStringSetting(stmt, Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES,
                     R.string.def_enable_accessiblity_services);
+
+            loadStringSetting(stmt, Settings.Secure.QS_TILES,
+                    com.android.internal.R.string.config_defaultQuickSettingsTiles);
         } finally {
             if (stmt != null) stmt.close();
         }
