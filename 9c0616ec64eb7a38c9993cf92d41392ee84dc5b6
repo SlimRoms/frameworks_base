@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a202591_2d0c1842",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2015-05-04T15:38:11Z",
+      "side": 1,
+      "message": "reminder: this become: \n\"} else if (uri.equals(Settings.System.getUriFor(\" \n\nnow that the battery icon customization commit has been merged",
+      "range": {
+        "startLine": 449,
+        "startChar": 0,
+        "endLine": 449,
+        "endChar": 12
+      },
+      "revId": "9c0616ec64eb7a38c9993cf92d41392ee84dc5b6",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
