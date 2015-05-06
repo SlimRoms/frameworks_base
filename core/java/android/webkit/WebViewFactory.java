@@ -77,12 +77,31 @@ public final class WebViewFactory {
     private static PackageInfo sPackageInfo;
 
     public static String getWebViewPackageName() {
-        return AppGlobals.getInitialApplication().getString(
-                com.android.internal.R.string.config_webViewPackageName);
+        boolean useGoogleWebview = isGoogleWebviewInstalled();
+        if (useGoogleWebview) {
+            return "com.google.android.webview";
+        } else {
+            return AppGlobals.getInitialApplication().getString(
+                    com.android.internal.R.string.config_webViewPackageName);
+        }
     }
 
     public static PackageInfo getLoadedPackageInfo() {
         return sPackageInfo;
+    }
+
+    private boolean isGoogleWebviewInstalled(){
+        List<ApplicationInfo> packages;
+        PackageManager pm;
+
+        pm = getPackageManager();        
+        packages = pm.getInstalledApplications(0);
+        for (ApplicationInfo packageInfo : packages) {
+            if (packageInfo.packageName.equals("com.google.android.webview")) {
+                return true;
+            }
+        }
+        return false;
     }
 
     static WebViewFactoryProvider getProvider() {
