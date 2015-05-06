@@ -51,7 +51,12 @@ public class WebViewUpdateService extends SystemService {
         mWebViewUpdatedReceiver = new BroadcastReceiver() {
                 @Override
                 public void onReceive(Context context, Intent intent) {
-                    String webviewPackage = "package:" + WebViewFactory.getWebViewPackageName();
+                    String webviewPackage;
+                    if (WebViewFactory.mIsGoogleWebView) {
+                        webviewPackage = "package:" + WebViewFactory.getGoogleWebViewPackageName();
+                    } else {
+                        webviewPackage = "package:" + WebViewFactory.getWebViewPackageName();
+                    }
                     if (webviewPackage.equals(intent.getDataString())) {
                         onWebViewUpdateInstalled();
                     }
