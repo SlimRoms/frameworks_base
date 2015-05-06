@@ -77,8 +77,25 @@ public final class WebViewFactory {
     private static PackageInfo sPackageInfo;
 
     public static String getWebViewPackageName() {
+      return getWebViewPackageName(false);
+    }
+
+    public static String getWebViewPackageName(boolean forceNonGoogle) {
+        Application initialApplication = AppGlobals.getInitialApplication();
+        if (!forceNonGoogle) {
+            String mGooglePackageName = getGoogleWebViewPackageName();
+            if (initialApplication.getPackageManager()
+                    .isPackageAvailable(mGooglePackageName)) {
+                return mGooglePackageName;
+            }
+        }
+        return initialApplication.getString(
+                  com.android.internal.R.string.config_webViewPackageName);
+    }
+
+    public static String getGoogleWebViewPackageName() {
         return AppGlobals.getInitialApplication().getString(
-                com.android.internal.R.string.config_webViewPackageName);
+                com.android.internal.R.string.config_googleWebViewPackageName);
     }
 
     public static PackageInfo getLoadedPackageInfo() {

@@ -64,6 +64,7 @@
   <!-- Config.xml entries -->
   <java-symbol type="string" name="config_deviceKeyHandlerLib" />
   <java-symbol type="string" name="config_deviceKeyHandlerClass" />
+  <java-symbol type="string" name="config_googleWebViewPackageName" />
 
   <java-symbol type="bool" name="config_doze_enabled_by_default" />
 
