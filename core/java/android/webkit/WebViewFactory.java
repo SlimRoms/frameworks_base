@@ -75,10 +75,16 @@ public final class WebViewFactory {
     private static final Object sProviderLock = new Object();
     private static boolean sAddressSpaceReserved = false;
     private static PackageInfo sPackageInfo;
+    public static boolean mIsGoogleWebView = true;
 
     public static String getWebViewPackageName() {
         return AppGlobals.getInitialApplication().getString(
                 com.android.internal.R.string.config_webViewPackageName);
+    }
+
+    public static String getGoogleWebViewPackageName() {
+        return AppGlobals.getInitialApplication().getString(
+                com.android.internal.R.string.config_googleWebViewPackageName);
     }
 
     public static PackageInfo getLoadedPackageInfo() {
@@ -141,8 +147,9 @@ public final class WebViewFactory {
     private static Class<WebViewFactoryProvider> getFactoryClass() throws ClassNotFoundException {
         Application initialApplication = AppGlobals.getInitialApplication();
         try {
+            // if Google WebView package exists, use it.
             // First fetch the package info so we can log the webview package version.
-            String packageName = getWebViewPackageName();
+            String packageName = getGoogleWebViewPackageName();
             sPackageInfo = initialApplication.getPackageManager().getPackageInfo(packageName, 0);
             Log.i(LOGTAG, "Loading " + packageName + " version " + sPackageInfo.versionName +
                           " (code " + sPackageInfo.versionCode + ")");
@@ -155,23 +162,47 @@ public final class WebViewFactory {
             ClassLoader clazzLoader = webViewContext.getClassLoader();
             Trace.traceBegin(Trace.TRACE_TAG_WEBVIEW, "Class.forName()");
             try {
-                return (Class<WebViewFactoryProvider>) Class.forName(CHROMIUM_WEBVIEW_FACTORY, true,
-                                                                     clazzLoader);
+                return (Class<WebViewFactoryProvider>) Class.forName(CHROMIUM_WEBVIEW_FACTORY,
+                                                                     true, clazzLoader);
             } finally {
                 Trace.traceEnd(Trace.TRACE_TAG_WEBVIEW);
             }
-        } catch (PackageManager.NameNotFoundException e) {
-            // If the package doesn't exist, then try loading the null WebView instead.
-            // If that succeeds, then this is a device without WebView support; if it fails then
-            // swallow the failure, complain that the real WebView is missing and rethrow the
-            // original exception.
+        } catch (PackageManager.NameNotFoundException e0) {
+            mIsGoogleWebView = false;
             try {
-                return (Class<WebViewFactoryProvider>) Class.forName(NULL_WEBVIEW_FACTORY);
-            } catch (ClassNotFoundException e2) {
-                // Ignore.
+                // First fetch the package info so we can log the webview package version.
+                String packageName = getWebViewPackageName();
+                sPackageInfo =
+                        initialApplication.getPackageManager().getPackageInfo(packageName, 0);
+                Log.i(LOGTAG, "Loading " + packageName + " version " + sPackageInfo.versionName +
+                              " (code " + sPackageInfo.versionCode + ")");
+
+                // Construct a package context to load the Java code into the current app.
+                Context webViewContext = initialApplication.createPackageContext(packageName,
+                        Context.CONTEXT_INCLUDE_CODE | Context.CONTEXT_IGNORE_SECURITY);
+                initialApplication.getAssets().addAssetPath(
+                        webViewContext.getApplicationInfo().sourceDir);
+                ClassLoader clazzLoader = webViewContext.getClassLoader();
+                Trace.traceBegin(Trace.TRACE_TAG_WEBVIEW, "Class.forName()");
+                try {
+                    return (Class<WebViewFactoryProvider>) Class.forName(CHROMIUM_WEBVIEW_FACTORY,
+                                                                         true, clazzLoader);
+                } finally {
+                    Trace.traceEnd(Trace.TRACE_TAG_WEBVIEW);
+                }
+            } catch (PackageManager.NameNotFoundException e) {
+                // If the package doesn't exist, then try loading the null WebView instead.
+                // If that succeeds, then this is a device without WebView support; if it fails
+                // then swallow the failure, complain that the real WebView is missing and rethrow
+                // the original exception.
+                try {
+                    return (Class<WebViewFactoryProvider>) Class.forName(NULL_WEBVIEW_FACTORY);
+                } catch (ClassNotFoundException e2) {
+                    // Ignore.
+                }
+                Log.e(LOGTAG, "Chromium WebView package does not exist", e);
+                throw new AndroidRuntimeException(e);
             }
-            Log.e(LOGTAG, "Chromium WebView package does not exist", e);
-            throw new AndroidRuntimeException(e);
         }
     }
 
