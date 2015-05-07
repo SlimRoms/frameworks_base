@@ -447,20 +447,31 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_BATTERY_STYLE),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.SU_INDICATOR),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
         @Override
         public void onChange(boolean selfChange, Uri uri) {
             if (uri.equals(Settings.System.getUriFor(
-                            Settings.System.STATUS_BAR_SHOW_BATTERY_PERCENT)) ||
-                            uri.equals(Settings.System.getUriFor(
-                            Settings.System.STATUS_BAR_BATTERY_STYLE))) {
-                        mBatteryView.updateBatteryIconSettings();
-                        mHeader.updateBatteryIconSettings();
-                        mKeyguardStatusBar.updateBatteryIconSettings();
+                    Settings.System.STATUS_BAR_SHOW_BATTERY_PERCENT)) ||
+                uri.equals(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_BATTERY_STYLE))) {
+                mBatteryView.updateBatteryIconSettings();
+                mHeader.updateBatteryIconSettings();
+                mKeyguardStatusBar.updateBatteryIconSettings();
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL))
+                || uri.equals(Settings.System.getUriFor(
+                    Settings.System.SCREEN_BRIGHTNESS_MODE))) {
+                update();
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.SU_INDICATOR))) {
+                mSuController.updateNotification();
+                mSuController.fireCallbacks();
             }
-            update();
         }
 
         public void update() {
