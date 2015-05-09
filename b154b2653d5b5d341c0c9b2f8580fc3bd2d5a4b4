@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a202591_c318d486",
+        "filename": "packages/SystemUI/src/com/android/systemui/qs/QSDetailItemsList.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-09T02:29:15Z",
+      "side": 1,
+      "message": "Is this really aosp?",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 53
+      },
+      "revId": "b154b2653d5b5d341c0c9b2f8580fc3bd2d5a4b4",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
