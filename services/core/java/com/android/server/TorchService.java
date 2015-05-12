@@ -16,7 +16,13 @@
 package com.android.server;
 
 import android.Manifest;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.SurfaceTexture;
 import android.hardware.ITorchCallback;
@@ -43,6 +49,8 @@ import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import com.android.internal.R;
+
 import static android.os.Process.THREAD_PRIORITY_BACKGROUND;
 
 /**
@@ -55,6 +63,10 @@ public class TorchService extends ITorchService.Stub {
     private static final int DISPATCH_ERROR = 0;
     private static final int DISPATCH_STATE_CHANGE = 1;
     private static final int DISPATCH_AVAILABILITY_CHANGED = 2;
+
+    private static final int NOTIFICATION_ID = 1001;
+    private static final String ACTION_TURN_FLASHLIGHT_OFF =
+            "com.android.server.TorchService.ACTION_TURN_FLASHLIGHT_OFF";
 
     private final Context mContext;
 
@@ -82,6 +94,8 @@ public class TorchService extends ITorchService.Stub {
     private CameraCaptureSession mSession;
     private SurfaceTexture mSurfaceTexture;
     private Surface mSurface;
+
+    private boolean mReceiverRegistered;
 
     private static class CameraUserRecord {
         IBinder token;
@@ -174,6 +188,7 @@ public class TorchService extends ITorchService.Stub {
                 Manifest.permission.ACCESS_TORCH_SERVICE, null);
         if (mTorchEnabled != enabled) {
             mTorchEnabled = enabled;
+            postNotification(enabled);
             postUpdateFlashlight();
         }
     }
@@ -301,6 +316,48 @@ public class TorchService extends ITorchService.Stub {
         return null;
     }
 
+    private BroadcastReceiver mFlashlightOffReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(ACTION_TURN_FLASHLIGHT_OFF)) {
+                mHandler.post(mKillFlashlightRunnable);
+            }
+        }
+    };
+
+    private void postNotification(boolean show) {
+        final long identity = Binder.clearCallingIdentity();
+        Intent off = new Intent(ACTION_TURN_FLASHLIGHT_OFF);
+        off.setPackage(mContext.getPackageName());
+
+        Notification.Builder builder = new Notification.Builder(mContext);
+        builder.setContentTitle(mContext.getString(R.string.notification_flashlight_on_title));
+        builder.setContentText(mContext.getString(R.string.notification_flashlight_on_summary));
+        builder.setAutoCancel(false);
+        builder.setVisibility(Notification.VISIBILITY_PUBLIC);
+        builder.setSmallIcon(R.drawable.ic_signal_flashlight_disable);
+        builder.setContentIntent(PendingIntent.getBroadcast(mContext, 0, off, 0));
+        Notification notif = builder.build();
+
+        NotificationManager manager = (NotificationManager)
+                mContext.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        if (show) {
+            IntentFilter filter = new IntentFilter();
+            filter.addAction(ACTION_TURN_FLASHLIGHT_OFF);
+            mContext.registerReceiver(mFlashlightOffReceiver, filter);
+            mReceiverRegistered = true;
+            manager.notify(NOTIFICATION_ID, notif);
+        } else {
+            if (mReceiverRegistered) {
+                mContext.unregisterReceiver(mFlashlightOffReceiver);
+                mReceiverRegistered = false;
+            }
+            manager.cancel(NOTIFICATION_ID);
+        }
+        Binder.restoreCallingIdentity(identity);
+    }
+
     private void updateFlashlight(boolean forceDisable) {
         try {
             boolean enabled;
@@ -347,6 +404,7 @@ public class TorchService extends ITorchService.Stub {
     }
 
     private void teardownTorch() {
+        postNotification(false);
         dispatchStateChange(false);
         if (mCameraDevice != null) {
             mCameraDevice.close();

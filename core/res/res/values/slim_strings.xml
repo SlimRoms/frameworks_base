@@ -137,4 +137,7 @@
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_accessTorchService">Allows an app to access the torch service. Should never be needed for normal apps.</string>
 
+    <!-- Flashlight notification -->
+    <string name="notification_flashlight_on_title">Flashlight is on</string>
+    <string name="notification_flashlight_on_summary">Tap to turn off</string>
 </resources>
