@@ -38,9 +38,9 @@ public class ActionChecker {
                     index = input.indexOf(ActionConstants.ACTION_BACK);
                 }
                 if (count <= 1) {
-                    return false;
-                } else {
                     return true;
+                } else {
+                    return false;
                 }
             }
         }
