@@ -4367,7 +4367,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     // ---------------------- DragDownHelper.OnDragDownListener ------------------------------------
 
     @Override
-    public boolean onDraggedDown(View startingChild) {
+    public boolean onDraggedDown(View startingChild, int dragLengthY) {
         if (hasActiveNotifications()) {
 
             // We have notifications, go to locked shade.
