@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_b780828c",
+        "filename": "core/java/com/android/internal/util/slim/ActionChecker.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-16T21:12:18Z",
+      "side": 1,
+      "message": "Licensing header missing",
+      "range": {
+        "startLine": 1,
+        "startChar": 38,
+        "endLine": 1,
+        "endChar": 39
+      },
+      "revId": "9f5a12190a583c85a60cb9ec8bbf09095dfe4cb3",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_977d86b4",
+        "filename": "core/java/com/android/internal/util/slim/ColorHelper.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-16T21:12:18Z",
+      "side": 1,
+      "message": "date updating",
+      "range": {
+        "startLine": 2,
+        "startChar": 16,
+        "endLine": 2,
+        "endChar": 20
+      },
+      "revId": "9f5a12190a583c85a60cb9ec8bbf09095dfe4cb3",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_774aea84",
+        "filename": "packages/SystemUI/res/values/strings.xml",
+        "patchSetId": 35
+      },
+      "lineNbr": 937,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-16T21:12:18Z",
+      "side": 1,
+      "message": "There\u0027s another string in core/res/res/values/strings.xml with same exact string.",
+      "range": {
+        "startLine": 937,
+        "startChar": 114,
+        "endLine": 937,
+        "endChar": 118
+      },
+      "revId": "9f5a12190a583c85a60cb9ec8bbf09095dfe4cb3",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
