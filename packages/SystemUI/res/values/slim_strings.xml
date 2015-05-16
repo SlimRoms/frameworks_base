@@ -21,7 +21,7 @@
     <string name="accessibility_su_active">Superuser session active</string>
 
     <!-- Battery level text while charging [CHAR LIMIT=2] -->
-    <string name="battery_level_template_charging"><xliff:g id="level" example="45">%d</xliff:g>~</string>
+    <string name="battery_level_template_charging" translatable="false"><xliff:g id="level" example="45">%d</xliff:g>~</string>
 
     <!--ScreenShot Trash-->
     <string name="screenshot_notification_delete">Delete</string>
