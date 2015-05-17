@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_5d526f14",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/policy/MSimNetworkControllerImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1000053
+      },
+      "writtenOn": "2015-05-17T02:09:50Z",
+      "side": 1,
+      "message": "0 here",
+      "revId": "c8d5ef08547b1e1f67a1a6248fe599ecab085941",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_3d57b304",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/policy/MSimNetworkControllerImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1000053
+      },
+      "writtenOn": "2015-05-17T02:09:50Z",
+      "side": 1,
+      "message": "0 here",
+      "revId": "c8d5ef08547b1e1f67a1a6248fe599ecab085941",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_fd401b37",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/policy/NetworkControllerImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1000053
+      },
+      "writtenOn": "2015-05-17T02:09:50Z",
+      "side": 1,
+      "message": "0 here",
+      "revId": "c8d5ef08547b1e1f67a1a6248fe599ecab085941",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_dd3d5fbd",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/policy/NetworkControllerImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1000053
+      },
+      "writtenOn": "2015-05-17T02:09:50Z",
+      "side": 1,
+      "message": "0 here",
+      "revId": "c8d5ef08547b1e1f67a1a6248fe599ecab085941",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
