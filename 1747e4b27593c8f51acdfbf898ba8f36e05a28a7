@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_9deda7f2",
+        "filename": "core/res/res/values/config.xml",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2015-05-17T14:01:11Z",
+      "side": 1,
+      "message": "should be added to slim_config.xml instead",
+      "revId": "1747e4b27593c8f51acdfbf898ba8f36e05a28a7",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
