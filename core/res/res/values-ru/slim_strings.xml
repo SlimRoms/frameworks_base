@@ -23,15 +23,21 @@
   <string name="permdesc_changePrivacyGuardState">Разрешает запуск приложения под защитой личных данных. Такое приложение не будет иметь доступа к личным данным, вроде контактов, журналов звонков или сообщений.</string>
   <string name="privacy_guard_notification">Защита личных данных включена</string>
   <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> не сможет иметь доступ к личным данным</string>
+  <string name="privacy_guard_dialog_title">Менеджер защиты личных данных</string>
+  <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s</xliff:g> требуется <xliff:g id="op">%2$s</xliff:g>.</string>
   <string name="app_ops_access_camera">получить доступ к камере</string>
   <string name="app_ops_access_location">получить доступ к местоположению устройства</string>
   <string name="app_ops_access_notifications">получить доступ к уведомлениям</string>
+  <string name="app_ops_activate_vpn">активировать VPN</string>
   <string name="app_ops_alarm_wakeup">запланировать пробуждение устройства</string>
+  <string name="app_ops_su">получить доступ суперпользователя</string>
+  <string name="app_ops_auto_start">назначить запуск при включении устройства</string>
   <string name="app_ops_delete_call_log">удалить журнал вызовов</string>
   <string name="app_ops_delete_contacts">удалить контакт</string>
   <string name="app_ops_delete_mms">удалить MMS-сообщения</string>
   <string name="app_ops_delete_sms">удалить SMS-сообщения</string>
   <string name="app_ops_draw_on_top">отображение поверх других элементов</string>
+  <string name="app_ops_get_usage_stats">получить статистику использования приложения</string>
   <string name="app_ops_keep_device_awake">запретить устройству переход в спящий режим</string>
   <string name="app_ops_make_phone_call">выполнить телефонный звонок</string>
   <string name="app_ops_modify_calendar">изменить данные календаря</string>
@@ -39,6 +45,7 @@
   <string name="app_ops_modify_clipboard">изменить содержимое буфера обмена</string>
   <string name="app_ops_modify_contacts">изменить данные контактов</string>
   <string name="app_ops_modify_settings">изменить системные настройки</string>
+  <string name="app_ops_mute_unmute_microphone">отключить/включить микрофон</string>
   <string name="app_ops_play_audio">воспроизводить аудио</string>
   <string name="app_ops_post_notification">вывести уведомление</string>
   <string name="app_ops_project_media">получить управление медиа проекта</string>
@@ -70,6 +77,9 @@
   <string name="app_ops_use_voice_volume">получить управление громкостью при разговоре</string>
   <string name="app_ops_write_mms">создать MMS-сообщение</string>
   <string name="app_ops_write_sms">создать SMS-сообщение</string>
+  <string name="adb_net_active_notification_title">Включен ADB по сети</string>
+  <string name="adb_both_active_notification_title">Включен ADB по сети и USB</string>
+  <string name="adb_active_generic_notification_message">Нажмите для отключения отладки.</string>
   <string name="usb_charging_notification_title">Подключен в режиме зарядки</string>
   <string name="progress_nomediapresent" product="default">Отсутствует внешний накопитель</string>
   <string name="permission_remember_choice">Запомнить</string>

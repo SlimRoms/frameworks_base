@@ -23,6 +23,7 @@
   <string name="permdesc_changePrivacyGuardState">Ermöglicht der App, den Datenschutz für andere Apps zu aktivieren oder deaktivieren. Eine App mit aktiviertem Datenschutz hat keinen Zugriff auf persönliche Daten wie Kontakte, Nachrichten oder das Anrufprotokoll.</string>
   <string name="privacy_guard_notification">Datenschutz aktiv</string>
   <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> hat keinen Zugriff auf persönliche Daten</string>
+  <string name="privacy_guard_dialog_title">Datenschutz</string>
   <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s </xliff:g> möchte <xliff:g id="op">%2$s </xliff:g>.</string>
   <string name="app_ops_access_camera">Zugriff auf die Kamera</string>
   <string name="app_ops_access_location">Ihren Standort abrufen</string>
@@ -76,6 +77,8 @@
   <string name="app_ops_use_voice_volume">Anruflautstärke ändern</string>
   <string name="app_ops_write_mms">eine MMS-Nachricht schreiben</string>
   <string name="app_ops_write_sms">eine SMS-Nachricht schreiben</string>
+  <string name="adb_net_active_notification_title">ADB über Netzwerk aktiviert</string>
+  <string name="adb_both_active_notification_title">ADB über USB &amp; Netzwerk aktiviert</string>
   <string name="usb_charging_notification_title">Im Ladebetrieb verbunden</string>
   <string name="progress_nomediapresent" product="default">Kein Wechseldatenträger vorhanden\u2026</string>
   <string name="permission_remember_choice">Speichern</string>

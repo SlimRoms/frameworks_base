@@ -23,15 +23,21 @@
   <string name="permdesc_changePrivacyGuardState">Lehetővé teszi, hogy más alkalmazások számára engedélyezze, vagy letiltsa az adatvédelmet. Amikor az alkalmazás adatvédelmi módban fut, nem fog hozzáférni az Ön személyes adataihoz, mint a névjegyzékéhez, üzeneteihez, vagy a hívásnaplójához.</string>
   <string name="privacy_guard_notification">Adatvédelem aktív</string>
   <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> nem fog hozzáférni a személyes adataihoz</string>
+  <string name="privacy_guard_dialog_title">Privacy Guard</string>
+  <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s </xliff:g> szeretnék <xliff:g id="op">%2$s </xliff:g>.</string>
   <string name="app_ops_access_camera">hozzáférés a kamerához</string>
   <string name="app_ops_access_location">hozzáférés a helyadatokhoz</string>
   <string name="app_ops_access_notifications">értesítések olvasása</string>
+  <string name="app_ops_activate_vpn">VPN-kapcsolat aktiválása</string>
   <string name="app_ops_alarm_wakeup">felébresztheti az eszközt</string>
+  <string name="app_ops_su">Adminisztrátori hozzáférés</string>
+  <string name="app_ops_auto_start">bekapcsoláskor elindul</string>
   <string name="app_ops_delete_call_log">Hívásnapló törlése</string>
   <string name="app_ops_delete_contacts">kapcsolat törlése</string>
   <string name="app_ops_delete_mms">MMS-üzenetek törlése</string>
   <string name="app_ops_delete_sms">SMS üzenet törlése</string>
   <string name="app_ops_draw_on_top">előtérben marad</string>
+  <string name="app_ops_get_usage_stats">Alkalmazás használati statisztika</string>
   <string name="app_ops_keep_device_awake">készülék ébrentartása</string>
   <string name="app_ops_make_phone_call">hívást kezdeményezhet</string>
   <string name="app_ops_modify_calendar">frissítheti a naptárat</string>
@@ -39,6 +45,7 @@
   <string name="app_ops_modify_clipboard">módosíthatja a vágólapot</string>
   <string name="app_ops_modify_contacts">frissítheti a névjegyzéket</string>
   <string name="app_ops_modify_settings">frissítheti a rendszerbeállításokat</string>
+  <string name="app_ops_mute_unmute_microphone">a mikrofon némítás/némítás feloldása</string>
   <string name="app_ops_play_audio">zene lejátszása</string>
   <string name="app_ops_post_notification">értesítés küldése</string>
   <string name="app_ops_project_media">hozzáférés a médiákhoz</string>
@@ -70,6 +77,8 @@
   <string name="app_ops_use_voice_volume">hívás közbeni hang vezérlése</string>
   <string name="app_ops_write_mms">MMS írása</string>
   <string name="app_ops_write_sms">SMS írása</string>
+  <string name="adb_net_active_notification_title">ADB hálozaton keresztül engedélyezve</string>
+  <string name="adb_active_generic_notification_message">Érintsd meg a hibakeresés letiltásához</string>
   <string name="usb_charging_notification_title">jelzés,ha a telefon USB töltés módban csatlakozik a PC-hez</string>
   <string name="progress_nomediapresent" product="default">Nincs eltávolítható memóriakártya\u2026</string>
   <string name="permission_remember_choice">emlékezzen</string>

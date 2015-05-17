@@ -19,19 +19,25 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="permlab_changePrivacyGuardState">Habilitar o deshabilitar la Protección de Privacidad</string>
-  <string name="permdesc_changePrivacyGuardState">Permite determinar que aplicaciones se ejecutan con Protección de Privacidad. Cuando una aplicación se ejecuta bajo la Protección de Privacidad, no tendrá acceso a los datos personales tales como contactos, histórico de llamadas o mensajes.</string>
+  <string name="permlab_changePrivacyGuardState">Habilitar o deshabilitar Protección de Privacidad</string>
+  <string name="permdesc_changePrivacyGuardState">Permite determinar que aplicaciones se ejecutan con Protección de Privacidad. Cuando una aplicación se ejecute bajo la Protección de Privacidad, no tendrá acceso a datos personales tales como contactos, histórico de llamadas o mensajes.</string>
   <string name="privacy_guard_notification">Protección de Privacidad habilitada</string>
   <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> no tendrá acceso a los datos personales</string>
+  <string name="privacy_guard_dialog_title">Protección de Privacidad</string>
+  <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s </xliff:g> gustaría <xliff:g id="op">%2$s </xliff:g>.</string>
   <string name="app_ops_access_camera">Acceder a la cámara</string>
   <string name="app_ops_access_location">Acceder a tu ubicación </string>
   <string name="app_ops_access_notifications">Leer notificaciones</string>
+  <string name="app_ops_activate_vpn">Activar VPN</string>
   <string name="app_ops_alarm_wakeup">Despertar el dispositivo</string>
+  <string name="app_ops_su">Obtener acceso de superusuario</string>
+  <string name="app_ops_auto_start">Ejecutar al iniciar</string>
   <string name="app_ops_delete_call_log">Borrar el registro de llamadas</string>
   <string name="app_ops_delete_contacts">Borrar contacto</string>
   <string name="app_ops_delete_mms">Borrar MMS</string>
   <string name="app_ops_delete_sms">Borrar SMS</string>
   <string name="app_ops_draw_on_top">Mostrar encima</string>
+  <string name="app_ops_get_usage_stats">obtener estadísticas de uso de la aplicación</string>
   <string name="app_ops_keep_device_awake">Mantener activo el dispositivo</string>
   <string name="app_ops_make_phone_call">Realizar llamadas</string>
   <string name="app_ops_modify_calendar">Actualizar el calendario</string>
@@ -39,6 +45,7 @@
   <string name="app_ops_modify_clipboard">Modificar el portapapeles</string>
   <string name="app_ops_modify_contacts">Actualizar contactos</string>
   <string name="app_ops_modify_settings">Actualizar configuración del sistema</string>
+  <string name="app_ops_mute_unmute_microphone">activar/desactivar el micrófono</string>
   <string name="app_ops_play_audio">Reproducir sonido</string>
   <string name="app_ops_post_notification">Publicar notificaciones</string>
   <string name="app_ops_project_media">Controlar medios del proyecto</string>

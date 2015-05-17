@@ -23,15 +23,21 @@
   <string name="permdesc_changePrivacyGuardState">Umožní změnit pravidla, zda bude některá aplikace spuštěna v režimu Ochrany soukromí. Pokud je aplikace spuštěna v režimu Ochrany soukromí, tato aplikace nemá umožněn přístup k osobním datům jako jsou kontakty, historie volání nebo zprávy.</string>
   <string name="privacy_guard_notification">Ochrana soukromí aktivní</string>
   <string name="privacy_guard_notification_detail">Aplikaci <xliff:g id="app">%1$s</xliff:g> nebude umožňen přístup k osobním údajům</string>
+  <string name="privacy_guard_dialog_title">Ochrana soukromí</string>
+  <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s</xliff:g> by chtěla <xliff:g id="op">%2$s</xliff:g>.</string>
   <string name="app_ops_access_camera">používat fotoaparát</string>
   <string name="app_ops_access_location">zjišťovat polohu</string>
   <string name="app_ops_access_notifications">číst upozornění</string>
+  <string name="app_ops_activate_vpn">aktivovat VPN</string>
   <string name="app_ops_alarm_wakeup">probudit zařízení</string>
+  <string name="app_ops_su">získat přístup superuživatele</string>
+  <string name="app_ops_auto_start">spustit při startu</string>
   <string name="app_ops_delete_call_log">mazat výpis hovorů</string>
   <string name="app_ops_delete_contacts">mazat kontakty</string>
   <string name="app_ops_delete_mms">mazat MMS zprávy</string>
   <string name="app_ops_delete_sms">mazat SMS zprávy</string>
   <string name="app_ops_draw_on_top">vykreslovat do nejvyšší vrstvy</string>
+  <string name="app_ops_get_usage_stats">získat statistiky využití aplikací</string>
   <string name="app_ops_keep_device_awake">udržovat zařízení probuzené</string>
   <string name="app_ops_make_phone_call">vytvářet telefonní hovory</string>
   <string name="app_ops_modify_calendar">měnit kalendář</string>
@@ -39,6 +45,7 @@
   <string name="app_ops_modify_clipboard">měnit schránku</string>
   <string name="app_ops_modify_contacts">měnit kontakty</string>
   <string name="app_ops_modify_settings">měnit systémová nastavení</string>
+  <string name="app_ops_mute_unmute_microphone">vypnout/zapnout mikrofon</string>
   <string name="app_ops_play_audio">přehrávat zvuky</string>
   <string name="app_ops_post_notification">posílat upozornění</string>
   <string name="app_ops_project_media">ovládat project média</string>
