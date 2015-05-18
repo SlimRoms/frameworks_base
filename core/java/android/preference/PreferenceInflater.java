@@ -41,7 +41,7 @@ class PreferenceInflater extends GenericInflater<Preference, PreferenceGroup> {
     private static final String EXTRA_TAG_NAME = "extra";
 
     private PreferenceManager mPreferenceManager;
-    
+
     public PreferenceInflater(Context context, PreferenceManager preferenceManager) {
         super(context);
         init(preferenceManager);
@@ -56,7 +56,7 @@ class PreferenceInflater extends GenericInflater<Preference, PreferenceGroup> {
     public GenericInflater<Preference, PreferenceGroup> cloneInContext(Context newContext) {
         return new PreferenceInflater(this, mPreferenceManager, newContext);
     }
-    
+
     private void init(PreferenceManager preferenceManager) {
         mPreferenceManager = preferenceManager;
         setDefaultPackage("android.preference.");
@@ -66,10 +66,10 @@ class PreferenceInflater extends GenericInflater<Preference, PreferenceGroup> {
     protected boolean onCreateCustomFromTag(XmlPullParser parser, Preference parentPreference,
             AttributeSet attrs) throws XmlPullParserException {
         final String tag = parser.getName();
-        
+
         if (tag.equals(INTENT_TAG_NAME)) {
             Intent intent = null;
-            
+
             try {
                 intent = Intent.parseIntent(getContext().getResources(), parser, attrs);
             } catch (IOException e) {
@@ -78,11 +78,11 @@ class PreferenceInflater extends GenericInflater<Preference, PreferenceGroup> {
                 ex.initCause(e);
                 throw ex;
             }
-            
+
             if (intent != null) {
                 parentPreference.setIntent(intent);
             }
-            
+
             return true;
         } else if (tag.equals(EXTRA_TAG_NAME)) {
             getContext().getResources().parseBundleExtra(EXTRA_TAG_NAME, attrs,
@@ -97,7 +97,7 @@ class PreferenceInflater extends GenericInflater<Preference, PreferenceGroup> {
             }
             return true;
         }
-        
+
         return false;
     }
 
@@ -113,5 +113,5 @@ class PreferenceInflater extends GenericInflater<Preference, PreferenceGroup> {
             return givenRoot;
         }
     }
-    
+
 }

@@ -123,7 +123,7 @@ public class UiObject {
     }
 
     /**
-     * Creates a new UiObject for a sibling view or a child of the sibling view, 
+     * Creates a new UiObject for a sibling view or a child of the sibling view,
      * relative to the present UiObject.
      *
      * @param selector for a sibling view or children of the sibling view
@@ -219,7 +219,7 @@ public class UiObject {
     }
 
     /**
-     * Performs the swipe up action on the UiObject. 
+     * Performs the swipe up action on the UiObject.
      * See also:
      * <ul>
      * <li>{@link UiScrollable#scrollToBeginning(int)}</li>
@@ -245,7 +245,7 @@ public class UiObject {
     }
 
     /**
-     * Performs the swipe down action on the UiObject. 
+     * Performs the swipe down action on the UiObject.
      * The swipe gesture can be performed over any surface. The targeted
      * UI element does not need to be scrollable.
      * See also:
@@ -273,7 +273,7 @@ public class UiObject {
     }
 
     /**
-     * Performs the swipe left action on the UiObject. 
+     * Performs the swipe left action on the UiObject.
      * The swipe gesture can be performed over any surface. The targeted
      * UI element does not need to be scrollable.
      * See also:
@@ -300,7 +300,7 @@ public class UiObject {
     }
 
     /**
-     * Performs the swipe right action on the UiObject. 
+     * Performs the swipe right action on the UiObject.
      * The swipe gesture can be performed over any surface. The targeted
      * UI element does not need to be scrollable.
      * See also:
@@ -910,7 +910,7 @@ public class UiObject {
      * opposite across the other, from the center out towards the edges of the
      * this UiObject.
      * @param percent percentage of the object's diagonal length for the pinch gesture
-     * @param steps the number of steps for the gesture. Steps are injected 
+     * @param steps the number of steps for the gesture. Steps are injected
      * about 5 milliseconds apart, so 100 steps may take around 0.5 seconds to complete.
      * @return <code>true</code> if all touch events for this gesture are injected successfully,
      *         <code>false</code> otherwise
@@ -948,7 +948,7 @@ public class UiObject {
      * Performs a two-pointer gesture, where each pointer moves diagonally
      * toward the other, from the edges to the center of this UiObject .
      * @param percent percentage of the object's diagonal length for the pinch gesture
-     * @param steps the number of steps for the gesture. Steps are injected 
+     * @param steps the number of steps for the gesture. Steps are injected
      * about 5 milliseconds apart, so 100 steps may take around 0.5 seconds to complete.
      * @return <code>true</code> if all touch events for this gesture are injected successfully,
      *         <code>false</code> otherwise
@@ -987,7 +987,7 @@ public class UiObject {
      * @param startPoint2 start point of pointer 2
      * @param endPoint1 end point of pointer 1
      * @param endPoint2 end point of pointer 2
-     * @param steps the number of steps for the gesture. Steps are injected 
+     * @param steps the number of steps for the gesture. Steps are injected
      * about 5 milliseconds apart, so 100 steps may take around 0.5 seconds to complete.
      * @return <code>true</code> if all touch events for this gesture are injected successfully,
      *         <code>false</code> otherwise

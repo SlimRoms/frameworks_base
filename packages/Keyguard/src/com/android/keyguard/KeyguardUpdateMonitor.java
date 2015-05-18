@@ -1427,12 +1427,12 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener {
         return mSimState.get(slotId);
     }
 
-     /**	
-      * @return true if and only if the state has changed for the specified {@code slotId}	
+     /**
+      * @return true if and only if the state has changed for the specified {@code slotId}
       */
      private boolean refreshSimState(int subId, int slotId) {
 
-         // This is awful. It exists because there are two APIs for getting the SIM status	
+         // This is awful. It exists because there are two APIs for getting the SIM status
          // that don't return the complete set of values and have different types. In Keyguard we
          // need IccCardConstants, but TelephonyManager would only give us
          // TelephonyManager.SIM_STATE*, so we retrieve it manually.

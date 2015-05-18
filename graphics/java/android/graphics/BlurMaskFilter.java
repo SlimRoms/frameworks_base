@@ -44,13 +44,13 @@ public class BlurMaskFilter extends MaskFilter {
          * Blur inside the border, draw nothing outside.
          */
         INNER(3);
-        
+
         Blur(int value) {
             native_int = value;
         }
         final int native_int;
     }
-    
+
     /**
      * Create a blur maskfilter.
      *

@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2007-2008 The Android Open Source Project
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -26,30 +26,30 @@ import android.os.Parcelable;
  */
 public final class InputBinding implements Parcelable {
     static final String TAG = "InputBinding";
-    
+
     /**
      * The connection back to the client.
      */
     final InputConnection mConnection;
-    
+
     /**
      * A remotable token for the connection back to the client.
      */
     final IBinder mConnectionToken;
-    
+
     /**
      * The UID where this binding came from.
      */
     final int mUid;
-    
+
     /**
      * The PID where this binding came from.
      */
     final int mPid;
-    
+
     /**
      * Constructor.
-     * 
+     *
      * @param conn The interface for communicating back with the application.
      * @param connToken A remoteable token for communicating across processes.
      * @param uid The user id of the client of this binding.
@@ -66,7 +66,7 @@ public final class InputBinding implements Parcelable {
     /**
      * Constructor from an existing InputBinding taking a new local input
      * connection interface.
-     * 
+     *
      * @param conn The new connection interface.
      * @param binding Existing binding to copy.
      */
@@ -83,14 +83,14 @@ public final class InputBinding implements Parcelable {
         mUid = source.readInt();
         mPid = source.readInt();
     }
-    
+
     /**
      * Return the connection for interacting back with the application.
      */
     public InputConnection getConnection() {
         return mConnection;
     }
-    
+
     /**
      * Return the token for the connection back to the application.  You can
      * not use this directly, it must be converted to a {@link InputConnection}
@@ -99,21 +99,21 @@ public final class InputBinding implements Parcelable {
     public IBinder getConnectionToken() {
         return mConnectionToken;
     }
-    
+
     /**
      * Return the user id of the client associated with this binding.
      */
     public int getUid() {
         return mUid;
     }
-    
+
     /**
      * Return the process id where this binding came from.
      */
     public int getPid() {
         return mPid;
     }
-    
+
     @Override
     public String toString() {
         return "InputBinding{" + mConnectionToken
@@ -122,7 +122,7 @@ public final class InputBinding implements Parcelable {
 
     /**
      * Used to package this object into a {@link Parcel}.
-     * 
+     *
      * @param dest The {@link Parcel} to be written.
      * @param flags The flags used for parceling.
      */

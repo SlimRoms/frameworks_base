@@ -33,7 +33,7 @@ public class Element {
     final String localName;
     final int depth;
     final Element parent;
-    
+
     Children children;
     ArrayList<Element> requiredChilden;
 
@@ -103,7 +103,7 @@ public class Element {
 
         return child;
     }
-        
+
     /**
      * Sets start and end element listeners at the same time.
      */

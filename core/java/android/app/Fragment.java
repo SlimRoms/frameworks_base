@@ -911,7 +911,7 @@ public class Fragment implements ComponentCallbacks2, OnCreateContextMenuListene
 
     /**
      * Return true if the fragment is currently visible to the user.  This means
-     * it: (1) has been added, (2) has its view attached to the window, and 
+     * it: (1) has been added, (2) has its view attached to the window, and
      * (3) is not hidden.
      */
     final public boolean isVisible() {
@@ -1166,7 +1166,7 @@ public class Fragment implements ComponentCallbacks2, OnCreateContextMenuListene
      * declaration for the styleable used here is:</p>
      *
      * {@sample development/samples/ApiDemos/res/values/attrs.xml fragment_arguments}
-     * 
+     *
      * <p>The fragment can then be declared within its activity's content layout
      * through a tag like this:</p>
      *

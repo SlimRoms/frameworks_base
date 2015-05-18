@@ -43,16 +43,16 @@ import java.io.IOException;
 public final class AtomicFile {
     private final File mBaseName;
     private final File mBackupName;
-    
+
     public AtomicFile(File baseName) {
         mBaseName = baseName;
         mBackupName = new File(baseName.getPath() + ".bak");
     }
-    
+
     public File getBaseFile() {
         return mBaseName;
     }
-    
+
     public FileOutputStream startWrite() throws IOException {
         // Rename the current file so it may be used as a backup during the next read
         if (mBaseName.exists()) {
@@ -85,7 +85,7 @@ public final class AtomicFile {
         }
         return str;
     }
-    
+
     public void finishWrite(FileOutputStream str) {
         if (str != null) {
             FileUtils.sync(str);
@@ -97,7 +97,7 @@ public final class AtomicFile {
             }
         }
     }
-    
+
     public void failWrite(FileOutputStream str) {
         if (str != null) {
             FileUtils.sync(str);
@@ -110,7 +110,7 @@ public final class AtomicFile {
             }
         }
     }
-    
+
     public FileOutputStream openAppend() throws IOException {
         try {
             return new FileOutputStream(mBaseName, true);
@@ -118,7 +118,7 @@ public final class AtomicFile {
             throw new IOException("Couldn't append " + mBaseName);
         }
     }
-    
+
     public void truncate() throws IOException {
         try {
             FileOutputStream fos = new FileOutputStream(mBaseName);
@@ -146,7 +146,7 @@ public final class AtomicFile {
         }
         return new FileInputStream(mBaseName);
     }
-    
+
     public byte[] readFully() throws IOException {
         FileInputStream stream = openRead();
         try {

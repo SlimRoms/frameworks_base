@@ -276,7 +276,7 @@ public final class BatteryStatsImpl extends BatteryStats {
 
     int mPhoneSignalStrengthBin = -1;
     int mPhoneSignalStrengthBinRaw = -1;
-    final StopwatchTimer[] mPhoneSignalStrengthsTimer = 
+    final StopwatchTimer[] mPhoneSignalStrengthsTimer =
             new StopwatchTimer[SignalStrength.NUM_SIGNAL_STRENGTH_BINS];
 
     StopwatchTimer mPhoneSignalScanningTimer;
@@ -5596,7 +5596,7 @@ public final class BatteryStatsImpl extends BatteryStats {
                     Slog.w(TAG, "File corrupt: too many excessive power entries " + N);
                     return false;
                 }
-                
+
                 mExcessivePower = new ArrayList<ExcessivePower>();
                 for (int i=0; i<N; i++) {
                     ExcessivePower ew = new ExcessivePower();
@@ -6803,7 +6803,7 @@ public final class BatteryStatsImpl extends BatteryStats {
             mDischargeScreenOffUnplugLevel = mDischargeCurrentLevel;
         }
     }
-    
+
     public void pullPendingStateUpdatesLocked() {
         updateKernelWakelocksLocked();
         updateNetworkActivityLocked(NET_UPDATE_ALL, SystemClock.elapsedRealtime());

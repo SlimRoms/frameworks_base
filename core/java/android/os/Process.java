@@ -200,7 +200,7 @@ public class Process {
      * ** Keep in sync with utils/threads.h **
      * ***************************************
      */
-    
+
     /**
      * Lowest available thread priority.  Only for those who really, really
      * don't want to run if anything else is happening.
@@ -209,7 +209,7 @@ public class Process {
      * {@link java.lang.Thread} class.
      */
     public static final int THREAD_PRIORITY_LOWEST = 19;
-    
+
     /**
      * Standard priority background threads.  This gives your thread a slightly
      * lower than normal priority, so that it will have less chance of impacting
@@ -219,7 +219,7 @@ public class Process {
      * {@link java.lang.Thread} class.
      */
     public static final int THREAD_PRIORITY_BACKGROUND = 10;
-    
+
     /**
      * Standard priority of threads that are currently running a user interface
      * that the user is interacting with.  Applications can not normally
@@ -230,7 +230,7 @@ public class Process {
      * {@link java.lang.Thread} class.
      */
     public static final int THREAD_PRIORITY_FOREGROUND = -2;
-    
+
     /**
      * Standard priority of system display threads, involved in updating
      * the user interface.  Applications can not
@@ -240,7 +240,7 @@ public class Process {
      * {@link java.lang.Thread} class.
      */
     public static final int THREAD_PRIORITY_DISPLAY = -4;
-    
+
     /**
      * Standard priority of the most important display threads, for compositing
      * the screen and retrieving input events.  Applications can not normally
@@ -445,19 +445,19 @@ public class Process {
 
     /**
      * Start a new process.
-     * 
+     *
      * <p>If processes are enabled, a new process is created and the
      * static main() function of a <var>processClass</var> is executed there.
      * The process will continue running after this function returns.
-     * 
+     *
      * <p>If processes are not enabled, a new thread in the caller's
      * process is created and main() of <var>processClass</var> called there.
-     * 
+     *
      * <p>The niceName parameter, if not an empty string, is a custom name to
      * give to the process instead of using processClass.  This allows you to
      * make easily identifyable processes even if you are using the same base
      * <var>processClass</var> to start them.
-     * 
+     *
      * @param processClass The class to use as the process's main entry
      *                     point.
      * @param niceName A more readable name to use for the process.
@@ -471,10 +471,10 @@ public class Process {
      * @param instructionSet null-ok the instruction set to use.
      * @param appDataDir null-ok the data directory of the app.
      * @param zygoteArgs Additional arguments to supply to the zygote process.
-     * 
+     *
      * @return An object that describes the result of the attempt to start the process.
      * @throws RuntimeException on fatal start failure
-     * 
+     *
      * {@hide}
      */
     public static final ProcessStartResult start(final String processClass,
@@ -740,7 +740,7 @@ public class Process {
      * @return  Returns the number of milliseconds this process has return.
      */
     public static final native long getElapsedCpuTime();
-    
+
     /**
      * Returns the identifier of this process, which can be used with
      * {@link #killProcess} and {@link #sendSignal}.
@@ -800,7 +800,7 @@ public class Process {
      * directly to a uid.
      */
     public static final native int getUidForName(String name);
-    
+
     /**
      * Returns the GID assigned to a particular user name, or -1 if there is
      * none.  If the given string consists of only numbers, it is converted
@@ -853,11 +853,11 @@ public class Process {
 
     /**
      * Set the priority of a thread, based on Linux priorities.
-     * 
+     *
      * @param tid The identifier of the thread/process to change.
      * @param priority A Linux priority level, from -20 for highest scheduling
      * priority to 19 for lowest scheduling priority.
-     * 
+     *
      * @throws IllegalArgumentException Throws IllegalArgumentException if
      * <var>tid</var> does not exist.
      * @throws SecurityException Throws SecurityException if your process does
@@ -881,7 +881,7 @@ public class Process {
      * @hide
      * @param tid The identifier of the thread to change.
      * @param group The target group for this thread from THREAD_GROUP_*.
-     * 
+     *
      * @throws IllegalArgumentException Throws IllegalArgumentException if
      * <var>tid</var> does not exist.
      * @throws SecurityException Throws SecurityException if your process does
@@ -898,7 +898,7 @@ public class Process {
      * @hide
      * @param pid The identifier of the process to change.
      * @param group The target group for this process from THREAD_GROUP_*.
-     * 
+     *
      * @throws IllegalArgumentException Throws IllegalArgumentException if
      * <var>tid</var> does not exist.
      * @throws SecurityException Throws SecurityException if your process does
@@ -925,36 +925,36 @@ public class Process {
     /**
      * Set the priority of the calling thread, based on Linux priorities.  See
      * {@link #setThreadPriority(int, int)} for more information.
-     * 
+     *
      * @param priority A Linux priority level, from -20 for highest scheduling
      * priority to 19 for lowest scheduling priority.
-     * 
+     *
      * @throws IllegalArgumentException Throws IllegalArgumentException if
      * <var>tid</var> does not exist.
      * @throws SecurityException Throws SecurityException if your process does
      * not have permission to modify the given thread, or to use the given
      * priority.
-     * 
+     *
      * @see #setThreadPriority(int, int)
      */
     public static final native void setThreadPriority(int priority)
             throws IllegalArgumentException, SecurityException;
-    
+
     /**
      * Return the current priority of a thread, based on Linux priorities.
-     * 
+     *
      * @param tid The identifier of the thread/process to change.
-     * 
+     *
      * @return Returns the current priority, as a Linux priority level,
      * from -20 for highest scheduling priority to 19 for lowest scheduling
      * priority.
-     * 
+     *
      * @throws IllegalArgumentException Throws IllegalArgumentException if
      * <var>tid</var> does not exist.
      */
     public static final native int getThreadPriority(int tid)
             throws IllegalArgumentException;
-    
+
     /**
      * Set the scheduling policy and priority of a thread, based on Linux.
      *
@@ -975,7 +975,7 @@ public class Process {
 
     /**
      * Determine whether the current environment supports multiple processes.
-     * 
+     *
      * @return Returns true if the system can run in multiple processes, else
      * false if everything is running in a single process.
      *
@@ -1002,9 +1002,9 @@ public class Process {
     /**
      * Change this process's argv[0] parameter.  This can be useful to show
      * more descriptive information in things like the 'ps' command.
-     * 
+     *
      * @param text The new name of this process.
-     * 
+     *
      * {@hide}
      */
     public static final native void setArgV0(String text);
@@ -1032,12 +1032,12 @@ public class Process {
 
     /**
      * Send a signal to the given process.
-     * 
+     *
      * @param pid The pid of the target process.
      * @param signal The signal to send.
      */
     public static final native void sendSignal(int pid, int signal);
-    
+
     /**
      * @hide
      * Private impl for avoiding a log message...  DO NOT USE without doing
@@ -1055,20 +1055,20 @@ public class Process {
      * beat you up.
      */
     public static final native void sendSignalQuiet(int pid, int signal);
-    
+
     /** @hide */
     public static final native long getFreeMemory();
-    
+
     /** @hide */
     public static final native long getTotalMemory();
-    
+
     /** @hide */
     public static final native void readProcLines(String path,
             String[] reqFields, long[] outSizes);
-    
+
     /** @hide */
     public static final native int[] getPids(String path, int[] lastArray);
-    
+
     /** @hide */
     public static final int PROC_TERM_MASK = 0xff;
     /** @hide */
@@ -1089,13 +1089,13 @@ public class Process {
     public static final int PROC_OUT_LONG = 0x2000;
     /** @hide */
     public static final int PROC_OUT_FLOAT = 0x4000;
-    
+
     /** @hide */
     public static final native boolean readProcFile(String file, int[] format,
             String[] outStrings, long[] outLongs, float[] outFloats);
-    
+
     /** @hide */
-    public static final native boolean parseProcLine(byte[] buffer, int startIndex, 
+    public static final native boolean parseProcLine(byte[] buffer, int startIndex,
             int endIndex, int[] format, String[] outStrings, long[] outLongs, float[] outFloats);
 
     /** @hide */
@@ -1103,10 +1103,10 @@ public class Process {
 
     /**
      * Gets the total Pss value for a given process, in bytes.
-     * 
+     *
      * @param pid the process to the Pss for
      * @return the total Pss value for the given process in bytes,
-     *  or -1 if the value cannot be determined 
+     *  or -1 if the value cannot be determined
      * @hide
      */
     public static final native long getPss(int pid);

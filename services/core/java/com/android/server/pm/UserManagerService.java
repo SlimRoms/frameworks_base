@@ -866,7 +866,7 @@ public class UserManagerService extends IUserManager.Stub {
         }
     }
 
-    private void writeRestrictionsLocked(XmlSerializer serializer, Bundle restrictions) 
+    private void writeRestrictionsLocked(XmlSerializer serializer, Bundle restrictions)
             throws IOException {
         serializer.startTag(null, TAG_RESTRICTIONS);
         writeBoolean(serializer, restrictions, UserManager.DISALLOW_CONFIG_WIFI);

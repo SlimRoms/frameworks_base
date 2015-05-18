@@ -37,7 +37,7 @@ public class DashPathEffect extends PathEffect {
         }
         native_instance = nativeCreate(intervals, phase);
     }
-    
+
     private static native long nativeCreate(float intervals[], float phase);
 }
 

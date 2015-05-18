@@ -174,7 +174,7 @@ public final class Call {
          */
         public static final int CAPABILITY_DISCONNECT_FROM_CONFERENCE = 0x00002000;
 
-        /** 
+        /**
          * @hide
          */
         public static final int CAPABILITY_CALL_TYPE_MODIFIABLE = 0x00020000;

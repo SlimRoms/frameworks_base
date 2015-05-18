@@ -105,7 +105,7 @@ public class UiScrollable extends UiCollection {
      * See {@link #getChildByDescription(UiSelector, String, boolean)}
      *
      * @param childPattern {@link UiSelector} for a child in a scollable layout element
-     * @param text Content-description to find in the children of 
+     * @param text Content-description to find in the children of
      * the <code>childPattern</code> match
      * @return {@link UiObject} representing the child element that matches the search conditions
      * @throws UiObjectNotFoundException
@@ -127,7 +127,7 @@ public class UiScrollable extends UiCollection {
      * subhierarchy containing the content-description).
      *
      * @param childPattern {@link UiSelector} for a child in a scollable layout element
-     * @param text Content-description to find in the children of 
+     * @param text Content-description to find in the children of
      * the <code>childPattern</code> match (may be a partial match)
      * @param allowScrollSearch set to true if scrolling is allowed
      * @return {@link UiObject} representing the child element that matches the search conditions
@@ -152,7 +152,7 @@ public class UiScrollable extends UiCollection {
      * scrolling and only on visible elements.
      *
      * @param childPattern {@link UiSelector} for a child in a scollable layout element
-     * @param instance int number representing the occurance of 
+     * @param instance int number representing the occurance of
      * a <code>childPattern</code> match
      * @return {@link UiObject} representing the child element that matches the search conditions
      * @since API Level 16
@@ -244,7 +244,7 @@ public class UiScrollable extends UiCollection {
     }
 
     /**
-     * Perform a scroll forward action to move through the scrollable layout 
+     * Perform a scroll forward action to move through the scrollable layout
      * element until a visible item that matches the selector is found.
      *
      * See {@link #scrollDescriptionIntoView(String)} and {@link #scrollTextIntoView(String)}.
@@ -283,8 +283,8 @@ public class UiScrollable extends UiCollection {
      * Use this method to make sure that the child item's edges are not offscreen.
      *
      * @param childObject {@link UiObject} representing the child element
-     * @return true if the child element is already fully visible, or 
-     * if the method scrolled successfully until the child became fully visible; 
+     * @return true if the child element is already fully visible, or
+     * if the method scrolled successfully until the child became fully visible;
      * otherwise, false if the attempt to scroll failed.
      * @throws UiObjectNotFoundException
      * @hide

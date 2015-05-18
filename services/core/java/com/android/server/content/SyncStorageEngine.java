@@ -118,7 +118,7 @@ public class SyncStorageEngine extends Handler {
 
     /** Enum value for a periodic sync. */
     public static final int SOURCE_PERIODIC = 4;
-    
+
     /** Enum value for a sync started for a service. */
     public static final int SOURCE_SERVICE = 5;
 
@@ -253,7 +253,7 @@ public class SyncStorageEngine extends Handler {
          * An Endpoint for a sync matches if it targets the same sync adapter for the same user.
          *
          * @param spec the Endpoint to match. If the spec has null fields, they indicate a wildcard
-         * and match any. 
+         * and match any.
          */
         public boolean matchesSpec(EndPoint spec) {
             if (userId != spec.userId
@@ -777,7 +777,7 @@ public class SyncStorageEngine extends Handler {
             if (info.target_provider
                     && (info.account == null || info.provider == null)) {
                 // Do more work for a provider sync if the provided info has specified all
-                // accounts/providers. 
+                // accounts/providers.
                 changed = setBackoffLocked(
                         info.account /* may be null */,
                         info.userId,

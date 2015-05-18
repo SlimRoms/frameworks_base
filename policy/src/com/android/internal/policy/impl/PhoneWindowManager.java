@@ -590,7 +590,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     // Custom hardware key rebinding
     private int mDeviceHardwareKeys;
     private boolean mDisableVibration;
- 
+
     // Tracks user-customisable behavior for certain key events
     private String mPressOnHomeBehavior          = ActionConstants.ACTION_NULL;
     private String mLongPressOnHomeBehavior      = ActionConstants.ACTION_NULL;
@@ -3004,7 +3004,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         } else if (keyCode == KeyEvent.KEYCODE_MENU) {
             // Hijack modified menu keys for debugging features
             final int chordBug = KeyEvent.META_SHIFT_ON;
- 
+
             // If we have released the menu key, and didn't do anything else
             // while it was pressed, then it is time to process the menu action!
             if (!down && mMenuPressed) {

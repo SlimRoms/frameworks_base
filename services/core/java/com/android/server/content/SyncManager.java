@@ -549,10 +549,10 @@ public class SyncManager {
 
     /**
      * Initiate a sync using the new anonymous service API.
-     * @param cname SyncService component bound to in order to perform the sync. 
+     * @param cname SyncService component bound to in order to perform the sync.
      * @param userId the id of the user whose accounts are to be synced. If userId is USER_ALL,
      *          then all users' accounts are considered.
-     * @param uid Linux uid of the application that is performing the sync. 
+     * @param uid Linux uid of the application that is performing the sync.
      * @param extras a Map of SyncAdapter-specific information to control
      *          syncs of a specific provider. Cannot be null.
      * @param beforeRunTimeMillis milliseconds before <code>runtimeMillis</code> that this sync may
@@ -1412,7 +1412,7 @@ public class SyncManager {
                     continue;
                 }
                 int row = table.getNumRows();
-                Pair<AuthorityInfo, SyncStatusInfo> syncAuthoritySyncStatus = 
+                Pair<AuthorityInfo, SyncStatusInfo> syncAuthoritySyncStatus =
                         mSyncStorageEngine.getCopyOfAuthorityWithSyncStatus(
                                 new SyncStorageEngine.EndPoint(
                                         account.account,

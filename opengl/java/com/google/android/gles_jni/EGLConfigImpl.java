@@ -24,7 +24,7 @@ public class EGLConfigImpl extends EGLConfig {
     EGLConfigImpl(long config) {
         mEGLConfig = config;
     }
-    
+
     long get() {
         return mEGLConfig;
     }

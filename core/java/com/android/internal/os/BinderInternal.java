@@ -33,7 +33,7 @@ import java.util.concurrent.TimeoutException;
 import java.lang.Object;
 /**
  * Private and debugging Binder APIs.
- * 
+ *
  * @see IBinder
  */
 public class BinderInternal {
@@ -78,14 +78,14 @@ public class BinderInternal {
      * not return until the current process is exiting.
      */
     public static final native void joinThreadPool();
-    
+
     /**
      * Return the system time (as reported by {@link SystemClock#uptimeMillis
      * SystemClock.uptimeMillis()}) that the last garbage collection occurred
      * in this process.  This is not for general application use, and the
      * meaning of "when a garbage collection occurred" will change as the
      * garbage collector evolves.
-     * 
+     *
      * @return Returns the time as per {@link SystemClock#uptimeMillis
      * SystemClock.uptimeMillis()} of the last garbage collection.
      */
@@ -99,21 +99,21 @@ public class BinderInternal {
      * other services.
      */
     public static final native IBinder getContextObject();
-    
+
     /**
      * Special for system process to not allow incoming calls to run at
      * background scheduling priority.
      * @hide
      */
     public static final native void disableBackgroundScheduling(boolean disable);
-    
+
     static native final void handleGc();
-    
+
     public static void forceGc(String reason) {
         EventLog.writeEvent(2741, reason);
         Runtime.getRuntime().gc();
     }
-    
+
     /**
      * TimerGc Callable : Wait for a certain time, and execute the BinderGc.
      * Set the postponed count to 0.

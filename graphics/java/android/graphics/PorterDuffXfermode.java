@@ -31,6 +31,6 @@ public class PorterDuffXfermode extends Xfermode {
         this.mode = mode;
         native_instance = nativeCreateXfermode(mode.nativeInt);
     }
-    
+
     private static native long nativeCreateXfermode(int mode);
 }

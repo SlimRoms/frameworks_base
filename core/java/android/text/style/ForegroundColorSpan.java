@@ -33,11 +33,11 @@ public class ForegroundColorSpan extends CharacterStyle
     public ForegroundColorSpan(Parcel src) {
         mColor = src.readInt();
     }
-    
+
     public int getSpanTypeId() {
         return TextUtils.FOREGROUND_COLOR_SPAN;
     }
-    
+
     public int describeContents() {
         return 0;
     }

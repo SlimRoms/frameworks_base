@@ -78,7 +78,7 @@ public class Binder implements IBinder {
     private long mObject;
     private IInterface mOwner;
     private String mDescriptor;
-    
+
     /**
      * Return the ID of the process that sent you the current transaction
      * that is being processed.  This pid can be used with higher-level
@@ -87,7 +87,7 @@ public class Binder implements IBinder {
      * then its own pid is returned.
      */
     public static final native int getCallingPid();
-    
+
     /**
      * Return the Linux uid assigned to the process that sent you the
      * current transaction that is being processed.  This uid can be used with
@@ -171,7 +171,7 @@ public class Binder implements IBinder {
      * it needs to.
      */
     public static final native void flushPendingCommands();
-    
+
     /**
      * Add the calling thread to the IPC thread pool.  This function does
      * not return until the current process is exiting.
@@ -201,7 +201,7 @@ public class Binder implements IBinder {
             }
         }
     }
-    
+
     /**
      * Convenience method for associating a specific interface with the Binder.
      * After calling, queryLocalInterface() will be implemented for you
@@ -212,7 +212,7 @@ public class Binder implements IBinder {
         mOwner = owner;
         mDescriptor = descriptor;
     }
-    
+
     /**
      * Default implementation returns an empty interface name.
      */
@@ -237,7 +237,7 @@ public class Binder implements IBinder {
     public boolean isBinderAlive() {
         return true;
     }
-    
+
     /**
      * Use information supplied to attachInterface() to return the
      * associated IInterface if it matches the requested
@@ -336,7 +336,7 @@ public class Binder implements IBinder {
             pw.flush();
         }
     }
-    
+
     /**
      * Like {@link #dump(FileDescriptor, String[])}, but ensures the target
      * executes asynchronously.
@@ -358,7 +358,7 @@ public class Binder implements IBinder {
 
     /**
      * Print the object's state into the given stream.
-     * 
+     *
      * @param fd The raw file descriptor that the dump is being sent to.
      * @param fout The file to which you should dump your state.  This will be
      * closed for you after you return.
@@ -383,7 +383,7 @@ public class Binder implements IBinder {
         }
         return r;
     }
-    
+
     /**
      * Local implementation is a no-op.
      */
@@ -396,7 +396,7 @@ public class Binder implements IBinder {
     public boolean unlinkToDeath(DeathRecipient recipient, int flags) {
         return true;
     }
-    
+
     protected void finalize() throws Throwable {
         try {
             destroy();
@@ -516,7 +516,7 @@ final class BinderProxy implements IBinder {
             reply.recycle();
         }
     }
-    
+
     public void dumpAsync(FileDescriptor fd, String[] args) throws RemoteException {
         Parcel data = Parcel.obtain();
         Parcel reply = Parcel.obtain();
@@ -533,7 +533,7 @@ final class BinderProxy implements IBinder {
     BinderProxy() {
         mSelf = new WeakReference(this);
     }
-    
+
     @Override
     protected void finalize() throws Throwable {
         try {
@@ -542,9 +542,9 @@ final class BinderProxy implements IBinder {
             super.finalize();
         }
     }
-    
+
     private native final void destroy();
-    
+
     private static final void sendDeathNotice(DeathRecipient recipient) {
         if (false) Log.v("JavaBinder", "sendDeathNotice to " + recipient);
         try {
@@ -555,7 +555,7 @@ final class BinderProxy implements IBinder {
                     exc);
         }
     }
-    
+
     final private WeakReference mSelf;
     private long mObject;
     private long mOrgue;

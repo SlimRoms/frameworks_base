@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2008 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -44,7 +44,7 @@ public class DialogTitle extends TextView {
     public DialogTitle(Context context) {
         super(context);
     }
-    
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -69,7 +69,7 @@ public class DialogTitle extends TextView {
                     }
                     a.recycle();
 
-                    super.onMeasure(widthMeasureSpec, heightMeasureSpec);      
+                    super.onMeasure(widthMeasureSpec, heightMeasureSpec);
                 }
             }
         }

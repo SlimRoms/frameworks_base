@@ -42,7 +42,7 @@ import org.apache.http.protocol.RequestContent;
 
 /**
  * Represents an HTTP request for a given host.
- * 
+ *
  * {@hide}
  */
 

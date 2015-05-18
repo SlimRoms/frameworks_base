@@ -24,7 +24,7 @@ import android.graphics.RectF;
 
 /**
  * Creates a rounded-corner rectangle. Optionally, an inset (rounded) rectangle
- * can be included (to make a sort of "O" shape). 
+ * can be included (to make a sort of "O" shape).
  * The rounded rectangle can be drawn to a Canvas with its own draw() method,
  * but more graphical control is available if you instead pass
  * the RoundRectShape to a {@link android.graphics.drawable.ShapeDrawable}.
@@ -33,28 +33,28 @@ public class RoundRectShape extends RectShape {
     private float[] mOuterRadii;
     private RectF   mInset;
     private float[] mInnerRadii;
-    
+
     private RectF mInnerRect;
     private Path  mPath;    // this is what we actually draw
-    
+
     /**
      * RoundRectShape constructor.
      * Specifies an outer (round)rect and an optional inner (round)rect.
      *
-     * @param outerRadii An array of 8 radius values, for the outer roundrect. 
-     *                   The first two floats are for the 
-     *                   top-left corner (remaining pairs correspond clockwise). 
-     *                   For no rounded corners on the outer rectangle, 
+     * @param outerRadii An array of 8 radius values, for the outer roundrect.
+     *                   The first two floats are for the
+     *                   top-left corner (remaining pairs correspond clockwise).
+     *                   For no rounded corners on the outer rectangle,
      *                   pass null.
-     * @param inset      A RectF that specifies the distance from the inner 
-     *                   rect to each side of the outer rect. 
+     * @param inset      A RectF that specifies the distance from the inner
+     *                   rect to each side of the outer rect.
      *                   For no inner, pass null.
      * @param innerRadii An array of 8 radius values, for the inner roundrect.
-     *                   The first two floats are for the 
-     *                   top-left corner (remaining pairs correspond clockwise). 
-     *                   For no rounded corners on the inner rectangle, 
+     *                   The first two floats are for the
+     *                   top-left corner (remaining pairs correspond clockwise).
+     *                   For no rounded corners on the inner rectangle,
      *                   pass null.
-     *                   If inset parameter is null, this parameter is ignored. 
+     *                   If inset parameter is null, this parameter is ignored.
      */
     public RoundRectShape(float[] outerRadii, RectF inset,
                           float[] innerRadii) {
@@ -67,13 +67,13 @@ public class RoundRectShape extends RectShape {
         mOuterRadii = outerRadii;
         mInset = inset;
         mInnerRadii = innerRadii;
-        
+
         if (inset != null) {
             mInnerRect = new RectF();
         }
         mPath = new Path();
     }
-    
+
     @Override
     public void draw(Canvas canvas, Paint paint) {
         canvas.drawPath(mPath, paint);

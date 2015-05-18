@@ -182,7 +182,7 @@ public final class MotionEvent extends InputEvent implements Parcelable {
      * Bit mask of the parts of the action code that are the action itself.
      */
     public static final int ACTION_MASK             = 0xff;
-    
+
     /**
      * Constant for {@link #getActionMasked}: A pressed gesture has started, the
      * motion contains the initial starting location.
@@ -193,14 +193,14 @@ public final class MotionEvent extends InputEvent implements Parcelable {
      * </p>
      */
     public static final int ACTION_DOWN             = 0;
-    
+
     /**
      * Constant for {@link #getActionMasked}: A pressed gesture has finished, the
      * motion contains the final release location as well as any intermediate
      * points since the last down or move event.
      */
     public static final int ACTION_UP               = 1;
-    
+
     /**
      * Constant for {@link #getActionMasked}: A change has happened during a
      * press gesture (between {@link #ACTION_DOWN} and {@link #ACTION_UP}).
@@ -208,14 +208,14 @@ public final class MotionEvent extends InputEvent implements Parcelable {
      * points since the last down or move event.
      */
     public static final int ACTION_MOVE             = 2;
-    
+
     /**
      * Constant for {@link #getActionMasked}: The current gesture has been aborted.
      * You will not receive any more points in it.  You should treat this as
      * an up event, but not perform any action that you normally would.
      */
     public static final int ACTION_CANCEL           = 3;
-    
+
     /**
      * Constant for {@link #getActionMasked}: A movement has happened outside of the
      * normal bounds of the UI element.  This does not provide a full gesture,
@@ -233,7 +233,7 @@ public final class MotionEvent extends InputEvent implements Parcelable {
      * </p>
      */
     public static final int ACTION_POINTER_DOWN     = 5;
-    
+
     /**
      * Constant for {@link #getActionMasked}: A non-primary pointer has gone up.
      * <p>
@@ -313,7 +313,7 @@ public final class MotionEvent extends InputEvent implements Parcelable {
      * @see #getActionIndex
      */
     public static final int ACTION_POINTER_INDEX_MASK  = 0xff00;
-    
+
     /**
      * Bit shift for the action bits holding the pointer index as
      * defined by {@link #ACTION_POINTER_INDEX_MASK}.
@@ -328,56 +328,56 @@ public final class MotionEvent extends InputEvent implements Parcelable {
      */
     @Deprecated
     public static final int ACTION_POINTER_1_DOWN   = ACTION_POINTER_DOWN | 0x0000;
-    
+
     /**
      * @deprecated Use {@link #ACTION_POINTER_INDEX_MASK} to retrieve the
      * data index associated with {@link #ACTION_POINTER_DOWN}.
      */
     @Deprecated
     public static final int ACTION_POINTER_2_DOWN   = ACTION_POINTER_DOWN | 0x0100;
-    
+
     /**
      * @deprecated Use {@link #ACTION_POINTER_INDEX_MASK} to retrieve the
      * data index associated with {@link #ACTION_POINTER_DOWN}.
      */
     @Deprecated
     public static final int ACTION_POINTER_3_DOWN   = ACTION_POINTER_DOWN | 0x0200;
-    
+
     /**
      * @deprecated Use {@link #ACTION_POINTER_INDEX_MASK} to retrieve the
      * data index associated with {@link #ACTION_POINTER_UP}.
      */
     @Deprecated
     public static final int ACTION_POINTER_1_UP     = ACTION_POINTER_UP | 0x0000;
-    
+
     /**
      * @deprecated Use {@link #ACTION_POINTER_INDEX_MASK} to retrieve the
      * data index associated with {@link #ACTION_POINTER_UP}.
      */
     @Deprecated
     public static final int ACTION_POINTER_2_UP     = ACTION_POINTER_UP | 0x0100;
-    
+
     /**
      * @deprecated Use {@link #ACTION_POINTER_INDEX_MASK} to retrieve the
      * data index associated with {@link #ACTION_POINTER_UP}.
      */
     @Deprecated
     public static final int ACTION_POINTER_3_UP     = ACTION_POINTER_UP | 0x0200;
-    
+
     /**
      * @deprecated Renamed to {@link #ACTION_POINTER_INDEX_MASK} to match
      * the actual data contained in these bits.
      */
     @Deprecated
     public static final int ACTION_POINTER_ID_MASK  = 0xff00;
-    
+
     /**
      * @deprecated Renamed to {@link #ACTION_POINTER_INDEX_SHIFT} to match
      * the actual data contained in these bits.
      */
     @Deprecated
     public static final int ACTION_POINTER_ID_SHIFT = 8;
-    
+
     /**
      * This flag indicates that the window that received this motion event is partly
      * or wholly obscured by another visible window above it.  This flag is set to true
@@ -1424,9 +1424,9 @@ public final class MotionEvent extends InputEvent implements Parcelable {
      * Create a new MotionEvent, filling in all of the basic values that
      * define the motion.
      *
-     * @param downTime The time (in ms) when the user originally pressed down to start 
+     * @param downTime The time (in ms) when the user originally pressed down to start
      * a stream of position events.  This must be obtained from {@link SystemClock#uptimeMillis()}.
-     * @param eventTime The the time (in ms) when this specific event was generated.  This 
+     * @param eventTime The the time (in ms) when this specific event was generated.  This
      * must be obtained from {@link SystemClock#uptimeMillis()}.
      * @param action The kind of action being performed, such as {@link #ACTION_DOWN}.
      * @param pointerCount The number of pointers that will be in this event.
@@ -1465,7 +1465,7 @@ public final class MotionEvent extends InputEvent implements Parcelable {
     /**
      * Create a new MotionEvent, filling in all of the basic values that
      * define the motion.
-     * 
+     *
      * @param downTime The time (in ms) when the user originally pressed down to start
      * a stream of position events.  This must be obtained from {@link SystemClock#uptimeMillis()}.
      * @param eventTime The the time (in ms) when this specific event was generated.  This
@@ -1593,7 +1593,7 @@ public final class MotionEvent extends InputEvent implements Parcelable {
      * numbers are arbitrary and you shouldn't depend on the values.
      * @param edgeFlags A bitfield indicating which edges, if any, were touched by this
      * MotionEvent.
-     * 
+     *
      * @deprecated Use {@link #obtain(long, long, int, float, float, float, float, int, float, float, int, int)}
      * instead.
      */
@@ -1885,7 +1885,7 @@ public final class MotionEvent extends InputEvent implements Parcelable {
     public final float getSize() {
         return nativeGetAxisValue(mNativePtr, AXIS_SIZE, 0, HISTORY_CURRENT);
     }
-    
+
     /**
      * {@link #getTouchMajor(int)} for the first pointer index (may be an
      * arbitrary pointer identifier).
@@ -1905,7 +1905,7 @@ public final class MotionEvent extends InputEvent implements Parcelable {
     public final float getTouchMinor() {
         return nativeGetAxisValue(mNativePtr, AXIS_TOUCH_MINOR, 0, HISTORY_CURRENT);
     }
-    
+
     /**
      * {@link #getToolMajor(int)} for the first pointer index (may be an
      * arbitrary pointer identifier).
@@ -1956,7 +1956,7 @@ public final class MotionEvent extends InputEvent implements Parcelable {
     public final int getPointerCount() {
         return nativeGetPointerCount(mNativePtr);
     }
-    
+
     /**
      * Return the pointer identifier associated with a particular pointer
      * data index is this event.  The identifier tells you the actual pointer
@@ -1989,7 +1989,7 @@ public final class MotionEvent extends InputEvent implements Parcelable {
 
     /**
      * Given a pointer identifier, find the index of its data in the event.
-     * 
+     *
      * @param pointerId The identifier of the pointer to be found.
      * @return Returns either the index of the pointer (for use with
      * {@link #getX(int)} et al.), or -1 if there is no data available for
@@ -2003,8 +2003,8 @@ public final class MotionEvent extends InputEvent implements Parcelable {
      * Returns the X coordinate of this event for the given pointer
      * <em>index</em> (use {@link #getPointerId(int)} to find the pointer
      * identifier for this index).
-     * Whole numbers are pixels; the 
-     * value may have a fraction for input devices that are sub-pixel precise. 
+     * Whole numbers are pixels; the
+     * value may have a fraction for input devices that are sub-pixel precise.
      * @param pointerIndex Raw index of pointer to retrieve.  Value may be from 0
      * (the first pointer that is down) to {@link #getPointerCount()}-1.
      *
@@ -2063,7 +2063,7 @@ public final class MotionEvent extends InputEvent implements Parcelable {
     public final float getSize(int pointerIndex) {
         return nativeGetAxisValue(mNativePtr, AXIS_SIZE, pointerIndex, HISTORY_CURRENT);
     }
-    
+
     /**
      * Returns the length of the major axis of an ellipse that describes the touch
      * area at the point of contact for the given pointer
@@ -2077,7 +2077,7 @@ public final class MotionEvent extends InputEvent implements Parcelable {
     public final float getTouchMajor(int pointerIndex) {
         return nativeGetAxisValue(mNativePtr, AXIS_TOUCH_MAJOR, pointerIndex, HISTORY_CURRENT);
     }
-    
+
     /**
      * Returns the length of the minor axis of an ellipse that describes the touch
      * area at the point of contact for the given pointer
@@ -2091,7 +2091,7 @@ public final class MotionEvent extends InputEvent implements Parcelable {
     public final float getTouchMinor(int pointerIndex) {
         return nativeGetAxisValue(mNativePtr, AXIS_TOUCH_MINOR, pointerIndex, HISTORY_CURRENT);
     }
-    
+
     /**
      * Returns the length of the major axis of an ellipse that describes the size of
      * the approaching tool for the given pointer
@@ -2107,7 +2107,7 @@ public final class MotionEvent extends InputEvent implements Parcelable {
     public final float getToolMajor(int pointerIndex) {
         return nativeGetAxisValue(mNativePtr, AXIS_TOOL_MAJOR, pointerIndex, HISTORY_CURRENT);
     }
-    
+
     /**
      * Returns the length of the minor axis of an ellipse that describes the size of
      * the approaching tool for the given pointer
@@ -2123,7 +2123,7 @@ public final class MotionEvent extends InputEvent implements Parcelable {
     public final float getToolMinor(int pointerIndex) {
         return nativeGetAxisValue(mNativePtr, AXIS_TOOL_MINOR, pointerIndex, HISTORY_CURRENT);
     }
-    
+
     /**
      * Returns the orientation of the touch area and tool area in radians clockwise from vertical
      * for the given pointer <em>index</em> (use {@link #getPointerId(int)} to find the pointer
@@ -2162,7 +2162,7 @@ public final class MotionEvent extends InputEvent implements Parcelable {
     /**
      * Populates a {@link PointerCoords} object with pointer coordinate data for
      * the specified pointer index.
-     * 
+     *
      * @param pointerIndex Raw index of pointer to retrieve.  Value may be from 0
      * (the first pointer that is down) to {@link #getPointerCount()}-1.
      * @param outPointerCoords The pointer coordinate object to populate.
@@ -2414,7 +2414,7 @@ public final class MotionEvent extends InputEvent implements Parcelable {
     public final float getHistoricalTouchMinor(int pos) {
         return nativeGetAxisValue(mNativePtr, AXIS_TOUCH_MINOR, 0, pos);
     }
-    
+
     /**
      * {@link #getHistoricalToolMajor(int, int)} for the first pointer index (may be an
      * arbitrary pointer identifier).
@@ -2444,7 +2444,7 @@ public final class MotionEvent extends InputEvent implements Parcelable {
     public final float getHistoricalToolMinor(int pos) {
         return nativeGetAxisValue(mNativePtr, AXIS_TOOL_MINOR, 0, pos);
     }
-    
+
     /**
      * {@link #getHistoricalOrientation(int, int)} for the first pointer index (may be an
      * arbitrary pointer identifier).
@@ -2522,7 +2522,7 @@ public final class MotionEvent extends InputEvent implements Parcelable {
      * (the first pointer that is down) to {@link #getPointerCount()}-1.
      * @param pos Which historical value to return; must be less than
      * {@link #getHistorySize}
-     * 
+     *
      * @see #getHistorySize
      * @see #getPressure(int)
      * @see #AXIS_PRESSURE
@@ -2540,7 +2540,7 @@ public final class MotionEvent extends InputEvent implements Parcelable {
      * (the first pointer that is down) to {@link #getPointerCount()}-1.
      * @param pos Which historical value to return; must be less than
      * {@link #getHistorySize}
-     * 
+     *
      * @see #getHistorySize
      * @see #getSize(int)
      * @see #AXIS_SIZE
@@ -2548,7 +2548,7 @@ public final class MotionEvent extends InputEvent implements Parcelable {
     public final float getHistoricalSize(int pointerIndex, int pos) {
         return nativeGetAxisValue(mNativePtr, AXIS_SIZE, pointerIndex, pos);
     }
-    
+
     /**
      * Returns a historical touch major axis coordinate, as per {@link #getTouchMajor(int)}, that
      * occurred between this event and the previous event for the given pointer.
@@ -2558,7 +2558,7 @@ public final class MotionEvent extends InputEvent implements Parcelable {
      * (the first pointer that is down) to {@link #getPointerCount()}-1.
      * @param pos Which historical value to return; must be less than
      * {@link #getHistorySize}
-     * 
+     *
      * @see #getHistorySize
      * @see #getTouchMajor(int)
      * @see #AXIS_TOUCH_MAJOR
@@ -2576,7 +2576,7 @@ public final class MotionEvent extends InputEvent implements Parcelable {
      * (the first pointer that is down) to {@link #getPointerCount()}-1.
      * @param pos Which historical value to return; must be less than
      * {@link #getHistorySize}
-     * 
+     *
      * @see #getHistorySize
      * @see #getTouchMinor(int)
      * @see #AXIS_TOUCH_MINOR
@@ -2594,7 +2594,7 @@ public final class MotionEvent extends InputEvent implements Parcelable {
      * (the first pointer that is down) to {@link #getPointerCount()}-1.
      * @param pos Which historical value to return; must be less than
      * {@link #getHistorySize}
-     * 
+     *
      * @see #getHistorySize
      * @see #getToolMajor(int)
      * @see #AXIS_TOOL_MAJOR
@@ -2612,7 +2612,7 @@ public final class MotionEvent extends InputEvent implements Parcelable {
      * (the first pointer that is down) to {@link #getPointerCount()}-1.
      * @param pos Which historical value to return; must be less than
      * {@link #getHistorySize}
-     * 
+     *
      * @see #getHistorySize
      * @see #getToolMinor(int)
      * @see #AXIS_TOOL_MINOR
@@ -2630,7 +2630,7 @@ public final class MotionEvent extends InputEvent implements Parcelable {
      * (the first pointer that is down) to {@link #getPointerCount()}-1.
      * @param pos Which historical value to return; must be less than
      * {@link #getHistorySize}
-     * 
+     *
      * @see #getHistorySize
      * @see #getOrientation(int)
      * @see #AXIS_ORIENTATION
@@ -2663,13 +2663,13 @@ public final class MotionEvent extends InputEvent implements Parcelable {
      * as per {@link #getPointerCoords}, that occurred between this event and the previous
      * event for the given pointer.
      * Only applies to ACTION_MOVE events.
-     * 
+     *
      * @param pointerIndex Raw index of pointer to retrieve.  Value may be from 0
      * (the first pointer that is down) to {@link #getPointerCount()}-1.
      * @param pos Which historical value to return; must be less than
      * {@link #getHistorySize}
      * @param outPointerCoords The pointer coordinate object to populate.
-     * 
+     *
      * @see #getHistorySize
      * @see #getPointerCoords
      * @see PointerCoords
@@ -2678,7 +2678,7 @@ public final class MotionEvent extends InputEvent implements Parcelable {
             PointerCoords outPointerCoords) {
         nativeGetPointerCoords(mNativePtr, pointerIndex, pos, outPointerCoords);
     }
-    
+
     /**
      * Returns a bitfield indicating which edges, if any, were touched by this
      * MotionEvent. For touch events, clients can use this to determine if the
@@ -2735,7 +2735,7 @@ public final class MotionEvent extends InputEvent implements Parcelable {
         float oldY = getY();
         offsetLocation(x - oldX, y - oldY);
     }
-    
+
     /**
      * Applies a transformation matrix to all of the points in the event.
      *
@@ -3212,11 +3212,11 @@ public final class MotionEvent extends InputEvent implements Parcelable {
 
     /**
      * Transfer object for pointer coordinates.
-     * 
+     *
      * Objects of this type can be used to specify the pointer coordinates when
      * creating new {@link MotionEvent} objects and to query pointer coordinates
      * in bulk.
-     * 
+     *
      * Refer to {@link InputDevice} for information about how different kinds of
      * input devices and sources represent pointer coordinates.
      */
@@ -3256,14 +3256,14 @@ public final class MotionEvent extends InputEvent implements Parcelable {
          * @see MotionEvent#AXIS_X
          */
         public float x;
-        
+
         /**
          * The Y component of the pointer movement.
          *
          * @see MotionEvent#AXIS_Y
          */
         public float y;
-        
+
         /**
          * A normalized value that describes the pressure applied to the device
          * by a finger or other tool.
@@ -3274,7 +3274,7 @@ public final class MotionEvent extends InputEvent implements Parcelable {
          * @see MotionEvent#AXIS_PRESSURE
          */
         public float pressure;
-        
+
         /**
          * A normalized value that describes the approximate size of the pointer touch area
          * in relation to the maximum detectable size of the device.
@@ -3287,7 +3287,7 @@ public final class MotionEvent extends InputEvent implements Parcelable {
          * @see MotionEvent#AXIS_SIZE
          */
         public float size;
-        
+
         /**
          * The length of the major axis of an ellipse that describes the touch area at
          * the point of contact.
@@ -3297,7 +3297,7 @@ public final class MotionEvent extends InputEvent implements Parcelable {
          * @see MotionEvent#AXIS_TOUCH_MAJOR
          */
         public float touchMajor;
-        
+
         /**
          * The length of the minor axis of an ellipse that describes the touch area at
          * the point of contact.
@@ -3307,7 +3307,7 @@ public final class MotionEvent extends InputEvent implements Parcelable {
          * @see MotionEvent#AXIS_TOUCH_MINOR
          */
         public float touchMinor;
-        
+
         /**
          * The length of the major axis of an ellipse that describes the size of
          * the approaching tool.
@@ -3319,7 +3319,7 @@ public final class MotionEvent extends InputEvent implements Parcelable {
          * @see MotionEvent#AXIS_TOOL_MAJOR
          */
         public float toolMajor;
-        
+
         /**
          * The length of the minor axis of an ellipse that describes the size of
          * the approaching tool.
@@ -3331,7 +3331,7 @@ public final class MotionEvent extends InputEvent implements Parcelable {
          * @see MotionEvent#AXIS_TOOL_MINOR
          */
         public float toolMinor;
-        
+
         /**
          * The orientation of the touch area and tool area in radians clockwise from vertical.
          * An angle of 0 radians indicates that the major axis of contact is oriented

@@ -60,7 +60,7 @@ public final class BatteryStatsService extends IBatteryStats.Stub
     static final String TAG = "BatteryStatsService";
 
     static IBatteryStats sService;
-    
+
     final BatteryStatsImpl mStats;
     Context mContext;
     private boolean mBluetoothPendingStats;
@@ -70,7 +70,7 @@ public final class BatteryStatsService extends IBatteryStats.Stub
     BatteryStatsService(File systemDir, Handler handler) {
         mStats = new BatteryStatsImpl(systemDir, handler);
     }
-    
+
     public void publish(Context context) {
         mContext = context;
         ServiceManager.addService(BatteryStats.SERVICE_NAME, asBinder());
@@ -97,7 +97,7 @@ public final class BatteryStatsService extends IBatteryStats.Stub
             mStats.shutdownLocked();
         }
     }
-    
+
     public static IBatteryStats getService() {
         if (sService != null) {
             return sService;
@@ -297,14 +297,14 @@ public final class BatteryStatsService extends IBatteryStats.Stub
             mStats.noteStartSensorLocked(uid, sensor);
         }
     }
-    
+
     public void noteStopSensor(int uid, int sensor) {
         enforceCallingPermission();
         synchronized (mStats) {
             mStats.noteStopSensorLocked(uid, sensor);
         }
     }
-    
+
     public void noteVibratorOn(int uid, long durationMillis) {
         enforceCallingPermission();
         synchronized (mStats) {
@@ -325,35 +325,35 @@ public final class BatteryStatsService extends IBatteryStats.Stub
             mStats.noteStartGpsLocked(uid);
         }
     }
-    
+
     public void noteStopGps(int uid) {
         enforceCallingPermission();
         synchronized (mStats) {
             mStats.noteStopGpsLocked(uid);
         }
     }
-        
+
     public void noteScreenState(int state) {
         enforceCallingPermission();
         synchronized (mStats) {
             mStats.noteScreenStateLocked(state);
         }
     }
-    
+
     public void noteScreenBrightness(int brightness) {
         enforceCallingPermission();
         synchronized (mStats) {
             mStats.noteScreenBrightnessLocked(brightness);
         }
     }
-    
+
     public void noteUserActivity(int uid, int event) {
         enforceCallingPermission();
         synchronized (mStats) {
             mStats.noteUserActivityLocked(uid, event);
         }
     }
-    
+
     public void noteInteractive(boolean interactive) {
         enforceCallingPermission();
         synchronized (mStats) {
@@ -381,21 +381,21 @@ public final class BatteryStatsService extends IBatteryStats.Stub
             mStats.notePhoneOnLocked();
         }
     }
-    
+
     public void notePhoneOff() {
         enforceCallingPermission();
         synchronized (mStats) {
             mStats.notePhoneOffLocked();
         }
     }
-    
+
     public void notePhoneSignalStrength(SignalStrength signalStrength) {
         enforceCallingPermission();
         synchronized (mStats) {
             mStats.notePhoneSignalStrengthLocked(signalStrength);
         }
     }
-    
+
     public void notePhoneDataConnectionState(int dataType, boolean hasData) {
         enforceCallingPermission();
         synchronized (mStats) {
@@ -417,7 +417,7 @@ public final class BatteryStatsService extends IBatteryStats.Stub
             mStats.noteWifiOnLocked();
         }
     }
-    
+
     public void noteWifiOff() {
         enforceCallingPermission();
         synchronized (mStats) {
@@ -565,7 +565,7 @@ public final class BatteryStatsService extends IBatteryStats.Stub
             mStats.noteBluetoothOffLocked();
         }
     }
-    
+
     public void noteBluetoothState(int bluetoothState) {
         enforceCallingPermission();
         synchronized (mStats) {
@@ -579,7 +579,7 @@ public final class BatteryStatsService extends IBatteryStats.Stub
             mStats.noteFullWifiLockAcquiredLocked(uid);
         }
     }
-    
+
     public void noteFullWifiLockReleased(int uid) {
         enforceCallingPermission();
         synchronized (mStats) {
@@ -690,13 +690,13 @@ public final class BatteryStatsService extends IBatteryStats.Stub
     public boolean isOnBattery() {
         return mStats.isOnBattery();
     }
-    
+
     public void setBatteryState(int status, int health, int plugType, int level,
             int temp, int volt) {
         enforceCallingPermission();
         mStats.setBatteryState(status, health, plugType, level, temp, volt);
     }
-    
+
     public long getAwakeTimeBattery() {
         mContext.enforceCallingOrSelfPermission(
                 android.Manifest.permission.BATTERY_STATS, null);

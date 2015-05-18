@@ -44,7 +44,7 @@ public class Registrant
     {
         internalNotifyRegistrant (null, null);
     }
-    
+
     public void
     notifyResult(Object result)
     {
@@ -77,9 +77,9 @@ public class Registrant
             Message msg = Message.obtain();
 
             msg.what = what;
-            
+
             msg.obj = new AsyncResult(userObj, result, exception);
-            
+
             h.sendMessage(msg);
         }
     }

@@ -570,7 +570,7 @@ public class LLand extends FrameLayout {
 
         if (DEBUG_DRAW) invalidate();
     }
-    
+
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         L("touch: %s", ev);

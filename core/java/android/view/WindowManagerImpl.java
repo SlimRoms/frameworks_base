@@ -30,11 +30,11 @@ import android.os.IBinder;
  * Additional window manager specific layout parameters are defined for
  * control over how windows are displayed.  It also implements the {@link WindowManager}
  * interface, allowing you to control the displays attached to the device.
- * 
+ *
  * <p>Applications will not normally use WindowManager directly, instead relying
  * on the higher-level facilities in {@link android.app.Activity} and
  * {@link android.app.Dialog}.
- * 
+ *
  * <p>Even for low-level window manager access, it is almost never correct to use
  * this class.  For example, {@link android.app.Activity#getWindowManager}
  * provides a window manager for adding windows that are associated with that

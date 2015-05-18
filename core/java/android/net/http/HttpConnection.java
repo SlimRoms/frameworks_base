@@ -27,7 +27,7 @@ import org.apache.http.params.HttpConnectionParams;
 
 /**
  * A requestConnection connecting to a normal (non secure) http server
- * 
+ *
  * {@hide}
  */
 class HttpConnection extends Connection {

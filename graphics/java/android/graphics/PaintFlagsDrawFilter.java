@@ -37,7 +37,7 @@ public class PaintFlagsDrawFilter extends DrawFilter {
         // are effectively a no-op
         mNativeInt = nativeConstructor(clearBits, setBits);
     }
-    
+
     private static native long nativeConstructor(int clearBits, int setBits);
 }
 

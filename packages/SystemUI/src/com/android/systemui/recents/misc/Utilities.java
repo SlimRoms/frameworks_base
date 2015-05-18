@@ -154,7 +154,7 @@ public class Utilities {
         bgG = (bgG < 0.03928f) ? bgG / 12.92f : (float) Math.pow((bgG + 0.055f) / 1.055f, 2.4f);
         bgB = (bgB < 0.03928f) ? bgB / 12.92f : (float) Math.pow((bgB + 0.055f) / 1.055f, 2.4f);
         float bgL = 0.2126f * bgR + 0.7152f * bgG + 0.0722f * bgB;
-        
+
         float fgR = Color.red(fg) / 255f;
         float fgG = Color.green(fg) / 255f;
         float fgB = Color.blue(fg) / 255f;

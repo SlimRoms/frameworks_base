@@ -24,7 +24,7 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 
 /**
- * 
+ *
  * Describes a style in a span.
  * Note that styles are cumulative -- if both bold and italic are set in
  * separate spans, or if the base style is bold and a span calls for italic,
@@ -36,9 +36,9 @@ public class StyleSpan extends MetricAffectingSpan implements ParcelableSpan {
     private final int mStyle;
 
     /**
-     * 
+     *
      * @param style An integer constant describing the style for this span. Examples
-     * include bold, italic, and normal. Values are constants defined 
+     * include bold, italic, and normal. Values are constants defined
      * in {@link android.graphics.Typeface}.
      */
     public StyleSpan(int style) {
@@ -48,11 +48,11 @@ public class StyleSpan extends MetricAffectingSpan implements ParcelableSpan {
     public StyleSpan(Parcel src) {
         mStyle = src.readInt();
     }
-    
+
     public int getSpanTypeId() {
         return TextUtils.STYLE_SPAN;
     }
-    
+
     public int describeContents() {
         return 0;
     }
@@ -62,7 +62,7 @@ public class StyleSpan extends MetricAffectingSpan implements ParcelableSpan {
     }
 
     /**
-     * Returns the style constant defined in {@link android.graphics.Typeface}. 
+     * Returns the style constant defined in {@link android.graphics.Typeface}.
      */
     public int getStyle() {
         return mStyle;

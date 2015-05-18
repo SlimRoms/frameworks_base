@@ -26,7 +26,7 @@ public class SumPathEffect extends PathEffect {
         native_instance = nativeCreate(first.native_instance,
                                        second.native_instance);
     }
-    
+
     private static native long nativeCreate(long first, long second);
 }
 

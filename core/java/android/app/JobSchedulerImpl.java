@@ -27,7 +27,7 @@ import java.util.List;
 
 /**
  * Concrete implementation of the JobScheduler interface
- * @hide 
+ * @hide
  */
 public class JobSchedulerImpl extends JobScheduler {
     IJobScheduler mBinder;

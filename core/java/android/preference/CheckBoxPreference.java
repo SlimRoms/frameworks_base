@@ -27,7 +27,7 @@ import android.widget.Checkable;
  * functionality.
  * <p>
  * This preference will store a boolean into the SharedPreferences.
- * 
+ *
  * @attr ref android.R.styleable#CheckBoxPreference_summaryOff
  * @attr ref android.R.styleable#CheckBoxPreference_summaryOn
  * @attr ref android.R.styleable#CheckBoxPreference_disableDependentsState

@@ -68,15 +68,15 @@ public class ActionBarContextView extends AbsActionBarView implements AnimatorLi
     private static final int ANIMATE_IDLE = 0;
     private static final int ANIMATE_IN = 1;
     private static final int ANIMATE_OUT = 2;
-    
+
     public ActionBarContextView(Context context) {
         this(context, null);
     }
-    
+
     public ActionBarContextView(Context context, AttributeSet attrs) {
         this(context, attrs, com.android.internal.R.attr.actionModeStyle);
     }
-    
+
     public ActionBarContextView(Context context, AttributeSet attrs, int defStyleAttr) {
         this(context, attrs, defStyleAttr, 0);
     }
@@ -345,7 +345,7 @@ public class ActionBarContextView extends AbsActionBarView implements AnimatorLi
             throw new IllegalStateException(getClass().getSimpleName() + " can only be used " +
                     "with android:layout_height=\"wrap_content\"");
         }
-        
+
         final int contentWidth = MeasureSpec.getSize(widthMeasureSpec);
 
         int maxHeight = mContentHeight > 0 ?
@@ -355,7 +355,7 @@ public class ActionBarContextView extends AbsActionBarView implements AnimatorLi
         int availableWidth = contentWidth - getPaddingLeft() - getPaddingRight();
         final int height = maxHeight - verticalPadding;
         final int childSpecHeight = MeasureSpec.makeMeasureSpec(height, MeasureSpec.AT_MOST);
-        
+
         if (mClose != null) {
             availableWidth = measureChildView(mClose, availableWidth, childSpecHeight, 0);
             MarginLayoutParams lp = (MarginLayoutParams) mClose.getLayoutParams();
@@ -471,7 +471,7 @@ public class ActionBarContextView extends AbsActionBarView implements AnimatorLi
         int x = isLayoutRtl ? r - l - getPaddingRight() : getPaddingLeft();
         final int y = getPaddingTop();
         final int contentHeight = b - t - getPaddingTop() - getPaddingBottom();
-        
+
         if (mClose != null && mClose.getVisibility() != GONE) {
             MarginLayoutParams lp = (MarginLayoutParams) mClose.getLayoutParams();
             final int startMargin = (isLayoutRtl ? lp.rightMargin : lp.leftMargin);
@@ -491,7 +491,7 @@ public class ActionBarContextView extends AbsActionBarView implements AnimatorLi
         if (mTitleLayout != null && mCustomView == null && mTitleLayout.getVisibility() != GONE) {
             x += positionChild(mTitleLayout, x, y, contentHeight, isLayoutRtl);
         }
-        
+
         if (mCustomView != null) {
             x += positionChild(mCustomView, x, y, contentHeight, isLayoutRtl);
         }

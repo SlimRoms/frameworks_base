@@ -57,7 +57,7 @@ import java.net.SocketException;
 /**
  * A alternate class for (@link DefaultHttpClientConnection).
  * It has better performance than DefaultHttpClientConnection
- * 
+ *
  * {@hide}
  */
 public class AndroidHttpClientConnection
@@ -308,7 +308,7 @@ public class AndroidHttpClientConnection
         // Create the status line from the status string
         StatusLine statusline = BasicLineParser.DEFAULT.parseStatusLine(
                 current, new ParserCursor(0, current.length()));
-        
+
         if (HttpLog.LOGV) HttpLog.v("read: " + statusline);
         int statusCode = statusline.getStatusCode();
 

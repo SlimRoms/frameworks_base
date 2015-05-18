@@ -49,7 +49,7 @@ import java.util.List;
 
 /**
  * Service that manages requests and callbacks for launchers that support
- * managed profiles. 
+ * managed profiles.
  */
 
 public class LauncherAppsService extends SystemService {

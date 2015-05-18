@@ -21,7 +21,7 @@ import java.io.OutputStream;
 
 /**
  * A Picture records drawing calls (via the canvas returned by beginRecording)
- * and can then play them back into Canvas (via {@link Picture#draw(Canvas)} or 
+ * and can then play them back into Canvas (via {@link Picture#draw(Canvas)} or
  * {@link Canvas#drawPicture(Picture)}).For most content (e.g. text, lines, rectangles),
  * drawing a sequence from a picture can be faster than the equivalent API
  * calls, since the picture performs its playback without incurring any

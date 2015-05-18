@@ -62,7 +62,7 @@ public class HandlerCaller {
             msg.recycle();
             return;
         }
-        
+
         mH.sendMessage(msg);
     }
 
@@ -73,15 +73,15 @@ public class HandlerCaller {
     public boolean hasMessages(int what) {
         return mH.hasMessages(what);
     }
-    
+
     public void removeMessages(int what) {
         mH.removeMessages(what);
     }
-    
+
     public void removeMessages(int what, Object obj) {
         mH.removeMessages(what, obj);
     }
-    
+
     public void sendMessage(Message msg) {
         mH.sendMessage(msg);
     }
@@ -109,38 +109,38 @@ public class HandlerCaller {
     public Message obtainMessage(int what) {
         return mH.obtainMessage(what);
     }
-    
+
     public Message obtainMessageBO(int what, boolean arg1, Object arg2) {
         return mH.obtainMessage(what, arg1 ? 1 : 0, 0, arg2);
     }
-    
+
     public Message obtainMessageBOO(int what, boolean arg1, Object arg2, Object arg3) {
         SomeArgs args = SomeArgs.obtain();
         args.arg1 = arg2;
         args.arg2 = arg3;
         return mH.obtainMessage(what, arg1 ? 1 : 0, 0, args);
     }
-    
+
     public Message obtainMessageO(int what, Object arg1) {
         return mH.obtainMessage(what, 0, 0, arg1);
     }
-    
+
     public Message obtainMessageI(int what, int arg1) {
         return mH.obtainMessage(what, arg1, 0);
     }
-    
+
     public Message obtainMessageII(int what, int arg1, int arg2) {
         return mH.obtainMessage(what, arg1, arg2);
     }
-    
+
     public Message obtainMessageIO(int what, int arg1, Object arg2) {
         return mH.obtainMessage(what, arg1, 0, arg2);
     }
-    
+
     public Message obtainMessageIIO(int what, int arg1, int arg2, Object arg3) {
         return mH.obtainMessage(what, arg1, arg2, arg3);
     }
-    
+
     public Message obtainMessageIIOO(int what, int arg1, int arg2,
             Object arg3, Object arg4) {
         SomeArgs args = SomeArgs.obtain();
@@ -148,14 +148,14 @@ public class HandlerCaller {
         args.arg2 = arg4;
         return mH.obtainMessage(what, arg1, arg2, args);
     }
-    
+
     public Message obtainMessageIOO(int what, int arg1, Object arg2, Object arg3) {
         SomeArgs args = SomeArgs.obtain();
         args.arg1 = arg2;
         args.arg2 = arg3;
         return mH.obtainMessage(what, arg1, 0, args);
     }
-    
+
     public Message obtainMessageIOOO(int what, int arg1, Object arg2, Object arg3, Object arg4) {
         SomeArgs args = SomeArgs.obtain();
         args.arg1 = arg2;
@@ -170,7 +170,7 @@ public class HandlerCaller {
         args.arg2 = arg2;
         return mH.obtainMessage(what, 0, 0, args);
     }
-    
+
     public Message obtainMessageOOO(int what, Object arg1, Object arg2, Object arg3) {
         SomeArgs args = SomeArgs.obtain();
         args.arg1 = arg1;
@@ -178,7 +178,7 @@ public class HandlerCaller {
         args.arg3 = arg3;
         return mH.obtainMessage(what, 0, 0, args);
     }
-    
+
     public Message obtainMessageOOOO(int what, Object arg1, Object arg2,
             Object arg3, Object arg4) {
         SomeArgs args = SomeArgs.obtain();
@@ -188,7 +188,7 @@ public class HandlerCaller {
         args.arg4 = arg4;
         return mH.obtainMessage(what, 0, 0, args);
     }
-    
+
     public Message obtainMessageOOOOO(int what, Object arg1, Object arg2,
             Object arg3, Object arg4, Object arg5) {
         SomeArgs args = SomeArgs.obtain();
@@ -209,7 +209,7 @@ public class HandlerCaller {
         args.argi4 = arg4;
         return mH.obtainMessage(what, 0, 0, args);
     }
-    
+
     public Message obtainMessageIIIIII(int what, int arg1, int arg2,
             int arg3, int arg4, int arg5, int arg6) {
         SomeArgs args = SomeArgs.obtain();
@@ -221,7 +221,7 @@ public class HandlerCaller {
         args.argi6 = arg6;
         return mH.obtainMessage(what, 0, 0, args);
     }
-    
+
     public Message obtainMessageIIIIO(int what, int arg1, int arg2,
             int arg3, int arg4, Object arg5) {
         SomeArgs args = SomeArgs.obtain();

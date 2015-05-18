@@ -60,14 +60,14 @@ public abstract class ApplicationThreadNative extends Binder
         if (in != null) {
             return in;
         }
-        
+
         return new ApplicationThreadProxy(obj);
     }
-    
+
     public ApplicationThreadNative() {
         attachInterface(this, descriptor);
     }
-    
+
     @Override
     public boolean onTransact(int code, Parcel data, Parcel reply, int flags)
             throws RemoteException {
@@ -93,7 +93,7 @@ public abstract class ApplicationThreadNative extends Binder
             scheduleStopActivity(b, show, configChanges);
             return true;
         }
-        
+
         case SCHEDULE_WINDOW_VISIBILITY_TRANSACTION:
         {
             data.enforceInterface(IApplicationThread.descriptor);
@@ -122,7 +122,7 @@ public abstract class ApplicationThreadNative extends Binder
             scheduleResumeActivity(b, procState, isForward, resumeArgs);
             return true;
         }
-        
+
         case SCHEDULE_SEND_RESULT_TRANSACTION:
         {
             data.enforceInterface(IApplicationThread.descriptor);
@@ -174,7 +174,7 @@ public abstract class ApplicationThreadNative extends Binder
             scheduleRelaunchActivity(b, ri, pi, configChanges, notResumed, config);
             return true;
         }
-        
+
         case SCHEDULE_NEW_INTENT_TRANSACTION:
         {
             data.enforceInterface(IApplicationThread.descriptor);
@@ -193,7 +193,7 @@ public abstract class ApplicationThreadNative extends Binder
             scheduleDestroyActivity(b, finishing, configChanges);
             return true;
         }
-        
+
         case SCHEDULE_RECEIVER_TRANSACTION:
         {
             data.enforceInterface(IApplicationThread.descriptor);
@@ -360,7 +360,7 @@ public abstract class ApplicationThreadNative extends Binder
             }
             return true;
         }
-        
+
         case DUMP_PROVIDER_TRANSACTION: {
             data.enforceInterface(IApplicationThread.descriptor);
             ParcelFileDescriptor fd = data.readFileDescriptor();
@@ -683,15 +683,15 @@ public abstract class ApplicationThreadNative extends Binder
 
 class ApplicationThreadProxy implements IApplicationThread {
     private final IBinder mRemote;
-    
+
     public ApplicationThreadProxy(IBinder remote) {
         mRemote = remote;
     }
-    
+
     public final IBinder asBinder() {
         return mRemote;
     }
-    
+
     public final void schedulePauseActivity(IBinder token, boolean finished,
             boolean userLeaving, int configChanges, boolean dontReport) throws RemoteException {
         Parcel data = Parcel.obtain();
@@ -843,7 +843,7 @@ class ApplicationThreadProxy implements IApplicationThread {
                 IBinder.FLAG_ONEWAY);
         data.recycle();
     }
-    
+
     public final void scheduleReceiver(Intent intent, ActivityInfo info,
             CompatibilityInfo compatInfo, int resultCode, String resultData,
             Bundle map, boolean sync, int sendingUser, int processState) throws RemoteException {
@@ -885,7 +885,7 @@ class ApplicationThreadProxy implements IApplicationThread {
                 IBinder.FLAG_ONEWAY);
         data.recycle();
     }
-    
+
     public final void scheduleCreateService(IBinder token, ServiceInfo info,
             CompatibilityInfo compatInfo, int processState) throws RemoteException {
         Parcel data = Parcel.obtain();
@@ -991,7 +991,7 @@ class ApplicationThreadProxy implements IApplicationThread {
                 IBinder.FLAG_ONEWAY);
         data.recycle();
     }
-    
+
     public final void scheduleExit() throws RemoteException {
         Parcel data = Parcel.obtain();
         data.writeInterfaceToken(IApplicationThread.descriptor);
@@ -1064,7 +1064,7 @@ class ApplicationThreadProxy implements IApplicationThread {
         mRemote.transact(DUMP_SERVICE_TRANSACTION, data, null, IBinder.FLAG_ONEWAY);
         data.recycle();
     }
-    
+
     public void dumpProvider(FileDescriptor fd, IBinder token, String[] args)
             throws RemoteException {
         Parcel data = Parcel.obtain();

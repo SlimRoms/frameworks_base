@@ -31,7 +31,7 @@ public class RectShape extends Shape {
     private RectF mRect = new RectF();
 
     public RectShape() {}
-    
+
     @Override
     public void draw(Canvas canvas, Paint paint) {
         canvas.drawRect(mRect, paint);

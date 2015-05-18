@@ -32,11 +32,11 @@ public class RelativeSizeSpan extends MetricAffectingSpan implements ParcelableS
     public RelativeSizeSpan(Parcel src) {
         mProportion = src.readFloat();
     }
-    
+
     public int getSpanTypeId() {
         return TextUtils.RELATIVE_SIZE_SPAN;
     }
-    
+
     public int describeContents() {
         return 0;
     }
