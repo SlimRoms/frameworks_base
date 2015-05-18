@@ -358,7 +358,7 @@ public final class BluetoothSocket implements Closeable {
         // read out port number
         try {
             synchronized(this) {
-                if (DBG) Log.d(TAG, "bindListen(), SocketState: " + mSocketState + ", mPfd: " +
+                if (DBG) Log.d(TAG, "bindListen(), SocketState: " + mSocketState + ", mPfd: "
                                 mPfd);
                 if(mSocketState != SocketState.INIT) return EBADFD;
                 if(mPfd == null) return -1;
@@ -518,7 +518,7 @@ public final class BluetoothSocket implements Closeable {
                  if(mSocketState == SocketState.CLOSED)
                     return;
                  mSocketState = SocketState.CLOSED;
-                 if (DBG) Log.d(TAG, "close() this: " + this + ", channel: " + mPort + ", mSocketIS: " + mSocketIS +
+                 if (DBG) Log.d(TAG, "close() this: " + this + ", channel: " + mPort + ", mSocketIS: " + mSocketIS
                         ", mSocketOS: " + mSocketOS + "mSocket: " + mSocket);
                  if(mSocket != null) {
                     if (DBG) Log.d(TAG, "Closing mSocket: " + mSocket);
@@ -573,7 +573,7 @@ public final class BluetoothSocket implements Closeable {
                  throw new IOException("read failed, socket might closed or timeout, read ret: " + ret);
             left -= ret;
             if(left != 0)
-                Log.w(TAG, "readAll() looping, read partial size: " + (b.length - left) +
+                Log.w(TAG, "readAll() looping, read partial size: " + (b.length - left)
                             ", expect size: " + b.length);
         }
         return b.length;

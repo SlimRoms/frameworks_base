@@ -397,7 +397,7 @@ public abstract class PreferenceFragment extends Fragment implements
         mList = (ListView)rawListView;
         if (mList == null) {
             throw new RuntimeException(
-                    "Your content must have a ListView whose id attribute is " +
+                    "Your content must have a ListView whose id attribute is "
                     "'android.R.id.list'");
         }
         mList.setOnKeyListener(mListOnKeyListener);

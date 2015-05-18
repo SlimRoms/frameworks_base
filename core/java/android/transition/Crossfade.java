@@ -180,7 +180,7 @@ public class Crossfade extends Transition {
         final BitmapDrawable startDrawable = (BitmapDrawable) startVals.get(PROPNAME_DRAWABLE);
         final BitmapDrawable endDrawable = (BitmapDrawable) endVals.get(PROPNAME_DRAWABLE);
         if (Transition.DBG) {
-            Log.d(LOG_TAG, "StartBitmap.sameAs(endBitmap) = " + startBitmap.sameAs(endBitmap) +
+            Log.d(LOG_TAG, "StartBitmap.sameAs(endBitmap) = " + startBitmap.sameAs(endBitmap)
                     " for start, end: " + startBitmap + ", " + endBitmap);
         }
         if (startDrawable != null && endDrawable != null && !startBitmap.sameAs(endBitmap)) {
@@ -216,7 +216,7 @@ public class Crossfade extends Transition {
                 anim1 = ObjectAnimator.ofFloat(view, View.ALPHA, 0, 1);
             }
             if (Transition.DBG) {
-                Log.d(LOG_TAG, "Crossfade: created anim " + anim + " for start, end values " +
+                Log.d(LOG_TAG, "Crossfade: created anim " + anim + " for start, end values "
                         startValues + ", " + endValues);
             }
             anim.addListener(new AnimatorListenerAdapter() {
@@ -237,7 +237,7 @@ public class Crossfade extends Transition {
             }
             if (mResizeBehavior == RESIZE_BEHAVIOR_SCALE && !startBounds.equals(endBounds)) {
                 if (Transition.DBG) {
-                    Log.d(LOG_TAG, "animating from startBounds to endBounds: " +
+                    Log.d(LOG_TAG, "animating from startBounds to endBounds: "
                             startBounds + ", " + endBounds);
                 }
                 Animator anim2 = ObjectAnimator.ofObject(startDrawable, "bounds",

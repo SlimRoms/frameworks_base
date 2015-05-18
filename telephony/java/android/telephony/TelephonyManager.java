@@ -1049,8 +1049,8 @@ public class TelephonyManager {
             }
         }
 
-        Rlog.d(TAG, "getLteOnCdmaMode=" + retVal + " curVal=" + curVal +
-                " product_type='" + productType +
+        Rlog.d(TAG, "getLteOnCdmaMode=" + retVal + " curVal=" + curVal
+                " product_type='" + productType
                 "' lteOnCdmaProductType='" + sLteOnCdmaProductType + "'");
         return retVal;
     }
@@ -2991,7 +2991,7 @@ public class TelephonyManager {
         }
 
         if (!SubscriptionManager.isValidPhoneId(phoneId)) {
-            Rlog.d(TAG, "setTelephonyProperty: invalid phoneId=" + phoneId +
+            Rlog.d(TAG, "setTelephonyProperty: invalid phoneId=" + phoneId
                     " property=" + property + " value: " + value + " prop=" + prop);
             return;
         }
@@ -3013,12 +3013,12 @@ public class TelephonyManager {
 
         if (property.length() > SystemProperties.PROP_NAME_MAX
                 || propVal.length() > SystemProperties.PROP_VALUE_MAX) {
-            Rlog.d(TAG, "setTelephonyProperty: property to long phoneId=" + phoneId +
+            Rlog.d(TAG, "setTelephonyProperty: property to long phoneId=" + phoneId
                     " property=" + property + " value: " + value + " propVal=" + propVal);
             return;
         }
 
-        Rlog.d(TAG, "setTelephonyProperty: success phoneId=" + phoneId +
+        Rlog.d(TAG, "setTelephonyProperty: success phoneId=" + phoneId
                 " property=" + property + " value: " + value + " propVal=" + propVal);
         SystemProperties.set(property, propVal);
     }
@@ -4006,7 +4006,7 @@ public class TelephonyManager {
      */
     public void setBasebandVersionForPhone(int phoneId, String version) {
         if (SubscriptionManager.isValidPhoneId(phoneId)) {
-            String prop = TelephonyProperties.PROPERTY_BASEBAND_VERSION +
+            String prop = TelephonyProperties.PROPERTY_BASEBAND_VERSION
                     ((phoneId == 0) ? "" : Integer.toString(phoneId));
             SystemProperties.set(prop, version);
         }

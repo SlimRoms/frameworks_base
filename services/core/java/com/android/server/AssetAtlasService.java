@@ -597,7 +597,7 @@ public class AssetAtlasService extends IAssetAtlas.Stub {
      * @see #checkBuildIdentifier(java.io.BufferedReader, String)
      */
     private String getBuildIdentifier(String versionName) {
-        return SystemProperties.get("ro.build.fingerprint", "") + '/' + versionName + '/' +
+        return SystemProperties.get("ro.build.fingerprint", "") + '/' + versionName + '/'
                 String.valueOf(getFrameworkResourcesFile().length());
     }
 
@@ -625,7 +625,7 @@ public class AssetAtlasService extends IAssetAtlas.Stub {
 
         @Override
         public String toString() {
-            return type.toString() + " (" + width + "x" + height + ") flags=0x" +
+            return type.toString() + " (" + width + "x" + height + ") flags=0x"
                     Integer.toHexString(flags) + " count=" + count;
         }
     }

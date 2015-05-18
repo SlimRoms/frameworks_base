@@ -139,7 +139,7 @@ class MemoryUsage implements Serializable {
     }
 
     int totalPages() {
-        return javaSharedPages + javaPrivatePages + nativeSharedPages +
+        return javaSharedPages + javaPrivatePages + nativeSharedPages
                 nativePrivatePages + otherSharedPages + otherPrivatePages;
     }
 

@@ -67,7 +67,7 @@ class ConnectionThread extends Thread {
      */
     public void run() {
         android.os.Process.setThreadPriority(
-                android.os.Process.THREAD_PRIORITY_DEFAULT +
+                android.os.Process.THREAD_PRIORITY_DEFAULT
                 android.os.Process.THREAD_PRIORITY_LESS_FAVORABLE);
 
         // these are used to get performance data. When it is not in the timing,
@@ -103,7 +103,7 @@ class ConnectionThread extends Thread {
                     }
                 }
             } else {
-                if (HttpLog.LOGV) HttpLog.v("ConnectionThread: new request " +
+                if (HttpLog.LOGV) HttpLog.v("ConnectionThread: new request "
                                             request.mHost + " " + request );
 
                 mConnection = mConnectionManager.getConnection(mContext,

@@ -1109,7 +1109,7 @@ final class DisplayPowerController implements AutomaticBrightnessController.Call
         pw.println("  mScreenBrightnessRangeMinimum=" + mScreenBrightnessRangeMinimum);
         pw.println("  mScreenBrightnessRangeMaximum=" + mScreenBrightnessRangeMaximum);
         pw.println("  mUseSoftwareAutoBrightnessConfig=" + mUseSoftwareAutoBrightnessConfig);
-        pw.println("  mAllowAutoBrightnessWhileDozingConfig=" +
+        pw.println("  mAllowAutoBrightnessWhileDozingConfig="
                 mAllowAutoBrightnessWhileDozingConfig);
         pw.println("  mColorFadeFadesConfig=" + mColorFadeFadesConfig);
 
@@ -1141,15 +1141,15 @@ final class DisplayPowerController implements AutomaticBrightnessController.Call
         pw.println("  mPendingScreenOnUnblocker=" + mPendingScreenOnUnblocker);
         pw.println("  mPendingScreenOff=" + mPendingScreenOff);
 
-        pw.println("  mScreenBrightnessRampAnimator.isAnimating()=" +
+        pw.println("  mScreenBrightnessRampAnimator.isAnimating()="
                 mScreenBrightnessRampAnimator.isAnimating());
 
         if (mColorFadeOnAnimator != null) {
-            pw.println("  mColorFadeOnAnimator.isStarted()=" +
+            pw.println("  mColorFadeOnAnimator.isStarted()="
                     mColorFadeOnAnimator.isStarted());
         }
         if (mColorFadeOffAnimator != null) {
-            pw.println("  mColorFadeOffAnimator.isStarted()=" +
+            pw.println("  mColorFadeOffAnimator.isStarted()="
                     mColorFadeOffAnimator.isStarted());
         }
 

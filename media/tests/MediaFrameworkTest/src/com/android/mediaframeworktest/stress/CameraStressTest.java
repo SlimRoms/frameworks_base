@@ -141,7 +141,7 @@ public class CameraStressTest extends ActivityInstrumentationTestCase2<MediaFram
             List<String> supportedSceneModes = params.getSupportedSceneModes();
             assertNotNull("No scene modes supported", supportedSceneModes);
 
-            mOutput.write("Total number of loops: " +
+            mOutput.write("Total number of loops: "
                     (NUMBER_OF_SCENE_MODE_LOOPS * supportedSceneModes.size()) + "\n");
             Log.v(TAG, "Start preview");
             mOutput.write("No of loop: ");

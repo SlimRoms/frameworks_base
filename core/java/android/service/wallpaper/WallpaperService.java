@@ -844,7 +844,7 @@ public abstract class WallpaperService extends Service {
                 } catch (RemoteException ex) {
                 }
                 if (DEBUG) Log.v(
-                    TAG, "Layout: x=" + mLayout.x + " y=" + mLayout.y +
+                    TAG, "Layout: x=" + mLayout.x + " y=" + mLayout.y
                     " w=" + mLayout.width + " h=" + mLayout.height);
             }
         }

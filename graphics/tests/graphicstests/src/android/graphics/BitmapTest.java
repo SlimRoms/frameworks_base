@@ -225,8 +225,8 @@ public class BitmapTest extends TestCase {
             
             if (false) {
                 int cc = Color.argb(a0, rr, gg, bb);
-                android.util.Log.d("skia", "original " + Integer.toHexString(c0) +
-                                " set+get " + Integer.toHexString(c1) +
+                android.util.Log.d("skia", "original " + Integer.toHexString(c0)
+                                " set+get " + Integer.toHexString(c1)
                                " local " + Integer.toHexString(cc));
             }
         }

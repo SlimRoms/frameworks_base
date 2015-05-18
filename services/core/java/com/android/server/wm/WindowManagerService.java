@@ -1066,7 +1066,7 @@ public class WindowManagerService extends IWindowManager.Stub
                     //that was created later or a window at the top of the list of
                     //windows associated with this token.
                     if (true || DEBUG_FOCUS_LIGHT || DEBUG_WINDOW_MOVEMENT || DEBUG_ADD_REMOVE) Slog.v(TAG,
-                            "not Base app: Adding window " + win + " at " + (newIdx + 1) + " of " +
+                            "not Base app: Adding window " + win + " at " + (newIdx + 1) + " of "
                             N);
                     windows.add(newIdx + 1, win);
                     if (newIdx < 0) {
@@ -1277,7 +1277,7 @@ public class WindowManagerService extends IWindowManager.Stub
     }
 
     private void addWindowToListInOrderLocked(final WindowState win, boolean addToToken) {
-        if (DEBUG_FOCUS_LIGHT) Slog.d(TAG, "addWindowToListInOrderLocked: win=" + win +
+        if (DEBUG_FOCUS_LIGHT) Slog.d(TAG, "addWindowToListInOrderLocked: win=" + win
                 " Callers=" + Debug.getCallers(4));
         if (win.mAttachedWindow == null) {
             final WindowToken token = win.mToken;
@@ -3996,7 +3996,7 @@ public class WindowManagerService extends IWindowManager.Stub
                 }
             }
         }
-        if (DEBUG_LAYERS) Slog.v(TAG, "Setting FocusedStackFrame to layer=" +
+        if (DEBUG_LAYERS) Slog.v(TAG, "Setting FocusedStackFrame to layer="
                 mFocusedStackLayer);
         mFocusedStackFrame.setLayer(mFocusedStackLayer);
     }
@@ -4590,9 +4590,9 @@ public class WindowManagerService extends IWindowManager.Stub
                 return;
             }
 
-            if (DEBUG_APP_TRANSITIONS || DEBUG_ORIENTATION) Slog.v(TAG, "setAppVisibility(" +
-                    token + ", visible=" + visible + "): " + mAppTransition +
-                    " hidden=" + wtoken.hidden + " hiddenRequested=" +
+            if (DEBUG_APP_TRANSITIONS || DEBUG_ORIENTATION) Slog.v(TAG, "setAppVisibility("
+                    token + ", visible=" + visible + "): " + mAppTransition
+                    " hidden=" + wtoken.hidden + " hiddenRequested="
                     wtoken.hiddenRequested, HIDE_STACK_CRAWLS ?
                             null : new RuntimeException("here").fillInStackTrace());
 
@@ -4651,7 +4651,7 @@ public class WindowManagerService extends IWindowManager.Stub
                     if (win != null) {
                         final AppWindowToken focusedToken = win.mAppToken;
                         if (focusedToken != null) {
-                            if (DEBUG_APP_TRANSITIONS) Slog.d(TAG, "TRANSIT_TASK_OPEN_BEHIND, " +
+                            if (DEBUG_APP_TRANSITIONS) Slog.d(TAG, "TRANSIT_TASK_OPEN_BEHIND, "
                                     " adding " + focusedToken + " to mOpeningApps");
                             // Force animation to be loaded.
                             focusedToken.hidden = true;
@@ -4878,7 +4878,7 @@ public class WindowManagerService extends IWindowManager.Stub
             return;
         }
         if (wtoken != null && wtoken.startingWindow != null) {
-            if (DEBUG_STARTING_WINDOW) Slog.v(TAG, Debug.getCallers(1) +
+            if (DEBUG_STARTING_WINDOW) Slog.v(TAG, Debug.getCallers(1)
                     ": Schedule remove starting " + wtoken + (wtoken != null ?
                     " startingWindow=" + wtoken.startingWindow : ""));
             Message m = mH.obtainMessage(H.REMOVE_STARTING, wtoken);
@@ -6245,8 +6245,8 @@ public class WindowManagerService extends IWindowManager.Stub
 
                 if (!screenshotReady) {
                     if (retryCount > MAX_SCREENSHOT_RETRIES) {
-                        Slog.i(TAG, "Screenshot max retries " + retryCount + " of " + appToken +
-                                " appWin=" + (appWin == null ? "null" : (appWin + " drawState=" +
+                        Slog.i(TAG, "Screenshot max retries " + retryCount + " of " + appToken
+                                " appWin=" + (appWin == null ? "null" : (appWin + " drawState="
                                 appWin.mWinAnimator.mDrawState)));
                         return null;
                     }
@@ -6345,9 +6345,9 @@ public class WindowManagerService extends IWindowManager.Stub
                 }
             }
             if (allBlack) {
-                Slog.i(TAG, "Screenshot " + appWin + " was monochrome(" +
-                        Integer.toHexString(firstColor) + ")! mSurfaceLayer=" +
-                        (appWin != null ? appWin.mWinAnimator.mSurfaceLayer : "null") +
+                Slog.i(TAG, "Screenshot " + appWin + " was monochrome("
+                        Integer.toHexString(firstColor) + ")! mSurfaceLayer="
+                        (appWin != null ? appWin.mWinAnimator.mSurfaceLayer : "null")
                         " minLayer=" + minLayer + " maxLayer=" + maxLayer);
             }
         }
@@ -7725,7 +7725,7 @@ public class WindowManagerService extends IWindowManager.Stub
                             return;
                         }
                         mLastFocus = newFocus;
-                        if (DEBUG_FOCUS_LIGHT) Slog.i(TAG, "Focus moving from " + lastFocus +
+                        if (DEBUG_FOCUS_LIGHT) Slog.i(TAG, "Focus moving from " + lastFocus
                                 " to " + newFocus);
                         if (newFocus != null && lastFocus != null
                                 && !newFocus.isDisplayedLw()) {
@@ -7765,7 +7765,7 @@ public class WindowManagerService extends IWindowManager.Stub
 
                     final int N = losers.size();
                     for (int i=0; i<N; i++) {
-                        if (DEBUG_FOCUS_LIGHT) Slog.i(TAG, "Losing delayed focus: " +
+                        if (DEBUG_FOCUS_LIGHT) Slog.i(TAG, "Losing delayed focus: "
                                 losers.get(i));
                         losers.get(i).reportFocusChangedSerialized(false, mInTouchMode);
                     }
@@ -8341,7 +8341,7 @@ public class WindowManagerService extends IWindowManager.Stub
         if (mContext.checkCallingOrSelfPermission(
                 android.Manifest.permission.WRITE_SECURE_SETTINGS) !=
                 PackageManager.PERMISSION_GRANTED) {
-            throw new SecurityException("Must hold permission " +
+            throw new SecurityException("Must hold permission "
                     android.Manifest.permission.WRITE_SECURE_SETTINGS);
         }
         if (displayId != Display.DEFAULT_DISPLAY) {
@@ -8432,7 +8432,7 @@ public class WindowManagerService extends IWindowManager.Stub
         if (mContext.checkCallingOrSelfPermission(
                 android.Manifest.permission.WRITE_SECURE_SETTINGS) !=
                 PackageManager.PERMISSION_GRANTED) {
-            throw new SecurityException("Must hold permission " +
+            throw new SecurityException("Must hold permission "
                     android.Manifest.permission.WRITE_SECURE_SETTINGS);
         }
         if (displayId != Display.DEFAULT_DISPLAY) {
@@ -8485,7 +8485,7 @@ public class WindowManagerService extends IWindowManager.Stub
         if (mContext.checkCallingOrSelfPermission(
                 android.Manifest.permission.WRITE_SECURE_SETTINGS) !=
                 PackageManager.PERMISSION_GRANTED) {
-            throw new SecurityException("Must hold permission " +
+            throw new SecurityException("Must hold permission "
                     android.Manifest.permission.WRITE_SECURE_SETTINGS);
         }
         if (displayId != Display.DEFAULT_DISPLAY) {
@@ -8521,7 +8521,7 @@ public class WindowManagerService extends IWindowManager.Stub
         if (mContext.checkCallingOrSelfPermission(
                 android.Manifest.permission.WRITE_SECURE_SETTINGS) !=
                 PackageManager.PERMISSION_GRANTED) {
-            throw new SecurityException("Must hold permission " +
+            throw new SecurityException("Must hold permission "
                     android.Manifest.permission.WRITE_SECURE_SETTINGS);
         }
         if (displayId != Display.DEFAULT_DISPLAY) {
@@ -8584,7 +8584,7 @@ public class WindowManagerService extends IWindowManager.Stub
         if (mContext.checkCallingOrSelfPermission(
                 android.Manifest.permission.WRITE_SECURE_SETTINGS) !=
                 PackageManager.PERMISSION_GRANTED) {
-            throw new SecurityException("Must hold permission " +
+            throw new SecurityException("Must hold permission "
                     android.Manifest.permission.WRITE_SECURE_SETTINGS);
         }
         final long ident = Binder.clearCallingIdentity();
@@ -8641,7 +8641,7 @@ public class WindowManagerService extends IWindowManager.Stub
         }
         if (session != null && win.mSession != session) {
             RuntimeException ex = new IllegalArgumentException(
-                    "Requested window " + client + " is in session " +
+                    "Requested window " + client + " is in session "
                     win.mSession + ", not " + session);
             if (throwOnError) {
                 throw ex;
@@ -8727,7 +8727,7 @@ public class WindowManagerService extends IWindowManager.Stub
 
         i -= lastBelow;
         if (i != numRemoved) {
-            Slog.w(TAG, "On display=" + displayContent.getDisplayId() + " Rebuild removed " +
+            Slog.w(TAG, "On display=" + displayContent.getDisplayId() + " Rebuild removed "
                     numRemoved + " windows but added " + i,
                     new RuntimeException("here").fillInStackTrace());
             for (i=0; i<numRemoved; i++) {
@@ -9153,7 +9153,7 @@ public class WindowManagerService extends IWindowManager.Stub
                                         WALLPAPER_DRAW_PENDING_TIMEOUT_DURATION);
                             }
                             if (DEBUG_APP_TRANSITIONS || DEBUG_WALLPAPER) Slog.v(TAG,
-                                    "Wallpaper should be visible but has not been drawn yet. " +
+                                    "Wallpaper should be visible but has not been drawn yet. "
                                     "mWallpaperDrawState=" + mWallpaperDrawState);
                             break;
                         }
@@ -10319,9 +10319,9 @@ public class WindowManagerService extends IWindowManager.Stub
         }
         for (int j = mWaitingForDrawn.size() - 1; j >= 0; j--) {
             WindowState win = mWaitingForDrawn.get(j);
-            if (DEBUG_SCREEN_ON) Slog.i(TAG, "Waiting for drawn " + win +
-                    ": removed=" + win.mRemoved + " visible=" + win.isVisibleLw() +
-                    " mHasSurface=" + win.mHasSurface +
+            if (DEBUG_SCREEN_ON) Slog.i(TAG, "Waiting for drawn " + win
+                    ": removed=" + win.mRemoved + " visible=" + win.isVisibleLw()
+                    " mHasSurface=" + win.mHasSurface
                     " drawState=" + win.mWinAnimator.mDrawState);
             if (win.mRemoved || !win.mHasSurface) {
                 // Window has been removed; no draw will now happen, so stop waiting.
@@ -10573,7 +10573,7 @@ public class WindowManagerService extends IWindowManager.Stub
                 newFocus = computeFocusedWindowLocked();
             }
 
-            if (DEBUG_FOCUS_LIGHT || localLOGV) Slog.v(TAG, "Changing focus from " +
+            if (DEBUG_FOCUS_LIGHT || localLOGV) Slog.v(TAG, "Changing focus from "
                     mCurrentFocus + " to " + newFocus + " Callers=" + Debug.getCallers(4));
             final WindowState oldFocus = mCurrentFocus;
             mCurrentFocus = newFocus;
@@ -10683,7 +10683,7 @@ public class WindowManagerService extends IWindowManager.Stub
                 }
             }
 
-            if (DEBUG_FOCUS_LIGHT) Slog.v(TAG, "findFocusedWindow: Found new focus @ " + i +
+            if (DEBUG_FOCUS_LIGHT) Slog.v(TAG, "findFocusedWindow: Found new focus @ " + i
                         " = " + win);
             return win;
         }
@@ -11628,7 +11628,7 @@ public class WindowManagerService extends IWindowManager.Stub
 
     void debugLayoutRepeats(final String msg, int pendingLayoutChanges) {
         if (mLayoutRepeatCount >= LAYOUT_REPEAT_THRESHOLD) {
-            Slog.v(TAG, "Layouts looping: " + msg + ", mPendingLayoutChanges = 0x" +
+            Slog.v(TAG, "Layouts looping: " + msg + ", mPendingLayoutChanges = 0x"
                     Integer.toHexString(pendingLayoutChanges));
         }
     }

@@ -2065,7 +2065,7 @@ public class NotificationManagerService extends SystemService {
             if (removedSummary != old) {
                 String removedKey =
                         removedSummary != null ? removedSummary.getKey() : "<null>";
-                Slog.w(TAG, "Removed summary didn't match old notification: old=" + old.getKey() +
+                Slog.w(TAG, "Removed summary didn't match old notification: old=" + old.getKey()
                         ", removed=" + removedKey);
             }
         }
@@ -2143,7 +2143,7 @@ public class NotificationManagerService extends SystemService {
         final boolean canInterrupt = aboveThreshold && !record.isIntercepted();
         if (DBG || record.isIntercepted())
             Slog.v(TAG,
-                    "pkg=" + pkg + " canInterrupt=" + canInterrupt +
+                    "pkg=" + pkg + " canInterrupt=" + canInterrupt
                             " intercept=" + record.isIntercepted()
             );
 

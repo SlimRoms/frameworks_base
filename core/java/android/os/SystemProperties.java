@@ -124,7 +124,7 @@ public class SystemProperties
             throw new IllegalArgumentException("key.length > " + PROP_NAME_MAX);
         }
         if (val != null && val.length() > PROP_VALUE_MAX) {
-            throw new IllegalArgumentException("val.length > " +
+            throw new IllegalArgumentException("val.length > "
                 PROP_VALUE_MAX);
         }
         native_set(key, val);

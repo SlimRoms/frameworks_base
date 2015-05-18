@@ -8580,7 +8580,7 @@ if (MORE_DEBUG) Slog.v(TAG, "   + got " + nRead + "; now wanting " + (size - soF
         // Schedule at an exact time for now, and also add a bit of "fuzz".
 
         Random random = new Random();
-        long when = System.currentTimeMillis() + delayBeforeFirstBackup +
+        long when = System.currentTimeMillis() + delayBeforeFirstBackup
                 random.nextInt(FUZZ_MILLIS);
         mAlarmManager.setRepeating(AlarmManager.RTC_WAKEUP, when,
                 BACKUP_INTERVAL + random.nextInt(FUZZ_MILLIS), mRunBackupIntent);

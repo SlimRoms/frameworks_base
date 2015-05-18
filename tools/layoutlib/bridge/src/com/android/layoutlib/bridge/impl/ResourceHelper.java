@@ -79,7 +79,7 @@ public final class ResourceHelper {
             // make sure it's not longer than 32bit
             if (value.length() > 8) {
                 throw new NumberFormatException(String.format(
-                        "Color value '%s' is too long. Format is either" +
+                        "Color value '%s' is too long. Format is either"
                         "#AARRGGBB, #RRGGBB, #RGB, or #ARGB",
                         value));
             }

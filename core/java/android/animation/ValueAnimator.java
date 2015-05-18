@@ -514,7 +514,7 @@ public class ValueAnimator extends Animator {
      */
     public ValueAnimator setDuration(long duration) {
         if (duration < 0) {
-            throw new IllegalArgumentException("Animators cannot have negative duration: " +
+            throw new IllegalArgumentException("Animators cannot have negative duration: "
                     duration);
         }
         mUnscaledDuration = duration;

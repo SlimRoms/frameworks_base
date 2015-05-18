@@ -433,7 +433,7 @@ public class Matrix4f {
         }
 
         // Dot product of 0th column of source and 0th row of result
-        float det = mMat[0]*result.mMat[0] + mMat[4]*result.mMat[1] +
+        float det = mMat[0]*result.mMat[0] + mMat[4]*result.mMat[1]
                      mMat[8]*result.mMat[2] + mMat[12]*result.mMat[3];
 
         if (Math.abs(det) < 1e-6) {
@@ -461,7 +461,7 @@ public class Matrix4f {
             }
         }
 
-        float det = mMat[0]*result.mMat[0] + mMat[4]*result.mMat[4] +
+        float det = mMat[0]*result.mMat[0] + mMat[4]*result.mMat[4]
                      mMat[8]*result.mMat[8] + mMat[12]*result.mMat[12];
 
         if (Math.abs(det) < 1e-6) {

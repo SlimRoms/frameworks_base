@@ -129,7 +129,7 @@ public class UsbEndpoint implements Parcelable {
 
     @Override
     public String toString() {
-        return "UsbEndpoint[mAddress=" + mAddress + ",mAttributes=" + mAttributes +
+        return "UsbEndpoint[mAddress=" + mAddress + ",mAttributes=" + mAttributes
                 ",mMaxPacketSize=" + mMaxPacketSize + ",mInterval=" + mInterval +"]";
     }
 

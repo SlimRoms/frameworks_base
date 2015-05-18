@@ -669,7 +669,7 @@ public class Gallery extends AbsSpinner implements GestureDetector.OnGestureList
         View sel = makeAndAddView(mSelectedPosition, 0, 0, true);
         
         // Put the selected child in the center
-        int selectedOffset = childrenLeft + (childrenWidth / 2) - (sel.getWidth() / 2) +
+        int selectedOffset = childrenLeft + (childrenWidth / 2) - (sel.getWidth() / 2)
                 mSelectedCenterOffset;
         sel.offsetLeftAndRight(selectedOffset);
 

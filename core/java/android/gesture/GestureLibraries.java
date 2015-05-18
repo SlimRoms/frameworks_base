@@ -132,7 +132,7 @@ public final class GestureLibraries {
                     mStore.load(in, true);
                     result = true;
                 } catch (IOException e) {
-                    Log.d(LOG_TAG, "Could not load the gesture library from raw resource " +
+                    Log.d(LOG_TAG, "Could not load the gesture library from raw resource "
                             context.getResources().getResourceName(mResourceId), e);
                 }
             }

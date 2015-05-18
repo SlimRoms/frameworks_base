@@ -481,7 +481,7 @@ class TextLine {
                   for (prevRunIndex = 0; prevRunIndex < runs.length; prevRunIndex += 2) {
                     prevRunStart = lineStart + runs[prevRunIndex];
                     if (pos >= prevRunStart) {
-                      prevRunLimit = prevRunStart +
+                      prevRunLimit = prevRunStart
                           (runs[prevRunIndex+1] & Layout.RUN_LENGTH_MASK);
                       if (prevRunLimit > lineEnd) {
                           prevRunLimit = lineEnd;
@@ -538,7 +538,7 @@ class TextLine {
           int otherRunIndex = runIndex + (advance ? 2 : -2);
           if (otherRunIndex >= 0 && otherRunIndex < runs.length) {
             int otherRunStart = lineStart + runs[otherRunIndex];
-            int otherRunLimit = otherRunStart +
+            int otherRunLimit = otherRunStart
             (runs[otherRunIndex+1] & Layout.RUN_LENGTH_MASK);
             if (otherRunLimit > lineEnd) {
                 otherRunLimit = lineEnd;

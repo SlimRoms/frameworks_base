@@ -105,44 +105,44 @@ public class AutoFixFilter extends Filter {
         700, 714 };
 
     private final String mAutoFixShader =
-            "precision mediump float;\n" +
-            "uniform sampler2D tex_sampler_0;\n" +
-            "uniform sampler2D tex_sampler_1;\n" +
-            "uniform sampler2D tex_sampler_2;\n" +
-            "uniform float scale;\n" +
-            "uniform float shift_scale;\n" +
-            "uniform float hist_offset;\n" +
-            "uniform float hist_scale;\n" +
-            "uniform float density_offset;\n" +
-            "uniform float density_scale;\n" +
-            "varying vec2 v_texcoord;\n" +
-            "void main() {\n" +
-            "  const vec3 weights = vec3(0.33333, 0.33333, 0.33333);\n" +
-            "  vec4 color = texture2D(tex_sampler_0, v_texcoord);\n" +
-            "  float energy = dot(color.rgb, weights);\n" +
-            "  float mask_value = energy - 0.5;\n" +
-            "  float alpha;\n" +
-            "  if (mask_value > 0.0) {\n" +
-            "    alpha = (pow(2.0 * mask_value, 1.5) - 1.0) * scale + 1.0;\n" +
-            "  } else { \n" +
-            "    alpha = (pow(2.0 * mask_value, 2.0) - 1.0) * scale + 1.0;\n" +
-            "  }\n" +
-            "  float index = energy * hist_scale + hist_offset;\n" +
-            "  vec4 temp = texture2D(tex_sampler_1, vec2(index, 0.5));\n" +
-            "  float value = temp.g + temp.r * shift_scale;\n" +
-            "  index = value * density_scale + density_offset;\n" +
-            "  temp = texture2D(tex_sampler_2, vec2(index, 0.5));\n" +
-            "  value = temp.g + temp.r * shift_scale;\n" +
-            "  float dst_energy = energy * alpha + value * (1.0 - alpha);\n" +
-            "  float max_energy = energy / max(color.r, max(color.g, color.b));\n" +
-            "  if (dst_energy > max_energy) {\n" +
-            "    dst_energy = max_energy;\n" +
-            "  }\n" +
-            "  if (energy == 0.0) {\n" +
-            "    gl_FragColor = color;\n" +
-            "  } else {\n" +
-            "    gl_FragColor = vec4(color.rgb * dst_energy / energy, color.a);\n" +
-            "  }\n" +
+            "precision mediump float;\n"
+            "uniform sampler2D tex_sampler_0;\n"
+            "uniform sampler2D tex_sampler_1;\n"
+            "uniform sampler2D tex_sampler_2;\n"
+            "uniform float scale;\n"
+            "uniform float shift_scale;\n"
+            "uniform float hist_offset;\n"
+            "uniform float hist_scale;\n"
+            "uniform float density_offset;\n"
+            "uniform float density_scale;\n"
+            "varying vec2 v_texcoord;\n"
+            "void main() {\n"
+            "  const vec3 weights = vec3(0.33333, 0.33333, 0.33333);\n"
+            "  vec4 color = texture2D(tex_sampler_0, v_texcoord);\n"
+            "  float energy = dot(color.rgb, weights);\n"
+            "  float mask_value = energy - 0.5;\n"
+            "  float alpha;\n"
+            "  if (mask_value > 0.0) {\n"
+            "    alpha = (pow(2.0 * mask_value, 1.5) - 1.0) * scale + 1.0;\n"
+            "  } else { \n"
+            "    alpha = (pow(2.0 * mask_value, 2.0) - 1.0) * scale + 1.0;\n"
+            "  }\n"
+            "  float index = energy * hist_scale + hist_offset;\n"
+            "  vec4 temp = texture2D(tex_sampler_1, vec2(index, 0.5));\n"
+            "  float value = temp.g + temp.r * shift_scale;\n"
+            "  index = value * density_scale + density_offset;\n"
+            "  temp = texture2D(tex_sampler_2, vec2(index, 0.5));\n"
+            "  value = temp.g + temp.r * shift_scale;\n"
+            "  float dst_energy = energy * alpha + value * (1.0 - alpha);\n"
+            "  float max_energy = energy / max(color.r, max(color.g, color.b));\n"
+            "  if (dst_energy > max_energy) {\n"
+            "    dst_energy = max_energy;\n"
+            "  }\n"
+            "  if (energy == 0.0) {\n"
+            "    gl_FragColor = color;\n"
+            "  } else {\n"
+            "    gl_FragColor = vec4(color.rgb * dst_energy / energy, color.a);\n"
+            "  }\n"
             "}\n";
 
     private Program mShaderProgram;
@@ -179,7 +179,7 @@ public class AutoFixFilter extends Filter {
                 break;
 
             default:
-                throw new RuntimeException("Filter Sharpen does not support frames of " +
+                throw new RuntimeException("Filter Sharpen does not support frames of "
                     "target " + target + "!");
         }
         mTarget = target;
@@ -279,7 +279,7 @@ public class AutoFixFilter extends Filter {
         for (int y = y_border_thickness; y < height - y_border_thickness; ++y) {
             for (int x = x_border_thickness; x < width - x_border_thickness; ++x) {
                 int index = y * width + x;
-                int energy = (data[index] & 0xFF) + ((data[index] >> 8) & 0xFF) +
+                int energy = (data[index] & 0xFF) + ((data[index] >> 8) & 0xFF)
                     ((data[index] >> 16) & 0xFF);
                 histArray[energy] ++;
             }

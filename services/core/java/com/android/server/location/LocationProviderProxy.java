@@ -116,7 +116,7 @@ public class LocationProviderProxy implements LocationProviderInterface {
                 // load properties from provider
                 properties = service.getProperties();
                 if (properties == null) {
-                    Log.e(TAG, mServiceWatcher.getBestPackageName() +
+                    Log.e(TAG, mServiceWatcher.getBestPackageName()
                             " has invalid locatino provider properties");
                 }
 

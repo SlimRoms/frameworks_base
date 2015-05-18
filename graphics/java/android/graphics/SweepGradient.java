@@ -97,7 +97,7 @@ public class SweepGradient extends Shader {
                 copy = new SweepGradient(mCx, mCy, mColor0, mColor1);
                 break;
             default:
-                throw new IllegalArgumentException("SweepGradient should be created with either " +
+                throw new IllegalArgumentException("SweepGradient should be created with either "
                         "colors and positions or start color and end color");
         }
         copyLocalMatrix(copy);

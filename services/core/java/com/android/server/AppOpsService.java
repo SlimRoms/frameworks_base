@@ -222,9 +222,9 @@ public class AppOpsService extends IAppOpsService.Stub {
 
         @Override
         public String toString() {
-            return "ClientState{" +
-                    "mAppToken=" + mAppToken +
-                    ", " + (mStartedOps != null ? ("pid=" + mPid) : "local") +
+            return "ClientState{"
+                    "mAppToken=" + mAppToken
+                    ", " + (mStartedOps != null ? ("pid=" + mPid) : "local")
                     '}';
         }
 

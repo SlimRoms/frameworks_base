@@ -203,10 +203,10 @@ public class NetworkControllerImpl extends BroadcastReceiver
 
     public interface SignalCluster {
         void setWifiIndicators(boolean visible, int strengthIcon, int inetCondition,
-		int activityIcon, String contentDescription);
+        int activityIcon, String contentDescription);
         void setMobileDataIndicators(boolean visible, int strengthIcon, int inetCondition,
-	        int activityIcon, int typeIcon, String contentDescription,
-		String typeContentDescription, boolean roaming,
+            int activityIcon, int typeIcon, String contentDescription,
+        String typeContentDescription, boolean roaming,
                 boolean isTypeIconWide, int noSimIcon);
         void setIsAirplaneMode(boolean is, int airplaneIcon);
     }
@@ -657,7 +657,7 @@ public class NetworkControllerImpl extends BroadcastReceiver
         @Override
         public void onSignalStrengthsChanged(SignalStrength signalStrength) {
             if (DEBUG) {
-                Log.d(TAG, "onSignalStrengthsChanged signalStrength=" + signalStrength +
+                Log.d(TAG, "onSignalStrengthsChanged signalStrength=" + signalStrength
                     ((signalStrength == null) ? "" : (" level=" + signalStrength.getLevel())));
             }
             mSignalStrength = signalStrength;

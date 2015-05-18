@@ -139,7 +139,7 @@ public class UiAutomatorTestRunner {
                 if (mode == Tracer.Mode.FILE || mode == Tracer.Mode.ALL) {
                     String filename = mParams.getString("traceLogFilename");
                     if (filename == null) {
-                        throw new RuntimeException("Name of log file not specified. " +
+                        throw new RuntimeException("Name of log file not specified. "
                                 "Please specify it using traceLogFilename parameter");
                     }
                     Tracer.getInstance().setOutputFilename(filename);

@@ -177,8 +177,8 @@ public class SimpleAdapter extends BaseAdapter implements Filterable {
                             // ifs since a lot of views are TextViews (e.g. CheckBoxes).
                             setViewText((TextView) v, text);
                         } else {
-                            throw new IllegalStateException(v.getClass().getName() +
-                                    " should be bound to a Boolean, not a " +
+                            throw new IllegalStateException(v.getClass().getName()
+                                    " should be bound to a Boolean, not a "
                                     (data == null ? "<unknown type>" : data.getClass()));
                         }
                     } else if (v instanceof TextView) {
@@ -192,7 +192,7 @@ public class SimpleAdapter extends BaseAdapter implements Filterable {
                             setViewImage((ImageView) v, text);
                         }
                     } else {
-                        throw new IllegalStateException(v.getClass().getName() + " is not a " +
+                        throw new IllegalStateException(v.getClass().getName() + " is not a "
                                 " view that can be bounds by this SimpleAdapter");
                     }
                 }

@@ -503,7 +503,7 @@ public class DownloadManager {
                 throw new IllegalStateException("Failed to get external storage files directory");
             } else if (file.exists()) {
                 if (!file.isDirectory()) {
-                    throw new IllegalStateException(file.getAbsolutePath() +
+                    throw new IllegalStateException(file.getAbsolutePath()
                             " already exists and is not a directory");
                 }
             } else {
@@ -537,7 +537,7 @@ public class DownloadManager {
                 throw new IllegalStateException("Failed to get external storage public directory");
             } else if (file.exists()) {
                 if (!file.isDirectory()) {
-                    throw new IllegalStateException(file.getAbsolutePath() +
+                    throw new IllegalStateException(file.getAbsolutePath()
                             " already exists and is not a directory");
                 }
             } else {

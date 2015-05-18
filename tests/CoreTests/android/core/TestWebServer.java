@@ -664,7 +664,7 @@ class TestWebServer implements HttpConstants {
                 } else {
                     if (nread > 0) {
                         /* we don't support this method */
-                        ps.print(HTTP_VERSION_STRING + " " + HTTP_BAD_METHOD +
+                        ps.print(HTTP_VERSION_STRING + " " + HTTP_BAD_METHOD
                                  " unsupported method type: ");
                         ps.write(buf, 0, 5);
                         ps.write(EOL);

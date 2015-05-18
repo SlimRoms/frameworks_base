@@ -228,7 +228,7 @@ public final class CursorToBulkCursorAdaptor extends BulkCursorNative
                 }
             } catch (IllegalStateException e) {
                 IllegalStateException leakProgram = new IllegalStateException(
-                        mProviderName + " Requery misuse db, mCursor isClosed:" +
+                        mProviderName + " Requery misuse db, mCursor isClosed:"
                         mCursor.isClosed(), e);
                 throw leakProgram;
             }

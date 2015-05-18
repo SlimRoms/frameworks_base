@@ -377,12 +377,12 @@ public class JobStore {
 
             if (jobStatus.hasDeadlineConstraint()) {
                 // Wall clock deadline.
-                final long deadlineWallclock =  System.currentTimeMillis() +
+                final long deadlineWallclock =  System.currentTimeMillis()
                         (jobStatus.getLatestRunTimeElapsed() - SystemClock.elapsedRealtime());
                 out.attribute(null, "deadline", Long.toString(deadlineWallclock));
             }
             if (jobStatus.hasTimingDelayConstraint()) {
-                final long delayWallclock = System.currentTimeMillis() +
+                final long delayWallclock = System.currentTimeMillis()
                         (jobStatus.getEarliestRunTime() - SystemClock.elapsedRealtime());
                 out.attribute(null, "delay", Long.toString(delayWallclock));
             }

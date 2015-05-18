@@ -323,7 +323,7 @@ public class LockSettingsStorageTests extends AndroidTestCase {
 
     private static void assertArrayEquals(byte[] expected, byte[] actual) {
         if (!Arrays.equals(expected, actual)) {
-            fail("expected:<" + Arrays.toString(expected) +
+            fail("expected:<" + Arrays.toString(expected)
                     "> but was:<" + Arrays.toString(actual) + ">");
         }
     }

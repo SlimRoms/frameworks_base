@@ -443,11 +443,11 @@ public final class LoadedApk {
             }
             warned = true;
             Thread.currentThread().setContextClassLoader(getParent());
-            Slog.w(ActivityThread.TAG, "ClassLoader." + methodName + ": " +
-                  "The class loader returned by " +
-                  "Thread.getContextClassLoader() may fail for processes " +
-                  "that host multiple applications. You should explicitly " +
-                  "specify a context class loader. For example: " +
+            Slog.w(ActivityThread.TAG, "ClassLoader." + methodName + ": "
+                  "The class loader returned by "
+                  "Thread.getContextClassLoader() may fail for processes "
+                  "that host multiple applications. You should explicitly "
+                  "specify a context class loader. For example: "
                   "Thread.setContextClassLoader(getClass().getClassLoader());");
         }
 
@@ -640,8 +640,8 @@ public final class LoadedApk {
                     LoadedApk.ReceiverDispatcher rd = rmap.valueAt(i);
                     IntentReceiverLeaked leak = new IntentReceiverLeaked(
                             what + " " + who + " has leaked IntentReceiver "
-                            + rd.getIntentReceiver() + " that was " +
-                            "originally registered here. Are you missing a " +
+                            + rd.getIntentReceiver() + " that was "
+                            "originally registered here. Are you missing a "
                             "call to unregisterReceiver()?");
                     leak.setStackTrace(rd.getLocation().getStackTrace());
                     Slog.e(ActivityThread.TAG, leak.getMessage(), leak);
@@ -906,14 +906,14 @@ public final class LoadedApk {
         void validate(Context context, Handler activityThread) {
             if (mContext != context) {
                 throw new IllegalStateException(
-                    "Receiver " + mReceiver +
-                    " registered with differing Context (was " +
+                    "Receiver " + mReceiver
+                    " registered with differing Context (was "
                     mContext + " now " + context + ")");
             }
             if (mActivityThread != activityThread) {
                 throw new IllegalStateException(
-                    "Receiver " + mReceiver +
-                    " registered with differing handler (was " +
+                    "Receiver " + mReceiver
+                    " registered with differing handler (was "
                     mActivityThread + " now " + activityThread + ")");
             }
         }
@@ -1081,14 +1081,14 @@ public final class LoadedApk {
         void validate(Context context, Handler activityThread) {
             if (mContext != context) {
                 throw new RuntimeException(
-                    "ServiceConnection " + mConnection +
-                    " registered with differing Context (was " +
+                    "ServiceConnection " + mConnection
+                    " registered with differing Context (was "
                     mContext + " now " + context + ")");
             }
             if (mActivityThread != activityThread) {
                 throw new RuntimeException(
-                    "ServiceConnection " + mConnection +
-                    " registered with differing handler (was " +
+                    "ServiceConnection " + mConnection
+                    " registered with differing handler (was "
                     mActivityThread + " now " + activityThread + ")");
             }
         }

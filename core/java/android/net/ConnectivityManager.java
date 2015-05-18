@@ -893,7 +893,7 @@ public class ConnectivityManager {
     public int startUsingNetworkFeature(int networkType, String feature) {
         NetworkCapabilities netCap = networkCapabilitiesForFeature(networkType, feature);
         if (netCap == null) {
-            Log.d(TAG, "Can't satisfy startUsingNetworkFeature for " + networkType + ", " +
+            Log.d(TAG, "Can't satisfy startUsingNetworkFeature for " + networkType + ", "
                     feature);
             return PhoneConstants.APN_REQUEST_FAILED;
         }
@@ -943,7 +943,7 @@ public class ConnectivityManager {
                 +" feature = " + feature + " subId = " + subId);
         NetworkCapabilities netCap = networkCapabilitiesForFeature(networkType, feature);
         if (netCap == null) {
-            Log.d(TAG, "Can't satisfy startUsingNetworkFeature for " + networkType + ", " +
+            Log.d(TAG, "Can't satisfy startUsingNetworkFeature for " + networkType + ", "
                     feature);
             return PhoneConstants.APN_REQUEST_FAILED;
         }
@@ -951,7 +951,7 @@ public class ConnectivityManager {
         NetworkRequest request = null;
         synchronized (sLegacyRequests) {
             if (LEGACY_DBG) {
-                Log.d(TAG, "Looking for legacyRequest for netCap with hash: " + netCap + " (" +
+                Log.d(TAG, "Looking for legacyRequest for netCap with hash: " + netCap + " ("
                         netCap.hashCode() + ")");
                 Log.d(TAG, "sLegacyRequests has:");
                 for (NetworkCapabilities nc : sLegacyRequests.keySet()) {
@@ -997,7 +997,7 @@ public class ConnectivityManager {
     public int stopUsingNetworkFeature(int networkType, String feature) {
         NetworkCapabilities netCap = networkCapabilitiesForFeature(networkType, feature);
         if (netCap == null) {
-            Log.d(TAG, "Can't satisfy stopUsingNetworkFeature for " + networkType + ", " +
+            Log.d(TAG, "Can't satisfy stopUsingNetworkFeature for " + networkType + ", "
                     feature);
             return -1;
         }
@@ -1029,7 +1029,7 @@ public class ConnectivityManager {
           + feature + " subId = " + subId);
         NetworkCapabilities netCap = networkCapabilitiesForFeature(networkType, feature);
         if (netCap == null) {
-            Log.d(TAG, "Can't satisfy stopUsingNetworkFeature for " + networkType + ", " +
+            Log.d(TAG, "Can't satisfy stopUsingNetworkFeature for " + networkType + ", "
                     feature);
             return -1;
         }

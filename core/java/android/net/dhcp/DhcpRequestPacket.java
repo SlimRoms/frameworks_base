@@ -78,7 +78,7 @@ class DhcpRequestPacket extends DhcpPacket {
     public void doNextOp(DhcpStateMachine machine) {
         InetAddress clientRequest =
             mRequestedIp == null ? mClientIp : mRequestedIp;
-        Log.v(TAG, "requested IP is " + mRequestedIp + " and client IP is " +
+        Log.v(TAG, "requested IP is " + mRequestedIp + " and client IP is "
             mClientIp);
         machine.onRequestReceived(mBroadcast, mTransId, mClientMac,
             clientRequest, mRequestedParams, mHostName);

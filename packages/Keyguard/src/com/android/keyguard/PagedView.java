@@ -845,7 +845,7 @@ public abstract class PagedView extends ViewGroup implements ViewGroup.OnHierarc
             return mChildRelativeOffsets[index];
         } else {
             final int padding = getPaddingLeft() + getPaddingRight();
-            final int offset = getPaddingLeft() +
+            final int offset = getPaddingLeft()
                     (getViewportWidth() - padding - getChildWidth(index)) / 2;
             if (mChildRelativeOffsets != null) {
                 mChildRelativeOffsets[index] = offset;

@@ -821,8 +821,8 @@ public final class ObjectAnimator extends ValueAnimator {
             Log.d(LOG_TAG, "Anim target, duration: " + getTarget() + ", " + getDuration());
             for (int i = 0; i < mValues.length; ++i) {
                 PropertyValuesHolder pvh = mValues[i];
-                Log.d(LOG_TAG, "   Values[" + i + "]: " +
-                    pvh.getPropertyName() + ", " + pvh.mKeyframes.getValue(0) + ", " +
+                Log.d(LOG_TAG, "   Values[" + i + "]: "
+                    pvh.getPropertyName() + ", " + pvh.mKeyframes.getValue(0) + ", "
                     pvh.mKeyframes.getValue(1));
             }
         }
@@ -966,7 +966,7 @@ public final class ObjectAnimator extends ValueAnimator {
     @Override
     @NonNull
     public String toString() {
-        String returnVal = "ObjectAnimator@" + Integer.toHexString(hashCode()) + ", target " +
+        String returnVal = "ObjectAnimator@" + Integer.toHexString(hashCode()) + ", target "
             getTarget();
         if (mValues != null) {
             for (int i = 0; i < mValues.length; ++i) {

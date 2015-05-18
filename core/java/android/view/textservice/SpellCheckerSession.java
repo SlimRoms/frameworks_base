@@ -478,7 +478,7 @@ public class SpellCheckerSession {
     protected void finalize() throws Throwable {
         super.finalize();
         if (mIsUsed) {
-            Log.e(TAG, "SpellCheckerSession was not finished properly." +
+            Log.e(TAG, "SpellCheckerSession was not finished properly."
                     "You should call finishShession() when you finished to use a spell checker.");
             close();
         }

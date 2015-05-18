@@ -1803,7 +1803,7 @@ public abstract class ContentProvider implements ComponentCallbacks2 {
      * </p>
      */
     public void shutdown() {
-        Log.w(TAG, "implement ContentProvider shutdown() to make sure all database " +
+        Log.w(TAG, "implement ContentProvider shutdown() to make sure all database "
                 "connections are gracefully shutdown");
     }
 

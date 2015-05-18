@@ -111,10 +111,10 @@ public class TestCaseCollector {
             testCase.setName(method);
             mTestCases.add(testCase);
         } catch (InstantiationException e) {
-            mTestCases.add(error(clazz, "InstantiationException: could not instantiate " +
+            mTestCases.add(error(clazz, "InstantiationException: could not instantiate "
                     "test class. Class: " + clazz.getName()));
         } catch (IllegalAccessException e) {
-            mTestCases.add(error(clazz, "IllegalAccessException: could not instantiate " +
+            mTestCases.add(error(clazz, "IllegalAccessException: could not instantiate "
                     "test class. Class: " + clazz.getName()));
         }
     }

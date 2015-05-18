@@ -658,14 +658,14 @@ final class Settings {
         final String legacyNativeLibraryPath = pkg.applicationInfo.nativeLibraryRootDir;
         // Update code path if needed
         if (!Objects.equals(codePath, p.codePathString)) {
-            Slog.w(PackageManagerService.TAG, "Code path for pkg : " + p.pkg.packageName +
+            Slog.w(PackageManagerService.TAG, "Code path for pkg : " + p.pkg.packageName
                     " changing from " + p.codePathString + " to " + codePath);
             p.codePath = new File(codePath);
             p.codePathString = codePath;
         }
         //Update resource path if needed
         if (!Objects.equals(resourcePath, p.resourcePathString)) {
-            Slog.w(PackageManagerService.TAG, "Resource path for pkg : " + p.pkg.packageName +
+            Slog.w(PackageManagerService.TAG, "Resource path for pkg : " + p.pkg.packageName
                     " changing from " + p.resourcePathString + " to " + resourcePath);
             p.resourcePath = new File(resourcePath);
             p.resourcePathString = resourcePath;
@@ -1024,7 +1024,7 @@ final class Settings {
                 CrossProfileIntentFilter cpif = new CrossProfileIntentFilter(parser);
                 editCrossProfileIntentResolverLPw(userId).addFilter(cpif);
             } else {
-                String msg = "Unknown element under " +  TAG_CROSS_PROFILE_INTENT_FILTERS + ": " +
+                String msg = "Unknown element under " +  TAG_CROSS_PROFILE_INTENT_FILTERS + ": "
                         parser.getName();
                 PackageManagerService.reportSettingsProblem(Log.WARN, msg);
                 XmlUtils.skipCurrentTag(parser);

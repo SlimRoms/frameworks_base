@@ -65,8 +65,8 @@ public class ExternalStorageFormatter extends Service
     StorageEventListener mStorageListener = new StorageEventListener() {
         @Override
         public void onStorageStateChanged(String path, String oldState, String newState) {
-            Log.i(TAG, "Received storage state changed notification that " +
-                    path + " changed state from " + oldState +
+            Log.i(TAG, "Received storage state changed notification that "
+                    path + " changed state from " + oldState
                     " to " + newState);
             updateProgressState();
         }

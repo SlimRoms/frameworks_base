@@ -118,14 +118,14 @@ public class WifiP2pDevice implements Parcelable {
      *  dev_capab=0x21 group_capab=0x9
      */
     private static final Pattern detailedDevicePattern = Pattern.compile(
-        "((?:[0-9a-f]{2}:){5}[0-9a-f]{2}) " +
-        "(\\d+ )?" +
-        "p2p_dev_addr=((?:[0-9a-f]{2}:){5}[0-9a-f]{2}) " +
-        "pri_dev_type=(\\d+-[0-9a-fA-F]+-\\d+) " +
-        "name='(.*)' " +
-        "config_methods=(0x[0-9a-fA-F]+) " +
-        "dev_capab=(0x[0-9a-fA-F]+) " +
-        "group_capab=(0x[0-9a-fA-F]+)" +
+        "((?:[0-9a-f]{2}:){5}[0-9a-f]{2}) "
+        "(\\d+ )?"
+        "p2p_dev_addr=((?:[0-9a-f]{2}:){5}[0-9a-f]{2}) "
+        "pri_dev_type=(\\d+-[0-9a-fA-F]+-\\d+) "
+        "name='(.*)' "
+        "config_methods=(0x[0-9a-fA-F]+) "
+        "dev_capab=(0x[0-9a-fA-F]+) "
+        "group_capab=(0x[0-9a-fA-F]+)"
         "( wfd_dev_info=0x([0-9a-fA-F]{12}))?"
     );
 

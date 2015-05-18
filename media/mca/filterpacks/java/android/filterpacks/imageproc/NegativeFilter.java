@@ -35,12 +35,12 @@ public class NegativeFilter extends Filter {
     private int mTarget = FrameFormat.TARGET_UNSPECIFIED;
 
     private final String mNegativeShader =
-            "precision mediump float;\n" +
-            "uniform sampler2D tex_sampler_0;\n" +
-            "varying vec2 v_texcoord;\n" +
-            "void main() {\n" +
-            "  vec4 color = texture2D(tex_sampler_0, v_texcoord);\n" +
-            "  gl_FragColor = vec4(1.0 - color.rgb, color.a);\n" +
+            "precision mediump float;\n"
+            "uniform sampler2D tex_sampler_0;\n"
+            "varying vec2 v_texcoord;\n"
+            "void main() {\n"
+            "  vec4 color = texture2D(tex_sampler_0, v_texcoord);\n"
+            "  gl_FragColor = vec4(1.0 - color.rgb, color.a);\n"
             "}\n";
 
     public NegativeFilter(String name) {
@@ -67,7 +67,7 @@ public class NegativeFilter extends Filter {
                 break;
 
             default:
-                throw new RuntimeException("Filter Sharpen does not support frames of " +
+                throw new RuntimeException("Filter Sharpen does not support frames of "
                     "target " + target + "!");
         }
         mTarget = target;

@@ -66,12 +66,12 @@ public class ImsSuppServiceNotification implements Parcelable {
 
     @Override
     public String toString() {
-        return "{ notificationType=" + notificationType +
-                ", code=" + code +
-                ", index=" + index +
-                ", type=" + type +
-                ", number=" + number +
-                ", history=" + Arrays.toString(history) +
+        return "{ notificationType=" + notificationType
+                ", code=" + code
+                ", index=" + index
+                ", type=" + type
+                ", number=" + number
+                ", history=" + Arrays.toString(history)
                 " }";
     }
 

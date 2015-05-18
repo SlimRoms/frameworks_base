@@ -404,7 +404,7 @@ public class TransitionManager {
     public static void beginDelayedTransition(final ViewGroup sceneRoot, Transition transition) {
         if (!sPendingTransitions.contains(sceneRoot) && sceneRoot.isLaidOut()) {
             if (Transition.DBG) {
-                Log.d(LOG_TAG, "beginDelayedTransition: root, transition = " +
+                Log.d(LOG_TAG, "beginDelayedTransition: root, transition = "
                         sceneRoot + ", " + transition);
             }
             sPendingTransitions.add(sceneRoot);

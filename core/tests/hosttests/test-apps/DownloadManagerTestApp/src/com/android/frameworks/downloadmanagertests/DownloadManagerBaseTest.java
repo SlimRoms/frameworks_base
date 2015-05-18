@@ -331,7 +331,7 @@ public class DownloadManagerBaseTest extends InstrumentationTestCase {
         Settings.Global.putInt(mContext.getContentResolver(), Settings.Global.AIRPLANE_MODE_ON,
                 state);
 
-        String timeoutMessage = "Timed out waiting for airplane mode to be " +
+        String timeoutMessage = "Timed out waiting for airplane mode to be "
                 (enable ? "enabled!" : "disabled!");
 
         // wait for airplane mode to change state

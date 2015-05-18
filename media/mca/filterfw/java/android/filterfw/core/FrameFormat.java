@@ -114,8 +114,8 @@ public class FrameFormat {
         if (mMetaData != null && mMetaData.containsKey(key)) {
             if (!expectedClass.isAssignableFrom(mMetaData.get(key).getClass())) {
                 throw new RuntimeException(
-                    "FrameFormat meta-key '" + key + "' is of type " +
-                    mMetaData.get(key).getClass() + " but expected to be of type " +
+                    "FrameFormat meta-key '" + key + "' is of type "
+                    mMetaData.get(key).getClass() + " but expected to be of type "
                     expectedClass + "!");
             }
             return true;

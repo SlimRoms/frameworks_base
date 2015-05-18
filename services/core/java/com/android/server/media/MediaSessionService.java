@@ -381,7 +381,7 @@ public class MediaSessionService extends SystemService implements Monitor {
                     if (component != null) {
                         if (compName.equals(component)) {
                             if (DEBUG) {
-                                Log.d(TAG, "ok to get sessions: " + component +
+                                Log.d(TAG, "ok to get sessions: " + component
                                         " is authorized notification listener");
                             }
                             return true;
@@ -390,7 +390,7 @@ public class MediaSessionService extends SystemService implements Monitor {
                 }
             }
             if (DEBUG) {
-                Log.d(TAG, "not ok to get sessions, " + compName +
+                Log.d(TAG, "not ok to get sessions, " + compName
                         " is not in list of ENABLED_NOTIFICATION_LISTENERS for user " + userId);
             }
         }

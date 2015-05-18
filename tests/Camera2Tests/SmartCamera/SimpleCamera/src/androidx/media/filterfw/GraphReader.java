@@ -300,8 +300,8 @@ public class GraphReader {
                         sourcePortName   = sourceParts[1];
                     } else {
                         throw new RuntimeException(
-                            "'source' tag needs to have format \"filter:port\"! " +
-                            "Alternatively, you may use the form " +
+                            "'source' tag needs to have format \"filter:port\"! "
+                            "Alternatively, you may use the form "
                             "'sourceFilter=\"filter\" sourcePort=\"port\"'.");
                     }
                 } else {
@@ -317,8 +317,8 @@ public class GraphReader {
                         targetPortName   = targetParts[1];
                     } else {
                         throw new RuntimeException(
-                            "'target' tag needs to have format \"filter:port\"! " +
-                            "Alternatively, you may use the form " +
+                            "'target' tag needs to have format \"filter:port\"! "
+                            "Alternatively, you may use the form "
                             "'targetFilter=\"filter\" targetPort=\"port\"'.");
                     }
                 } else {

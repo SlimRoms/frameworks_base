@@ -266,8 +266,8 @@ public static final int EGL_CORE_NATIVE_ENGINE             = 0x305B;
                     win, attrib_list, offset);
         } else {
             throw new java.lang.UnsupportedOperationException(
-                "eglCreateWindowSurface() can only be called with an instance of " +
-                "Surface, SurfaceView, SurfaceTexture or SurfaceHolder at the moment, " +
+                "eglCreateWindowSurface() can only be called with an instance of "
+                "Surface, SurfaceView, SurfaceTexture or SurfaceHolder at the moment, "
                 "this will be fixed later.");
         }
 

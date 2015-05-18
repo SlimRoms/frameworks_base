@@ -237,7 +237,7 @@ public class TestGrouping {
                 }
             }
             Log.i(LOG_TAG, String.format(
-                    "TestCase class %s is missing a public constructor with no parameters " +
+                    "TestCase class %s is missing a public constructor with no parameters "
                     "or a single String parameter - skipping",
                     aClass.getName()));
             return false;

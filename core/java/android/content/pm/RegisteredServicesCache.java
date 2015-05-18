@@ -439,10 +439,10 @@ public abstract class RegisteredServicesCache<V> {
             }
             if (DEBUG) {
                 if (changes.length() > 0) {
-                    Log.d(TAG, "generateServicesMap(" + mInterfaceName + "): " +
+                    Log.d(TAG, "generateServicesMap(" + mInterfaceName + "): "
                             serviceInfos.size() + " services:\n" + changes);
                 } else {
-                    Log.d(TAG, "generateServicesMap(" + mInterfaceName + "): " +
+                    Log.d(TAG, "generateServicesMap(" + mInterfaceName + "): "
                             serviceInfos.size() + " services unchanged");
                 }
             }

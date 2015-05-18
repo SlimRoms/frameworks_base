@@ -1080,7 +1080,7 @@ public class XmlUtils {
                 } else if (parser.getName().equals("item")) {
                     i++;
                 } else {
-                    throw new XmlPullParserException("Expected " + endTag + " end tag at: " +
+                    throw new XmlPullParserException("Expected " + endTag + " end tag at: "
                             parser.getName());
                 }
             }
@@ -1140,7 +1140,7 @@ public class XmlUtils {
                 } else if (parser.getName().equals("item")) {
                     i++;
                 } else {
-                    throw new XmlPullParserException("Expected " + endTag + " end tag at: " +
+                    throw new XmlPullParserException("Expected " + endTag + " end tag at: "
                             parser.getName());
                 }
             }
@@ -1200,7 +1200,7 @@ public class XmlUtils {
                 } else if (parser.getName().equals("item")) {
                     i++;
                 } else {
-                    throw new XmlPullParserException("Expected " + endTag + " end tag at: " +
+                    throw new XmlPullParserException("Expected " + endTag + " end tag at: "
                             parser.getName());
                 }
             }
@@ -1260,7 +1260,7 @@ public class XmlUtils {
                 } else if (parser.getName().equals("item")) {
                     i++;
                 } else {
-                    throw new XmlPullParserException("Expected " + endTag + " end tag at: " +
+                    throw new XmlPullParserException("Expected " + endTag + " end tag at: "
                             parser.getName());
                 }
             }
@@ -1453,7 +1453,7 @@ public class XmlUtils {
         }
 
         if (!parser.getName().equals(firstElementName)) {
-            throw new XmlPullParserException("Unexpected start tag: found " + parser.getName() +
+            throw new XmlPullParserException("Unexpected start tag: found " + parser.getName()
                     ", expected " + firstElementName);
         }
     }

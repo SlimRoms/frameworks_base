@@ -869,7 +869,7 @@ public class SyncManager {
      */
     private void postSyncExpiryMessage(ActiveSyncContext activeSyncContext) {
         if (Log.isLoggable(TAG, Log.VERBOSE)) {
-            Log.v(TAG, "posting MESSAGE_SYNC_EXPIRED in " +
+            Log.v(TAG, "posting MESSAGE_SYNC_EXPIRED in "
                     (ACTIVE_SYNC_TIMEOUT_MILLIS/1000) + "s");
         }
         Message msg = mSyncHandler.obtainMessage();
@@ -2334,7 +2334,7 @@ public class SyncManager {
             }
 
             // convert absolute time to elapsed time
-            return SystemClock.elapsedRealtime() +
+            return SystemClock.elapsedRealtime()
                 ((earliestFuturePollTime < nowAbsolute) ?
                     0 : (earliestFuturePollTime - nowAbsolute));
         }
@@ -3263,7 +3263,7 @@ public class SyncManager {
 
         void set(int row, int col, Object... values) {
             if (col + values.length > mCols) {
-                throw new IndexOutOfBoundsException("Table only has " + mCols +
+                throw new IndexOutOfBoundsException("Table only has " + mCols
                         " columns. can't set " + values.length + " at column " + col);
             }
             for (int i = mTable.size(); i <= row; i++) {

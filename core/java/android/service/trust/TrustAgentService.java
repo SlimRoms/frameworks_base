@@ -72,7 +72,7 @@ import java.util.List;
  */
 @SystemApi
 public class TrustAgentService extends Service {
-    private final String TAG = TrustAgentService.class.getSimpleName() +
+    private final String TAG = TrustAgentService.class.getSimpleName()
             "[" + getClass().getSimpleName() + "]";
     private static final boolean DEBUG = false;
 

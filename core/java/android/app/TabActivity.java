@@ -129,7 +129,7 @@ public class TabActivity extends ActivityGroup {
 
         if (mTabHost == null) {
             throw new RuntimeException(
-                    "Your content must have a TabHost whose id attribute is " +
+                    "Your content must have a TabHost whose id attribute is "
                     "'android.R.id.tabhost'");
         }
         mTabHost.setup(getLocalActivityManager());

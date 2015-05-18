@@ -222,7 +222,7 @@ public class NotificationUsageStats {
 
         public void collect(SingleNotificationStats singleNotificationStats) {
             posttimeMs.addSample(
-	            SystemClock.elapsedRealtime() - singleNotificationStats.posttimeElapsedMs);
+                SystemClock.elapsedRealtime() - singleNotificationStats.posttimeElapsedMs);
             if (singleNotificationStats.posttimeToDismissMs >= 0) {
                 posttimeToDismissMs.addSample(singleNotificationStats.posttimeToDismissMs);
             }
@@ -257,22 +257,22 @@ public class NotificationUsageStats {
         }
 
         private String toStringWithIndent(String indent) {
-            return indent + "AggregatedStats{\n" +
-                    indent + "  key='" + key + "',\n" +
-                    indent + "  numPostedByApp=" + numPostedByApp + ",\n" +
-                    indent + "  numUpdatedByApp=" + numUpdatedByApp + ",\n" +
-                    indent + "  numRemovedByApp=" + numRemovedByApp + ",\n" +
-                    indent + "  numClickedByUser=" + numClickedByUser + ",\n" +
-                    indent + "  numDismissedByUser=" + numDismissedByUser + ",\n" +
-                    indent + "  posttimeMs=" + posttimeMs + ",\n" +
-                    indent + "  posttimeToDismissMs=" + posttimeToDismissMs + ",\n" +
-                    indent + "  posttimeToFirstClickMs=" + posttimeToFirstClickMs + ",\n" +
-                    indent + "  airtimeCount=" + airtimeCount + ",\n" +
-                    indent + "  airtimeMs=" + airtimeMs + ",\n" +
-                    indent + "  posttimeToFirstAirtimeMs=" + posttimeToFirstAirtimeMs + ",\n" +
-                    indent + "  userExpansionCount=" + userExpansionCount + ",\n" +
-                    indent + "  airtimeExpandedMs=" + airtimeExpandedMs + ",\n" +
-                    indent + "  posttimeToFVEMs=" + posttimeToFirstVisibleExpansionMs + ",\n" +
+            return indent + "AggregatedStats{\n"
+                    indent + "  key='" + key + "',\n"
+                    indent + "  numPostedByApp=" + numPostedByApp + ",\n"
+                    indent + "  numUpdatedByApp=" + numUpdatedByApp + ",\n"
+                    indent + "  numRemovedByApp=" + numRemovedByApp + ",\n"
+                    indent + "  numClickedByUser=" + numClickedByUser + ",\n"
+                    indent + "  numDismissedByUser=" + numDismissedByUser + ",\n"
+                    indent + "  posttimeMs=" + posttimeMs + ",\n"
+                    indent + "  posttimeToDismissMs=" + posttimeToDismissMs + ",\n"
+                    indent + "  posttimeToFirstClickMs=" + posttimeToFirstClickMs + ",\n"
+                    indent + "  airtimeCount=" + airtimeCount + ",\n"
+                    indent + "  airtimeMs=" + airtimeMs + ",\n"
+                    indent + "  posttimeToFirstAirtimeMs=" + posttimeToFirstAirtimeMs + ",\n"
+                    indent + "  userExpansionCount=" + userExpansionCount + ",\n"
+                    indent + "  airtimeExpandedMs=" + airtimeExpandedMs + ",\n"
+                    indent + "  posttimeToFVEMs=" + posttimeToFirstVisibleExpansionMs + ",\n"
                     indent + "}";
         }
     }
@@ -425,16 +425,16 @@ public class NotificationUsageStats {
 
         @Override
         public String toString() {
-            return "SingleNotificationStats{" +
-                    "posttimeElapsedMs=" + posttimeElapsedMs +
-                    ", posttimeToFirstClickMs=" + posttimeToFirstClickMs +
-                    ", posttimeToDismissMs=" + posttimeToDismissMs +
-                    ", airtimeCount=" + airtimeCount +
-                    ", airtimeMs=" + airtimeMs +
-                    ", currentAirtimeStartElapsedMs=" + currentAirtimeStartElapsedMs +
-                    ", airtimeExpandedMs=" + airtimeExpandedMs +
-                    ", posttimeToFirstVisibleExpansionMs=" + posttimeToFirstVisibleExpansionMs +
-                    ", currentAirtimeExpandedSEMs=" + currentAirtimeExpandedStartElapsedMs +
+            return "SingleNotificationStats{"
+                    "posttimeElapsedMs=" + posttimeElapsedMs
+                    ", posttimeToFirstClickMs=" + posttimeToFirstClickMs
+                    ", posttimeToDismissMs=" + posttimeToDismissMs
+                    ", airtimeCount=" + airtimeCount
+                    ", airtimeMs=" + airtimeMs
+                    ", currentAirtimeStartElapsedMs=" + currentAirtimeStartElapsedMs
+                    ", airtimeExpandedMs=" + airtimeExpandedMs
+                    ", posttimeToFirstVisibleExpansionMs=" + posttimeToFirstVisibleExpansionMs
+                    ", currentAirtimeExpandedSEMs=" + currentAirtimeExpandedStartElapsedMs
                     '}';
         }
     }
@@ -462,10 +462,10 @@ public class NotificationUsageStats {
 
         @Override
         public String toString() {
-            return "Aggregate{" +
-                    "numSamples=" + numSamples +
-                    ", avg=" + avg +
-                    ", var=" + var +
+            return "Aggregate{"
+                    "numSamples=" + numSamples
+                    ", avg=" + avg
+                    ", var=" + var
                     '}';
         }
     }
@@ -555,26 +555,26 @@ public class NotificationUsageStats {
             mHelper = new SQLiteOpenHelper(context, DB_NAME, null, DB_VERSION) {
                 @Override
                 public void onCreate(SQLiteDatabase db) {
-                    db.execSQL("CREATE TABLE " + TAB_LOG + " (" +
-                            "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                            COL_EVENT_USER_ID + " INT," +
-                            COL_EVENT_TYPE + " INT," +
-                            COL_EVENT_TIME + " INT," +
-                            COL_KEY + " TEXT," +
-                            COL_PKG + " TEXT," +
-                            COL_NOTIFICATION_ID + " INT," +
-                            COL_TAG + " TEXT," +
-                            COL_WHEN_MS + " INT," +
-                            COL_DEFAULTS + " INT," +
-                            COL_FLAGS + " INT," +
-                            COL_PRIORITY + " INT," +
-                            COL_CATEGORY + " TEXT," +
-                            COL_ACTION_COUNT + " INT," +
-                            COL_POSTTIME_MS + " INT," +
-                            COL_AIRTIME_MS + " INT," +
-                            COL_FIRST_EXPANSIONTIME_MS + " INT," +
-                            COL_AIRTIME_EXPANDED_MS + " INT," +
-                            COL_EXPAND_COUNT + " INT" +
+                    db.execSQL("CREATE TABLE " + TAB_LOG + " ("
+                            "_id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                            COL_EVENT_USER_ID + " INT,"
+                            COL_EVENT_TYPE + " INT,"
+                            COL_EVENT_TIME + " INT,"
+                            COL_KEY + " TEXT,"
+                            COL_PKG + " TEXT,"
+                            COL_NOTIFICATION_ID + " INT,"
+                            COL_TAG + " TEXT,"
+                            COL_WHEN_MS + " INT,"
+                            COL_DEFAULTS + " INT,"
+                            COL_FLAGS + " INT,"
+                            COL_PRIORITY + " INT,"
+                            COL_CATEGORY + " TEXT,"
+                            COL_ACTION_COUNT + " INT,"
+                            COL_POSTTIME_MS + " INT,"
+                            COL_AIRTIME_MS + " INT,"
+                            COL_FIRST_EXPANSIONTIME_MS + " INT,"
+                            COL_AIRTIME_EXPANDED_MS + " INT,"
+                            COL_EXPAND_COUNT + " INT"
                             ")");
                 }
 
@@ -608,16 +608,16 @@ public class NotificationUsageStats {
         public void printPostFrequencies(PrintWriter pw, String indent, DumpFilter filter) {
             SQLiteDatabase db = mHelper.getReadableDatabase();
             long nowMs = System.currentTimeMillis();
-            String q = "SELECT " +
-                    COL_EVENT_USER_ID + ", " +
-                    COL_PKG + ", " +
+            String q = "SELECT "
+                    COL_EVENT_USER_ID + ", "
+                    COL_PKG + ", "
                     // Bucket by day by looking at 'floor((nowMs - eventTimeMs) / dayMs)'
-                    "CAST(((" + nowMs + " - " + COL_EVENT_TIME + ") / " + DAY_MS + ") AS int) " +
-                        "AS day, " +
-                    "COUNT(*) AS cnt " +
-                    "FROM " + TAB_LOG + " " +
-                    "WHERE " +
-                    COL_EVENT_TYPE + "=" + EVENT_TYPE_POST + " " +
+                    "CAST(((" + nowMs + " - " + COL_EVENT_TIME + ") / " + DAY_MS + ") AS int) "
+                        "AS day, "
+                    "COUNT(*) AS cnt "
+                    "FROM " + TAB_LOG + " "
+                    "WHERE "
+                    COL_EVENT_TYPE + "=" + EVENT_TYPE_POST + " "
                     "GROUP BY " + COL_EVENT_USER_ID + ", day, " + COL_PKG;
             Cursor cursor = db.rawQuery(q, null);
             try {
@@ -627,7 +627,7 @@ public class NotificationUsageStats {
                     if (filter != null && !filter.matches(pkg)) continue;
                     int day = cursor.getInt(2);
                     int count = cursor.getInt(3);
-                    pw.println(indent + "post_frequency{user_id=" + userId + ",pkg=" + pkg +
+                    pw.println(indent + "post_frequency{user_id=" + userId + ",pkg=" + pkg
                             ",day=" + day + ",count=" + count + "}");
                 }
             } finally {

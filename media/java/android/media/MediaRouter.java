@@ -897,8 +897,8 @@ public class MediaRouter {
         final RouteInfo oldRoute = sStatic.mSelectedRoute;
         if (oldRoute == route) return;
         if (!route.matchesTypes(types)) {
-            Log.w(TAG, "selectRoute ignored; cannot select route with supported types " +
-                    typesToString(route.getSupportedTypes()) + " into route types " +
+            Log.w(TAG, "selectRoute ignored; cannot select route with supported types "
+                    typesToString(route.getSupportedTypes()) + " into route types "
                     typesToString(types));
             return;
         }
@@ -1965,11 +1965,11 @@ public class MediaRouter {
         @Override
         public String toString() {
             String supportedTypes = typesToString(getSupportedTypes());
-            return getClass().getSimpleName() + "{ name=" + getName() +
-                    ", description=" + getDescription() +
-                    ", status=" + getStatus() +
-                    ", category=" + getCategory() +
-                    ", supportedTypes=" + supportedTypes +
+            return getClass().getSimpleName() + "{ name=" + getName()
+                    ", description=" + getDescription()
+                    ", status=" + getStatus()
+                    ", category=" + getCategory()
+                    ", supportedTypes=" + supportedTypes
                     ", presentationDisplay=" + mPresentationDisplay + " }";
         }
     }
@@ -2291,8 +2291,8 @@ public class MediaRouter {
             }
             if (route.getCategory() != mCategory) {
                 throw new IllegalArgumentException(
-                        "Route cannot be added to a group with a different category. " +
-                            "(Route category=" + route.getCategory() +
+                        "Route cannot be added to a group with a different category. "
+                            "(Route category=" + route.getCategory()
                             " group category=" + mCategory + ")");
             }
             final int at = mRoutes.size();
@@ -2316,8 +2316,8 @@ public class MediaRouter {
             }
             if (route.getCategory() != mCategory) {
                 throw new IllegalArgumentException(
-                        "Route cannot be added to a group with a different category. " +
-                            "(Route category=" + route.getCategory() +
+                        "Route cannot be added to a group with a different category. "
+                            "(Route category=" + route.getCategory()
                             " group category=" + mCategory + ")");
             }
             mRoutes.add(insertAt, route);
@@ -2335,7 +2335,7 @@ public class MediaRouter {
          */
         public void removeRoute(RouteInfo route) {
             if (route.getGroup() != this) {
-                throw new IllegalArgumentException("Route " + route +
+                throw new IllegalArgumentException("Route " + route
                         " is not a member of this group.");
             }
             mRoutes.remove(route);
@@ -2632,7 +2632,7 @@ public class MediaRouter {
 
         @Override
         public String toString() {
-            return "RouteCategory{ name=" + mName + " types=" + typesToString(mTypes) +
+            return "RouteCategory{ name=" + mName + " types=" + typesToString(mTypes)
                     " groupable=" + mGroupable + " }";
         }
     }

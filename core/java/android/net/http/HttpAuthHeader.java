@@ -311,7 +311,7 @@ public class HttpAuthHeader {
      */
     private void parseParameters(String parameters) {
         if (HttpLog.LOGV) {
-            HttpLog.v("HttpAuthHeader.parseParameters():" +
+            HttpLog.v("HttpAuthHeader.parseParameters():"
                       " parameters: " + parameters);
         }
 
@@ -344,8 +344,8 @@ public class HttpAuthHeader {
                     trimDoubleQuotesIfAny(parameter.substring(i + 1).trim());
 
                 if (HttpLog.LOGV) {
-                    HttpLog.v("HttpAuthHeader.parseParameter():" +
-                              " token: " + token +
+                    HttpLog.v("HttpAuthHeader.parseParameter():"
+                              " token: " + token
                               " value: " + value);
                 }
 

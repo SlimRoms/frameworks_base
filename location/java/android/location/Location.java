@@ -269,11 +269,11 @@ public class Location implements Parcelable {
                 throw new IllegalArgumentException("coordinate=" + coordinate);
             }
             if (min < 0 || min > 59) {
-                throw new IllegalArgumentException("coordinate=" +
+                throw new IllegalArgumentException("coordinate="
                         coordinate);
             }
             if (sec < 0 || sec > 59) {
-                throw new IllegalArgumentException("coordinate=" +
+                throw new IllegalArgumentException("coordinate="
                         coordinate);
             }
 
@@ -358,7 +358,7 @@ public class Location implements Parcelable {
                   (-3.0 + 4.0 * sinSigma * sinSigma) *
                   (-3.0 + 4.0 * cos2SMSq)));
 
-            lambda = L +
+            lambda = L
                 (1.0 - C) * f * sinAlpha *
                 (sigma + C * sinSigma *
                  (cos2SM + C * cosSigma *

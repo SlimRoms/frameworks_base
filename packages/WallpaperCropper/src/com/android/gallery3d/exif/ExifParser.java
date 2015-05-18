@@ -315,7 +315,7 @@ class ExifParser {
             try {
                 skipTo(entry.getKey());
             } catch (IOException e) {
-                Log.w(TAG, "Failed to skip to data at: " + entry.getKey() +
+                Log.w(TAG, "Failed to skip to data at: " + entry.getKey()
                         " for " + event.getClass().getName() + ", the file may be broken.");
                 continue;
             }

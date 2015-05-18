@@ -152,7 +152,7 @@ public class StaticLayoutDirectionsTest extends TestCase {
         for (int i = 1; i < expected.length; ++i) {
             int t = l.getOffsetToRightOf(n);
             if (t != expected[i]) {
-                fail("offset[" + i + "] to right of: " + n + " expected: " +
+                fail("offset[" + i + "] to right of: " + n + " expected: "
                         expected[i] + " got: " + t);
             }
             n = t;
@@ -168,7 +168,7 @@ public class StaticLayoutDirectionsTest extends TestCase {
         for (int i = expected.length - 1; --i >= 0;) {
             int t = l.getOffsetToLeftOf(n);
             if (t != expected[i]) {
-                fail("offset[" + i + "] to left of: " + n + " expected: " +
+                fail("offset[" + i + "] to left of: " + n + " expected: "
                         expected[i] + " got: " + t);
             }
             n = t;
@@ -201,7 +201,7 @@ public class StaticLayoutDirectionsTest extends TestCase {
                             dir, directions,
                             trailing, false,
                             null);
-                    Log.i("BIDI", "dir: " + dir + " trail: " + trailing +
+                    Log.i("BIDI", "dir: " + dir + " trail: " + trailing
                             " offset: " + offset + " width: " + width);
                 }
             } while (!trailing);
@@ -236,7 +236,7 @@ public class StaticLayoutDirectionsTest extends TestCase {
 
     private void expectDirections(String msg, Directions expected, Directions result) {
         if (!Arrays.equals(expected.mDirections, result.mDirections)) {
-            fail("expected: " + hexArray(expected.mDirections) +
+            fail("expected: " + hexArray(expected.mDirections)
                     " got: " + hexArray(result.mDirections));
         }
     }

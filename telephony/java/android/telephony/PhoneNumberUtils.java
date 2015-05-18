@@ -1821,7 +1821,7 @@ public class PhoneNumberUtils
         // to the list.
         number = extractNetworkPortionAlt(number);
 
-        Rlog.d(LOG_TAG, "subId:" + subId + ", number: " +  number + ", defaultCountryIso:" +
+        Rlog.d(LOG_TAG, "subId:" + subId + ", number: " +  number + ", defaultCountryIso:"
                 ((defaultCountryIso == null) ? "NULL" : defaultCountryIso));
 
         String emergencyNumbers = "";
@@ -2159,7 +2159,7 @@ public class PhoneNumberUtils
      * The passed-in dialStr should only contain the valid format as described below,
      * 1) the 1st character in the dialStr should be one of the really dialable
      *    characters listed below
-     *    ISO-LATIN characters 0-9, *, # , +
+     *    ISO-LATIN characters 0-9, *, # ,
      * 2) the dialStr should already strip out the separator characters,
      *    every character in the dialStr should be one of the non separator characters
      *    listed below

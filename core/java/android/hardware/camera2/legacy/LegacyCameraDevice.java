@@ -129,7 +129,7 @@ public class LegacyCameraDevice implements AutoCloseable {
                 @Override
                 public void run() {
                     if (DEBUG) {
-                        Log.d(TAG, "doing onError callback for request " + holder.getRequestId() +
+                        Log.d(TAG, "doing onError callback for request " + holder.getRequestId()
                                 ", with error code " + errorCode);
                     }
                     try {
@@ -191,7 +191,7 @@ public class LegacyCameraDevice implements AutoCloseable {
                 @Override
                 public void run() {
                     if (DEBUG) {
-                        Log.d(TAG, "doing onCaptureStarted callback for request " +
+                        Log.d(TAG, "doing onCaptureStarted callback for request "
                                 holder.getRequestId());
                     }
                     try {
@@ -212,7 +212,7 @@ public class LegacyCameraDevice implements AutoCloseable {
                 @Override
                 public void run() {
                     if (DEBUG) {
-                        Log.d(TAG, "doing onCaptureResult callback for request " +
+                        Log.d(TAG, "doing onCaptureResult callback for request "
                                 holder.getRequestId());
                     }
                     try {
@@ -323,7 +323,7 @@ public class LegacyCameraDevice implements AutoCloseable {
                         } else {
                             String reason = (sizes == null) ? "format is invalid." :
                                     ("size not in valid set: " + Arrays.toString(sizes));
-                            Log.e(TAG, String.format("Surface with size (w=%d, h=%d) and format " +
+                            Log.e(TAG, String.format("Surface with size (w=%d, h=%d) and format "
                                     "0x%x is not valid, %s", s.getWidth(), s.getHeight(),
                                     surfaceType, reason));
                             return BAD_VALUE;
@@ -387,7 +387,7 @@ public class LegacyCameraDevice implements AutoCloseable {
                     Log.e(TAG, "submitRequestList - Null Surface targets are not allowed");
                     return BAD_VALUE;
                 } else if (mConfiguredSurfaces == null) {
-                    Log.e(TAG, "submitRequestList - must configure " +
+                    Log.e(TAG, "submitRequestList - must configure "
                             " device with valid surfaces before submitting requests");
                     return INVALID_OPERATION;
                 } else if (!containsSurfaceId(surface, surfaceIds)) {

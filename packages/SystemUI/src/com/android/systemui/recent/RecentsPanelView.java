@@ -708,7 +708,7 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
     public void handleSwipe(View view) {
         TaskDescription ad = ((ViewHolder) view.getTag()).taskDescription;
         if (ad == null) {
-            Log.v(TAG, "Not able to find activity description for swiped task; view=" + view +
+            Log.v(TAG, "Not able to find activity description for swiped task; view=" + view
                     " tag=" + view.getTag());
             return;
         }

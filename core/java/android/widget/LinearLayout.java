@@ -729,7 +729,7 @@ public class LinearLayout extends ViewGroup {
 
                 final int childHeight = child.getMeasuredHeight();
                 final int totalLength = mTotalLength;
-                mTotalLength = Math.max(totalLength, totalLength + childHeight + lp.topMargin +
+                mTotalLength = Math.max(totalLength, totalLength + childHeight + lp.topMargin
                        lp.bottomMargin + getNextLocationOffset(child));
 
                 if (useLargestChild) {
@@ -811,7 +811,7 @@ public class LinearLayout extends ViewGroup {
                         child.getLayoutParams();
                 // Account for negative margins
                 final int totalLength = mTotalLength;
-                mTotalLength = Math.max(totalLength, totalLength + largestChildHeight +
+                mTotalLength = Math.max(totalLength, totalLength + largestChildHeight
                         lp.topMargin + lp.bottomMargin + getNextLocationOffset(child));
             }
         }
@@ -854,7 +854,7 @@ public class LinearLayout extends ViewGroup {
                     delta -= share;
 
                     final int childWidthMeasureSpec = getChildMeasureSpec(widthMeasureSpec,
-                            mPaddingLeft + mPaddingRight +
+                            mPaddingLeft + mPaddingRight
                                     lp.leftMargin + lp.rightMargin, lp.width);
 
                     // TODO: Use a field like lp.isMeasured to figure out if this
@@ -895,7 +895,7 @@ public class LinearLayout extends ViewGroup {
                 allFillParent = allFillParent && lp.width == LayoutParams.MATCH_PARENT;
 
                 final int totalLength = mTotalLength;
-                mTotalLength = Math.max(totalLength, totalLength + child.getMeasuredHeight() +
+                mTotalLength = Math.max(totalLength, totalLength + child.getMeasuredHeight()
                         lp.topMargin + lp.bottomMargin + getNextLocationOffset(child));
             }
 
@@ -1049,7 +1049,7 @@ public class LinearLayout extends ViewGroup {
                     mTotalLength += lp.leftMargin + lp.rightMargin;
                 } else {
                     final int totalLength = mTotalLength;
-                    mTotalLength = Math.max(totalLength, totalLength +
+                    mTotalLength = Math.max(totalLength, totalLength
                             lp.leftMargin + lp.rightMargin);
                 }
 
@@ -1090,11 +1090,11 @@ public class LinearLayout extends ViewGroup {
 
                 final int childWidth = child.getMeasuredWidth();
                 if (isExactly) {
-                    mTotalLength += childWidth + lp.leftMargin + lp.rightMargin +
+                    mTotalLength += childWidth + lp.leftMargin + lp.rightMargin
                             getNextLocationOffset(child);
                 } else {
                     final int totalLength = mTotalLength;
-                    mTotalLength = Math.max(totalLength, totalLength + childWidth + lp.leftMargin +
+                    mTotalLength = Math.max(totalLength, totalLength + childWidth + lp.leftMargin
                            lp.rightMargin + getNextLocationOffset(child));
                 }
 
@@ -1188,11 +1188,11 @@ public class LinearLayout extends ViewGroup {
                 final LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams)
                         child.getLayoutParams();
                 if (isExactly) {
-                    mTotalLength += largestChildWidth + lp.leftMargin + lp.rightMargin +
+                    mTotalLength += largestChildWidth + lp.leftMargin + lp.rightMargin
                             getNextLocationOffset(child);
                 } else {
                     final int totalLength = mTotalLength;
-                    mTotalLength = Math.max(totalLength, totalLength + largestChildWidth +
+                    mTotalLength = Math.max(totalLength, totalLength + largestChildWidth
                             lp.leftMargin + lp.rightMargin + getNextLocationOffset(child));
                 }
             }
@@ -1271,11 +1271,11 @@ public class LinearLayout extends ViewGroup {
                 }
 
                 if (isExactly) {
-                    mTotalLength += child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin +
+                    mTotalLength += child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin
                             getNextLocationOffset(child);
                 } else {
                     final int totalLength = mTotalLength;
-                    mTotalLength = Math.max(totalLength, totalLength + child.getMeasuredWidth() +
+                    mTotalLength = Math.max(totalLength, totalLength + child.getMeasuredWidth()
                             lp.leftMargin + lp.rightMargin + getNextLocationOffset(child));
                 }
 
@@ -1691,7 +1691,7 @@ public class LinearLayout extends ViewGroup {
                 childLeft += lp.leftMargin;
                 setChildFrame(child, childLeft + getLocationOffset(child), childTop,
                         childWidth, childHeight);
-                childLeft += childWidth + lp.rightMargin +
+                childLeft += childWidth + lp.rightMargin
                         getNextLocationOffset(child);
 
                 i += getChildrenSkipCount(child, childIndex);
@@ -1923,7 +1923,7 @@ public class LinearLayout extends ViewGroup {
 
         @Override
         public String debug(String output) {
-            return output + "LinearLayout.LayoutParams={width=" + sizeToString(width) +
+            return output + "LinearLayout.LayoutParams={width=" + sizeToString(width)
                     ", height=" + sizeToString(height) + " weight=" + weight +  "}";
         }
     }

@@ -642,7 +642,7 @@ final class ActivityStack {
         for (int i = 0; i < index; ) {
             TaskRecord task = mTaskHistory.get(i);
             if (isCurrentProfileLocked(task.userId)) {
-                if (DEBUG_TASKS) Slog.d(TAG, "switchUserLocked: stack=" + getStackId() +
+                if (DEBUG_TASKS) Slog.d(TAG, "switchUserLocked: stack=" + getStackId()
                         " moving " + task + " to top");
                 mTaskHistory.remove(i);
                 mTaskHistory.add(task);
@@ -1667,7 +1667,7 @@ final class ActivityStack {
         // sure to finish it as we're making a new activity topmost.
         if (mService.isSleeping() && mLastNoHistoryActivity != null &&
                 !mLastNoHistoryActivity.finishing) {
-            if (DEBUG_STATES) Slog.d(TAG, "no-history finish of " + mLastNoHistoryActivity +
+            if (DEBUG_STATES) Slog.d(TAG, "no-history finish of " + mLastNoHistoryActivity
                     " on new resume");
             requestFinishActivityLocked(mLastNoHistoryActivity.appToken, Activity.RESULT_CANCELED,
                     null, "no-history", false);
@@ -2907,7 +2907,7 @@ final class ActivityStack {
                 mStackSupervisor.resumeTopActivitiesLocked();
             }
             if (DEBUG_CONTAINERS) Slog.d(TAG, 
-                    "destroyActivityLocked: finishCurrentActivityLocked r=" + r +
+                    "destroyActivityLocked: finishCurrentActivityLocked r=" + r
                     " destroy returned removed=" + activityRemoved);
             return activityRemoved ? null : r;
         }
@@ -3393,8 +3393,8 @@ final class ActivityStack {
                 // activity.
                 return;
             }
-            if (DEBUG_STATES) Slog.d(TAG, "releaseBackgroundResources activtyDisplay=" +
-                    mActivityContainer.mActivityDisplay + " visibleBehind=" + r + " app=" + r.app +
+            if (DEBUG_STATES) Slog.d(TAG, "releaseBackgroundResources activtyDisplay="
+                    mActivityContainer.mActivityDisplay + " visibleBehind=" + r + " app=" + r.app
                     " thread=" + r.app.thread);
             if (r != null && r.app != null && r.app.thread != null) {
                 try {

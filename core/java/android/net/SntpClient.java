@@ -104,7 +104,7 @@ public class SntpClient
             // receiveTime = originateTime + transit + skew
             // responseTime = transmitTime + transit - skew
             // clockOffset = ((receiveTime - originateTime) + (transmitTime - responseTime))/2
-            //             = ((originateTime + transit + skew - originateTime) +
+            //             = ((originateTime + transit + skew - originateTime)
             //                (transmitTime - (transmitTime + transit - skew)))/2
             //             = ((transit + skew) + (transmitTime - transmitTime - transit + skew))/2
             //             = (transit + skew - transit + skew)/2

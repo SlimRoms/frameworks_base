@@ -1922,11 +1922,11 @@ class ContextImpl extends Context {
             boolean selfToo, int uid, String message) {
         if (resultOfCheck != PackageManager.PERMISSION_GRANTED) {
             throw new SecurityException(
-                    (message != null ? (message + ": ") : "") +
+                    (message != null ? (message + ": ") : "")
                     (selfToo
                      ? "Neither user " + uid + " nor current process has "
-                     : "uid " + uid + " does not have ") +
-                    permission +
+                     : "uid " + uid + " does not have ")
+                    permission
                     ".");
         }
     }
@@ -2074,13 +2074,13 @@ class ContextImpl extends Context {
             int uid, Uri uri, String message) {
         if (resultOfCheck != PackageManager.PERMISSION_GRANTED) {
             throw new SecurityException(
-                    (message != null ? (message + ": ") : "") +
+                    (message != null ? (message + ": ") : "")
                     (selfToo
                      ? "Neither user " + uid + " nor current process has "
-                     : "User " + uid + " does not have ") +
-                    uriModeFlagToString(modeFlags) +
-                    " permission on " +
-                    uri +
+                     : "User " + uid + " does not have ")
+                    uriModeFlagToString(modeFlags)
+                    " permission on "
+                    uri
                     ".");
         }
     }

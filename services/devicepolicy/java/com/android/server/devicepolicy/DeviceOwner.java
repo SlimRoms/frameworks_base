@@ -238,7 +238,7 @@ public class DeviceOwner {
                         } else {
                             // This shouldn't happen but switch from package name -> component name
                             // might have written bad device owner files. b/17652534
-                            Slog.e(TAG, "Error parsing device-owner file. Bad component name " +
+                            Slog.e(TAG, "Error parsing device-owner file. Bad component name "
                                     profileOwnerComponentStr);
                         }
                     }

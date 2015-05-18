@@ -69,9 +69,9 @@ public class MemoryFileProvider extends ContentProvider {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            db.execSQL("CREATE TABLE data (" +
-                       "_id INTEGER PRIMARY KEY," +
-                       "_blob TEXT, " +
+            db.execSQL("CREATE TABLE data ("
+                       "_id INTEGER PRIMARY KEY,"
+                       "_blob TEXT, "
                        "integer INTEGER);");
 
             // insert alarms
@@ -84,8 +84,8 @@ public class MemoryFileProvider extends ContentProvider {
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int currentVersion) {
-            Log.w(TAG, "Upgrading test database from version " +
-                  oldVersion + " to " + currentVersion +
+            Log.w(TAG, "Upgrading test database from version "
+                  oldVersion + " to " + currentVersion
                   ", which will destroy all old data");
             db.execSQL("DROP TABLE IF EXISTS data");
             onCreate(db);

@@ -760,7 +760,7 @@ public class ActivityManager {
 
         @Override
         public String toString() {
-            return "TaskDescription Label: " + mLabel + " Icon: " + mIcon +
+            return "TaskDescription Label: " + mLabel + " Icon: " + mIcon
                     " colorPrimary: " + mColorPrimary;
         }
     }

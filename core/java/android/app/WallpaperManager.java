@@ -689,7 +689,7 @@ public class WallpaperManager {
         }
         // If the URI is not of the right type, or for some reason the system wallpaper
         // cropper doesn't exist, return null
-        throw new IllegalArgumentException("Cannot use passed URI to set wallpaper; " +
+        throw new IllegalArgumentException("Cannot use passed URI to set wallpaper; "
             "check that the type returned by ContentProvider matches image/*");
     }
 

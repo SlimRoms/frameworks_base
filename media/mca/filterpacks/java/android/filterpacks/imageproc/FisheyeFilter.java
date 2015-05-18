@@ -50,21 +50,21 @@ public class FisheyeFilter extends Filter {
     private int mTarget = FrameFormat.TARGET_UNSPECIFIED;
 
     private static final String mFisheyeShader =
-            "precision mediump float;\n" +
-            "uniform sampler2D tex_sampler_0;\n" +
-            "uniform vec2 scale;\n" +
-            "uniform float alpha;\n" +
-            "uniform float radius2;\n" +
-            "uniform float factor;\n" +
-            "varying vec2 v_texcoord;\n" +
-            "void main() {\n" +
-            "  const float m_pi_2 = 1.570963;\n" +
-            "  vec2 coord = v_texcoord - vec2(0.5, 0.5);\n" +
-            "  float dist = length(coord * scale);\n" +
-            "  float radian = m_pi_2 - atan(alpha * sqrt(radius2 - dist * dist), dist);\n" +
-            "  float scalar = radian * factor / dist;\n" +
-            "  vec2 new_coord = coord * scalar + vec2(0.5, 0.5);\n" +
-            "  gl_FragColor = texture2D(tex_sampler_0, new_coord);\n" +
+            "precision mediump float;\n"
+            "uniform sampler2D tex_sampler_0;\n"
+            "uniform vec2 scale;\n"
+            "uniform float alpha;\n"
+            "uniform float radius2;\n"
+            "uniform float factor;\n"
+            "varying vec2 v_texcoord;\n"
+            "void main() {\n"
+            "  const float m_pi_2 = 1.570963;\n"
+            "  vec2 coord = v_texcoord - vec2(0.5, 0.5);\n"
+            "  float dist = length(coord * scale);\n"
+            "  float radian = m_pi_2 - atan(alpha * sqrt(radius2 - dist * dist), dist);\n"
+            "  float scalar = radian * factor / dist;\n"
+            "  vec2 new_coord = coord * scalar + vec2(0.5, 0.5);\n"
+            "  gl_FragColor = texture2D(tex_sampler_0, new_coord);\n"
             "}\n";
 
     public FisheyeFilter(String name) {
@@ -91,7 +91,7 @@ public class FisheyeFilter extends Filter {
                 break;
 
             default:
-                throw new RuntimeException("Filter FisheyeFilter does not support frames of " +
+                throw new RuntimeException("Filter FisheyeFilter does not support frames of "
                     "target " + target + "!");
         }
         mTarget = target;

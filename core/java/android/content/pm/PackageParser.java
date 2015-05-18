@@ -1548,8 +1548,8 @@ public class PackageParser {
                         featureInfo.flags |= FeatureInfo.FLAG_REQUIRED;
                         features = ArrayUtils.add(features, featureInfo);
                     } else {
-                        Slog.w(TAG, "Unknown element under <feature-group>: " + innerTagName +
-                                " at " + mArchiveSourcePath + " " +
+                        Slog.w(TAG, "Unknown element under <feature-group>: " + innerTagName
+                                " at " + mArchiveSourcePath + " "
                                 parser.getPositionDescription());
                     }
                     XmlUtils.skipCurrentTag(parser);
@@ -2994,7 +2994,7 @@ public class PackageParser {
             if (outError[0] == null) {
                 a.info.parentActivityName = parentClassName;
             } else {
-                Log.e(TAG, "Activity " + a.info.name + " specified invalid parentActivityName " +
+                Log.e(TAG, "Activity " + a.info.name + " specified invalid parentActivityName "
                         parentName);
                 outError[0] = null;
             }
@@ -3354,7 +3354,7 @@ public class PackageParser {
             if (outError[0] == null) {
                 a.info.parentActivityName = parentClassName;
             } else {
-                Log.e(TAG, "Activity alias " + a.info.name +
+                Log.e(TAG, "Activity alias " + a.info.name
                         " specified invalid parentActivityName " + parentName);
                 outError[0] = null;
             }

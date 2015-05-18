@@ -198,8 +198,8 @@ public class EditableInputConnection extends BaseInputConnection {
         final int unknownFlags = cursorUpdateMode & ~KNOWN_FLAGS_MASK;
         if (unknownFlags != 0) {
             if (DEBUG) {
-                Log.d(TAG, "Rejecting requestUpdateCursorAnchorInfo due to unknown flags." +
-                        " cursorUpdateMode=" + cursorUpdateMode +
+                Log.d(TAG, "Rejecting requestUpdateCursorAnchorInfo due to unknown flags."
+                        " cursorUpdateMode=" + cursorUpdateMode
                         " unknownFlags=" + unknownFlags);
             }
             return false;

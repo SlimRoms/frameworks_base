@@ -99,7 +99,7 @@ class CrossProfileIntentFilter extends IntentFilter {
         if (tagName.equals(ATTR_FILTER)) {
             readFromXml(parser);
         } else {
-            String msg = "Missing element under " + TAG + ": " + ATTR_FILTER +
+            String msg = "Missing element under " + TAG + ": " + ATTR_FILTER
                     " at " + parser.getPositionDescription();
             PackageManagerService.reportSettingsProblem(Log.WARN, msg);
             XmlUtils.skipCurrentTag(parser);
@@ -109,7 +109,7 @@ class CrossProfileIntentFilter extends IntentFilter {
     String getStringFromXml(XmlPullParser parser, String attribute, String defaultValue) {
         String value = parser.getAttributeValue(null, attribute);
         if (value == null) {
-            String msg = "Missing element under " + TAG +": " + attribute + " at " +
+            String msg = "Missing element under " + TAG +": " + attribute + " at "
                     parser.getPositionDescription();
             PackageManagerService.reportSettingsProblem(Log.WARN, msg);
             return defaultValue;

@@ -561,7 +561,7 @@ public class MSimNetworkControllerImpl extends NetworkControllerImpl {
             public void onSignalStrengthsChanged(SignalStrength signalStrength) {
                 if (DEBUG) {
                     Slog.d(TAG, "onSignalStrengthsChanged received on phoneId :"
-                        + getPhoneId(mSubId) + "signalStrength=" + signalStrength +
+                        + getPhoneId(mSubId) + "signalStrength=" + signalStrength
                         ((signalStrength == null) ? "" : (" level=" + signalStrength.getLevel())));
                 }
                 mMSimSignalStrength[getPhoneId(mSubId)] = signalStrength;
@@ -587,7 +587,7 @@ public class MSimNetworkControllerImpl extends NetworkControllerImpl {
                     mMSimDataServiceState[phoneId] =
                         mMSimServiceState[phoneId].getDataRegState();
                     if (DEBUG) {
-                        Slog.d(TAG, "Combining data service state " +
+                        Slog.d(TAG, "Combining data service state "
                                 mMSimDataServiceState[phoneId] + " for signal");
                     }
                 }
@@ -626,7 +626,7 @@ public class MSimNetworkControllerImpl extends NetworkControllerImpl {
 
                 // DSDS case: Consider the Data Connection
                 // State changed notifications of the other NON-DDS.
-                Slog.d(TAG, "onDataConnectionStateChanged getDefaultDataSubId :" +
+                Slog.d(TAG, "onDataConnectionStateChanged getDefaultDataSubId :"
                         SubscriptionManager.getDefaultDataSubId());
                 mMSimDataState[phoneId] = state;
                 mMSimDataNetType[phoneId] = networkType;

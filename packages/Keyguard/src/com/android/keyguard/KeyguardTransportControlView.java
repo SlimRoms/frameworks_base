@@ -115,8 +115,8 @@ public class KeyguardTransportControlView extends FrameLayout {
         public void onClientPlaybackStateUpdate(int state, long stateChangeTimeMs,
                 long currentPosMs, float speed) {
             updatePlayPauseState(state);
-            if (DEBUG) Log.d(TAG, "onClientPlaybackStateUpdate(state=" + state +
-                    ", stateChangeTimeMs=" + stateChangeTimeMs + ", currentPosMs=" + currentPosMs +
+            if (DEBUG) Log.d(TAG, "onClientPlaybackStateUpdate(state=" + state
+                    ", stateChangeTimeMs=" + stateChangeTimeMs + ", currentPosMs=" + currentPosMs
                     ", speed=" + speed + ")");
 
             removeCallbacks(mUpdateSeekBars);
@@ -443,7 +443,7 @@ public class KeyguardTransportControlView extends FrameLayout {
         }
 
         public String toString() {
-            return "Metadata[artist=" + artist + " trackTitle=" + trackTitle +
+            return "Metadata[artist=" + artist + " trackTitle=" + trackTitle
                     " albumTitle=" + albumTitle + " duration=" + duration + "]";
         }
     }
@@ -549,7 +549,7 @@ public class KeyguardTransportControlView extends FrameLayout {
             mTempDate.setTime(mMetadata.duration);
             mTransientSeekTimeTotal.setText(mFormat.format(mTempDate));
 
-            if (DEBUG) Log.d(TAG, "updateSeekDisplay timeElapsed=" + mTempDate +
+            if (DEBUG) Log.d(TAG, "updateSeekDisplay timeElapsed=" + mTempDate
                     " duration=" + mMetadata.duration);
         }
     }
@@ -662,7 +662,7 @@ public class KeyguardTransportControlView extends FrameLayout {
             mTransientSeekBar.setProgress(position);
             return true;
         }
-        Log.w(TAG, "Updating seek bars; received invalid estimated media position (" +
+        Log.w(TAG, "Updating seek bars; received invalid estimated media position ("
                 position + "). Disabling seek.");
         setSeekBarsEnabled(false);
         return false;

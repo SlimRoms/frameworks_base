@@ -303,7 +303,7 @@ abstract class Connection {
                     }
                     if (!mCanPersist) {
                         if (HttpLog.LOGV) HttpLog.v(
-                                "processRequests(): no persist, closing " +
+                                "processRequests(): no persist, closing "
                                 mHost);
 
                         closeConnection();
@@ -396,7 +396,7 @@ abstract class Connection {
 
         if (HttpLog.LOGV) {
             long now2 = SystemClock.uptimeMillis();
-            HttpLog.v("Connection.openHttpConnection() " +
+            HttpLog.v("Connection.openHttpConnection() "
                       (now2 - now) + " " + mHost);
         }
 
@@ -429,7 +429,7 @@ abstract class Connection {
 
         // e.printStackTrace();
         if (HttpLog.LOGV) HttpLog.v(
-                "httpFailure() ******* " + e + " count " + req.mFailCount +
+                "httpFailure() ******* " + e + " count " + req.mFailCount
                 " " + mHost + " " + req.getUri());
 
         if (++req.mFailCount >= RETRY_REQUEST_LIMIT) {

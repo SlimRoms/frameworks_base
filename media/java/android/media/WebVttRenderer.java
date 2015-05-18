@@ -953,13 +953,13 @@ class WebVttParser {
     private void log_warning(
             String nameType, String name, String message,
             String subMessage, String value) {
-        Log.w(this.getClass().getName(), nameType + " '" + name + "' " +
+        Log.w(this.getClass().getName(), nameType + " '" + name + "' "
                 message + " ('" + value + "' " + subMessage + ")");
     }
 
     private void log_warning(
             String nameType, String name, String message, String value) {
-        Log.w(this.getClass().getName(), nameType + " '" + name + "' " +
+        Log.w(this.getClass().getName(), nameType + " '" + name + "' "
                 message + " ('" + value + "')");
     }
 
@@ -1009,7 +1009,7 @@ class WebVttTrack extends SubtitleTrack implements WebVttCueListener {
             synchronized(mParser) {
                 if (mCurrentRunID != null && runID != mCurrentRunID) {
                     throw new IllegalStateException(
-                            "Run #" + mCurrentRunID +
+                            "Run #" + mCurrentRunID
                             " in progress.  Cannot process run #" + runID);
                 }
                 mCurrentRunID = runID;
@@ -1090,8 +1090,8 @@ class WebVttTrack extends SubtitleTrack implements WebVttCueListener {
 
         if (DEBUG && mTimeProvider != null) {
             try {
-                Log.d(TAG, "at " +
-                        (mTimeProvider.getCurrentTimeUs(false, true) / 1000) +
+                Log.d(TAG, "at "
+                        (mTimeProvider.getCurrentTimeUs(false, true) / 1000)
                         " ms the active cues are:");
             } catch (IllegalStateException e) {
                 Log.d(TAG, "at (illegal state) the active cues are:");

@@ -1237,8 +1237,8 @@ class AlarmManagerService extends SystemService {
                     final int userId = a.userId;
 
                     if (DEBUG_ALARM_CLOCK) {
-                        Log.v(TAG, "Found AlarmClockInfo at " +
-                                formatNextAlarm(getContext(), a.alarmClock, userId) +
+                        Log.v(TAG, "Found AlarmClockInfo at "
+                                formatNextAlarm(getContext(), a.alarmClock, userId)
                                 " for user " + userId);
                     }
 
@@ -1275,7 +1275,7 @@ class AlarmManagerService extends SystemService {
             AlarmManager.AlarmClockInfo alarmClock) {
         if (alarmClock != null) {
             if (DEBUG_ALARM_CLOCK) {
-                Log.v(TAG, "Next AlarmClockInfoForUser(" + userId + "): " +
+                Log.v(TAG, "Next AlarmClockInfoForUser(" + userId + "): "
                         formatNextAlarm(getContext(), alarmClock, userId));
             }
             mNextAlarmClockForUser.put(userId, alarmClock);
@@ -1404,7 +1404,7 @@ class AlarmManagerService extends SystemService {
                     long alarmSeconds, alarmNanoseconds;
                     alarmSeconds = alarm.when / 1000;
                     alarmNanoseconds = (alarm.when % 1000) * 1000 * 1000;
-                    Slog.w(TAG,"Clear alarm type=" + alarm.type + ",alarmSeconds=" +
+                    Slog.w(TAG,"Clear alarm type=" + alarm.type + ",alarmSeconds="
                        alarmSeconds);
                     clear(mNativeData, alarm.type, alarmSeconds, alarmNanoseconds);
                     mNextRtcWakeup = 0;

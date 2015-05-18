@@ -123,7 +123,7 @@ public class CloseableLock implements AutoCloseable {
         } else if (mLockCount.get() != 1) {
             // Future: may want to add a #releaseAndClose to allow this.
             throw new IllegalStateException(
-                    "Cannot close while one or more acquired locks are being held by this " +
+                    "Cannot close while one or more acquired locks are being held by this "
                      "thread; release all other locks first");
         }
 

@@ -214,19 +214,19 @@ public class TransitionInflater {
                 return constructor.newInstance(mContext, attrs);
             }
         } catch (InstantiationException e) {
-            throw new InflateException("Could not instantiate " + expectedType + " class " +
+            throw new InflateException("Could not instantiate " + expectedType + " class "
                     className, e);
         } catch (ClassNotFoundException e) {
-            throw new InflateException("Could not instantiate " + expectedType + " class " +
+            throw new InflateException("Could not instantiate " + expectedType + " class "
                     className, e);
         } catch (InvocationTargetException e) {
-            throw new InflateException("Could not instantiate " + expectedType + " class " +
+            throw new InflateException("Could not instantiate " + expectedType + " class "
                     className, e);
         } catch (NoSuchMethodException e) {
-            throw new InflateException("Could not instantiate " + expectedType + " class " +
+            throw new InflateException("Could not instantiate " + expectedType + " class "
                     className, e);
         } catch (IllegalAccessException e) {
-            throw new InflateException("Could not instantiate " + expectedType + " class " +
+            throw new InflateException("Could not instantiate " + expectedType + " class "
                     className, e);
         }
     }

@@ -143,7 +143,7 @@ public class ScrollingThroughListOfFocusablesTest extends InstrumentationTestCas
         view.getRectForRow(mTempRect, mNumRowsPerItem - 1);
         mListView.offsetDescendantRectToMyCoords(view, mTempRect);
 
-        assertTrue("bottom of last row of last item should be at " +
+        assertTrue("bottom of last row of last item should be at "
                 "the bottom of the list view (no fading edge)",
                 mListView.getBottom() - mListView.getVerticalFadingEdgeLength() < mTempRect.bottom);
     }

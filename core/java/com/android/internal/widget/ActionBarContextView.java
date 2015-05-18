@@ -336,13 +336,13 @@ public class ActionBarContextView extends AbsActionBarView implements AnimatorLi
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         final int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         if (widthMode != MeasureSpec.EXACTLY) {
-            throw new IllegalStateException(getClass().getSimpleName() + " can only be used " +
+            throw new IllegalStateException(getClass().getSimpleName() + " can only be used "
                     "with android:layout_width=\"match_parent\" (or fill_parent)");
         }
 
         final int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         if (heightMode == MeasureSpec.UNSPECIFIED) {
-            throw new IllegalStateException(getClass().getSimpleName() + " can only be used " +
+            throw new IllegalStateException(getClass().getSimpleName() + " can only be used "
                     "with android:layout_height=\"wrap_content\"");
         }
         

@@ -728,7 +728,7 @@ public class BitmapDrawable extends Drawable {
     private void verifyState(TypedArray a) throws XmlPullParserException {
         final BitmapState state = mBitmapState;
         if (state.mBitmap == null) {
-            throw new XmlPullParserException(a.getPositionDescription() +
+            throw new XmlPullParserException(a.getPositionDescription()
                     ": <bitmap> requires a valid src attribute");
         }
     }
@@ -750,7 +750,7 @@ public class BitmapDrawable extends Drawable {
         if (srcResId != 0) {
             final Bitmap bitmap = BitmapFactory.decodeResource(r, srcResId);
             if (bitmap == null) {
-                throw new XmlPullParserException(a.getPositionDescription() +
+                throw new XmlPullParserException(a.getPositionDescription()
                         ": <bitmap> requires a valid src attribute");
             }
 

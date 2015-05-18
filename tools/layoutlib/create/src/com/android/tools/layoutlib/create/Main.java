@@ -136,8 +136,8 @@ public class Main {
                 // (80-column guide below for error formatting)
                 // 01234567890123456789012345678901234567890123456789012345678901234567890123456789
                 log.error(
-                  "ERROR when running layoutlib_create: the following classes are referenced\n" +
-                  "by tools/layoutlib/create but were not actually found in the input JAR files.\n" +
+                  "ERROR when running layoutlib_create: the following classes are referenced\n"
+                  "by tools/layoutlib/create but were not actually found in the input JAR files.\n"
                   "This may be due to some platform classes having been renamed.");
                 for (String fqcn : notRenamed) {
                     log.error("- Class not found: %s", fqcn.replace('/', '.'));

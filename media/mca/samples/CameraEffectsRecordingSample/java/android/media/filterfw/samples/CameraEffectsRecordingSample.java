@@ -39,7 +39,7 @@ public class CameraEffectsRecordingSample extends Activity {
 
     private GraphRunner mRunner;
     private int mCameraId = 0;
-    private String mOutFileName =  Environment.getExternalStorageDirectory().toString() +
+    private String mOutFileName =  Environment.getExternalStorageDirectory().toString()
         "/CameraEffectsRecordingSample.mp4";
 
     public void onCreate(Bundle savedInstanceState) {

@@ -27,17 +27,17 @@ import android.filterfw.core.ShaderProgram;
 public class AlphaBlendFilter extends ImageCombineFilter {
 
     private final String mAlphaBlendShader =
-            "precision mediump float;\n" +
-            "uniform sampler2D tex_sampler_0;\n" +
-            "uniform sampler2D tex_sampler_1;\n" +
-            "uniform sampler2D tex_sampler_2;\n" +
-            "uniform float weight;\n" +
-            "varying vec2 v_texcoord;\n" +
-            "void main() {\n" +
-            "  vec4 colorL = texture2D(tex_sampler_0, v_texcoord);\n" +
-            "  vec4 colorR = texture2D(tex_sampler_1, v_texcoord);\n" +
-            "  float blend = texture2D(tex_sampler_2, v_texcoord).r * weight;\n" +
-            "  gl_FragColor = colorL * (1.0 - blend) + colorR * blend;\n" +
+            "precision mediump float;\n"
+            "uniform sampler2D tex_sampler_0;\n"
+            "uniform sampler2D tex_sampler_1;\n"
+            "uniform sampler2D tex_sampler_2;\n"
+            "uniform float weight;\n"
+            "varying vec2 v_texcoord;\n"
+            "void main() {\n"
+            "  vec4 colorL = texture2D(tex_sampler_0, v_texcoord);\n"
+            "  vec4 colorR = texture2D(tex_sampler_1, v_texcoord);\n"
+            "  float blend = texture2D(tex_sampler_2, v_texcoord).r * weight;\n"
+            "  gl_FragColor = colorL * (1.0 - blend) + colorR * blend;\n"
             "}\n";
 
     public AlphaBlendFilter(String name) {

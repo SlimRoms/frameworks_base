@@ -705,7 +705,7 @@ public abstract class AdapterViewAnimator extends AdapterView<Adapter>
         // big we should be. In this case we try to use the desired size of the first
         // child added.
         if (heightSpecMode == MeasureSpec.UNSPECIFIED) {
-            heightSpecSize = haveChildRefSize ? mReferenceChildHeight + mPaddingTop +
+            heightSpecSize = haveChildRefSize ? mReferenceChildHeight + mPaddingTop
                     mPaddingBottom : 0;
         } else if (heightSpecMode == MeasureSpec.AT_MOST) {
             if (haveChildRefSize) {
@@ -719,7 +719,7 @@ public abstract class AdapterViewAnimator extends AdapterView<Adapter>
         }
 
         if (widthSpecMode == MeasureSpec.UNSPECIFIED) {
-            widthSpecSize = haveChildRefSize ? mReferenceChildWidth + mPaddingLeft +
+            widthSpecSize = haveChildRefSize ? mReferenceChildWidth + mPaddingLeft
                     mPaddingRight : 0;
         } else if (heightSpecMode == MeasureSpec.AT_MOST) {
             if (haveChildRefSize) {

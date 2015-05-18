@@ -282,26 +282,26 @@ public class Base64Test extends TestCase {
     }
 
     private static final String lipsum =
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
-            "Quisque congue eleifend odio, eu ornare nulla facilisis eget. " +
-            "Integer eget elit diam, sit amet laoreet nibh. Quisque enim " +
-            "urna, pharetra vitae consequat eget, adipiscing eu ante. " +
-            "Aliquam venenatis arcu nec nibh imperdiet tempor. In id dui " +
-            "eget lorem aliquam rutrum vel vitae eros. In placerat ornare " +
-            "pretium. Curabitur non fringilla mi. Fusce ultricies, turpis " +
-            "eu ultrices suscipit, ligula nisi consectetur eros, dapibus " +
-            "aliquet dui sapien a turpis. Donec ultricies varius ligula, " +
-            "ut hendrerit arcu malesuada at. Praesent sed elit pretium " +
-            "eros luctus gravida. In ac dolor lorem. Cras condimentum " +
-            "convallis elementum. Phasellus vel felis in nulla ultrices " +
-            "venenatis. Nam non tortor non orci convallis convallis. " +
-            "Nam tristique lacinia hendrerit. Pellentesque habitant morbi " +
-            "tristique senectus et netus et malesuada fames ac turpis " +
-            "egestas. Vivamus cursus, nibh eu imperdiet porta, magna " +
-            "ipsum mollis mauris, sit amet fringilla mi nisl eu mi. " +
-            "Phasellus posuere, leo at ultricies vehicula, massa risus " +
-            "volutpat sapien, eu tincidunt diam ipsum eget nulla. Cras " +
-            "molestie dapibus commodo. Ut vel tellus at massa gravida " +
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
+            "Quisque congue eleifend odio, eu ornare nulla facilisis eget. "
+            "Integer eget elit diam, sit amet laoreet nibh. Quisque enim "
+            "urna, pharetra vitae consequat eget, adipiscing eu ante. "
+            "Aliquam venenatis arcu nec nibh imperdiet tempor. In id dui "
+            "eget lorem aliquam rutrum vel vitae eros. In placerat ornare "
+            "pretium. Curabitur non fringilla mi. Fusce ultricies, turpis "
+            "eu ultrices suscipit, ligula nisi consectetur eros, dapibus "
+            "aliquet dui sapien a turpis. Donec ultricies varius ligula, "
+            "ut hendrerit arcu malesuada at. Praesent sed elit pretium "
+            "eros luctus gravida. In ac dolor lorem. Cras condimentum "
+            "convallis elementum. Phasellus vel felis in nulla ultrices "
+            "venenatis. Nam non tortor non orci convallis convallis. "
+            "Nam tristique lacinia hendrerit. Pellentesque habitant morbi "
+            "tristique senectus et netus et malesuada fames ac turpis "
+            "egestas. Vivamus cursus, nibh eu imperdiet porta, magna "
+            "ipsum mollis mauris, sit amet fringilla mi nisl eu mi. "
+            "Phasellus posuere, leo at ultricies vehicula, massa risus "
+            "volutpat sapien, eu tincidunt diam ipsum eget nulla. Cras "
+            "molestie dapibus commodo. Ut vel tellus at massa gravida "
             "semper non sed orci.";
 
     public void testInputStream() throws Exception {

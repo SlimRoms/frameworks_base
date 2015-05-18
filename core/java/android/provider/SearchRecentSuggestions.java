@@ -235,9 +235,9 @@ public class SearchRecentSuggestions {
             // null means "delete all".  otherwise "delete but leave n newest"
             String selection = null;
             if (maxEntries > 0) {
-                selection = "_id IN " +
-                        "(SELECT _id FROM suggestions" +
-                        " ORDER BY " + SuggestionColumns.DATE + " DESC" +
+                selection = "_id IN "
+                        "(SELECT _id FROM suggestions"
+                        " ORDER BY " + SuggestionColumns.DATE + " DESC"
                         " LIMIT -1 OFFSET " + String.valueOf(maxEntries) + ")";
             }
             cr.delete(mSuggestionsUri, selection, null);

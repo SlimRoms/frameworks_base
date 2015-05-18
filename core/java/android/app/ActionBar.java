@@ -948,7 +948,7 @@ public abstract class ActionBar {
      */
     public void setHideOnContentScrollEnabled(boolean hideOnContentScroll) {
         if (hideOnContentScroll) {
-            throw new UnsupportedOperationException("Hide on content scroll is not supported in " +
+            throw new UnsupportedOperationException("Hide on content scroll is not supported in "
                     "this action bar configuration.");
         }
     }
@@ -988,7 +988,7 @@ public abstract class ActionBar {
      */
     public void setHideOffset(int offset) {
         if (offset != 0) {
-            throw new UnsupportedOperationException("Setting an explicit action bar hide offset " +
+            throw new UnsupportedOperationException("Setting an explicit action bar hide offset "
                     "is not supported in this action bar configuration.");
         }
     }
@@ -1003,7 +1003,7 @@ public abstract class ActionBar {
      */
     public void setElevation(float elevation) {
         if (elevation != 0) {
-            throw new UnsupportedOperationException("Setting a non-zero elevation is " +
+            throw new UnsupportedOperationException("Setting a non-zero elevation is "
                     "not supported in this action bar configuration.");
         }
     }

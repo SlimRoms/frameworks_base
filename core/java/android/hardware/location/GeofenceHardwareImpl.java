@@ -442,8 +442,8 @@ public final class GeofenceHardwareImpl {
         if(DEBUG) {
             Log.d(
                     TAG,
-                    "GeofenceTransition| " + location + ", transition:" + transition +
-                    ", transitionTimestamp:" + transitionTimestamp + ", monitoringType:" +
+                    "GeofenceTransition| " + location + ", transition:" + transition
+                    ", transitionTimestamp:" + transitionTimestamp + ", monitoringType:"
                     monitoringType + ", sourcesUsed:" + sourcesUsed);
         }
 
@@ -583,7 +583,7 @@ public final class GeofenceHardwareImpl {
                                         reaper.mCallback.asBinder() == callbackBinder) {
                                     iterator.remove();
                                     reaper.unlinkToDeath();
-                                    if (DEBUG) Log.d(TAG, String.format("Removed reaper %s " +
+                                    if (DEBUG) Log.d(TAG, String.format("Removed reaper %s "
                                           "because binder %s is no longer needed.",
                                           reaper, callbackBinder));
                                 }
@@ -627,9 +627,9 @@ public final class GeofenceHardwareImpl {
                         callback = mGeofences.get(geofenceTransition.mGeofenceId);
 
                         // need to keep access to mGeofences synchronized at all times
-                        if (DEBUG) Log.d(TAG, "GeofenceTransistionCallback: GPS : GeofenceId: " +
-                                geofenceTransition.mGeofenceId +
-                                " Transition: " + geofenceTransition.mTransition +
+                        if (DEBUG) Log.d(TAG, "GeofenceTransistionCallback: GPS : GeofenceId: "
+                                geofenceTransition.mGeofenceId
+                                " Transition: " + geofenceTransition.mTransition
                                 " Location: " + geofenceTransition.mLocation + ":" + mGeofences);
                     }
 

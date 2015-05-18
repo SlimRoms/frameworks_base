@@ -269,7 +269,7 @@ public class KeyguardSimPukView extends KeyguardPinBasedInputView {
                 Log.v(TAG, "call supplyPukReportResultUsingSubId() mSubId = " + mSubId);
                 final int[] result = ITelephony.Stub.asInterface(ServiceManager
                     .checkService("phone")).supplyPukReportResultForSubscriber(mSubId, mPuk, mPin);
-                Log.v(TAG, "supplyPukReportResultUsingSubId returned: " + result[0] +
+                Log.v(TAG, "supplyPukReportResultUsingSubId returned: " + result[0]
                         " " + result[1]);
                 post(new Runnable() {
                     public void run() {
@@ -430,7 +430,7 @@ public class KeyguardSimPukView extends KeyguardPinBasedInputView {
         if (null != info) {
            displayName = info.getDisplayName().toString();
         }
-        if (DEBUG) Log.i(TAG, "handleSubInfoChange, mSubId=" + mSubId +
+        if (DEBUG) Log.i(TAG, "handleSubInfoChange, mSubId=" + mSubId
                 ", displayName=" + displayName);
 
         TextView slotName = (TextView)findViewById(R.id.slot_id_name);
@@ -466,7 +466,7 @@ public class KeyguardSimPukView extends KeyguardPinBasedInputView {
         mSecurityMessageDisplay.setMessage(R.string.kg_sim_pin_instructions, true);
         new CheckSimPuk("", "") {
             void onSimLockChangedResponse(final int result, final int attemptsRemaining) {
-                Log.d(LOG_TAG, "onSimCheckResponse " + " dummy One result" + result +
+                Log.d(LOG_TAG, "onSimCheckResponse " + " dummy One result" + result
                         " attemptsRemaining=" + attemptsRemaining);
                 if (attemptsRemaining >= 0) {
                     mRemainingAttempts = attemptsRemaining;

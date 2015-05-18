@@ -57,7 +57,7 @@ public class RemoteViewsListAdapter extends BaseAdapter {
         }
 
         if (mViewTypes.size() > mViewTypeCount || mViewTypeCount < 1) {
-            throw new RuntimeException("Invalid view type count -- view type count must be >= 1" +
+            throw new RuntimeException("Invalid view type count -- view type count must be >= 1"
                     "and must be as large as the total number of distinct view types");
         }
     }

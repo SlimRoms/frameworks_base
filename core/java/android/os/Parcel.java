@@ -1391,8 +1391,8 @@ public final class Parcel {
 
             writeByteArray(baos.toByteArray());
         } catch (IOException ioe) {
-            throw new RuntimeException("Parcelable encountered " +
-                "IOException writing serializable object (name = " + name +
+            throw new RuntimeException("Parcelable encountered "
+                "IOException writing serializable object (name = " + name
                 ")", ioe);
         }
     }
@@ -2377,11 +2377,11 @@ public final class Parcel {
             };
             return (Serializable) ois.readObject();
         } catch (IOException ioe) {
-            throw new RuntimeException("Parcelable encountered " +
-                "IOException reading a Serializable object (name = " + name +
+            throw new RuntimeException("Parcelable encountered "
+                "IOException reading a Serializable object (name = " + name
                 ")", ioe);
         } catch (ClassNotFoundException cnfe) {
-            throw new RuntimeException("Parcelable encountered " +
+            throw new RuntimeException("Parcelable encountered "
                 "ClassNotFoundException reading a Serializable object (name = "
                 + name + ")", cnfe);
         }

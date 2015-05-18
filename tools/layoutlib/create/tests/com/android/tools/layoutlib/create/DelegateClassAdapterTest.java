@@ -54,7 +54,7 @@ public class DelegateClassAdapterTest {
 
     private static final String NATIVE_CLASS_NAME = ClassWithNative.class.getCanonicalName();
     private static final String OUTER_CLASS_NAME = OuterClass.class.getCanonicalName();
-    private static final String INNER_CLASS_NAME = OuterClass.class.getCanonicalName() + "$" +
+    private static final String INNER_CLASS_NAME = OuterClass.class.getCanonicalName() + "$"
                                                    InnerClass.class.getSimpleName();
 
     @Before

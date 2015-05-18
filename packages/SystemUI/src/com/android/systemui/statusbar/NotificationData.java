@@ -319,7 +319,7 @@ public class NotificationData {
         pw.println("  [" + i + "] key=" + e.key + " icon=" + e.icon);
         StatusBarNotification n = e.notification;
         pw.print(indent);
-        pw.println("      pkg=" + n.getPackageName() + " id=" + n.getId() + " score=" +
+        pw.println("      pkg=" + n.getPackageName() + " id=" + n.getId() + " score="
                 n.getScore());
         pw.print(indent);
         pw.println("      notification=" + n.getNotification());

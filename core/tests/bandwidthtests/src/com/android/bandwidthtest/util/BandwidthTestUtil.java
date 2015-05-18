@@ -80,7 +80,7 @@ public class BandwidthTestUtil {
      */
     public static String buildDownloadUrl(String server, int size, String deviceId,
             String timestamp) {
-        String downloadUrl = server + "/download?size=" + size + "&device_id=" + deviceId +
+        String downloadUrl = server + "/download?size=" + size + "&device_id=" + deviceId
                 "&timestamp=" + timestamp;
         return downloadUrl;
     }

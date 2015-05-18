@@ -231,7 +231,7 @@ public final class MediaBrowser {
      */
     public @NonNull ComponentName getServiceComponent() {
         if (!isConnected()) {
-            throw new IllegalStateException("getServiceComponent() called while not connected" +
+            throw new IllegalStateException("getServiceComponent() called while not connected"
                     " (state=" + mState + ")");
         }
         return mServiceComponent;

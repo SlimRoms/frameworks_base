@@ -194,9 +194,9 @@ public class BackDropperFilter extends Filter {
     // Minimum variance (0-255 scale)
     private static final String MIN_VARIANCE = "3.0";
     // Column-major array for 4x4 matrix converting RGB to YCbCr, JPEG definition (no pedestal)
-    private static final String RGB_TO_YUV_MATRIX = "0.299, -0.168736,  0.5,      0.000, " +
-                                                    "0.587, -0.331264, -0.418688, 0.000, " +
-                                                    "0.114,  0.5,      -0.081312, 0.000, " +
+    private static final String RGB_TO_YUV_MATRIX = "0.299, -0.168736,  0.5,      0.000, "
+                                                    "0.587, -0.331264, -0.418688, 0.000, "
+                                                    "0.114,  0.5,      -0.081312, 0.000, "
                                                     "0.000,  0.5,       0.5,      1.000 ";
     /** Stream names */
 
@@ -222,32 +222,32 @@ public class BackDropperFilter extends Filter {
 
     // Shared uniforms and utility functions
     private static String mSharedUtilShader =
-            "precision mediump float;\n" +
-            "uniform float fg_adapt_rate;\n" +
-            "uniform float bg_adapt_rate;\n" +
-            "const mat4 coeff_yuv = mat4(" + RGB_TO_YUV_MATRIX + ");\n" +
-            "const float dist_scale = " + DISTANCE_STORAGE_SCALE + ";\n" +
-            "const float inv_dist_scale = 1. / dist_scale;\n" +
-            "const float var_scale=" + VARIANCE_STORAGE_SCALE + ";\n" +
-            "const float inv_var_scale = 1. / var_scale;\n" +
-            "const float min_variance = inv_var_scale *" + MIN_VARIANCE + "/ 256.;\n" +
-            "const float auto_wb_scale = " + DEFAULT_AUTO_WB_SCALE + ";\n" +
-            "\n" +
+            "precision mediump float;\n"
+            "uniform float fg_adapt_rate;\n"
+            "uniform float bg_adapt_rate;\n"
+            "const mat4 coeff_yuv = mat4(" + RGB_TO_YUV_MATRIX + ");\n"
+            "const float dist_scale = " + DISTANCE_STORAGE_SCALE + ";\n"
+            "const float inv_dist_scale = 1. / dist_scale;\n"
+            "const float var_scale=" + VARIANCE_STORAGE_SCALE + ";\n"
+            "const float inv_var_scale = 1. / var_scale;\n"
+            "const float min_variance = inv_var_scale *" + MIN_VARIANCE + "/ 256.;\n"
+            "const float auto_wb_scale = " + DEFAULT_AUTO_WB_SCALE + ";\n"
+            "\n"
             // Variance distance in luminance between current pixel and background model
-            "float gauss_dist_y(float y, float mean, float variance) {\n" +
-            "  float dist = (y - mean) * (y - mean) / variance;\n" +
-            "  return dist;\n" +
-            "}\n" +
+            "float gauss_dist_y(float y, float mean, float variance) {\n"
+            "  float dist = (y - mean) * (y - mean) / variance;\n"
+            "  return dist;\n"
+            "}\n"
             // Sum of variance distances in chroma between current pixel and background
             // model
-            "float gauss_dist_uv(vec2 uv, vec2 mean, vec2 variance) {\n" +
-            "  vec2 dist = (uv - mean) * (uv - mean) / variance;\n" +
-            "  return dist.r + dist.g;\n" +
-            "}\n" +
+            "float gauss_dist_uv(vec2 uv, vec2 mean, vec2 variance) {\n"
+            "  vec2 dist = (uv - mean) * (uv - mean) / variance;\n"
+            "  return dist.r + dist.g;\n"
+            "}\n"
             // Select learning rate for pixel based on smoothed decision mask alpha
-            "float local_adapt_rate(float alpha) {\n" +
-            "  return mix(bg_adapt_rate, fg_adapt_rate, alpha);\n" +
-            "}\n" +
+            "float local_adapt_rate(float alpha) {\n"
+            "  return mix(bg_adapt_rate, fg_adapt_rate, alpha);\n"
+            "}\n"
             "\n";
 
     // Distance calculation shader. Calculates a distance metric between the foreground and the
@@ -261,56 +261,56 @@ public class BackDropperFilter extends Filter {
     //   tex_sampler_2: Background variance mask.
     //   subsample_level: Level on foreground frame's mip-map.
     private static final String mBgDistanceShader =
-            "uniform sampler2D tex_sampler_0;\n" +
-            "uniform sampler2D tex_sampler_1;\n" +
-            "uniform sampler2D tex_sampler_2;\n" +
-            "uniform float subsample_level;\n" +
-            "varying vec2 v_texcoord;\n" +
-            "void main() {\n" +
-            "  vec4 fg_rgb = texture2D(tex_sampler_0, v_texcoord, subsample_level);\n" +
-            "  vec4 fg = coeff_yuv * vec4(fg_rgb.rgb, 1.);\n" +
-            "  vec4 mean = texture2D(tex_sampler_1, v_texcoord);\n" +
-            "  vec4 variance = inv_var_scale * texture2D(tex_sampler_2, v_texcoord);\n" +
-            "\n" +
-            "  float dist_y = gauss_dist_y(fg.r, mean.r, variance.r);\n" +
-            "  float dist_uv = gauss_dist_uv(fg.gb, mean.gb, variance.gb);\n" +
-            "  gl_FragColor = vec4(0.5*fg.rg, dist_scale*dist_y, dist_scale*dist_uv);\n" +
+            "uniform sampler2D tex_sampler_0;\n"
+            "uniform sampler2D tex_sampler_1;\n"
+            "uniform sampler2D tex_sampler_2;\n"
+            "uniform float subsample_level;\n"
+            "varying vec2 v_texcoord;\n"
+            "void main() {\n"
+            "  vec4 fg_rgb = texture2D(tex_sampler_0, v_texcoord, subsample_level);\n"
+            "  vec4 fg = coeff_yuv * vec4(fg_rgb.rgb, 1.);\n"
+            "  vec4 mean = texture2D(tex_sampler_1, v_texcoord);\n"
+            "  vec4 variance = inv_var_scale * texture2D(tex_sampler_2, v_texcoord);\n"
+            "\n"
+            "  float dist_y = gauss_dist_y(fg.r, mean.r, variance.r);\n"
+            "  float dist_uv = gauss_dist_uv(fg.gb, mean.gb, variance.gb);\n"
+            "  gl_FragColor = vec4(0.5*fg.rg, dist_scale*dist_y, dist_scale*dist_uv);\n"
             "}\n";
 
     // Foreground/background mask decision shader. Decides whether a frame is in the foreground or
     //   the background using a hierarchical threshold on the distance. Binary foreground/background
     //   mask is placed in the alpha channel. The RGB channels contain debug information.
     private static final String mBgMaskShader =
-            "uniform sampler2D tex_sampler_0;\n" +
-            "uniform float accept_variance;\n" +
-            "uniform vec2 yuv_weights;\n" +
-            "uniform float scale_lrg;\n" +
-            "uniform float scale_mid;\n" +
-            "uniform float scale_sml;\n" +
-            "uniform float exp_lrg;\n" +
-            "uniform float exp_mid;\n" +
-            "uniform float exp_sml;\n" +
-            "varying vec2 v_texcoord;\n" +
+            "uniform sampler2D tex_sampler_0;\n"
+            "uniform float accept_variance;\n"
+            "uniform vec2 yuv_weights;\n"
+            "uniform float scale_lrg;\n"
+            "uniform float scale_mid;\n"
+            "uniform float scale_sml;\n"
+            "uniform float exp_lrg;\n"
+            "uniform float exp_mid;\n"
+            "uniform float exp_sml;\n"
+            "varying vec2 v_texcoord;\n"
             // Decide whether pixel is foreground or background based on Y and UV
             //   distance and maximum acceptable variance.
             // yuv_weights.x is smaller than yuv_weights.y to discount the influence of shadow
-            "bool is_fg(vec2 dist_yc, float accept_variance) {\n" +
-            "  return ( dot(yuv_weights, dist_yc) >= accept_variance );\n" +
-            "}\n" +
-            "void main() {\n" +
-            "  vec4 dist_lrg_sc = texture2D(tex_sampler_0, v_texcoord, exp_lrg);\n" +
-            "  vec4 dist_mid_sc = texture2D(tex_sampler_0, v_texcoord, exp_mid);\n" +
-            "  vec4 dist_sml_sc = texture2D(tex_sampler_0, v_texcoord, exp_sml);\n" +
-            "  vec2 dist_lrg = inv_dist_scale * dist_lrg_sc.ba;\n" +
-            "  vec2 dist_mid = inv_dist_scale * dist_mid_sc.ba;\n" +
-            "  vec2 dist_sml = inv_dist_scale * dist_sml_sc.ba;\n" +
+            "bool is_fg(vec2 dist_yc, float accept_variance) {\n"
+            "  return ( dot(yuv_weights, dist_yc) >= accept_variance );\n"
+            "}\n"
+            "void main() {\n"
+            "  vec4 dist_lrg_sc = texture2D(tex_sampler_0, v_texcoord, exp_lrg);\n"
+            "  vec4 dist_mid_sc = texture2D(tex_sampler_0, v_texcoord, exp_mid);\n"
+            "  vec4 dist_sml_sc = texture2D(tex_sampler_0, v_texcoord, exp_sml);\n"
+            "  vec2 dist_lrg = inv_dist_scale * dist_lrg_sc.ba;\n"
+            "  vec2 dist_mid = inv_dist_scale * dist_mid_sc.ba;\n"
+            "  vec2 dist_sml = inv_dist_scale * dist_sml_sc.ba;\n"
             "  vec2 norm_dist = 0.75 * dist_sml / accept_variance;\n" + // For debug viz
-            "  bool is_fg_lrg = is_fg(dist_lrg, accept_variance * scale_lrg);\n" +
-            "  bool is_fg_mid = is_fg_lrg || is_fg(dist_mid, accept_variance * scale_mid);\n" +
-            "  float is_fg_sml =\n" +
-            "      float(is_fg_mid || is_fg(dist_sml, accept_variance * scale_sml));\n" +
-            "  float alpha = 0.5 * is_fg_sml + 0.3 * float(is_fg_mid) + 0.2 * float(is_fg_lrg);\n" +
-            "  gl_FragColor = vec4(alpha, norm_dist, is_fg_sml);\n" +
+            "  bool is_fg_lrg = is_fg(dist_lrg, accept_variance * scale_lrg);\n"
+            "  bool is_fg_mid = is_fg_lrg || is_fg(dist_mid, accept_variance * scale_mid);\n"
+            "  float is_fg_sml =\n"
+            "      float(is_fg_mid || is_fg(dist_sml, accept_variance * scale_sml));\n"
+            "  float alpha = 0.5 * is_fg_sml + 0.3 * float(is_fg_mid) + 0.2 * float(is_fg_lrg);\n"
+            "  gl_FragColor = vec4(alpha, norm_dist, is_fg_sml);\n"
             "}\n";
 
     // Automatic White Balance parameter decision shader
@@ -323,21 +323,21 @@ public class BackDropperFilter extends Filter {
     //   tex_sampler_1: Mip-map for background (playback) video frame.
     //   pyramid_depth: Depth of input frames' mip-maps.
     private static final String mAutomaticWhiteBalance =
-            "uniform sampler2D tex_sampler_0;\n" +
-            "uniform sampler2D tex_sampler_1;\n" +
-            "uniform float pyramid_depth;\n" +
-            "uniform bool autowb_toggle;\n" +
-            "varying vec2 v_texcoord;\n" +
-            "void main() {\n" +
+            "uniform sampler2D tex_sampler_0;\n"
+            "uniform sampler2D tex_sampler_1;\n"
+            "uniform float pyramid_depth;\n"
+            "uniform bool autowb_toggle;\n"
+            "varying vec2 v_texcoord;\n"
+            "void main() {\n"
             "   vec4 mean_video = texture2D(tex_sampler_0, v_texcoord, pyramid_depth);\n"+
-            "   vec4 mean_bg = texture2D(tex_sampler_1, v_texcoord, pyramid_depth);\n" +
+            "   vec4 mean_bg = texture2D(tex_sampler_1, v_texcoord, pyramid_depth);\n"
             // If Auto WB is toggled off, the return texture will be a unicolor texture of value 1
             // If Auto WB is toggled on, the return texture will be a unicolor texture with
             //   adjustment parameters for R and B channels stored in the corresponding channel
             "   float green_normalizer = mean_video.g / mean_bg.g;\n"+
-            "   vec4 adjusted_value = vec4(mean_bg.r / mean_video.r * green_normalizer, 1., \n" +
-            "                         mean_bg.b / mean_video.b * green_normalizer, 1.) * auto_wb_scale; \n" +
-            "   gl_FragColor = autowb_toggle ? adjusted_value : vec4(auto_wb_scale);\n" +
+            "   vec4 adjusted_value = vec4(mean_bg.r / mean_video.r * green_normalizer, 1., \n"
+            "                         mean_bg.b / mean_video.b * green_normalizer, 1.) * auto_wb_scale; \n"
+            "   gl_FragColor = autowb_toggle ? adjusted_value : vec4(auto_wb_scale);\n"
             "}\n";
 
 
@@ -349,44 +349,44 @@ public class BackDropperFilter extends Filter {
     //   tex_sampler_2: Foreground/background mask.
     //   tex_sampler_3: Auto white-balance factors.
     private static final String mBgSubtractShader =
-            "uniform mat3 bg_fit_transform;\n" +
-            "uniform float mask_blend_bg;\n" +
-            "uniform float mask_blend_fg;\n" +
-            "uniform float exposure_change;\n" +
-            "uniform float whitebalancered_change;\n" +
-            "uniform float whitebalanceblue_change;\n" +
-            "uniform sampler2D tex_sampler_0;\n" +
-            "uniform sampler2D tex_sampler_1;\n" +
-            "uniform sampler2D tex_sampler_2;\n" +
-            "uniform sampler2D tex_sampler_3;\n" +
-            "varying vec2 v_texcoord;\n" +
-            "void main() {\n" +
-            "  vec2 bg_texcoord = (bg_fit_transform * vec3(v_texcoord, 1.)).xy;\n" +
-            "  vec4 bg_rgb = texture2D(tex_sampler_1, bg_texcoord);\n" +
+            "uniform mat3 bg_fit_transform;\n"
+            "uniform float mask_blend_bg;\n"
+            "uniform float mask_blend_fg;\n"
+            "uniform float exposure_change;\n"
+            "uniform float whitebalancered_change;\n"
+            "uniform float whitebalanceblue_change;\n"
+            "uniform sampler2D tex_sampler_0;\n"
+            "uniform sampler2D tex_sampler_1;\n"
+            "uniform sampler2D tex_sampler_2;\n"
+            "uniform sampler2D tex_sampler_3;\n"
+            "varying vec2 v_texcoord;\n"
+            "void main() {\n"
+            "  vec2 bg_texcoord = (bg_fit_transform * vec3(v_texcoord, 1.)).xy;\n"
+            "  vec4 bg_rgb = texture2D(tex_sampler_1, bg_texcoord);\n"
             // The foreground texture is modified by multiplying both manual and auto white balance changes in R and B
             //   channel and multiplying exposure change in all R, G, B channels.
-            "  vec4 wb_auto_scale = texture2D(tex_sampler_3, v_texcoord) * exposure_change / auto_wb_scale;\n" +
-            "  vec4 wb_manual_scale = vec4(1. + whitebalancered_change, 1., 1. + whitebalanceblue_change, 1.);\n" +
-            "  vec4 fg_rgb = texture2D(tex_sampler_0, v_texcoord);\n" +
+            "  vec4 wb_auto_scale = texture2D(tex_sampler_3, v_texcoord) * exposure_change / auto_wb_scale;\n"
+            "  vec4 wb_manual_scale = vec4(1. + whitebalancered_change, 1., 1. + whitebalanceblue_change, 1.);\n"
+            "  vec4 fg_rgb = texture2D(tex_sampler_0, v_texcoord);\n"
             "  vec4 fg_adjusted = fg_rgb * wb_manual_scale * wb_auto_scale;\n"+
-            "  vec4 mask = texture2D(tex_sampler_2, v_texcoord, \n" +
-            "                      " + MASK_SMOOTH_EXPONENT + ");\n" +
-            "  float alpha = smoothstep(mask_blend_bg, mask_blend_fg, mask.a);\n" +
+            "  vec4 mask = texture2D(tex_sampler_2, v_texcoord, \n"
+            "                      " + MASK_SMOOTH_EXPONENT + ");\n"
+            "  float alpha = smoothstep(mask_blend_bg, mask_blend_fg, mask.a);\n"
             "  gl_FragColor = mix(bg_rgb, fg_adjusted, alpha);\n";
 
     // May the Force... Makes the foreground object translucent blue, with a bright
     // blue-white outline
     private static final String mBgSubtractForceShader =
-            "  vec4 ghost_rgb = (fg_adjusted * 0.7 + vec4(0.3,0.3,0.4,0.))*0.65 + \n" +
-            "                   0.35*bg_rgb;\n" +
+            "  vec4 ghost_rgb = (fg_adjusted * 0.7 + vec4(0.3,0.3,0.4,0.))*0.65 + \n"
+            "                   0.35*bg_rgb;\n"
             "  float glow_start = 0.75 * mask_blend_bg; \n"+
             "  float glow_max   = mask_blend_bg; \n"+
-            "  gl_FragColor = mask.a < glow_start ? bg_rgb : \n" +
-            "                 mask.a < glow_max ? mix(bg_rgb, vec4(0.9,0.9,1.0,1.0), \n" +
-            "                                     (mask.a - glow_start) / (glow_max - glow_start) ) : \n" +
-            "                 mask.a < mask_blend_fg ? mix(vec4(0.9,0.9,1.0,1.0), ghost_rgb, \n" +
-            "                                    (mask.a - glow_max) / (mask_blend_fg - glow_max) ) : \n" +
-            "                 ghost_rgb;\n" +
+            "  gl_FragColor = mask.a < glow_start ? bg_rgb : \n"
+            "                 mask.a < glow_max ? mix(bg_rgb, vec4(0.9,0.9,1.0,1.0), \n"
+            "                                     (mask.a - glow_start) / (glow_max - glow_start) ) : \n"
+            "                 mask.a < mask_blend_fg ? mix(vec4(0.9,0.9,1.0,1.0), ghost_rgb, \n"
+            "                                    (mask.a - glow_max) / (mask_blend_fg - glow_max) ) : \n"
+            "                 ghost_rgb;\n"
             "}\n";
 
     // Background model mean update shader. Skews the current model mean toward the most recent pixel
@@ -398,21 +398,21 @@ public class BackDropperFilter extends Filter {
     //   tex_sampler_2: Foreground/background mask.
     //   subsample_level: Level on foreground frame's mip-map.
     private static final String mUpdateBgModelMeanShader =
-            "uniform sampler2D tex_sampler_0;\n" +
-            "uniform sampler2D tex_sampler_1;\n" +
-            "uniform sampler2D tex_sampler_2;\n" +
-            "uniform float subsample_level;\n" +
-            "varying vec2 v_texcoord;\n" +
-            "void main() {\n" +
-            "  vec4 fg_rgb = texture2D(tex_sampler_0, v_texcoord, subsample_level);\n" +
-            "  vec4 fg = coeff_yuv * vec4(fg_rgb.rgb, 1.);\n" +
-            "  vec4 mean = texture2D(tex_sampler_1, v_texcoord);\n" +
-            "  vec4 mask = texture2D(tex_sampler_2, v_texcoord, \n" +
-            "                      " + MASK_SMOOTH_EXPONENT + ");\n" +
-            "\n" +
-            "  float alpha = local_adapt_rate(mask.a);\n" +
-            "  vec4 new_mean = mix(mean, fg, alpha);\n" +
-            "  gl_FragColor = new_mean;\n" +
+            "uniform sampler2D tex_sampler_0;\n"
+            "uniform sampler2D tex_sampler_1;\n"
+            "uniform sampler2D tex_sampler_2;\n"
+            "uniform float subsample_level;\n"
+            "varying vec2 v_texcoord;\n"
+            "void main() {\n"
+            "  vec4 fg_rgb = texture2D(tex_sampler_0, v_texcoord, subsample_level);\n"
+            "  vec4 fg = coeff_yuv * vec4(fg_rgb.rgb, 1.);\n"
+            "  vec4 mean = texture2D(tex_sampler_1, v_texcoord);\n"
+            "  vec4 mask = texture2D(tex_sampler_2, v_texcoord, \n"
+            "                      " + MASK_SMOOTH_EXPONENT + ");\n"
+            "\n"
+            "  float alpha = local_adapt_rate(mask.a);\n"
+            "  vec4 new_mean = mix(mean, fg, alpha);\n"
+            "  gl_FragColor = new_mean;\n"
             "}\n";
 
     // Background model variance update shader. Skews the current model variance toward the most
@@ -427,39 +427,39 @@ public class BackDropperFilter extends Filter {
     // TODO: to improve efficiency, use single mark for mean + variance, then merge this into
     // mUpdateBgModelMeanShader.
     private static final String mUpdateBgModelVarianceShader =
-            "uniform sampler2D tex_sampler_0;\n" +
-            "uniform sampler2D tex_sampler_1;\n" +
-            "uniform sampler2D tex_sampler_2;\n" +
-            "uniform sampler2D tex_sampler_3;\n" +
-            "uniform float subsample_level;\n" +
-            "varying vec2 v_texcoord;\n" +
-            "void main() {\n" +
-            "  vec4 fg_rgb = texture2D(tex_sampler_0, v_texcoord, subsample_level);\n" +
-            "  vec4 fg = coeff_yuv * vec4(fg_rgb.rgb, 1.);\n" +
-            "  vec4 mean = texture2D(tex_sampler_1, v_texcoord);\n" +
-            "  vec4 variance = inv_var_scale * texture2D(tex_sampler_2, v_texcoord);\n" +
-            "  vec4 mask = texture2D(tex_sampler_3, v_texcoord, \n" +
-            "                      " + MASK_SMOOTH_EXPONENT + ");\n" +
-            "\n" +
-            "  float alpha = local_adapt_rate(mask.a);\n" +
-            "  vec4 cur_variance = (fg-mean)*(fg-mean);\n" +
-            "  vec4 new_variance = mix(variance, cur_variance, alpha);\n" +
-            "  new_variance = max(new_variance, vec4(min_variance));\n" +
-            "  gl_FragColor = var_scale * new_variance;\n" +
+            "uniform sampler2D tex_sampler_0;\n"
+            "uniform sampler2D tex_sampler_1;\n"
+            "uniform sampler2D tex_sampler_2;\n"
+            "uniform sampler2D tex_sampler_3;\n"
+            "uniform float subsample_level;\n"
+            "varying vec2 v_texcoord;\n"
+            "void main() {\n"
+            "  vec4 fg_rgb = texture2D(tex_sampler_0, v_texcoord, subsample_level);\n"
+            "  vec4 fg = coeff_yuv * vec4(fg_rgb.rgb, 1.);\n"
+            "  vec4 mean = texture2D(tex_sampler_1, v_texcoord);\n"
+            "  vec4 variance = inv_var_scale * texture2D(tex_sampler_2, v_texcoord);\n"
+            "  vec4 mask = texture2D(tex_sampler_3, v_texcoord, \n"
+            "                      " + MASK_SMOOTH_EXPONENT + ");\n"
+            "\n"
+            "  float alpha = local_adapt_rate(mask.a);\n"
+            "  vec4 cur_variance = (fg-mean)*(fg-mean);\n"
+            "  vec4 new_variance = mix(variance, cur_variance, alpha);\n"
+            "  new_variance = max(new_variance, vec4(min_variance));\n"
+            "  gl_FragColor = var_scale * new_variance;\n"
             "}\n";
 
     // Background verification shader. Skews the current background verification mask towards the
     //   most recent frame, weighted by the learning rate.
     private static final String mMaskVerifyShader =
-            "uniform sampler2D tex_sampler_0;\n" +
-            "uniform sampler2D tex_sampler_1;\n" +
-            "uniform float verify_rate;\n" +
-            "varying vec2 v_texcoord;\n" +
-            "void main() {\n" +
-            "  vec4 lastmask = texture2D(tex_sampler_0, v_texcoord);\n" +
-            "  vec4 mask = texture2D(tex_sampler_1, v_texcoord);\n" +
-            "  float newmask = mix(lastmask.a, mask.a, verify_rate);\n" +
-            "  gl_FragColor = vec4(0., 0., 0., newmask);\n" +
+            "uniform sampler2D tex_sampler_0;\n"
+            "uniform sampler2D tex_sampler_1;\n"
+            "uniform float verify_rate;\n"
+            "varying vec2 v_texcoord;\n"
+            "void main() {\n"
+            "  vec4 lastmask = texture2D(tex_sampler_0, v_texcoord);\n"
+            "  vec4 mask = texture2D(tex_sampler_1, v_texcoord);\n"
+            "  float newmask = mix(lastmask.a, mask.a, verify_rate);\n"
+            "  gl_FragColor = vec4(0., 0., 0., newmask);\n"
             "}\n";
 
     /** Shader program objects */
@@ -515,7 +515,7 @@ public class BackDropperFilter extends Filter {
             try {
                 mAcceptStddev += Float.parseFloat(adjStr);
                 if (mLogVerbose) {
-                    Log.v(TAG, "Adjusting accept threshold by " + adjStr +
+                    Log.v(TAG, "Adjusting accept threshold by " + adjStr
                             ", now " + mAcceptStddev);
                 }
             } catch (NumberFormatException e) {
@@ -849,7 +849,7 @@ public class BackDropperFilter extends Filter {
                     context.getGLEnvironment().activate();
                     GLES20.glFinish();
                     long endTime = SystemClock.elapsedRealtime();
-                    Log.v(TAG, "Avg. frame duration: " + String.format("%.2f",(endTime-startTime)/30.) +
+                    Log.v(TAG, "Avg. frame duration: " + String.format("%.2f",(endTime-startTime)/30.)
                           " ms. Avg. fps: " + String.format("%.2f", 1000./((endTime-startTime)/30.)) );
                     startTime = endTime;
                 }
@@ -980,8 +980,8 @@ public class BackDropperFilter extends Filter {
                     yMin = 1.0f - yMin;
                 }
             }
-            if (mLogVerbose) Log.v(TAG, "bgTransform: xMin, yMin, xWidth, yWidth : " +
-                    xMin + ", " + yMin + ", " + xWidth + ", " + yWidth +
+            if (mLogVerbose) Log.v(TAG, "bgTransform: xMin, yMin, xWidth, yWidth : "
+                    xMin + ", " + yMin + ", " + xWidth + ", " + yWidth
                     ", mRelAspRatio = " + mRelativeAspect);
             // The following matrix is the transpose of the actual matrix
             float[] bgTransform = {xWidth, 0.f, 0.f,

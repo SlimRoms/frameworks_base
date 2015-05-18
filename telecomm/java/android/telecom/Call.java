@@ -441,19 +441,19 @@ public final class Call {
         @Override
         public int hashCode() {
             return
-                    Objects.hashCode(mHandle) +
-                    Objects.hashCode(mHandlePresentation) +
-                    Objects.hashCode(mCallerDisplayName) +
-                    Objects.hashCode(mCallerDisplayNamePresentation) +
-                    Objects.hashCode(mAccountHandle) +
-                    Objects.hashCode(mCallCapabilities) +
-                    Objects.hashCode(mCallProperties) +
-                    Objects.hashCode(mDisconnectCause) +
-                    Objects.hashCode(mConnectTimeMillis) +
-                    Objects.hashCode(mGatewayInfo) +
-                    Objects.hashCode(mVideoState) +
-                    Objects.hashCode(mStatusHints) +
-                    Objects.hashCode(mExtras) +
+                    Objects.hashCode(mHandle)
+                    Objects.hashCode(mHandlePresentation)
+                    Objects.hashCode(mCallerDisplayName)
+                    Objects.hashCode(mCallerDisplayNamePresentation)
+                    Objects.hashCode(mAccountHandle)
+                    Objects.hashCode(mCallCapabilities)
+                    Objects.hashCode(mCallProperties)
+                    Objects.hashCode(mDisconnectCause)
+                    Objects.hashCode(mConnectTimeMillis)
+                    Objects.hashCode(mGatewayInfo)
+                    Objects.hashCode(mVideoState)
+                    Objects.hashCode(mStatusHints)
+                    Objects.hashCode(mExtras)
                     Objects.hashCode(mCallSubstate);
         }
 

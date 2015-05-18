@@ -839,13 +839,13 @@ public class DrmManagerClient {
                     cursor = mContext.getContentResolver().query(uri, projection, null,
                             null, null);
                     if (null == cursor || 0 == cursor.getCount() || !cursor.moveToFirst()) {
-                        throw new IllegalArgumentException("Given Uri could not be found" +
+                        throw new IllegalArgumentException("Given Uri could not be found"
                                 " in media store");
                     }
                     int pathIndex = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
                     path = cursor.getString(pathIndex);
                 } catch (SQLiteException e) {
-                    throw new IllegalArgumentException("Given Uri is not formatted in a way " +
+                    throw new IllegalArgumentException("Given Uri is not formatted in a way "
                             "so that it can be found in media store.");
                 } finally {
                     if (null != cursor) {

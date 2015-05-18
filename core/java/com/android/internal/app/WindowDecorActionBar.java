@@ -197,7 +197,7 @@ public class WindowDecorActionBar extends ActionBar implements
                 com.android.internal.R.id.split_action_bar);
 
         if (mDecorToolbar == null || mContextView == null || mContainerView == null) {
-            throw new IllegalStateException(getClass().getSimpleName() + " can only be used " +
+            throw new IllegalStateException(getClass().getSimpleName() + " can only be used "
                     "with a compatible window decor layout");
         }
 
@@ -235,7 +235,7 @@ public class WindowDecorActionBar extends ActionBar implements
         } else if (view instanceof Toolbar) {
             return ((Toolbar) view).getWrapper();
         } else {
-            throw new IllegalStateException("Can't make a decor toolbar out of " +
+            throw new IllegalStateException("Can't make a decor toolbar out of "
                     view.getClass().getSimpleName());
         }
     }
@@ -697,7 +697,7 @@ public class WindowDecorActionBar extends ActionBar implements
     @Override
     public void setHideOnContentScrollEnabled(boolean hideOnContentScroll) {
         if (hideOnContentScroll && !mOverlayLayout.isInOverlayMode()) {
-            throw new IllegalStateException("Action bar must be in overlay mode " +
+            throw new IllegalStateException("Action bar must be in overlay mode "
                     "(Window.FEATURE_OVERLAY_ACTION_BAR) to enable hide on content scroll");
         }
         mHideOnContentScroll = hideOnContentScroll;
@@ -717,7 +717,7 @@ public class WindowDecorActionBar extends ActionBar implements
     @Override
     public void setHideOffset(int offset) {
         if (offset != 0 && !mOverlayLayout.isInOverlayMode()) {
-            throw new IllegalStateException("Action bar must be in overlay mode " +
+            throw new IllegalStateException("Action bar must be in overlay mode "
                     "(Window.FEATURE_OVERLAY_ACTION_BAR) to set a non-zero hide offset");
         }
         mOverlayLayout.setActionBarHideOffset(offset);

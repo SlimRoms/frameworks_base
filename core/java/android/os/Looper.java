@@ -128,7 +128,7 @@ public final class Looper {
             // This must be in a local variable, in case a UI event sets the logger
             Printer logging = me.mLogging;
             if (logging != null) {
-                logging.println(">>>>> Dispatching to " + msg.target + " " +
+                logging.println(">>>>> Dispatching to " + msg.target + " "
                         msg.callback + ": " + msg.what);
             }
 

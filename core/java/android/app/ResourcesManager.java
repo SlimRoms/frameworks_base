@@ -204,7 +204,7 @@ public class ResourcesManager {
         if (libDirs != null) {
             for (String libDir : libDirs) {
                 if (assets.addAssetPath(libDir) == 0) {
-                    Slog.w(TAG, "Asset path '" + libDir +
+                    Slog.w(TAG, "Asset path '" + libDir
                             "' does not exist or contains no resources.");
                 }
             }

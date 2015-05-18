@@ -155,7 +155,7 @@ public class SystemServicesProxy {
                 int packageIndex = i % Constants.DebugFlags.App.SystemServicesProxyMockPackageCount;
                 ComponentName cn = new ComponentName("com.android.test" + packageIndex,
                         "com.android.test" + i + ".Activity");
-                String description = "" + i + " - " +
+                String description = "" + i + " - "
                         Long.toString(Math.abs(new Random().nextLong()), 36);
                 // Create the recent task info
                 ActivityManager.RecentTaskInfo rti = new ActivityManager.RecentTaskInfo();

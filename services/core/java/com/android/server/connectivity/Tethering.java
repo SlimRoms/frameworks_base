@@ -588,7 +588,7 @@ public class Tethering extends BaseNetworkObserver {
         synchronized (mPublicSync) {
             sm = mIfaces.get(iface);
             if (sm == null) {
-                Log.e(TAG, "Tried to getLastTetherError on an unknown iface :" + iface +
+                Log.e(TAG, "Tried to getLastTetherError on an unknown iface :" + iface
                         ", ignoring");
                 return ConnectivityManager.TETHER_ERROR_UNKNOWN_IFACE;
             }
@@ -641,7 +641,7 @@ public class Tethering extends BaseNetworkObserver {
                 erroredList);
         mContext.sendStickyBroadcastAsUser(broadcast, UserHandle.ALL);
         if (DBG) {
-            Log.d(TAG, "sendTetherStateChangedBroadcast " + availableList.size() + ", " +
+            Log.d(TAG, "sendTetherStateChangedBroadcast " + availableList.size() + ", "
                     activeList.size() + ", " + erroredList.size());
         }
 
@@ -668,8 +668,8 @@ public class Tethering extends BaseNetworkObserver {
     private void sendUpstreamIfaceChangeBroadcast( String upstreamIface, String tetheredIface,
                                                    int ip_type,
                                                    UpstreamInfoUpdateType update_type) {
-        if (DBG) Log.d(TAG, "sendUpstreamIfaceChangeBroadcast upstreamIface:" + upstreamIface +
-                            " tetheredIface:" + tetheredIface +
+        if (DBG) Log.d(TAG, "sendUpstreamIfaceChangeBroadcast upstreamIface:" + upstreamIface
+                            " tetheredIface:" + tetheredIface
                             " IP Type: "+ ip_type + " update_type" + update_type);
         Intent intent = new Intent(UPSTREAM_IFACE_CHANGED_ACTION);
         intent.putExtra(EXTRA_UPSTREAM_IFACE, upstreamIface);
@@ -1263,7 +1263,7 @@ public class Tethering extends BaseNetworkObserver {
                         if (VDBG) Log.e(TAG, "Exception in forceUpdate: " + e.toString());
                     }
                     try {
-                        if(VDBG) Log.d(TAG, "Disabling NAT - Tethered Iface = " + mIfaceName +
+                        if(VDBG) Log.d(TAG, "Disabling NAT - Tethered Iface = " + mIfaceName
                                             " mMyUpstreamIfaceName= " + mMyUpstreamIfaceName);
                         mNMService.disableNat(mIfaceName, mMyUpstreamIfaceName);
                         sendUpstreamIfaceChangeBroadcast( mMyUpstreamIfaceName,
@@ -1311,8 +1311,8 @@ public class Tethering extends BaseNetworkObserver {
                         break;
                     case CMD_TETHER_CONNECTION_CHANGED:
                         String newUpstreamIfaceName = (String)(message.obj);
-                        if(VDBG) Log.d(TAG, "Current Upstream Iface = " + mMyUpstreamIfaceName +
-                                            " New Upstream Iface = " + newUpstreamIfaceName +
+                        if(VDBG) Log.d(TAG, "Current Upstream Iface = " + mMyUpstreamIfaceName
+                                            " New Upstream Iface = " + newUpstreamIfaceName
                                             " Tethered Iface = "+ mIfaceName);
                         if ((mMyUpstreamIfaceName == null && newUpstreamIfaceName == null) ||
                                 (mMyUpstreamIfaceName != null &&
@@ -1323,7 +1323,7 @@ public class Tethering extends BaseNetworkObserver {
                         cleanupUpstream();
                         if (newUpstreamIfaceName != null) {
                             try {
-                                if(VDBG) Log.d(TAG,"Enabling NAT - Tethered Iface = " + mIfaceName +
+                                if(VDBG) Log.d(TAG,"Enabling NAT - Tethered Iface = " + mIfaceName
                                                    " newUpstreamIfaceName =" +newUpstreamIfaceName);
                                 mNMService.enableNat(mIfaceName, newUpstreamIfaceName);
                                 sendUpstreamIfaceChangeBroadcast(
@@ -1861,7 +1861,7 @@ public class Tethering extends BaseNetworkObserver {
                                 Log.e(TAG, "No Network for upstream type " + upType + "!");
                             }
                             if (VDBG) {
-                                Log.d(TAG, "Setting DNS forwarders: Network=" + network +
+                                Log.d(TAG, "Setting DNS forwarders: Network=" + network
                                        ", dnsServers=" + Arrays.toString(dnsServers));
                             }
                             mNMService.setDnsForwarders(network, dnsServers);
@@ -1933,7 +1933,7 @@ public class Tethering extends BaseNetworkObserver {
             @Override
             public void onReceive(Context context, Intent intent) {
                 if (DBG) {
-                    Log.d(TAG, "simchange mGenerationNumber=" + mGenerationNumber +
+                    Log.d(TAG, "simchange mGenerationNumber=" + mGenerationNumber
                             ", current generationNumber=" + mSimBcastGenerationNumber.get());
                 }
                 if (mGenerationNumber != mSimBcastGenerationNumber.get()) return;
@@ -1941,7 +1941,7 @@ public class Tethering extends BaseNetworkObserver {
                 final String state =
                         intent.getStringExtra(IccCardConstants.INTENT_KEY_ICC_STATE);
 
-                Log.d(TAG, "got Sim changed to state " + state + ", mSimAbsentSeen=" +
+                Log.d(TAG, "got Sim changed to state " + state + ", mSimAbsentSeen="
                         mSimAbsentSeen);
                 if (!mSimAbsentSeen && IccCardConstants.INTENT_VALUE_ICC_ABSENT.equals(state)) {
                     mSimAbsentSeen = true;
@@ -2062,7 +2062,7 @@ public class Tethering extends BaseNetworkObserver {
                                 turnOffMasterTetherSettings(); // transitions appropriately
                             } else {
                                 if (DBG) {
-                                    Log.d(TAG, "TetherModeAlive still has " + mNotifyList.size() +
+                                    Log.d(TAG, "TetherModeAlive still has " + mNotifyList.size()
                                             " live requests:");
                                     for (Object o : mNotifyList) Log.d(TAG, "  " + o);
                                 }
@@ -2083,7 +2083,7 @@ public class Tethering extends BaseNetworkObserver {
                         // wifi or something since then.
                         if (mCurrentConnectionSequence == message.arg1) {
                             if (VDBG) {
-                                Log.d(TAG, "renewing mobile connection - requeuing for another " +
+                                Log.d(TAG, "renewing mobile connection - requeuing for another "
                                         CELL_CONNECTION_RENEW_MS + "ms");
                             }
                             turnOnUpstreamMobileConnection(mMobileApnReserved);
@@ -2181,8 +2181,8 @@ public class Tethering extends BaseNetworkObserver {
     public void dump(FileDescriptor fd, PrintWriter pw, String[] args) {
         if (mContext.checkCallingOrSelfPermission(
                 android.Manifest.permission.DUMP) != PackageManager.PERMISSION_GRANTED) {
-            pw.println("Permission Denial: can't dump ConnectivityService.Tether " +
-                    "from from pid=" + Binder.getCallingPid() + ", uid=" +
+            pw.println("Permission Denial: can't dump ConnectivityService.Tether "
+                    "from from pid=" + Binder.getCallingPid() + ", uid="
                     Binder.getCallingUid());
                     return;
         }

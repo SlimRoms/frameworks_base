@@ -28,7 +28,7 @@ import static android.widget.LinearLayout.LayoutParams;
 
 public class GlyphCacheActivity extends Activity {
 
-    private static final String mCharacterSet = "abcdefghijklmnopqrstuvwxyz" +
+    private static final String mCharacterSet = "abcdefghijklmnopqrstuvwxyz"
             "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "0123456789" + "~!@#$%^&*()_+-={}[]:\";'<>?,./";
     private int mTotalChars = 0;
 

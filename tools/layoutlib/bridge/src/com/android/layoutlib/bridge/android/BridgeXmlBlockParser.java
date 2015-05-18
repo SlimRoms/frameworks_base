@@ -301,7 +301,7 @@ public class BridgeXmlBlockParser implements XmlResourceParser {
         int ev = mParser.next();
 
         if (ParserFactory.LOG_PARSER) {
-            System.out.println("NEXT " + mParser.toString() + " " +
+            System.out.println("NEXT " + mParser.toString() + " "
                     eventTypeToString(mEventType) + " -> " + eventTypeToString(ev));
         }
 

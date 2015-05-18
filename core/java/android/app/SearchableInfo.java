@@ -577,7 +577,7 @@ public final class SearchableInfo implements Parcelable {
                             try {
                                 result = new SearchableInfo(activityContext, attr, cName);
                             } catch (IllegalArgumentException ex) {
-                                Log.w(LOG_TAG, "Invalid searchable metadata for " +
+                                Log.w(LOG_TAG, "Invalid searchable metadata for "
                                         cName.flattenToShortString() + ": " + ex.getMessage());
                                 return null;
                             }
@@ -592,7 +592,7 @@ public final class SearchableInfo implements Parcelable {
                             try {
                                 result.addActionKey(new ActionKeyInfo(activityContext, attr));
                             } catch (IllegalArgumentException ex) {
-                                Log.w(LOG_TAG, "Invalid action key for " +
+                                Log.w(LOG_TAG, "Invalid action key for "
                                         cName.flattenToShortString() + ": " + ex.getMessage());
                                 return null;
                             }

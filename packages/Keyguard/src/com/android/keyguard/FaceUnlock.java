@@ -305,7 +305,7 @@ public class FaceUnlock implements BiometricSensorUnlock, Handler.Callback {
             mKeyguardScreenCallback.reportUnlockAttempt(true);
             mKeyguardScreenCallback.dismiss(true);
         } else {
-            Log.d(TAG, "Ignoring unlock for authenticated user (" + authenticatedUserId +
+            Log.d(TAG, "Ignoring unlock for authenticated user (" + authenticatedUserId
                     ") because the current user is " + currentUserId);
         }
     }

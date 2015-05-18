@@ -447,7 +447,7 @@ public class JobSchedulerService extends com.android.server.SystemService
         long newLatestRuntimeElapsed = newEarliestRunTimeElapsed + period;
 
         if (DEBUG) {
-            Slog.v(TAG, "Rescheduling executed periodic. New execution window [" +
+            Slog.v(TAG, "Rescheduling executed periodic. New execution window ["
                     newEarliestRunTimeElapsed/1000 + ", " + newLatestRuntimeElapsed/1000 + "]s");
         }
         return new JobStatus(periodicToReschedule, newEarliestRunTimeElapsed,
@@ -622,8 +622,8 @@ public class JobSchedulerService extends com.android.server.SystemService
                 }
             }
             if (DEBUG) {
-                Slog.d(TAG, "idle=" + idleCount + " connectivity=" +
-                connectivityCount + " charging=" + chargingCount + " tot=" +
+                Slog.d(TAG, "idle=" + idleCount + " connectivity="
+                connectivityCount + " charging=" + chargingCount + " tot="
                         runnableJobs.size());
             }
         }
@@ -720,7 +720,7 @@ public class JobSchedulerService extends com.android.server.SystemService
                     throw new IllegalArgumentException("No such service " + service);
                 }
                 if (si.applicationInfo.uid != uid) {
-                    throw new IllegalArgumentException("uid " + uid +
+                    throw new IllegalArgumentException("uid " + uid
                             " cannot schedule job in " + service.getPackageName());
                 }
                 if (!JobService.PERMISSION_BIND.equals(si.permission)) {

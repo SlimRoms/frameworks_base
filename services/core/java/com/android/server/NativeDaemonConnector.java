@@ -575,12 +575,12 @@ final class NativeDaemonConnector implements Runnable, Handler.Callback, Watchdo
                     // didn't find it - make sure our queue isn't too big before adding
                     while (mPendingCmds.size() >= mMaxCount) {
                         Slog.e("NativeDaemonConnector.ResponseQueue",
-                                "more buffered than allowed: " + mPendingCmds.size() +
+                                "more buffered than allowed: " + mPendingCmds.size()
                                 " >= " + mMaxCount);
                         // let any waiter timeout waiting for this
                         PendingCmd pendingCmd = mPendingCmds.remove();
                         Slog.e("NativeDaemonConnector.ResponseQueue",
-                                "Removing request: " + pendingCmd.logCmd + " (" +
+                                "Removing request: " + pendingCmd.logCmd + " ("
                                 pendingCmd.cmdNum + ")");
                     }
                     found = new PendingCmd(cmdNum, null);

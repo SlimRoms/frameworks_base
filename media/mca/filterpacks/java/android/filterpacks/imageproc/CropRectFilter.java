@@ -71,7 +71,7 @@ public class CropRectFilter extends Filter {
                 break;
 
             default:
-                throw new RuntimeException("Filter Sharpen does not support frames of " +
+                throw new RuntimeException("Filter Sharpen does not support frames of "
                     "target " + target + "!");
         }
         mTarget = target;
@@ -121,10 +121,10 @@ public class CropRectFilter extends Filter {
         mHeight = height;
 
         /*
-        Log.e("CropFilter", mWidth + ", " + mHeight + ", " +
-                            (float) mXorigin / mWidth + ", " +
-                            (float) mYorigin / mHeight + ", " +
-                            (float) mOutputWidth / mWidth + ", " +
+        Log.e("CropFilter", mWidth + ", " + mHeight + ", "
+                            (float) mXorigin / mWidth + ", "
+                            (float) mYorigin / mHeight + ", "
+                            (float) mOutputWidth / mWidth + ", "
                             (float) mOutputHeight / mHeight);
         */
 

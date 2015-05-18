@@ -55,8 +55,8 @@ public class JavaBridgeChildFrameTest extends JavaBridgeTestBase {
         // the call to testController.setStringValue in the child frame's onload handler will
         // not be made.
         getActivity().getWebView().loadData(
-                "<html><head></head><body>" +
-                "<iframe id=\"childFrame\" onload=\"testController.setStringValue('PASS');\" />" +
+                "<html><head></head><body>"
+                "<iframe id=\"childFrame\" onload=\"testController.setStringValue('PASS');\" />"
                 "</body></html>", "text/html", null);
         assertEquals("PASS", mTestController.waitForStringValue());
     }

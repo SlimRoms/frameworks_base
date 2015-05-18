@@ -190,7 +190,7 @@ public class Handler {
             final Class<? extends Handler> klass = getClass();
             if ((klass.isAnonymousClass() || klass.isMemberClass() || klass.isLocalClass()) &&
                     (klass.getModifiers() & Modifier.STATIC) == 0) {
-                Log.w(TAG, "The following Handler class should be static or leaks might occur: " +
+                Log.w(TAG, "The following Handler class should be static or leaks might occur: "
                     klass.getCanonicalName());
             }
         }

@@ -113,8 +113,8 @@ public class MediaRouteActionProvider extends ActionProvider {
     @Override
     public View onCreateActionView(MenuItem item) {
         if (mButton != null) {
-            Log.e(TAG, "onCreateActionView: this ActionProvider is already associated " +
-                    "with a menu item. Don't reuse MediaRouteActionProvider instances! " +
+            Log.e(TAG, "onCreateActionView: this ActionProvider is already associated "
+                    "with a menu item. Don't reuse MediaRouteActionProvider instances! "
                     "Abandoning the old one...");
         }
 

@@ -31,7 +31,7 @@ public class SimplePathsActivity extends Activity {
         FrameLayout layout = new FrameLayout(this);
         EditText text = new EditText(this);
         layout.addView(text, new FrameLayout.LayoutParams(600, 350, Gravity.CENTER));
-        text.setText("This is an example of an EditText widget \n" +
+        text.setText("This is an example of an EditText widget \n"
                 "using simple paths to create the selection.");
         //text.setSelection(0, text.getText().length());
 

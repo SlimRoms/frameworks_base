@@ -143,8 +143,8 @@ public class TaskViewTransform {
 
     @Override
     public String toString() {
-        return "TaskViewTransform delay: " + startDelay + " y: " + translationY + " z: " + translationZ +
-                " scale: " + scale + " alpha: " + alpha + " visible: " + visible + " rect: " + rect +
+        return "TaskViewTransform delay: " + startDelay + " y: " + translationY + " z: " + translationZ
+                " scale: " + scale + " alpha: " + alpha + " visible: " + visible + " rect: " + rect
                 " p: " + p;
     }
 }

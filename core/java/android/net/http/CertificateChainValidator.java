@@ -238,7 +238,7 @@ public class CertificateChainValidator {
             return null;  // No errors.
         } catch (GeneralSecurityException e) {
             if (HttpLog.LOGV) {
-                HttpLog.v("failed to validate the certificate chain, error: " +
+                HttpLog.v("failed to validate the certificate chain, error: "
                     e.getMessage());
             }
             return new SslError(SslError.SSL_UNTRUSTED, currCertificate);

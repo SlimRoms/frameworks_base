@@ -503,7 +503,7 @@ public class NotificationStackScrollLayout extends ViewGroup
             float partiallyThere = (newStackHeight - mTopPadding - mTopPaddingOverflow)
                     / minStackHeight;
             partiallyThere = Math.max(0, partiallyThere);
-            translationY += (1 - partiallyThere) * (mBottomStackPeekSize +
+            translationY += (1 - partiallyThere) * (mBottomStackPeekSize
                     mCollapseSecondCardPadding);
             setTranslationY(translationY - mTopPadding);
             stackHeight = (int) (height - (translationY - mTopPadding));

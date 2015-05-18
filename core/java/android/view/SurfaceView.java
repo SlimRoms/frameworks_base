@@ -615,8 +615,8 @@ public class SurfaceView extends View {
             } catch (RemoteException ex) {
             }
             if (DEBUG) Log.v(
-                TAG, "Layout: x=" + mLayout.x + " y=" + mLayout.y +
-                " w=" + mLayout.width + " h=" + mLayout.height +
+                TAG, "Layout: x=" + mLayout.x + " y=" + mLayout.y
+                " w=" + mLayout.width + " h=" + mLayout.height
                 ", frame=" + mSurfaceFrame);
         }
     }

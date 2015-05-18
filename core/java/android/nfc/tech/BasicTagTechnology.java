@@ -78,8 +78,8 @@ abstract class BasicTagTechnology implements TagTechnology {
                 mTag.setConnectedTechnology(mSelectedTechnology);
                 mIsConnected = true;
             } else if (errorCode == ErrorCodes.ERROR_NOT_SUPPORTED) {
-                throw new UnsupportedOperationException("Connecting to " +
-                        "this technology is not supported by the NFC " +
+                throw new UnsupportedOperationException("Connecting to "
+                        "this technology is not supported by the NFC "
                         "adapter.");
             } else {
                 throw new IOException();

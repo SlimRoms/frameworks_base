@@ -509,7 +509,7 @@ public final class WindowManagerGlobal {
     }
 
     private static String getWindowName(ViewRootImpl root) {
-        return root.mWindowAttributes.getTitle() + "/" +
+        return root.mWindowAttributes.getTitle() + "/"
                 root.getClass().getName() + '@' + Integer.toHexString(root.hashCode());
     }
 

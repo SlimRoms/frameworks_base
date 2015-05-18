@@ -370,7 +370,7 @@ public final class CursorAnchorInfo implements Parcelable {
                         || !Float.isNaN(mInsertionMarkerTop)
                         || !Float.isNaN(mInsertionMarkerBaseline)
                         || !Float.isNaN(mInsertionMarkerBottom)) {
-                    throw new IllegalArgumentException("Coordinate transformation matrix is " +
+                    throw new IllegalArgumentException("Coordinate transformation matrix is "
                             "required when positional parameters are specified.");
                 }
             }

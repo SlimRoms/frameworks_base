@@ -98,7 +98,7 @@ public final class PersistableBundle extends BaseBundle implements Cloneable, Pa
                     !(value instanceof double[]) && !(value instanceof String[]) &&
                     !(value instanceof PersistableBundle) && (value != null) &&
                     !(value instanceof Boolean) && !(value instanceof boolean[])) {
-                throw new IllegalArgumentException("Bad value in PersistableBundle key=" + key +
+                throw new IllegalArgumentException("Bad value in PersistableBundle key=" + key
                         " value=" + value);
             }
         }
@@ -253,7 +253,7 @@ public final class PersistableBundle extends BaseBundle implements Cloneable, Pa
             if (mParcelledData == EMPTY_PARCEL) {
                 return "PersistableBundle[EMPTY_PARCEL]";
             } else {
-                return "PersistableBundle[mParcelledData.dataSize=" +
+                return "PersistableBundle[mParcelledData.dataSize="
                         mParcelledData.dataSize() + "]";
             }
         }

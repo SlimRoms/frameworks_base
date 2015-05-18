@@ -93,7 +93,7 @@ public class LegacyFaceDetectMapper {
                 } else if (lengthFaces > 0) {
                     // stopFaceDetectMode could race against the requests, print a debug log
                     Log.d(TAG,
-                            "onFaceDetection - Ignored some incoming faces since" +
+                            "onFaceDetection - Ignored some incoming faces since"
                             "face detection was disabled");
                 }
             }
@@ -131,7 +131,7 @@ public class LegacyFaceDetectMapper {
 
         if (fdMode != STATISTICS_FACE_DETECT_MODE_OFF && !mFaceDetectSupported) {
             Log.w(TAG,
-                    "processFaceDetectMode - Ignoring statistics.faceDetectMode; " +
+                    "processFaceDetectMode - Ignoring statistics.faceDetectMode; "
                     "face detection is not available");
             return;
         }
@@ -142,7 +142,7 @@ public class LegacyFaceDetectMapper {
         int sceneMode = ParamsUtils.getOrDefault(captureRequest, CONTROL_SCENE_MODE,
                 CONTROL_SCENE_MODE_DISABLED);
         if (sceneMode == CONTROL_SCENE_MODE_FACE_PRIORITY && !mFaceDetectSupported) {
-            Log.w(TAG, "processFaceDetectMode - ignoring control.sceneMode == FACE_PRIORITY; " +
+            Log.w(TAG, "processFaceDetectMode - ignoring control.sceneMode == FACE_PRIORITY; "
                     "face detection is not available");
             return;
         }
@@ -154,7 +154,7 @@ public class LegacyFaceDetectMapper {
                 break;
             case STATISTICS_FACE_DETECT_MODE_FULL:
                 Log.w(TAG,
-                        "processFaceDetectMode - statistics.faceDetectMode == FULL unsupported, " +
+                        "processFaceDetectMode - statistics.faceDetectMode == FULL unsupported, "
                         "downgrading to SIMPLE");
                 break;
             default:

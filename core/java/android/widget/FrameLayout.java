@@ -484,7 +484,7 @@ public class FrameLayout extends ViewGroup {
                             MeasureSpec.EXACTLY);
                 } else {
                     childWidthMeasureSpec = getChildMeasureSpec(widthMeasureSpec,
-                            getPaddingLeftWithForeground() + getPaddingRightWithForeground() +
+                            getPaddingLeftWithForeground() + getPaddingRightWithForeground()
                             lp.leftMargin + lp.rightMargin,
                             lp.width);
                 }
@@ -496,7 +496,7 @@ public class FrameLayout extends ViewGroup {
                             MeasureSpec.EXACTLY);
                 } else {
                     childHeightMeasureSpec = getChildMeasureSpec(heightMeasureSpec,
-                            getPaddingTopWithForeground() + getPaddingBottomWithForeground() +
+                            getPaddingTopWithForeground() + getPaddingBottomWithForeground()
                             lp.topMargin + lp.bottomMargin,
                             lp.height);
                 }
@@ -548,7 +548,7 @@ public class FrameLayout extends ViewGroup {
 
                 switch (absoluteGravity & Gravity.HORIZONTAL_GRAVITY_MASK) {
                     case Gravity.CENTER_HORIZONTAL:
-                        childLeft = parentLeft + (parentRight - parentLeft - width) / 2 +
+                        childLeft = parentLeft + (parentRight - parentLeft - width) / 2
                         lp.leftMargin - lp.rightMargin;
                         break;
                     case Gravity.RIGHT:
@@ -566,7 +566,7 @@ public class FrameLayout extends ViewGroup {
                         childTop = parentTop + lp.topMargin;
                         break;
                     case Gravity.CENTER_VERTICAL:
-                        childTop = parentTop + (parentBottom - parentTop - height) / 2 +
+                        childTop = parentTop + (parentBottom - parentTop - height) / 2
                         lp.topMargin - lp.bottomMargin;
                         break;
                     case Gravity.BOTTOM:

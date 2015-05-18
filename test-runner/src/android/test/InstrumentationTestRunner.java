@@ -632,7 +632,7 @@ public class InstrumentationTestRunner extends Instrumentation implements TestSu
 
     private String getCoverageFilePath() {
         if (mCoverageFilePath == null) {
-            return getTargetContext().getFilesDir().getAbsolutePath() + File.separator +
+            return getTargetContext().getFilesDir().getAbsolutePath() + File.separator
                    DEFAULT_COVERAGE_FILE_NAME;
         } else {
             return mCoverageFilePath;

@@ -1903,7 +1903,7 @@ public class ExifInterface {
      *            exif specification.
      * @param reference a GPS reference reperesented by a String containing "N",
      *            "S", "E", or "W".
-     * @return the GPS coordinate represented as degrees + minutes/60 +
+     * @return the GPS coordinate represented as degrees + minutes/60
      *         seconds/3600
      */
     public static double convertLatOrLongToDouble(Rational[] coordinate, String reference) {

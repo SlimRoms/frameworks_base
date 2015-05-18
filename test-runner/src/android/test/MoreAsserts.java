@@ -51,7 +51,7 @@ public final class MoreAsserts {
      */
     public static void assertAssignableFrom(Class<?> expected, Class<?> actual) {
         Assert.assertTrue(
-                "Expected " + expected.getCanonicalName() +
+                "Expected " + expected.getCanonicalName()
                         " to be assignable from actual class " + actual.getCanonicalName(),
                 expected.isAssignableFrom(actual));
     }

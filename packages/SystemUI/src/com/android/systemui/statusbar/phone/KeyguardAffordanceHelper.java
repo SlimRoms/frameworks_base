@@ -411,7 +411,7 @@ public class KeyguardAffordanceHelper {
     }
 
     private float getScale(float alpha) {
-        float scale = alpha / SWIPE_RESTING_ALPHA_AMOUNT * 0.2f +
+        float scale = alpha / SWIPE_RESTING_ALPHA_AMOUNT * 0.2f
                 KeyguardAffordanceView.MIN_ICON_SCALE_AMOUNT;
         return Math.min(scale, KeyguardAffordanceView.MAX_ICON_SCALE_AMOUNT);
     }

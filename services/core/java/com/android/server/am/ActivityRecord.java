@@ -521,7 +521,7 @@ final class ActivityRecord {
             if (task != newTask) {
                 task.stack.removeTask(task, "setTask");
             } else {
-                Slog.d(TAG, "!!! REMOVE THIS LOG !!! setTask: nearly removed stack=" +
+                Slog.d(TAG, "!!! REMOVE THIS LOG !!! setTask: nearly removed stack="
                         (newTask == null ? null : newTask.stack));
             }
         }
@@ -1103,7 +1103,7 @@ final class ActivityRecord {
     }
 
     private static String createImageFilename(long createTime, int taskId) {
-        return String.valueOf(taskId) + ACTIVITY_ICON_SUFFIX + createTime +
+        return String.valueOf(taskId) + ACTIVITY_ICON_SUFFIX + createTime
                 TaskPersister.IMAGE_EXTENSION;
     }
 
@@ -1212,7 +1212,7 @@ final class ActivityRecord {
         final ActivityInfo aInfo = stackSupervisor.resolveActivity(intent, resolvedType, 0, null,
                 userId);
         if (aInfo == null) {
-            throw new XmlPullParserException("restoreActivity resolver error. Intent=" + intent +
+            throw new XmlPullParserException("restoreActivity resolver error. Intent=" + intent
                     " resolvedType=" + resolvedType);
         }
         final ActivityRecord r = new ActivityRecord(service, /*caller*/null, launchedFromUid,
@@ -1238,7 +1238,7 @@ final class ActivityRecord {
     @Override
     public String toString() {
         if (stringName != null) {
-            return stringName + " t" + (task == null ? INVALID_TASK_ID : task.taskId) +
+            return stringName + " t" + (task == null ? INVALID_TASK_ID : task.taskId)
                     (finishing ? " f}" : "}");
         }
         StringBuilder sb = new StringBuilder(128);

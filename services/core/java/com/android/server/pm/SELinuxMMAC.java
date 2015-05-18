@@ -357,7 +357,7 @@ public final class SELinuxMMAC {
                 if (seinfo != null) {
                     pkg.applicationInfo.seinfo = seinfo;
                     if (DEBUG_POLICY_INSTALL)
-                        Slog.i(TAG, "package (" + pkg.packageName +
+                        Slog.i(TAG, "package (" + pkg.packageName
                                ") labeled with seinfo=" + seinfo);
 
                     return true;
@@ -467,7 +467,7 @@ public final class SELinuxMMAC {
             if (overrideVersion.equals(baseVersion)) {
                 return true;
             }
-            Slog.e(TAG, "Override policy version '" + overrideVersion + "' doesn't match " +
+            Slog.e(TAG, "Override policy version '" + overrideVersion + "' doesn't match "
                    "base version '" + baseVersion + "'. Skipping override policy files.");
         } catch (FileNotFoundException fnfe) {
             // Override version file doesn't have to exist so silently ignore.

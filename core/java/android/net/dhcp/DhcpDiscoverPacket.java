@@ -34,7 +34,7 @@ class DhcpDiscoverPacket extends DhcpPacket {
 
     public String toString() {
         String s = super.toString();
-        return s + " DISCOVER " +
+        return s + " DISCOVER "
                 (mBroadcast ? "broadcast " : "unicast ");
     }
 

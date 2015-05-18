@@ -131,7 +131,7 @@ public class InstrumentationTestRunnerTest extends TestCase {
         Bundle args = new Bundle();
         args.putInt(InstrumentationTestRunner.ARGUMENT_DELAY_MSEC, delayMsec);
         args.putString(InstrumentationTestRunner.ARGUMENT_TEST_CLASS,
-                PlaceHolderTest.class.getName() + "," +
+                PlaceHolderTest.class.getName() + ","
                 PlaceHolderTest2.class.getName());
         mInstrumentationTestRunner.onCreate(args);
         Thread t = new Thread() { public void run() { mInstrumentationTestRunner.onStart(); } };

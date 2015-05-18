@@ -165,7 +165,7 @@ class IdleCache {
                 mThread = null;
             }
             if (HttpLog.LOGV) {
-                HttpLog.v("IdleCache IdleReaper shutdown: cached " + mCached +
+                HttpLog.v("IdleCache IdleReaper shutdown: cached " + mCached
                           " reused " + mReused);
                 mCached = 0;
                 mReused = 0;

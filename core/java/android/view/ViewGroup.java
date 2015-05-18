@@ -793,7 +793,7 @@ public abstract class ViewGroup extends View implements ViewParent, ViewManager 
             try {
                 mParent.childHasTransientStateChanged(this, newHasTransientState);
             } catch (AbstractMethodError e) {
-                Log.e(TAG, mParent.getClass().getSimpleName() +
+                Log.e(TAG, mParent.getClass().getSimpleName()
                         " does not fully implement ViewParent", e);
             }
         }
@@ -2772,7 +2772,7 @@ public abstract class ViewGroup extends View implements ViewParent, ViewManager 
             try {
                 mParent.notifySubtreeAccessibilityStateChanged(this, source, changeType);
             } catch (AbstractMethodError e) {
-                Log.e(VIEW_LOG_TAG, mParent.getClass().getSimpleName() +
+                Log.e(VIEW_LOG_TAG, mParent.getClass().getSimpleName()
                         " does not fully implement ViewParent", e);
             }
         }
@@ -3934,7 +3934,7 @@ public abstract class ViewGroup extends View implements ViewParent, ViewManager 
         }
 
         if (child.getParent() != null) {
-            throw new IllegalStateException("The specified child already has a parent. " +
+            throw new IllegalStateException("The specified child already has a parent. "
                     "You must call removeView() on the child's parent first.");
         }
 
@@ -6491,7 +6491,7 @@ public abstract class ViewGroup extends View implements ViewParent, ViewManager 
          * Returns a String representation of this set of layout parameters.
          *
          * @param output the String to prepend to the internal representation
-         * @return a String with the following format: output +
+         * @return a String with the following format: output
          *         "ViewGroup.LayoutParams={ width=WIDTH, height=HEIGHT }"
          *
          * @hide

@@ -337,7 +337,7 @@ public class ScoAudioTest extends Activity {
             mPlayImageResource = android.R.drawable.ic_media_play;
             mPauseImageResource = android.R.drawable.ic_media_pause;
             mStreamType = stream;
-            mFileName = Environment.getExternalStorageDirectory().toString() + "/music/" +
+            mFileName = Environment.getExternalStorageDirectory().toString() + "/music/"
                         mFileNameBase + "_" + ".wav";
         }
 
@@ -466,7 +466,7 @@ public class ScoAudioTest extends Activity {
             mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
             mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
             mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-            mFileName = Environment.getExternalStorageDirectory().toString() + "/music/" +
+            mFileName = Environment.getExternalStorageDirectory().toString() + "/music/"
                         mFileNameBase + "_" + ++mFileCount + ".amr";
             mLastRecordedFile = mFileName;
             Log.e(TAG, "recording to file: "+mLastRecordedFile);

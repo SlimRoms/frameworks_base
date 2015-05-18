@@ -103,7 +103,7 @@ public class DefaultDataHandler implements ContentInsertHandler {
             // case 1
             uri = Uri.parse(uriStr);
             if (uri == null) {
-                throw new SAXException("attribute " +
+                throw new SAXException("attribute "
                         atts.getValue(URI_STR) + " parsing failure"); 
             }
             
@@ -175,7 +175,7 @@ public class DefaultDataHandler implements ContentInsertHandler {
         } else if (DEL.equals(localName)){
             Uri u = Uri.parse(atts.getValue(URI_STR));
             if (u == null) {
-                throw new SAXException("attribute " +
+                throw new SAXException("attribute "
                         atts.getValue(URI_STR) + " parsing failure"); 
             }
             int attrLen = atts.getLength() - 2;

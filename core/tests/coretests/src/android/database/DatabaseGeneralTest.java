@@ -214,7 +214,7 @@ public class DatabaseGeneralTest extends AndroidTestCase implements PerformanceT
 
         Cursor cursor = mDatabase.rawQuery(
                 String.format(
-                        "SELECT CASE WHEN PHONE_NUMBERS_EQUAL(?, ?, %d) " +
+                        "SELECT CASE WHEN PHONE_NUMBERS_EQUAL(?, ?, %d) "
                         "THEN 'equal' ELSE 'not equal' END",
                         (useStrictComparation ? 1 : 0)),
                 temporalPhoneNumbers);
@@ -440,15 +440,15 @@ public class DatabaseGeneralTest extends AndroidTestCase implements PerformanceT
     @MediumTest
     public void testTokenize() throws Exception {
         Cursor c;
-        mDatabase.execSQL("CREATE TABLE tokens (" +
-                "token TEXT COLLATE unicode," +
-                "source INTEGER," +
-                "token_index INTEGER," +
-                "tag TEXT" +
+        mDatabase.execSQL("CREATE TABLE tokens ("
+                "token TEXT COLLATE unicode,"
+                "source INTEGER,"
+                "token_index INTEGER,"
+                "tag TEXT"
                 ");");
-        mDatabase.execSQL("CREATE TABLE tokens_no_index (" +
-                "token TEXT COLLATE unicode," +
-                "source INTEGER" +
+        mDatabase.execSQL("CREATE TABLE tokens_no_index ("
+                "token TEXT COLLATE unicode,"
+                "source INTEGER"
                 ");");
         
         Assert.assertEquals(0, DatabaseUtils.longForQuery(mDatabase, 
@@ -769,11 +769,11 @@ public class DatabaseGeneralTest extends AndroidTestCase implements PerformanceT
 
     @MediumTest
     public void testTableInfoPragma() throws Exception {
-        mDatabase.execSQL("CREATE TABLE pragma_test (" +
-                "i INTEGER DEFAULT 1234, " +
-                "j INTEGER, " +
-                "s TEXT DEFAULT 'hello', " +
-                "t TEXT, " +
+        mDatabase.execSQL("CREATE TABLE pragma_test ("
+                "i INTEGER DEFAULT 1234, "
+                "j INTEGER, "
+                "s TEXT DEFAULT 'hello', "
+                "t TEXT, "
                 "'select' TEXT DEFAULT \"hello\")");
         try {
             Cursor cur = mDatabase.rawQuery("PRAGMA table_info(pragma_test)", null);
@@ -810,7 +810,7 @@ public class DatabaseGeneralTest extends AndroidTestCase implements PerformanceT
             cur.close();
         } catch (Throwable t) {
             throw new RuntimeException(
-                    "If you see this test fail, it's likely that something about " +
+                    "If you see this test fail, it's likely that something about "
                     "sqlite's PRAGMA table_info(...) command has changed.", t);
         }
     }
@@ -821,12 +821,12 @@ public class DatabaseGeneralTest extends AndroidTestCase implements PerformanceT
         ContentValues cv;
         long row;
 
-        mDatabase.execSQL("CREATE TABLE insert_test (" +
-                "_id INTEGER PRIMARY KEY, " +
-                "s TEXT NOT NULL UNIQUE, " +
-                "t TEXT NOT NULL DEFAULT 'hello world', " +
-                "i INTEGER, " +
-                "j INTEGER NOT NULL DEFAULT 1234, " +
+        mDatabase.execSQL("CREATE TABLE insert_test ("
+                "_id INTEGER PRIMARY KEY, "
+                "s TEXT NOT NULL UNIQUE, "
+                "t TEXT NOT NULL DEFAULT 'hello world', "
+                "i INTEGER, "
+                "j INTEGER NOT NULL DEFAULT 1234, "
                 "'select' TEXT)");
 
         DatabaseUtils.InsertHelper ih =
@@ -895,11 +895,11 @@ public class DatabaseGeneralTest extends AndroidTestCase implements PerformanceT
 
     @MediumTest
     public void testSemicolonsInStatements() throws Exception {
-        mDatabase.execSQL("CREATE TABLE pragma_test (" +
-                "i INTEGER DEFAULT 1234, " +
-                "j INTEGER, " +
-                "s TEXT DEFAULT 'hello', " +
-                "t TEXT, " +
+        mDatabase.execSQL("CREATE TABLE pragma_test ("
+                "i INTEGER DEFAULT 1234, "
+                "j INTEGER, "
+                "s TEXT DEFAULT 'hello', "
+                "t TEXT, "
                 "'select' TEXT DEFAULT \"hello\")");
         try {
             // ending the sql statement with  semicolons shouldn't be a problem.
@@ -927,14 +927,14 @@ public class DatabaseGeneralTest extends AndroidTestCase implements PerformanceT
         mDatabase.execSQL("insert into B values(203);");
         mDatabase.execSQL("insert into C values(901);");
         mDatabase.execSQL("insert into C values(902);");
-        String s = "select i from A where i > 2 " +
-                "UNION select k from B where k > 201 " +
+        String s = "select i from A where i > 2 "
+                "UNION select k from B where k > 201 "
                 "UNION select n from C where n !=900;";
         Cursor c = mDatabase.rawQuery(s, null);
         int n = c.getCount();
         c.close();
-        String s1 = "select i from A where i > ? " +
-                "UNION select k from B where k > ? " +
+        String s1 = "select i from A where i > ? "
+                "UNION select k from B where k > ? "
                 "UNION select n from C where n != ?;";
         Cursor c1 = mDatabase.rawQuery(s1, new String[]{"2", "201", "900"});
         assertEquals(n, c1.getCount());
@@ -971,7 +971,7 @@ public class DatabaseGeneralTest extends AndroidTestCase implements PerformanceT
         }
 
         if (japaneseLocale == null || englishLocale == null) {
-            Log.d(TAG, testName + "n is silently skipped since " +
+            Log.d(TAG, testName + "n is silently skipped since "
                     (englishLocale == null ?
                             (japaneseLocale == null ?
                                     "Both English and Japanese locales do not exist." :
@@ -986,8 +986,8 @@ public class DatabaseGeneralTest extends AndroidTestCase implements PerformanceT
         try {
 
             final String dbName = "collate_localized_test";
-            mDatabase.execSQL("CREATE TABLE " + dbName + " (" +
-                    "_id INTEGER PRIMARY KEY, " +
+            mDatabase.execSQL("CREATE TABLE " + dbName + " ("
+                    "_id INTEGER PRIMARY KEY, "
                     "s TEXT COLLATE LOCALIZED) ");
             DatabaseUtils.InsertHelper ih =
                 new DatabaseUtils.InsertHelper(mDatabase, dbName);

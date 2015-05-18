@@ -103,7 +103,7 @@ public class LayoutInflater_Delegate {
                     }
 
                     if (type != XmlPullParser.START_TAG) {
-                        throw new InflateException(childParser.getPositionDescription() +
+                        throw new InflateException(childParser.getPositionDescription()
                                 ": No start tag found!");
                     }
 

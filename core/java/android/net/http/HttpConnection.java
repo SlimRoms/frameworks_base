@@ -74,7 +74,7 @@ class HttpConnection extends Connection {
             }
         } catch (IOException e) {
             if (HttpLog.LOGV) HttpLog.v(
-                    "closeConnection(): failed closing connection " +
+                    "closeConnection(): failed closing connection "
                     mHost);
             e.printStackTrace();
         }

@@ -1494,7 +1494,7 @@ public final class ActivityManagerService extends ActivityManagerNative
                             try {
                                 r.thread.setHttpProxy(host, port, exclList, pacFileUrl);
                             } catch (RemoteException ex) {
-                                Slog.w(TAG, "Failed to update http proxy for: " +
+                                Slog.w(TAG, "Failed to update http proxy for: "
                                         r.info.processName);
                             }
                         }
@@ -3709,7 +3709,7 @@ public final class ActivityManagerService extends ActivityManagerNative
     @Override
     public final int startActivityFromRecents(int taskId, Bundle options) {
         if (checkCallingPermission(START_TASKS_FROM_RECENTS) != PackageManager.PERMISSION_GRANTED) {
-            String msg = "Permission Denial: startActivityFromRecents called without " +
+            String msg = "Permission Denial: startActivityFromRecents called without "
                     START_TASKS_FROM_RECENTS;
             Slog.w(TAG, msg);
             throw new SecurityException(msg);
@@ -3855,13 +3855,13 @@ public final class ActivityManagerService extends ActivityManagerNative
             final TaskRecord next = mTmpRecents.get(i);
             final TaskRecord prev = mTmpRecents.get(i + 1);
             if (next.mPrevAffiliate != prev) {
-                Slog.w(TAG, "Link error 2 next=" + next + " prev=" + next.mPrevAffiliate +
+                Slog.w(TAG, "Link error 2 next=" + next + " prev=" + next.mPrevAffiliate
                         " setting prev=" + prev);
                 next.setPrevAffiliate(prev);
                 notifyTaskPersisterLocked(next, false);
             }
             if (prev.mNextAffiliate != next) {
-                Slog.w(TAG, "Link error 3 prev=" + prev + " next=" + prev.mNextAffiliate +
+                Slog.w(TAG, "Link error 3 prev=" + prev + " next=" + prev.mNextAffiliate
                         " setting next=" + next);
                 prev.setNextAffiliate(next);
                 notifyTaskPersisterLocked(prev, false);
@@ -5454,7 +5454,7 @@ public final class ActivityManagerService extends ActivityManagerNative
             msg.obj = bundle;
             mHandler.sendMessage(msg);
         } else {
-            throw new SecurityException(callerUid + " cannot kill pkg: " +
+            throw new SecurityException(callerUid + " cannot kill pkg: "
                     pkg);
         }
     }
@@ -5582,7 +5582,7 @@ public final class ActivityManagerService extends ActivityManagerNative
                 }
             }
         } else {
-            throw new SecurityException(callerUid + " cannot kill app process: " +
+            throw new SecurityException(callerUid + " cannot kill app process: "
                     processName);
         }
     }
@@ -7272,7 +7272,7 @@ public final class ActivityManagerService extends ActivityManagerNative
         final String authority = grantUri.uri.getAuthority();
         final ProviderInfo pi = getProviderInfoLocked(authority, grantUri.sourceUserId);
         if (pi == null) {
-            Slog.w(TAG, "No content provider found for permission check: " +
+            Slog.w(TAG, "No content provider found for permission check: "
                     grantUri.uri.toSafeString());
             return -1;
         }
@@ -7629,7 +7629,7 @@ public final class ActivityManagerService extends ActivityManagerNative
                     if (perm.uri.sourceUserId == grantUri.sourceUserId
                             && perm.uri.uri.isPathPrefixMatch(grantUri.uri)) {
                         if (DEBUG_URI_PERMISSION)
-                            Slog.v(TAG, "Revoking non-owned " + perm.targetUid +
+                            Slog.v(TAG, "Revoking non-owned " + perm.targetUid
                                     " permission to " + perm.uri);
                         persistChanged |= perm.revokeModes(
                                 modeFlags | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION, false);
@@ -8500,7 +8500,7 @@ public final class ActivityManagerService extends ActivityManagerNative
             throws RemoteException {
         if (opts.getAnimationType() != ActivityOptions.ANIM_CUSTOM_IN_PLACE ||
                 opts.getCustomInPlaceResId() == 0) {
-            throw new IllegalArgumentException("Expected in-place ActivityOption " +
+            throw new IllegalArgumentException("Expected in-place ActivityOption "
                     "with valid animation");
         }
         mWindowManager.prepareAppTransition(AppTransition.TRANSIT_TASK_IN_PLACE, false);
@@ -12383,7 +12383,7 @@ public final class ActivityManagerService extends ActivityManagerNative
                         errList.add(report);
                     } else {
                         Slog.w(TAG, "Missing app error report, app = " + app.processName + 
-                                " crashing = " + app.crashing +
+                                " crashing = " + app.crashing
                                 " notResponding = " + app.notResponding);
                     }
                 }
@@ -14438,7 +14438,7 @@ public final class ActivityManagerService extends ActivityManagerNative
 
                 if (!isCheckinRequest && mi != null) {
                     totalPss += myTotalPss;
-                    MemItem pssItem = new MemItem(r.processName + " (pid " + pid +
+                    MemItem pssItem = new MemItem(r.processName + " (pid " + pid
                             (hasActivities ? " / activities)" : ")"),
                             r.processName, myTotalPss, pid, hasActivities);
                     procMems.add(pssItem);
@@ -17728,7 +17728,7 @@ public final class ActivityManagerService extends ActivityManagerNative
 
         app.curRawAdj = adj;
         
-        //Slog.i(TAG, "OOM ADJ " + app + ": pid=" + app.pid +
+        //Slog.i(TAG, "OOM ADJ " + app + ": pid=" + app.pid
         //      " adj=" + adj + " curAdj=" + app.curAdj + " maxAdj=" + app.maxAdj);
         if (adj > app.maxAdj) {
             adj = app.maxAdj;
@@ -17788,7 +17788,7 @@ public final class ActivityManagerService extends ActivityManagerNative
      */
     void requestPssAllProcsLocked(long now, boolean always, boolean memLowered) {
         if (!always) {
-            if (now < (mLastFullPssTime +
+            if (now < (mLastFullPssTime
                     (memLowered ? FULL_PSS_LOWERED_INTERVAL : FULL_PSS_MIN_INTERVAL))) {
                 return;
             }
@@ -18080,7 +18080,7 @@ public final class ActivityManagerService extends ActivityManagerNative
         if (app.curAdj != app.setAdj) {
             ProcessList.setOomAdj(app.pid, app.info.uid, app.curAdj);
             if (DEBUG_SWITCH || DEBUG_OOM_ADJ) Slog.v(
-                TAG, "Set " + app.pid + " " + app.processName +
+                TAG, "Set " + app.pid + " " + app.processName
                 " adj " + app.curAdj + ": " + app.adjType);
             app.setAdj = app.curAdj;
         }

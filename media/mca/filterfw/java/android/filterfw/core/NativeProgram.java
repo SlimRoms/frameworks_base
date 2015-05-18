@@ -40,15 +40,15 @@ public class NativeProgram extends Program {
         // Open the native library
         String fullLibName = "lib" + nativeLibName + ".so";
         if (!openNativeLibrary(fullLibName)) {
-            throw new RuntimeException("Could not find native library named '" + fullLibName + "' " +
+            throw new RuntimeException("Could not find native library named '" + fullLibName + "' "
                                        "required for native program!");
         }
 
         // Bind the native functions
         String processFuncName = nativeFunctionPrefix + "_process";
         if (!bindProcessFunction(processFuncName)) {
-            throw new RuntimeException("Could not find native program function name " +
-                                       processFuncName + " in library " + fullLibName + "! " +
+            throw new RuntimeException("Could not find native program function name "
+                                       processFuncName + " in library " + fullLibName + "! "
                                        "This function is required!");
         }
 
@@ -128,7 +128,7 @@ public class NativeProgram extends Program {
             throw new RuntimeException("NativeProgram already torn down!");
         }
         if (!mHasSetValueFunction) {
-            throw new RuntimeException("Attempting to set native variable, but native code does not " +
+            throw new RuntimeException("Attempting to set native variable, but native code does not "
                                        "define native setvalue function!");
         }
         if (!callNativeSetValue(variableName, value.toString())) {
@@ -142,7 +142,7 @@ public class NativeProgram extends Program {
             throw new RuntimeException("NativeProgram already torn down!");
         }
         if (!mHasGetValueFunction) {
-            throw new RuntimeException("Attempting to get native variable, but native code does not " +
+            throw new RuntimeException("Attempting to get native variable, but native code does not "
                                        "define native getvalue function!");
         }
         return callNativeGetValue(variableName);

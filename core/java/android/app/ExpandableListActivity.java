@@ -219,7 +219,7 @@ public class ExpandableListActivity extends Activity implements
         mList = (ExpandableListView)findViewById(com.android.internal.R.id.list);
         if (mList == null) {
             throw new RuntimeException(
-                    "Your content must have a ExpandableListView whose id attribute is " +
+                    "Your content must have a ExpandableListView whose id attribute is "
                     "'android.R.id.list'");
         }
         if (emptyView != null) {

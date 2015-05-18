@@ -230,7 +230,7 @@ public abstract class SimpleCursorTreeAdapter extends ResourceCursorTreeAdapter 
                     } else if (v instanceof ImageView) {
                         setViewImage((ImageView) v, text);
                     } else {
-                        throw new IllegalStateException("SimpleCursorTreeAdapter can bind values" +
+                        throw new IllegalStateException("SimpleCursorTreeAdapter can bind values"
                                 " only to TextView and ImageView!");
                     }
                 }

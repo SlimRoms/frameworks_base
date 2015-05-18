@@ -228,7 +228,7 @@ public class BatteryController extends StateController {
             final long alarmTriggerElapsed =
                     SystemClock.elapsedRealtime() + STABLE_CHARGING_THRESHOLD_MILLIS;
             if (DEBUG) {
-                Slog.d(TAG, "Setting stable alarm to go off in " +
+                Slog.d(TAG, "Setting stable alarm to go off in "
                         (STABLE_CHARGING_THRESHOLD_MILLIS / 1000) + "s");
             }
             mAlarm.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, alarmTriggerElapsed,

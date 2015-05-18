@@ -216,7 +216,7 @@ public class SurfaceTextureTarget extends Filter {
           (float)input.getFormat().getWidth() / input.getFormat().getHeight();
         if (currentAspectRatio != mAspectRatio) {
             if (mLogVerbose) {
-                Log.v(TAG, "Process. New aspect ratio: " + currentAspectRatio +
+                Log.v(TAG, "Process. New aspect ratio: " + currentAspectRatio
                     ", previously: " + mAspectRatio + ". Thread: " + Thread.currentThread());
             }
             mAspectRatio = currentAspectRatio;
@@ -269,8 +269,8 @@ public class SurfaceTextureTarget extends Filter {
             float screenAspectRatio = (float)mScreenWidth / mScreenHeight;
             float relativeAspectRatio = screenAspectRatio / mAspectRatio;
             if (mLogVerbose) {
-                Log.v(TAG, "UTR. screen w = " + (float)mScreenWidth + " x screen h = " +
-                    (float)mScreenHeight + " Screen AR: " + screenAspectRatio +
+                Log.v(TAG, "UTR. screen w = " + (float)mScreenWidth + " x screen h = "
+                    (float)mScreenHeight + " Screen AR: " + screenAspectRatio
                     ", frame AR: "  + mAspectRatio + ", relative AR: " + relativeAspectRatio);
             }
 

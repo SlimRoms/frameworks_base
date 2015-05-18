@@ -1385,7 +1385,7 @@ public class WifiConfiguration implements Parcelable {
                 throw new IllegalStateException("Not an EAP network");
             }
 
-            return trimStringForKeyId(SSID) + "_" + keyMgmt + "_" +
+            return trimStringForKeyId(SSID) + "_" + keyMgmt + "_"
                     trimStringForKeyId(enterpriseConfig.getKeyId(current != null ?
                             current.enterpriseConfig : null));
         } catch (NullPointerException e) {

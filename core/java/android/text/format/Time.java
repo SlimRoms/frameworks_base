@@ -414,7 +414,7 @@ public class Time {
     private boolean parseInternal(String s) {
         int len = s.length();
         if (len < 8) {
-            throw new TimeFormatException("String is too short: \"" + s +
+            throw new TimeFormatException("String is too short: \"" + s
                     "\" Expected at least 8 characters.");
         }
 

@@ -1290,7 +1290,7 @@ public class TextToSpeech {
                     features = service.getFeaturesForLanguage(
                         locale.getISO3Language(), locale.getISO3Country(), locale.getVariant());
                 } catch(MissingResourceException e) {
-                    Log.w(TAG, "Couldn't retrieve 3 letter ISO 639-2/T language and/or ISO 3166 " +
+                    Log.w(TAG, "Couldn't retrieve 3 letter ISO 639-2/T language and/or ISO 3166 "
                             "country code for locale: " + locale, e);
                     return null;
                 }
@@ -1492,7 +1492,7 @@ public class TextToSpeech {
                     // Get the default voice for the locale.
                     String voiceName = service.getDefaultVoiceNameFor(language, country, variant);
                     if (TextUtils.isEmpty(voiceName)) {
-                        Log.w(TAG, "Couldn't find the default voice for " + language + "/" +
+                        Log.w(TAG, "Couldn't find the default voice for " + language + "/"
                                 country + "/" + variant);
                         return LANG_NOT_SUPPORTED;
                     }
@@ -1616,7 +1616,7 @@ public class TextToSpeech {
                     try {
                         language = voice.getLocale().getISO3Language();
                     } catch (MissingResourceException e) {
-                        Log.w(TAG, "Couldn't retrieve ISO 639-2/T language code for locale: " +
+                        Log.w(TAG, "Couldn't retrieve ISO 639-2/T language code for locale: "
                                 voice.getLocale(), e);
                     }
 
@@ -1624,7 +1624,7 @@ public class TextToSpeech {
                     try {
                         country = voice.getLocale().getISO3Country();
                     } catch (MissingResourceException e) {
-                        Log.w(TAG, "Couldn't retrieve ISO 3166 country code for locale: " +
+                        Log.w(TAG, "Couldn't retrieve ISO 3166 country code for locale: "
                                 voice.getLocale(), e);
                     }
                     mParams.putString(Engine.KEY_PARAM_LANGUAGE, language);

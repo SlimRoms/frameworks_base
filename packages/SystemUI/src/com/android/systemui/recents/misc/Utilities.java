@@ -169,11 +169,11 @@ public class Utilities {
     /** Returns the base color overlaid with another overlay color with a specified alpha. */
     public static int getColorWithOverlay(int baseColor, int overlayColor, float overlayAlpha) {
         return Color.rgb(
-            (int) (overlayAlpha * Color.red(baseColor) +
+            (int) (overlayAlpha * Color.red(baseColor)
                     (1f - overlayAlpha) * Color.red(overlayColor)),
-            (int) (overlayAlpha * Color.green(baseColor) +
+            (int) (overlayAlpha * Color.green(baseColor)
                     (1f - overlayAlpha) * Color.green(overlayColor)),
-            (int) (overlayAlpha * Color.blue(baseColor) +
+            (int) (overlayAlpha * Color.blue(baseColor)
                     (1f - overlayAlpha) * Color.blue(overlayColor)));
     }
 

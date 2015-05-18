@@ -884,8 +884,8 @@ public final class ActiveServices {
                             try {
                                 c.conn.connected(r.name, service);
                             } catch (Exception e) {
-                                Slog.w(TAG, "Failure sending service " + r.name +
-                                      " to connection " + c.conn.asBinder() +
+                                Slog.w(TAG, "Failure sending service " + r.name
+                                      " to connection " + c.conn.asBinder()
                                       " (in " + c.binding.client.processName + ")", e);
                             }
                         }
@@ -1036,7 +1036,7 @@ public final class ActiveServices {
                 ServiceInfo sInfo =
                     rInfo != null ? rInfo.serviceInfo : null;
                 if (sInfo == null) {
-                    Slog.w(TAG, "Unable to start service " + service + " U=" + userId +
+                    Slog.w(TAG, "Unable to start service " + service + " U=" + userId
                           ": not found");
                     return null;
                 }
@@ -1624,8 +1624,8 @@ public final class ActiveServices {
                 try {
                     cr.conn.connected(r.name, null);
                 } catch (Exception e) {
-                    Slog.w(TAG, "Failure disconnecting service " + r.name +
-                          " to connection " + c.get(i).conn.asBinder() +
+                    Slog.w(TAG, "Failure disconnecting service " + r.name
+                          " to connection " + c.get(i).conn.asBinder()
                           " (in " + c.get(i).binding.client.processName + ")", e);
                 }
             }

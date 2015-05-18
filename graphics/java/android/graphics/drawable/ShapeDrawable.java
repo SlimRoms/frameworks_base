@@ -396,7 +396,7 @@ public class ShapeDrawable extends Drawable {
             final String name = parser.getName();
             // call our subclass
             if (!inflateTag(name, r, parser, attrs)) {
-                android.util.Log.w("drawable", "Unknown element: " + name +
+                android.util.Log.w("drawable", "Unknown element: " + name
                         " for ShapeDrawable " + this);
             }
         }

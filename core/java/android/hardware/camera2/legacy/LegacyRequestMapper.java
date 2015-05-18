@@ -91,7 +91,7 @@ public class LegacyRequestMapper {
                     /*defaultValue*/COLOR_CORRECTION_ABERRATION_MODE_FAST);
 
             if (aberrationMode != COLOR_CORRECTION_ABERRATION_MODE_FAST) {
-                Log.w(TAG, "convertRequestToMetadata - Ignoring unsupported " +
+                Log.w(TAG, "convertRequestToMetadata - Ignoring unsupported "
                         "colorCorrection.aberrationMode = " + aberrationMode);
             }
         }
@@ -129,7 +129,7 @@ public class LegacyRequestMapper {
                 // Use aeRegions if available, fall back to using awbRegions if present
                 MeteringRectangle[] aeRegions = request.get(CONTROL_AE_REGIONS);
                 if (request.get(CONTROL_AWB_REGIONS) != null) {
-                    Log.w(TAG, "convertRequestMetadata - control.awbRegions setting is not " +
+                    Log.w(TAG, "convertRequestMetadata - control.awbRegions setting is not "
                             "supported, ignoring value");
                 }
                 int maxNumMeteringAreas = params.getMaxNumMeteringAreas();
@@ -193,7 +193,7 @@ public class LegacyRequestMapper {
 
             if (!compensationRange.contains(compensation)) {
                 Log.w(TAG,
-                        "convertRequestMetadata - control.aeExposureCompensation " +
+                        "convertRequestMetadata - control.aeExposureCompensation "
                         "is out of range, ignoring value");
                 compensation = 0;
             }
@@ -337,7 +337,7 @@ public class LegacyRequestMapper {
                         break;
                     }
                     default: {
-                        Log.w(TAG, "Control mode " + controlMode +
+                        Log.w(TAG, "Control mode " + controlMode
                                 " is unsupported, defaulting to AUTO");
                         modeToSet = Parameters.SCENE_MODE_AUTO;
                     }
@@ -446,7 +446,7 @@ public class LegacyRequestMapper {
                     /*defaultValue*/NOISE_REDUCTION_MODE_FAST);
 
             if (mode != NOISE_REDUCTION_MODE_FAST) {
-                Log.w(TAG, "convertRequestToMetadata - Ignoring unsupported " +
+                Log.w(TAG, "convertRequestToMetadata - Ignoring unsupported "
                         "noiseReduction.mode = " + mode);
             }
         }
@@ -517,7 +517,7 @@ public class LegacyRequestMapper {
 
         if (maxNumMeteringAreas < meteringRectangleList.size()) {
             Log.w(TAG,
-                    "convertMeteringRegionsToLegacy - Too many requested " + regionName +
+                    "convertMeteringRegionsToLegacy - Too many requested " + regionName
                             " regions, ignoring all beyond the first " + maxNumMeteringAreas);
         }
 
@@ -552,14 +552,14 @@ public class LegacyRequestMapper {
                     if (ListUtils.listContains(supportedFlashModes, Parameters.FLASH_MODE_TORCH)) {
                         flashModeSetting = Parameters.FLASH_MODE_TORCH;
                     } else {
-                        Log.w(TAG, "mapAeAndFlashMode - Ignore flash.mode == TORCH;" +
+                        Log.w(TAG, "mapAeAndFlashMode - Ignore flash.mode == TORCH;"
                                 "camera does not support it");
                     }
             } else if (flashMode == FLASH_MODE_SINGLE) {
                 if (ListUtils.listContains(supportedFlashModes, Parameters.FLASH_MODE_ON)) {
                     flashModeSetting = Parameters.FLASH_MODE_ON;
                 } else {
-                    Log.w(TAG, "mapAeAndFlashMode - Ignore flash.mode == SINGLE;" +
+                    Log.w(TAG, "mapAeAndFlashMode - Ignore flash.mode == SINGLE;"
                             "camera does not support it");
                 }
             } else {
@@ -569,14 +569,14 @@ public class LegacyRequestMapper {
                 if (ListUtils.listContains(supportedFlashModes, Parameters.FLASH_MODE_ON)) {
                     flashModeSetting = Parameters.FLASH_MODE_ON;
                 } else {
-                    Log.w(TAG, "mapAeAndFlashMode - Ignore control.aeMode == ON_ALWAYS_FLASH;" +
+                    Log.w(TAG, "mapAeAndFlashMode - Ignore control.aeMode == ON_ALWAYS_FLASH;"
                             "camera does not support it");
                 }
         } else if (aeMode == CONTROL_AE_MODE_ON_AUTO_FLASH) {
             if (ListUtils.listContains(supportedFlashModes, Parameters.FLASH_MODE_AUTO)) {
                 flashModeSetting = Parameters.FLASH_MODE_AUTO;
             } else {
-                Log.w(TAG, "mapAeAndFlashMode - Ignore control.aeMode == ON_AUTO_FLASH;" +
+                Log.w(TAG, "mapAeAndFlashMode - Ignore control.aeMode == ON_AUTO_FLASH;"
                         "camera does not support it");
             }
         } else if (aeMode == CONTROL_AE_MODE_ON_AUTO_FLASH_REDEYE) {

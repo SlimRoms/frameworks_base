@@ -122,17 +122,17 @@ public class CameraAccessException extends AndroidException {
             case CAMERA_IN_USE:
                 return "The camera device is in use already";
             case MAX_CAMERAS_IN_USE:
-                return "The system-wide limit for number of open cameras has been reached, " +
-                       "and more camera devices cannot be opened until previous instances " +
+                return "The system-wide limit for number of open cameras has been reached, "
+                       "and more camera devices cannot be opened until previous instances "
                        "are closed.";
             case CAMERA_DISCONNECTED:
-                return "The camera device is removable and has been disconnected from the " +
-                        "Android device, or the camera service has shut down the connection due " +
+                return "The camera device is removable and has been disconnected from the "
+                        "Android device, or the camera service has shut down the connection due "
                         "to a higher-priority access request for the camera device.";
             case CAMERA_DISABLED:
                 return "The camera is disabled due to a device policy, and cannot be opened.";
             case CAMERA_ERROR:
-                return "The camera device is currently in the error state; " +
+                return "The camera device is currently in the error state; "
                        "no further calls to it will succeed.";
         }
         return null;

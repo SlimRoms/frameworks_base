@@ -171,7 +171,7 @@ public class MultiSelectListPreference extends DialogPreference {
         
         if (mEntries == null || mEntryValues == null) {
             throw new IllegalStateException(
-                    "MultiSelectListPreference requires an entries array and " +
+                    "MultiSelectListPreference requires an entries array and "
                     "an entryValues array.");
         }
         

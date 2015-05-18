@@ -329,7 +329,7 @@ public class DownloadManagerFunctionalTest extends DownloadManagerBaseTest {
         enqueueResponse(buildResponse(HTTP_OK, blobData));
 
         // An arbitrary unicode string title
-        final String title = "\u00a5123;\"\u0152\u017d \u054b \u0a07 \ucce0 \u6820\u03a8\u5c34" +
+        final String title = "\u00a5123;\"\u0152\u017d \u054b \u0a07 \ucce0 \u6820\u03a8\u5c34"
                 "\uf4ad\u0da9\uc0c5\uc1a8 \uf4c5 \uf4aa\u0023\'";
 
         Uri uri = getServerUri(DEFAULT_FILENAME);

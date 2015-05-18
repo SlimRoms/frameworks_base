@@ -113,7 +113,7 @@ public class TextProgressBar extends RelativeLayout implements OnChronometerTick
         mDurationBase = durationBase;
         
         if (mProgressBar == null || mChronometer == null) {
-            throw new RuntimeException("Expecting child ProgressBar with id " +
+            throw new RuntimeException("Expecting child ProgressBar with id "
                     "'android.R.id.progress' and Chronometer id 'android.R.id.text1'");
         }
         

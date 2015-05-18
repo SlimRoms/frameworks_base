@@ -1335,7 +1335,7 @@ public class Activity extends ContextThemeWrapper
     final void performSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
         onSaveInstanceState(outState, outPersistentState);
         saveManagedDialogs(outState);
-        if (DEBUG_LIFECYCLE) Slog.v(TAG, "onSaveInstanceState " + this + ": " + outState +
+        if (DEBUG_LIFECYCLE) Slog.v(TAG, "onSaveInstanceState " + this + ": " + outState
                 ", " + outPersistentState);
     }
 
@@ -2122,8 +2122,8 @@ public class Activity extends ContextThemeWrapper
      */
     public void setActionBar(@Nullable Toolbar toolbar) {
         if (getActionBar() instanceof WindowDecorActionBar) {
-            throw new IllegalStateException("This Activity already has an action bar supplied " +
-                    "by the window decor. Do not request Window.FEATURE_ACTION_BAR and set " +
+            throw new IllegalStateException("This Activity already has an action bar supplied "
+                    "by the window decor. Do not request Window.FEATURE_ACTION_BAR and set "
                     "android:windowActionBar to false in your theme to use a Toolbar instead.");
         }
         ToolbarActionBar tbab = new ToolbarActionBar(toolbar, getTitle(), this);
@@ -5892,7 +5892,7 @@ public class Activity extends ContextThemeWrapper
                     : new Intent().setComponent(target);
             return parentIntent;
         } catch (NameNotFoundException e) {
-            Log.e(TAG, "getParentActivityIntent: bad parentActivityName '" + parentName +
+            Log.e(TAG, "getParentActivityIntent: bad parentActivityName '" + parentName
                     "' in manifest");
             return null;
         }
@@ -6050,7 +6050,7 @@ public class Activity extends ContextThemeWrapper
         mInstrumentation.callActivityOnStart(this);
         if (!mCalled) {
             throw new SuperNotCalledException(
-                "Activity " + mComponent.toShortString() +
+                "Activity " + mComponent.toShortString()
                 " did not call through to super.onStart()");
         }
         mFragments.dispatchStart();
@@ -6101,7 +6101,7 @@ public class Activity extends ContextThemeWrapper
             mInstrumentation.callActivityOnRestart(this);
             if (!mCalled) {
                 throw new SuperNotCalledException(
-                    "Activity " + mComponent.toShortString() +
+                    "Activity " + mComponent.toShortString()
                     " did not call through to super.onRestart()");
             }
             performStart();
@@ -6120,7 +6120,7 @@ public class Activity extends ContextThemeWrapper
         mInstrumentation.callActivityOnResume(this);
         if (!mCalled) {
             throw new SuperNotCalledException(
-                "Activity " + mComponent.toShortString() +
+                "Activity " + mComponent.toShortString()
                 " did not call through to super.onResume()");
         }
 
@@ -6133,7 +6133,7 @@ public class Activity extends ContextThemeWrapper
         onPostResume();
         if (!mCalled) {
             throw new SuperNotCalledException(
-                "Activity " + mComponent.toShortString() +
+                "Activity " + mComponent.toShortString()
                 " did not call through to super.onPostResume()");
         }
     }
@@ -6147,7 +6147,7 @@ public class Activity extends ContextThemeWrapper
         if (!mCalled && getApplicationInfo().targetSdkVersion
                 >= android.os.Build.VERSION_CODES.GINGERBREAD) {
             throw new SuperNotCalledException(
-                    "Activity " + mComponent.toShortString() +
+                    "Activity " + mComponent.toShortString()
                     " did not call through to super.onPause()");
         }
         mResumed = false;
@@ -6186,7 +6186,7 @@ public class Activity extends ContextThemeWrapper
             mInstrumentation.callActivityOnStop(this);
             if (!mCalled) {
                 throw new SuperNotCalledException(
-                    "Activity " + mComponent.toShortString() +
+                    "Activity " + mComponent.toShortString()
                     " did not call through to super.onStop()");
             }
 

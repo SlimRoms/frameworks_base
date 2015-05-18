@@ -145,10 +145,10 @@ public class UsbInterface implements Parcelable {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder("UsbInterface[mId=" + mId +
-                ",mAlternateSetting=" + mAlternateSetting +
-                ",mName=" + mName + ",mClass=" + mClass +
-                ",mSubclass=" + mSubclass + ",mProtocol=" + mProtocol +
+        StringBuilder builder = new StringBuilder("UsbInterface[mId=" + mId
+                ",mAlternateSetting=" + mAlternateSetting
+                ",mName=" + mName + ",mClass=" + mClass
+                ",mSubclass=" + mSubclass + ",mProtocol=" + mProtocol
                 ",mEndpoints=[");
         for (int i = 0; i < mEndpoints.length; i++) {
             builder.append("\n");

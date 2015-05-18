@@ -490,7 +490,7 @@ public final class CalendarContract {
          * The default Uri used when creating a new calendar EntityIterator.
          */
         @SuppressWarnings("hiding")
-        public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY +
+        public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY
                 "/calendar_entities");
 
         /**
@@ -1273,7 +1273,7 @@ public final class CalendarContract {
         /**
          * The content:// style URL for this table
          */
-        public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY +
+        public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY
                 "/event_entities");
 
         /**
@@ -1793,7 +1793,7 @@ public final class CalendarContract {
          * this is used directly.
          */
         @SuppressWarnings("hiding")
-        public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY +
+        public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY
                 "/instances/when");
         /**
          * The content:// style URL for querying an instance range by Julian
@@ -1807,7 +1807,7 @@ public final class CalendarContract {
          * term. The begin, end, and search string should be appended as path
          * segments if this is used directly.
          */
-        public static final Uri CONTENT_SEARCH_URI = Uri.parse("content://" + AUTHORITY +
+        public static final Uri CONTENT_SEARCH_URI = Uri.parse("content://" + AUTHORITY
                 "/instances/search");
         /**
          * The content:// style URL for querying an instance range with a search
@@ -2223,7 +2223,7 @@ public final class CalendarContract {
          * The Uri for querying calendar alert information
          */
         @SuppressWarnings("hiding")
-        public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY +
+        public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY
                 "/calendar_alerts");
 
         /**

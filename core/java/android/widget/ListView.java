@@ -1166,14 +1166,14 @@ public class ListView extends AbsListView {
         }
 
         if (widthMode == MeasureSpec.UNSPECIFIED) {
-            widthSize = mListPadding.left + mListPadding.right + childWidth +
+            widthSize = mListPadding.left + mListPadding.right + childWidth
                     getVerticalScrollbarWidth();
         } else {
             widthSize |= (childState&MEASURED_STATE_MASK);
         }
 
         if (heightMode == MeasureSpec.UNSPECIFIED) {
-            heightSize = mListPadding.top + mListPadding.bottom + childHeight +
+            heightSize = mListPadding.top + mListPadding.bottom + childHeight
                     getVerticalFadingEdgeLength() * 2;
         }
 
@@ -2901,7 +2901,7 @@ public class ListView extends AbsListView {
         } else {
             if (direction == View.FOCUS_DOWN) {
                 final boolean topFadingEdgeShowing = (mFirstPosition > 0);
-                final int listTop = mListPadding.top +
+                final int listTop = mListPadding.top
                         (topFadingEdgeShowing ? getArrowScrollPreviewLength() : 0);
                 final int ySearchPoint =
                         (selectedView != null && selectedView.getTop() > listTop) ?

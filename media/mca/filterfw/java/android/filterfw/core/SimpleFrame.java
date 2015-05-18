@@ -144,7 +144,7 @@ public class SimpleFrame extends Frame {
             setFormatObjectClass(object.getClass());
         } else if (!format.getObjectClass().isAssignableFrom(object.getClass())) {
             throw new RuntimeException(
-                "Attempting to set object value of type '" + object.getClass() + "' on " +
+                "Attempting to set object value of type '" + object.getClass() + "' on "
                 "SimpleFrame of type '" + format.getObjectClass() + "'!");
         }
 

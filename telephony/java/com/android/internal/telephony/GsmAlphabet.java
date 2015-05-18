@@ -118,13 +118,13 @@ public class GsmAlphabet {
 
         @Override
         public String toString() {
-            return "TextEncodingDetails " +
-                    "{ msgCount=" + msgCount +
-                    ", codeUnitCount=" + codeUnitCount +
-                    ", codeUnitsRemaining=" + codeUnitsRemaining +
-                    ", codeUnitSize=" + codeUnitSize +
-                    ", languageTable=" + languageTable +
-                    ", languageShiftTable=" + languageShiftTable +
+            return "TextEncodingDetails "
+                    "{ msgCount=" + msgCount
+                    ", codeUnitCount=" + codeUnitCount
+                    ", codeUnitsRemaining=" + codeUnitsRemaining
+                    ", codeUnitSize=" + codeUnitSize
+                    ", languageTable=" + languageTable
+                    ", languageShiftTable=" + languageShiftTable
                     " }";
         }
     }
@@ -1460,7 +1460,7 @@ public class GsmAlphabet {
         int numTables = sLanguageTables.length;
         int numShiftTables = sLanguageShiftTables.length;
         if (numTables != numShiftTables) {
-            Rlog.e(TAG, "Error: language tables array length " + numTables +
+            Rlog.e(TAG, "Error: language tables array length " + numTables
                     " != shift tables array length " + numShiftTables);
         }
 
@@ -1470,7 +1470,7 @@ public class GsmAlphabet {
 
             int tableLen = table.length();
             if (tableLen != 0 && tableLen != 128) {
-                Rlog.e(TAG, "Error: language tables index " + i +
+                Rlog.e(TAG, "Error: language tables index " + i
                         " length " + tableLen + " (expected 128 or 0)");
             }
 
@@ -1488,7 +1488,7 @@ public class GsmAlphabet {
 
             int shiftTableLen = shiftTable.length();
             if (shiftTableLen != 0 && shiftTableLen != 128) {
-                Rlog.e(TAG, "Error: language shift tables index " + i +
+                Rlog.e(TAG, "Error: language shift tables index " + i
                         " length " + shiftTableLen + " (expected 128 or 0)");
             }
 

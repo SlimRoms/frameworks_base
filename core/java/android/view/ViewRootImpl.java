@@ -580,15 +580,15 @@ public final class ViewRootImpl implements ViewParent,
                             return;
                         case WindowManagerGlobal.ADD_MULTIPLE_SINGLETON:
                             throw new WindowManager.BadTokenException(
-                                    "Unable to add window " + mWindow +
+                                    "Unable to add window " + mWindow
                                     " -- another window of this type already exists");
                         case WindowManagerGlobal.ADD_PERMISSION_DENIED:
                             throw new WindowManager.BadTokenException(
-                                    "Unable to add window " + mWindow +
+                                    "Unable to add window " + mWindow
                                     " -- permission denied for this window type");
                         case WindowManagerGlobal.ADD_INVALID_DISPLAY:
                             throw new WindowManager.InvalidDisplayException(
-                                    "Unable to add window " + mWindow +
+                                    "Unable to add window " + mWindow
                                     " -- the specified display can not be found");
                         case WindowManagerGlobal.ADD_INVALID_TYPE:
                             throw new WindowManager.InvalidDisplayException(
@@ -1489,7 +1489,7 @@ public final class ViewRootImpl implements ViewParent,
 
             try {
                 if (DEBUG_LAYOUT) {
-                    Log.i(TAG, "host=w:" + host.getMeasuredWidth() + ", h:" +
+                    Log.i(TAG, "host=w:" + host.getMeasuredWidth() + ", h:"
                             host.getMeasuredHeight() + ", params=" + params);
                 }
 
@@ -2077,7 +2077,7 @@ public final class ViewRootImpl implements ViewParent,
 
         final View host = mView;
         if (DEBUG_ORIENTATION || DEBUG_LAYOUT) {
-            Log.v(TAG, "Laying out " + host + " to (" +
+            Log.v(TAG, "Laying out " + host + " to ("
                     host.getMeasuredWidth() + ", " + host.getMeasuredHeight() + ")");
         }
 
@@ -2104,7 +2104,7 @@ public final class ViewRootImpl implements ViewParent,
                     int numValidRequests = validLayoutRequesters.size();
                     for (int i = 0; i < numValidRequests; ++i) {
                         final View view = validLayoutRequesters.get(i);
-                        Log.w("View", "requestLayout() improperly called by " + view +
+                        Log.w("View", "requestLayout() improperly called by " + view
                                 " during layout: running second layout pass");
                         view.requestLayout();
                     }
@@ -2127,7 +2127,7 @@ public final class ViewRootImpl implements ViewParent,
                                 int numValidRequests = finalRequesters.size();
                                 for (int i = 0; i < numValidRequests; ++i) {
                                     final View view = finalRequesters.get(i);
-                                    Log.w("View", "requestLayout() improperly called by " + view +
+                                    Log.w("View", "requestLayout() improperly called by " + view
                                             " during second layout pass: posting in next frame");
                                     view.requestLayout();
                                 }
@@ -2474,7 +2474,7 @@ public final class ViewRootImpl implements ViewParent,
                     + mWindowAttributes.getTitle()
                     + ": dirty={" + dirty.left + "," + dirty.top
                     + "," + dirty.right + "," + dirty.bottom + "} surface="
-                    + surface + " surface.isValid()=" + surface.isValid() + ", appScale:" +
+                    + surface + " surface.isValid()=" + surface.isValid() + ", appScale:"
                     appScale + ", width=" + mWidth + ", height=" + mHeight);
         }
 
@@ -2635,8 +2635,8 @@ public final class ViewRootImpl implements ViewParent,
 
             if (DEBUG_DRAW) {
                 Context cxt = mView.getContext();
-                Log.i(TAG, "Drawing: package:" + cxt.getPackageName() +
-                        ", metrics=" + cxt.getResources().getDisplayMetrics() +
+                Log.i(TAG, "Drawing: package:" + cxt.getPackageName()
+                        ", metrics=" + cxt.getResources().getDisplayMetrics()
                         ", compatibilityInfo=" + cxt.getResources().getCompatibilityInfo());
             }
             try {
@@ -5357,7 +5357,7 @@ public final class ViewRootImpl implements ViewParent,
                     audioManager.playSoundEffect(AudioManager.FX_FOCUS_NAVIGATION_UP);
                     return;
                 default:
-                    throw new IllegalArgumentException("unknown effect id " + effectId +
+                    throw new IllegalArgumentException("unknown effect id " + effectId
                             " not defined in " + SoundEffectConstants.class.getCanonicalName());
             }
         } catch (IllegalStateException e) {
@@ -5483,7 +5483,7 @@ public final class ViewRootImpl implements ViewParent,
         if (!mIsDrawing) {
             destroyHardwareRenderer();
         } else {
-            Log.e(TAG, "Attempting to destroy the window while drawing!\n" +
+            Log.e(TAG, "Attempting to destroy the window while drawing!\n"
                     "  window=" + this + ", title=" + mWindowAttributes.getTitle());
         }
         mHandler.sendEmptyMessage(MSG_DIE);

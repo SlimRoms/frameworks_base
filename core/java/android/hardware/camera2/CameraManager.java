@@ -160,7 +160,7 @@ public final class CameraManager {
 
         synchronized (mLock) {
             if (!getOrCreateDeviceIdListLocked().contains(cameraId)) {
-                throw new IllegalArgumentException(String.format("Camera id %s does not match any" +
+                throw new IllegalArgumentException(String.format("Camera id %s does not match any"
                         " currently connected camera device", cameraId));
             }
 
@@ -774,8 +774,8 @@ public final class CameraManager {
                 if (DEBUG) {
                     Log.v(TAG,
                             String.format(
-                                "Device status was previously available (%d), " +
-                                " and is now again available (%d)" +
+                                "Device status was previously available (%d), "
+                                " and is now again available (%d)"
                                 "so no new client visible update will be sent",
                                 isAvailable(status), isAvailable(status)));
                 }

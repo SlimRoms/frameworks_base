@@ -320,7 +320,7 @@ public class GeomagneticField {
         mGcLongitudeRad = (float) Math.toRadians(gdLongitudeDeg);
 
         float radSq = altitudeKm * altitudeKm
-            + 2 * altitudeKm * (float) Math.sqrt(a2 * clat * clat +
+            + 2 * altitudeKm * (float) Math.sqrt(a2 * clat * clat
                                                  b2 * slat * slat)
             + (a2 * a2 * clat * clat + b2 * b2 * slat * slat)
             / (a2 * clat * clat + b2 * slat * slat);

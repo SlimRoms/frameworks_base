@@ -149,13 +149,13 @@ public class ActivityView extends ViewGroup {
 
     @Override
     public void onAttachedToWindow() {
-        if (DEBUG) Log.v(TAG, "onAttachedToWindow(): mActivityContainer=" + mActivityContainer +
+        if (DEBUG) Log.v(TAG, "onAttachedToWindow(): mActivityContainer=" + mActivityContainer
                 " mSurface=" + mSurface);
     }
 
     @Override
     public void onDetachedFromWindow() {
-        if (DEBUG) Log.v(TAG, "onDetachedFromWindow(): mActivityContainer=" + mActivityContainer +
+        if (DEBUG) Log.v(TAG, "onDetachedFromWindow(): mActivityContainer=" + mActivityContainer
                 " mSurface=" + mSurface);
     }
 
@@ -167,7 +167,7 @@ public class ActivityView extends ViewGroup {
         if (mActivityContainer == null) {
             throw new IllegalStateException("Attempt to call startActivity after release");
         }
-        if (DEBUG) Log.v(TAG, "startActivity(): intent=" + intent + " " +
+        if (DEBUG) Log.v(TAG, "startActivity(): intent=" + intent + " "
                 (isAttachedToDisplay() ? "" : "not") + " attached");
         if (mSurface != null) {
             mActivityContainer.startActivity(intent);
@@ -182,7 +182,7 @@ public class ActivityView extends ViewGroup {
         if (mActivityContainer == null) {
             throw new IllegalStateException("Attempt to call startActivity after release");
         }
-        if (DEBUG) Log.v(TAG, "startActivityIntentSender(): intentSender=" + intentSender + " " +
+        if (DEBUG) Log.v(TAG, "startActivityIntentSender(): intentSender=" + intentSender + " "
                 (isAttachedToDisplay() ? "" : "not") + " attached");
         final IIntentSender iIntentSender = intentSender.getTarget();
         if (mSurface != null) {
@@ -211,7 +211,7 @@ public class ActivityView extends ViewGroup {
     }
 
     public void release() {
-        if (DEBUG) Log.v(TAG, "release() mActivityContainer=" + mActivityContainer +
+        if (DEBUG) Log.v(TAG, "release() mActivityContainer=" + mActivityContainer
                 " mSurface=" + mSurface);
         if (mActivityContainer == null) {
             Log.e(TAG, "Duplicate call to release");
@@ -330,7 +330,7 @@ public class ActivityView extends ViewGroup {
 
         @Override
         public void setVisible(IBinder container, boolean visible) {
-            if (DEBUG) Log.v(TAG, "setVisible(): container=" + container + " visible=" + visible +
+            if (DEBUG) Log.v(TAG, "setVisible(): container=" + container + " visible=" + visible
                     " ActivityView=" + mActivityViewWeakReference.get());
         }
 

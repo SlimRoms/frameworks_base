@@ -61,7 +61,7 @@ public class AverageFilter extends Filter {
         counter = (counter + 1) % NUM_FRAMES;
 
         float output = (temp[0] + temp[1] + temp[2] + temp[3] + temp[4]) / NUM_FRAMES;
-        if (mLogVerbose) Log.v(TAG, "Avg= " + output + "temp1= " + temp[0] + "temp2= " +
+        if (mLogVerbose) Log.v(TAG, "Avg= " + output + "temp1= " + temp[0] + "temp2= "
                 temp[1] + "temp3= " + temp[2] + "temp4=" + temp[3] + "temp5=" + temp[4]);
 
         OutputPort outPort = getConnectedOutputPort("avg");

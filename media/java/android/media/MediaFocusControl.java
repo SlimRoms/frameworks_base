@@ -186,14 +186,14 @@ public class MediaFocusControl implements OnFinished {
                                 ComponentName.unflattenFromString(components[i]);
                         if (component != null) {
                             if (listenerComp.equals(component)) {
-                                if (DEBUG_RC) { Log.d(TAG, "ok to register RCC: " + component +
+                                if (DEBUG_RC) { Log.d(TAG, "ok to register RCC: " + component
                                         " is authorized notification listener"); }
                                 return RCD_REG_SUCCESS_ENABLED_NOTIF;
                             }
                         }
                     }
                 }
-                if (DEBUG_RC) { Log.d(TAG, "not ok to register RCD, " + listenerComp +
+                if (DEBUG_RC) { Log.d(TAG, "not ok to register RCD, " + listenerComp
                         " is not in list of ENABLED_NOTIFICATION_LISTENERS"); }
             } finally {
                 Binder.restoreCallingIdentity(ident);
@@ -210,8 +210,8 @@ public class MediaFocusControl implements OnFinished {
             registerRemoteControlDisplay_int(rcd, w, h, listenerComp);
             return true;
         } else {
-            Slog.w(TAG, "Access denied to process: " + Binder.getCallingPid() +
-                    ", must have permission " + android.Manifest.permission.MEDIA_CONTENT_CONTROL +
+            Slog.w(TAG, "Access denied to process: " + Binder.getCallingPid()
+                    ", must have permission " + android.Manifest.permission.MEDIA_CONTENT_CONTROL
                     " or be an enabled NotificationListenerService for registerRemoteController");
             return false;
         }
@@ -223,8 +223,8 @@ public class MediaFocusControl implements OnFinished {
             registerRemoteControlDisplay_int(rcd, w, h, null);
             return true;
         } else {
-            Slog.w(TAG, "Access denied to process: " + Binder.getCallingPid() +
-                    ", must have permission " + android.Manifest.permission.MEDIA_CONTENT_CONTROL +
+            Slog.w(TAG, "Access denied to process: " + Binder.getCallingPid()
+                    ", must have permission " + android.Manifest.permission.MEDIA_CONTENT_CONTROL
                     " to register IRemoteControlDisplay");
             return false;
         }
@@ -733,7 +733,7 @@ public class MediaFocusControl implements OnFinished {
     /** @see AudioManager#requestAudioFocus(AudioManager.OnAudioFocusChangeListener, int, int, int) */
     protected int requestAudioFocus(AudioAttributes aa, int focusChangeHint, IBinder cb,
             IAudioFocusDispatcher fd, String clientId, String callingPackageName, int flags) {
-        Log.i(TAG, " AudioFocus  requestAudioFocus() from " + clientId + " req=" + focusChangeHint +
+        Log.i(TAG, " AudioFocus  requestAudioFocus() from " + clientId + " req=" + focusChangeHint
                 "flags=0x" + Integer.toHexString(flags));
         // we need a valid binder callback for clients
         if (!cb.pingBinder()) {
@@ -1243,10 +1243,10 @@ public class MediaFocusControl implements OnFinished {
             final Iterator<DisplayInfoForServer> displayIterator = mRcDisplays.iterator();
             while (displayIterator.hasNext()) {
                 final DisplayInfoForServer di = displayIterator.next();
-                pw.println("  IRCD: " + di.mRcDisplay +
-                        "  -- w:" + di.mArtworkExpectedWidth +
-                        "  -- h:" + di.mArtworkExpectedHeight +
-                        "  -- wantsPosSync:" + di.mWantsPositionSync +
+                pw.println("  IRCD: " + di.mRcDisplay
+                        "  -- w:" + di.mArtworkExpectedWidth
+                        "  -- h:" + di.mArtworkExpectedHeight
+                        "  -- wantsPosSync:" + di.mWantsPositionSync
                         "  -- " + (di.mEnabled ? "enabled" : "disabled"));
             }
         }

@@ -2201,10 +2201,10 @@ public class WebView extends AbsoluteLayout
         // constructor, before this class's own constructor has even started.
         if (mWebViewThread != null && Looper.myLooper() != mWebViewThread) {
             Throwable throwable = new Throwable(
-                    "A WebView method was called on thread '" +
-                    Thread.currentThread().getName() + "'. " +
-                    "All WebView methods must be called on the same thread. " +
-                    "(Expected Looper " + mWebViewThread + " called on " + Looper.myLooper() +
+                    "A WebView method was called on thread '"
+                    Thread.currentThread().getName() + "'. "
+                    "All WebView methods must be called on the same thread. "
+                    "(Expected Looper " + mWebViewThread + " called on " + Looper.myLooper()
                     ", FYI main Looper is " + Looper.getMainLooper() + ")");
             Log.w(LOGTAG, Log.getStackTraceString(throwable));
             StrictMode.onWebViewMethodCalledOnWrongThread(throwable);

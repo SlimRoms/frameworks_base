@@ -80,7 +80,7 @@ public final class NetworkManagementSocketTagger extends SocketTagger {
             final int errno = native_tagSocketFd(fd, tag, uid);
             if (errno < 0) {
                 Log.i(TAG, "tagSocketFd(" + fd.getInt$() + ", "
-                      + tag + ", " +
+                      + tag + ", "
                       + uid + ") failed with errno" + errno);
             }
         }

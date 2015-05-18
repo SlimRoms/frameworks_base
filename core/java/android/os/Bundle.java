@@ -1054,7 +1054,7 @@ public final class Bundle extends BaseBundle implements Cloneable, Parcelable {
             if (mParcelledData == EMPTY_PARCEL) {
                 return "Bundle[EMPTY_PARCEL]";
             } else {
-                return "Bundle[mParcelledData.dataSize=" +
+                return "Bundle[mParcelledData.dataSize="
                         mParcelledData.dataSize() + "]";
             }
         }

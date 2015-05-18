@@ -1032,8 +1032,8 @@ public abstract class AbsListView extends AdapterView<ListAdapter> implements Te
         if (value && mChoiceMode == CHOICE_MODE_MULTIPLE_MODAL && mChoiceActionMode == null) {
             if (mMultiChoiceModeCallback == null ||
                     !mMultiChoiceModeCallback.hasWrappedCallback()) {
-                throw new IllegalStateException("AbsListView: attempted to start selection mode " +
-                        "for CHOICE_MODE_MULTIPLE_MODAL but no choice mode callback was " +
+                throw new IllegalStateException("AbsListView: attempted to start selection mode "
+                        "for CHOICE_MODE_MULTIPLE_MODAL but no choice mode callback was "
                         "supplied. Call setMultiChoiceModeListener to set a callback.");
             }
             mChoiceActionMode = startActionMode(mMultiChoiceModeCallback);
@@ -2040,7 +2040,7 @@ public abstract class AbsListView extends AdapterView<ListAdapter> implements Te
                 final int top = view.getTop();
                 int height = view.getHeight();
                 if (height > 0) {
-                    return Math.max(firstPosition * 100 - (top * 100) / height +
+                    return Math.max(firstPosition * 100 - (top * 100) / height
                             (int)((float)mScrollY / getHeight() * mItemCount * 100), 0);
                 }
             } else {
@@ -7123,7 +7123,7 @@ public abstract class AbsListView extends AdapterView<ListAdapter> implements Te
             final int paddedBottom = getHeight() - mListPadding.bottom;
 
             if (targetPos < firstPos || targetPos > lastPos) {
-                Log.w(TAG, "scrollToVisible called with targetPos " + targetPos +
+                Log.w(TAG, "scrollToVisible called with targetPos " + targetPos
                         " not visible [" + firstPos + ", " + lastPos + "]");
             }
             if (boundPos < firstPos || boundPos > lastPos) {

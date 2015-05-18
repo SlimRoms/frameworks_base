@@ -145,8 +145,8 @@ public final class HttpDateTime {
      * dec = 3 + 4 + 2 = 9
      */
     private static int getMonth(String monthString) {
-        int hash = Character.toLowerCase(monthString.charAt(0)) +
-                Character.toLowerCase(monthString.charAt(1)) +
+        int hash = Character.toLowerCase(monthString.charAt(0))
+                Character.toLowerCase(monthString.charAt(1))
                 Character.toLowerCase(monthString.charAt(2)) - 3 * 'a';
         switch (hash) {
             case 22:

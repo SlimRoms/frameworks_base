@@ -157,7 +157,7 @@ public class SimpleCursorAdapter extends ResourceCursorAdapter {
                     } else if (v instanceof ImageView) {
                         setViewImage((ImageView) v, text);
                     } else {
-                        throw new IllegalStateException(v.getClass().getName() + " is not a " +
+                        throw new IllegalStateException(v.getClass().getName() + " is not a "
                                 " view that can be bounds by this SimpleCursorAdapter");
                     }
                 }

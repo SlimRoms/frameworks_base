@@ -80,7 +80,7 @@ public class YuvImage {
         if (format != ImageFormat.NV21 &&
                 format != ImageFormat.YUY2) {
             throw new IllegalArgumentException(
-                    "only support ImageFormat.NV21 " +
+                    "only support ImageFormat.NV21 "
                     "and ImageFormat.YUY2 for now");
         }
 

@@ -117,7 +117,7 @@ public class LinkAddress implements Parcelable {
                 prefixLength < 0 ||
                 ((address instanceof Inet4Address) && prefixLength > 32) ||
                 (prefixLength > 128)) {
-            throw new IllegalArgumentException("Bad LinkAddress params " + address +
+            throw new IllegalArgumentException("Bad LinkAddress params " + address
                     "/" + prefixLength);
         }
         this.address = address;

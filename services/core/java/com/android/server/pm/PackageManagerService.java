@@ -774,7 +774,7 @@ public class PackageManagerService extends IPackageManager.Stub {
             new ArrayList<HandlerParams>();
 
         private boolean connectToService() {
-            if (DEBUG_SD_INSTALL) Log.i(TAG, "Trying to bind to" +
+            if (DEBUG_SD_INSTALL) Log.i(TAG, "Trying to bind to"
                     " DefaultContainerService");
             Intent service = new Intent().setComponent(DEFAULT_CONTAINER_COMPONENT);
             Process.setThreadPriority(Process.THREAD_PRIORITY_DEFAULT);
@@ -3199,7 +3199,7 @@ public class PackageManagerService extends IPackageManager.Stub {
                     }
                     //  Found a persistent preference that can handle the intent.
                     if (DEBUG_PREFERRED || debug) {
-                        Slog.v(TAG, "Returning persistent preferred activity: " +
+                        Slog.v(TAG, "Returning persistent preferred activity: "
                                 ri.activityInfo.packageName + "/" + ri.activityInfo.name);
                     }
                     return ri;
@@ -4143,13 +4143,13 @@ public class PackageManagerService extends IPackageManager.Stub {
     private boolean createIdmapForPackagePairLI(PackageParser.Package pkg,
             PackageParser.Package opkg) {
         if (!opkg.mTrustedOverlay) {
-            Slog.w(TAG, "Skipping target and overlay pair " + pkg.baseCodePath + " and " +
+            Slog.w(TAG, "Skipping target and overlay pair " + pkg.baseCodePath + " and "
                     opkg.baseCodePath + ": overlay not trusted");
             return false;
         }
         ArrayMap<String, PackageParser.Package> overlaySet = mOverlays.get(pkg.packageName);
         if (overlaySet == null) {
-            Slog.e(TAG, "was about to create idmap for " + pkg.baseCodePath + " and " +
+            Slog.e(TAG, "was about to create idmap for " + pkg.baseCodePath + " and "
                     opkg.baseCodePath + " but target package has no known overlays");
             return false;
         }
@@ -4735,7 +4735,7 @@ public class PackageManagerService extends IPackageManager.Stub {
                 long then = pkg.mLastPackageUsageTimeInMills;
                 if (then + mDexOptLRUThresholdInMills < now) {
                     if (DEBUG_DEXOPT) {
-                        Log.i(TAG, "Skipping dexopt of " + pkg.packageName + " last resumed: " +
+                        Log.i(TAG, "Skipping dexopt of " + pkg.packageName + " last resumed: "
                               ((then == 0) ? "never" : new Date(then)));
                     }
                     i.remove();
@@ -5686,7 +5686,7 @@ public class PackageManagerService extends IPackageManager.Stub {
                         if (ret >= 0) {
                             recovered = true;
                             String msg = "Package " + pkg.packageName
-                                    + " unexpectedly changed to uid 0; recovered to " +
+                                    + " unexpectedly changed to uid 0; recovered to "
                                     + pkg.applicationInfo.uid;
                             reportSettingsProblem(Log.WARN, msg);
                         }
@@ -6001,8 +6001,8 @@ public class PackageManagerService extends IPackageManager.Stub {
         pkgSetting.legacyNativeLibraryPathString = pkg.applicationInfo.nativeLibraryRootDir;
 
         if (DEBUG_ABI_SELECTION) {
-            Log.d(TAG, "Abis for package[" + pkg.packageName + "] are" +
-                    " primary=" + pkg.applicationInfo.primaryCpuAbi +
+            Log.d(TAG, "Abis for package[" + pkg.packageName + "] are"
+                    " primary=" + pkg.applicationInfo.primaryCpuAbi
                     " secondary=" + pkg.applicationInfo.secondaryCpuAbi);
         }
 
@@ -6219,8 +6219,8 @@ public class PackageManagerService extends IPackageManager.Stub {
                             }
                         } else {
                             PackageParser.Provider other = mProvidersByAuthority.get(names[j]);
-                            Slog.w(TAG, "Skipping provider name " + names[j] +
-                                    " (in package " + pkg.applicationInfo.packageName +
+                            Slog.w(TAG, "Skipping provider name " + names[j]
+                                    " (in package " + pkg.applicationInfo.packageName
                                     "): name already used by "
                                     + ((other != null && other.getComponentName() != null)
                                             ? other.getComponentName().getPackageName() : "?"));
@@ -6597,7 +6597,7 @@ public class PackageManagerService extends IPackageManager.Stub {
             mResolveInfo.preferredOrder = 0;
             mResolveInfo.match = 0;
             mResolveComponentName = mCustomResolverComponentName;
-            Slog.i(TAG, "Replacing default ResolverActivity with custom activity: " +
+            Slog.i(TAG, "Replacing default ResolverActivity with custom activity: "
                     mResolveComponentName);
         }
     }
@@ -7389,7 +7389,7 @@ public class PackageManagerService extends IPackageManager.Stub {
             mActivities.put(a.getComponentName(), a);
             if (DEBUG_SHOW_INFO)
                 Log.v(
-                TAG, "  " + type + " " +
+                TAG, "  " + type + " "
                 (a.info.nonLocalizedLabel != null ? a.info.nonLocalizedLabel : a.info.name) + ":");
             if (DEBUG_SHOW_INFO)
                 Log.v(TAG, "    Class=" + a.info.name);
@@ -7501,7 +7501,7 @@ public class PackageManagerService extends IPackageManager.Stub {
             }
             res.priority = info.getPriority();
             res.preferredOrder = activity.owner.mPreferredOrder;
-            //System.out.println("Result: " + res.activityInfo.className +
+            //System.out.println("Result: " + res.activityInfo.className
             //                   " = " + res.priority);
             res.match = match;
             res.isDefault = info.hasDefault;
@@ -7721,7 +7721,7 @@ public class PackageManagerService extends IPackageManager.Stub {
             }
             res.priority = info.getPriority();
             res.preferredOrder = service.owner.mPreferredOrder;
-            //System.out.println("Result: " + res.activityInfo.className +
+            //System.out.println("Result: " + res.activityInfo.className
             //                   " = " + res.priority);
             res.match = match;
             res.isDefault = info.hasDefault;
@@ -9897,7 +9897,7 @@ public class PackageManagerService extends IPackageManager.Stub {
                 }
             }
             if (!PackageHelper.renameSdDir(cid, newCacheId)) {
-                Slog.e(TAG, "Failed to rename " + cid + " to " + newCacheId +
+                Slog.e(TAG, "Failed to rename " + cid + " to " + newCacheId
                         " which might be stale. Will try to clean up.");
                 // Clean up the stale container and proceed to recreate.
                 if (!PackageHelper.destroySdDir(newCacheId)) {
@@ -9922,8 +9922,8 @@ public class PackageManagerService extends IPackageManager.Stub {
                 Slog.w(TAG, "Failed to get cache path for  " + newCacheId);
                 return false;
             }
-            Log.i(TAG, "Succesfully renamed " + cid +
-                    " to " + newCacheId +
+            Log.i(TAG, "Succesfully renamed " + cid
+                    " to " + newCacheId
                     " at new path: " + newMountPath);
             cid = newCacheId;
 
@@ -11860,7 +11860,7 @@ public class PackageManagerService extends IPackageManager.Stub {
                 || filter.countDataSchemes() > 1
                 || filter.countDataTypes() != 0) {
             throw new IllegalArgumentException(
-                    "replacePreferredActivity expects filter to have no data authorities, " +
+                    "replacePreferredActivity expects filter to have no data authorities, "
                     "paths, or types; and at most one scheme.");
         }
 
@@ -12057,7 +12057,7 @@ public class PackageManagerService extends IPackageManager.Stub {
             return;
         }
         synchronized (mPackages) {
-            Slog.i(TAG, "Adding persistent preferred activity " + activity + " for user " + userId +
+            Slog.i(TAG, "Adding persistent preferred activity " + activity + " for user " + userId
                     " :");
             filter.dump(new LogPrinter(Log.INFO, TAG), "  ");
             mSettings.editPersistentPreferredActivitiesLPw(userId).addFilter(

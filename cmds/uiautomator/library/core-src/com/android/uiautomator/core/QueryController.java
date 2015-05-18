@@ -73,7 +73,7 @@ class QueryController {
                                 if(event.getText().get(0) != null)
                                     mLastTraversedText = event.getText().get(0).toString();
                             if (DEBUG)
-                                Log.d(LOG_TAG, "Last text selection reported: " +
+                                Log.d(LOG_TAG, "Last text selection reported: "
                                         mLastTraversedText);
                             break;
                     }
@@ -246,7 +246,7 @@ class QueryController {
             } else {
                 if(fromNode == null) {
                     if (DEBUG)
-                        Log.d(LOG_TAG, "Pattern selector not found: " +
+                        Log.d(LOG_TAG, "Pattern selector not found: "
                                 selector.dumpToString(false));
                     return null;
                 }

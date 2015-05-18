@@ -519,14 +519,14 @@ public final class BatteryService extends SystemService {
         intent.putExtra(BatteryManager.EXTRA_INVALID_CHARGER, mInvalidCharger);
 
         if (DEBUG) {
-            Slog.d(TAG, "Sending ACTION_BATTERY_CHANGED.  level:" + mBatteryProps.batteryLevel +
-                    ", scale:" + BATTERY_SCALE + ", status:" + mBatteryProps.batteryStatus +
-                    ", health:" + mBatteryProps.batteryHealth +  ", present:" + mBatteryProps.batteryPresent +
-                    ", voltage: " + mBatteryProps.batteryVoltage +
-                    ", temperature: " + mBatteryProps.batteryTemperature +
-                    ", technology: " + mBatteryProps.batteryTechnology +
-                    ", AC powered:" + mBatteryProps.chargerAcOnline + ", USB powered:" + mBatteryProps.chargerUsbOnline +
-                    ", Wireless powered:" + mBatteryProps.chargerWirelessOnline +
+            Slog.d(TAG, "Sending ACTION_BATTERY_CHANGED.  level:" + mBatteryProps.batteryLevel
+                    ", scale:" + BATTERY_SCALE + ", status:" + mBatteryProps.batteryStatus
+                    ", health:" + mBatteryProps.batteryHealth +  ", present:" + mBatteryProps.batteryPresent
+                    ", voltage: " + mBatteryProps.batteryVoltage
+                    ", temperature: " + mBatteryProps.batteryTemperature
+                    ", technology: " + mBatteryProps.batteryTechnology
+                    ", AC powered:" + mBatteryProps.chargerAcOnline + ", USB powered:" + mBatteryProps.chargerUsbOnline
+                    ", Wireless powered:" + mBatteryProps.chargerWirelessOnline
                     ", icon:" + icon  + ", invalid charger:" + mInvalidCharger);
         }
 
@@ -592,12 +592,12 @@ public final class BatteryService extends SystemService {
                     // If the discharge cycle is bad enough we want to know about it.
                     logBatteryStatsLocked();
                 }
-                if (DEBUG) Slog.v(TAG, "duration threshold: " + durationThreshold +
+                if (DEBUG) Slog.v(TAG, "duration threshold: " + durationThreshold
                         " discharge threshold: " + dischargeThreshold);
-                if (DEBUG) Slog.v(TAG, "duration: " + duration + " discharge: " +
+                if (DEBUG) Slog.v(TAG, "duration: " + duration + " discharge: "
                         (mDischargeStartLevel - mBatteryProps.batteryLevel));
             } catch (NumberFormatException e) {
-                Slog.e(TAG, "Invalid DischargeThresholds GService string: " +
+                Slog.e(TAG, "Invalid DischargeThresholds GService string: "
                         durationThresholdString + " or " + dischargeThresholdString);
                 return;
             }

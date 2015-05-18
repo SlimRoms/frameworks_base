@@ -1191,7 +1191,7 @@ public final class Settings {
                     mValues.put(name, value);
                 }
                 if (LOCAL_LOGV) {
-                    Log.v(TAG, "cache miss [" + mUri.getLastPathSegment() + "]: " +
+                    Log.v(TAG, "cache miss [" + mUri.getLastPathSegment() + "]: "
                             name + " = " + (value == null ? "(null)" : value));
                 }
                 return value;

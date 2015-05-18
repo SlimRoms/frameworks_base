@@ -164,9 +164,9 @@ public class IpConfiguration implements Parcelable {
 
     @Override
     public int hashCode() {
-        return 13 + (staticIpConfiguration != null ? staticIpConfiguration.hashCode() : 0) +
-               17 * ipAssignment.ordinal() +
-               47 * proxySettings.ordinal() +
+        return 13 + (staticIpConfiguration != null ? staticIpConfiguration.hashCode() : 0)
+               17 * ipAssignment.ordinal()
+               47 * proxySettings.ordinal()
                83 * httpProxy.hashCode();
     }
 

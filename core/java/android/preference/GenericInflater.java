@@ -190,7 +190,7 @@ abstract class GenericInflater<T, P extends GenericInflater.Parent> {
      */
     public void setFactory(Factory<T> factory) {
         if (mFactorySet) {
-            throw new IllegalStateException("" +
+            throw new IllegalStateException(""
                     "A factory has already been set on this inflater");
         }
         if (factory == null) {

@@ -190,22 +190,22 @@ class PlayerRecord implements DeathRecipient {
 
     void dump(PrintWriter pw, boolean registrationInfo) {
         if (registrationInfo) {
-            pw.println("  pi: " + mMediaIntent +
-                    " -- pack: " + mCallingPackageName +
-                    "  -- ercvr: " + mReceiverComponent +
-                    "  -- client: " + mRcClient +
-                    "  -- uid: " + mCallingUid +
-                    "  -- type: " + mPlaybackType +
+            pw.println("  pi: " + mMediaIntent
+                    " -- pack: " + mCallingPackageName
+                    "  -- ercvr: " + mReceiverComponent
+                    "  -- client: " + mRcClient
+                    "  -- uid: " + mCallingUid
+                    "  -- type: " + mPlaybackType
                     "  state: " + mPlaybackState);
         } else {
             // emphasis on state
-            pw.println("  uid: " + mCallingUid +
-                    "  -- id: " + mRccId +
-                    "  -- type: " + mPlaybackType +
-                    "  -- state: " + mPlaybackState +
-                    "  -- vol handling: " + mPlaybackVolumeHandling +
-                    "  -- vol: " + mPlaybackVolume +
-                    "  -- volMax: " + mPlaybackVolumeMax +
+            pw.println("  uid: " + mCallingUid
+                    "  -- id: " + mRccId
+                    "  -- type: " + mPlaybackType
+                    "  -- state: " + mPlaybackState
+                    "  -- vol handling: " + mPlaybackVolumeHandling
+                    "  -- vol: " + mPlaybackVolume
+                    "  -- volMax: " + mPlaybackVolumeMax
                     "  -- volObs: " + mRemoteVolumeObs);
         }
     }

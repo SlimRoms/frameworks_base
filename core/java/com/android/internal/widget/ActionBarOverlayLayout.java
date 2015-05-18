@@ -584,7 +584,7 @@ public class ActionBarOverlayLayout extends ViewGroup implements DecorContentPar
         } else if (view instanceof Toolbar) {
             return ((Toolbar) view).getWrapper();
         } else {
-            throw new IllegalStateException("Can't make a decor toolbar out of " +
+            throw new IllegalStateException("Can't make a decor toolbar out of "
                     view.getClass().getSimpleName());
         }
     }
@@ -714,7 +714,7 @@ public class ActionBarOverlayLayout extends ViewGroup implements DecorContentPar
                 cab.setSplitToolbar(splitActionBar);
                 cab.setSplitWhenNarrow(splitWhenNarrow);
             } else if (splitActionBar) {
-                Log.e(TAG, "Requested split action bar with " +
+                Log.e(TAG, "Requested split action bar with "
                         "incompatible window decor! Ignoring request.");
             }
         }

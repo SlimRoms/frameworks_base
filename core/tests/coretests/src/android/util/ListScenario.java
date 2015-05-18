@@ -465,9 +465,9 @@ public abstract class ListScenario extends Activity {
                 }
             }
             if (totalFactor < 1.0) {
-                throw new IllegalArgumentException("list items must combine to be at least " +
+                throw new IllegalArgumentException("list items must combine to be at least "
                         "the height of the screen.  this is not the case with " + params.mNumItems
-                        + " items and " + params.mItemScreenSizeFactor + " screen factor and " +
+                        + " items and " + params.mItemScreenSizeFactor + " screen factor and "
                         "screen height of " + mScreenHeight);
             }
         }

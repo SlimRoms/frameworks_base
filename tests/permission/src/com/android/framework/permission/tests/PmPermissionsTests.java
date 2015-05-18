@@ -42,7 +42,7 @@ public class PmPermissionsTests extends AndroidTestCase {
     public void testGetPackageSize() {
         try {
             mPm.getPackageSizeInfo(mPkgName, null);
-            fail("PackageManager.getPackageSizeInfo" +
+            fail("PackageManager.getPackageSizeInfo"
                     "did not throw SecurityException as expected");
         } catch (SecurityException e) {
             // expected
@@ -57,7 +57,7 @@ public class PmPermissionsTests extends AndroidTestCase {
     public void testDeleteApplicationCacheFiles() {
         try {
             mPm.deleteApplicationCacheFiles(mPkgName, null);
-            fail("PackageManager.deleteApplicationCacheFiles" +
+            fail("PackageManager.deleteApplicationCacheFiles"
                     "did not throw SecurityException as expected");
         } catch (SecurityException e) {
             // expected
@@ -76,7 +76,7 @@ public class PmPermissionsTests extends AndroidTestCase {
         TestInstallObserver observer = new TestInstallObserver();
         try {
             mPm.installPackage(null, observer, 0, null);
-            fail("PackageManager.installPackage" +
+            fail("PackageManager.installPackage"
                     "did not throw SecurityException as expected");
         } catch (SecurityException e) {
             // expected
@@ -91,7 +91,7 @@ public class PmPermissionsTests extends AndroidTestCase {
     public void testFreeStorage1() {
         try {
             mPm.freeStorage(100000, null);
-            fail("PackageManager.freeStorage " +
+            fail("PackageManager.freeStorage "
                    "did not throw SecurityException as expected");
         } catch (SecurityException e) {
             // expected
@@ -106,7 +106,7 @@ public class PmPermissionsTests extends AndroidTestCase {
     public void testFreeStorage2() {
         try {
             mPm.freeStorageAndNotify(100000, null);
-            fail("PackageManager.freeStorageAndNotify" +
+            fail("PackageManager.freeStorageAndNotify"
                     " did not throw SecurityException as expected");
         } catch (SecurityException e) {
             // expected
@@ -121,7 +121,7 @@ public class PmPermissionsTests extends AndroidTestCase {
     public void testClearApplicationUserData() {
         try {
             mPm.clearApplicationUserData(mPkgName, null);
-            fail("PackageManager.clearApplicationUserData" +
+            fail("PackageManager.clearApplicationUserData"
                     "did not throw SecurityException as expected");
         } catch (SecurityException e) {
             // expected
@@ -136,7 +136,7 @@ public class PmPermissionsTests extends AndroidTestCase {
     public void testDeletePackage() {
         try {
             mPm.deletePackage(mPkgName, null, 0);
-            fail("PackageManager.deletePackage" +
+            fail("PackageManager.deletePackage"
                    "did not throw SecurityException as expected");
         } catch (SecurityException e) {
             // expected

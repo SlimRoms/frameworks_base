@@ -96,7 +96,7 @@ public class LinkMovementMethod extends ScrollingMovementMethod {
     private boolean action(int what, TextView widget, Spannable buffer) {
         Layout layout = widget.getLayout();
 
-        int padding = widget.getTotalPaddingTop() +
+        int padding = widget.getTotalPaddingTop()
                       widget.getTotalPaddingBottom();
         int areatop = widget.getScrollY();
         int areabot = areatop + widget.getHeight() - padding;

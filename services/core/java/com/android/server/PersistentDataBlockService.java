@@ -392,7 +392,7 @@ public class PersistentDataBlockService extends SystemService {
                     int read = inputStream.read(data, 0, totalDataSize);
                     if (read < totalDataSize) {
                         // something went wrong, not returning potentially corrupt data
-                        Slog.e(TAG, "failed to read entire data block. bytes read: " +
+                        Slog.e(TAG, "failed to read entire data block. bytes read: "
                                 read + "/" + totalDataSize);
                         return null;
                     }

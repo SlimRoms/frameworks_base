@@ -187,10 +187,10 @@ public class BatchedScanSettings implements Parcelable {
 
     @Override
     public int hashCode() {
-        return maxScansPerBatch +
-                (maxApPerScan * 3) +
-                (scanIntervalSec * 5) +
-                (maxApForDistance * 7) +
+        return maxScansPerBatch
+                (maxApPerScan * 3)
+                (scanIntervalSec * 5)
+                (maxApForDistance * 7)
                 (channelSet.hashCode() * 11);
     }
 

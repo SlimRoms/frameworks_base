@@ -60,7 +60,7 @@ public class FilterContext {
         if (mGLEnvironment == null) {
             mGLEnvironment = environment;
         } else {
-            throw new RuntimeException("Attempting to re-initialize GL Environment for " +
+            throw new RuntimeException("Attempting to re-initialize GL Environment for "
                 "FilterContext!");
         }
     }

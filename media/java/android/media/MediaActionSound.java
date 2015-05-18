@@ -187,7 +187,7 @@ public class MediaActionSound {
                     mSoundIdToPlay = SOUND_NOT_LOADED;
                 }
             } else {
-                Log.e(TAG, "Unable to load sound for playback (status: " +
+                Log.e(TAG, "Unable to load sound for playback (status: "
                         status + ")");
             }
         }

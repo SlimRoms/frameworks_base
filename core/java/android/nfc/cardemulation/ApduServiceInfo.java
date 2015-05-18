@@ -150,13 +150,13 @@ public final class ApduServiceInfo implements Parcelable {
             if (onHost) {
                 parser = si.loadXmlMetaData(pm, HostApduService.SERVICE_META_DATA);
                 if (parser == null) {
-                    throw new XmlPullParserException("No " + HostApduService.SERVICE_META_DATA +
+                    throw new XmlPullParserException("No " + HostApduService.SERVICE_META_DATA
                             " meta-data");
                 }
             } else {
                 parser = si.loadXmlMetaData(pm, OffHostApduService.SERVICE_META_DATA);
                 if (parser == null) {
-                    throw new XmlPullParserException("No " + OffHostApduService.SERVICE_META_DATA +
+                    throw new XmlPullParserException("No " + OffHostApduService.SERVICE_META_DATA
                             " meta-data");
                 }
             }
@@ -228,7 +228,7 @@ public final class ApduServiceInfo implements Parcelable {
                     currentGroup = mStaticAidGroups.get(groupCategory);
                     if (currentGroup != null) {
                         if (!CardEmulation.CATEGORY_OTHER.equals(groupCategory)) {
-                            Log.e(TAG, "Not allowing multiple aid-groups in the " +
+                            Log.e(TAG, "Not allowing multiple aid-groups in the "
                                     groupCategory + " category");
                             currentGroup = null;
                         }
@@ -508,7 +508,7 @@ public final class ApduServiceInfo implements Parcelable {
     };
 
     public void dump(FileDescriptor fd, PrintWriter pw, String[] args) {
-        pw.println("    " + getComponent() +
+        pw.println("    " + getComponent()
                 " (Description: " + getDescription() + ")");
         pw.println("    Static AID groups:");
         for (AidGroup group : mStaticAidGroups.values()) {

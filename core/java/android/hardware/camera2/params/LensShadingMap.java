@@ -66,7 +66,7 @@ public final class LensShadingMap {
         mElements = checkNotNull(elements, "elements must not be null");
 
         if (elements.length != getGainFactorCount()) {
-            throw new IllegalArgumentException("elements must be " + getGainFactorCount() +
+            throw new IllegalArgumentException("elements must be " + getGainFactorCount()
                     " length, received " + elements.length);
         }
 

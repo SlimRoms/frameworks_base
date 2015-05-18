@@ -382,7 +382,7 @@ public final class ActivityThread {
         ActivityInfo info;
         CompatibilityInfo compatInfo;
         public String toString() {
-            return "ReceiverData{intent=" + intent + " packageName=" +
+            return "ReceiverData{intent=" + intent + " packageName="
                     info.packageName + " resultCode=" + getResultCode()
                     + " resultData=" + getResultData() + " resultExtras="
                     + getResultExtras(false) + "}";
@@ -1577,8 +1577,8 @@ public final class ActivityThread {
                 ActivityClientRecord prev;
                 do {
                     if (localLOGV) Slog.v(
-                        TAG, "Reporting idle of " + a +
-                        " finished=" +
+                        TAG, "Reporting idle of " + a
+                        " finished="
                         (a.activity != null && a.activity.mFinished));
                     if (a.activity != null && !a.activity.mFinished) {
                         try {
@@ -2294,7 +2294,7 @@ public final class ActivityThread {
                 }
                 if (!activity.mCalled) {
                     throw new SuperNotCalledException(
-                        "Activity " + r.intent.getComponent().toShortString() +
+                        "Activity " + r.intent.getComponent().toShortString()
                         " did not call through to super.onCreate()");
                 }
                 r.activity = activity;
@@ -2323,7 +2323,7 @@ public final class ActivityThread {
                     }
                     if (!activity.mCalled) {
                         throw new SuperNotCalledException(
-                            "Activity " + r.intent.getComponent().toShortString() +
+                            "Activity " + r.intent.getComponent().toShortString()
                             " did not call through to super.onPostCreate()");
                     }
                 }
@@ -2432,7 +2432,7 @@ public final class ActivityThread {
                     }
                     if (!r.activity.mCalled) {
                         throw new SuperNotCalledException(
-                            "Activity " + r.intent.getComponent().toShortString() +
+                            "Activity " + r.intent.getComponent().toShortString()
                             " did not call through to super.onPause()");
                     }
 
@@ -2533,7 +2533,7 @@ public final class ActivityThread {
                 activity.onVisibleBehindCanceled();
                 // Tick, tick, tick. The activity has 500 msec to return or it will be destroyed.
                 if (!activity.mCalled) {
-                    throw new SuperNotCalledException("Activity " + activity.getLocalClassName() +
+                    throw new SuperNotCalledException("Activity " + activity.getLocalClassName()
                             " did not call through to super.onVisibleBehindCanceled()");
                 }
                 activity.mVisibleBehind = false;
@@ -3035,7 +3035,7 @@ public final class ActivityThread {
             final Activity a = r.activity;
 
             if (localLOGV) Slog.v(
-                TAG, "Resume " + r + " started activity: " +
+                TAG, "Resume " + r + " started activity: "
                 a.mStartedActivity + ", hideForNow: " + r.hideForNow
                 + ", finished: " + a.mFinished);
 
@@ -3263,7 +3263,7 @@ public final class ActivityThread {
                     r.activity.getComponentName().getClassName());
             if (!r.activity.mCalled) {
                 throw new SuperNotCalledException(
-                    "Activity " + r.intent.getComponent().toShortString() +
+                    "Activity " + r.intent.getComponent().toShortString()
                     " did not call through to super.onPause()");
             }
 
@@ -3708,7 +3708,7 @@ public final class ActivityThread {
                 mInstrumentation.callActivityOnDestroy(r.activity);
                 if (!r.activity.mCalled) {
                     throw new SuperNotCalledException(
-                        "Activity " + safeToComponentShortString(r.intent) +
+                        "Activity " + safeToComponentShortString(r.intent)
                         " did not call through to super.onDestroy()");
                 }
                 if (r.window != null) {
@@ -4061,7 +4061,7 @@ public final class ActivityThread {
             if (activity != null) {
                 if (!activity.mCalled) {
                     throw new SuperNotCalledException(
-                            "Activity " + activity.getLocalClassName() +
+                            "Activity " + activity.getLocalClassName()
                         " did not call through to super.onConfigurationChanged()");
                 }
                 activity.mConfigChangeFlags = 0;
@@ -4991,9 +4991,9 @@ public final class ActivityThread {
                 }
             }
             if (c == null) {
-                Slog.w(TAG, "Unable to get context for package " +
-                      ai.packageName +
-                      " while loading content provider " +
+                Slog.w(TAG, "Unable to get context for package "
+                      ai.packageName
+                      " while loading content provider "
                       info.name);
                 return null;
             }
@@ -5003,8 +5003,8 @@ public final class ActivityThread {
                     loadClass(info.name).newInstance();
                 provider = localProvider.getIContentProvider();
                 if (provider == null) {
-                    Slog.e(TAG, "Failed to instantiate class " +
-                          info.name + " from sourceDir " +
+                    Slog.e(TAG, "Failed to instantiate class "
+                          info.name + " from sourceDir "
                           info.applicationInfo.sourceDir);
                     return null;
                 }

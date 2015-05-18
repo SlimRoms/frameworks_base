@@ -201,7 +201,7 @@ public class NetworkRequest implements Parcelable {
         };
 
     public String toString() {
-        return "NetworkRequest [ id=" + requestId + ", legacyType=" + legacyType +
+        return "NetworkRequest [ id=" + requestId + ", legacyType=" + legacyType
                 ", " + networkCapabilities.toString() + " ]";
     }
 
@@ -216,7 +216,7 @@ public class NetworkRequest implements Parcelable {
     }
 
     public int hashCode() {
-        return requestId + (legacyType * 1013) +
+        return requestId + (legacyType * 1013)
                 (networkCapabilities.hashCode() * 1051);
     }
 }

@@ -338,7 +338,7 @@ public final class ServerSession extends ObexSession implements Runnable {
             if (srm == ObexHelper.OBEX_SRM_ENABLED) {
                 if (VERBOSE)  Log.v(TAG, "handleGetRequest srm == ObexHelper.OBEX_SRM_ENABLED");
                 if (mSrmServer.getLocalSrmCapability() == ObexHelper.SRM_CAPABLE) {
-                    if (VERBOSE)  Log.v(TAG, "ObexHelper.getLocalSrmCapability()" +
+                    if (VERBOSE)  Log.v(TAG, "ObexHelper.getLocalSrmCapability()"
                                                                        "=ObexHelper.SRM_CAPABLE");
                     op.replyHeader.setHeader(HeaderSet.SINGLE_RESPONSE_MODE,
                                                                      ObexHelper.OBEX_SRM_ENABLED);

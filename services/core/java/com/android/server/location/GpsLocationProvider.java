@@ -1547,7 +1547,7 @@ public class GpsLocationProvider implements LocationProviderInterface {
      */
     private void reportLocation(int flags, double latitude, double longitude, double altitude,
             float speed, float bearing, float accuracy, long timestamp) {
-        if (VERBOSE) Log.v(TAG, "reportLocation lat: " + latitude + " long: " + longitude +
+        if (VERBOSE) Log.v(TAG, "reportLocation lat: " + latitude + " long: " + longitude
                 " timestamp: " + timestamp);
 
         synchronized (mLocation) {
@@ -1676,16 +1676,16 @@ public class GpsLocationProvider implements LocationProviderInterface {
                 mSvMasks[USED_FOR_FIX_MASK]);
 
         if (VERBOSE) {
-            Log.v(TAG, "SV count: " + svCount +
-                    " ephemerisMask: " + Integer.toHexString(mSvMasks[EPHEMERIS_MASK]) +
+            Log.v(TAG, "SV count: " + svCount
+                    " ephemerisMask: " + Integer.toHexString(mSvMasks[EPHEMERIS_MASK])
                     " almanacMask: " + Integer.toHexString(mSvMasks[ALMANAC_MASK]));
             for (int i = 0; i < svCount; i++) {
-                Log.v(TAG, "sv: " + mSvs[i] +
-                        " snr: " + mSnrs[i]/10 +
-                        " elev: " + mSvElevations[i] +
-                        " azimuth: " + mSvAzimuths[i] +
-                        ((mSvMasks[EPHEMERIS_MASK] & (1 << (mSvs[i] - 1))) == 0 ? "  " : " E") +
-                        ((mSvMasks[ALMANAC_MASK] & (1 << (mSvs[i] - 1))) == 0 ? "  " : " A") +
+                Log.v(TAG, "sv: " + mSvs[i]
+                        " snr: " + mSnrs[i]/10
+                        " elev: " + mSvElevations[i]
+                        " azimuth: " + mSvAzimuths[i]
+                        ((mSvMasks[EPHEMERIS_MASK] & (1 << (mSvs[i] - 1))) == 0 ? "  " : " E")
+                        ((mSvMasks[ALMANAC_MASK] & (1 << (mSvs[i] - 1))) == 0 ? "  " : " A")
                         ((mSvMasks[USED_FOR_FIX_MASK] & (1 << (mSvs[i] - 1))) == 0 ? "" : "U"));
             }
         }
@@ -1741,7 +1741,7 @@ public class GpsLocationProvider implements LocationProviderInterface {
                     if (DEBUG) Log.d(TAG, "PhoneConstants.APN_REQUEST_STARTED");
                     // Nothing to do here
                 } else {
-                    if (DEBUG) Log.d(TAG, "startUsingNetworkFeature failed, value is " +
+                    if (DEBUG) Log.d(TAG, "startUsingNetworkFeature failed, value is "
                                      result);
                     mAGpsDataConnectionState = AGPS_DATA_CONNECTION_CLOSED;
                     native_agps_data_conn_failed();
@@ -1982,7 +1982,7 @@ public class GpsLocationProvider implements LocationProviderInterface {
         {
             // TODO Add Permission check
 
-            if (DEBUG) Log.d(TAG, "sendNiResponse, notifId: " + notificationId +
+            if (DEBUG) Log.d(TAG, "sendNiResponse, notifId: " + notificationId
                     ", response: " + userResponse);
             native_send_ni_response(notificationId, userResponse);
             return true;
@@ -2008,15 +2008,15 @@ public class GpsLocationProvider implements LocationProviderInterface {
         )
     {
         Log.i(TAG, "reportNiNotification: entered");
-        Log.i(TAG, "notificationId: " + notificationId +
-                ", niType: " + niType +
-                ", notifyFlags: " + notifyFlags +
-                ", timeout: " + timeout +
+        Log.i(TAG, "notificationId: " + notificationId
+                ", niType: " + niType
+                ", notifyFlags: " + notifyFlags
+                ", timeout: " + timeout
                 ", defaultResponse: " + defaultResponse);
 
-        Log.i(TAG, "requestorId: " + requestorId +
-                ", text: " + text +
-                ", requestorIdEncoding: " + requestorIdEncoding +
+        Log.i(TAG, "requestorId: " + requestorId
+                ", text: " + text
+                ", requestorIdEncoding: " + requestorIdEncoding
                 ", textEncoding: " + textEncoding);
 
         GpsNiNotification notification = new GpsNiNotification();

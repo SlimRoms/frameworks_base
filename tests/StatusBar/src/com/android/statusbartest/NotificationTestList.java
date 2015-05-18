@@ -95,7 +95,7 @@ public class NotificationTestList extends TestActivity
                 pm.goToSleep(SystemClock.uptimeMillis());
 
                 Notification n = new Notification();
-                n.sound = Uri.parse("file://" + Environment.getExternalStorageDirectory() +
+                n.sound = Uri.parse("file://" + Environment.getExternalStorageDirectory()
                         "/virtual-void.mp3");
                 Log.d(TAG, "n.sound=" + n.sound);
 
@@ -463,7 +463,7 @@ public class NotificationTestList extends TestActivity
             {
                 Notification n = new Notification();
                 n.sound = Uri.parse(
-                        ContentResolver.SCHEME_ANDROID_RESOURCE + "://" +
+                        ContentResolver.SCHEME_ANDROID_RESOURCE + "://"
                         getPackageName() + "/raw/ringer");
                 Log.d(TAG, "n.sound=" + n.sound);
 

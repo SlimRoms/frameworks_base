@@ -166,7 +166,7 @@ public class AccessibilityManagerTest extends AndroidTestCase {
 
         // check expected result
         AccessibilityEvent nextEventDifferentProcesses = AccessibilityEvent.obtain();
-        assertSame("The manager and the service are in different processes, so the event must be " +
+        assertSame("The manager and the service are in different processes, so the event must be "
                 "recycled", sentEvent, nextEventDifferentProcesses);
 
         // invoke the method under test (manager and service in the same process)
@@ -174,7 +174,7 @@ public class AccessibilityManagerTest extends AndroidTestCase {
 
         // check expected result
         AccessibilityEvent nextEventSameProcess = AccessibilityEvent.obtain();
-        assertNotSame("The manager and the service are in the same process, so the event must not" +
+        assertNotSame("The manager and the service are in the same process, so the event must not"
                 "be recycled", sentEvent, nextEventSameProcess);
 
         // verify the mock service was properly called

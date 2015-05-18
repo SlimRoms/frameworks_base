@@ -112,11 +112,11 @@ public class DatabaseErrorHandlerTest extends AndroidTestCase {
             }
             if (databaseOk) {
                 // database is just fine. no need to delete the database file
-                Log.e("MyDatabaseCorruptionHandler", "no corruption in the database: " +
+                Log.e("MyDatabaseCorruptionHandler", "no corruption in the database: "
                         mDatabaseFile.getPath());
             } else {
                 // database is corrupt. delete the database file
-                Log.e("MyDatabaseCorruptionHandler", "deleting the database file: " +
+                Log.e("MyDatabaseCorruptionHandler", "deleting the database file: "
                         mDatabaseFile.getPath());
                 new File(dbDir, DB_NAME).delete();
             }

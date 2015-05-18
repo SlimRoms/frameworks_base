@@ -138,14 +138,14 @@ public class SurfaceTextureRenderer {
      * coordinate to a texture location.
      */
     private static final String VERTEX_SHADER =
-            "uniform mat4 uMVPMatrix;\n" +
-            "uniform mat4 uSTMatrix;\n" +
-            "attribute vec4 aPosition;\n" +
-            "attribute vec4 aTextureCoord;\n" +
-            "varying vec2 vTextureCoord;\n" +
-            "void main() {\n" +
-            "  gl_Position = uMVPMatrix * aPosition;\n" +
-            "  vTextureCoord = (uSTMatrix * aTextureCoord).xy;\n" +
+            "uniform mat4 uMVPMatrix;\n"
+            "uniform mat4 uSTMatrix;\n"
+            "attribute vec4 aPosition;\n"
+            "attribute vec4 aTextureCoord;\n"
+            "varying vec2 vTextureCoord;\n"
+            "void main() {\n"
+            "  gl_Position = uMVPMatrix * aPosition;\n"
+            "  vTextureCoord = (uSTMatrix * aTextureCoord).xy;\n"
             "}\n";
 
     /**
@@ -153,12 +153,12 @@ public class SurfaceTextureRenderer {
      * the location from the {@code VERTEX_SHADER}.
      */
     private static final String FRAGMENT_SHADER =
-            "#extension GL_OES_EGL_image_external : require\n" +
-            "precision mediump float;\n" +
-            "varying vec2 vTextureCoord;\n" +
-            "uniform samplerExternalOES sTexture;\n" +
-            "void main() {\n" +
-            "  gl_FragColor = texture2D(sTexture, vTextureCoord);\n" +
+            "#extension GL_OES_EGL_image_external : require\n"
+            "precision mediump float;\n"
+            "varying vec2 vTextureCoord;\n"
+            "uniform samplerExternalOES sTexture;\n"
+            "void main() {\n"
+            "  gl_FragColor = texture2D(sTexture, vTextureCoord);\n"
             "}\n";
 
     private float[] mMVPMatrix = new float[GL_MATRIX_SIZE];
@@ -288,8 +288,8 @@ public class SurfaceTextureRenderer {
         Matrix.scaleM(mMVPMatrix, /*offset*/0, /*x*/scaleX, /*y*/scaleY, /*z*/1);
 
         if (DEBUG) {
-            Log.d(TAG, "Scaling factors (S_x = " + scaleX + ",S_y = " + scaleY + ") used for " +
-                    width + "x" + height + " surface, intermediate buffer size is " + texWidth +
+            Log.d(TAG, "Scaling factors (S_x = " + scaleX + ",S_y = " + scaleY + ") used for "
+                    width + "x" + height + " surface, intermediate buffer size is " + texWidth
                     "x" + texHeight);
         }
 

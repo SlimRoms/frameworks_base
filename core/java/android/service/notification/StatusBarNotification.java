@@ -98,7 +98,7 @@ public class StatusBarNotification implements Parcelable {
             // a group of one
             return key;
         }
-        return user.getIdentifier() + "|" + pkg + "|" +
+        return user.getIdentifier() + "|" + pkg + "|"
                 (group == null
                         ? "p:" + notification.priority
                         : "g:" + group);

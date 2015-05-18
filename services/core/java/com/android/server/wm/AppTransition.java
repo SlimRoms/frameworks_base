@@ -527,7 +527,7 @@ public class AppTransition implements Dump {
             Animation alpha = new AlphaAnimation(1, 0);
             alpha.setInterpolator(mThumbnailFadeOutInterpolator);
             alpha.setDuration(THUMBNAIL_APP_TRANSITION_ALPHA_DURATION);
-            Animation translate = new TranslateAnimation(0, 0, 0, -unscaledStartY +
+            Animation translate = new TranslateAnimation(0, 0, 0, -unscaledStartY
                     mNextAppTransitionInsets.top);
             translate.setInterpolator(mThumbnailFastOutSlowInInterpolator);
             translate.setDuration(THUMBNAIL_APP_TRANSITION_DURATION);
@@ -548,7 +548,7 @@ public class AppTransition implements Dump {
             Animation alpha = new AlphaAnimation(0f, 1f);
             alpha.setInterpolator(mThumbnailFadeInInterpolator);
             alpha.setDuration(THUMBNAIL_APP_TRANSITION_ALPHA_DURATION);
-            Animation translate = new TranslateAnimation(0, 0, -unscaledStartY +
+            Animation translate = new TranslateAnimation(0, 0, -unscaledStartY
                     mNextAppTransitionInsets.top, 0);
             translate.setInterpolator(mThumbnailFastOutSlowInInterpolator);
             translate.setDuration(THUMBNAIL_APP_TRANSITION_DURATION);

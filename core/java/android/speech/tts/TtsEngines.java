@@ -384,12 +384,12 @@ public class TtsEngines {
                     "[" + LOCALE_DELIMITER_OLD + LOCALE_DELIMITER_NEW + "]");
             language = split[0].toLowerCase();
             if (split.length == 0) {
-                Log.w(TAG, "Failed to convert " + localeString + " to a valid Locale object. Only" +
+                Log.w(TAG, "Failed to convert " + localeString + " to a valid Locale object. Only"
                             " separators");
                 return null;
             }
             if (split.length > 3) {
-                Log.w(TAG, "Failed to convert " + localeString + " to a valid Locale object. Too" +
+                Log.w(TAG, "Failed to convert " + localeString + " to a valid Locale object. Too"
                         " many separators");
                 return null;
             }
@@ -412,7 +412,7 @@ public class TtsEngines {
             country = normalizedCountry;
         }
 
-        if (DBG) Log.d(TAG, "parseLocalePref(" + language + "," + country +
+        if (DBG) Log.d(TAG, "parseLocalePref(" + language + "," + country
                 "," + variant +")");
 
         Locale result = new Locale(language, country, variant);
@@ -521,7 +521,7 @@ public class TtsEngines {
         final String prefList = Settings.Secure.getString(mContext.getContentResolver(),
                 Settings.Secure.TTS_DEFAULT_LOCALE);
         if (DBG) {
-            Log.d(TAG, "updateLocalePrefForEngine(" + engineName + ", " + newLocale +
+            Log.d(TAG, "updateLocalePrefForEngine(" + engineName + ", " + newLocale
                     "), originally: " + prefList);
         }
 

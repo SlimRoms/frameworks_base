@@ -278,9 +278,9 @@ public class ImsCallProfile implements Parcelable {
 
     @Override
     public String toString() {
-        return "{ serviceType=" + mServiceType +
-                ", callType=" + mCallType +
-                ", callExtras=" + mCallExtras.toString() +
+        return "{ serviceType=" + mServiceType
+                ", callType=" + mCallType
+                ", callExtras=" + mCallExtras.toString()
                 ", mediaProfile=" + mMediaProfile.toString() + " }";
     }
 

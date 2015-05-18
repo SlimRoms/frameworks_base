@@ -28,15 +28,15 @@ import android.filterfw.core.ShaderProgram;
 public class ContrastFilter extends SimpleImageFilter {
 
     private static final String mContrastShader =
-            "precision mediump float;\n" +
-            "uniform sampler2D tex_sampler_0;\n" +
-            "uniform float contrast;\n" +
-            "varying vec2 v_texcoord;\n" +
-            "void main() {\n" +
-            "  vec4 color = texture2D(tex_sampler_0, v_texcoord);\n" +
-            "  color -= 0.5;\n" +
-            "  color *= contrast;\n" +
-            "  color += 0.5;\n" +
+            "precision mediump float;\n"
+            "uniform sampler2D tex_sampler_0;\n"
+            "uniform float contrast;\n"
+            "varying vec2 v_texcoord;\n"
+            "void main() {\n"
+            "  vec4 color = texture2D(tex_sampler_0, v_texcoord);\n"
+            "  color -= 0.5;\n"
+            "  color *= contrast;\n"
+            "  color += 0.5;\n"
             "  gl_FragColor = color;\n" +  // this will clamp
             "}\n";
 

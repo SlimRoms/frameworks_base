@@ -126,7 +126,7 @@ public class ScreenshotTest extends ActivityInstrumentationTestCase2<ScreenshotS
      */
     private File getScreenshotDir() {
         // TODO: get this dir location from a constant
-        return new File(Environment.getExternalStorageDirectory(), "Pictures" + File.separator +
+        return new File(Environment.getExternalStorageDirectory(), "Pictures" + File.separator
                 "Screenshots");
     }
 

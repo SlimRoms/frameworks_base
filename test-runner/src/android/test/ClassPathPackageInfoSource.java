@@ -126,7 +126,7 @@ public class ClassPathPackageInfoSource {
                         }
                     }
                 } catch (IOException e) {
-                    throw new AssertionError("Can't read classpath entry " +
+                    throw new AssertionError("Can't read classpath entry "
                             entryName + ": " + e.getMessage());
                 }
             }

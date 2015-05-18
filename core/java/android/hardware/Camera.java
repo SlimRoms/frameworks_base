@@ -1084,12 +1084,12 @@ public class Camera {
              if (previewSize.width != previewAllocation.getType().getX() ||
                      previewSize.height != previewAllocation.getType().getY()) {
                  throw new IllegalArgumentException(
-                     "Allocation dimensions don't match preview dimensions: " +
-                     "Allocation is " +
-                     previewAllocation.getType().getX() +
-                     ", " +
-                     previewAllocation.getType().getY() +
-                     ". Preview is " + previewSize.width + ", " +
+                     "Allocation dimensions don't match preview dimensions: "
+                     "Allocation is "
+                     previewAllocation.getType().getX()
+                     ", "
+                     previewAllocation.getType().getY()
+                     ". Preview is " + previewSize.width + ", "
                      previewSize.height);
              }
              if ((previewAllocation.getUsage() &
@@ -1948,7 +1948,7 @@ public class Camera {
             Size currentPreviewSize = getParameters().getPreviewSize();
             if (newPreviewSize.width != currentPreviewSize.width ||
                     newPreviewSize.height != currentPreviewSize.height) {
-                throw new IllegalStateException("Cannot change preview size" +
+                throw new IllegalStateException("Cannot change preview size"
                         " while a preview allocation is configured.");
             }
         }

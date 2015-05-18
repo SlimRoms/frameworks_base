@@ -105,7 +105,7 @@ public class CursorWindow extends SQLiteClosable implements Parcelable {
         }
         mWindowPtr = nativeCreate(mName, sCursorWindowSize);
         if (mWindowPtr == 0) {
-            throw new CursorWindowAllocationException("Cursor window allocation of " +
+            throw new CursorWindowAllocationException("Cursor window allocation of "
                     (sCursorWindowSize / 1024) + " kb failed. " + printStats());
         }
         mCloseGuard.open("close");

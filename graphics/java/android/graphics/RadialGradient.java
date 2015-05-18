@@ -110,7 +110,7 @@ public class RadialGradient extends Shader {
                 copy = new RadialGradient(mX, mY, mRadius, mCenterColor, mEdgeColor, mTileMode);
                 break;
             default:
-                throw new IllegalArgumentException("RadialGradient should be created with either " +
+                throw new IllegalArgumentException("RadialGradient should be created with either "
                         "colors and positions or center color and edge color");
         }
         copyLocalMatrix(copy);

@@ -92,10 +92,10 @@ public class FilterGraph {
         OutputPort outPort = source.getOutputPort(outputName);
         InputPort inPort = target.getInputPort(inputName);
         if (outPort == null) {
-            throw new RuntimeException("Unknown output port '" + outputName + "' on Filter " +
+            throw new RuntimeException("Unknown output port '" + outputName + "' on Filter "
                                        source + "!");
         } else if (inPort == null) {
-            throw new RuntimeException("Unknown input port '" + inputName + "' on Filter " +
+            throw new RuntimeException("Unknown input port '" + inputName + "' on Filter "
                                        target + "!");
         }
 

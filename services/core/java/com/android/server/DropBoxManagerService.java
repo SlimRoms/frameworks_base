@@ -501,8 +501,8 @@ public final class DropBoxManagerService extends IDropBoxManagerService.Stub {
             this.tag = tag;
             this.timestampMillis = timestampMillis;
             this.flags = flags;
-            this.file = new File(dir, Uri.encode(tag) + "@" + timestampMillis +
-                    ((flags & DropBoxManager.IS_TEXT) != 0 ? ".txt" : ".dat") +
+            this.file = new File(dir, Uri.encode(tag) + "@" + timestampMillis
+                    ((flags & DropBoxManager.IS_TEXT) != 0 ? ".txt" : ".dat")
                     ((flags & DropBoxManager.IS_GZIPPED) != 0 ? ".gz" : ""));
 
             if (!temp.renameTo(this.file)) {

@@ -235,7 +235,7 @@ public class MiniThumbFile {
                 Log.v(TAG, "Got exception checking file position: ", ex);
             } catch (RuntimeException ex) {
                 // Other NIO related exception like disk full, read only channel..etc
-                Log.e(TAG, "Got exception when reading position, id = " + id +
+                Log.e(TAG, "Got exception when reading position, id = " + id
                         ", disk full or mount read-only? " + ex.getClass());
             } finally {
                 try {
@@ -267,7 +267,7 @@ public class MiniThumbFile {
                 Log.v(TAG, "Got exception checking file magic: ", ex);
             } catch (RuntimeException ex) {
                 // Other NIO related exception like disk full, read only channel..etc
-                Log.e(TAG, "Got exception when reading magic, id = " + id +
+                Log.e(TAG, "Got exception when reading magic, id = " + id
                         ", disk full or mount read-only? " + ex.getClass());
             } finally {
                 try {
@@ -386,7 +386,7 @@ public class MiniThumbFile {
             Log.w(TAG, "got exception when reading position id=" + id + ", exception: " + ex);
         } catch (RuntimeException ex) {
             // Other NIO related exception like disk full, read only channel..etc
-            Log.e(TAG, "Got exception when reading position, id = " + id +
+            Log.e(TAG, "Got exception when reading position, id = " + id
                     ", disk full or mount read-only? " + ex.getClass());
         } finally {
             try {
@@ -421,7 +421,7 @@ public class MiniThumbFile {
             Log.w(TAG, "got exception when reading thumbnail id=" + id + ", exception: " + ex);
         } catch (RuntimeException ex) {
             // Other NIO related exception like disk full, read only channel..etc
-            Log.e(TAG, "Got exception when reading thumbnail, id = " + id +
+            Log.e(TAG, "Got exception when reading thumbnail, id = " + id
                     ", disk full or mount read-only? " + ex.getClass());
         } finally {
             try {

@@ -239,7 +239,7 @@ public class MenuInflater {
                 mMethod = c.getMethod(methodName, PARAM_TYPES);
             } catch (Exception e) {
                 InflateException ex = new InflateException(
-                        "Couldn't resolve menu item onClick handler " + methodName +
+                        "Couldn't resolve menu item onClick handler " + methodName
                         " in class " + c.getName());
                 ex.initCause(e);
                 throw ex;

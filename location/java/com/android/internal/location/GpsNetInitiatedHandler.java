@@ -363,8 +363,8 @@ public class GpsNetInitiatedHandler {
         String title = getNotifTitle(notif, mContext);
         String message = getNotifMessage(notif, mContext);
 
-        if (DEBUG) Log.d(TAG, "setNiNotification, notifyId: " + notif.notificationId +
-                ", title: " + title +
+        if (DEBUG) Log.d(TAG, "setNiNotification, notifyId: " + notif.notificationId
+                ", title: " + title
                 ", message: " + message);
 
         // Construct Notification
@@ -399,8 +399,8 @@ public class GpsNetInitiatedHandler {
     {
         Intent intent = getDlgIntent(notif);
 
-        if (DEBUG) Log.d(TAG, "openNiDialog, notifyId: " + notif.notificationId +
-                ", requestorId: " + notif.requestorId +
+        if (DEBUG) Log.d(TAG, "openNiDialog, notifyId: " + notif.notificationId
+                ", requestorId: " + notif.requestorId
                 ", text: " + notif.text);
 
         mContext.startActivity(intent);
@@ -425,7 +425,7 @@ public class GpsNetInitiatedHandler {
         intent.putExtra(NI_INTENT_KEY_TIMEOUT, notif.timeout);
         intent.putExtra(NI_INTENT_KEY_DEFAULT_RESPONSE, notif.defaultResponse);
 
-        if (DEBUG) Log.d(TAG, "generateIntent, title: " + title + ", message: " + message +
+        if (DEBUG) Log.d(TAG, "generateIntent, title: " + title + ", message: " + message
                 ", timeout: " + notif.timeout);
 
         return intent;

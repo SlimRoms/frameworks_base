@@ -1309,7 +1309,7 @@ public final class StrictMode {
             if ((info.policy & PENALTY_LOG) != 0 &&
                 timeSinceLastViolationMillis > MIN_LOG_INTERVAL_MS) {
                 if (info.durationMillis != -1) {
-                    Log.d(TAG, "StrictMode policy violation; ~duration=" +
+                    Log.d(TAG, "StrictMode policy violation; ~duration="
                           info.durationMillis + " ms: " + info.crashInfo.stackTrace);
                 } else {
                     Log.d(TAG, "StrictMode policy violation: " + info.crashInfo.stackTrace);

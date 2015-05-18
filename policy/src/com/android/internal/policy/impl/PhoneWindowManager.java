@@ -2519,7 +2519,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             return view.getParent() != null ? view : null;
         } catch (WindowManager.BadTokenException e) {
             // ignore
-            Log.w(TAG, appToken + " already running, starting window not displayed. " +
+            Log.w(TAG, appToken + " already running, starting window not displayed. "
                     e.getMessage());
         } catch (RuntimeException e) {
             // don't crash if something else bad happens, for example a
@@ -4250,7 +4250,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     mContentLeft = mVoiceContentLeft = mCurLeft = mDockLeft;
                     mContentRight = mVoiceContentRight = mCurRight = mDockRight;
 
-                    if (DEBUG_LAYOUT) Slog.v(TAG, "Status bar: " +
+                    if (DEBUG_LAYOUT) Slog.v(TAG, "Status bar: "
                         String.format(
                             "dock=[%d,%d][%d,%d] content=[%d,%d][%d,%d] cur=[%d,%d][%d,%d]",
                             mDockLeft, mDockTop, mDockRight, mDockBottom,
@@ -4596,7 +4596,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             } else if ((fl & FLAG_LAYOUT_IN_SCREEN) != 0 || (sysUiFl
                     & (View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                             | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION)) != 0) {
-                if (DEBUG_LAYOUT) Slog.v(TAG, "layoutWindowLw(" + attrs.getTitle() +
+                if (DEBUG_LAYOUT) Slog.v(TAG, "layoutWindowLw(" + attrs.getTitle()
                         "): IN_SCREEN");
                 // A window that has requested to fill the entire screen just
                 // gets everything, period.
@@ -4706,13 +4706,13 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     vf.set(cf);
                 }
             } else if (attached != null) {
-                if (DEBUG_LAYOUT) Slog.v(TAG, "layoutWindowLw(" + attrs.getTitle() +
+                if (DEBUG_LAYOUT) Slog.v(TAG, "layoutWindowLw(" + attrs.getTitle()
                         "): attached to " + attached);
                 // A child window should be placed inside of the same visible
                 // frame that its parent had.
                 setAttachedWindowFrames(win, fl, adjust, attached, false, pf, df, of, cf, vf);
             } else {
-                if (DEBUG_LAYOUT) Slog.v(TAG, "layoutWindowLw(" + attrs.getTitle() +
+                if (DEBUG_LAYOUT) Slog.v(TAG, "layoutWindowLw(" + attrs.getTitle()
                         "): normal window");
                 // Otherwise, a normal window must be placed inside the content
                 // of all screen decorations.

@@ -939,7 +939,7 @@ public class ImageView extends View {
                     
                     // Try adjusting width to be proportional to height
                     if (resizeWidth) {
-                        int newWidth = (int)(desiredAspect * (heightSize - ptop - pbottom)) +
+                        int newWidth = (int)(desiredAspect * (heightSize - ptop - pbottom))
                                 pleft + pright;
 
                         // Allow the width to outgrow its original estimate if height is fixed.
@@ -955,7 +955,7 @@ public class ImageView extends View {
                     
                     // Try adjusting height to be proportional to width
                     if (!done && resizeHeight) {
-                        int newHeight = (int)((widthSize - pleft - pright) / desiredAspect) +
+                        int newHeight = (int)((widthSize - pleft - pright) / desiredAspect)
                                 ptop + pbottom;
 
                         // Allow the height to outgrow its original estimate if width is fixed.

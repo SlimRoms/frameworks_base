@@ -908,7 +908,7 @@ public class RelativeLayout extends ViewGroup {
 
         anchorParams = getRelatedViewParams(rules, LEFT_OF);
         if (anchorParams != null) {
-            childParams.mRight = anchorParams.mLeft - (anchorParams.leftMargin +
+            childParams.mRight = anchorParams.mLeft - (anchorParams.leftMargin
                     childParams.rightMargin);
         } else if (childParams.alignWithParent && rules[LEFT_OF] != 0) {
             if (myWidth >= 0) {
@@ -918,7 +918,7 @@ public class RelativeLayout extends ViewGroup {
 
         anchorParams = getRelatedViewParams(rules, RIGHT_OF);
         if (anchorParams != null) {
-            childParams.mLeft = anchorParams.mRight + (anchorParams.rightMargin +
+            childParams.mLeft = anchorParams.mRight + (anchorParams.rightMargin
                     childParams.leftMargin);
         } else if (childParams.alignWithParent && rules[RIGHT_OF] != 0) {
             childParams.mLeft = mPaddingLeft + childParams.leftMargin;
@@ -960,7 +960,7 @@ public class RelativeLayout extends ViewGroup {
 
         anchorParams = getRelatedViewParams(rules, ABOVE);
         if (anchorParams != null) {
-            childParams.mBottom = anchorParams.mTop - (anchorParams.topMargin +
+            childParams.mBottom = anchorParams.mTop - (anchorParams.topMargin
                     childParams.bottomMargin);
         } else if (childParams.alignWithParent && rules[ABOVE] != 0) {
             if (myHeight >= 0) {
@@ -970,7 +970,7 @@ public class RelativeLayout extends ViewGroup {
 
         anchorParams = getRelatedViewParams(rules, BELOW);
         if (anchorParams != null) {
-            childParams.mTop = anchorParams.mBottom + (anchorParams.bottomMargin +
+            childParams.mTop = anchorParams.mBottom + (anchorParams.bottomMargin
                     childParams.topMargin);
         } else if (childParams.alignWithParent && rules[BELOW] != 0) {
             childParams.mTop = mPaddingTop + childParams.topMargin;
@@ -1375,7 +1375,7 @@ public class RelativeLayout extends ViewGroup {
 
         @Override
         public String debug(String output) {
-            return output + "ViewGroup.LayoutParams={ width=" + sizeToString(width) +
+            return output + "ViewGroup.LayoutParams={ width=" + sizeToString(width)
                     ", height=" + sizeToString(height) + " }";
         }
 

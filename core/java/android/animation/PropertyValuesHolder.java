@@ -710,8 +710,8 @@ public class PropertyValuesHolder implements Cloneable {
         }
 
         if (returnVal == null) {
-            Log.w("PropertyValuesHolder", "Method " +
-                    getMethodName(prefix, mPropertyName) + "() with type " + valueType +
+            Log.w("PropertyValuesHolder", "Method "
+                    getMethodName(prefix, mPropertyName) + "() with type " + valueType
                     " not found on target class " + targetClass);
         }
 
@@ -803,7 +803,7 @@ public class PropertyValuesHolder implements Cloneable {
                 }
                 return;
             } catch (ClassCastException e) {
-                Log.w("PropertyValuesHolder","No such property (" + mProperty.getName() +
+                Log.w("PropertyValuesHolder","No such property (" + mProperty.getName()
                         ") on target object " + target + ". Trying reflection instead");
                 mProperty = null;
             }

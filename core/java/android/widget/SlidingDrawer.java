@@ -566,7 +566,7 @@ public class SlidingDrawer extends ViewGroup {
         if (opening) {
             mAnimatedAcceleration = mMaximumAcceleration;
             mAnimatedVelocity = mMaximumMajorVelocity;
-            mAnimationPosition = mBottomOffset +
+            mAnimationPosition = mBottomOffset
                     (mVertical ? getHeight() - mHandleHeight : getWidth() - mHandleWidth);
             moveHandle((int) mAnimationPosition);
             mAnimating = true;

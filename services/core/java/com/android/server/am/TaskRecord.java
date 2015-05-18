@@ -168,7 +168,7 @@ final class TaskRecord {
     TaskRecord(ActivityManagerService service, int _taskId, ActivityInfo info, Intent _intent,
             IVoiceInteractionSession _voiceSession, IVoiceInteractor _voiceInteractor) {
         mService = service;
-        mFilename = String.valueOf(_taskId) + TASK_THUMBNAIL_SUFFIX +
+        mFilename = String.valueOf(_taskId) + TASK_THUMBNAIL_SUFFIX
                 TaskPersister.IMAGE_EXTENSION;
         mLastThumbnailFile = new File(TaskPersister.sImagesDir, mFilename);
         taskId = _taskId;
@@ -183,7 +183,7 @@ final class TaskRecord {
     TaskRecord(ActivityManagerService service, int _taskId, ActivityInfo info, Intent _intent,
             TaskDescription _taskDescription) {
         mService = service;
-        mFilename = String.valueOf(_taskId) + TASK_THUMBNAIL_SUFFIX +
+        mFilename = String.valueOf(_taskId) + TASK_THUMBNAIL_SUFFIX
                 TaskPersister.IMAGE_EXTENSION;
         mLastThumbnailFile = new File(TaskPersister.sImagesDir, mFilename);
         taskId = _taskId;
@@ -220,7 +220,7 @@ final class TaskRecord {
             int prevTaskId, int nextTaskId, int taskAffiliationColor, int callingUid,
             String callingPackage) {
         mService = service;
-        mFilename = String.valueOf(_taskId) + TASK_THUMBNAIL_SUFFIX +
+        mFilename = String.valueOf(_taskId) + TASK_THUMBNAIL_SUFFIX
                 TaskPersister.IMAGE_EXTENSION;
         mLastThumbnailFile = new File(TaskPersister.sImagesDir, mFilename);
         taskId = _taskId;

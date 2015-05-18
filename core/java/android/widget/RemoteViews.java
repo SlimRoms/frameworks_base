@@ -220,7 +220,7 @@ public class RemoteViews implements Parcelable, Filter {
                 android.util.Log.e(LOG_TAG, "Cannot send pending intent: ", e);
                 return false;
             } catch (Exception e) {
-                android.util.Log.e(LOG_TAG, "Cannot send pending intent due to " +
+                android.util.Log.e(LOG_TAG, "Cannot send pending intent due to "
                         "unknown exception: ", e);
                 return false;
             }
@@ -383,7 +383,7 @@ public class RemoteViews implements Parcelable, Filter {
             if (target == null) return;
 
             if (!mIsWidgetCollectionChild) {
-                Log.e(LOG_TAG, "The method setOnClickFillInIntent is available " +
+                Log.e(LOG_TAG, "The method setOnClickFillInIntent is available "
                         "only from RemoteViewsFactory (ie. on collection items).");
                 return;
             }
@@ -408,7 +408,7 @@ public class RemoteViews implements Parcelable, Filter {
 
                         // Insure that a template pending intent has been set on an ancestor
                         if (!(parent.getTag() instanceof PendingIntent)) {
-                            Log.e(LOG_TAG, "Attempting setOnClickFillInIntent without" +
+                            Log.e(LOG_TAG, "Attempting setOnClickFillInIntent without"
                                     " calling setPendingIntentTemplate on parent.");
                             return;
                         }
@@ -497,7 +497,7 @@ public class RemoteViews implements Parcelable, Filter {
                 av.setOnItemClickListener(listener);
                 av.setTag(pendingIntentTemplate);
             } else {
-                Log.e(LOG_TAG, "Cannot setPendingIntentTemplate on a view which is not" +
+                Log.e(LOG_TAG, "Cannot setPendingIntentTemplate on a view which is not"
                         "an AdapterView (id: " + viewId + ")");
                 return;
             }
@@ -555,13 +555,13 @@ public class RemoteViews implements Parcelable, Filter {
 
             // Ensure that we are applying to an AppWidget root
             if (!(rootParent instanceof AppWidgetHostView)) {
-                Log.e(LOG_TAG, "SetRemoteViewsAdapterIntent action can only be used for " +
+                Log.e(LOG_TAG, "SetRemoteViewsAdapterIntent action can only be used for "
                         "AppWidgets (root id: " + viewId + ")");
                 return;
             }
             // Ensure that we are calling setRemoteAdapter on an AdapterView that supports it
             if (!(target instanceof AbsListView) && !(target instanceof AdapterViewAnimator)) {
-                Log.e(LOG_TAG, "Cannot setRemoteViewsAdapter on a view which is not " +
+                Log.e(LOG_TAG, "Cannot setRemoteViewsAdapter on a view which is not "
                         "an AbsListView or AdapterViewAnimator (id: " + viewId + ")");
                 return;
             }
@@ -618,13 +618,13 @@ public class RemoteViews implements Parcelable, Filter {
 
             // Ensure that we are applying to an AppWidget root
             if (!(rootParent instanceof AppWidgetHostView)) {
-                Log.e(LOG_TAG, "SetRemoteViewsAdapterIntent action can only be used for " +
+                Log.e(LOG_TAG, "SetRemoteViewsAdapterIntent action can only be used for "
                         "AppWidgets (root id: " + viewId + ")");
                 return;
             }
             // Ensure that we are calling setRemoteAdapter on an AdapterView that supports it
             if (!(target instanceof AbsListView) && !(target instanceof AdapterViewAnimator)) {
-                Log.e(LOG_TAG, "Cannot setRemoteViewsAdapter on a view which is not " +
+                Log.e(LOG_TAG, "Cannot setRemoteViewsAdapter on a view which is not "
                         "an AbsListView or AdapterViewAnimator (id: " + viewId + ")");
                 return;
             }
@@ -692,7 +692,7 @@ public class RemoteViews implements Parcelable, Filter {
             // If the view is an AdapterView, setting a PendingIntent on click doesn't make much
             // sense, do they mean to set a PendingIntent template for the AdapterView's children?
             if (mIsWidgetCollectionChild) {
-                Log.w(LOG_TAG, "Cannot setOnClickPendingIntent for collection item " +
+                Log.w(LOG_TAG, "Cannot setOnClickPendingIntent for collection item "
                         "(id: " + viewId + ")");
                 ApplicationInfo appInfo = root.getContext().getApplicationInfo();
 
@@ -1903,8 +1903,8 @@ public class RemoteViews implements Parcelable, Filter {
      */
     private void addAction(Action a) {
         if (hasLandscapeAndPortraitLayouts()) {
-            throw new RuntimeException("RemoteViews specifying separate landscape and portrait" +
-                    " layouts cannot be modified. Instead, fully configure the landscape and" +
+            throw new RuntimeException("RemoteViews specifying separate landscape and portrait"
+                    " layouts cannot be modified. Instead, fully configure the landscape and"
                     " portrait layouts individually before constructing the combined layout.");
         }
         if (mActions == null) {
@@ -2640,7 +2640,7 @@ public class RemoteViews implements Parcelable, Filter {
         // we throw an exception, since the layouts may be completely unrelated.
         if (hasLandscapeAndPortraitLayouts()) {
             if (v.getId() != rvToApply.getLayoutId()) {
-                throw new RuntimeException("Attempting to re-apply RemoteViews to a view that" +
+                throw new RuntimeException("Attempting to re-apply RemoteViews to a view that"
                         " that does not share the same root layout id.");
             }
         }

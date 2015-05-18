@@ -257,7 +257,7 @@ public class GLFrame extends Frame {
         // Make sure frame fits
         if (getFormat().getSize() < frame.getFormat().getSize()) {
             throw new RuntimeException(
-                "Attempting to assign frame of size " + frame.getFormat().getSize() + " to " +
+                "Attempting to assign frame of size " + frame.getFormat().getSize() + " to "
                 "smaller GL frame of size " + getFormat().getSize() + "!");
         }
 
@@ -295,7 +295,7 @@ public class GLFrame extends Frame {
         assertFrameMutable();
         assertGLEnvValid();
         if (!setNativeTextureParam(param, value)) {
-            throw new RuntimeException("Could not set texture value " + param + " = " + value + " " +
+            throw new RuntimeException("Could not set texture value " + param + " = " + value + " "
                                        "for GLFrame!");
         }
     }
@@ -348,10 +348,10 @@ public class GLFrame extends Frame {
     private void assertGLEnvValid() {
         if (!mGLEnvironment.isContextActive()) {
             if (GLEnvironment.isAnyContextActive()) {
-                throw new RuntimeException("Attempting to access " + this + " with foreign GL " +
+                throw new RuntimeException("Attempting to access " + this + " with foreign GL "
                     "context active!");
             } else {
-                throw new RuntimeException("Attempting to access " + this + " with no GL context " +
+                throw new RuntimeException("Attempting to access " + this + " with no GL context "
                     " active!");
             }
         }

@@ -116,7 +116,7 @@ public class SmartCamera extends Activity {
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
 
-        Log.v(TAG, "numImages: " + numImages + " count: " + count +
+        Log.v(TAG, "numImages: " + numImages + " count: " + count
                 " hasReachedMax: " + countHasReachedMax);
         int maxI = countHasReachedMax ? numImages : count+1;
         if(maxI != 0) {

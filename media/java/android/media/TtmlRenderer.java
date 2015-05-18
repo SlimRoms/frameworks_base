@@ -491,7 +491,7 @@ class TtmlParser {
         }
         if (dur > 0) {
             if (end != TtmlUtils.INVALID_TIMESTAMP) {
-                Log.e(TAG, "'dur' and 'end' attributes are defined at the same time." +
+                Log.e(TAG, "'dur' and 'end' attributes are defined at the same time."
                         "'end' value is ignored.");
             }
             end = start + dur;
@@ -572,7 +572,7 @@ class TtmlTrack extends SubtitleTrack implements TtmlNodeListener {
             synchronized(mParser) {
                 if (mCurrentRunID != null && runID != mCurrentRunID) {
                     throw new IllegalStateException(
-                            "Run #" + mCurrentRunID +
+                            "Run #" + mCurrentRunID
                             " in progress.  Cannot process run #" + runID);
                 }
                 mCurrentRunID = runID;
@@ -622,8 +622,8 @@ class TtmlTrack extends SubtitleTrack implements TtmlNodeListener {
 
         if (DEBUG && mTimeProvider != null) {
             try {
-                Log.d(TAG, "at " +
-                        (mTimeProvider.getCurrentTimeUs(false, true) / 1000) +
+                Log.d(TAG, "at "
+                        (mTimeProvider.getCurrentTimeUs(false, true) / 1000)
                         " ms the active cues are:");
             } catch (IllegalStateException e) {
                 Log.d(TAG, "at (illegal state) the active cues are:");

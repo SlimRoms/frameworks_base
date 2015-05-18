@@ -159,7 +159,7 @@ class PlaybackSynthesisCallback extends AbstractSynthesisCallback {
                 + ")");
 
         if (length > getMaxBufferSize() || length <= 0) {
-            throw new IllegalArgumentException("buffer is too large or of zero length (" +
+            throw new IllegalArgumentException("buffer is too large or of zero length ("
                     + length + " bytes)");
         }
 

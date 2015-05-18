@@ -43,20 +43,20 @@ public class VignetteFilter extends Filter {
     private final float mShade = 0.85f;
 
     private final String mVignetteShader =
-            "precision mediump float;\n" +
-            "uniform sampler2D tex_sampler_0;\n" +
-            "uniform float range;\n" +
-            "uniform float inv_max_dist;\n" +
-            "uniform float shade;\n" +
-            "uniform vec2 scale;\n" +
-            "varying vec2 v_texcoord;\n" +
-            "void main() {\n" +
-            "  const float slope = 20.0;\n" +
-            "  vec2 coord = v_texcoord - vec2(0.5, 0.5);\n" +
-            "  float dist = length(coord * scale);\n" +
-            "  float lumen = shade / (1.0 + exp((dist * inv_max_dist - range) * slope)) + (1.0 - shade);\n" +
-            "  vec4 color = texture2D(tex_sampler_0, v_texcoord);\n" +
-            "  gl_FragColor = vec4(color.rgb * lumen, color.a);\n" +
+            "precision mediump float;\n"
+            "uniform sampler2D tex_sampler_0;\n"
+            "uniform float range;\n"
+            "uniform float inv_max_dist;\n"
+            "uniform float shade;\n"
+            "uniform vec2 scale;\n"
+            "varying vec2 v_texcoord;\n"
+            "void main() {\n"
+            "  const float slope = 20.0;\n"
+            "  vec2 coord = v_texcoord - vec2(0.5, 0.5);\n"
+            "  float dist = length(coord * scale);\n"
+            "  float lumen = shade / (1.0 + exp((dist * inv_max_dist - range) * slope)) + (1.0 - shade);\n"
+            "  vec4 color = texture2D(tex_sampler_0, v_texcoord);\n"
+            "  gl_FragColor = vec4(color.rgb * lumen, color.a);\n"
             "}\n";
 
     public VignetteFilter(String name) {
@@ -83,7 +83,7 @@ public class VignetteFilter extends Filter {
                 break;
 
             default:
-                throw new RuntimeException("Filter Sharpen does not support frames of " +
+                throw new RuntimeException("Filter Sharpen does not support frames of "
                     "target " + target + "!");
         }
         mTarget = target;

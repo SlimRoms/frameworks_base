@@ -555,7 +555,7 @@ public class ExpandableListView extends ListView {
     @Override
     public void setAdapter(ListAdapter adapter) {
         throw new RuntimeException(
-                "For ExpandableListView, use setAdapter(ExpandableListAdapter) instead of " +
+                "For ExpandableListView, use setAdapter(ExpandableListAdapter) instead of "
                 "setAdapter(ListAdapter)");
     }
 

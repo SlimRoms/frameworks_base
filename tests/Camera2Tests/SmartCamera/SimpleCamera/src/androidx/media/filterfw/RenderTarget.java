@@ -322,7 +322,7 @@ public final class RenderTarget {
             EGLConfig[] configs = new EGLConfig[1];
             int[] configSpec = getDesiredConfig();
             if (!egl.eglChooseConfig(display, configSpec, configs, 1, configsCount)) {
-                throw new IllegalArgumentException("EGL Error: eglChooseConfig failed " +
+                throw new IllegalArgumentException("EGL Error: eglChooseConfig failed "
                         getEGLErrorString(egl, egl.eglGetError()));
             } else if (configsCount[0] > 0) {
                 mEglConfig = configs[0];
@@ -368,7 +368,7 @@ public final class RenderTarget {
     private static void initEgl(EGL10 egl, EGLDisplay display) {
         int[] version = new int[2];
         if (!egl.eglInitialize(display, version)) {
-            throw new RuntimeException("EGL Error: eglInitialize failed " +
+            throw new RuntimeException("EGL Error: eglInitialize failed "
                     getEGLErrorString(egl, egl.eglGetError()));
         }
     }

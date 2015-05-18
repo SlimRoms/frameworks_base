@@ -313,19 +313,19 @@ public class SceneManager extends SceneGraphBase {
             b.add(Element.F32_3(rs), "normal");
             Element defaultIn = b.create();
 
-            final String code = "\n" +
-                "varying vec3 varWorldPos;\n" +
-                "varying vec3 varWorldNormal;\n" +
-                "varying vec2 varTex0;\n" +
-                "void main() {" +
-                "   vec4 objPos = ATTRIB_position;\n" +
-                "   vec4 worldPos = UNI_model * objPos;\n" +
-                "   gl_Position = UNI_viewProj * worldPos;\n" +
-                "   mat3 model3 = mat3(UNI_model[0].xyz, UNI_model[1].xyz, UNI_model[2].xyz);\n" +
-                "   vec3 worldNorm = model3 * ATTRIB_normal;\n" +
-                "   varWorldPos = worldPos.xyz;\n" +
-                "   varWorldNormal = worldNorm;\n" +
-                "   varTex0 = ATTRIB_texture0;\n" +
+            final String code = "\n"
+                "varying vec3 varWorldPos;\n"
+                "varying vec3 varWorldNormal;\n"
+                "varying vec2 varTex0;\n"
+                "void main() {"
+                "   vec4 objPos = ATTRIB_position;\n"
+                "   vec4 worldPos = UNI_model * objPos;\n"
+                "   gl_Position = UNI_viewProj * worldPos;\n"
+                "   mat3 model3 = mat3(UNI_model[0].xyz, UNI_model[1].xyz, UNI_model[2].xyz);\n"
+                "   vec3 worldNorm = model3 * ATTRIB_normal;\n"
+                "   varWorldPos = worldPos.xyz;\n"
+                "   varWorldNormal = worldNorm;\n"
+                "   varTex0 = ATTRIB_texture0;\n"
                 "}\n";
 
             VertexShader.Builder sb = new VertexShader.Builder(rs);
@@ -349,11 +349,11 @@ public class SceneManager extends SceneGraphBase {
             b.add(Element.F32_4(rs), "color");
             Type.Builder objConstBuilder = new Type.Builder(rs, b.create());
 
-            final String code = "\n" +
-                "varying vec2 varTex0;\n" +
-                "void main() {\n" +
-                "   lowp vec4 col = UNI_color;\n" +
-                "   gl_FragColor = col;\n" +
+            final String code = "\n"
+                "varying vec2 varTex0;\n"
+                "void main() {\n"
+                "   lowp vec4 col = UNI_color;\n"
+                "   gl_FragColor = col;\n"
                 "}\n";
             FragmentShader.Builder fb = new FragmentShader.Builder(rs);
             fb.setShader(code);
@@ -371,11 +371,11 @@ public class SceneManager extends SceneGraphBase {
         if (sSceneManager.mTexture == null) {
             RenderScriptGL rs = getRS();
 
-            final String code = "\n" +
-                "varying vec2 varTex0;\n" +
-                "void main() {\n" +
-                "   lowp vec4 col = texture2D(UNI_color, varTex0).rgba;\n" +
-                "   gl_FragColor = col;\n" +
+            final String code = "\n"
+                "varying vec2 varTex0;\n"
+                "void main() {\n"
+                "   lowp vec4 col = texture2D(UNI_color, varTex0).rgba;\n"
+                "   gl_FragColor = col;\n"
                 "}\n";
 
             FragmentShader.Builder fb = new FragmentShader.Builder(rs);

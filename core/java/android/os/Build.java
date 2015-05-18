@@ -614,13 +614,13 @@ public class Build {
     private static String deriveFingerprint() {
         String finger = SystemProperties.get("ro.build.fingerprint");
         if (TextUtils.isEmpty(finger)) {
-            finger = getString("ro.product.brand") + '/' +
-                    getString("ro.product.name") + '/' +
-                    getString("ro.product.device") + ':' +
-                    getString("ro.build.version.release") + '/' +
-                    getString("ro.build.id") + '/' +
-                    getString("ro.build.version.incremental") + ':' +
-                    getString("ro.build.type") + '/' +
+            finger = getString("ro.product.brand") + '/'
+                    getString("ro.product.name") + '/'
+                    getString("ro.product.device") + ':'
+                    getString("ro.build.version.release") + '/'
+                    getString("ro.build.id") + '/'
+                    getString("ro.build.version.incremental") + ':'
+                    getString("ro.build.type") + '/'
                     getString("ro.build.tags");
         }
         return finger;

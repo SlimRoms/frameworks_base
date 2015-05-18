@@ -31,10 +31,10 @@ public class AddressView extends LinearLayout {
         try {
             mNameView.setText(a.getString(R.styleable.AddressView_name));
             int streetNumber = a.getInteger(R.styleable.AddressView_streetNumber, -1);
-            mStreetView.setText((streetNumber <= 0 ? "" : Integer.toString(streetNumber)) +
+            mStreetView.setText((streetNumber <= 0 ? "" : Integer.toString(streetNumber))
                     " " + a.getString(R.styleable.AddressView_streetName));
-            mCityStateZipView.setText(a.getString(R.styleable.AddressView_city) + ", " +
-                    a.getString(R.styleable.AddressView_state) + " " +
+            mCityStateZipView.setText(a.getString(R.styleable.AddressView_city) + ", "
+                    a.getString(R.styleable.AddressView_state) + " "
                     a.getString(R.styleable.AddressView_zip));
             mCountryView.setText(a.getString(R.styleable.AddressView_country));
         } finally {

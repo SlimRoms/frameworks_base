@@ -125,7 +125,7 @@ public final class UsageStats implements Parcelable {
      */
     public void add(UsageStats right) {
         if (!mPackageName.equals(right.mPackageName)) {
-            throw new IllegalArgumentException("Can't merge UsageStats for package '" +
+            throw new IllegalArgumentException("Can't merge UsageStats for package '"
                     mPackageName + "' with UsageStats for package '" + right.mPackageName + "'.");
         }
 

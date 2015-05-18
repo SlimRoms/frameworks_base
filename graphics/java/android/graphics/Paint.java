@@ -1401,8 +1401,8 @@ public class Paint {
         public int   leading;
 
         @Override public String toString() {
-            return "FontMetricsInt: top=" + top + " ascent=" + ascent +
-                    " descent=" + descent + " bottom=" + bottom +
+            return "FontMetricsInt: top=" + top + " ascent=" + ascent
+                    " descent=" + descent + " bottom=" + bottom
                     " leading=" + leading;
         }
     }

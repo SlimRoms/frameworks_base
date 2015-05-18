@@ -91,7 +91,7 @@ public class LegacyFocusStateMapper {
 
         if (!Objects.equals(mAfModePrevious, afMode)) {
             if (VERBOSE) {
-                Log.v(TAG, "processRequestTriggers - AF mode switched from " + mAfModePrevious +
+                Log.v(TAG, "processRequestTriggers - AF mode switched from " + mAfModePrevious
                         " to " + afMode);
             }
 
@@ -122,7 +122,7 @@ public class LegacyFocusStateMapper {
 
                         if (VERBOSE) {
                             Log.v(TAG,
-                                    "onAutoFocusMoving - start " + start + " latest AF run " +
+                                    "onAutoFocusMoving - start " + start + " latest AF run "
                                             latestAfRun + ", last AF run " + currentAfRun
                             );
                         }
@@ -193,7 +193,7 @@ public class LegacyFocusStateMapper {
                 }
 
                 if (VERBOSE) {
-                    Log.v(TAG, "processRequestTriggers - got AF_TRIGGER_START, " +
+                    Log.v(TAG, "processRequestTriggers - got AF_TRIGGER_START, "
                             "new AF run is " + currentAfRun);
                 }
 
@@ -209,13 +209,13 @@ public class LegacyFocusStateMapper {
                             int latestAfRun = mAfRun;
 
                             if (VERBOSE) {
-                                Log.v(TAG, "onAutoFocus - success " + success + " latest AF run " +
+                                Log.v(TAG, "onAutoFocus - success " + success + " latest AF run "
                                         latestAfRun + ", last AF run " + currentAfRun);
                             }
 
                             // Ignore old auto-focus results, since another trigger was requested
                             if (latestAfRun != currentAfRun) {
-                                Log.d(TAG, String.format("onAutoFocus - ignoring AF callback " +
+                                Log.d(TAG, String.format("onAutoFocus - ignoring AF callback "
                                         "(old run %d, new run %d)", currentAfRun, latestAfRun));
 
                                 return;
@@ -256,7 +256,7 @@ public class LegacyFocusStateMapper {
                     mCamera.cancelAutoFocus();
 
                     if (VERBOSE) {
-                        Log.v(TAG, "processRequestTriggers - got AF_TRIGGER_CANCEL, " +
+                        Log.v(TAG, "processRequestTriggers - got AF_TRIGGER_CANCEL, "
                                 "new AF run is " + updatedAfRun);
                     }
                 }

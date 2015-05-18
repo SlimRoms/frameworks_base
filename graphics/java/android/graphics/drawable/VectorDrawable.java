@@ -491,10 +491,10 @@ public class VectorDrawable extends Drawable {
                 R.styleable.VectorDrawable_viewportHeight, pathRenderer.mViewportHeight);
 
         if (pathRenderer.mViewportWidth <= 0) {
-            throw new XmlPullParserException(a.getPositionDescription() +
+            throw new XmlPullParserException(a.getPositionDescription()
                     "<vector> tag requires viewportWidth > 0");
         } else if (pathRenderer.mViewportHeight <= 0) {
-            throw new XmlPullParserException(a.getPositionDescription() +
+            throw new XmlPullParserException(a.getPositionDescription()
                     "<vector> tag requires viewportHeight > 0");
         }
 
@@ -504,10 +504,10 @@ public class VectorDrawable extends Drawable {
                 R.styleable.VectorDrawable_height, pathRenderer.mBaseHeight);
 
         if (pathRenderer.mBaseWidth <= 0) {
-            throw new XmlPullParserException(a.getPositionDescription() +
+            throw new XmlPullParserException(a.getPositionDescription()
                     "<vector> tag requires width > 0");
         } else if (pathRenderer.mBaseHeight <= 0) {
-            throw new XmlPullParserException(a.getPositionDescription() +
+            throw new XmlPullParserException(a.getPositionDescription()
                     "<vector> tag requires height > 0");
         }
 

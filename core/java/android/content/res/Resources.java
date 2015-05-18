@@ -1185,7 +1185,7 @@ public class Resources {
             return mAssets.openNonAsset(value.assetCookie, value.string.toString(),
                     AssetManager.ACCESS_STREAMING);
         } catch (Exception e) {
-            NotFoundException rnf = new NotFoundException("File " + value.string.toString() +
+            NotFoundException rnf = new NotFoundException("File " + value.string.toString()
                     " from drawable resource ID #0x" + Integer.toHexString(id));
             rnf.initCause(e);
             throw rnf;
@@ -2512,7 +2512,7 @@ public class Resources {
         if (wr != null) {   // we have the key
             final ConstantState entry = wr.get();
             if (entry != null) {
-                //Log.i(TAG, "Returning cached drawable @ #" +
+                //Log.i(TAG, "Returning cached drawable @ #"
                 //        Integer.toHexString(((Integer)key).intValue())
                 //        + " in " + this + ": " + entry);
                 return entry;
@@ -2612,7 +2612,7 @@ public class Resources {
                 }
             } else {
                 synchronized (mAccessLock) {
-                    //Log.i(TAG, "Saving cached color state list @ #" +
+                    //Log.i(TAG, "Saving cached color state list @ #"
                     //        Integer.toHexString(key.intValue())
                     //        + " in " + this + ": " + csl);
                     mColorStateListCache.put(key, new WeakReference<ColorStateList>(csl));
@@ -2629,7 +2629,7 @@ public class Resources {
             if (wr != null) {   // we have the key
                 ColorStateList entry = wr.get();
                 if (entry != null) {
-                    //Log.i(TAG, "Returning cached color state list @ #" +
+                    //Log.i(TAG, "Returning cached color state list @ #"
                     //        Integer.toHexString(((Integer)key).intValue())
                     //        + " in " + this + ": " + entry);
                     return entry;

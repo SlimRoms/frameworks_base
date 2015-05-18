@@ -136,14 +136,14 @@ public class SearchRecentSuggestionsProvider extends ContentProvider {
         @Override
         public void onCreate(SQLiteDatabase db) {
             StringBuilder builder = new StringBuilder();
-            builder.append("CREATE TABLE suggestions (" +
-                    "_id INTEGER PRIMARY KEY" +
+            builder.append("CREATE TABLE suggestions ("
+                    "_id INTEGER PRIMARY KEY"
                     ",display1 TEXT UNIQUE ON CONFLICT REPLACE");
             if (0 != (mNewVersion & DATABASE_MODE_2LINES)) {
                 builder.append(",display2 TEXT");
             }
-            builder.append(",query TEXT" +
-                    ",date LONG" +
+            builder.append(",query TEXT"
+                    ",date LONG"
                     ");");
             db.execSQL(builder.toString());
         }

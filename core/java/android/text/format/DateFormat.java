@@ -613,7 +613,7 @@ public class DateFormat {
     private static String getTimeZoneString(Calendar inDate, int count) {
         TimeZone tz = inDate.getTimeZone();
         if (count < 2) { // FIXME: shouldn't this be <= 2 ?
-            return formatZoneOffset(inDate.get(Calendar.DST_OFFSET) +
+            return formatZoneOffset(inDate.get(Calendar.DST_OFFSET)
                                     inDate.get(Calendar.ZONE_OFFSET),
                                     count);
         } else {

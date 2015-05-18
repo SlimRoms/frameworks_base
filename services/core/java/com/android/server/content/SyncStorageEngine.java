@@ -1746,7 +1746,7 @@ public class SyncStorageEngine extends Handler {
             }
         }
         if (!found) {
-            Log.w(TAG, "Ignoring setPeriodicSyncTime request for a sync that does not exist. " +
+            Log.w(TAG, "Ignoring setPeriodicSyncTime request for a sync that does not exist. "
                     "Authority: " + authorityInfo.target);
         }
     }

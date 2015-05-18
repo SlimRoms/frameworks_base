@@ -313,8 +313,8 @@ class AutomaticBrightnessController {
             float weight = calculateWeight(startTime, endTime);
             float lux = mAmbientLightRingBuffer.getLux(i);
             if (DEBUG) {
-                Slog.d(TAG, "calculateAmbientLux: [" +
-                        (startTime) + ", " +
+                Slog.d(TAG, "calculateAmbientLux: ["
+                        (startTime) + ", "
                         (endTime) + "]: lux=" + lux + ", weight=" + weight);
             }
             totalWeight += weight;
@@ -322,7 +322,7 @@ class AutomaticBrightnessController {
             endTime = startTime;
         }
         if (DEBUG) {
-            Slog.d(TAG, "calculateAmbientLux: totalWeight=" + totalWeight +
+            Slog.d(TAG, "calculateAmbientLux: totalWeight=" + totalWeight
                     ", newAmbientLux=" + (sum / totalWeight));
         }
         return sum / totalWeight;

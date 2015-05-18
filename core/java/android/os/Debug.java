@@ -1455,11 +1455,11 @@ href="{@docRoot}guide/developing/tools/traceview.html">Traceview: A Graphical Lo
                     return;
                 case TypedProperties.STRING_TYPE_MISMATCH:
                     throw new IllegalArgumentException(
-                        "Type of " + propertyName + " " +
+                        "Type of " + propertyName + " "
                         " does not match field type (" + field.getType() + ")");
                 default:
                     throw new IllegalStateException(
-                        "Unexpected getStringInfo(" + propertyName + ") return value " +
+                        "Unexpected getStringInfo(" + propertyName + ") return value "
                         stringInfo);
             }
         }
@@ -1467,7 +1467,7 @@ href="{@docRoot}guide/developing/tools/traceview.html">Traceview: A Graphical Lo
         if (value != null) {
             if (!fieldTypeMatches(field, value.getClass())) {
                 throw new IllegalArgumentException(
-                    "Type of " + propertyName + " (" + value.getClass() + ") " +
+                    "Type of " + propertyName + " (" + value.getClass() + ") "
                     " does not match field type (" + field.getType() + ")");
             }
             try {
@@ -1559,7 +1559,7 @@ href="{@docRoot}guide/developing/tools/traceview.html">Traceview: A Graphical Lo
                         boolean isFinal = Modifier.isFinal(field.getModifiers());
 
                         if (!isStatic || isFinal) {
-                            throw new IllegalArgumentException(propertyName +
+                            throw new IllegalArgumentException(propertyName
                                 " must be static and non-final");
                         }
                         modifyFieldIfSet(field, debugProperties, propertyName);
@@ -1568,7 +1568,7 @@ href="{@docRoot}guide/developing/tools/traceview.html">Traceview: A Graphical Lo
             }
         } else {
             Log.wtf(TAG,
-                  "setFieldsOn(" + (cl == null ? "null" : cl.getName()) +
+                  "setFieldsOn(" + (cl == null ? "null" : cl.getName())
                   ") called in non-DEBUG build");
         }
     }

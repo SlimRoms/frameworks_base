@@ -351,7 +351,7 @@ public class ImageReader implements AutoCloseable {
             case ACQUIRE_MAX_IMAGES:
                 throw new IllegalStateException(
                         String.format(
-                                "maxImages (%d) has already been acquired, " +
+                                "maxImages (%d) has already been acquired, "
                                 "call #close before acquiring more.", mMaxImages));
             default:
                 throw new AssertionError("Unknown nativeImageSetup return code " + status);

@@ -252,7 +252,7 @@ public class NativeDaemonEvent {
                 }
             } // else we just start the next word after the current and read til the end
             if (DEBUG_ROUTINE) {
-                Slog.e(LOGTAG, "next loop - current=" + current +
+                Slog.e(LOGTAG, "next loop - current=" + current
                         ", length=" + length + ", quoted=" + quoted);
             }
         }

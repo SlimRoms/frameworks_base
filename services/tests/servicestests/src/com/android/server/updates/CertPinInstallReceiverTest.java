@@ -65,38 +65,38 @@ public class CertPinInstallReceiverTest extends AndroidTestCase {
     private static final String EXTRA_SIGNATURE = "SIGNATURE";
     private static final String EXTRA_VERSION_NUMBER = "VERSION";
 
-    public static final String TEST_CERT = "" +
-                    "MIIDsjCCAxugAwIBAgIJAPLf2gS0zYGUMA0GCSqGSIb3DQEBBQUAMIGYMQswCQYDVQQGEwJVUzET" +
-                    "MBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEPMA0GA1UEChMGR29v" +
-                    "Z2xlMRAwDgYDVQQLEwd0ZXN0aW5nMRYwFAYDVQQDEw1HZXJlbXkgQ29uZHJhMSEwHwYJKoZIhvcN" +
-                    "AQkBFhJnY29uZHJhQGdvb2dsZS5jb20wHhcNMTIwNzE0MTc1MjIxWhcNMTIwODEzMTc1MjIxWjCB" +
-                    "mDELMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDU1vdW50YWluIFZp" +
-                    "ZXcxDzANBgNVBAoTBkdvb2dsZTEQMA4GA1UECxMHdGVzdGluZzEWMBQGA1UEAxMNR2VyZW15IENv" +
-                    "bmRyYTEhMB8GCSqGSIb3DQEJARYSZ2NvbmRyYUBnb29nbGUuY29tMIGfMA0GCSqGSIb3DQEBAQUA" +
-                    "A4GNADCBiQKBgQCjGGHATBYlmas+0sEECkno8LZ1KPglb/mfe6VpCT3GhSr+7br7NG/ZwGZnEhLq" +
-                    "E7YIH4fxltHmQC3Tz+jM1YN+kMaQgRRjo/LBCJdOKaMwUbkVynAH6OYsKevjrOPk8lfM5SFQzJMG" +
-                    "sA9+Tfopr5xg0BwZ1vA/+E3mE7Tr3M2UvwIDAQABo4IBADCB/TAdBgNVHQ4EFgQUhzkS9E6G+x8W" +
-                    "L4EsmRjDxu28tHUwgc0GA1UdIwSBxTCBwoAUhzkS9E6G+x8WL4EsmRjDxu28tHWhgZ6kgZswgZgx" +
-                    "CzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3" +
-                    "MQ8wDQYDVQQKEwZHb29nbGUxEDAOBgNVBAsTB3Rlc3RpbmcxFjAUBgNVBAMTDUdlcmVteSBDb25k" +
-                    "cmExITAfBgkqhkiG9w0BCQEWEmdjb25kcmFAZ29vZ2xlLmNvbYIJAPLf2gS0zYGUMAwGA1UdEwQF" +
-                    "MAMBAf8wDQYJKoZIhvcNAQEFBQADgYEAYiugFDmbDOQ2U/+mqNt7o8ftlEo9SJrns6O8uTtK6AvR" +
-                    "orDrR1AXTXkuxwLSbmVfedMGOZy7Awh7iZa8hw5x9XmUudfNxvmrKVEwGQY2DZ9PXbrnta/dwbhK" +
+    public static final String TEST_CERT = ""
+                    "MIIDsjCCAxugAwIBAgIJAPLf2gS0zYGUMA0GCSqGSIb3DQEBBQUAMIGYMQswCQYDVQQGEwJVUzET"
+                    "MBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEPMA0GA1UEChMGR29v"
+                    "Z2xlMRAwDgYDVQQLEwd0ZXN0aW5nMRYwFAYDVQQDEw1HZXJlbXkgQ29uZHJhMSEwHwYJKoZIhvcN"
+                    "AQkBFhJnY29uZHJhQGdvb2dsZS5jb20wHhcNMTIwNzE0MTc1MjIxWhcNMTIwODEzMTc1MjIxWjCB"
+                    "mDELMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDU1vdW50YWluIFZp"
+                    "ZXcxDzANBgNVBAoTBkdvb2dsZTEQMA4GA1UECxMHdGVzdGluZzEWMBQGA1UEAxMNR2VyZW15IENv"
+                    "bmRyYTEhMB8GCSqGSIb3DQEJARYSZ2NvbmRyYUBnb29nbGUuY29tMIGfMA0GCSqGSIb3DQEBAQUA"
+                    "A4GNADCBiQKBgQCjGGHATBYlmas+0sEECkno8LZ1KPglb/mfe6VpCT3GhSr+7br7NG/ZwGZnEhLq"
+                    "E7YIH4fxltHmQC3Tz+jM1YN+kMaQgRRjo/LBCJdOKaMwUbkVynAH6OYsKevjrOPk8lfM5SFQzJMG"
+                    "sA9+Tfopr5xg0BwZ1vA/+E3mE7Tr3M2UvwIDAQABo4IBADCB/TAdBgNVHQ4EFgQUhzkS9E6G+x8W"
+                    "L4EsmRjDxu28tHUwgc0GA1UdIwSBxTCBwoAUhzkS9E6G+x8WL4EsmRjDxu28tHWhgZ6kgZswgZgx"
+                    "CzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3"
+                    "MQ8wDQYDVQQKEwZHb29nbGUxEDAOBgNVBAsTB3Rlc3RpbmcxFjAUBgNVBAMTDUdlcmVteSBDb25k"
+                    "cmExITAfBgkqhkiG9w0BCQEWEmdjb25kcmFAZ29vZ2xlLmNvbYIJAPLf2gS0zYGUMAwGA1UdEwQF"
+                    "MAMBAf8wDQYJKoZIhvcNAQEFBQADgYEAYiugFDmbDOQ2U/+mqNt7o8ftlEo9SJrns6O8uTtK6AvR"
+                    "orDrR1AXTXkuxwLSbmVfedMGOZy7Awh7iZa8hw5x9XmUudfNxvmrKVEwGQY2DZ9PXbrnta/dwbhK"
                     "mWfoepESVbo7CKIhJp8gRW0h1Z55ETXD57aGJRvQS4pxkP8ANhM=";
 
 
-    public static final String TEST_KEY = "" +
-                    "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAKMYYcBMFiWZqz7SwQQKSejwtnUo" +
-                    "+CVv+Z97pWkJPcaFKv7tuvs0b9nAZmcSEuoTtggfh/GW0eZALdPP6MzVg36QxpCBFGOj8sEIl04p" +
-                    "ozBRuRXKcAfo5iwp6+Os4+TyV8zlIVDMkwawD35N+imvnGDQHBnW8D/4TeYTtOvczZS/AgMBAAEC" +
-                    "gYBxwFalNSwZK3WJipq+g6KLCiBn1JxGGDQlLKrweFaSuFyFky9fd3IvkIabirqQchD612sMb+GT" +
-                    "0t1jptW6z4w2w6++IW0A3apDOCwoD+uvDBXrbFqI0VbyAWUNqHVdaFFIRk2IHGEE6463mGRdmILX" +
-                    "IlCd/85RTHReg4rl/GFqWQJBANgLAIR4pWbl5Gm+DtY18wp6Q3pJAAMkmP/lISCBIidu1zcqYIKt" +
-                    "PoDW4Knq9xnhxPbXrXKv4YzZWHBK8GkKhQ0CQQDBQnXufQcMew+PwiS0oJvS+eQ6YJwynuqG2ejg" +
-                    "WE+T7489jKtscRATpUXpZUYmDLGg9bLt7L62hFvFSj2LO2X7AkBcdrD9AWnBFWlh/G77LVHczSEu" +
-                    "KCoyLiqxcs5vy/TjLaQ8vw1ZQG580/qJnr+tOxyCjSJ18GK3VppsTRaBznfNAkB3nuCKNp9HTWCL" +
-                    "dfrsRsFMrFpk++mSt6SoxXaMbn0LL2u1CD4PCEiQMGt+lK3/3TmRTKNs+23sYS7Ahjxj0udDAkEA" +
-                    "p57Nj65WNaWeYiOfTwKXkLj8l29H5NbaGWxPT0XkWr4PvBOFZVH/wj0/qc3CMVGnv11+DyO+QUCN" +
+    public static final String TEST_KEY = ""
+                    "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAKMYYcBMFiWZqz7SwQQKSejwtnUo"
+                    "+CVv+Z97pWkJPcaFKv7tuvs0b9nAZmcSEuoTtggfh/GW0eZALdPP6MzVg36QxpCBFGOj8sEIl04p"
+                    "ozBRuRXKcAfo5iwp6+Os4+TyV8zlIVDMkwawD35N+imvnGDQHBnW8D/4TeYTtOvczZS/AgMBAAEC"
+                    "gYBxwFalNSwZK3WJipq+g6KLCiBn1JxGGDQlLKrweFaSuFyFky9fd3IvkIabirqQchD612sMb+GT"
+                    "0t1jptW6z4w2w6++IW0A3apDOCwoD+uvDBXrbFqI0VbyAWUNqHVdaFFIRk2IHGEE6463mGRdmILX"
+                    "IlCd/85RTHReg4rl/GFqWQJBANgLAIR4pWbl5Gm+DtY18wp6Q3pJAAMkmP/lISCBIidu1zcqYIKt"
+                    "PoDW4Knq9xnhxPbXrXKv4YzZWHBK8GkKhQ0CQQDBQnXufQcMew+PwiS0oJvS+eQ6YJwynuqG2ejg"
+                    "WE+T7489jKtscRATpUXpZUYmDLGg9bLt7L62hFvFSj2LO2X7AkBcdrD9AWnBFWlh/G77LVHczSEu"
+                    "KCoyLiqxcs5vy/TjLaQ8vw1ZQG580/qJnr+tOxyCjSJ18GK3VppsTRaBznfNAkB3nuCKNp9HTWCL"
+                    "dfrsRsFMrFpk++mSt6SoxXaMbn0LL2u1CD4PCEiQMGt+lK3/3TmRTKNs+23sYS7Ahjxj0udDAkEA"
+                    "p57Nj65WNaWeYiOfTwKXkLj8l29H5NbaGWxPT0XkWr4PvBOFZVH/wj0/qc3CMVGnv11+DyO+QUCN"
                     "SqBB5aRe8g==";
 
     private void overrideSettings(String key, String value) throws Exception {

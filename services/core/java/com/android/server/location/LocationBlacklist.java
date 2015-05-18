@@ -145,7 +145,7 @@ public final class LocationBlacklist extends ContentObserver {
     }
 
     public void dump(PrintWriter pw) {
-        pw.println("mWhitelist=" + Arrays.toString(mWhitelist) + " mBlacklist=" +
+        pw.println("mWhitelist=" + Arrays.toString(mWhitelist) + " mBlacklist="
                 Arrays.toString(mBlacklist));
     }
 }

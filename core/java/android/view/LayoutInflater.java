@@ -485,7 +485,7 @@ public abstract class LayoutInflater {
 
                     if (root != null) {
                         if (DEBUG) {
-                            System.out.println("Creating params from root: " +
+                            System.out.println("Creating params from root: "
                                     root);
                         }
                         // Create layout params that match root, if supplied
@@ -879,7 +879,7 @@ public abstract class LayoutInflater {
                     }
 
                     if (type != XmlPullParser.START_TAG) {
-                        throw new InflateException(childParser.getPositionDescription() +
+                        throw new InflateException(childParser.getPositionDescription()
                                 ": No start tag found!");
                     }
 

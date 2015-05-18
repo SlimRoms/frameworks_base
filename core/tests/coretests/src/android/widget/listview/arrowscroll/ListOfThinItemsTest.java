@@ -63,7 +63,7 @@ public class ListOfThinItemsTest extends ActivityInstrumentationTestCase<ListOfT
 
             String prefix = "after " + i + " down presses, ";
 
-            assertTrue(prefix + "selected item is below bottom threshold (fading edge or bottom as " +
+            assertTrue(prefix + "selected item is below bottom threshold (fading edge or bottom as "
                     "appropriate)",
                     mListView.getSelectedView().getBottom() <= bottomThreshold);
             assertTrue(prefix + "first item in list must be at very top or just above",
@@ -102,7 +102,7 @@ public class ListOfThinItemsTest extends ActivityInstrumentationTestCase<ListOfT
 
             String prefix = "after " + i + " up presses, ";
 
-            assertTrue(prefix + "selected item is above top threshold (fading edge or top as " +
+            assertTrue(prefix + "selected item is above top threshold (fading edge or top as "
                     "appropriate)",
                     mListView.getSelectedView().getTop() >= topThreshold);
             assertTrue(prefix + "first item in list must be at very top or just above",

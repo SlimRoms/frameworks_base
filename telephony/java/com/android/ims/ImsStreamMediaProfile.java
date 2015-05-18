@@ -99,9 +99,9 @@ public class ImsStreamMediaProfile implements Parcelable {
 
     @Override
     public String toString() {
-        return "{ audioQuality=" + mAudioQuality +
-                ", audioDirection=" + mAudioDirection +
-                ", videoQuality=" + mVideoQuality +
+        return "{ audioQuality=" + mAudioQuality
+                ", audioDirection=" + mAudioDirection
+                ", videoQuality=" + mVideoQuality
                 ", videoDirection=" + mVideoDirection + " }";
     }
 

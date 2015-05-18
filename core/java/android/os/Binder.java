@@ -196,7 +196,7 @@ public class Binder implements IBinder {
             final Class<? extends Binder> klass = getClass();
             if ((klass.isAnonymousClass() || klass.isMemberClass() || klass.isLocalClass()) &&
                     (klass.getModifiers() & Modifier.STATIC) == 0) {
-                Log.w(TAG, "The following Binder class should be static or leaks might occur: " +
+                Log.w(TAG, "The following Binder class should be static or leaks might occur: "
                     klass.getCanonicalName());
             }
         }

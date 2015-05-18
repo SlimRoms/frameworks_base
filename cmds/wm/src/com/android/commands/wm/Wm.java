@@ -47,15 +47,15 @@ public class Wm extends BaseCommand {
 
     public void onShowUsage(PrintStream out) {
         out.println(
-                "usage: wm [subcommand] [options]\n" +
-                "       wm size [reset|WxH]\n" +
-                "       wm density [reset|DENSITY]\n" +
-                "       wm overscan [reset|LEFT,TOP,RIGHT,BOTTOM]\n" +
-                "\n" +
-                "wm size: return or override display size.\n" +
-                "\n" +
-                "wm density: override display density.\n" +
-                "\n" +
+                "usage: wm [subcommand] [options]\n"
+                "       wm size [reset|WxH]\n"
+                "       wm density [reset|DENSITY]\n"
+                "       wm overscan [reset|LEFT,TOP,RIGHT,BOTTOM]\n"
+                "\n"
+                "wm size: return or override display size.\n"
+                "\n"
+                "wm density: override display density.\n"
+                "\n"
                 "wm overscan: set overscan area for display.\n"
                 );
     }

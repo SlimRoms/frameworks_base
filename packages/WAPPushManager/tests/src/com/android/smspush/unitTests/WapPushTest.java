@@ -1558,7 +1558,7 @@ public class WapPushTest extends ServiceTestCase<WapPushManager> {
      */
     public void testProcessMsg2() {
         byte[] pdu = createPDU(1);
-        int headerLen = pdu.length - (mGsmHeader.length +
+        int headerLen = pdu.length - (mGsmHeader.length
                 mUserDataHeader.length + mMessageBody.length);
         int pduType = 6;
         int tranId = 0;
@@ -2476,7 +2476,7 @@ public class WapPushTest extends ServiceTestCase<WapPushManager> {
         IDataVerify dataverify = getVerifyInterface();
         mClassName = "com.android.smspush.unitTests.ReceiverService";
 
-        for (int i = 0; i < OMA_APPLICATION_ID_VALUES.length +
+        for (int i = 0; i < OMA_APPLICATION_ID_VALUES.length
                     OMA_CONTENT_TYPE_VALUES.length; i++) {
             mAppIdValue = OMA_APPLICATION_ID_VALUES[rd.nextInt(
                     OMA_APPLICATION_ID_VALUES.length)];

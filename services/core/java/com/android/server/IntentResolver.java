@@ -720,7 +720,7 @@ public abstract class IntentResolver<F extends IntentFilter, R extends Object> {
 
             match = filter.match(action, resolvedType, scheme, data, categories, TAG);
             if (match >= 0) {
-                if (debug) Slog.v(TAG, "  Filter matched!  match=0x" +
+                if (debug) Slog.v(TAG, "  Filter matched!  match=0x"
                         Integer.toHexString(match) + " hasDefault="
                         + filter.hasCategory(Intent.CATEGORY_DEFAULT));
                 if (!defaultOnly || filter.hasCategory(Intent.CATEGORY_DEFAULT)) {

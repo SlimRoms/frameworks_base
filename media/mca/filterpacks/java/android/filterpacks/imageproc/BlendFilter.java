@@ -28,16 +28,16 @@ import android.filterfw.core.ShaderProgram;
 public class BlendFilter extends ImageCombineFilter {
 
     private final String mBlendShader =
-            "precision mediump float;\n" +
-            "uniform sampler2D tex_sampler_0;\n" +
-            "uniform sampler2D tex_sampler_1;\n" +
-            "uniform float blend;\n" +
-            "varying vec2 v_texcoord;\n" +
-            "void main() {\n" +
-            "  vec4 colorL = texture2D(tex_sampler_0, v_texcoord);\n" +
-            "  vec4 colorR = texture2D(tex_sampler_1, v_texcoord);\n" +
-            "  float weight = colorR.a * blend;\n" +
-            "  gl_FragColor = mix(colorL, colorR, weight);\n" +
+            "precision mediump float;\n"
+            "uniform sampler2D tex_sampler_0;\n"
+            "uniform sampler2D tex_sampler_1;\n"
+            "uniform float blend;\n"
+            "varying vec2 v_texcoord;\n"
+            "void main() {\n"
+            "  vec4 colorL = texture2D(tex_sampler_0, v_texcoord);\n"
+            "  vec4 colorR = texture2D(tex_sampler_1, v_texcoord);\n"
+            "  float weight = colorR.a * blend;\n"
+            "  gl_FragColor = mix(colorL, colorR, weight);\n"
             "}\n";
 
     public BlendFilter(String name) {

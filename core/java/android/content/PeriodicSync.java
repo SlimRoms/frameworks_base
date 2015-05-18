@@ -153,9 +153,9 @@ public class PeriodicSync implements Parcelable {
 
     @Override
     public String toString() {
-        return "account: " + account +
-               ", authority: " + authority +
-               ". period: " + period + "s " +
+        return "account: " + account
+               ", authority: " + authority
+               ". period: " + period + "s "
                ", flex: " + flexTime;
     }
 }

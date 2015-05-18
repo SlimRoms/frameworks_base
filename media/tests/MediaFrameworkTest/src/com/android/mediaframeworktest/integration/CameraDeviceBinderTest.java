@@ -284,13 +284,13 @@ public class CameraDeviceBinderTest extends AndroidTestCase {
         CaptureRequest.Builder builder = createDefaultBuilder(/* needStream */false);
         CaptureRequest request1 = builder.build();
         int status = mCameraUser.submitRequest(request1, /* streaming */false, null);
-        assertEquals("Expected submitRequest to return BAD_VALUE " +
+        assertEquals("Expected submitRequest to return BAD_VALUE "
                 "since we had 0 surface targets set.", CameraBinderTestUtils.BAD_VALUE, status);
 
         builder.addTarget(mSurface);
         CaptureRequest request2 = builder.build();
         status = mCameraUser.submitRequest(request2, /* streaming */false, null);
-        assertEquals("Expected submitRequest to return BAD_VALUE since " +
+        assertEquals("Expected submitRequest to return BAD_VALUE since "
                 "the target surface wasn't registered with createStream.",
                 CameraBinderTestUtils.BAD_VALUE, status);
     }

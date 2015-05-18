@@ -387,7 +387,7 @@ public class ParameterUtils {
          * Shrink requested crop region to fit inside of the active array size
          */
         if (!actualCrop.intersect(activeArray)) {
-            Log.w(TAG, "getClosestAvailableZoomCrop - Crop region out of range; " +
+            Log.w(TAG, "getClosestAvailableZoomCrop - Crop region out of range; "
                     "setting to active array size");
             actualCrop.set(activeArray);
         }
@@ -420,10 +420,10 @@ public class ParameterUtils {
 
         if (VERBOSE) {
             Log.v(TAG,
-                    "getClosestAvailableZoomCrop - availableReportedCropRegions = " +
+                    "getClosestAvailableZoomCrop - availableReportedCropRegions = "
                             ListUtils.listToString(availableReportedCropRegions));
             Log.v(TAG,
-                    "getClosestAvailableZoomCrop - availablePreviewCropRegions = " +
+                    "getClosestAvailableZoomCrop - availablePreviewCropRegions = "
                             ListUtils.listToString(availablePreviewCropRegions));
         }
 
@@ -766,9 +766,9 @@ public class ParameterUtils {
                 /*out*/reportedCropRegion, /*out*/previewCropRegion);
 
         if (VERBOSE) {
-            Log.v(TAG, "convertScalerCropRegion - zoom calculated to: " +
-                    "zoomIndex = " + zoomIdx +
-                    ", reported crop region = " + reportedCropRegion +
+            Log.v(TAG, "convertScalerCropRegion - zoom calculated to: "
+                    "zoomIndex = " + zoomIdx
+                    ", reported crop region = " + reportedCropRegion
                     ", preview crop region = " + previewCropRegion);
         }
 
@@ -827,7 +827,7 @@ public class ParameterUtils {
         Camera.Area meteringArea;
         if (!normalizedIntersected.intersect(NORMALIZED_RECTANGLE_DEFAULT)) {
             Log.w(TAG,
-                    "convertMeteringRectangleToLegacy - metering rectangle too small, " +
+                    "convertMeteringRectangleToLegacy - metering rectangle too small, "
                     "no metering will be done");
             normalizedIntersected.set(RECTANGLE_EMPTY);
             meteringArea = new Camera.Area(RECTANGLE_EMPTY,
@@ -861,8 +861,8 @@ public class ParameterUtils {
 
         if (VERBOSE) {
             Log.v(TAG, String.format(
-                    "convertMeteringRectangleToLegacy - activeArray = %s, meteringRect = %s, " +
-                    "previewCrop = %s, meteringArea = %s, previewMetering = %s, " +
+                    "convertMeteringRectangleToLegacy - activeArray = %s, meteringRect = %s, "
+                    "previewCrop = %s, meteringArea = %s, previewMetering = %s, "
                     "reportedMetering = %s, normalizedRegionUnbounded = %s",
                     activeArray, meteringRect,
                     previewCrop, stringFromArea(meteringArea), previewMetering,

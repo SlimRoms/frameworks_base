@@ -774,7 +774,7 @@ public class AudioService extends IAudioService.Stub {
      * @hide
      */
     public void addMediaPlayerAndUpdateRemoteController (String packageName) {
-        Log.v(TAG, "addMediaPlayerAndUpdateRemoteController: size of existing list: " +
+        Log.v(TAG, "addMediaPlayerAndUpdateRemoteController: size of existing list: "
                                                                 mMediaPlayers.size());
         boolean playerToAdd = true;
         if (mMediaPlayers.size() > 0) {
@@ -808,7 +808,7 @@ public class AudioService extends IAudioService.Stub {
      * @hide
      */
     public void updateRemoteControllerOnExistingMediaPlayers() {
-        Log.v(TAG, "updateRemoteControllerOnExistingMediaPlayers: size of Player list: " +
+        Log.v(TAG, "updateRemoteControllerOnExistingMediaPlayers: size of Player list: "
                                                                 mMediaPlayers.size());
         if (mMediaPlayers.size() > 0) {
             Log.v(TAG, "Inform RemoteController regarding existing RCC entry");
@@ -822,7 +822,7 @@ public class AudioService extends IAudioService.Stub {
                                                     player.isFocussed());
                 intent.putExtra(AudioManager.EXTRA_AVAILABLITY_CHANGED_VALUE, true);
                 sendBroadcastToAll(intent);
-                Log.v(TAG, "updating RCC change: CallingPackageName:" +
+                Log.v(TAG, "updating RCC change: CallingPackageName:"
                                                     player.getPackageName());
             }
         } else {
@@ -834,7 +834,7 @@ public class AudioService extends IAudioService.Stub {
      * @hide
      */
     public void removeMediaPlayerAndUpdateRemoteController (String packageName) {
-        Log.v(TAG, "removeMediaPlayerAndUpdateRemoteController: size of existing list: " +
+        Log.v(TAG, "removeMediaPlayerAndUpdateRemoteController: size of existing list: "
                                                                 mMediaPlayers.size());
         boolean playerToRemove = false;
         int index = -1;
@@ -3280,7 +3280,7 @@ public class AudioService extends IAudioService.Stub {
             break;
         case RINGER_MODE_VIBRATE:
             if (!mHasVibrator) {
-                Log.e(TAG, "checkForRingerModeChange() current ringer mode is vibrate" +
+                Log.e(TAG, "checkForRingerModeChange() current ringer mode is vibrate"
                         "but no vibrator is present");
                 break;
             }
@@ -4313,7 +4313,7 @@ public class AudioService extends IAudioService.Stub {
                 } else {
                     MediaPlayer mediaPlayer = new MediaPlayer();
                     try {
-                        String filePath = Environment.getRootDirectory() + SOUND_EFFECTS_PATH +
+                        String filePath = Environment.getRootDirectory() + SOUND_EFFECTS_PATH
                                     SOUND_EFFECT_FILES.get(SOUND_EFFECT_FILES_MAP[effectType][0]);
                         mediaPlayer.setDataSource(filePath);
                         mediaPlayer.setAudioStreamType(AudioSystem.STREAM_SYSTEM);
@@ -6072,7 +6072,7 @@ public class AudioService extends IAudioService.Stub {
                 mAudioPolicies.put(pcb.asBinder(), app);
             } catch (RemoteException e) {
                 // audio policy owner has already died!
-                Slog.w(TAG, "Audio policy registration failed, could not link to " + pcb +
+                Slog.w(TAG, "Audio policy registration failed, could not link to " + pcb
                         " binder death", e);
                 return null;
             }
@@ -6104,7 +6104,7 @@ public class AudioService extends IAudioService.Stub {
                 (PackageManager.PERMISSION_GRANTED == mContext.checkCallingPermission(
                         android.Manifest.permission.MODIFY_AUDIO_ROUTING));
         if (!hasPermissionForPolicy) {
-            Slog.w(TAG, "Cannot change audio policy ducking handling for pid " +
+            Slog.w(TAG, "Cannot change audio policy ducking handling for pid "
                     + Binder.getCallingPid() + " / uid "
                     + Binder.getCallingUid() + ", need MODIFY_AUDIO_ROUTING");
             return AudioManager.ERROR;

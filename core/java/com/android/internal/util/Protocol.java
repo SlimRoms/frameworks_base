@@ -23,7 +23,7 @@ package com.android.internal.util;
  * of message codes.
  *
  * As an example, all messages in {@link android.net.wifi.WifiStateMachine} will have message
- * codes with Message.what starting at Protocol.WIFI + 1 and less than or equal to Protocol.WIFI +
+ * codes with Message.what starting at Protocol.WIFI + 1 and less than or equal to Protocol.WIFI
  * Protocol.MAX_MESSAGE
  *
  * NOTE: After a value is created and source released a value shouldn't be changed to

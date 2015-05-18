@@ -150,19 +150,19 @@ public class GLTextureViewActivity extends Activity implements TextureView.Surfa
         }
 
         private static final String sSimpleVS =
-                "attribute vec4 position;\n" +
-                "attribute vec2 texCoords;\n" +
-                "varying vec2 outTexCoords;\n" +
-                "\nvoid main(void) {\n" +
-                "    outTexCoords = texCoords;\n" +
-                "    gl_Position = position;\n" +
+                "attribute vec4 position;\n"
+                "attribute vec2 texCoords;\n"
+                "varying vec2 outTexCoords;\n"
+                "\nvoid main(void) {\n"
+                "    outTexCoords = texCoords;\n"
+                "    gl_Position = position;\n"
                 "}\n\n";
         private static final String sSimpleFS =
-                "precision mediump float;\n\n" +
-                "varying vec2 outTexCoords;\n" +
-                "uniform sampler2D texture;\n" +
-                "\nvoid main(void) {\n" +
-                "    gl_FragColor = texture2D(texture, outTexCoords);\n" +
+                "precision mediump float;\n\n"
+                "varying vec2 outTexCoords;\n"
+                "uniform sampler2D texture;\n"
+                "\nvoid main(void) {\n"
+                "    gl_FragColor = texture2D(texture, outTexCoords);\n"
                 "}\n\n";
 
         private static final int FLOAT_SIZE_BYTES = 4;
@@ -369,7 +369,7 @@ public class GLTextureViewActivity extends Activity implements TextureView.Surfa
             
             int[] version = new int[2];
             if (!mEgl.eglInitialize(mEglDisplay, version)) {
-                throw new RuntimeException("eglInitialize failed " +
+                throw new RuntimeException("eglInitialize failed "
                         GLUtils.getEGLErrorString(mEgl.eglGetError()));
             }
 
@@ -411,7 +411,7 @@ public class GLTextureViewActivity extends Activity implements TextureView.Surfa
             EGLConfig[] configs = new EGLConfig[1];
             int[] configSpec = getConfig();
             if (!mEgl.eglChooseConfig(mEglDisplay, configSpec, configs, 1, configsCount)) {
-                throw new IllegalArgumentException("eglChooseConfig failed " +
+                throw new IllegalArgumentException("eglChooseConfig failed "
                         GLUtils.getEGLErrorString(mEgl.eglGetError()));
             } else if (configsCount[0] > 0) {
                 return configs[0];

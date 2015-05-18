@@ -297,7 +297,7 @@ class DragState {
         try {
             mSurfaceControl.setPosition(x - mThumbOffsetX, y - mThumbOffsetY);
             if (WindowManagerService.SHOW_TRANSACTIONS) Slog.i(WindowManagerService.TAG, "  DRAG "
-                    + mSurfaceControl + ": pos=(" +
+                    + mSurfaceControl + ": pos=("
                     (int)(x - mThumbOffsetX) + "," + (int)(y - mThumbOffsetY) + ")");
         } finally {
             SurfaceControl.closeTransaction();

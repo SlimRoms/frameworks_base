@@ -229,8 +229,8 @@ public abstract class ActionProvider {
      */
     public void setVisibilityListener(VisibilityListener listener) {
         if (mVisibilityListener != null) {
-            Log.w(TAG, "setVisibilityListener: Setting a new ActionProvider.VisibilityListener " +
-                    "when one is already set. Are you reusing this " + getClass().getSimpleName() +
+            Log.w(TAG, "setVisibilityListener: Setting a new ActionProvider.VisibilityListener "
+                    "when one is already set. Are you reusing this " + getClass().getSimpleName()
                     " instance while it is still in use somewhere else?");
         }
         mVisibilityListener = listener;

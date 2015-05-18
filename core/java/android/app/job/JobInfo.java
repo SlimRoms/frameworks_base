@@ -448,22 +448,22 @@ public class JobInfo implements Parcelable {
             // Allow jobs with no constraints - What am I, a database?
             if (!mHasEarlyConstraint && !mHasLateConstraint && !mRequiresCharging &&
                     !mRequiresDeviceIdle && mNetworkType == NETWORK_TYPE_NONE) {
-                throw new IllegalArgumentException("You're trying to build a job with no " +
+                throw new IllegalArgumentException("You're trying to build a job with no "
                         "constraints, this is not allowed.");
             }
             mExtras = new PersistableBundle(mExtras);  // Make our own copy.
             // Check that a deadline was not set on a periodic job.
             if (mIsPeriodic && (mMaxExecutionDelayMillis != 0L)) {
-                throw new IllegalArgumentException("Can't call setOverrideDeadline() on a " +
+                throw new IllegalArgumentException("Can't call setOverrideDeadline() on a "
                         "periodic job.");
             }
             if (mIsPeriodic && (mMinLatencyMillis != 0L)) {
-                throw new IllegalArgumentException("Can't call setMinimumLatency() on a " +
+                throw new IllegalArgumentException("Can't call setMinimumLatency() on a "
                         "periodic job");
             }
             if (mBackoffPolicySet && mRequiresDeviceIdle) {
-                throw new IllegalArgumentException("An idle mode job will not respect any" +
-                        " back-off policy, so calling setBackoffCriteria with" +
+                throw new IllegalArgumentException("An idle mode job will not respect any"
+                        " back-off policy, so calling setBackoffCriteria with"
                         " setRequiresDeviceIdle is an error.");
             }
             return new JobInfo(this);

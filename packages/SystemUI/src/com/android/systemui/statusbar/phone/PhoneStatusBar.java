@@ -579,7 +579,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     Settings.Secure.USER_SETUP_COMPLETE,
                     0 /*default */,
                     mCurrentUserId);
-            if (MULTIUSER_DEBUG) Log.d(TAG, String.format("User setup changed: " +
+            if (MULTIUSER_DEBUG) Log.d(TAG, String.format("User setup changed: "
                     "selfChange=%s userSetup=%s mUserSetup=%s",
                     selfChange, userSetup, mUserSetup));
 
@@ -1075,7 +1075,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             mSubsLabel = (TextView)mStatusBarWindow.findViewById(R.id.subs_label);
             mShowCarrierInPanel = (mCarrierLabel != null);
 
-            if (DEBUG) Log.v(TAG, "carrierlabel=" + mCarrierLabel + " show=" +
+            if (DEBUG) Log.v(TAG, "carrierlabel=" + mCarrierLabel + " show="
                                     mShowCarrierInPanel + "operator label=" + mSubsLabel);
             if (mShowCarrierInPanel) {
                 mCarrierLabel.setVisibility(mCarrierLabelVisible ? View.VISIBLE : View.INVISIBLE);
@@ -1913,7 +1913,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
 
         if (DEBUG) {
-            Log.d(TAG, "refreshing icons: " + toShow.size() +
+            Log.d(TAG, "refreshing icons: " + toShow.size()
                     " notifications, mNotificationIcons=" + mNotificationIcons);
         }
 
@@ -2030,8 +2030,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         if (SPEW) {
             final boolean clearable = hasActiveNotifications() &&
                     mNotificationData.hasActiveClearableNotifications();
-            Log.d(TAG, "setAreThereNotifications: N=" +
-                    mNotificationData.getActiveNotifications().size() + " any=" +
+            Log.d(TAG, "setAreThereNotifications: N="
+                    mNotificationData.getActiveNotifications().size() + " any="
                     hasActiveNotifications() + " clearable=" + clearable);
         }
 
@@ -3395,7 +3395,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         pw.println("  Panels: ");
         if (mNotificationPanel != null) {
-            pw.println("    mNotificationPanel=" +
+            pw.println("    mNotificationPanel="
                 mNotificationPanel + " params=" + mNotificationPanel.getLayoutParams().debug(""));
             pw.print  ("      ");
             mNotificationPanel.dump(fd, pw, args);

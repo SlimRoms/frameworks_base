@@ -1230,8 +1230,8 @@ public class Editor {
                     InputMethodManager imm = InputMethodManager.peekInstance();
                     if (imm != null) {
                         if (TextView.DEBUG_EXTRACT) Log.v(TextView.LOG_TAG,
-                                "Retrieving extracted start=" + ims.mChangedStart +
-                                " end=" + ims.mChangedEnd +
+                                "Retrieving extracted start=" + ims.mChangedStart
+                                " end=" + ims.mChangedEnd
                                 " delta=" + ims.mChangedDelta);
                         if (ims.mChangedStart < 0 && !contentChanged) {
                             ims.mChangedStart = EXTRACT_NOTHING;
@@ -1239,9 +1239,9 @@ public class Editor {
                         if (extractTextInternal(req, ims.mChangedStart, ims.mChangedEnd,
                                 ims.mChangedDelta, ims.mExtractedText)) {
                             if (TextView.DEBUG_EXTRACT) Log.v(TextView.LOG_TAG,
-                                    "Reporting extracted start=" +
-                                    ims.mExtractedText.partialStartOffset +
-                                    " end=" + ims.mExtractedText.partialEndOffset +
+                                    "Reporting extracted start="
+                                    ims.mExtractedText.partialStartOffset
+                                    " end=" + ims.mExtractedText.partialEndOffset
                                     ": " + ims.mExtractedText.text);
 
                             imm.updateExtractedText(mTextView, req.token, ims.mExtractedText);
@@ -4054,7 +4054,7 @@ public class Editor {
 
             final float coef = 1.0f - (float) duration / FADE_OUT_DURATION;
             final int highlightColorAlpha = Color.alpha(mTextView.mHighlightColor);
-            final int color = (mTextView.mHighlightColor & 0x00FFFFFF) +
+            final int color = (mTextView.mHighlightColor & 0x00FFFFFF)
                     ((int) (highlightColorAlpha * coef) << 24);
             mPaint.setColor(color);
             return true;

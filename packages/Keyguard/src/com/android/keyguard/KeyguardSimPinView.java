@@ -217,7 +217,7 @@ public class KeyguardSimPinView extends KeyguardPinBasedInputView {
                 Log.v(TAG, "call supplyPinReportResultUsingSubId() mSubId = " + mSubId);
                 final int[] result = ITelephony.Stub.asInterface(ServiceManager
                     .checkService("phone")).supplyPinReportResultForSubscriber(mSubId, mPin);
-                Log.v(TAG, "supplyPinReportResultUsingSubId returned: " + result[0] +
+                Log.v(TAG, "supplyPinReportResultUsingSubId returned: " + result[0]
                         " " + result[1]);
                 post(new Runnable() {
                     public void run() {
@@ -362,7 +362,7 @@ public class KeyguardSimPinView extends KeyguardPinBasedInputView {
         if (null != info) {
            displayName = info.getDisplayName().toString();
         }
-        if (DEBUG) Log.i(TAG, "handleSubInfoChange, mSubId=" + mSubId +
+        if (DEBUG) Log.i(TAG, "handleSubInfoChange, mSubId=" + mSubId
                 ", displayName=" + displayName);
 
         TextView slotName = (TextView)findViewById(R.id.slot_id_name);

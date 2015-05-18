@@ -122,7 +122,7 @@ public final class RestrictionsManagerService extends SystemService {
                             "Cannot request permission without a restrictions provider registered");
                     }
                     // Check that the packageName matches the caller.
-                    enforceCallerMatchesPackage(callingUid, packageName, "Package name does not" +
+                    enforceCallerMatchesPackage(callingUid, packageName, "Package name does not"
                             " match caller ");
                     // Prepare and broadcast the intent to the provider
                     Intent intent = new Intent(RestrictionsManager.ACTION_REQUEST_PERMISSION);

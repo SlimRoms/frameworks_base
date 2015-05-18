@@ -328,7 +328,7 @@ public class GridView extends AbsListView {
             nextLeft = getWidth() - mListPadding.right - columnWidth -
                     ((mStretchMode == STRETCH_SPACING_UNIFORM) ? horizontalSpacing : 0);
         } else {
-            nextLeft = mListPadding.left +
+            nextLeft = mListPadding.left
                     ((mStretchMode == STRETCH_SPACING_UNIFORM) ? horizontalSpacing : 0);
         }
 
@@ -1082,7 +1082,7 @@ public class GridView extends AbsListView {
         }
         
         if (heightMode == MeasureSpec.UNSPECIFIED) {
-            heightSize = mListPadding.top + mListPadding.bottom + childHeight +
+            heightSize = mListPadding.top + mListPadding.bottom + childHeight
                     getVerticalFadingEdgeLength() * 2;
         }
 
@@ -2330,7 +2330,7 @@ public class GridView extends AbsListView {
                 final int oddItemsOnFirstRow = isStackFromBottom() ? ((rowCount * numColumns) -
                         mItemCount) : 0;
                 final int whichRow = (mFirstPosition + oddItemsOnFirstRow) / numColumns;
-                return Math.max(whichRow * 100 - (top * 100) / height +
+                return Math.max(whichRow * 100 - (top * 100) / height
                         (int) ((float) mScrollY / getHeight() * rowCount * 100), 0);
             }
         }

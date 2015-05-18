@@ -373,7 +373,7 @@ public class StackScrollAlgorithm {
             childViewState.yTranslation = currentYPosition;
 
             // The y position after this element
-            float nextYPosition = currentYPosition + childHeight +
+            float nextYPosition = currentYPosition + childHeight
                     mPaddingBetweenElements;
 
             if (i <= algorithmState.lastTopStackIndex) {
@@ -493,7 +493,7 @@ public class StackScrollAlgorithm {
 
         // This is the transitioning element on top of bottom stack, calculate how far we are in.
         algorithmState.partialInBottom = 1.0f - (
-                (transitioningPositionStart - currentYPosition) / (childHeight +
+                (transitioningPositionStart - currentYPosition) / (childHeight
                         mPaddingBetweenElements));
 
         // the offset starting at the transitionPosition of the bottom stack

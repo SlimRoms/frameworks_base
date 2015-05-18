@@ -41,7 +41,7 @@ public class ListItemFactory {
      */
     public static View twoButtonsSeparatedByFiller(int position, Context context, int desiredHeight) {
         if (desiredHeight < 90) {
-            throw new IllegalArgumentException("need at least 90 pixels of height " +
+            throw new IllegalArgumentException("need at least 90 pixels of height "
                     "to create the two buttons and leave 10 pixels for the filler");
         }
 

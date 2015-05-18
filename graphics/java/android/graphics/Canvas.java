@@ -1543,7 +1543,7 @@ public class Canvas {
      * @param colors May be null. Specifies a color at each vertex, which is
      *               interpolated across the cell, and whose values are
      *               multiplied by the corresponding bitmap colors. If not null,
-     *               there must be at least (meshWidth+1) * (meshHeight+1) +
+     *               there must be at least (meshWidth+1) * (meshHeight+1)
      *               colorOffset values in the array.
      * @param colorOffset Number of color elements to skip before drawing
      * @param paint  May be null. The paint used to draw the bitmap

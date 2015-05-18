@@ -90,7 +90,7 @@ public class TestJobService extends JobService {
         }
 
         Toast.makeText(
-                this, "On start job: '" + params.getJobId() + "' deadline exceeded: " +
+                this, "On start job: '" + params.getJobId() + "' deadline exceeded: "
                         params.isOverrideDeadlineExpired(),
                 Toast.LENGTH_LONG).show();
 

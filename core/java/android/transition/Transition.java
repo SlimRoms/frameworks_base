@@ -713,7 +713,7 @@ public abstract class Transition implements Cloneable {
                             Object startValue = start.values.get(key);
                             Object endValue = end.values.get(key);
                             if (startValue != endValue && !startValue.equals(endValue)) {
-                                Log.d(LOG_TAG, "    " + key + ": start(" + startValue +
+                                Log.d(LOG_TAG, "    " + key + ": start(" + startValue
                                         "), end(" + endValue + ")");
                             }
                         }
@@ -1808,8 +1808,8 @@ public abstract class Transition implements Cloneable {
             changed = !oldValue.equals(newValue);
         }
         if (DBG && changed) {
-            Log.d(LOG_TAG, "Transition.playTransition: " +
-                    "oldValue != newValue for " + key +
+            Log.d(LOG_TAG, "Transition.playTransition: "
+                    "oldValue != newValue for " + key
                     ": old, new = " + oldValue + ", " + newValue);
         }
         return changed;
@@ -2203,7 +2203,7 @@ public abstract class Transition implements Cloneable {
     }
 
     String toString(String indent) {
-        String result = indent + getClass().getSimpleName() + "@" +
+        String result = indent + getClass().getSimpleName() + "@"
                 Integer.toHexString(hashCode()) + ": ";
         if (mDuration != -1) {
             result += "dur(" + mDuration + ") ";

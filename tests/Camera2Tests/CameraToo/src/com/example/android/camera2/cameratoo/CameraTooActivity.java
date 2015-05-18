@@ -258,7 +258,7 @@ public class CameraTooActivity extends Activity {
                             // Danger, W.R.! Attempting to use too large a preview size could
                             // exceed the camera bus' bandwidth limitation, resulting in
                             // gorgeous previews but the storage of garbage capture data.
-                            Log.i(TAG, "SurfaceView size: " +
+                            Log.i(TAG, "SurfaceView size: "
                                     mSurfaceView.getWidth() + 'x' + mSurfaceView.getHeight());
                             Size optimalSize = chooseBigEnoughSize(
                                     info.getOutputSizes(SurfaceHolder.class), width, height);
@@ -412,10 +412,10 @@ public class CameraTooActivity extends Activity {
                         Environment.getExternalStoragePublicDirectory(
                                 Environment.DIRECTORY_PICTURES));
                 try (FileOutputStream ostream = new FileOutputStream(file)) {
-                    Log.i(TAG, "Retrieved image is" +
+                    Log.i(TAG, "Retrieved image is"
                             (mCapture.getFormat() == ImageFormat.JPEG ? "" : "n't") + " a JPEG");
                     ByteBuffer buffer = mCapture.getPlanes()[0].getBuffer();
-                    Log.i(TAG, "Captured image size: " +
+                    Log.i(TAG, "Captured image size: "
                             mCapture.getWidth() + 'x' + mCapture.getHeight());
 
                     // Write the image out to the chosen file

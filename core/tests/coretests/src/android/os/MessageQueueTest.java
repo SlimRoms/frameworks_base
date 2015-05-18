@@ -203,7 +203,7 @@ public class MessageQueueTest extends TestCase {
                     }
                     if (!newMsg.data.getString("key").equals(mBundle.getString("key"))) {
                         failure(new RuntimeException(String.format(
-                                "newMsg.data.getString(\"key\") is %s and does not equal" +
+                                "newMsg.data.getString(\"key\") is %s and does not equal"
                                 " mBundle.getString(\"key\") which is %s after copyFrom",
                                 newMsg.data.getString("key"),  mBundle.getString("key"))));
                     }
@@ -247,7 +247,7 @@ public class MessageQueueTest extends TestCase {
                     }
                     if (!msg.data.getString("key").equals(mBundle.getString("key"))) {
                         failure(new RuntimeException(String.format(
-                                "msg.data.getString(\"key\") is %s and does not equal" +
+                                "msg.data.getString(\"key\") is %s and does not equal"
                                 " mBundle.getString(\"key\") which is %s when processing # %d",
                                 msg.data.getString("key"),  mBundle.getString("key"), msg.what)));
                     }

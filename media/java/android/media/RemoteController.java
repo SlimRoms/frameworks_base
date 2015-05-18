@@ -403,7 +403,7 @@ import java.util.List;
     public void setRemoteControlClientPlayItem(long uid, int scope) {
         Log.e(TAG, "setRemoteControlClientPlayItem()");
         if (!mEnabled) {
-            Log.e(TAG, "Cannot use setRemoteControlClientPlayItem()" +
+            Log.e(TAG, "Cannot use setRemoteControlClientPlayItem()"
                                             " from a disabled RemoteController");
             return;
         }
@@ -424,7 +424,7 @@ import java.util.List;
     public void getRemoteControlClientNowPlayingEntries() {
         Log.e(TAG, "getRemoteControlClientNowPlayingEntries()");
         if (!mEnabled) {
-            Log.e(TAG, "Cannot use getRemoteControlClientNowPlayingEntries()" +
+            Log.e(TAG, "Cannot use getRemoteControlClientNowPlayingEntries()"
                                             " from a disabled RemoteController");
             return;
         }
@@ -444,7 +444,7 @@ import java.util.List;
     public void setRemoteControlClientBrowsedPlayer() {
         Log.e(TAG, "setRemoteControlClientBrowsedPlayer()");
         if (!mEnabled) {
-            Log.e(TAG, "Cannot use setRemoteControlClientBrowsedPlayer()" +
+            Log.e(TAG, "Cannot use setRemoteControlClientBrowsedPlayer()"
                                             " from a disabled RemoteController");
             return;
         }
@@ -1100,11 +1100,11 @@ import java.util.List;
                     || !controller.getSessionToken()
                             .equals(mCurrentSession.getSessionToken())) {
                 if (mCurrentSession != null) {
-                    Log.v(TAG, "Updating current controller package as " +
+                    Log.v(TAG, "Updating current controller package as "
                      controller.getPackageName() + " from " + mCurrentSession.getPackageName());
                     mCurrentSession.unregisterCallback(mSessionCb);
                 } else {
-                    Log.v(TAG, "Updating current controller package as " +
+                    Log.v(TAG, "Updating current controller package as "
                       controller.getPackageName() + " from null");
                 }
 

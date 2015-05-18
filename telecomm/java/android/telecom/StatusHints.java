@@ -147,7 +147,7 @@ public final class StatusHints implements Parcelable {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(mPackageName) + Objects.hashCode(mLabel) + mIconResId +
+        return Objects.hashCode(mPackageName) + Objects.hashCode(mLabel) + mIconResId
                 Objects.hashCode(mExtras);
     }
 }

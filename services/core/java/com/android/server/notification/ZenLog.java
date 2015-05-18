@@ -73,19 +73,19 @@ public class ZenLog {
 
     public static void traceSetRingerModeExternal(int ringerModeOld, int ringerModeNew,
             String caller, int ringerModeInternalIn, int ringerModeInternalOut) {
-        append(TYPE_SET_RINGER_MODE_EXTERNAL, caller + ",e:" +
-                ringerModeToString(ringerModeOld) + "->" +
-                ringerModeToString(ringerModeNew)  + ",i:" +
-                ringerModeToString(ringerModeInternalIn) + "->" +
+        append(TYPE_SET_RINGER_MODE_EXTERNAL, caller + ",e:"
+                ringerModeToString(ringerModeOld) + "->"
+                ringerModeToString(ringerModeNew)  + ",i:"
+                ringerModeToString(ringerModeInternalIn) + "->"
                 ringerModeToString(ringerModeInternalOut));
     }
 
     public static void traceSetRingerModeInternal(int ringerModeOld, int ringerModeNew,
             String caller, int ringerModeExternalIn, int ringerModeExternalOut) {
-        append(TYPE_SET_RINGER_MODE_INTERNAL, caller + ",i:" +
-                ringerModeToString(ringerModeOld) + "->" +
-                ringerModeToString(ringerModeNew)  + ",e:" +
-                ringerModeToString(ringerModeExternalIn) + "->" +
+        append(TYPE_SET_RINGER_MODE_INTERNAL, caller + ",i:"
+                ringerModeToString(ringerModeOld) + "->"
+                ringerModeToString(ringerModeNew)  + ",e:"
+                ringerModeToString(ringerModeExternalIn) + "->"
                 ringerModeToString(ringerModeExternalOut));
     }
 

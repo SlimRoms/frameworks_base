@@ -254,14 +254,14 @@ public class ConnectionUtil {
         // flag is set.
         for (int networkType = NUM_NETWORK_TYPES - 1; networkType >= 0; networkType--) {
             mConnectivityState[networkType] =  new NetworkState();
-            Log.v(LOG_TAG, "Initialize network state for " + networkType + ": " +
+            Log.v(LOG_TAG, "Initialize network state for " + networkType + ": "
                     mConnectivityState[networkType].toString());
         }
     }
 
     public void recordNetworkState(int networkType, State networkState) {
         // deposit a network state
-        Log.v(LOG_TAG, "record network state for network " +  networkType +
+        Log.v(LOG_TAG, "record network state for network " +  networkType
                 ", state is " + networkState);
         mConnectivityState[networkType].recordState(networkState);
     }
@@ -296,7 +296,7 @@ public class ConnectionUtil {
      * @return result from network state validation
      */
     public String getTransitionFailureReason(int networkType) {
-        Log.v(LOG_TAG, "get network state transition failure reason for " + networkType + ": " +
+        Log.v(LOG_TAG, "get network state transition failure reason for " + networkType + ": "
                 mConnectivityState[networkType].toString());
         return mConnectivityState[networkType].getFailureReason();
     }
@@ -369,7 +369,7 @@ public class ConnectionUtil {
         long startTime = System.currentTimeMillis();
         while (true) {
             if ((System.currentTimeMillis() - startTime) > timeout) {
-                Log.v(LOG_TAG, "startDownloadAndWait timed out, failed to fetch " + targetUrl +
+                Log.v(LOG_TAG, "startDownloadAndWait timed out, failed to fetch " + targetUrl
                         " within " + timeout);
                 return downloadSuccessful(enqueue);
             }
@@ -435,18 +435,18 @@ public class ConnectionUtil {
         long startTime = System.currentTimeMillis();
         while (true) {
             if ((System.currentTimeMillis() - startTime) > timeout) {
-                Log.v(LOG_TAG, "waitForNetworkState time out, the state of network type " + networkType +
+                Log.v(LOG_TAG, "waitForNetworkState time out, the state of network type " + networkType
                         " is: " + mCM.getNetworkInfo(networkType).getState());
                 if (mCM.getNetworkInfo(networkType).getState() != expectedState) {
                     return false;
                 } else {
                     // the broadcast has been sent out. the state has been changed.
-                    Log.v(LOG_TAG, "networktype: " + networkType + " state: " +
+                    Log.v(LOG_TAG, "networktype: " + networkType + " state: "
                             mCM.getNetworkInfo(networkType));
                     return true;
                 }
             }
-            Log.v(LOG_TAG, "Wait for the connectivity state for network: " + networkType +
+            Log.v(LOG_TAG, "Wait for the connectivity state for network: " + networkType
                     " to be " + expectedState.toString());
             synchronized (mConnectivityMonitor) {
                 try {
@@ -461,13 +461,13 @@ public class ConnectionUtil {
                 // Still null after force fetch? Maybe the network did not have time to be brought
                 // up yet.
                 if (mNetworkInfo == null) {
-                    Log.v(LOG_TAG, "Failed to force fetch networkInfo. " +
+                    Log.v(LOG_TAG, "Failed to force fetch networkInfo. "
                             "The network is still not ready. Wait for the next broadcast");
                     continue;
                 }
                 if ((mNetworkInfo.getType() != networkType) ||
                         (mNetworkInfo.getState() != expectedState)) {
-                    Log.v(LOG_TAG, "network state for " + mNetworkInfo.getType() +
+                    Log.v(LOG_TAG, "network state for " + mNetworkInfo.getType()
                             "is: " + mNetworkInfo.getState());
                     continue;
                 }

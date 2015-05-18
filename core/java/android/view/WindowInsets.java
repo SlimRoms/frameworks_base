@@ -479,7 +479,7 @@ public final class WindowInsets {
     public String toString() {
         return "WindowInsets{systemWindowInsets=" + mSystemWindowInsets
                 + " windowDecorInsets=" + mWindowDecorInsets
-                + " stableInsets=" + mStableInsets +
+                + " stableInsets=" + mStableInsets
                 (isRound() ? " round}" : "}");
     }
 }

@@ -85,7 +85,7 @@ public class Console {
     /** Logs a divider bar */
     public static void logDivider(boolean condition) {
         if (condition) {
-            System.out.println("==== [" + System.currentTimeMillis() +
+            System.out.println("==== [" + System.currentTimeMillis()
                     "] ============================================================");
         }
     }
@@ -142,7 +142,7 @@ public class Console {
         String indent = "";
         for (int i = start - 1; i >= end; i--) {
             StackTraceElement el = callStack[i];
-            tinyStackTrace += indent + " -> " + el.getClassName() +
+            tinyStackTrace += indent + " -> " + el.getClassName()
                     "[" + el.getLineNumber() + "]." + el.getMethodName();
             if (i > end) {
                 tinyStackTrace += "\n";

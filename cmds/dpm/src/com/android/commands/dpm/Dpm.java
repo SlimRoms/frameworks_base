@@ -49,18 +49,18 @@ public final class Dpm extends BaseCommand {
     @Override
     public void onShowUsage(PrintStream out) {
         out.println(
-                "usage: dpm [subcommand] [options]\n" +
-                "usage: dpm set-active-admin [ --user <USER_ID> ] <COMPONENT>\n" +
-                "usage: dpm set-device-owner <COMPONENT>\n" +
-                "usage: dpm set-profile-owner <COMPONENT> <USER_ID>\n" +
-                "\n" +
-                "dpm set-active-admin: Sets the given component as active admin" +
-                " for an existing user.\n" +
-                "\n" +
-                "dpm set-device-owner: Sets the given component as active admin, and its\n" +
-                "  package as device owner.\n" +
-                "\n" +
-                "dpm set-profile-owner: Sets the given component as active admin and profile" +
+                "usage: dpm [subcommand] [options]\n"
+                "usage: dpm set-active-admin [ --user <USER_ID> ] <COMPONENT>\n"
+                "usage: dpm set-device-owner <COMPONENT>\n"
+                "usage: dpm set-profile-owner <COMPONENT> <USER_ID>\n"
+                "\n"
+                "dpm set-active-admin: Sets the given component as active admin"
+                " for an existing user.\n"
+                "\n"
+                "dpm set-device-owner: Sets the given component as active admin, and its\n"
+                "  package as device owner.\n"
+                "\n"
+                "dpm set-profile-owner: Sets the given component as active admin and profile"
                 "  owner for an existing user.\n");
     }
 
@@ -132,7 +132,7 @@ public final class Dpm extends BaseCommand {
 
         try {
             if (!mDevicePolicyManager.setProfileOwner(component, "" /*ownerName*/, userId)) {
-                throw new RuntimeException("Can't set component " + component.toShortString() +
+                throw new RuntimeException("Can't set component " + component.toShortString()
                         " as profile owner for user " + userId);
             }
         } catch (Exception e) {

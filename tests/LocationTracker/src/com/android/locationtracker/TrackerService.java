@@ -126,7 +126,7 @@ public class TrackerService extends Service {
 
         for (String providerName : locationProviders) {
             if (mTrackedProviders.contains(providerName)) {
-                Log.d(LOG_TAG, "Adding location listener for provider " +
+                Log.d(LOG_TAG, "Adding location listener for provider "
                         providerName);
                 if (doDebugLogging()) {
                     mTrackerData.writeEntry("init", String.format(
@@ -347,17 +347,17 @@ public class TrackerService extends Service {
             try {
                 if (location instanceof GsmCellLocation) {
                     GsmCellLocation cellLocation = (GsmCellLocation)location;
-                    String updateMsg = "cid=" + cellLocation.getCid() +
+                    String updateMsg = "cid=" + cellLocation.getCid()
                             ", lac=" + cellLocation.getLac();
                     mTrackerData.writeEntry(CELL_PROVIDER_TAG, updateMsg);
                 } else if (location instanceof CdmaCellLocation) {
                     CdmaCellLocation cellLocation = (CdmaCellLocation)location;
-                    String updateMsg = "BID=" + cellLocation.getBaseStationId() +
-                            ", SID=" + cellLocation.getSystemId() +
-                            ", NID=" + cellLocation.getNetworkId() +
-                            ", lat=" + cellLocation.getBaseStationLatitude() +
-                            ", long=" + cellLocation.getBaseStationLongitude() +
-                            ", SID=" + cellLocation.getSystemId() +
+                    String updateMsg = "BID=" + cellLocation.getBaseStationId()
+                            ", SID=" + cellLocation.getSystemId()
+                            ", NID=" + cellLocation.getNetworkId()
+                            ", lat=" + cellLocation.getBaseStationLatitude()
+                            ", long=" + cellLocation.getBaseStationLongitude()
+                            ", SID=" + cellLocation.getSystemId()
                             ", NID=" + cellLocation.getNetworkId();
                     mTrackerData.writeEntry(CELL_PROVIDER_TAG, updateMsg);
                 }
@@ -389,7 +389,7 @@ public class TrackerService extends Service {
                 WifiManager wifiManager =
                     (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
                 List<ScanResult> wifiScanResults = wifiManager.getScanResults();
-                String updateMsg = "num scan results=" +
+                String updateMsg = "num scan results="
                     (wifiScanResults == null ? "0" : wifiScanResults.size());
                 mTrackerData.writeEntry(WIFI_PROVIDER_TAG, updateMsg);
 
