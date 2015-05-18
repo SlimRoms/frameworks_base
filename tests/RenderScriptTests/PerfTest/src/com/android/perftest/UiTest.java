@@ -300,25 +300,25 @@ public class UiTest implements RsBenchBaseTest{
         createParticlesMesh();
 
         ProgramVertex.Builder sb = new ProgramVertex.Builder(mRS);
-        String t =  "varying vec4 varColor;\n" +
-                    "varying vec2 varTex0;\n" +
-                    "void main() {\n" +
-                    "  float dist = ATTRIB_position.y;\n" +
-                    "  float angle = ATTRIB_position.x;\n" +
-                    "  float x = dist * sin(angle);\n" +
-                    "  float y = dist * cos(angle) * 0.892;\n" +
-                    "  float p = dist * 5.5;\n" +
-                    "  float s = cos(p);\n" +
-                    "  float t = sin(p);\n" +
-                    "  vec4 pos;\n" +
-                    "  pos.x = t * x + s * y;\n" +
-                    "  pos.y = s * x - t * y;\n" +
-                    "  pos.z = ATTRIB_position.z;\n" +
-                    "  pos.w = 1.0;\n" +
-                    "  gl_Position = UNI_MVP * pos;\n" +
-                    "  gl_PointSize = ATTRIB_color.a * 10.0;\n" +
-                    "  varColor.rgb = ATTRIB_color.rgb;\n" +
-                    "  varColor.a = 1.0;\n" +
+        String t =  "varying vec4 varColor;\n"
+                    "varying vec2 varTex0;\n"
+                    "void main() {\n"
+                    "  float dist = ATTRIB_position.y;\n"
+                    "  float angle = ATTRIB_position.x;\n"
+                    "  float x = dist * sin(angle);\n"
+                    "  float y = dist * cos(angle) * 0.892;\n"
+                    "  float p = dist * 5.5;\n"
+                    "  float s = cos(p);\n"
+                    "  float t = sin(p);\n"
+                    "  vec4 pos;\n"
+                    "  pos.x = t * x + s * y;\n"
+                    "  pos.y = s * x - t * y;\n"
+                    "  pos.z = ATTRIB_position.z;\n"
+                    "  pos.w = 1.0;\n"
+                    "  gl_Position = UNI_MVP * pos;\n"
+                    "  gl_PointSize = ATTRIB_color.a * 10.0;\n"
+                    "  varColor.rgb = ATTRIB_color.rgb;\n"
+                    "  varColor.a = 1.0;\n"
                     "}\n";
         sb.setShader(t);
         sb.addInput(mParticlesMesh.getVertexAllocation(0).getType().getElement());

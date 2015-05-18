@@ -33,40 +33,40 @@ public class LocationTest extends TestCase {
         double result;
 
         result = Location.convert(testDegreesCoord);
-        message = "degreesToDoubleTest: Double should be -80.075, actual value is " +
+        message = "degreesToDoubleTest: Double should be -80.075, actual value is "
                 String.valueOf(result);
         assertEquals(message, -80.075, result);
     }
-    
+
     public void testConvert_MinutesToDouble(){
         String testMinutesCoord = "-80:05.10000";
         String message;
         double result;
 
         result = Location.convert(testMinutesCoord);
-        message = "minutesToDoubleTest: Double should be -80.085, actual value is " +
+        message = "minutesToDoubleTest: Double should be -80.085, actual value is "
                 String.valueOf(result);
         assertEquals(message, -80.085, result);
     }
-    
+
     public void testConvert_SecondsToDouble(){
         String testSecondsCoord = "-80:04:03.00000";
         String message;
         double result;
 
         result = Location.convert(testSecondsCoord);
-        message = "secondsToDoubleTest: Double should be -80.0675, actual value is " +
+        message = "secondsToDoubleTest: Double should be -80.0675, actual value is "
                 String.valueOf(result);
         assertEquals(message, -80.0675, result);
     }
-    
+
     public void testConvert_SecondsToDouble2(){
         String testSecondsCoord = "-80:4:3";
         String message;
         double result;
 
         result = Location.convert(testSecondsCoord);
-        message = "secondsToDouble2Test: Double should be -80.0675, actual value is " +
+        message = "secondsToDouble2Test: Double should be -80.0675, actual value is "
                 String.valueOf(result);
         assertEquals(message, -80.0675, result);
     }
@@ -80,7 +80,7 @@ public class LocationTest extends TestCase {
         message = "coordinateToDegreesTest: Should return a string -80.075, but returned " + result;
         assertEquals(message, "-80.075", result);
     }
-    
+
     public void testConvert_CoordinateToDegrees2(){
         String message;
         String result;
@@ -88,33 +88,33 @@ public class LocationTest extends TestCase {
         message = "coordinateToDegrees2Test: Should return a string -80, but returned " + result;
         assertEquals(message, "-80", result);
     }
-    
+
     public void testConvert_CoordinateToMinutes(){
         String message;
         String result;
         double input = -80.085;
         result = Location.convert(input, Location.FORMAT_MINUTES);
-        message = "coordinateToMinuteTest: Should return a string -80:5.1, but returned " +
+        message = "coordinateToMinuteTest: Should return a string -80:5.1, but returned "
                 result;
         assertEquals(message, "-80:5.1", result);
     }
-    
+
     public void testConvert_CoordinateToMinutes2(){
         String message;
         String result;
         double input = -80;
         result = Location.convert(input, Location.FORMAT_MINUTES);
-        message = "coordinateToMinute2Test: Should return a string -80:0, but returned " +
+        message = "coordinateToMinute2Test: Should return a string -80:0, but returned "
                 result;
         assertEquals(message, "-80:0", result);
     }
-    
+
     public void testConvert_CoordinateToSeconds(){
         String message;
         String result;
 
         result = Location.convert(-80.075, Location.FORMAT_SECONDS);
-        message = "coordinateToSecondsTest: Should return a string -80:4:30, but returned " +
+        message = "coordinateToSecondsTest: Should return a string -80:4:30, but returned "
                 result;
         assertEquals(message, "-80:4:30", result);
     }
@@ -137,20 +137,20 @@ public class LocationTest extends TestCase {
         assertEquals(message, 0, bearing, 0);
 
         bearing = zeroLocation.bearingTo(testLocation);
-        message = "bearingToTest: Bearing should be 180, actual value is " +
+        message = "bearingToTest: Bearing should be 180, actual value is "
                 String.valueOf(bearing);
         assertEquals(message, 180, bearing, 0);
 
         testLocation.setLatitude(0);
         testLocation.setLongitude(1000000);
         bearing = zeroLocation.bearingTo(testLocation);
-        message = "bearingToTest: Bearing should be -90, actual value is " +
+        message = "bearingToTest: Bearing should be -90, actual value is "
                 String.valueOf(bearing);
         assertEquals(message, -90, bearing, 0);
 
         //TODO: Test a Random Middle Value
     }
-    
+
     public void testDistanceTo() {
         String message;
         boolean result = true;
@@ -164,16 +164,16 @@ public class LocationTest extends TestCase {
         testLocation.setLongitude(0);
 
         distance = zeroLocation.distanceTo(zeroLocation);
-        message = "distanceToTest: Distance should be 0, actual value is " +
+        message = "distanceToTest: Distance should be 0, actual value is "
         String.valueOf(distance);
         assertEquals(message, distance, 0, 0);
 
         distance = zeroLocation.distanceTo(testLocation);
-        message = "distanceToTest: Distance should be 8885140, actual value is " +
+        message = "distanceToTest: Distance should be 8885140, actual value is "
         String.valueOf(distance);
         assertEquals(message, distance, 8885140.0, 1);
     }
-    
+
     public void testAltitude() {
         String message;
         Location loc = new Location("");

@@ -222,7 +222,7 @@ public abstract class ViewGroup extends View implements ViewParent, ViewManager 
      * NOTE: If you change the flags below make sure to reflect the changes
      *       the DisplayList class
      */
-    
+
     // When set, ViewGroup invalidates only the child's rectangle
     // Set by default
     static final int FLAG_CLIP_CHILDREN = 0x1;
@@ -268,7 +268,7 @@ public abstract class ViewGroup extends View implements ViewParent, ViewManager 
     /**
      * When set, the drawing method will call {@link #getChildDrawingOrder(int, int)}
      * to get the index of the child to draw for that iteration.
-     * 
+     *
      * @hide
      */
     protected static final int FLAG_USE_CHILD_DRAWING_ORDER = 0x400;
@@ -793,7 +793,7 @@ public abstract class ViewGroup extends View implements ViewParent, ViewManager 
             try {
                 mParent.childHasTransientStateChanged(this, newHasTransientState);
             } catch (AbstractMethodError e) {
-                Log.e(TAG, mParent.getClass().getSimpleName() +
+                Log.e(TAG, mParent.getClass().getSimpleName()
                         " does not fully implement ViewParent", e);
             }
         }
@@ -1178,7 +1178,7 @@ public abstract class ViewGroup extends View implements ViewParent, ViewManager 
             children[i].dispatchConfigurationChanged(newConfig);
         }
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -2583,7 +2583,7 @@ public abstract class ViewGroup extends View implements ViewParent, ViewManager 
      * @see #FOCUS_BEFORE_DESCENDANTS
      * @see #FOCUS_AFTER_DESCENDANTS
      * @see #FOCUS_BLOCK_DESCENDANTS
-     * @see #onRequestFocusInDescendants(int, android.graphics.Rect) 
+     * @see #onRequestFocusInDescendants(int, android.graphics.Rect)
      */
     @Override
     public boolean requestFocus(int direction, Rect previouslyFocusedRect) {
@@ -2772,7 +2772,7 @@ public abstract class ViewGroup extends View implements ViewParent, ViewManager 
             try {
                 mParent.notifySubtreeAccessibilityStateChanged(this, source, changeType);
             } catch (AbstractMethodError e) {
-                Log.e(VIEW_LOG_TAG, mParent.getClass().getSimpleName() +
+                Log.e(VIEW_LOG_TAG, mParent.getClass().getSimpleName()
                         " does not fully implement ViewParent", e);
             }
         }
@@ -3688,7 +3688,7 @@ public abstract class ViewGroup extends View implements ViewParent, ViewManager 
     /**
      * <p>Adds a child view. If no layout parameters are already set on the child, the
      * default parameters for this ViewGroup are set on the child.</p>
-     * 
+     *
      * <p><strong>Note:</strong> do not invoke this method from
      * {@link #draw(android.graphics.Canvas)}, {@link #onDraw(android.graphics.Canvas)},
      * {@link #dispatchDraw(android.graphics.Canvas)} or any related method.</p>
@@ -3704,7 +3704,7 @@ public abstract class ViewGroup extends View implements ViewParent, ViewManager 
     /**
      * Adds a child view. If no layout parameters are already set on the child, the
      * default parameters for this ViewGroup are set on the child.
-     * 
+     *
      * <p><strong>Note:</strong> do not invoke this method from
      * {@link #draw(android.graphics.Canvas)}, {@link #onDraw(android.graphics.Canvas)},
      * {@link #dispatchDraw(android.graphics.Canvas)} or any related method.</p>
@@ -3934,7 +3934,7 @@ public abstract class ViewGroup extends View implements ViewParent, ViewManager 
         }
 
         if (child.getParent() != null) {
-            throw new IllegalStateException("The specified child already has a parent. " +
+            throw new IllegalStateException("The specified child already has a parent. "
                     "You must call removeView() on the child's parent first.");
         }
 
@@ -4116,7 +4116,7 @@ public abstract class ViewGroup extends View implements ViewParent, ViewManager 
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * <p><strong>Note:</strong> do not invoke this method from
      * {@link #draw(android.graphics.Canvas)}, {@link #onDraw(android.graphics.Canvas)},
      * {@link #dispatchDraw(android.graphics.Canvas)} or any related method.</p>
@@ -4135,7 +4135,7 @@ public abstract class ViewGroup extends View implements ViewParent, ViewManager 
      * <p><strong>Note:</strong> do not invoke this method from
      * {@link #draw(android.graphics.Canvas)}, {@link #onDraw(android.graphics.Canvas)},
      * {@link #dispatchDraw(android.graphics.Canvas)} or any related method.</p>
-     * 
+     *
      * @param view the view to remove from the group
      */
     public void removeViewInLayout(View view) {
@@ -4163,7 +4163,7 @@ public abstract class ViewGroup extends View implements ViewParent, ViewManager 
      * <p><strong>Note:</strong> do not invoke this method from
      * {@link #draw(android.graphics.Canvas)}, {@link #onDraw(android.graphics.Canvas)},
      * {@link #dispatchDraw(android.graphics.Canvas)} or any related method.</p>
-     * 
+     *
      * @param index the position in the group of the view to remove
      */
     public void removeViewAt(int index) {
@@ -4336,7 +4336,7 @@ public abstract class ViewGroup extends View implements ViewParent, ViewManager 
     /**
      * Call this method to remove all child views from the
      * ViewGroup.
-     * 
+     *
      * <p><strong>Note:</strong> do not invoke this method from
      * {@link #draw(android.graphics.Canvas)}, {@link #onDraw(android.graphics.Canvas)},
      * {@link #dispatchDraw(android.graphics.Canvas)} or any related method.</p>
@@ -6491,7 +6491,7 @@ public abstract class ViewGroup extends View implements ViewParent, ViewManager 
          * Returns a String representation of this set of layout parameters.
          *
          * @param output the String to prepend to the internal representation
-         * @return a String with the following format: output +
+         * @return a String with the following format: output
          *         "ViewGroup.LayoutParams={ width=WIDTH, height=HEIGHT }"
          *
          * @hide

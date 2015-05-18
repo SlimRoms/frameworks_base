@@ -168,7 +168,7 @@ public class RangeTest extends junit.framework.TestCase {
 
     private static <T extends Comparable<? super T>> void assertHashCodeEquals(
             Range<T> left, Range<T> right) {
-        assertEquals("Left hash code for " + left +
+        assertEquals("Left hash code for " + left
                 " expected to be equal to right hash code for " + right,
                 left.hashCode(), right.hashCode());
     }

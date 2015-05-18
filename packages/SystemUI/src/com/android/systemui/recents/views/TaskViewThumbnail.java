@@ -167,7 +167,7 @@ public class TaskViewThumbnail extends View {
     /** Updates the clip rect based on the given task bar. */
     void updateClipToTaskBar(View taskBar) {
         mTaskBar = taskBar;
-        int top = (int) Math.max(0, taskBar.getTranslationY() +
+        int top = (int) Math.max(0, taskBar.getTranslationY()
                 taskBar.getMeasuredHeight() - 1);
         mClipRect.set(0, top, getMeasuredWidth(), getMeasuredHeight());
         setClipBounds(mClipRect);

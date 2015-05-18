@@ -149,7 +149,7 @@ public class SizeAdaptiveLayout extends ViewGroup {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        if (DEBUG) Log.d(TAG, this + " measure spec: " +
+        if (DEBUG) Log.d(TAG, this + " measure spec: "
                          MeasureSpec.toString(heightMeasureSpec));
         View model = selectActiveChild(heightMeasureSpec);
         if (model == null) {
@@ -182,8 +182,8 @@ public class SizeAdaptiveLayout extends ViewGroup {
         }
 
         if (REPORT_BAD_BOUNDS && heightIn != height) {
-            Log.d(TAG, this + "child view " + child + " " +
-                  "measured out of bounds at " + heightIn +"px " +
+            Log.d(TAG, this + "child view " + child + " "
+                  "measured out of bounds at " + heightIn +"px "
                   "clamped to " + height + "px");
         }
 
@@ -205,8 +205,8 @@ public class SizeAdaptiveLayout extends ViewGroup {
             if (child != mModestyPanel) {
                 SizeAdaptiveLayout.LayoutParams lp =
                     (SizeAdaptiveLayout.LayoutParams) child.getLayoutParams();
-                if (DEBUG) Log.d(TAG, "looking at " + i +
-                                 " with min: " + lp.minHeight +
+                if (DEBUG) Log.d(TAG, "looking at " + i
+                                 " with min: " + lp.minHeight
                                  " max: " +  lp.maxHeight);
                 if (lp.maxHeight == SizeAdaptiveLayout.LayoutParams.UNBOUNDED &&
                     unboundedView == null) {
@@ -249,7 +249,7 @@ public class SizeAdaptiveLayout extends ViewGroup {
         mActiveChild.setVisibility(View.VISIBLE);
 
         if (mLastActive != mActiveChild && mLastActive != null) {
-            if (DEBUG) Log.d(TAG, this + " changed children from: " + mLastActive +
+            if (DEBUG) Log.d(TAG, this + " changed children from: " + mLastActive
                     " to: " + mActiveChild);
 
             mEnteringView = mActiveChild;
@@ -341,7 +341,7 @@ public class SizeAdaptiveLayout extends ViewGroup {
             if (DEBUG) {
                 Log.d(TAG, "construct layout from attrs");
                 for (int i = 0; i < attrs.getAttributeCount(); i++) {
-                    Log.d(TAG, " " + attrs.getAttributeName(i) + " = " +
+                    Log.d(TAG, " " + attrs.getAttributeName(i) + " = "
                           attrs.getAttributeValue(i));
                 }
             }
@@ -404,8 +404,8 @@ public class SizeAdaptiveLayout extends ViewGroup {
         }
 
         public String debug(String output) {
-            return output + "SizeAdaptiveLayout.LayoutParams={" +
-                    ", max=" + maxHeight +
+            return output + "SizeAdaptiveLayout.LayoutParams={"
+                    ", max=" + maxHeight
                     ", max=" + minHeight + "}";
         }
     }

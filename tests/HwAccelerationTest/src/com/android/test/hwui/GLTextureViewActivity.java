@@ -136,7 +136,7 @@ public class GLTextureViewActivity extends Activity implements TextureView.Surfa
 
         private final Resources mResources;
         private final SurfaceTexture mSurface;
-        
+
         private EGL10 mEgl;
         private EGLDisplay mEglDisplay;
         private EGLConfig mEglConfig;
@@ -150,19 +150,19 @@ public class GLTextureViewActivity extends Activity implements TextureView.Surfa
         }
 
         private static final String sSimpleVS =
-                "attribute vec4 position;\n" +
-                "attribute vec2 texCoords;\n" +
-                "varying vec2 outTexCoords;\n" +
-                "\nvoid main(void) {\n" +
-                "    outTexCoords = texCoords;\n" +
-                "    gl_Position = position;\n" +
+                "attribute vec4 position;\n"
+                "attribute vec2 texCoords;\n"
+                "varying vec2 outTexCoords;\n"
+                "\nvoid main(void) {\n"
+                "    outTexCoords = texCoords;\n"
+                "    gl_Position = position;\n"
                 "}\n\n";
         private static final String sSimpleFS =
-                "precision mediump float;\n\n" +
-                "varying vec2 outTexCoords;\n" +
-                "uniform sampler2D texture;\n" +
-                "\nvoid main(void) {\n" +
-                "    gl_FragColor = texture2D(texture, outTexCoords);\n" +
+                "precision mediump float;\n\n"
+                "varying vec2 outTexCoords;\n"
+                "uniform sampler2D texture;\n"
+                "\nvoid main(void) {\n"
+                "    gl_FragColor = texture2D(texture, outTexCoords);\n"
                 "}\n\n";
 
         private static final int FLOAT_SIZE_BYTES = 4;
@@ -180,7 +180,7 @@ public class GLTextureViewActivity extends Activity implements TextureView.Surfa
         @Override
         public void run() {
             initGL();
-            
+
             FloatBuffer triangleVertices = ByteBuffer.allocateDirect(mTriangleVerticesData.length
                     * FLOAT_SIZE_BYTES).order(ByteOrder.nativeOrder()).asFloatBuffer();
             triangleVertices.put(mTriangleVerticesData).position(0);
@@ -225,7 +225,7 @@ public class GLTextureViewActivity extends Activity implements TextureView.Surfa
 
             glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
             checkGlError();
-            
+
             while (!mFinished) {
                 checkCurrent();
 
@@ -260,7 +260,7 @@ public class GLTextureViewActivity extends Activity implements TextureView.Surfa
             int texture = textures[0];
             glBindTexture(GL_TEXTURE_2D, texture);
             checkGlError();
-            
+
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
@@ -276,7 +276,7 @@ public class GLTextureViewActivity extends Activity implements TextureView.Surfa
 
             return texture;
         }
-        
+
         private static int buildProgram(String vertex, String fragment) {
             int vertexShader = buildShader(vertex, GL_VERTEX_SHADER);
             if (vertexShader == 0) return 0;
@@ -307,7 +307,7 @@ public class GLTextureViewActivity extends Activity implements TextureView.Surfa
 
             return program;
         }
-        
+
         private static int buildShader(String source, int type) {
             int shader = glCreateShader(type);
 
@@ -325,7 +325,7 @@ public class GLTextureViewActivity extends Activity implements TextureView.Surfa
                 glDeleteShader(shader);
                 return 0;
             }
-            
+
             return shader;
         }
 
@@ -357,7 +357,7 @@ public class GLTextureViewActivity extends Activity implements TextureView.Surfa
                 }
             }
         }
-        
+
         private void initGL() {
             mEgl = (EGL10) EGLContext.getEGL();
 
@@ -366,10 +366,10 @@ public class GLTextureViewActivity extends Activity implements TextureView.Surfa
                 throw new RuntimeException("eglGetDisplay failed "
                         + GLUtils.getEGLErrorString(mEgl.eglGetError()));
             }
-            
+
             int[] version = new int[2];
             if (!mEgl.eglInitialize(mEglDisplay, version)) {
-                throw new RuntimeException("eglInitialize failed " +
+                throw new RuntimeException("eglInitialize failed "
                         GLUtils.getEGLErrorString(mEgl.eglGetError()));
             }
 
@@ -377,7 +377,7 @@ public class GLTextureViewActivity extends Activity implements TextureView.Surfa
             if (mEglConfig == null) {
                 throw new RuntimeException("eglConfig not initialized");
             }
-            
+
             mEglContext = createContext(mEgl, mEglDisplay, mEglConfig);
 
             mEglSurface = mEgl.eglCreateWindowSurface(mEglDisplay, mEglConfig, mSurface, null);
@@ -399,11 +399,11 @@ public class GLTextureViewActivity extends Activity implements TextureView.Surfa
 
             mGL = mEglContext.getGL();
         }
-        
+
 
         EGLContext createContext(EGL10 egl, EGLDisplay eglDisplay, EGLConfig eglConfig) {
             int[] attrib_list = { EGL_CONTEXT_CLIENT_VERSION, 2, EGL10.EGL_NONE };
-            return egl.eglCreateContext(eglDisplay, eglConfig, EGL10.EGL_NO_CONTEXT, attrib_list);            
+            return egl.eglCreateContext(eglDisplay, eglConfig, EGL10.EGL_NO_CONTEXT, attrib_list);
         }
 
         private EGLConfig chooseEglConfig() {
@@ -411,14 +411,14 @@ public class GLTextureViewActivity extends Activity implements TextureView.Surfa
             EGLConfig[] configs = new EGLConfig[1];
             int[] configSpec = getConfig();
             if (!mEgl.eglChooseConfig(mEglDisplay, configSpec, configs, 1, configsCount)) {
-                throw new IllegalArgumentException("eglChooseConfig failed " +
+                throw new IllegalArgumentException("eglChooseConfig failed "
                         GLUtils.getEGLErrorString(mEgl.eglGetError()));
             } else if (configsCount[0] > 0) {
                 return configs[0];
             }
             return null;
         }
-        
+
         private static int[] getConfig() {
             return new int[] {
                     EGL10.EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,

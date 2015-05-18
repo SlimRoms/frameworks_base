@@ -100,7 +100,7 @@ public final class DelegateManager<T> {
 
             if (Debug.DEBUG) {
                 if (delegate == null) {
-                    System.out.println("Unknown " + mClass.getSimpleName() + " with int " +
+                    System.out.println("Unknown " + mClass.getSimpleName() + " with int "
                             native_object);
                 }
             }
@@ -137,7 +137,7 @@ public final class DelegateManager<T> {
         T delegate = getDelegate(native_object);
 
         if (Debug.DEBUG) {
-            System.out.println("Removing main Java ref on " + mClass.getSimpleName() +
+            System.out.println("Removing main Java ref on " + mClass.getSimpleName()
                     " with int " + native_object);
         }
 

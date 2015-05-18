@@ -43,7 +43,7 @@ final class PendingIntentRecord extends IIntentSender.Stub {
     String stringName;
     String lastTagPrefix;
     String lastTag;
-    
+
     final static class Key {
         final int type;
         final String packageName;
@@ -58,9 +58,9 @@ final class PendingIntentRecord extends IIntentSender.Stub {
         final int flags;
         final int hashCode;
         final int userId;
-        
+
         private static final int ODD_PRIME_NUMBER = 37;
-        
+
         Key(int _t, String _p, ActivityRecord _a, String _w,
                 int _r, Intent[] _i, String[] _it, int _f, Bundle _o, int _userId) {
             type = _t;
@@ -98,7 +98,7 @@ final class PendingIntentRecord extends IIntentSender.Stub {
             //Slog.i(ActivityManagerService.TAG, this + " hashCode=0x"
             //        + Integer.toHexString(hashCode));
         }
-        
+
         public boolean equals(Object otherObj) {
             if (otherObj == null) {
                 return false;
@@ -159,7 +159,7 @@ final class PendingIntentRecord extends IIntentSender.Stub {
         public int hashCode() {
             return hashCode;
         }
-        
+
         public String toString() {
             return "Key{" + typeName() + " pkg=" + packageName
                 + " intent="
@@ -167,7 +167,7 @@ final class PendingIntentRecord extends IIntentSender.Stub {
                         ? requestIntent.toShortString(false, true, false, false) : "<null>")
                 + " flags=0x" + Integer.toHexString(flags) + " u=" + userId + "}";
         }
-        
+
         String typeName() {
             switch (type) {
                 case ActivityManager.INTENT_SENDER_ACTIVITY:
@@ -182,7 +182,7 @@ final class PendingIntentRecord extends IIntentSender.Stub {
             return Integer.toString(type);
         }
     }
-    
+
     PendingIntentRecord(ActivityManagerService _owner, Key _k, int _u) {
         owner = _owner;
         key = _k;
@@ -195,7 +195,7 @@ final class PendingIntentRecord extends IIntentSender.Stub {
         return sendInner(code, intent, resolvedType, finishedReceiver,
                 requiredPermission, null, null, 0, 0, 0, null, null);
     }
-    
+
     int sendInner(int code, Intent intent, String resolvedType,
             IIntentReceiver finishedReceiver, String requiredPermission,
             IBinder resultTo, String resultWho, int requestCode,
@@ -220,9 +220,9 @@ final class PendingIntentRecord extends IIntentSender.Stub {
                 flagsMask &= ~Intent.IMMUTABLE_FLAGS;
                 flagsValues &= flagsMask;
                 finalIntent.setFlags((finalIntent.getFlags()&~flagsMask) | flagsValues);
-                
+
                 final long origId = Binder.clearCallingIdentity();
-                
+
                 boolean sendFinish = finishedReceiver != null;
                 int userId = key.userId;
                 if (userId == UserHandle.USER_CURRENT) {
@@ -291,7 +291,7 @@ final class PendingIntentRecord extends IIntentSender.Stub {
                         }
                         break;
                 }
-                
+
                 if (sendFinish) {
                     try {
                         finishedReceiver.performReceive(new Intent(finalIntent), 0,
@@ -299,9 +299,9 @@ final class PendingIntentRecord extends IIntentSender.Stub {
                     } catch (RemoteException e) {
                     }
                 }
-                
+
                 Binder.restoreCallingIdentity(origId);
-                
+
                 return 0;
             }
         }
@@ -329,7 +329,7 @@ final class PendingIntentRecord extends IIntentSender.Stub {
             }
         }
     }
-    
+
     void dump(PrintWriter pw, String prefix) {
         pw.print(prefix); pw.print("uid="); pw.print(uid);
                 pw.print(" packageName="); pw.print(key.packageName);

@@ -206,7 +206,7 @@ public class BidiRenderer {
 
     private static void logFontWarning() {
         Bridge.getLog().fidelityWarning(LayoutLog.TAG_BROKEN,
-                "Some fonts could not be loaded. The rendering may not be perfect. " +
+                "Some fonts could not be loaded. The rendering may not be perfect. "
                         "Try running the IDE with JRE 7.", null, null);
     }
 

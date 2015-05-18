@@ -305,7 +305,7 @@ public class JobServiceContext extends IJobCallback.Stub implements ServiceConne
                     break;
                 case MSG_CALLBACK:
                     if (DEBUG) {
-                        Slog.d(TAG, "MSG_CALLBACK of : " + mRunningJob + " v:" +
+                        Slog.d(TAG, "MSG_CALLBACK of : " + mRunningJob + " v:"
                                 (mVerb >= 0 ? VERB_STRINGS[mVerb] : "[invalid]"));
                     }
                     removeOpTimeOut();
@@ -361,7 +361,7 @@ public class JobServiceContext extends IJobCallback.Stub implements ServiceConne
                 scheduleOpTimeOut();
                 service.startJob(mParams);
             } catch (RemoteException e) {
-                Slog.e(TAG, "Error sending onStart message to '" +
+                Slog.e(TAG, "Error sending onStart message to '"
                         mRunningJob.getServiceComponent().getShortClassName() + "' ", e);
             }
         }
@@ -412,7 +412,7 @@ public class JobServiceContext extends IJobCallback.Stub implements ServiceConne
                     closeAndCleanupJobH(reschedule);
                     break;
                 default:
-                    Slog.e(TAG, "Got an execution complete message for a job that wasn't being" +
+                    Slog.e(TAG, "Got an execution complete message for a job that wasn't being"
                             "executed. Was " + VERB_STRINGS[mVerb] + ".");
             }
         }
@@ -463,7 +463,7 @@ public class JobServiceContext extends IJobCallback.Stub implements ServiceConne
         private void handleOpTimeoutH() {
             switch (mVerb) {
                 case VERB_BINDING:
-                    Slog.e(TAG, "Time-out while trying to bind " + mRunningJob.toShortString() +
+                    Slog.e(TAG, "Time-out while trying to bind " + mRunningJob.toShortString()
                             ", dropping.");
                     closeAndCleanupJobH(false /* needsReschedule */);
                     break;
@@ -471,24 +471,24 @@ public class JobServiceContext extends IJobCallback.Stub implements ServiceConne
                     // Client unresponsive - wedged or failed to respond in time. We don't really
                     // know what happened so let's log it and notify the JobScheduler
                     // FINISHED/NO-RETRY.
-                    Slog.e(TAG, "No response from client for onStartJob '" +
+                    Slog.e(TAG, "No response from client for onStartJob '"
                             mRunningJob.toShortString());
                     closeAndCleanupJobH(false /* needsReschedule */);
                     break;
                 case VERB_STOPPING:
                     // At least we got somewhere, so fail but ask the JobScheduler to reschedule.
-                    Slog.e(TAG, "No response from client for onStopJob, '" +
+                    Slog.e(TAG, "No response from client for onStopJob, '"
                             mRunningJob.toShortString());
                     closeAndCleanupJobH(true /* needsReschedule */);
                     break;
                 case VERB_EXECUTING:
                     // Not an error - client ran out of time.
-                    Slog.i(TAG, "Client timed out while executing (no jobFinished received)." +
+                    Slog.i(TAG, "Client timed out while executing (no jobFinished received)."
                             " sending onStop. "  + mRunningJob.toShortString());
                     sendStopMessageH();
                     break;
                 default:
-                    Slog.e(TAG, "Handling timeout for an invalid job state: " +
+                    Slog.e(TAG, "Handling timeout for an invalid job state: "
                             mRunningJob.toShortString() + ", dropping.");
                     closeAndCleanupJobH(false /* needsReschedule */);
             }
@@ -561,8 +561,8 @@ public class JobServiceContext extends IJobCallback.Stub implements ServiceConne
         final long timeoutMillis = (mVerb == VERB_EXECUTING) ?
                 EXECUTING_TIMESLICE_MILLIS : OP_TIMEOUT_MILLIS;
         if (DEBUG) {
-            Slog.d(TAG, "Scheduling time out for '" +
-                    mRunningJob.getServiceComponent().getShortClassName() + "' jId: " +
+            Slog.d(TAG, "Scheduling time out for '"
+                    mRunningJob.getServiceComponent().getShortClassName() + "' jId: "
                     mParams.getJobId() + ", in " + (timeoutMillis / 1000) + " s");
         }
         Message m = mCallbackHandler.obtainMessage(MSG_TIMEOUT);

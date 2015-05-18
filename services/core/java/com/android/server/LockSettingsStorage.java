@@ -258,7 +258,7 @@ class LockSettingsStorage {
     private String getLockCredentialFilePathForUser(int userId, String basename) {
         userId = getUserParentOrSelfId(userId);
         String dataSystemDirectory =
-                android.os.Environment.getDataDirectory().getAbsolutePath() +
+                android.os.Environment.getDataDirectory().getAbsolutePath()
                         SYSTEM_DIRECTORY;
         if (userId == 0) {
             // Leave it in the same place for user 0
@@ -343,11 +343,11 @@ class LockSettingsStorage {
         }
 
         private void createTable(SQLiteDatabase db) {
-            db.execSQL("CREATE TABLE " + TABLE + " (" +
-                    "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    COLUMN_KEY + " TEXT," +
-                    COLUMN_USERID + " INTEGER," +
-                    COLUMN_VALUE + " TEXT" +
+            db.execSQL("CREATE TABLE " + TABLE + " ("
+                    "_id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    COLUMN_KEY + " TEXT,"
+                    COLUMN_USERID + " INTEGER,"
+                    COLUMN_VALUE + " TEXT"
                     ");");
         }
 

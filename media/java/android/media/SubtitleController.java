@@ -235,8 +235,8 @@ public class SubtitleController {
                     locale.getISO3Language().equals(language) ||
                     locale.getLanguage().equals(language));
                 // is_default is meaningless unless caption language is 'default'
-                int score = (forced ? 0 : 8) +
-                    (((selectedLocale == null) && is_default) ? 4 : 0) +
+                int score = (forced ? 0 : 8)
+                    (((selectedLocale == null) && is_default) ? 4 : 0)
                     (autoselect ? 0 : 2) + (languageMatches ? 1 : 0);
 
                 if (selectForced && !forced) {

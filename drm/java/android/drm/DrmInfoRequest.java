@@ -68,7 +68,7 @@ public class DrmInfoRequest {
         mInfoType = infoType;
         mMimeType = mimeType;
         if (!isValid()) {
-            final String msg = "infoType: " + infoType + "," +
+            final String msg = "infoType: " + infoType + ","
                                "mimeType: " + mimeType;
             throw new IllegalArgumentException(msg);
         }

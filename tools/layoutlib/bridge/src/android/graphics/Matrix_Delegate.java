@@ -864,11 +864,11 @@ public final class Matrix_Delegate {
 
          for (int i = 0 ; i < count ; i += 2) {
              // just in case we are doing in place, we better put this in temp vars
-             float x = mValues[0] * src[i + srcIndex] +
-                       mValues[1] * src[i + srcIndex + 1] +
+             float x = mValues[0] * src[i + srcIndex]
+                       mValues[1] * src[i + srcIndex + 1]
                        mValues[2];
-             float y = mValues[3] * src[i + srcIndex] +
-                       mValues[4] * src[i + srcIndex + 1] +
+             float y = mValues[3] * src[i + srcIndex]
+                       mValues[4] * src[i + srcIndex + 1]
                        mValues[5];
 
              tmpDest[i + dstIndex]     = x;

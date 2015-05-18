@@ -212,14 +212,14 @@ public class RemoteViewsAdapter extends BaseAdapter implements Handler.Callback 
                                 factory.onDataSetChanged();
                             }
                         } catch (RemoteException e) {
-                            Log.e(TAG, "Error notifying factory of data set changed in " +
+                            Log.e(TAG, "Error notifying factory of data set changed in "
                                         "onServiceConnected(): " + e.getMessage());
 
                             // Return early to prevent anything further from being notified
                             // (effectively nothing has changed)
                             return;
                         } catch (RuntimeException e) {
-                            Log.e(TAG, "Error notifying factory of data set changed in " +
+                            Log.e(TAG, "Error notifying factory of data set changed in "
                                     "onServiceConnected(): " + e.getMessage());
                         }
 
@@ -480,7 +480,7 @@ public class RemoteViewsAdapter extends BaseAdapter implements Handler.Callback 
                         layout.addView(loadingView);
                         customLoadingViewAvailable = true;
                     } catch (Exception e) {
-                        Log.w(TAG, "Error inflating custom loading view, using default loading" +
+                        Log.w(TAG, "Error inflating custom loading view, using default loading"
                                 "view instead", e);
                     }
                 }
@@ -1027,7 +1027,7 @@ public class RemoteViewsAdapter extends BaseAdapter implements Handler.Callback 
             // If a null view was returned, we break early to prevent it from getting
             // into our cache and causing problems later. The effect is that the child  at this
             // position will remain as a loading view until it is updated.
-            Log.e(TAG, "Error in updateRemoteViews(" + position + "): " + " null RemoteViews " +
+            Log.e(TAG, "Error in updateRemoteViews(" + position + "): " + " null RemoteViews "
                     "returned from RemoteViewsFactory.");
             return;
         }
@@ -1063,7 +1063,7 @@ public class RemoteViewsAdapter extends BaseAdapter implements Handler.Callback 
                 // factory is less than the number of view types returned. We don't return this
                 // view to the AdapterView, as this will cause an exception in the hosting process,
                 // which contains the associated AdapterView.
-                Log.e(TAG, "Error: widget's RemoteViewsFactory returns more view types than " +
+                Log.e(TAG, "Error: widget's RemoteViewsFactory returns more view types than "
                         " indicated by getViewTypeCount() ");
             }
         }
@@ -1196,7 +1196,7 @@ public class RemoteViewsAdapter extends BaseAdapter implements Handler.Callback 
                 } catch (Exception e){
                     // We have to make sure that we successfully inflated the RemoteViews, if not
                     // we return the loading view instead.
-                    Log.w(TAG, "Error inflating RemoteViews at position: " + position + ", using" +
+                    Log.w(TAG, "Error inflating RemoteViews at position: " + position + ", using"
                             "loading view instead" + e);
 
                     RemoteViewsFrameLayout loadingView = null;

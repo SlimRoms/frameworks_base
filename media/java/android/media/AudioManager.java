@@ -2666,7 +2666,7 @@ public class AudioManager {
             return;
         }
         if (!eventReceiver.getPackageName().equals(mContext.getPackageName())) {
-            Log.e(TAG, "registerMediaButtonEventReceiver() error: " +
+            Log.e(TAG, "registerMediaButtonEventReceiver() error: "
                     "receiver and context package names don't match");
             return;
         }
@@ -2815,7 +2815,7 @@ public class AudioManager {
         try {
             service.updateRemoteControllerOnExistingMediaPlayers();
         } catch (RemoteException e) {
-            Log.e(TAG, "Error in calling Audio service interface" +
+            Log.e(TAG, "Error in calling Audio service interface"
                 "updateRemoteControllerOnExistingMediaPlayers() due to " + e);
         }
         return true;
@@ -3023,7 +3023,7 @@ public class AudioManager {
         try {
             service.setRemoteControlClientPlayItem(uid, scope);
         } catch (RemoteException e) {
-            Log.e(TAG, "Dead object in setRemoteControlClientPlayItem(" +
+            Log.e(TAG, "Dead object in setRemoteControlClientPlayItem("
                                                     uid + ", " + scope + ")", e);
         }
     }

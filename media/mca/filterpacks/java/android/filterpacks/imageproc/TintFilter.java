@@ -38,16 +38,16 @@ public class TintFilter extends Filter {
     private int mTarget = FrameFormat.TARGET_UNSPECIFIED;
 
     private final String mTintShader =
-            "precision mediump float;\n" +
-            "uniform sampler2D tex_sampler_0;\n" +
-            "uniform vec3 tint;\n" +
-            "uniform vec3 color_ratio;\n" +
-            "varying vec2 v_texcoord;\n" +
-            "void main() {\n" +
-            "  vec4 color = texture2D(tex_sampler_0, v_texcoord);\n" +
-            "  float avg_color = dot(color_ratio, color.rgb);\n" +
-            "  vec3 new_color = min(0.8 * avg_color + 0.2 * tint, 1.0);\n" +
-            "  gl_FragColor = vec4(new_color.rgb, color.a);\n" +
+            "precision mediump float;\n"
+            "uniform sampler2D tex_sampler_0;\n"
+            "uniform vec3 tint;\n"
+            "uniform vec3 color_ratio;\n"
+            "varying vec2 v_texcoord;\n"
+            "void main() {\n"
+            "  vec4 color = texture2D(tex_sampler_0, v_texcoord);\n"
+            "  float avg_color = dot(color_ratio, color.rgb);\n"
+            "  vec3 new_color = min(0.8 * avg_color + 0.2 * tint, 1.0);\n"
+            "  gl_FragColor = vec4(new_color.rgb, color.a);\n"
             "}\n";
 
     public TintFilter(String name) {
@@ -74,7 +74,7 @@ public class TintFilter extends Filter {
                 break;
 
             default:
-                throw new RuntimeException("Filter Sharpen does not support frames of " +
+                throw new RuntimeException("Filter Sharpen does not support frames of "
                     "target " + target + "!");
         }
         mTarget = target;

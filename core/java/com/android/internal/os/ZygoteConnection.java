@@ -183,8 +183,8 @@ class ZygoteConnection {
             }
 
             if (parsedArgs.permittedCapabilities != 0 || parsedArgs.effectiveCapabilities != 0) {
-                throw new ZygoteSecurityException("Client may not specify capabilities: " +
-                        "permitted=0x" + Long.toHexString(parsedArgs.permittedCapabilities) +
+                throw new ZygoteSecurityException("Client may not specify capabilities: "
+                        "permitted=0x" + Long.toHexString(parsedArgs.permittedCapabilities)
                         ", effective=0x" + Long.toHexString(parsedArgs.effectiveCapabilities));
             }
 

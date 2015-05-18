@@ -98,7 +98,7 @@ public class TestEventHandler implements EventHandler {
         public String name;
         public String value;
     }
-    
+
     private ArrayList<TestHeader> expectHeaders = new ArrayList<TestHeader>();
 
     /* Holds failure details */
@@ -157,9 +157,9 @@ public class TestEventHandler implements EventHandler {
     public void status(int major_version, int minor_version,
         int code, String reason_phrase) {
       if (false) {
-        Log.v(LOGTAG, "TestEventHandler:status() major: " + major_version +
-            " minor: " + minor_version +
-            " code: " + code +
+        Log.v(LOGTAG, "TestEventHandler:status() major: " + major_version
+            " minor: " + minor_version
+            " code: " + code
             " reason: " + reason_phrase);
       }
 
@@ -232,8 +232,8 @@ public class TestEventHandler implements EventHandler {
          * headers */
         if (expectHeaders.isEmpty()) {
             return;
-        }      
-        
+        }
+
         for (int i = expectHeaders.size() - 1; i >= 0; i--) {
             TestHeader h =  expectHeaders.get(i);
             System.out.println("Expected header name: " + h.name);
@@ -285,13 +285,13 @@ public class TestEventHandler implements EventHandler {
                 break;
             default:
                 s = null;
-                
+
             }
             if (evaluateHeader(h, s)) {
                 expectHeaders.remove(i);
             }
         }
-            
+
     }
 
     public boolean evaluateHeader(TestHeader h, String value) {
@@ -305,12 +305,12 @@ public class TestEventHandler implements EventHandler {
             System.out.println("Expect value = null");
             return true;
         }
-        System.out.println("Expect value = " +
-                (h.value.toLowerCase()) + " got " +
+        System.out.println("Expect value = "
+                (h.value.toLowerCase()) + " got "
                 value.toLowerCase());
-        
+
         if (!h.value.equalsIgnoreCase(value)) {
-            expectDetails.append("expect header value " + h.value +
+            expectDetails.append("expect header value " + h.value
                     " got " + value);
             expects[TEST_HEADERS] = true;
             return false;
@@ -325,7 +325,7 @@ public class TestEventHandler implements EventHandler {
      */
     public void locationChanged(String newLocation, boolean permanent) {
       if (false) {
-        Log.v(LOGTAG, "TestEventHandler: locationChanged() " +
+        Log.v(LOGTAG, "TestEventHandler: locationChanged() "
             newLocation + " permanent " + permanent);
       }
 
@@ -455,7 +455,7 @@ public class TestEventHandler implements EventHandler {
      */
     public void error(int id, String description) {
       if (false) {
-        Log.v(LOGTAG, "TestEventHandler: error() called Id:" + id +
+        Log.v(LOGTAG, "TestEventHandler: error() called Id:" + id
             " description " + description);
       }
 
@@ -501,7 +501,7 @@ public class TestEventHandler implements EventHandler {
 
       if (false) {
         Log.v(LOGTAG, "TestEventHandler: handleSslErrorRequest(): "+
-              " primary error:" + primaryError +
+              " primary error:" + primaryError
               " certificate: " + error.getCertificate());
       }
 
@@ -792,7 +792,7 @@ public class TestEventHandler implements EventHandler {
      */
     public void attachRequestHandle(RequestHandle requestHandle) {
         if (false) {
-            Log.v(LOGTAG, "TestEventHandler.attachRequestHandle(): " +
+            Log.v(LOGTAG, "TestEventHandler.attachRequestHandle(): "
                     "requestHandle: " +  requestHandle);
         }
         mRequestHandle = requestHandle;
@@ -803,7 +803,7 @@ public class TestEventHandler implements EventHandler {
      */
     public void detachRequestHandle() {
         if (false) {
-            Log.v(LOGTAG, "TestEventHandler.detachRequestHandle(): " +
+            Log.v(LOGTAG, "TestEventHandler.detachRequestHandle(): "
                     "requestHandle: " + mRequestHandle);
         }
         mRequestHandle = null;

@@ -36,9 +36,9 @@ public class LoggingEventHandler implements EventHandler {
                        int code, /* Status-Code value */
                        String reason_phrase) {
         if (HttpLog.LOGV) {
-            HttpLog.v("LoggingEventHandler:status() major: " + major_version +
-                  " minor: " + minor_version +
-                  " code: " + code +
+            HttpLog.v("LoggingEventHandler:status() major: " + major_version
+                  " minor: " + minor_version
+                  " code: " + code
                   " reason: " + reason_phrase);
         }
     }
@@ -52,7 +52,7 @@ public class LoggingEventHandler implements EventHandler {
 
     public void locationChanged(String newLocation, boolean permanent) {
         if (HttpLog.LOGV) {
-            HttpLog.v("LoggingEventHandler: locationChanged() " + newLocation +
+            HttpLog.v("LoggingEventHandler: locationChanged() " + newLocation
                       " permanent " + permanent);
         }
     }
@@ -77,7 +77,7 @@ public class LoggingEventHandler implements EventHandler {
 
     public void error(int id, String description) {
         if (HttpLog.LOGV) {
-            HttpLog.v("LoggingEventHandler: error() called Id:" + id +
+            HttpLog.v("LoggingEventHandler: error() called Id:" + id
                       " description " + description);
         }
     }

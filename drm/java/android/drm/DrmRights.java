@@ -102,7 +102,7 @@ public class DrmRights {
 
         mMimeType = mimeType;
         if (!isValid()) {
-            final String msg = "mimeType: " + mMimeType + "," +
+            final String msg = "mimeType: " + mMimeType + ","
                                "data: " + mData;
             throw new IllegalArgumentException(msg);
         }
@@ -126,7 +126,7 @@ public class DrmRights {
         mMimeType = mimeType;
 
         if (!isValid()) {
-            final String msg = "mimeType: " + mMimeType + "," +
+            final String msg = "mimeType: " + mMimeType + ","
                                "data: " + mData;
             throw new IllegalArgumentException(msg);
         }

@@ -75,7 +75,7 @@ import android.widget.ListView;
  * As a convenience, this fragment implements a click listener for any
  * preference in the current hierarchy, see
  * {@link #onPreferenceTreeClick(PreferenceScreen, Preference)}.
- * 
+ *
  * <div class="special reference">
  * <h3>Developer Guides</h3>
  * <p>For information about using {@code PreferenceFragment},
@@ -397,7 +397,7 @@ public abstract class PreferenceFragment extends Fragment implements
         mList = (ListView)rawListView;
         if (mList == null) {
             throw new RuntimeException(
-                    "Your content must have a ListView whose id attribute is " +
+                    "Your content must have a ListView whose id attribute is "
                     "'android.R.id.list'");
         }
         mList.setOnKeyListener(mListOnKeyListener);

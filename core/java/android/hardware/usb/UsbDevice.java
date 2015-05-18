@@ -258,10 +258,10 @@ public class UsbDevice implements Parcelable {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder("UsbDevice[mName=" + mName +
-                ",mVendorId=" + mVendorId + ",mProductId=" + mProductId +
-                ",mClass=" + mClass + ",mSubclass=" + mSubclass + ",mProtocol=" + mProtocol +
-                ",mManufacturerName=" + mManufacturerName + ",mProductName=" + mProductName +
+        StringBuilder builder = new StringBuilder("UsbDevice[mName=" + mName
+                ",mVendorId=" + mVendorId + ",mProductId=" + mProductId
+                ",mClass=" + mClass + ",mSubclass=" + mSubclass + ",mProtocol=" + mProtocol
+                ",mManufacturerName=" + mManufacturerName + ",mProductName=" + mProductName
                 ",mSerialNumber=" + mSerialNumber + ",mConfigurations=[");
         for (int i = 0; i < mConfigurations.length; i++) {
             builder.append("\n");

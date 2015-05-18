@@ -513,8 +513,8 @@ public class ConnectivityService extends IConnectivityManager.Stub
 
         private void maybeLogBroadcast(NetworkAgentInfo nai, boolean connected, int type) {
             if (DBG) {
-                log("Sending " + (connected ? "connected" : "disconnected") +
-                        " broadcast for type " + type + " " + nai.name() +
+                log("Sending " + (connected ? "connected" : "disconnected")
+                        " broadcast for type " + type + " " + nai.name()
                         " isDefaultNetwork=" + isDefaultNetwork(nai));
             }
         }
@@ -560,7 +560,7 @@ public class ConnectivityService extends IConnectivityManager.Stub
             }
 
             if (!list.isEmpty() && wasFirstNetwork) {
-                if (DBG) log("Other network available for type " + type +
+                if (DBG) log("Other network available for type " + type
                               ", sending connected broadcast");
                 maybeLogBroadcast(list.get(0), false, type);
                 sendLegacyNetworkBroadcast(list.get(0), false, type);
@@ -688,17 +688,17 @@ public class ConnectivityService extends IConnectivityManager.Stub
                 NetworkConfig n = new NetworkConfig(naString);
                 if (VDBG) log("naString=" + naString + " config=" + n);
                 if (n.type > ConnectivityManager.MAX_NETWORK_TYPE) {
-                    loge("Error in networkAttributes - ignoring attempt to define type " +
+                    loge("Error in networkAttributes - ignoring attempt to define type "
                             n.type);
                     continue;
                 }
                 if (wifiOnly && ConnectivityManager.isNetworkTypeMobile(n.type)) {
-                    log("networkAttributes - ignoring mobile as this dev is wifiOnly " +
+                    log("networkAttributes - ignoring mobile as this dev is wifiOnly "
                             n.type);
                     continue;
                 }
                 if (mNetConfigs[n.type] != null) {
-                    loge("Error in networkAttributes - ignoring attempt to redefine type " +
+                    loge("Error in networkAttributes - ignoring attempt to redefine type "
                             n.type);
                     continue;
                 }
@@ -936,7 +936,7 @@ public class ConnectivityService extends IConnectivityManager.Stub
             info = new NetworkInfo(info);
             info.setDetailedState(DetailedState.BLOCKED, null, null);
             if (DBG) {
-                log("returning Blocked NetworkInfo for ifname=" +
+                log("returning Blocked NetworkInfo for ifname="
                         lp.getInterfaceName() + ", uid=" + uid);
             }
         }
@@ -1819,8 +1819,8 @@ public class ConnectivityService extends IConnectivityManager.Stub
         if (mContext.checkCallingOrSelfPermission(
                 android.Manifest.permission.DUMP)
                 != PackageManager.PERMISSION_GRANTED) {
-            pw.println("Permission Denial: can't dump ConnectivityService " +
-                    "from from pid=" + Binder.getCallingPid() + ", uid=" +
+            pw.println("Permission Denial: can't dump ConnectivityService "
+                    "from from pid=" + Binder.getCallingPid() + ", uid="
                     Binder.getCallingUid());
             return;
         }
@@ -1877,7 +1877,7 @@ public class ConnectivityService extends IConnectivityManager.Stub
         pw.println();
 
         synchronized (this) {
-            pw.println("NetworkTransitionWakeLock is currently " +
+            pw.println("NetworkTransitionWakeLock is currently "
                     (mNetTransitionWakeLock.isHeld() ? "" : "not ") + "held.");
             pw.println("It was last requested for "+mNetTransitionWakeLockCausedBy);
         }
@@ -1901,7 +1901,7 @@ public class ConnectivityService extends IConnectivityManager.Stub
         final NetworkAgentInfo officialNai = getNetworkAgentInfoForNetwork(nai.network);
         if (officialNai != null && officialNai.equals(nai)) return true;
         if (officialNai != null || VDBG) {
-            loge(msg + " - isLiveNetworkAgent found mismatched netId: " + officialNai +
+            loge(msg + " - isLiveNetworkAgent found mismatched netId: " + officialNai
                 " - " + nai);
         }
         return false;
@@ -1953,7 +1953,7 @@ public class ConnectivityService extends IConnectivityManager.Stub
                         loge("NetworkAgent not found for EVENT_NETWORK_PROPERTIES_CHANGED");
                     } else {
                         if (VDBG) {
-                            log("Update of LinkProperties for " + nai.name() +
+                            log("Update of LinkProperties for " + nai.name()
                                     "; created=" + nai.created);
                         }
                         LinkProperties oldLp = nai.linkProperties;
@@ -2082,8 +2082,8 @@ public class ConnectivityService extends IConnectivityManager.Stub
                     if (VDBG || (state == NetworkInfo.State.CONNECTED) ||
                             (state == NetworkInfo.State.DISCONNECTED) ||
                             (state == NetworkInfo.State.SUSPENDED)) {
-                        log("ConnectivityChange for " +
-                            info.getTypeName() + ": " +
+                        log("ConnectivityChange for "
+                            info.getTypeName() + ": "
                             state + "/" + info.getDetailedState());
                     }
 
@@ -2421,8 +2421,8 @@ public class ConnectivityService extends IConnectivityManager.Stub
                     if (nai.networkRequests.get(nri.request.requestId) != null) {
                         nai.networkRequests.remove(nri.request.requestId);
                         if (DBG) {
-                            log(" Removing from current network " + nai.name() +
-                                    ", leaving " + nai.networkRequests.size() +
+                            log(" Removing from current network " + nai.name()
+                                    ", leaving " + nai.networkRequests.size()
                                     " requests.");
                         }
                         if (unneeded(nai)) {
@@ -2503,7 +2503,7 @@ public class ConnectivityService extends IConnectivityManager.Stub
                     if (msg.what == EVENT_EXPIRE_NET_TRANSITION_WAKELOCK) {
                         log("Failed to find a new network - expiring NetTransition Wakelock");
                     } else {
-                        log("NetTransition Wakelock (" + (causedBy == null ? "unknown" : causedBy) +
+                        log("NetTransition Wakelock (" + (causedBy == null ? "unknown" : causedBy)
                                 " cleared because we found a replacement network");
                     }
                     break;
@@ -3226,7 +3226,7 @@ public class ConnectivityService extends IConnectivityManager.Stub
     private void setProvNotificationVisibleIntent(boolean visible, int id, int networkType,
             String extraInfo, PendingIntent intent) {
         if (DBG) {
-            log("setProvNotificationVisibleIntent: E visible=" + visible + " networkType=" +
+            log("setProvNotificationVisibleIntent: E visible=" + visible + " networkType="
                 networkType + " extraInfo=" + extraInfo);
         }
 
@@ -3329,7 +3329,7 @@ public class ConnectivityService extends IConnectivityManager.Stub
                 tagType = TAG_REDIRECTED_URL;
                 break;
             default:
-                throw new RuntimeException("getProvisioningUrlBaseFromFile: Unexpected parameter " +
+                throw new RuntimeException("getProvisioningUrlBaseFromFile: Unexpected parameter "
                         type);
         }
 
@@ -3610,14 +3610,14 @@ public class ConnectivityService extends IConnectivityManager.Stub
         }
 
         public void binderDied() {
-            log("ConnectivityService NetworkRequestInfo binderDied(" +
+            log("ConnectivityService NetworkRequestInfo binderDied("
                     request + ", " + mBinder + ")");
             releaseNetworkRequest(request);
         }
 
         public String toString() {
-            return (isRequest ? "Request" : "Listen") + " from uid/pid:" + mUid + "/" +
-                    mPid + " for " + request +
+            return (isRequest ? "Request" : "Listen") + " from uid/pid:" + mUid + "/"
+                    mPid + " for " + request
                     (mPendingIntent == null ? "" : " to trigger " + mPendingIntent);
         }
     }
@@ -4078,7 +4078,7 @@ public class ConnectivityService extends IConnectivityManager.Stub
         msg.setData(bundle);
         try {
             if (VDBG) {
-                log("sending notification " + notifyTypeToName(notificationType) +
+                log("sending notification " + notifyTypeToName(notificationType)
                         " for " + nri.request);
             }
             nri.messenger.send(msg);
@@ -4199,7 +4199,7 @@ public class ConnectivityService extends IConnectivityManager.Stub
             NetworkAgentInfo currentNetwork = mNetworkForRequestId.get(nri.request.requestId);
             if (newNetwork == currentNetwork) {
                 if (DBG) {
-                    log("Network " + newNetwork.name() + " was already satisfying" +
+                    log("Network " + newNetwork.name() + " was already satisfying"
                             " request " + nri.request.requestId + ". No change.");
                 }
                 keep = true;
@@ -4219,8 +4219,8 @@ public class ConnectivityService extends IConnectivityManager.Stub
                 // next check if it's better than any current network we're using for
                 // this request
                 if (VDBG) {
-                    log("currentScore = " +
-                            (currentNetwork != null ? currentNetwork.getCurrentScore() : 0) +
+                    log("currentScore = "
+                            (currentNetwork != null ? currentNetwork.getCurrentScore() : 0)
                             ", newScore = " + newNetwork.getCurrentScore());
                 }
                 if (currentNetwork == null ||
@@ -4444,8 +4444,8 @@ public class ConnectivityService extends IConnectivityManager.Stub
             return;
         }
         if (DBG) {
-            log(networkAgent.name() + " EVENT_NETWORK_INFO_CHANGED, going from " +
-                    (oldInfo == null ? "null" : oldInfo.getState()) +
+            log(networkAgent.name() + " EVENT_NETWORK_INFO_CHANGED, going from "
+                    (oldInfo == null ? "null" : oldInfo.getState())
                     " to " + state);
         }
 
@@ -4515,7 +4515,7 @@ public class ConnectivityService extends IConnectivityManager.Stub
     private void updateNetworkScore(NetworkAgentInfo nai, int score) {
         if (DBG) log("updateNetworkScore for " + nai.name() + " to " + score);
         if (score < 0) {
-            loge("updateNetworkScore for " + nai.name() + " got a negative score (" + score +
+            loge("updateNetworkScore for " + nai.name() + " got a negative score (" + score
                     ").  Bumping score to min of 0");
             score = 0;
         }

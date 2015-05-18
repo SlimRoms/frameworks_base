@@ -692,7 +692,7 @@ mTabHost.addTab(TAB_TAG_1, "Hello, world!", "Tab 1");
             if (mView != null) {
                 mView.setVisibility(View.GONE);
             } else {
-                throw new RuntimeException("Could not create tab content because " +
+                throw new RuntimeException("Could not create tab content because "
                         "could not find view with id " + viewId);
             }
         }

@@ -577,7 +577,7 @@ final class WindowState implements WindowManagerPolicy.WindowState {
         final int fw = mFrame.width();
         final int fh = mFrame.height();
 
-        //System.out.println("In: w=" + w + " h=" + h + " container=" +
+        //System.out.println("In: w=" + w + " h=" + h + " container="
         //                   container + " x=" + mAttrs.x + " y=" + mAttrs.y);
 
         float x, y;

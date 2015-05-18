@@ -178,7 +178,7 @@ public class Recents extends SystemUI implements RecentsComponent {
                     float thumbBgPadding = res.getDimensionPixelSize(
                             R.dimen.status_bar_recents_thumbnail_bg_padding);
 
-                    float width = appLabelLeftMargin +
+                    float width = appLabelLeftMargin
                             +appLabelWidth
                             + thumbLeftMargin
                             + thumbWidth

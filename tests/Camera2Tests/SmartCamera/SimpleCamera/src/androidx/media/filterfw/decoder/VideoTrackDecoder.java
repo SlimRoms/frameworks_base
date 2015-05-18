@@ -43,7 +43,7 @@ public abstract class VideoTrackDecoder extends TrackDecoder {
     public void grabFrame(FrameImage2D outputVideoFrame, int rotation) {
         synchronized (mFrameMonitor) {
             if (!mFrameAvailable) {
-                Log.w(LOG_TAG, "frame is not ready - the caller has to wait for a corresponding " +
+                Log.w(LOG_TAG, "frame is not ready - the caller has to wait for a corresponding "
                         "onDecodedFrameAvailable() call");
                 return;
             }

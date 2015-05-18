@@ -255,9 +255,9 @@ public class CaptivePortalLoginActivity extends Activity {
         }
 
         // A web page consisting of a large broken lock icon to indicate SSL failure.
-        final static String SSL_ERROR_HTML = "<!DOCTYPE html><html><head><style>" +
-                "html { width:100%; height:100%; " +
-                "       background:url(locked_page.png) center center no-repeat; }" +
+        final static String SSL_ERROR_HTML = "<!DOCTYPE html><html><head><style>"
+                "html { width:100%; height:100%; "
+                "       background:url(locked_page.png) center center no-repeat; }"
                 "</style></head><body></body></html>";
 
         @Override

@@ -159,8 +159,8 @@ public class RecentsTaskLoadPlan {
      */
     synchronized void executePlan(Options opts, RecentsTaskLoader loader,
             TaskResourceLoadQueue loadQueue) {
-        if (DEBUG) Log.d(TAG, "executePlan, # tasks: " + opts.numVisibleTasks +
-                ", # thumbnails: " + opts.numVisibleTaskThumbnails +
+        if (DEBUG) Log.d(TAG, "executePlan, # tasks: " + opts.numVisibleTasks
+                ", # thumbnails: " + opts.numVisibleTaskThumbnails
                 ", running task id: " + opts.runningTaskId);
 
         Resources res = mContext.getResources();

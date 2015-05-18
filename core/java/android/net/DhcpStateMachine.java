@@ -375,7 +375,7 @@ public class DhcpStateMachine extends StateMachine {
                 //to beat the native DHCP client and avoid extra packets
                 //48% for one hour lease time = 29 minutes
                 mAlarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                        SystemClock.elapsedRealtime() +
+                        SystemClock.elapsedRealtime()
                         leaseDuration * 480, //in milliseconds
                         mDhcpRenewalIntent);
             } else {
@@ -386,7 +386,7 @@ public class DhcpStateMachine extends StateMachine {
             mController.obtainMessage(CMD_POST_DHCP_ACTION, DHCP_SUCCESS, 0, dhcpResults)
                 .sendToTarget();
         } else {
-            Log.e(TAG, "DHCP failed on " + mInterfaceName + ": " +
+            Log.e(TAG, "DHCP failed on " + mInterfaceName + ": "
                     NetworkUtils.getDhcpError());
             NetworkUtils.stopDhcp(mInterfaceName);
             mController.obtainMessage(CMD_POST_DHCP_ACTION, DHCP_FAILURE, 0)

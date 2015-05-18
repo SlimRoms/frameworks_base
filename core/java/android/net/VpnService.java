@@ -592,7 +592,7 @@ public class VpnService extends Service {
             } else if (family == AF_INET6) {
                 mConfig.allowIPv6 = true;
             } else {
-                throw new IllegalArgumentException(family + " is neither " + AF_INET + " nor " +
+                throw new IllegalArgumentException(family + " is neither " + AF_INET + " nor "
                         AF_INET6);
             }
             return this;

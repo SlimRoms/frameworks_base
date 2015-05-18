@@ -107,7 +107,7 @@ public class TransitionSet extends Transition {
                 mPlayTogether = true;
                 break;
             default:
-                throw new AndroidRuntimeException("Invalid parameter for TransitionSet " +
+                throw new AndroidRuntimeException("Invalid parameter for TransitionSet "
                         "ordering: " + ordering);
         }
         return this;

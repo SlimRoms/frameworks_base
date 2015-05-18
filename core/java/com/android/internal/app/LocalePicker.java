@@ -137,7 +137,7 @@ public class LocalePicker extends ListFragment {
                 if (previous.locale.getLanguage().equals(l.getLanguage()) &&
                         !previous.locale.getLanguage().equals("zz")) {
                     if (DEBUG) {
-                        Log.v(TAG, "backing up and fixing " + previous.label + " to " +
+                        Log.v(TAG, "backing up and fixing " + previous.label + " to "
                                 getDisplayName(previous.locale, specialLocaleCodes, specialLocaleNames));
                     }
                     previous.label = toTitleCase(getDisplayName(

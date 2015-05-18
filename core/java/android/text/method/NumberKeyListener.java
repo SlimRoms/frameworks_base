@@ -91,7 +91,7 @@ public abstract class NumberKeyListener extends BaseKeyListener
 
         return false;
     }
-    
+
     @Override
     public boolean onKeyDown(View view, Editable content,
                              int keyCode, KeyEvent event) {
@@ -124,7 +124,7 @@ public abstract class NumberKeyListener extends BaseKeyListener
                 return true;
             }
         } else if (i == '0' && repeatCount == 1) {
-            // Pretty hackish, it replaces the 0 with the +
+            // Pretty hackish, it replaces the 0 with the
 
             if (selStart == selEnd && selEnd > 0 &&
                     content.charAt(selStart - 1) == '0') {

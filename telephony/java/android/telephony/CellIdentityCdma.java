@@ -138,7 +138,7 @@ public final class CellIdentityCdma implements Parcelable {
     @Override
     public int hashCode() {
         int primeNum = 31;
-        return (mNetworkId * primeNum) + (mSystemId * primeNum) + (mBasestationId * primeNum) +
+        return (mNetworkId * primeNum) + (mSystemId * primeNum) + (mBasestationId * primeNum)
                 (mLatitude * primeNum) + (mLongitude * primeNum);
     }
 

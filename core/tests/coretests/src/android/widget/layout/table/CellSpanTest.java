@@ -78,7 +78,7 @@ public class CellSpanTest extends ActivityInstrumentationTestCase<CellSpan> {
 
     @MediumTest
     public void testSpan() throws Exception {
-        int spanWidth = mA.getMeasuredWidth() + mB.getMeasuredWidth() +
+        int spanWidth = mA.getMeasuredWidth() + mB.getMeasuredWidth()
                 mC.getMeasuredWidth();
         assertEquals("span is broken", spanWidth, mSpan.getMeasuredWidth());
     }

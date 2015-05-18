@@ -41,16 +41,16 @@ public class DuotoneFilter extends Filter {
     private int mTarget = FrameFormat.TARGET_UNSPECIFIED;
 
     private final String mDuotoneShader =
-            "precision mediump float;\n" +
-            "uniform sampler2D tex_sampler_0;\n" +
-            "uniform vec3 first;\n" +
-            "uniform vec3 second;\n" +
-            "varying vec2 v_texcoord;\n" +
-            "void main() {\n" +
-            "  vec4 color = texture2D(tex_sampler_0, v_texcoord);\n" +
-            "  float energy = (color.r + color.g + color.b) * 0.3333;\n" +
-            "  vec3 new_color = (1.0 - energy) * first + energy * second;\n" +
-            "  gl_FragColor = vec4(new_color.rgb, color.a);\n" +
+            "precision mediump float;\n"
+            "uniform sampler2D tex_sampler_0;\n"
+            "uniform vec3 first;\n"
+            "uniform vec3 second;\n"
+            "varying vec2 v_texcoord;\n"
+            "void main() {\n"
+            "  vec4 color = texture2D(tex_sampler_0, v_texcoord);\n"
+            "  float energy = (color.r + color.g + color.b) * 0.3333;\n"
+            "  vec3 new_color = (1.0 - energy) * first + energy * second;\n"
+            "  gl_FragColor = vec4(new_color.rgb, color.a);\n"
             "}\n";
 
     public DuotoneFilter(String name) {
@@ -77,7 +77,7 @@ public class DuotoneFilter extends Filter {
                 break;
 
             default:
-                throw new RuntimeException("Filter Duotone does not support frames of " +
+                throw new RuntimeException("Filter Duotone does not support frames of "
                     "target " + target + "!");
         }
         mTarget = target;

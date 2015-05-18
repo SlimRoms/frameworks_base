@@ -45,12 +45,12 @@ public class GpuVideoTrackDecoder extends VideoTrackDecoder {
      * Identity fragment shader for external textures.
      */
     private static final String COPY_FRAGMENT_SHADER =
-            "#extension GL_OES_EGL_image_external : require\n" +
-            "precision mediump float;\n" +
-            "uniform samplerExternalOES tex_sampler_0;\n" +
-            "varying vec2 v_texcoord;\n" +
-            "void main() {\n" +
-            "  gl_FragColor = texture2D(tex_sampler_0, v_texcoord);\n" +
+            "#extension GL_OES_EGL_image_external : require\n"
+            "precision mediump float;\n"
+            "uniform samplerExternalOES tex_sampler_0;\n"
+            "varying vec2 v_texcoord;\n"
+            "void main() {\n"
+            "  gl_FragColor = texture2D(tex_sampler_0, v_texcoord);\n"
             "}\n";
 
     private final TextureSource mTextureSource;

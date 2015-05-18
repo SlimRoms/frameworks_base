@@ -67,11 +67,11 @@ public class WifiP2pGroup implements Parcelable {
 
     /** P2P group started string pattern */
     private static final Pattern groupStartedPattern = Pattern.compile(
-        "ssid=\"(.+)\" " +
-        "freq=(\\d+) " +
-        "(?:psk=)?([0-9a-fA-F]{64})?" +
-        "(?:passphrase=)?(?:\"(.{0,63})\")? " +
-        "go_dev_addr=((?:[0-9a-f]{2}:){5}[0-9a-f]{2})" +
+        "ssid=\"(.+)\" "
+        "freq=(\\d+) "
+        "(?:psk=)?([0-9a-fA-F]{64})?"
+        "(?:passphrase=)?(?:\"(.{0,63})\")? "
+        "go_dev_addr=((?:[0-9a-f]{2}:){5}[0-9a-f]{2})"
         " ?(\\[PERSISTENT\\])?"
     );
 

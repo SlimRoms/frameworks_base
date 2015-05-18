@@ -549,10 +549,10 @@ public class SyncManager {
 
     /**
      * Initiate a sync using the new anonymous service API.
-     * @param cname SyncService component bound to in order to perform the sync. 
+     * @param cname SyncService component bound to in order to perform the sync.
      * @param userId the id of the user whose accounts are to be synced. If userId is USER_ALL,
      *          then all users' accounts are considered.
-     * @param uid Linux uid of the application that is performing the sync. 
+     * @param uid Linux uid of the application that is performing the sync.
      * @param extras a Map of SyncAdapter-specific information to control
      *          syncs of a specific provider. Cannot be null.
      * @param beforeRunTimeMillis milliseconds before <code>runtimeMillis</code> that this sync may
@@ -869,7 +869,7 @@ public class SyncManager {
      */
     private void postSyncExpiryMessage(ActiveSyncContext activeSyncContext) {
         if (Log.isLoggable(TAG, Log.VERBOSE)) {
-            Log.v(TAG, "posting MESSAGE_SYNC_EXPIRED in " +
+            Log.v(TAG, "posting MESSAGE_SYNC_EXPIRED in "
                     (ACTIVE_SYNC_TIMEOUT_MILLIS/1000) + "s");
         }
         Message msg = mSyncHandler.obtainMessage();
@@ -1412,7 +1412,7 @@ public class SyncManager {
                     continue;
                 }
                 int row = table.getNumRows();
-                Pair<AuthorityInfo, SyncStatusInfo> syncAuthoritySyncStatus = 
+                Pair<AuthorityInfo, SyncStatusInfo> syncAuthoritySyncStatus =
                         mSyncStorageEngine.getCopyOfAuthorityWithSyncStatus(
                                 new SyncStorageEngine.EndPoint(
                                         account.account,
@@ -2334,7 +2334,7 @@ public class SyncManager {
             }
 
             // convert absolute time to elapsed time
-            return SystemClock.elapsedRealtime() +
+            return SystemClock.elapsedRealtime()
                 ((earliestFuturePollTime < nowAbsolute) ?
                     0 : (earliestFuturePollTime - nowAbsolute));
         }
@@ -3263,7 +3263,7 @@ public class SyncManager {
 
         void set(int row, int col, Object... values) {
             if (col + values.length > mCols) {
-                throw new IndexOutOfBoundsException("Table only has " + mCols +
+                throw new IndexOutOfBoundsException("Table only has " + mCols
                         " columns. can't set " + values.length + " at column " + col);
             }
             for (int i = mTable.size(); i <= row; i++) {

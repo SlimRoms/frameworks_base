@@ -290,7 +290,7 @@ public class WindowAnimator {
                 mAnimating |= nowAnimating;
 
                 if (WindowManagerService.DEBUG_WALLPAPER) {
-                    Slog.v(TAG, win + ": wasAnimating=" + wasAnimating +
+                    Slog.v(TAG, win + ": wasAnimating=" + wasAnimating
                             ", nowAnimating=" + nowAnimating);
                 }
 
@@ -498,7 +498,7 @@ public class WindowAnimator {
         if (mPostKeyguardExitAnimation != null) {
             // We're in the midst of a keyguard exit animation.
             if (mKeyguardGoingAway) {
-                mPolicy.startKeyguardExitAnimation(mCurrentTime +
+                mPolicy.startKeyguardExitAnimation(mCurrentTime
                         mPostKeyguardExitAnimation.getStartOffset(),
                         mPostKeyguardExitAnimation.getDuration());
                 mKeyguardGoingAway = false;

@@ -89,8 +89,8 @@ public final class BluetoothHealthAppConfiguration implements Parcelable {
 
     @Override
     public String toString() {
-        return "BluetoothHealthAppConfiguration [mName = " + mName +
-            ",mDataType = " + mDataType + ", mRole = " + mRole + ",mChannelType = " +
+        return "BluetoothHealthAppConfiguration [mName = " + mName
+            ",mDataType = " + mDataType + ", mRole = " + mRole + ",mChannelType = "
             mChannelType + "]";
     }
 

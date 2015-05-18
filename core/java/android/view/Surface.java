@@ -301,8 +301,8 @@ public class Surface implements Parcelable {
                     + "was previously returned by lockCanvas");
         }
         if (mNativeObject != mLockedObject) {
-            Log.w(TAG, "WARNING: Surface's mNativeObject (0x" +
-                    Long.toHexString(mNativeObject) + ") != mLockedObject (0x" +
+            Log.w(TAG, "WARNING: Surface's mNativeObject (0x"
+                    Long.toHexString(mNativeObject) + ") != mLockedObject (0x"
                     Long.toHexString(mLockedObject) +")");
         }
         if (mLockedObject == 0) {
@@ -460,7 +460,7 @@ public class Surface implements Parcelable {
     @Override
     public String toString() {
         synchronized (mLock) {
-            return "Surface(name=" + mName + ")/@0x" +
+            return "Surface(name=" + mName + ")/@0x"
                     Integer.toHexString(System.identityHashCode(this));
         }
     }

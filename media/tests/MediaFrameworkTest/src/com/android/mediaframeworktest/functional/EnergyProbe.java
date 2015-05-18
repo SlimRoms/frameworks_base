@@ -76,7 +76,7 @@ public class EnergyProbe {
                             for (j = 0;
                                  (j < AVERAGE_COUNT) && ((bin + 2 * j) < CAPTURE_SIZE);
                                  j++) {
-                                tmp += (int)mFft[bin + 2 * j] * (int)mFft[bin + 2 * j] +
+                                tmp += (int)mFft[bin + 2 * j] * (int)mFft[bin + 2 * j]
                                        (int)mFft[bin + 2 * j + 1] * (int)mFft[bin + 2 * j + 1];
                             }
                             // j is always != 0

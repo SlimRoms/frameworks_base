@@ -110,7 +110,7 @@ class DelegateMethodAdapter extends MethodVisitor {
      * @param className The internal class name of the class to visit,
      *          e.g. <code>com/android/SomeClass$InnerClass</code>.
      * @param methodName The simple name of the method.
-     * @param desc A method descriptor (c.f. {@link Type#getReturnType(String)} +
+     * @param desc A method descriptor (c.f. {@link Type#getReturnType(String)}
      *          {@link Type#getArgumentTypes(String)})
      * @param isStatic True if the method is declared static.
      */

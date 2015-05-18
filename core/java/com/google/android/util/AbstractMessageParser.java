@@ -602,7 +602,7 @@ public abstract class AbstractMessageParser {
    */
   private static boolean isSmileyBreak(char c1, char c2) {
     switch (c1) {
-      /*    
+      /*
        * These characters can end smileys, but don't normally end words.
        */
       case '$': case '&': case '*': case '+': case '-':
@@ -944,7 +944,7 @@ public abstract class AbstractMessageParser {
         extraParams += "&";
       }
 
-      return protocol + prefix + "youtube.com/watch?" + extraParams + "v=" +
+      return protocol + prefix + "youtube.com/watch?" + extraParams + "v="
               docid;
     }
   }
@@ -999,7 +999,7 @@ public abstract class AbstractMessageParser {
 
     /** Returns the URL for the RSS description of the user's albums. */
     public static String getRssUrl(String user) {
-      return "http://picasaweb.google.com/data/feed/api/user/" + user +
+      return "http://picasaweb.google.com/data/feed/api/user/" + user
         "?category=album&alt=rss";
     }
 
@@ -1021,7 +1021,7 @@ public abstract class AbstractMessageParser {
     private static final Pattern URL_PATTERN = Pattern.compile(
         "http://(?:www.)?flickr.com/photos/([^/?#&]+)/?([^/?#&]+)?/?.*");
     private static final Pattern GROUPING_PATTERN = Pattern.compile(
-        "http://(?:www.)?flickr.com/photos/([^/?#&]+)/(tags|sets)/" +
+        "http://(?:www.)?flickr.com/photos/([^/?#&]+)/(tags|sets)/"
         "([^/?#&]+)/?");
 
     private static final String SETS = "sets";

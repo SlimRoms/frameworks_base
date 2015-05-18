@@ -1308,7 +1308,7 @@ public class ViewDebug {
                     continue;
                 } else if (!type.isPrimitive()) {
                     if (property.deepExport()) {
-                        dumpViewProperties(context, field.get(view), out, prefix +
+                        dumpViewProperties(context, field.get(view), out, prefix
                                 property.prefix());
                         continue;
                     }
@@ -1409,7 +1409,7 @@ public class ViewDebug {
         final Resources resources = context.getResources();
         if (id >= 0) {
             try {
-                fieldValue = resources.getResourceTypeName(id) + '/' +
+                fieldValue = resources.getResourceTypeName(id) + '/'
                         resources.getResourceEntryName(id);
             } catch (Resources.NotFoundException e) {
                 fieldValue = "id/" + formatIntToHexString(id);

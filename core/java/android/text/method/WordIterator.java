@@ -173,8 +173,8 @@ public class WordIterator implements Selection.PositionIterator {
 
     private void checkOffsetIsValid(int shiftedOffset) {
         if (shiftedOffset < 0 || shiftedOffset > mString.length()) {
-            throw new IllegalArgumentException("Invalid offset: " + (shiftedOffset + mOffsetShift) +
-                    ". Valid range is [" + mOffsetShift + ", " + (mString.length() + mOffsetShift) +
+            throw new IllegalArgumentException("Invalid offset: " + (shiftedOffset + mOffsetShift)
+                    ". Valid range is [" + mOffsetShift + ", " + (mString.length() + mOffsetShift)
                     "]");
         }
     }

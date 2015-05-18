@@ -58,7 +58,7 @@ public class ObjectFormat {
         // correctly determine the size of single element here.
         if (target == FrameFormat.TARGET_NATIVE) {
             if (!NativeBuffer.class.isAssignableFrom(clazz)) {
-                throw new IllegalArgumentException("Native object-based formats must be of a " +
+                throw new IllegalArgumentException("Native object-based formats must be of a "
                     "NativeBuffer subclass! (Received class: " + clazz + ").");
             }
             try {

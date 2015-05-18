@@ -342,7 +342,7 @@ public class HttpsConnection extends Connection {
                             mSuspended = false;
                             mAborted = true;
                             if (HttpLog.LOGV) {
-                                HttpLog.v("HttpsConnection.openConnection():" +
+                                HttpLog.v("HttpsConnection.openConnection():"
                                           " SSL timeout expired and request was cancelled!!!");
                             }
                         }
@@ -390,7 +390,7 @@ public class HttpsConnection extends Connection {
             }
         } catch (IOException e) {
             if (HttpLog.LOGV)
-                HttpLog.v("HttpsConnection.closeConnection():" +
+                HttpLog.v("HttpsConnection.closeConnection():"
                           " failed closing connection " + mHost);
             e.printStackTrace();
         }
@@ -401,7 +401,7 @@ public class HttpsConnection extends Connection {
      */
     void restartConnection(boolean proceed) {
         if (HttpLog.LOGV) {
-            HttpLog.v("HttpsConnection.restartConnection():" +
+            HttpLog.v("HttpsConnection.restartConnection():"
                       " proceed: " + proceed);
         }
 

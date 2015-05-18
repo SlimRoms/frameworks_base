@@ -207,30 +207,30 @@ public class RequestSync {
 
     private static void showUsage() {
         System.err.println(
-                "usage: requestsync [options]\n" +
-                "With no options, a sync will be requested for all account and all sync\n" +
-                "authorities with no extras. Options can be:\n" +
-                "    -h|--help: Display this message\n" +
-                "    -n|--account-name <ACCOUNT-NAME>\n" +
-                "    -t|--account-type <ACCOUNT-TYPE>\n" +
-                "    -a|--authority <AUTHORITY>\n" +
-                "  Add ContentResolver extras:\n" +
-                "    --is|--ignore-settings: Add SYNC_EXTRAS_IGNORE_SETTINGS\n" +
-                "    --ib|--ignore-backoff: Add SYNC_EXTRAS_IGNORE_BACKOFF\n" +
-                "    --dd|--discard-deletions: Add SYNC_EXTRAS_DISCARD_LOCAL_DELETIONS\n" +
-                "    --nr|--no-retry: Add SYNC_EXTRAS_DO_NOT_RETRY\n" +
-                "    --ex|--expedited: Add SYNC_EXTRAS_EXPEDITED\n" +
-                "    --i|--initialize: Add SYNC_EXTRAS_INITIALIZE\n" +
-                "    --m|--manual: Add SYNC_EXTRAS_MANUAL\n" +
-                "    --od|--override-deletions: Add SYNC_EXTRAS_OVERRIDE_TOO_MANY_DELETIONS\n" +
-                "    --u|--upload-only: Add SYNC_EXTRAS_UPLOAD\n" +
-                "  Add custom extras:\n" +
-                "    -e|--es|--extra-string <KEY> <VALUE>\n" +
-                "    --esn|--extra-string-null <KEY>\n" +
-                "    --ei|--extra-int <KEY> <VALUE>\n" +
-                "    --el|--extra-long <KEY> <VALUE>\n" +
-                "    --ef|--extra-float <KEY> <VALUE>\n" +
-                "    --ed|--extra-double <KEY> <VALUE>\n" +
+                "usage: requestsync [options]\n"
+                "With no options, a sync will be requested for all account and all sync\n"
+                "authorities with no extras. Options can be:\n"
+                "    -h|--help: Display this message\n"
+                "    -n|--account-name <ACCOUNT-NAME>\n"
+                "    -t|--account-type <ACCOUNT-TYPE>\n"
+                "    -a|--authority <AUTHORITY>\n"
+                "  Add ContentResolver extras:\n"
+                "    --is|--ignore-settings: Add SYNC_EXTRAS_IGNORE_SETTINGS\n"
+                "    --ib|--ignore-backoff: Add SYNC_EXTRAS_IGNORE_BACKOFF\n"
+                "    --dd|--discard-deletions: Add SYNC_EXTRAS_DISCARD_LOCAL_DELETIONS\n"
+                "    --nr|--no-retry: Add SYNC_EXTRAS_DO_NOT_RETRY\n"
+                "    --ex|--expedited: Add SYNC_EXTRAS_EXPEDITED\n"
+                "    --i|--initialize: Add SYNC_EXTRAS_INITIALIZE\n"
+                "    --m|--manual: Add SYNC_EXTRAS_MANUAL\n"
+                "    --od|--override-deletions: Add SYNC_EXTRAS_OVERRIDE_TOO_MANY_DELETIONS\n"
+                "    --u|--upload-only: Add SYNC_EXTRAS_UPLOAD\n"
+                "  Add custom extras:\n"
+                "    -e|--es|--extra-string <KEY> <VALUE>\n"
+                "    --esn|--extra-string-null <KEY>\n"
+                "    --ei|--extra-int <KEY> <VALUE>\n"
+                "    --el|--extra-long <KEY> <VALUE>\n"
+                "    --ef|--extra-float <KEY> <VALUE>\n"
+                "    --ed|--extra-double <KEY> <VALUE>\n"
                 "    --ez|--extra-bool <KEY> <VALUE>\n"
                 );
     }

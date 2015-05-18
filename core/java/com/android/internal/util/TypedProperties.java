@@ -417,7 +417,7 @@ public class TypedProperties extends HashMap<String, Object> {
      */
     public static class TypeException extends IllegalArgumentException {
         TypeException(String property, Object value, String requestedType) {
-            super(property + " has type " + value.getClass().getName() +
+            super(property + " has type " + value.getClass().getName()
                 ", not " + requestedType);
         }
     }

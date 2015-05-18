@@ -139,8 +139,8 @@ public class UsbConfiguration implements Parcelable {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder("UsbConfiguration[mId=" + mId +
-                ",mName=" + mName + ",mAttributes=" + mAttributes +
+        StringBuilder builder = new StringBuilder("UsbConfiguration[mId=" + mId
+                ",mName=" + mName + ",mAttributes=" + mAttributes
                 ",mMaxPower=" + mMaxPower + ",mInterfaces=[");
         for (int i = 0; i < mInterfaces.length; i++) {
             builder.append("\n");

@@ -107,20 +107,20 @@ public class GraphExporter {
                 if(source != null) {
                     // Found a connection, draw it
                     InputPort target = source.getTarget();
-                    dotFile.write("  " +
-                        getDotName(source.getFilter().getName()) + ":" +
-                        getDotName(source.getName()) + "_OUT -> " +
-                        getDotName(target.getFilter().getName()) + ":" +
+                    dotFile.write("  "
+                        getDotName(source.getFilter().getName()) + ":"
+                        getDotName(source.getName()) + "_OUT -> "
+                        getDotName(target.getFilter().getName()) + ":"
                         getDotName(target.getName()) + "_IN;\n" );
                 } else {
                     // Found a unconnected output port, add dummy node
                     String color = filter.getSignature().getOutputPortInfo(portName).isRequired()
                         ? "red" : "blue";  // red for unconnected, required ports
-                    dotFile.write("  " +
-                        "dummy" + (++dummyNodeCounter) +
-                        " [shape=point,label=\"\",color=" + color + "];\n" +
-                        "  " + getDotName(filter.getName()) + ":" +
-                        getDotName(portName) + "_OUT -> " +
+                    dotFile.write("  "
+                        "dummy" + (++dummyNodeCounter)
+                        " [shape=point,label=\"\",color=" + color + "];\n"
+                        "  " + getDotName(filter.getName()) + ":"
+                        getDotName(portName) + "_OUT -> "
                         "dummy" + dummyNodeCounter + " [color=" + color + "];\n");
                 }
             }
@@ -134,11 +134,11 @@ public class GraphExporter {
                     // Found a unconnected input port, add dummy node
                     String color = filter.getSignature().getInputPortInfo(portName).isRequired()
                         ? "red" : "blue";  // red for unconnected, required ports
-                    dotFile.write("  " +
-                        "dummy" + (++dummyNodeCounter) +
-                        " [shape=point,label=\"\",color=" + color + "];\n" +
-                        "  dummy" + dummyNodeCounter + " -> " +
-                        getDotName(filter.getName()) + ":" +
+                    dotFile.write("  "
+                        "dummy" + (++dummyNodeCounter)
+                        " [shape=point,label=\"\",color=" + color + "];\n"
+                        "  dummy" + dummyNodeCounter + " -> "
+                        getDotName(filter.getName()) + ":"
                         getDotName(portName) + "_IN [color=" + color + "];\n");
                 }
             }

@@ -241,7 +241,7 @@ public class MediaAudioManagerTest extends ActivityInstrumentationTestCase2<Medi
             java.lang.Thread.sleep(WAIT_FOR_AUDIOFOCUS_LOSS_MS);
         }
         // verify there were 2 audio focus changes per iteration (one loss + one gain)
-        assertTrue("testAudioFocusListenerLifeCycle : observed " +
+        assertTrue("testAudioFocusListenerLifeCycle : observed "
                 mAudioFocusListener.mFocusChangeCounter + " AudioFocus changes",
                 mAudioFocusListener.mFocusChangeCounter == ITERATIONS * 2);
         mAudioManager.abandonAudioFocus(mAudioFocusListener);

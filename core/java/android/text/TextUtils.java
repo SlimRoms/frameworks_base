@@ -911,7 +911,7 @@ public class TextUtils {
                         }
                         if (which >= values.length) {
                             throw new IllegalArgumentException(
-                                "template requests value ^" + (which+1) +
+                                "template requests value ^" + (which+1)
                                 "; only " + values.length + " provided");
                         }
                         ssb.replace(i, i+2, values[which]);

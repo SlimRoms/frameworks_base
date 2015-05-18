@@ -1191,7 +1191,7 @@ public final class Settings {
                     mValues.put(name, value);
                 }
                 if (LOCAL_LOGV) {
-                    Log.v(TAG, "cache miss [" + mUri.getLastPathSegment() + "]: " +
+                    Log.v(TAG, "cache miss [" + mUri.getLastPathSegment() + "]: "
                             name + " = " + (value == null ? "(null)" : value));
                 }
                 return value;
@@ -2122,7 +2122,7 @@ public final class Settings {
         public static final String LOCKSCREEN_SHORTCUTS_LONGPRESS =
                 "lockscreen_shortcuts_longpress";
 
-        /** 
+        /**
          * Whether to allow one finger quick settings expansion on the right side of the statusbar.
          *
          * @hide

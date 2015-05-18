@@ -670,9 +670,9 @@ public final class PlaybackState implements Parcelable {
 
         @Override
         public String toString() {
-            return "Action:" +
-                    "mName='" + mName +
-                    ", mIcon=" + mIcon +
+            return "Action:"
+                    "mName='" + mName
+                    ", mIcon=" + mIcon
                     ", mExtras=" + mExtras;
         }
 

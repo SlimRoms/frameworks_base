@@ -211,7 +211,7 @@ public class Task {
         if (group != null) {
             groupAffiliation = Integer.toString(group.affiliation);
         }
-        return "Task (" + groupAffiliation + "): " + key.baseIntent.getComponent().getPackageName() +
+        return "Task (" + groupAffiliation + "): " + key.baseIntent.getComponent().getPackageName()
                 " [" + super.toString() + "]";
     }
 }

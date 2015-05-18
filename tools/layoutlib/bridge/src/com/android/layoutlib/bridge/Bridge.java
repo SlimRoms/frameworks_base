@@ -226,7 +226,7 @@ public final class Bridge extends com.android.ide.common.rendering.api.Bridge {
             OverrideMethod.setDefaultListener(new MethodAdapter() {
                 @Override
                 public void onInvokeV(String signature, boolean isNative, Object caller) {
-                    sDefaultLog.error(null, "Missing Stub: " + signature +
+                    sDefaultLog.error(null, "Missing Stub: " + signature
                             (isNative ? " (native)" : ""), null /*data*/);
 
                     if (debug.equalsIgnoreCase("throw")) {

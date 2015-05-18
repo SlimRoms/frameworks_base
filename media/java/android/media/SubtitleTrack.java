@@ -329,8 +329,8 @@ public abstract class SubtitleTrack implements MediaTimeProvider.OnMediaTimeList
             }
         }
 
-        if (DEBUG) Log.v(TAG, "mVisible=" + mVisible + ", " +
-                cue.mStartTimeMs + " <= " + nowMs + ", " +
+        if (DEBUG) Log.v(TAG, "mVisible=" + mVisible + ", "
+                cue.mStartTimeMs + " <= " + nowMs + ", "
                 cue.mEndTimeMs + " >= " + mLastTimeMs);
 
         if (mVisible &&

@@ -102,14 +102,14 @@ public class WipowerDynamicParam {
         */
         void print() {
             sDebug = SystemProperties.getBoolean("persist.a4wp.logging", false);
-            if (sDebug) Log.v(LOGTAG, "mOptValidity " +  toHex(mOptValidity) +
-              "mRectVoltage " +  toHex(mRectVoltage) +  "mRectCurrent " +
+            if (sDebug) Log.v(LOGTAG, "mOptValidity " +  toHex(mOptValidity)
+              "mRectVoltage " +  toHex(mRectVoltage) +  "mRectCurrent "
               toHex(mRectCurrent) + "mOutputVoltage " +  toHex(mOutputVoltage));
-            if (sDebug) Log.v(LOGTAG, "mOutputCurrent " +  toHex(mOutputCurrent) +
-               "mTemperature " +  toHex(mTemperature) + "mMinRectVoltageDyn " +
+            if (sDebug) Log.v(LOGTAG, "mOutputCurrent " +  toHex(mOutputCurrent)
+               "mTemperature " +  toHex(mTemperature) + "mMinRectVoltageDyn "
                toHex(mMinRectVoltageDyn) + "mMaxRectVoltageDyn " +  toHex(mMaxRectVoltageDyn));
-            if (sDebug) Log.v(LOGTAG, "mSetRectVoltageDyn " +
-               toHex(mSetRectVoltageDyn) + "mAlert " +  toHex(mAlert) +
+            if (sDebug) Log.v(LOGTAG, "mSetRectVoltageDyn "
+               toHex(mSetRectVoltageDyn) + "mAlert " +  toHex(mAlert)
                "mReserved1 " +  toHex(mReserved1) + "mReserved2 " +  toHex(mReserved2));
         }
 

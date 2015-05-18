@@ -85,7 +85,7 @@ public final class AidGroup implements Parcelable {
 
     @Override
     public String toString() {
-        StringBuilder out = new StringBuilder("Category: " + category +
+        StringBuilder out = new StringBuilder("Category: " + category
                   ", AIDs:");
         for (String aid : aids) {
             out.append(aid);

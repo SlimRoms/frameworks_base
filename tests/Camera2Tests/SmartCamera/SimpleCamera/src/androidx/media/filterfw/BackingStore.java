@@ -246,7 +246,7 @@ final class BackingStore {
                 case ACCESS_ALLOCATION:
                     if (!AllocationBacking.isSupported()) {
                         throw new RuntimeException(
-                                "Attempted to create an AllocationBacking in context that does " +
+                                "Attempted to create an AllocationBacking in context that does "
                                 "not support RenderScript!");
                     }
                     backing = new AllocationBacking(mFrameManager.getContext().getRenderScript());
@@ -258,7 +258,7 @@ final class BackingStore {
             }
             if (backing.requiresGpu() && !mFrameManager.getRunner().isOpenGLSupported()) {
                 throw new RuntimeException(
-                        "Cannot create backing that requires GPU in a runner that does not " +
+                        "Cannot create backing that requires GPU in a runner that does not "
                         "support OpenGL!");
             }
             backing.setDimensions(mDimensions);

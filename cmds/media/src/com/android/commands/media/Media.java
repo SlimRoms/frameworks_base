@@ -60,16 +60,16 @@ public class Media extends BaseCommand {
 
     public void onShowUsage(PrintStream out) {
         out.println(
-                "usage: media [subcommand] [options]\n" +
-                "       media dispatch KEY\n" +
-                "       media list-sessions\n" +
-                "       media monitor <tag>\n" +
-                "\n" +
-                "media dispatch: dispatch a media key to the system.\n" +
-                "                KEY may be: play, pause, play-pause, mute, headsethook,\n" +
-                "                stop, next, previous, rewind, record, fast-forword.\n" +
-                "media list-sessions: print a list of the current sessions.\n" +
-                        "media monitor: monitor updates to the specified session.\n" +
+                "usage: media [subcommand] [options]\n"
+                "       media dispatch KEY\n"
+                "       media list-sessions\n"
+                "       media monitor <tag>\n"
+                "\n"
+                "media dispatch: dispatch a media key to the system.\n"
+                "                KEY may be: play, pause, play-pause, mute, headsethook,\n"
+                "                stop, next, previous, rewind, record, fast-forword.\n"
+                "media list-sessions: print a list of the current sessions.\n"
+                        "media monitor: monitor updates to the specified session.\n"
                 "                       Use the tag from list-sessions.\n"
         );
     }

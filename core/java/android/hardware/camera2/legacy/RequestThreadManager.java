@@ -409,8 +409,8 @@ public class RequestThreadManager {
         List<int[]> supportedFpsRanges = mParams.getSupportedPreviewFpsRange();
         int[] bestRange = getPhotoPreviewFpsRange(supportedFpsRanges);
         if (DEBUG) {
-            Log.d(TAG, "doPreviewCapture - Selected range [" +
-                    bestRange[Camera.Parameters.PREVIEW_FPS_MIN_INDEX] + "," +
+            Log.d(TAG, "doPreviewCapture - Selected range ["
+                    bestRange[Camera.Parameters.PREVIEW_FPS_MIN_INDEX] + ","
                     bestRange[Camera.Parameters.PREVIEW_FPS_MAX_INDEX] + "]");
         }
         mParams.setPreviewFpsRange(bestRange[Camera.Parameters.PREVIEW_FPS_MIN_INDEX],
@@ -445,7 +445,7 @@ public class RequestThreadManager {
                     mIntermediateBufferSize.getHeight());
 
             if (DEBUG) {
-                Log.d(TAG, "Intermediate buffer selected with dimens: " +
+                Log.d(TAG, "Intermediate buffer selected with dimens: "
                         bestPreviewDimen.toString());
             }
         } else {
@@ -583,7 +583,7 @@ public class RequestThreadManager {
 
             if (candidateSupportedJpegSizes.isEmpty()) {
                 throw new AssertionError(
-                        "Could not find any supported JPEG sizes large enough to fit " +
+                        "Could not find any supported JPEG sizes large enough to fit "
                         smallestBoundJpegSize);
             }
 
@@ -787,7 +787,7 @@ public class RequestThreadManager {
                                 while(!mCaptureCollector.waitForPreviewsEmpty(PREVIEW_FRAME_TIMEOUT,
                                         TimeUnit.MILLISECONDS)) {
                                     // Fail preview requests until the queue is empty.
-                                    Log.e(TAG, "Timed out while waiting for preview requests to " +
+                                    Log.e(TAG, "Timed out while waiting for preview requests to "
                                             "complete.");
                                     mCaptureCollector.failNextPreview();
                                 }
@@ -918,7 +918,7 @@ public class RequestThreadManager {
                     // OK: Ignore message.
                     break;
                 default:
-                    throw new AssertionError("Unhandled message " + msg.what +
+                    throw new AssertionError("Unhandled message " + msg.what
                             " on RequestThread.");
             }
             return true;

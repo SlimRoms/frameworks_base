@@ -228,14 +228,14 @@ import com.android.services.SecurityBridge.api.PackageManagerMonitor;
 
 /**
  * Keep track of all those .apks everywhere.
- * 
+ *
  * This is very central to the platform's security; please run the unit
  * tests whenever making modifications here:
- * 
+ *
 mmm frameworks/base/tests/AndroidTests
 adb install -r -f out/target/product/passion/data/app/AndroidTests.apk
 adb shell am instrument -w -e class com.android.unit_tests.PackageManagerTests com.android.unit_tests/android.test.InstrumentationTestRunner
- * 
+ *
  * {@hide}
  */
 public class PackageManagerService extends IPackageManager.Stub {
@@ -464,7 +464,7 @@ public class PackageManagerService extends IPackageManager.Stub {
     // Packages whose data we have transfered into another package, thus
     // should no longer exist.
     final ArraySet<String> mTransferedPackages = new ArraySet<String>();
-    
+
     // Broadcast actions that are only available to the system.
     final ArraySet<String> mProtectedBroadcasts = new ArraySet<String>();
 
@@ -774,7 +774,7 @@ public class PackageManagerService extends IPackageManager.Stub {
             new ArrayList<HandlerParams>();
 
         private boolean connectToService() {
-            if (DEBUG_SD_INSTALL) Log.i(TAG, "Trying to bind to" +
+            if (DEBUG_SD_INSTALL) Log.i(TAG, "Trying to bind to"
                     " DefaultContainerService");
             Intent service = new Intent().setComponent(DEFAULT_CONTAINER_COMPONENT);
             Process.setThreadPriority(Process.THREAD_PRIORITY_DEFAULT);
@@ -807,7 +807,7 @@ public class PackageManagerService extends IPackageManager.Stub {
                 Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
             }
         }
-        
+
         void doHandleMessage(Message msg) {
             switch (msg.what) {
                 case INIT_COPY: {
@@ -1801,7 +1801,7 @@ public class PackageManagerService extends IPackageManager.Stub {
                     + mSettings.mInternalSdkPlatform + " to " + mSdkVersion
                     + "; regranting permissions for internal storage");
             mSettings.mInternalSdkPlatform = mSdkVersion;
-            
+
             updatePermissionsLPw(null, null, UPDATE_PERMISSIONS_ALL
                     | (regrantPermissions
                             ? (UPDATE_PERMISSIONS_REPLACE_PKG|UPDATE_PERMISSIONS_REPLACE_ALL)
@@ -2014,7 +2014,7 @@ public class PackageManagerService extends IPackageManager.Stub {
         }
         return out;
     }
-    
+
     @Override
     public String[] canonicalToCurrentPackageNames(String[] names) {
         String[] out = new String[names.length];
@@ -2075,7 +2075,7 @@ public class PackageManagerService extends IPackageManager.Stub {
         pi.protectionLevel = bp.protectionLevel;
         return pi;
     }
-    
+
     @Override
     public PermissionInfo getPermissionInfo(String name, int flags) {
         // reader
@@ -2532,7 +2532,7 @@ public class PackageManagerService extends IPackageManager.Stub {
         }
         return s1.equals(s2);
     }
-    
+
     static boolean comparePermissionInfos(PermissionInfo pi1, PermissionInfo pi2) {
         if (pi1.icon != pi2.icon) return false;
         if (pi1.logo != pi2.logo) return false;
@@ -3199,7 +3199,7 @@ public class PackageManagerService extends IPackageManager.Stub {
                     }
                     //  Found a persistent preference that can handle the intent.
                     if (DEBUG_PREFERRED || debug) {
-                        Slog.v(TAG, "Returning persistent preferred activity: " +
+                        Slog.v(TAG, "Returning persistent preferred activity: "
                                 ri.activityInfo.packageName + "/" + ri.activityInfo.name);
                     }
                     return ri;
@@ -3397,7 +3397,7 @@ public class PackageManagerService extends IPackageManager.Stub {
         ComponentName comp = intent.getComponent();
         if (comp == null) {
             if (intent.getSelector() != null) {
-                intent = intent.getSelector(); 
+                intent = intent.getSelector();
                 comp = intent.getComponent();
             }
         }
@@ -3714,7 +3714,7 @@ public class PackageManagerService extends IPackageManager.Stub {
         ComponentName comp = intent.getComponent();
         if (comp == null) {
             if (intent.getSelector() != null) {
-                intent = intent.getSelector(); 
+                intent = intent.getSelector();
                 comp = intent.getComponent();
             }
         }
@@ -3765,7 +3765,7 @@ public class PackageManagerService extends IPackageManager.Stub {
         ComponentName comp = intent.getComponent();
         if (comp == null) {
             if (intent.getSelector() != null) {
-                intent = intent.getSelector(); 
+                intent = intent.getSelector();
                 comp = intent.getComponent();
             }
         }
@@ -4143,13 +4143,13 @@ public class PackageManagerService extends IPackageManager.Stub {
     private boolean createIdmapForPackagePairLI(PackageParser.Package pkg,
             PackageParser.Package opkg) {
         if (!opkg.mTrustedOverlay) {
-            Slog.w(TAG, "Skipping target and overlay pair " + pkg.baseCodePath + " and " +
+            Slog.w(TAG, "Skipping target and overlay pair " + pkg.baseCodePath + " and "
                     opkg.baseCodePath + ": overlay not trusted");
             return false;
         }
         ArrayMap<String, PackageParser.Package> overlaySet = mOverlays.get(pkg.packageName);
         if (overlaySet == null) {
-            Slog.e(TAG, "was about to create idmap for " + pkg.baseCodePath + " and " +
+            Slog.e(TAG, "was about to create idmap for " + pkg.baseCodePath + " and "
                     opkg.baseCodePath + " but target package has no known overlays");
             return false;
         }
@@ -4735,7 +4735,7 @@ public class PackageManagerService extends IPackageManager.Stub {
                 long then = pkg.mLastPackageUsageTimeInMills;
                 if (then + mDexOptLRUThresholdInMills < now) {
                     if (DEBUG_DEXOPT) {
-                        Log.i(TAG, "Skipping dexopt of " + pkg.packageName + " last resumed: " +
+                        Log.i(TAG, "Skipping dexopt of " + pkg.packageName + " last resumed: "
                               ((then == 0) ? "never" : new Date(then)));
                     }
                     i.remove();
@@ -5444,7 +5444,7 @@ public class PackageManagerService extends IPackageManager.Stub {
                                 + "): packages=" + suid.packages);
                 }
             }
-            
+
             // Check if we are renaming from an original package name.
             PackageSetting origPackage = null;
             String realName = null;
@@ -5464,7 +5464,7 @@ public class PackageManagerService extends IPackageManager.Stub {
                         // it is not already done.
                         pkg.setPackageName(renamed);
                     }
-                    
+
                 } else {
                     for (int i=pkg.mOriginalPackages.size()-1; i>=0; i--) {
                         if ((origPackage = mSettings.peekPackageLPr(
@@ -5494,7 +5494,7 @@ public class PackageManagerService extends IPackageManager.Stub {
                     }
                 }
             }
-            
+
             if (mTransferedPackages.contains(pkg.packageName)) {
                 Slog.w(TAG, "Package " + pkg.packageName
                         + " was transferred to another, but its .apk remains");
@@ -5518,24 +5518,24 @@ public class PackageManagerService extends IPackageManager.Stub {
                 // looking up the package under its new name, so getPackageLP
                 // can take care of fiddling things correctly.
                 pkg.setPackageName(origPackage.name);
-                
+
                 // File a report about this.
                 String msg = "New package " + pkgSetting.realName
                         + " renamed to replace old package " + pkgSetting.name;
                 reportSettingsProblem(Log.WARN, msg);
-                
+
                 // Make a note of it.
                 mTransferedPackages.add(origPackage.name);
-                
+
                 // No longer need to retain this.
                 pkgSetting.origPackage = null;
             }
-            
+
             if (realName != null) {
                 // Make a note of it.
                 mTransferedPackages.add(pkg.packageName);
             }
-            
+
             if (mSettings.isDisabledSystemPackageLPr(pkg.packageName)) {
                 pkg.applicationInfo.flags |= ApplicationInfo.FLAG_UPDATED_SYSTEM_APP;
             }
@@ -5644,7 +5644,7 @@ public class PackageManagerService extends IPackageManager.Stub {
         }
 
         final String pkgName = pkg.packageName;
-        
+
         final long scanFileTime = scanFile.lastModified();
         final boolean forceDex = (scanFlags & SCAN_FORCE_DEX) != 0;
         pkg.applicationInfo.processName = fixProcessName(
@@ -5686,7 +5686,7 @@ public class PackageManagerService extends IPackageManager.Stub {
                         if (ret >= 0) {
                             recovered = true;
                             String msg = "Package " + pkg.packageName
-                                    + " unexpectedly changed to uid 0; recovered to " +
+                                    + " unexpectedly changed to uid 0; recovered to "
                                     + pkg.applicationInfo.uid;
                             reportSettingsProblem(Log.WARN, msg);
                         }
@@ -6001,8 +6001,8 @@ public class PackageManagerService extends IPackageManager.Stub {
         pkgSetting.legacyNativeLibraryPathString = pkg.applicationInfo.nativeLibraryRootDir;
 
         if (DEBUG_ABI_SELECTION) {
-            Log.d(TAG, "Abis for package[" + pkg.packageName + "] are" +
-                    " primary=" + pkg.applicationInfo.primaryCpuAbi +
+            Log.d(TAG, "Abis for package[" + pkg.packageName + "] are"
+                    " primary=" + pkg.applicationInfo.primaryCpuAbi
                     " secondary=" + pkg.applicationInfo.secondaryCpuAbi);
         }
 
@@ -6219,8 +6219,8 @@ public class PackageManagerService extends IPackageManager.Stub {
                             }
                         } else {
                             PackageParser.Provider other = mProvidersByAuthority.get(names[j]);
-                            Slog.w(TAG, "Skipping provider name " + names[j] +
-                                    " (in package " + pkg.applicationInfo.packageName +
+                            Slog.w(TAG, "Skipping provider name " + names[j]
+                                    " (in package " + pkg.applicationInfo.packageName
                                     "): name already used by "
                                     + ((other != null && other.getComponentName() != null)
                                             ? other.getComponentName().getPackageName() : "?"));
@@ -6597,7 +6597,7 @@ public class PackageManagerService extends IPackageManager.Stub {
             mResolveInfo.preferredOrder = 0;
             mResolveInfo.match = 0;
             mResolveComponentName = mCustomResolverComponentName;
-            Slog.i(TAG, "Replacing default ResolverActivity with custom activity: " +
+            Slog.i(TAG, "Replacing default ResolverActivity with custom activity: "
                     mResolveComponentName);
         }
     }
@@ -7116,7 +7116,7 @@ public class PackageManagerService extends IPackageManager.Stub {
                 }
             }
         }
-        
+
         if (pkgInfo != null) {
             grantPermissionsLPw(pkgInfo, (flags&UPDATE_PERMISSIONS_REPLACE_PKG) != 0, changingPkg);
         }
@@ -7389,7 +7389,7 @@ public class PackageManagerService extends IPackageManager.Stub {
             mActivities.put(a.getComponentName(), a);
             if (DEBUG_SHOW_INFO)
                 Log.v(
-                TAG, "  " + type + " " +
+                TAG, "  " + type + " "
                 (a.info.nonLocalizedLabel != null ? a.info.nonLocalizedLabel : a.info.name) + ":");
             if (DEBUG_SHOW_INFO)
                 Log.v(TAG, "    Class=" + a.info.name);
@@ -7472,7 +7472,7 @@ public class PackageManagerService extends IPackageManager.Stub {
                 PackageParser.ActivityIntentInfo info) {
             return packageName.equals(info.activity.owner.packageName);
         }
-        
+
         @Override
         protected ResolveInfo newResult(PackageParser.ActivityIntentInfo info,
                 int match, int userId) {
@@ -7501,7 +7501,7 @@ public class PackageManagerService extends IPackageManager.Stub {
             }
             res.priority = info.getPriority();
             res.preferredOrder = activity.owner.mPreferredOrder;
-            //System.out.println("Result: " + res.activityInfo.className +
+            //System.out.println("Result: " + res.activityInfo.className
             //                   " = " + res.priority);
             res.match = match;
             res.isDefault = info.hasDefault;
@@ -7691,7 +7691,7 @@ public class PackageManagerService extends IPackageManager.Stub {
                 PackageParser.ServiceIntentInfo info) {
             return packageName.equals(info.service.owner.packageName);
         }
-        
+
         @Override
         protected ResolveInfo newResult(PackageParser.ServiceIntentInfo filter,
                 int match, int userId) {
@@ -7721,7 +7721,7 @@ public class PackageManagerService extends IPackageManager.Stub {
             }
             res.priority = info.getPriority();
             res.preferredOrder = service.owner.mPreferredOrder;
-            //System.out.println("Result: " + res.activityInfo.className +
+            //System.out.println("Result: " + res.activityInfo.className
             //                   " = " + res.priority);
             res.match = match;
             res.isDefault = info.hasDefault;
@@ -9897,7 +9897,7 @@ public class PackageManagerService extends IPackageManager.Stub {
                 }
             }
             if (!PackageHelper.renameSdDir(cid, newCacheId)) {
-                Slog.e(TAG, "Failed to rename " + cid + " to " + newCacheId +
+                Slog.e(TAG, "Failed to rename " + cid + " to " + newCacheId
                         " which might be stale. Will try to clean up.");
                 // Clean up the stale container and proceed to recreate.
                 if (!PackageHelper.destroySdDir(newCacheId)) {
@@ -9922,8 +9922,8 @@ public class PackageManagerService extends IPackageManager.Stub {
                 Slog.w(TAG, "Failed to get cache path for  " + newCacheId);
                 return false;
             }
-            Log.i(TAG, "Succesfully renamed " + cid +
-                    " to " + newCacheId +
+            Log.i(TAG, "Succesfully renamed " + cid
+                    " to " + newCacheId
                     " at new path: " + newMountPath);
             cid = newCacheId;
 
@@ -10168,7 +10168,7 @@ public class PackageManagerService extends IPackageManager.Stub {
         }
         return false;
     }
-    
+
     // Utility method that returns the relative package path with respect
     // to the installation directory. Like say for /data/data/com.test-1.apk
     // string com.test-1 is returned.
@@ -11860,7 +11860,7 @@ public class PackageManagerService extends IPackageManager.Stub {
                 || filter.countDataSchemes() > 1
                 || filter.countDataTypes() != 0) {
             throw new IllegalArgumentException(
-                    "replacePreferredActivity expects filter to have no data authorities, " +
+                    "replacePreferredActivity expects filter to have no data authorities, "
                     "paths, or types; and at most one scheme.");
         }
 
@@ -12057,7 +12057,7 @@ public class PackageManagerService extends IPackageManager.Stub {
             return;
         }
         synchronized (mPackages) {
-            Slog.i(TAG, "Adding persistent preferred activity " + activity + " for user " + userId +
+            Slog.i(TAG, "Adding persistent preferred activity " + activity + " for user " + userId
                     " :");
             filter.dump(new LogPrinter(Log.INFO, TAG), "  ");
             mSettings.editPersistentPreferredActivitiesLPw(userId).addFilter(
@@ -12589,7 +12589,7 @@ public class PackageManagerService extends IPackageManager.Stub {
         boolean checkin = false;
 
         String packageName = null;
-        
+
         int opti = 0;
         while (opti < args.length) {
             String opt = args[opti];

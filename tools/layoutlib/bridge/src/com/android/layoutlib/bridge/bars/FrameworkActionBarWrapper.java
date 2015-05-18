@@ -74,7 +74,7 @@ public abstract class FrameworkActionBarWrapper {
             return new WindowActionBarWrapper(context, callback, decorContent,
                     (ActionBarView) view);
         } else {
-            throw new IllegalStateException("Can't make an action bar out of " +
+            throw new IllegalStateException("Can't make an action bar out of "
                     view.getClass().getSimpleName());
         }
     }

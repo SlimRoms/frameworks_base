@@ -1012,7 +1012,7 @@ class TelephonyRegistry extends ITelephonyRegistry.Stub {
                                 PhoneStateListener.LISTEN_DATA_CONNECTION_STATE) &&
                                 idMatch(r.subId, subId, phoneId)) {
                             try {
-                                log("Notify data connection state changed on sub: " +
+                                log("Notify data connection state changed on sub: "
                                         subId);
                                 r.callback.onDataConnectionStateChanged(mDataConnectionState[phoneId],
                                         mDataConnectionNetworkType[phoneId]);
@@ -1281,7 +1281,7 @@ class TelephonyRegistry extends ITelephonyRegistry.Stub {
                 pw.println("  mDataConnectionReason=" + mDataConnectionReason[i]);
                 pw.println("  mDataConnectionApn=" + mDataConnectionApn[i]);
                 pw.println("  mDataConnectionLinkProperties=" + mDataConnectionLinkProperties[i]);
-                pw.println("  mDataConnectionNetworkCapabilities=" +
+                pw.println("  mDataConnectionNetworkCapabilities="
                         mDataConnectionNetworkCapabilities[i]);
                 pw.println("  mCellLocation=" + mCellLocation[i]);
                 pw.println("  mCellInfo=" + mCellInfo.get(i));
@@ -1589,7 +1589,7 @@ class TelephonyRegistry extends ITelephonyRegistry.Stub {
 
         if ((events & PhoneStateListener.LISTEN_SERVICE_STATE) != 0) {
             try {
-                if (VDBG) log("checkPossibleMissNotify: onServiceStateChanged state=" +
+                if (VDBG) log("checkPossibleMissNotify: onServiceStateChanged state="
                         mServiceState[phoneId]);
                 r.callback.onServiceStateChanged(
                         new ServiceState(mServiceState[phoneId]));
@@ -1615,7 +1615,7 @@ class TelephonyRegistry extends ITelephonyRegistry.Stub {
                 int gsmSignalStrength = mSignalStrength[phoneId]
                         .getGsmSignalStrength();
                 if (DBG) {
-                    log("checkPossibleMissNotify: onSignalStrengthChanged SS=" +
+                    log("checkPossibleMissNotify: onSignalStrengthChanged SS="
                             gsmSignalStrength);
                 }
                 r.callback.onSignalStrengthChanged((gsmSignalStrength == 99 ? -1

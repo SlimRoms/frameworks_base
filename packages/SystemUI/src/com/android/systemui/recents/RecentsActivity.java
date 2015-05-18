@@ -589,7 +589,7 @@ public class RecentsActivity extends Activity implements RecentsView.RecentsView
                     mDebugOverlay.enable();
                 }
             }
-            Toast.makeText(this, "Debug mode (" + Constants.Values.App.DebugModeVersion + ") " +
+            Toast.makeText(this, "Debug mode (" + Constants.Values.App.DebugModeVersion + ") "
                 (mConfig.debugModeEnabled ? "Enabled" : "Disabled") + ", please restart Recents now",
                 Toast.LENGTH_SHORT).show();
         }

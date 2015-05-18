@@ -72,7 +72,7 @@ public class SystemSensorManager extends SensorManager {
                     Sensor sensor = new Sensor();
                     i = nativeGetNextSensor(sensor, i);
                     if (i>=0) {
-                        //Log.d(TAG, "found sensor: " + sensor.getName() +
+                        //Log.d(TAG, "found sensor: " + sensor.getName()
                         //        ", handle=" + sensor.getHandle());
                         fullList.add(sensor);
                         sHandleToSensor.append(sensor.getHandle(), sensor);

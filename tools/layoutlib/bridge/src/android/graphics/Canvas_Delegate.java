@@ -362,7 +362,7 @@ public final class Canvas_Delegate {
         if (matrixDelegate.hasPerspective()) {
             assert false;
             Bridge.getLog().fidelityWarning(LayoutLog.TAG_MATRIX_AFFINE,
-                    "android.graphics.Canvas#setMatrix(android.graphics.Matrix) only " +
+                    "android.graphics.Canvas#setMatrix(android.graphics.Matrix) only "
                     "supports affine transformations.", null, null /*data*/);
         }
     }

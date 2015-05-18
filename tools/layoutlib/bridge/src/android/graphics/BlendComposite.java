@@ -691,15 +691,15 @@ public final class BlendComposite implements Composite {
                         public int[] blend(int[] src, int[] dst, int[] result) {
                             return new int[] {
                                 dst[0] + src[0] < 256 ?
-	                                (dst[0] == 255 ? 255 :
+                                    (dst[0] == 255 ? 255 :
                                         Math.min(255, (src[0] << 7) / (255 - dst[0]))) :
                                             Math.max(0, 255 - (((255 - dst[0]) << 7) / src[0])),
                                 dst[1] + src[1] < 256 ?
-	                                (dst[1] == 255 ? 255 :
+                                    (dst[1] == 255 ? 255 :
                                         Math.min(255, (src[1] << 7) / (255 - dst[1]))) :
                                             Math.max(0, 255 - (((255 - dst[1]) << 7) / src[1])),
                                 dst[2] + src[2] < 256 ?
-	                                (dst[2] == 255 ? 255 :
+                                    (dst[2] == 255 ? 255 :
                                         Math.min(255, (src[2] << 7) / (255 - dst[2]))) :
                                             Math.max(0, 255 - (((255 - dst[2]) << 7) / src[2])),
                                 Math.min(255, src[3] + dst[3])
@@ -754,7 +754,7 @@ public final class BlendComposite implements Composite {
                         }
                     };
             }
-            throw new IllegalArgumentException("Blender not implement for " +
+            throw new IllegalArgumentException("Blender not implement for "
                                                composite.getMode().name());
         }
     }

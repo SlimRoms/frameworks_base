@@ -76,7 +76,7 @@ final class LocalDisplayAdapter extends DisplayAdapter {
                     SurfaceControl.getDisplayConfigs(displayToken);
             if (configs == null) {
                 // There are no valid configs for this device, so we can't use it
-                Slog.w(TAG, "No valid configs found for display device " +
+                Slog.w(TAG, "No valid configs found for display device "
                         builtInDisplayId);
                 return;
             }
@@ -84,7 +84,7 @@ final class LocalDisplayAdapter extends DisplayAdapter {
             if (activeConfig < 0) {
                 // There is no active config, and for now we don't have the
                 // policy to set one.
-                Slog.w(TAG, "No active config found for display device " +
+                Slog.w(TAG, "No active config found for display device "
                         builtInDisplayId);
                 return;
             }

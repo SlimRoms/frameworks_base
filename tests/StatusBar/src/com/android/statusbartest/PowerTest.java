@@ -45,7 +45,7 @@ public class PowerTest extends TestActivity
         mPowerManager = IPowerManager.Stub.asInterface(ServiceManager.getService("power"));
         mPm = (PowerManager)getSystemService("power");
         mProx = mPm.newWakeLock(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK, "PowerTest-prox");
-        
+
         return mTests;
     }
     private Test[] mTests = new Test[] {
@@ -93,7 +93,7 @@ public class PowerTest extends TestActivity
                 }, 5000);
             }
         },
-        new Test("Enable proximity, wait 5 seconds then disable " +
+        new Test("Enable proximity, wait 5 seconds then disable "
                 "(RELEASE_FLAG_WAIT_FOR_NO_PROXIMITY)") {
             public void run() {
                 mProx.acquire();

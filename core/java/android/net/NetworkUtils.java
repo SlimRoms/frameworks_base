@@ -235,7 +235,7 @@ public class NetworkUtils {
      */
     public static void maskRawAddress(byte[] array, int prefixLength) {
         if (prefixLength < 0 || prefixLength > array.length * 8) {
-            throw new RuntimeException("IP address with " + array.length +
+            throw new RuntimeException("IP address with " + array.length
                     " bytes has invalid prefix length " + prefixLength);
         }
 

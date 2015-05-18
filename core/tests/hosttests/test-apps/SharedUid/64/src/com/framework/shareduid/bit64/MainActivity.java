@@ -22,8 +22,8 @@ import android.widget.TextView;
 
 class Native {
     static {
-    	// The runtime will add "lib" on the front and ".o" on the end of
-    	// the name supplied to loadLibrary.
+        // The runtime will add "lib" on the front and ".o" on the end of
+        // the name supplied to loadLibrary.
         System.loadLibrary("pmtest64");
     }
 

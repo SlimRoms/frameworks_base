@@ -878,9 +878,9 @@ public class ResolverActivity extends Activity implements AdapterView.OnItemClic
                     ResolveInfo ri = currentResolveList.get(i);
                     if (DEBUG) Log.v(
                         TAG,
-                        r0.activityInfo.name + "=" +
-                        r0.priority + "/" + r0.isDefault + " vs " +
-                        ri.activityInfo.name + "=" +
+                        r0.activityInfo.name + "="
+                        r0.priority + "/" + r0.isDefault + " vs "
+                        ri.activityInfo.name + "="
                         ri.priority + "/" + ri.isDefault);
                     if (r0.priority != ri.priority ||
                         r0.isDefault != ri.isDefault) {

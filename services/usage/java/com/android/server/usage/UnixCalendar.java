@@ -92,7 +92,7 @@ public class UnixCalendar {
                 break;
 
             default:
-                throw new UnsupportedOperationException("Can't truncate date to interval " +
+                throw new UnsupportedOperationException("Can't truncate date to interval "
                         intervalType);
         }
     }

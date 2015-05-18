@@ -121,13 +121,13 @@ public class FrameImage2D extends FrameBuffer2D {
                 if (config != Bitmap.Config.ARGB_8888) {
                     result = bitmap.copy(Bitmap.Config.ARGB_8888, false);
                     if (result == null) {
-                        throw new RuntimeException("Could not convert bitmap to frame-type " +
+                        throw new RuntimeException("Could not convert bitmap to frame-type "
                                 "RGBA8888!");
                     }
                 }
                 break;
             default:
-                throw new IllegalArgumentException("Unsupported frame type '" + type + "' for " +
+                throw new IllegalArgumentException("Unsupported frame type '" + type + "' for "
                         "bitmap assignment!");
         }
         return result;

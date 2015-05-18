@@ -149,7 +149,7 @@ class CommonTimeManagementService extends Binder {
 
     void systemRunning() {
         if (ServiceManager.checkService(CommonTimeConfig.SERVICE_NAME) == null) {
-            Log.i(TAG, "No common time service detected on this platform.  " +
+            Log.i(TAG, "No common time service detected on this platform.  "
                        "Common time services will be unavailable.");
             return;
         }
@@ -180,13 +180,13 @@ class CommonTimeManagementService extends Binder {
         if (mContext.checkCallingOrSelfPermission(android.Manifest.permission.DUMP)
                 != PackageManager.PERMISSION_GRANTED) {
             pw.println(String.format(
-                        "Permission Denial: can't dump CommonTimeManagement service from from " +
+                        "Permission Denial: can't dump CommonTimeManagement service from from "
                         "pid=%d, uid=%d", Binder.getCallingPid(), Binder.getCallingUid()));
             return;
         }
 
         if (!mDetectedAtStartup) {
-            pw.println("Native Common Time service was not detected at startup.  " +
+            pw.println("Native Common Time service was not detected at startup.  "
                        "Service is unavailable");
             return;
         }
@@ -263,7 +263,7 @@ class CommonTimeManagementService extends Binder {
 
     private void handleNoInterfaceTimeout() {
         if (null != mCTConfig) {
-            Log.i(TAG, "Timeout waiting for interface to come up.  " +
+            Log.i(TAG, "Timeout waiting for interface to come up.  "
                        "Forcing networkless master mode.");
             if (CommonTimeConfig.ERROR_DEAD_OBJECT == mCTConfig.forceNetworklessMasterMode())
                 scheduleTimeConfigReconnect();

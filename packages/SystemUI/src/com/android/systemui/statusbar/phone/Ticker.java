@@ -96,7 +96,7 @@ public abstract class Ticker {
                 this.next = this.current + end;
                 return rtrim(substr, start, end);
             } else {
-                throw new RuntimeException("lineCount=" + lineCount + " current=" + current +
+                throw new RuntimeException("lineCount=" + lineCount + " current=" + current
                         " text=" + text);
             }
         }

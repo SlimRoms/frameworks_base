@@ -116,7 +116,7 @@ public class BlockingGLTextureView extends TextureView
             EGLConfig[] configs = new EGLConfig[1];
             int[] configSpec = getConfig();
             if (!mEgl.eglChooseConfig(mEglDisplay, configSpec, configs, 1, configsCount)) {
-                throw new IllegalArgumentException("eglChooseConfig failed " +
+                throw new IllegalArgumentException("eglChooseConfig failed "
                         GLUtils.getEGLErrorString(mEgl.eglGetError()));
             } else if (configsCount[0] > 0) {
                 return configs[0];

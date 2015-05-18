@@ -103,7 +103,7 @@ public class EdgeEffect {
     private int mState = STATE_IDLE;
 
     private float mPullDistance;
-    
+
     private final Rect mBounds = new Rect();
     private final Paint mPaint = new Paint();
     private float mRadius;

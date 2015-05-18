@@ -99,7 +99,7 @@ public final class ReprocessFormatsMap {
                 if (left < length) {
                     throw new IllegalArgumentException(
                             String.format(
-                                    "Input %x had too few output formats listed (actual: %d, " +
+                                    "Input %x had too few output formats listed (actual: %d, "
                                     "expected: %d)", inputFormat, left, length));
                 }
 
@@ -149,7 +149,7 @@ public final class ReprocessFormatsMap {
                 if (left < length) {
                     throw new AssertionError(
                             String.format(
-                                    "Input %x had too few output formats listed (actual: %d, " +
+                                    "Input %x had too few output formats listed (actual: %d, "
                                     "expected: %d)", format, left, length));
                 }
 
@@ -197,7 +197,7 @@ public final class ReprocessFormatsMap {
                 if (left < length) {
                     throw new AssertionError(
                             String.format(
-                                    "Input %x had too few output formats listed (actual: %d, " +
+                                    "Input %x had too few output formats listed (actual: %d, "
                                     "expected: %d)", format, left, length));
                 }
             }

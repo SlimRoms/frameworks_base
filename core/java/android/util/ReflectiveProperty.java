@@ -62,7 +62,7 @@ class ReflectiveProperty<T, V> extends Property<T, V> {
                     mField = propertyHolder.getField(name);
                     Class fieldType = mField.getType();
                     if (!typesMatch(valueType, fieldType)) {
-                        throw new NoSuchPropertyException("Underlying type (" + fieldType + ") " +
+                        throw new NoSuchPropertyException("Underlying type (" + fieldType + ") "
                                 "does not match Property type (" + valueType + ")");
                     }
                     return;
@@ -76,7 +76,7 @@ class ReflectiveProperty<T, V> extends Property<T, V> {
         Class getterType = mGetter.getReturnType();
         // Check to make sure our getter type matches our valueType
         if (!typesMatch(valueType, getterType)) {
-            throw new NoSuchPropertyException("Underlying type (" + getterType + ") " +
+            throw new NoSuchPropertyException("Underlying type (" + getterType + ") "
                     "does not match Property type (" + valueType + ")");
         }
         String setterName = PREFIX_SET + capitalizedName;

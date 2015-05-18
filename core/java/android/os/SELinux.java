@@ -172,7 +172,7 @@ public class SELinux {
         try {
             return native_restorecon(file.getCanonicalPath(), 0);
         } catch (IOException e) {
-            Slog.e(TAG, "Error getting canonical path. Restorecon failed for " +
+            Slog.e(TAG, "Error getting canonical path. Restorecon failed for "
                     file.getPath(), e);
             return false;
         }
@@ -190,7 +190,7 @@ public class SELinux {
         try {
             return native_restorecon(file.getCanonicalPath(), SELINUX_ANDROID_RESTORECON_RECURSE);
         } catch (IOException e) {
-            Slog.e(TAG, "Error getting canonical path. Restorecon failed for " +
+            Slog.e(TAG, "Error getting canonical path. Restorecon failed for "
                     file.getPath(), e);
             return false;
         }

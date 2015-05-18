@@ -2035,7 +2035,7 @@ public class PhoneWindow extends Window implements MenuBuilder.Callback {
                 doPendingInvalidatePanelMenu();
                 mDecorContentParent.restoreToolbarHierarchyState(actionBarStates);
             } else {
-                Log.w(TAG, "Missing saved instance states for action bar views! " +
+                Log.w(TAG, "Missing saved instance states for action bar views! "
                         "State will not be restored.");
             }
         }

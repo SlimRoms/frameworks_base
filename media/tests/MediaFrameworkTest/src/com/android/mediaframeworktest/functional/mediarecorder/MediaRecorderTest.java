@@ -521,7 +521,7 @@ public class MediaRecorderTest extends ActivityInstrumentationTestCase2<MediaFra
             int codec = MediaRecorder.VideoEncoder.H264;
             int frameRate = MediaProfileReader.getMaxFrameRateForCodec(codec);
             for (int k = 0; k < 2; k++) {
-                String filename = "/sdcard/surface_" +
+                String filename = "/sdcard/surface_"
                             (k==0?"video_only":"with_audio") + ".3gp";
 
                 success = recordVideoFromSurface(frameRate, 0, 352, 288, codec,
@@ -550,7 +550,7 @@ public class MediaRecorderTest extends ActivityInstrumentationTestCase2<MediaFra
             for (int k = 0; k < 2; k++) {
                 // k==0: time lapse test, set capture rate to MIN_VIDEO_FPS
                 // k==1: slow motion test, set capture rate to HIGH_SPEED_FPS
-                String filename = "/sdcard/surface_" +
+                String filename = "/sdcard/surface_"
                             (k==0 ? "time_lapse" : "slow_motion") + ".3gp";
 
                 // always set videoOnly=false, MediaRecorder should disable

@@ -65,7 +65,7 @@ public class ScanRecordTest extends TestCase {
     // Assert two byte arrays are equal.
     private static void assertArrayEquals(byte[] expected, byte[] actual) {
         if (!Arrays.equals(expected, actual)) {
-            fail("expected:<" + Arrays.toString(expected) +
+            fail("expected:<" + Arrays.toString(expected)
                     "> but was:<" + Arrays.toString(actual) + ">");
         }
 

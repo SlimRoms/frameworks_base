@@ -784,8 +784,8 @@ public final class PowerManagerService extends SystemService
             if(mBlockedUids.contains(new Integer(uid)) && uid != Process.myUid()) {
                 //wakelock acquisition for blocked uid, do not acquire.
                 if (DEBUG_SPEW) {
-                    Slog.d(TAG, "uid is blocked not acquiring wakeLock flags=0x" +
-                            Integer.toHexString(flags) + " tag=" + tag + " uid=" + uid +
+                    Slog.d(TAG, "uid is blocked not acquiring wakeLock flags=0x"
+                            Integer.toHexString(flags) + " tag=" + tag + " uid=" + uid
                             " pid =" + pid);
                 }
                 return;
@@ -2009,7 +2009,7 @@ public final class PowerManagerService extends SystemService
                 final long now = SystemClock.uptimeMillis();
                 mHandler.removeMessages(MSG_SCREEN_BRIGHTNESS_BOOST_TIMEOUT);
                 if (mLastScreenBrightnessBoostTime > mLastSleepTime) {
-                    final long boostTimeout = mLastScreenBrightnessBoostTime +
+                    final long boostTimeout = mLastScreenBrightnessBoostTime
                             SCREEN_BRIGHTNESS_BOOST_TIMEOUT;
                     if (boostTimeout > now) {
                         Message msg = mHandler.obtainMessage(MSG_SCREEN_BRIGHTNESS_BOOST_TIMEOUT);

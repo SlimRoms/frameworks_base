@@ -177,13 +177,13 @@ public class CallerInfoAsyncQuery {
                     // However, if there is any code that this Handler calls (such as in
                     // super.handleMessage) that DOES place unexpected messages on the
                     // queue, then we need pass these messages on.
-                    if (DBG) Rlog.d(LOG_TAG, "Unexpected command (CookieWrapper is null): " + msg.what +
+                    if (DBG) Rlog.d(LOG_TAG, "Unexpected command (CookieWrapper is null): " + msg.what
                             " ignored by CallerInfoWorkerHandler, passing onto parent.");
 
                     super.handleMessage(msg);
                 } else {
 
-                    if (DBG) Rlog.d(LOG_TAG, "Processing event: " + cw.event + " token (arg1): " + msg.arg1 +
+                    if (DBG) Rlog.d(LOG_TAG, "Processing event: " + cw.event + " token (arg1): " + msg.arg1
                         " command: " + msg.what + " query URI: " + sanitizeUriToString(args.uri));
 
                     switch (cw.event) {
@@ -334,7 +334,7 @@ public class CallerInfoAsyncQuery {
 
             //notify the listener that the query is complete.
             if (cw.listener != null) {
-                if (DBG) Rlog.d(LOG_TAG, "notifying listener: " + cw.listener.getClass().toString() +
+                if (DBG) Rlog.d(LOG_TAG, "notifying listener: " + cw.listener.getClass().toString()
                              " for token: " + token + mCallerInfo);
                 cw.listener.onQueryComplete(token, cw.cookie, mCallerInfo);
             }
@@ -458,7 +458,7 @@ public class CallerInfoAsyncQuery {
      */
     public void addQueryListener(int token, OnQueryCompleteListener listener, Object cookie) {
 
-        if (DBG) Rlog.d(LOG_TAG, "adding listener to query: " + sanitizeUriToString(mHandler.mQueryUri) +
+        if (DBG) Rlog.d(LOG_TAG, "adding listener to query: " + sanitizeUriToString(mHandler.mQueryUri)
                 " handler: " + mHandler.toString());
 
         //create cookieWrapper, add query request to end of queue.

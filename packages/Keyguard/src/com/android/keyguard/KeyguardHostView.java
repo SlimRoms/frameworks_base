@@ -535,7 +535,7 @@ public class KeyguardHostView extends KeyguardViewBase {
                         } catch (IntentSender.SendIntentException e) {
                             android.util.Log.e(TAG, "Cannot send pending intent: ", e);
                         } catch (Exception e) {
-                            android.util.Log.e(TAG, "Cannot send pending intent due to " +
+                            android.util.Log.e(TAG, "Cannot send pending intent due to "
                                     "unknown exception: ", e);
                         }
                         return false;

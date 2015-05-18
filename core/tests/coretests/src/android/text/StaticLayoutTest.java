@@ -26,10 +26,10 @@ import junit.framework.TestCase;
 
 /**
  * Tests StaticLayout vertical metrics behavior.
- * 
+ *
  * Requires disabling access checks in the vm since this calls package-private
  * APIs.
- * 
+ *
  * @Suppress
  */
 public class StaticLayoutTest extends TestCase {
@@ -221,7 +221,7 @@ public class StaticLayoutTest extends TestCase {
             int altVal = (int)(height * sMult + sAdd + 0.5);
             int rndVal = Math.round(height * sMult + sAdd);
             if (altVal != rndVal) {
-                Log.i("Scale", "expected scale: " + rndVal +
+                Log.i("Scale", "expected scale: " + rndVal
                         " != returned scale: " + altVal);
             }
             return rndVal;

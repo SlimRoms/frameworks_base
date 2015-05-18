@@ -528,7 +528,7 @@ public final class NfcAdapter {
         // deprecated in API version 10 (GB 2.3.3)
         // removed from public API in version 16 (ICS MR2)
         // should maintain as a hidden API for binary compatibility for a little longer
-        Log.w(TAG, "WARNING: NfcAdapter.getDefaultAdapter() is deprecated, use " +
+        Log.w(TAG, "WARNING: NfcAdapter.getDefaultAdapter() is deprecated, use "
                 "NfcAdapter.getDefaultAdapter(Context) instead", new Exception());
 
         return NfcAdapter.getNfcAdapter(null);
@@ -817,12 +817,12 @@ public final class NfcAdapter {
         }
         if (uris != null) {
             for (Uri uri : uris) {
-                if (uri == null) throw new NullPointerException("Uri not " +
+                if (uri == null) throw new NullPointerException("Uri not "
                         "allowed to be null");
                 String scheme = uri.getScheme();
                 if (scheme == null || (!scheme.equalsIgnoreCase("file") &&
                         !scheme.equalsIgnoreCase("content"))) {
-                    throw new IllegalArgumentException("URI needs to have " +
+                    throw new IllegalArgumentException("URI needs to have "
                             "either scheme file or scheme content");
                 }
             }
@@ -982,7 +982,7 @@ public final class NfcAdapter {
         } catch (IllegalStateException e) {
             if (targetSdkVersion < android.os.Build.VERSION_CODES.JELLY_BEAN) {
                 // Less strict on old applications - just log the error
-                Log.e(TAG, "Cannot call API with Activity that has already " +
+                Log.e(TAG, "Cannot call API with Activity that has already "
                         "been destroyed", e);
             } else {
                 // Prevent new applications from making this mistake, re-throw
@@ -1084,7 +1084,7 @@ public final class NfcAdapter {
         } catch (IllegalStateException e) {
             if (targetSdkVersion < android.os.Build.VERSION_CODES.JELLY_BEAN) {
                 // Less strict on old applications - just log the error
-                Log.e(TAG, "Cannot call API with Activity that has already " +
+                Log.e(TAG, "Cannot call API with Activity that has already "
                         "been destroyed", e);
             } else {
                 // Prevent new applications from making this mistake, re-throw
@@ -1158,7 +1158,7 @@ public final class NfcAdapter {
         } catch (IllegalStateException e) {
             if (targetSdkVersion < android.os.Build.VERSION_CODES.JELLY_BEAN) {
                 // Less strict on old applications - just log the error
-                Log.e(TAG, "Cannot call API with Activity that has already " +
+                Log.e(TAG, "Cannot call API with Activity that has already "
                         "been destroyed", e);
             } else {
                 // Prevent new applications from making this mistake, re-throw
@@ -1206,7 +1206,7 @@ public final class NfcAdapter {
             throw new NullPointerException();
         }
         if (!activity.isResumed()) {
-            throw new IllegalStateException("Foreground dispatch can only be enabled " +
+            throw new IllegalStateException("Foreground dispatch can only be enabled "
                     "when your activity is resumed");
         }
         try {
@@ -1253,7 +1253,7 @@ public final class NfcAdapter {
         try {
             sService.setForegroundDispatch(null, null, null);
             if (!force && !activity.isResumed()) {
-                throw new IllegalStateException("You must disable foreground dispatching " +
+                throw new IllegalStateException("You must disable foreground dispatching "
                         "while your activity is still resumed");
             }
         } catch (RemoteException e) {

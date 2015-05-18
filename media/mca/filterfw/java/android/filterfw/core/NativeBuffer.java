@@ -47,7 +47,7 @@ public class NativeBuffer {
             Class myClass = getClass();
             result = (NativeBuffer)myClass.newInstance();
         } catch (Exception e) {
-            throw new RuntimeException("Unable to allocate a copy of " + getClass() + "! Make " +
+            throw new RuntimeException("Unable to allocate a copy of " + getClass() + "! Make "
                                        "sure the class has a default constructor!");
         }
         if (mSize > 0 && !nativeCopyTo(result)) {

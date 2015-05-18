@@ -119,7 +119,7 @@ public final class CellIdentityWcdma implements Parcelable {
     @Override
     public int hashCode() {
         int primeNum = 31;
-        return (mMcc * primeNum) + (mMnc * primeNum) + (mLac * primeNum) + (mCid * primeNum) +
+        return (mMcc * primeNum) + (mMnc * primeNum) + (mLac * primeNum) + (mCid * primeNum)
                 (mPsc * primeNum);
     }
 

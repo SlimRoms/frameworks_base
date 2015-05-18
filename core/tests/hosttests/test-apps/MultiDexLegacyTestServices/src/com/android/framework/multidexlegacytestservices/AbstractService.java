@@ -121,50 +121,50 @@ public abstract class AbstractService extends Service implements Runnable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        int value = new com.android.framework.multidexlegacytestservices.manymethods.Big001().get1() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big002().get2() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big003().get3() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big004().get4() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big005().get5() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big006().get6() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big007().get7() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big008().get8() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big009().get9() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big010().get10() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big011().get11() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big012().get12() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big013().get13() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big014().get14() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big015().get15() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big016().get16() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big017().get17() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big018().get18() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big019().get19() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big020().get20() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big021().get21() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big022().get22() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big023().get23() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big024().get24() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big025().get25() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big026().get26() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big027().get27() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big028().get28() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big029().get29() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big030().get30() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big031().get31() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big032().get32() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big033().get33() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big034().get34() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big035().get35() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big036().get36() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big037().get37() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big038().get38() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big039().get39() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big040().get40() +
-                new com.android.framework.multidexlegacytestservices.manymethods.Big041().get41() +
-                instanceFieldNotInited +
-                instanceFieldInited +
-                staticField +
+        int value = new com.android.framework.multidexlegacytestservices.manymethods.Big001().get1()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big002().get2()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big003().get3()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big004().get4()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big005().get5()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big006().get6()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big007().get7()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big008().get8()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big009().get9()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big010().get10()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big011().get11()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big012().get12()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big013().get13()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big014().get14()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big015().get15()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big016().get16()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big017().get17()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big018().get18()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big019().get19()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big020().get20()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big021().get21()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big022().get22()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big023().get23()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big024().get24()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big025().get25()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big026().get26()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big027().get27()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big028().get28()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big029().get29()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big030().get30()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big031().get31()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big032().get32()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big033().get33()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big034().get34()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big035().get35()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big036().get36()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big037().get37()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big038().get38()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big039().get39()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big040().get40()
+                new com.android.framework.multidexlegacytestservices.manymethods.Big041().get41()
+                instanceFieldNotInited
+                instanceFieldInited
+                staticField
                 intermediate;
         return value;
     }

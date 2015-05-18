@@ -126,13 +126,13 @@ public class TrackerService extends Service {
 
         for (String providerName : locationProviders) {
             if (mTrackedProviders.contains(providerName)) {
-                Log.d(LOG_TAG, "Adding location listener for provider " +
+                Log.d(LOG_TAG, "Adding location listener for provider "
                         providerName);
                 if (doDebugLogging()) {
                     mTrackerData.writeEntry("init", String.format(
                             "start listening to %s : %d ms; %f meters",
                             providerName, minUpdateTime, minDistance));
-                }    
+                }
                 LocationTrackingListener listener =
                     new LocationTrackingListener();
                 lm.requestLocationUpdates(providerName, minUpdateTime,
@@ -250,8 +250,8 @@ public class TrackerService extends Service {
         // stop cell state listener
         if (mTelephonyManager != null) {
             mTelephonyManager.listen(mPhoneStateListener, 0);
-        }    
-        
+        }
+
         // stop network/wifi listener
         if (mNetwork != null) {
             unregisterReceiver(mNetwork);
@@ -318,7 +318,7 @@ public class TrackerService extends Service {
 
         /**
          * Writes update to tracking file
-         * 
+         *
          * @param provider - name of enabled provider
          */
         public void onProviderEnabled(String provider) {
@@ -328,8 +328,8 @@ public class TrackerService extends Service {
         }
 
         /**
-         * Writes update to tracking file 
-         * 
+         * Writes update to tracking file
+         *
          * @param provider - name of provider whose status changed
          * @param status - new status
          * @param extras - optional set of extra status messages
@@ -347,17 +347,17 @@ public class TrackerService extends Service {
             try {
                 if (location instanceof GsmCellLocation) {
                     GsmCellLocation cellLocation = (GsmCellLocation)location;
-                    String updateMsg = "cid=" + cellLocation.getCid() +
+                    String updateMsg = "cid=" + cellLocation.getCid()
                             ", lac=" + cellLocation.getLac();
                     mTrackerData.writeEntry(CELL_PROVIDER_TAG, updateMsg);
                 } else if (location instanceof CdmaCellLocation) {
                     CdmaCellLocation cellLocation = (CdmaCellLocation)location;
-                    String updateMsg = "BID=" + cellLocation.getBaseStationId() +
-                            ", SID=" + cellLocation.getSystemId() +
-                            ", NID=" + cellLocation.getNetworkId() +
-                            ", lat=" + cellLocation.getBaseStationLatitude() +
-                            ", long=" + cellLocation.getBaseStationLongitude() +
-                            ", SID=" + cellLocation.getSystemId() +
+                    String updateMsg = "BID=" + cellLocation.getBaseStationId()
+                            ", SID=" + cellLocation.getSystemId()
+                            ", NID=" + cellLocation.getNetworkId()
+                            ", lat=" + cellLocation.getBaseStationLatitude()
+                            ", long=" + cellLocation.getBaseStationLongitude()
+                            ", SID=" + cellLocation.getSystemId()
                             ", NID=" + cellLocation.getNetworkId();
                     mTrackerData.writeEntry(CELL_PROVIDER_TAG, updateMsg);
                 }
@@ -389,7 +389,7 @@ public class TrackerService extends Service {
                 WifiManager wifiManager =
                     (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
                 List<ScanResult> wifiScanResults = wifiManager.getScanResults();
-                String updateMsg = "num scan results=" +
+                String updateMsg = "num scan results="
                     (wifiScanResults == null ? "0" : wifiScanResults.size());
                 mTrackerData.writeEntry(WIFI_PROVIDER_TAG, updateMsg);
 

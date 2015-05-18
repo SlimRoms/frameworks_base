@@ -208,7 +208,7 @@ public class WapPushManager extends Service {
                 try {
                     mContext.startActivity(intent);
                 } catch (ActivityNotFoundException e) {
-                    Log.w(LOG_TAG, "invalid name " +
+                    Log.w(LOG_TAG, "invalid name "
                             lastapp.packageName + "/" + lastapp.className);
                     return WapPushManagerParams.INVALID_RECEIVER_NAME;
                 }
@@ -217,7 +217,7 @@ public class WapPushManager extends Service {
                 intent.setComponent(new ComponentName(lastapp.packageName,
                         lastapp.className));
                 if (mContext.startService(intent) == null) {
-                    Log.w(LOG_TAG, "invalid name " +
+                    Log.w(LOG_TAG, "invalid name "
                             lastapp.packageName + "/" + lastapp.className);
                     return WapPushManagerParams.INVALID_RECEIVER_NAME;
                 }
@@ -396,17 +396,17 @@ public class WapPushManager extends Service {
         SQLiteDatabase db = dbh.getReadableDatabase();
         WapPushManDBHelper.queryData lastapp = dbh.queryLastApp(db, x_app_id, content_type);
 
-        if (LOCAL_LOGV) Log.v(LOG_TAG, "verifyData app id: " + x_app_id + " content type: " +
+        if (LOCAL_LOGV) Log.v(LOG_TAG, "verifyData app id: " + x_app_id + " content type: "
                 content_type + " lastapp: " + lastapp);
 
         db.close();
 
         if (lastapp == null) return false;
 
-        if (LOCAL_LOGV) Log.v(LOG_TAG, "verifyData lastapp.packageName: " + lastapp.packageName +
-                " lastapp.className: " + lastapp.className +
-                " lastapp.appType: " + lastapp.appType +
-                " lastapp.needSignature: " + lastapp.needSignature +
+        if (LOCAL_LOGV) Log.v(LOG_TAG, "verifyData lastapp.packageName: " + lastapp.packageName
+                " lastapp.className: " + lastapp.className
+                " lastapp.appType: " + lastapp.appType
+                " lastapp.needSignature: " + lastapp.needSignature
                 " lastapp.furtherProcessing: " + lastapp.furtherProcessing);
 
 

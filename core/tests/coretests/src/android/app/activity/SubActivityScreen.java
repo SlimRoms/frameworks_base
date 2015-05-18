@@ -40,7 +40,7 @@ public class SubActivityScreen extends Activity {
         mMode = getIntent().getIntExtra("mode", mMode);
         //Log.i("foo", "SubActivityScreen pid=" + Process.myPid()
         //        + " mode=" + mMode);
-        
+
         // Move on to the next thing that will generate a result...  but only
         // if we are being launched for the first time.
         if (icicle == null) {
@@ -75,7 +75,7 @@ public class SubActivityScreen extends Activity {
         super.onResume();
 
         //Log.i("foo", "SubActivityScreen pid=" + Process.myPid() + " onResume");
-        
+
         if (mMode >= CHILD_OFFSET) {
             // Wait a little bit, to give our parent time to kill itself
             // if that is something it is into.
@@ -158,7 +158,7 @@ public class SubActivityScreen extends Activity {
         super.onStop();
         handleBeforeStopping();
     }
-    
+
     public void handleBeforeStopping() {
         if (mMode == FINISH_SUB_MODE) {
             finishActivity(1);

@@ -441,7 +441,7 @@ public final class MediaStore {
          * @return the URI to the files table on the given volume
          */
         public static Uri getContentUri(String volumeName) {
-            return Uri.parse(CONTENT_AUTHORITY_SLASH + volumeName +
+            return Uri.parse(CONTENT_AUTHORITY_SLASH + volumeName
                     "/file");
         }
 
@@ -464,7 +464,7 @@ public final class MediaStore {
          * @hide
          */
         public static Uri getMtpObjectsUri(String volumeName) {
-            return Uri.parse(CONTENT_AUTHORITY_SLASH + volumeName +
+            return Uri.parse(CONTENT_AUTHORITY_SLASH + volumeName
                     "/object");
         }
 
@@ -982,7 +982,7 @@ public final class MediaStore {
              * @return the URI to the image media table on the given volume
              */
             public static Uri getContentUri(String volumeName) {
-                return Uri.parse(CONTENT_AUTHORITY_SLASH + volumeName +
+                return Uri.parse(CONTENT_AUTHORITY_SLASH + volumeName
                         "/images/media");
             }
 
@@ -1030,7 +1030,7 @@ public final class MediaStore {
             public static final Cursor queryMiniThumbnail(ContentResolver cr, long origId, int kind,
                     String[] projection) {
                 return cr.query(EXTERNAL_CONTENT_URI, projection,
-                        IMAGE_ID + " = " + origId + " AND " + KIND + " = " +
+                        IMAGE_ID + " = " + origId + " AND " + KIND + " = "
                         kind, null, null);
             }
 
@@ -1104,7 +1104,7 @@ public final class MediaStore {
              * @return the URI to the image media table on the given volume
              */
             public static Uri getContentUri(String volumeName) {
-                return Uri.parse(CONTENT_AUTHORITY_SLASH + volumeName +
+                return Uri.parse(CONTENT_AUTHORITY_SLASH + volumeName
                         "/images/thumbnails");
             }
 
@@ -1396,7 +1396,7 @@ public final class MediaStore {
              * @return the URI to the audio media table on the given volume
              */
             public static Uri getContentUri(String volumeName) {
-                return Uri.parse(CONTENT_AUTHORITY_SLASH + volumeName +
+                return Uri.parse(CONTENT_AUTHORITY_SLASH + volumeName
                         "/audio/media");
             }
 
@@ -1483,7 +1483,7 @@ public final class MediaStore {
              * @return the URI to the audio genres table on the given volume
              */
             public static Uri getContentUri(String volumeName) {
-                return Uri.parse(CONTENT_AUTHORITY_SLASH + volumeName +
+                return Uri.parse(CONTENT_AUTHORITY_SLASH + volumeName
                         "/audio/genres");
             }
 
@@ -1496,7 +1496,7 @@ public final class MediaStore {
              * with the given the volume and audioID
              */
             public static Uri getContentUriForAudioId(String volumeName, int audioId) {
-                return Uri.parse(CONTENT_AUTHORITY_SLASH + volumeName +
+                return Uri.parse(CONTENT_AUTHORITY_SLASH + volumeName
                         "/audio/media/" + audioId + "/genres");
             }
 
@@ -1608,7 +1608,7 @@ public final class MediaStore {
              * @return the URI to the audio playlists table on the given volume
              */
             public static Uri getContentUri(String volumeName) {
-                return Uri.parse(CONTENT_AUTHORITY_SLASH + volumeName +
+                return Uri.parse(CONTENT_AUTHORITY_SLASH + volumeName
                         "/audio/playlists");
             }
 
@@ -1747,7 +1747,7 @@ public final class MediaStore {
              * @return the URI to the audio artists table on the given volume
              */
             public static Uri getContentUri(String volumeName) {
-                return Uri.parse(CONTENT_AUTHORITY_SLASH + volumeName +
+                return Uri.parse(CONTENT_AUTHORITY_SLASH + volumeName
                         "/audio/artists");
             }
 
@@ -1873,7 +1873,7 @@ public final class MediaStore {
              * @return the URI to the audio albums table on the given volume
              */
             public static Uri getContentUri(String volumeName) {
-                return Uri.parse(CONTENT_AUTHORITY_SLASH + volumeName +
+                return Uri.parse(CONTENT_AUTHORITY_SLASH + volumeName
                         "/audio/albums");
             }
 
@@ -2042,7 +2042,7 @@ public final class MediaStore {
              * @return the URI to the video media table on the given volume
              */
             public static Uri getContentUri(String volumeName) {
-                return Uri.parse(CONTENT_AUTHORITY_SLASH + volumeName +
+                return Uri.parse(CONTENT_AUTHORITY_SLASH + volumeName
                         "/video/media");
             }
 
@@ -2147,7 +2147,7 @@ public final class MediaStore {
              * @return the URI to the image media table on the given volume
              */
             public static Uri getContentUri(String volumeName) {
-                return Uri.parse(CONTENT_AUTHORITY_SLASH + volumeName +
+                return Uri.parse(CONTENT_AUTHORITY_SLASH + volumeName
                         "/video/thumbnails");
             }
 

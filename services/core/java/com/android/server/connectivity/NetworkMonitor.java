@@ -682,7 +682,7 @@ public class NetworkMonitor extends StateMachine {
                 }
             }
             if (DBG) {
-                log("Checking " + url.toString() + " on " +
+                log("Checking " + url.toString() + " on "
                         mNetworkAgentInfo.networkInfo.getExtraInfo());
             }
             urlConnection = (HttpURLConnection) mNetworkAgentInfo.network.openConnection(url);
@@ -701,7 +701,7 @@ public class NetworkMonitor extends StateMachine {
 
             httpResponseCode = urlConnection.getResponseCode();
             if (DBG) {
-                log("isCaptivePortal: ret=" + httpResponseCode +
+                log("isCaptivePortal: ret=" + httpResponseCode
                         " headers=" + urlConnection.getHeaderFields());
             }
             // NOTE: We may want to consider an "HTTP/1.0 204" response to be a captive
@@ -786,7 +786,7 @@ public class NetworkMonitor extends StateMachine {
                     if (cellInfo.isRegistered()) {
                         numRegisteredCellInfo++;
                         if (numRegisteredCellInfo > 1) {
-                            if (DBG) log("more than one registered CellInfo.  Can't " +
+                            if (DBG) log("more than one registered CellInfo.  Can't "
                                     "tell which is active.  Bailing.");
                             return;
                         }

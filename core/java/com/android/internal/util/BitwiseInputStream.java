@@ -75,7 +75,7 @@ public class BitwiseInputStream {
         int index = mPos >>> 3;
         int offset = 16 - (mPos & 0x07) - bits;  // &7==%8
         if ((bits < 0) || (bits > 8) || ((mPos + bits) > mEnd)) {
-            throw new AccessException("illegal read " +
+            throw new AccessException("illegal read "
                 "(pos " + mPos + ", end " + mEnd + ", bits " + bits + ")");
         }
         int data = (mBuf[index] & 0xFF) << 8;
@@ -109,7 +109,7 @@ public class BitwiseInputStream {
      */
     public void skip(int bits) throws AccessException {
         if ((mPos + bits) > mEnd) {
-            throw new AccessException("illegal skip " +
+            throw new AccessException("illegal skip "
                 "(pos " + mPos + ", end " + mEnd + ", bits " + bits + ")");
         }
         mPos += bits;

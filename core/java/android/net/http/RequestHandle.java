@@ -34,7 +34,7 @@ import java.util.Random;
 /**
  * RequestHandle: handles a request session that may include multiple
  * redirects, HTTP authentication requests, etc.
- * 
+ *
  * {@hide}
  */
 public class RequestHandle {
@@ -148,7 +148,7 @@ public class RequestHandle {
     public boolean setupRedirect(String redirectTo, int statusCode,
             Map<String, String> cacheHeaders) {
         if (HttpLog.LOGV) {
-            HttpLog.v("RequestHandle.setupRedirect(): redirectCount " +
+            HttpLog.v("RequestHandle.setupRedirect(): redirectCount "
                   mRedirectCount);
         }
 
@@ -159,7 +159,7 @@ public class RequestHandle {
         if (++mRedirectCount == MAX_REDIRECT_COUNT) {
             // Way too many redirects -- fail out
             if (HttpLog.LOGV) HttpLog.v(
-                    "RequestHandle.setupRedirect(): too many redirects " +
+                    "RequestHandle.setupRedirect(): too many redirects "
                     mRequest);
             mRequest.error(EventHandler.ERROR_REDIRECT_LOOP,
                            com.android.internal.R.string.httpErrorRedirectLoop);

@@ -27,7 +27,7 @@ import org.apache.http.params.HttpConnectionParams;
 
 /**
  * A requestConnection connecting to a normal (non secure) http server
- * 
+ *
  * {@hide}
  */
 class HttpConnection extends Connection {
@@ -74,7 +74,7 @@ class HttpConnection extends Connection {
             }
         } catch (IOException e) {
             if (HttpLog.LOGV) HttpLog.v(
-                    "closeConnection(): failed closing connection " +
+                    "closeConnection(): failed closing connection "
                     mHost);
             e.printStackTrace();
         }

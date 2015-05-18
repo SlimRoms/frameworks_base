@@ -1006,7 +1006,7 @@ public final class HdmiControlService extends SystemService {
         if (device != null) {
             device.setBusMode(busmode);
         } else {
-            Slog.w(TAG, "No mhl device exists for bus mode change[portId:" + portId +
+            Slog.w(TAG, "No mhl device exists for bus mode change[portId:" + portId
                     ", busmode:" + busmode + "]");
         }
     }

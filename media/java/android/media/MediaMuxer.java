@@ -159,7 +159,7 @@ final public class MediaMuxer {
         if (mState == MUXER_STATE_INITIALIZED) {
             nativeSetOrientationHint(mNativeObject, degrees);
         } else {
-            throw new IllegalStateException("Can't set rotation degrees due" +
+            throw new IllegalStateException("Can't set rotation degrees due"
                     " to wrong state.");
         }
     }
@@ -318,7 +318,7 @@ final public class MediaMuxer {
         if (bufferInfo.size < 0 || bufferInfo.offset < 0
                 || (bufferInfo.offset + bufferInfo.size) > byteBuf.capacity()
                 || bufferInfo.presentationTimeUs < 0) {
-            throw new IllegalArgumentException("bufferInfo must specify a" +
+            throw new IllegalArgumentException("bufferInfo must specify a"
                     " valid buffer offset, size and presentation time");
         }
 

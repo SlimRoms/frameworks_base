@@ -34,7 +34,7 @@ public class DrawFilter {
             super.finalize();
         }
     }
-    
+
     private static native void nativeDestructor(long nativeDrawFilter);
 }
 

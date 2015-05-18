@@ -126,11 +126,11 @@ public class UsbAccessory {
 
     @Override
     public String toString() {
-        return "UsbAccessory[mManufacturer=" + mManufacturer +
-                            ", mModel=" + mModel +
-                            ", mDescription=" + mDescription +
-                            ", mVersion=" + mVersion +
-                            ", mUri=" + mUri +
+        return "UsbAccessory[mManufacturer=" + mManufacturer
+                            ", mModel=" + mModel
+                            ", mDescription=" + mDescription
+                            ", mVersion=" + mVersion
+                            ", mUri=" + mUri
                             ", mSerial=" + mSerial + "]";
     }
 }

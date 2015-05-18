@@ -167,7 +167,7 @@ public abstract class InputFilter extends IInputFilter.Stub {
             throw new IllegalArgumentException("event must not be null");
         }
         if (mHost == null) {
-            throw new IllegalStateException("Cannot send input event because the input filter " +
+            throw new IllegalStateException("Cannot send input event because the input filter "
                     "is not installed.");
         }
         if (mOutboundInputEventConsistencyVerifier != null) {

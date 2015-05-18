@@ -92,7 +92,7 @@ public class NetlinkTracker extends BaseNetworkObserver {
 
     private void maybeLog(String operation, String iface, LinkAddress address) {
         if (DBG) {
-            Log.d(TAG, operation + ": " + address + " on " + iface +
+            Log.d(TAG, operation + ": " + address + " on " + iface
                     " flags " + address.getFlags() + " scope " + address.getScope());
         }
     }

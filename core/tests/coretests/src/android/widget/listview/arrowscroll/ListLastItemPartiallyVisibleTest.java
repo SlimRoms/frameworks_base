@@ -41,7 +41,7 @@ public class ListLastItemPartiallyVisibleTest extends ActivityInstrumentationTes
 
     @MediumTest
     public void testPreconditions() {
-        assertEquals("number of elements visible should be the same as number of items " +
+        assertEquals("number of elements visible should be the same as number of items "
                 "in adapter", mListView.getCount(), mListView.getChildCount());
 
         final View lastChild = mListView.getChildAt(mListView.getChildCount() - 1);

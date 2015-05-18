@@ -389,7 +389,7 @@ public final class NfcActivityManager extends IAppCallback.Stub
                     String scheme = uri.getScheme();
                     if (scheme == null || (!scheme.equalsIgnoreCase("file") &&
                             !scheme.equalsIgnoreCase("content"))) {
-                        Log.e(TAG, "Uri needs to have " +
+                        Log.e(TAG, "Uri needs to have "
                                 "either scheme file or scheme content");
                         continue;
                     }

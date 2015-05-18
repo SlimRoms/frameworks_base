@@ -529,7 +529,7 @@ public class WallpaperCropActivity extends Activity {
         // Helper to setup input stream
         private InputStream regenerateInputStream() {
             if (mInUri == null && mInResId == 0 && mInFilePath == null && mInImageBytes == null) {
-                Log.w(LOGTAG, "cannot read original file, no input URI, resource ID, or " +
+                Log.w(LOGTAG, "cannot read original file, no input URI, resource ID, or "
                         "image byte array given");
             } else {
                 try {

@@ -252,7 +252,7 @@ public class JobStatus {
      * {@link #toString()} returns.
      */
     public String toShortString() {
-        return job.getService().flattenToShortString() + " jId=" + job.getId() +
+        return job.getService().flattenToShortString() + " jId=" + job.getId()
                 ", u" + getUserId();
     }
 

@@ -100,192 +100,192 @@ public class Am extends BaseCommand {
     @Override
     public void onShowUsage(PrintStream out) {
         out.println(
-                "usage: am [subcommand] [options]\n" +
-                "usage: am start [-D] [-W] [-P <FILE>] [--start-profiler <FILE>]\n" +
-                "               [--sampling INTERVAL] [-R COUNT] [-S] [--opengl-trace]\n" +
-                "               [--user <USER_ID> | current] <INTENT>\n" +
-                "       am startservice [--user <USER_ID> | current] <INTENT>\n" +
-                "       am stopservice [--user <USER_ID> | current] <INTENT>\n" +
-                "       am force-stop [--user <USER_ID> | all | current] <PACKAGE>\n" +
-                "       am kill [--user <USER_ID> | all | current] <PACKAGE>\n" +
-                "       am kill-all\n" +
-                "       am broadcast [--user <USER_ID> | all | current] <INTENT>\n" +
-                "       am instrument [-r] [-e <NAME> <VALUE>] [-p <FILE>] [-w]\n" +
-                "               [--user <USER_ID> | current]\n" +
-                "               [--no-window-animation] [--abi <ABI>] <COMPONENT>\n" +
-                "       am profile start [--user <USER_ID> current] <PROCESS> <FILE>\n" +
-                "       am profile stop [--user <USER_ID> current] [<PROCESS>]\n" +
-                "       am dumpheap [--user <USER_ID> current] [-n] <PROCESS> <FILE>\n" +
-                "       am set-debug-app [-w] [--persistent] <PACKAGE>\n" +
-                "       am clear-debug-app\n" +
-                "       am monitor [--gdb <port>]\n" +
-                "       am hang [--allow-restart]\n" +
-                "       am restart\n" +
-                "       am idle-maintenance\n" +
-                "       am screen-compat [on|off] <PACKAGE>\n" +
-                "       am to-uri [INTENT]\n" +
-                "       am to-intent-uri [INTENT]\n" +
-                "       am to-app-uri [INTENT]\n" +
-                "       am switch-user <USER_ID>\n" +
-                "       am start-user <USER_ID>\n" +
-                "       am stop-user <USER_ID>\n" +
-                "       am stack start <DISPLAY_ID> <INTENT>\n" +
-                "       am stack movetask <TASK_ID> <STACK_ID> [true|false]\n" +
-                "       am stack resize <STACK_ID> <LEFT,TOP,RIGHT,BOTTOM>\n" +
-                "       am stack list\n" +
-                "       am stack info <STACK_ID>\n" +
-                "       am lock-task <TASK_ID>\n" +
-                "       am lock-task stop\n" +
-                "       am get-config\n" +
-                "\n" +
-                "am start: start an Activity.  Options are:\n" +
-                "    -D: enable debugging\n" +
-                "    -W: wait for launch to complete\n" +
-                "    --start-profiler <FILE>: start profiler and send results to <FILE>\n" +
-                "    --sampling INTERVAL: use sample profiling with INTERVAL microseconds\n" +
-                "        between samples (use with --start-profiler)\n" +
-                "    -P <FILE>: like above, but profiling stops when app goes idle\n" +
-                "    -R: repeat the activity launch <COUNT> times.  Prior to each repeat,\n" +
-                "        the top activity will be finished.\n" +
-                "    -S: force stop the target app before starting the activity\n" +
-                "    --opengl-trace: enable tracing of OpenGL functions\n" +
-                "    --user <USER_ID> | current: Specify which user to run as; if not\n" +
-                "        specified then run as the current user.\n" +
-                "\n" +
-                "am startservice: start a Service.  Options are:\n" +
-                "    --user <USER_ID> | current: Specify which user to run as; if not\n" +
-                "        specified then run as the current user.\n" +
-                "\n" +
-                "am stopservice: stop a Service.  Options are:\n" +
-                "    --user <USER_ID> | current: Specify which user to run as; if not\n" +
-                "        specified then run as the current user.\n" +
-                "\n" +
-                "am force-stop: force stop everything associated with <PACKAGE>.\n" +
-                "    --user <USER_ID> | all | current: Specify user to force stop;\n" +
-                "        all users if not specified.\n" +
-                "\n" +
-                "am kill: Kill all processes associated with <PACKAGE>.  Only kills.\n" +
-                "  processes that are safe to kill -- that is, will not impact the user\n" +
-                "  experience.\n" +
-                "    --user <USER_ID> | all | current: Specify user whose processes to kill;\n" +
-                "        all users if not specified.\n" +
-                "\n" +
-                "am kill-all: Kill all background processes.\n" +
-                "\n" +
-                "am broadcast: send a broadcast Intent.  Options are:\n" +
-                "    --user <USER_ID> | all | current: Specify which user to send to; if not\n" +
-                "        specified then send to all users.\n" +
-                "    --receiver-permission <PERMISSION>: Require receiver to hold permission.\n" +
-                "\n" +
-                "am instrument: start an Instrumentation.  Typically this target <COMPONENT>\n" +
-                "  is the form <TEST_PACKAGE>/<RUNNER_CLASS>.  Options are:\n" +
-                "    -r: print raw results (otherwise decode REPORT_KEY_STREAMRESULT).  Use with\n" +
-                "        [-e perf true] to generate raw output for performance measurements.\n" +
-                "    -e <NAME> <VALUE>: set argument <NAME> to <VALUE>.  For test runners a\n" +
-                "        common form is [-e <testrunner_flag> <value>[,<value>...]].\n" +
-                "    -p <FILE>: write profiling data to <FILE>\n" +
-                "    -w: wait for instrumentation to finish before returning.  Required for\n" +
-                "        test runners.\n" +
-                "    --user <USER_ID> | current: Specify user instrumentation runs in;\n" +
-                "        current user if not specified.\n" +
-                "    --no-window-animation: turn off window animations while running.\n" +
-                "    --abi <ABI>: Launch the instrumented process with the selected ABI.\n"  +
-                "        This assumes that the process supports the selected ABI.\n" +
-                "\n" +
-                "am profile: start and stop profiler on a process.  The given <PROCESS> argument\n" +
-                "  may be either a process name or pid.  Options are:\n" +
-                "    --user <USER_ID> | current: When supplying a process name,\n" +
-                "        specify user of process to profile; uses current user if not specified.\n" +
-                "\n" +
-                "am dumpheap: dump the heap of a process.  The given <PROCESS> argument may\n" +
-                "  be either a process name or pid.  Options are:\n" +
-                "    -n: dump native heap instead of managed heap\n" +
-                "    --user <USER_ID> | current: When supplying a process name,\n" +
-                "        specify user of process to dump; uses current user if not specified.\n" +
-                "\n" +
-                "am set-debug-app: set application <PACKAGE> to debug.  Options are:\n" +
-                "    -w: wait for debugger when application starts\n" +
-                "    --persistent: retain this value\n" +
-                "\n" +
-                "am clear-debug-app: clear the previously set-debug-app.\n" +
-                "\n" +
-                "am bug-report: request bug report generation; will launch UI\n" +
-                "    when done to select where it should be delivered.\n" +
-                "\n" +
-                "am monitor: start monitoring for crashes or ANRs.\n" +
-                "    --gdb: start gdbserv on the given port at crash/ANR\n" +
-                "\n" +
-                "am hang: hang the system.\n" +
-                "    --allow-restart: allow watchdog to perform normal system restart\n" +
-                "\n" +
-                "am restart: restart the user-space system.\n" +
-                "\n" +
-                "am idle-maintenance: perform idle maintenance now.\n" +
-                "\n" +
-                "am screen-compat: control screen compatibility mode of <PACKAGE>.\n" +
-                "\n" +
-                "am to-uri: print the given Intent specification as a URI.\n" +
-                "\n" +
-                "am to-intent-uri: print the given Intent specification as an intent: URI.\n" +
-                "\n" +
-                "am to-app-uri: print the given Intent specification as an android-app: URI.\n" +
-                "\n" +
-                "am switch-user: switch to put USER_ID in the foreground, starting\n" +
-                "  execution of that user if it is currently stopped.\n" +
-                "\n" +
-                "am start-user: start USER_ID in background if it is currently stopped,\n" +
-                "  use switch-user if you want to start the user in foreground.\n" +
-                "\n" +
-                "am stop-user: stop execution of USER_ID, not allowing it to run any\n" +
-                "  code until a later explicit start or switch to it.\n" +
-                "\n" +
-                "am stack start: start a new activity on <DISPLAY_ID> using <INTENT>.\n" +
-                "\n" +
-                "am stack movetask: move <TASK_ID> from its current stack to the top (true) or" +
-                "   bottom (false) of <STACK_ID>.\n" +
-                "\n" +
-                "am stack resize: change <STACK_ID> size and position to <LEFT,TOP,RIGHT,BOTTOM>.\n" +
-                "\n" +
-                "am stack list: list all of the activity stacks and their sizes.\n" +
-                "\n" +
-                "am stack info: display the information about activity stack <STACK_ID>.\n" +
-                "\n" +
-                "am lock-task: bring <TASK_ID> to the front and don't allow other tasks to run\n" +
-                "\n" +
-                "am get-config: retrieve the configuration and any recent configurations\n" +
-                "  of the device\n" +
-                "\n" +
-                "<INTENT> specifications include these flags and arguments:\n" +
-                "    [-a <ACTION>] [-d <DATA_URI>] [-t <MIME_TYPE>]\n" +
-                "    [-c <CATEGORY> [-c <CATEGORY>] ...]\n" +
-                "    [-e|--es <EXTRA_KEY> <EXTRA_STRING_VALUE> ...]\n" +
-                "    [--esn <EXTRA_KEY> ...]\n" +
-                "    [--ez <EXTRA_KEY> <EXTRA_BOOLEAN_VALUE> ...]\n" +
-                "    [--ei <EXTRA_KEY> <EXTRA_INT_VALUE> ...]\n" +
-                "    [--el <EXTRA_KEY> <EXTRA_LONG_VALUE> ...]\n" +
-                "    [--ef <EXTRA_KEY> <EXTRA_FLOAT_VALUE> ...]\n" +
-                "    [--eu <EXTRA_KEY> <EXTRA_URI_VALUE> ...]\n" +
-                "    [--ecn <EXTRA_KEY> <EXTRA_COMPONENT_NAME_VALUE>]\n" +
-                "    [--eia <EXTRA_KEY> <EXTRA_INT_VALUE>[,<EXTRA_INT_VALUE...]]\n" +
-                "    [--ela <EXTRA_KEY> <EXTRA_LONG_VALUE>[,<EXTRA_LONG_VALUE...]]\n" +
-                "    [--efa <EXTRA_KEY> <EXTRA_FLOAT_VALUE>[,<EXTRA_FLOAT_VALUE...]]\n" +
-                "    [--esa <EXTRA_KEY> <EXTRA_STRING_VALUE>[,<EXTRA_STRING_VALUE...]]\n" +
-                "        (to embed a comma into a string escape it using \"\\,\")\n" +
-                "    [-n <COMPONENT>] [-p <PACKAGE>] [-f <FLAGS>]\n" +
-                "    [--grant-read-uri-permission] [--grant-write-uri-permission]\n" +
-                "    [--grant-persistable-uri-permission] [--grant-prefix-uri-permission]\n" +
-                "    [--debug-log-resolution] [--exclude-stopped-packages]\n" +
-                "    [--include-stopped-packages]\n" +
-                "    [--activity-brought-to-front] [--activity-clear-top]\n" +
-                "    [--activity-clear-when-task-reset] [--activity-exclude-from-recents]\n" +
-                "    [--activity-launched-from-history] [--activity-multiple-task]\n" +
-                "    [--activity-no-animation] [--activity-no-history]\n" +
-                "    [--activity-no-user-action] [--activity-previous-is-top]\n" +
-                "    [--activity-reorder-to-front] [--activity-reset-task-if-needed]\n" +
-                "    [--activity-single-top] [--activity-clear-task]\n" +
-                "    [--activity-task-on-home]\n" +
-                "    [--receiver-registered-only] [--receiver-replace-pending]\n" +
-                "    [--selector]\n" +
+                "usage: am [subcommand] [options]\n"
+                "usage: am start [-D] [-W] [-P <FILE>] [--start-profiler <FILE>]\n"
+                "               [--sampling INTERVAL] [-R COUNT] [-S] [--opengl-trace]\n"
+                "               [--user <USER_ID> | current] <INTENT>\n"
+                "       am startservice [--user <USER_ID> | current] <INTENT>\n"
+                "       am stopservice [--user <USER_ID> | current] <INTENT>\n"
+                "       am force-stop [--user <USER_ID> | all | current] <PACKAGE>\n"
+                "       am kill [--user <USER_ID> | all | current] <PACKAGE>\n"
+                "       am kill-all\n"
+                "       am broadcast [--user <USER_ID> | all | current] <INTENT>\n"
+                "       am instrument [-r] [-e <NAME> <VALUE>] [-p <FILE>] [-w]\n"
+                "               [--user <USER_ID> | current]\n"
+                "               [--no-window-animation] [--abi <ABI>] <COMPONENT>\n"
+                "       am profile start [--user <USER_ID> current] <PROCESS> <FILE>\n"
+                "       am profile stop [--user <USER_ID> current] [<PROCESS>]\n"
+                "       am dumpheap [--user <USER_ID> current] [-n] <PROCESS> <FILE>\n"
+                "       am set-debug-app [-w] [--persistent] <PACKAGE>\n"
+                "       am clear-debug-app\n"
+                "       am monitor [--gdb <port>]\n"
+                "       am hang [--allow-restart]\n"
+                "       am restart\n"
+                "       am idle-maintenance\n"
+                "       am screen-compat [on|off] <PACKAGE>\n"
+                "       am to-uri [INTENT]\n"
+                "       am to-intent-uri [INTENT]\n"
+                "       am to-app-uri [INTENT]\n"
+                "       am switch-user <USER_ID>\n"
+                "       am start-user <USER_ID>\n"
+                "       am stop-user <USER_ID>\n"
+                "       am stack start <DISPLAY_ID> <INTENT>\n"
+                "       am stack movetask <TASK_ID> <STACK_ID> [true|false]\n"
+                "       am stack resize <STACK_ID> <LEFT,TOP,RIGHT,BOTTOM>\n"
+                "       am stack list\n"
+                "       am stack info <STACK_ID>\n"
+                "       am lock-task <TASK_ID>\n"
+                "       am lock-task stop\n"
+                "       am get-config\n"
+                "\n"
+                "am start: start an Activity.  Options are:\n"
+                "    -D: enable debugging\n"
+                "    -W: wait for launch to complete\n"
+                "    --start-profiler <FILE>: start profiler and send results to <FILE>\n"
+                "    --sampling INTERVAL: use sample profiling with INTERVAL microseconds\n"
+                "        between samples (use with --start-profiler)\n"
+                "    -P <FILE>: like above, but profiling stops when app goes idle\n"
+                "    -R: repeat the activity launch <COUNT> times.  Prior to each repeat,\n"
+                "        the top activity will be finished.\n"
+                "    -S: force stop the target app before starting the activity\n"
+                "    --opengl-trace: enable tracing of OpenGL functions\n"
+                "    --user <USER_ID> | current: Specify which user to run as; if not\n"
+                "        specified then run as the current user.\n"
+                "\n"
+                "am startservice: start a Service.  Options are:\n"
+                "    --user <USER_ID> | current: Specify which user to run as; if not\n"
+                "        specified then run as the current user.\n"
+                "\n"
+                "am stopservice: stop a Service.  Options are:\n"
+                "    --user <USER_ID> | current: Specify which user to run as; if not\n"
+                "        specified then run as the current user.\n"
+                "\n"
+                "am force-stop: force stop everything associated with <PACKAGE>.\n"
+                "    --user <USER_ID> | all | current: Specify user to force stop;\n"
+                "        all users if not specified.\n"
+                "\n"
+                "am kill: Kill all processes associated with <PACKAGE>.  Only kills.\n"
+                "  processes that are safe to kill -- that is, will not impact the user\n"
+                "  experience.\n"
+                "    --user <USER_ID> | all | current: Specify user whose processes to kill;\n"
+                "        all users if not specified.\n"
+                "\n"
+                "am kill-all: Kill all background processes.\n"
+                "\n"
+                "am broadcast: send a broadcast Intent.  Options are:\n"
+                "    --user <USER_ID> | all | current: Specify which user to send to; if not\n"
+                "        specified then send to all users.\n"
+                "    --receiver-permission <PERMISSION>: Require receiver to hold permission.\n"
+                "\n"
+                "am instrument: start an Instrumentation.  Typically this target <COMPONENT>\n"
+                "  is the form <TEST_PACKAGE>/<RUNNER_CLASS>.  Options are:\n"
+                "    -r: print raw results (otherwise decode REPORT_KEY_STREAMRESULT).  Use with\n"
+                "        [-e perf true] to generate raw output for performance measurements.\n"
+                "    -e <NAME> <VALUE>: set argument <NAME> to <VALUE>.  For test runners a\n"
+                "        common form is [-e <testrunner_flag> <value>[,<value>...]].\n"
+                "    -p <FILE>: write profiling data to <FILE>\n"
+                "    -w: wait for instrumentation to finish before returning.  Required for\n"
+                "        test runners.\n"
+                "    --user <USER_ID> | current: Specify user instrumentation runs in;\n"
+                "        current user if not specified.\n"
+                "    --no-window-animation: turn off window animations while running.\n"
+                "    --abi <ABI>: Launch the instrumented process with the selected ABI.\n"
+                "        This assumes that the process supports the selected ABI.\n"
+                "\n"
+                "am profile: start and stop profiler on a process.  The given <PROCESS> argument\n"
+                "  may be either a process name or pid.  Options are:\n"
+                "    --user <USER_ID> | current: When supplying a process name,\n"
+                "        specify user of process to profile; uses current user if not specified.\n"
+                "\n"
+                "am dumpheap: dump the heap of a process.  The given <PROCESS> argument may\n"
+                "  be either a process name or pid.  Options are:\n"
+                "    -n: dump native heap instead of managed heap\n"
+                "    --user <USER_ID> | current: When supplying a process name,\n"
+                "        specify user of process to dump; uses current user if not specified.\n"
+                "\n"
+                "am set-debug-app: set application <PACKAGE> to debug.  Options are:\n"
+                "    -w: wait for debugger when application starts\n"
+                "    --persistent: retain this value\n"
+                "\n"
+                "am clear-debug-app: clear the previously set-debug-app.\n"
+                "\n"
+                "am bug-report: request bug report generation; will launch UI\n"
+                "    when done to select where it should be delivered.\n"
+                "\n"
+                "am monitor: start monitoring for crashes or ANRs.\n"
+                "    --gdb: start gdbserv on the given port at crash/ANR\n"
+                "\n"
+                "am hang: hang the system.\n"
+                "    --allow-restart: allow watchdog to perform normal system restart\n"
+                "\n"
+                "am restart: restart the user-space system.\n"
+                "\n"
+                "am idle-maintenance: perform idle maintenance now.\n"
+                "\n"
+                "am screen-compat: control screen compatibility mode of <PACKAGE>.\n"
+                "\n"
+                "am to-uri: print the given Intent specification as a URI.\n"
+                "\n"
+                "am to-intent-uri: print the given Intent specification as an intent: URI.\n"
+                "\n"
+                "am to-app-uri: print the given Intent specification as an android-app: URI.\n"
+                "\n"
+                "am switch-user: switch to put USER_ID in the foreground, starting\n"
+                "  execution of that user if it is currently stopped.\n"
+                "\n"
+                "am start-user: start USER_ID in background if it is currently stopped,\n"
+                "  use switch-user if you want to start the user in foreground.\n"
+                "\n"
+                "am stop-user: stop execution of USER_ID, not allowing it to run any\n"
+                "  code until a later explicit start or switch to it.\n"
+                "\n"
+                "am stack start: start a new activity on <DISPLAY_ID> using <INTENT>.\n"
+                "\n"
+                "am stack movetask: move <TASK_ID> from its current stack to the top (true) or"
+                "   bottom (false) of <STACK_ID>.\n"
+                "\n"
+                "am stack resize: change <STACK_ID> size and position to <LEFT,TOP,RIGHT,BOTTOM>.\n"
+                "\n"
+                "am stack list: list all of the activity stacks and their sizes.\n"
+                "\n"
+                "am stack info: display the information about activity stack <STACK_ID>.\n"
+                "\n"
+                "am lock-task: bring <TASK_ID> to the front and don't allow other tasks to run\n"
+                "\n"
+                "am get-config: retrieve the configuration and any recent configurations\n"
+                "  of the device\n"
+                "\n"
+                "<INTENT> specifications include these flags and arguments:\n"
+                "    [-a <ACTION>] [-d <DATA_URI>] [-t <MIME_TYPE>]\n"
+                "    [-c <CATEGORY> [-c <CATEGORY>] ...]\n"
+                "    [-e|--es <EXTRA_KEY> <EXTRA_STRING_VALUE> ...]\n"
+                "    [--esn <EXTRA_KEY> ...]\n"
+                "    [--ez <EXTRA_KEY> <EXTRA_BOOLEAN_VALUE> ...]\n"
+                "    [--ei <EXTRA_KEY> <EXTRA_INT_VALUE> ...]\n"
+                "    [--el <EXTRA_KEY> <EXTRA_LONG_VALUE> ...]\n"
+                "    [--ef <EXTRA_KEY> <EXTRA_FLOAT_VALUE> ...]\n"
+                "    [--eu <EXTRA_KEY> <EXTRA_URI_VALUE> ...]\n"
+                "    [--ecn <EXTRA_KEY> <EXTRA_COMPONENT_NAME_VALUE>]\n"
+                "    [--eia <EXTRA_KEY> <EXTRA_INT_VALUE>[,<EXTRA_INT_VALUE...]]\n"
+                "    [--ela <EXTRA_KEY> <EXTRA_LONG_VALUE>[,<EXTRA_LONG_VALUE...]]\n"
+                "    [--efa <EXTRA_KEY> <EXTRA_FLOAT_VALUE>[,<EXTRA_FLOAT_VALUE...]]\n"
+                "    [--esa <EXTRA_KEY> <EXTRA_STRING_VALUE>[,<EXTRA_STRING_VALUE...]]\n"
+                "        (to embed a comma into a string escape it using \"\\,\")\n"
+                "    [-n <COMPONENT>] [-p <PACKAGE>] [-f <FLAGS>]\n"
+                "    [--grant-read-uri-permission] [--grant-write-uri-permission]\n"
+                "    [--grant-persistable-uri-permission] [--grant-prefix-uri-permission]\n"
+                "    [--debug-log-resolution] [--exclude-stopped-packages]\n"
+                "    [--include-stopped-packages]\n"
+                "    [--activity-brought-to-front] [--activity-clear-top]\n"
+                "    [--activity-clear-when-task-reset] [--activity-exclude-from-recents]\n"
+                "    [--activity-launched-from-history] [--activity-multiple-task]\n"
+                "    [--activity-no-animation] [--activity-no-history]\n"
+                "    [--activity-no-user-action] [--activity-previous-is-top]\n"
+                "    [--activity-reorder-to-front] [--activity-reset-task-if-needed]\n"
+                "    [--activity-single-top] [--activity-clear-task]\n"
+                "    [--activity-task-on-home]\n"
+                "    [--receiver-registered-only] [--receiver-replace-pending]\n"
+                "    [--selector]\n"
                 "    [<URI> | <PACKAGE> | <COMPONENT>]\n"
                 );
     }
@@ -805,7 +805,7 @@ public class Am extends BaseCommand {
                     break;
                 case ActivityManager.START_CLASS_NOT_FOUND:
                     out.println(NO_CLASS_ERROR_CODE);
-                    out.println("Error: Activity class " +
+                    out.println("Error: Activity class "
                             intent.getComponent().toShortString()
                             + " does not exist.");
                     break;
@@ -1771,7 +1771,7 @@ public class Am extends BaseCommand {
                 int taskId = Integer.valueOf(taskIdStr);
                 mAm.startLockTaskMode(taskId);
             }
-            System.err.println("Activity manager is " + (mAm.isInLockTaskMode() ? "" : "not ") +
+            System.err.println("Activity manager is " + (mAm.isInLockTaskMode() ? "" : "not ")
                     "in lockTaskMode");
         } catch (RemoteException e) {
         }

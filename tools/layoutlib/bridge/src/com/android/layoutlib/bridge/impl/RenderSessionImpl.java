@@ -1355,7 +1355,7 @@ public class RenderSessionImpl extends RenderAction<SessionParams> {
 
         if (!(v instanceof TabWidget)) {
             throw new PostInflateException(String.format(
-                    "TabHost requires a TabWidget with id \"android:id/tabs\".\n" +
+                    "TabHost requires a TabWidget with id \"android:id/tabs\".\n"
                     "View found with id 'tabs' is '%s'", v.getClass().getCanonicalName()));
         }
 
@@ -1371,7 +1371,7 @@ public class RenderSessionImpl extends RenderAction<SessionParams> {
         if (!(v instanceof FrameLayout)) {
             //noinspection SpellCheckingInspection
             throw new PostInflateException(String.format(
-                    "TabHost requires a FrameLayout with id \"android:id/tabcontent\".\n" +
+                    "TabHost requires a FrameLayout with id \"android:id/tabcontent\".\n"
                     "View found with id 'tabcontent' is '%s'", v.getClass().getCanonicalName()));
         }
 

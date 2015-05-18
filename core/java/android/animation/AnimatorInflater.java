@@ -135,13 +135,13 @@ public class AnimatorInflater {
             return animator;
         } catch (XmlPullParserException ex) {
             Resources.NotFoundException rnf =
-                    new Resources.NotFoundException("Can't load animation resource ID #0x" +
+                    new Resources.NotFoundException("Can't load animation resource ID #0x"
                             Integer.toHexString(id));
             rnf.initCause(ex);
             throw rnf;
         } catch (IOException ex) {
             Resources.NotFoundException rnf =
-                    new Resources.NotFoundException("Can't load animation resource ID #0x" +
+                    new Resources.NotFoundException("Can't load animation resource ID #0x"
                             Integer.toHexString(id));
             rnf.initCause(ex);
             throw rnf;
@@ -178,7 +178,7 @@ public class AnimatorInflater {
         } catch (XmlPullParserException ex) {
             Resources.NotFoundException rnf =
                     new Resources.NotFoundException(
-                            "Can't load state list animator resource ID #0x" +
+                            "Can't load state list animator resource ID #0x"
                                     Integer.toHexString(id)
                     );
             rnf.initCause(ex);
@@ -186,7 +186,7 @@ public class AnimatorInflater {
         } catch (IOException ex) {
             Resources.NotFoundException rnf =
                     new Resources.NotFoundException(
-                            "Can't load state list animator resource ID #0x" +
+                            "Can't load state list animator resource ID #0x"
                                     Integer.toHexString(id)
                     );
             rnf.initCause(ex);

@@ -65,7 +65,7 @@ public class PointerEventDispatcher extends InputEventReceiver {
     public void registerInputEventListener(PointerEventListener listener) {
         synchronized (mListeners) {
             if (mListeners.contains(listener)) {
-                throw new IllegalStateException("registerInputEventListener: trying to register" +
+                throw new IllegalStateException("registerInputEventListener: trying to register"
                         listener + " twice.");
             }
             mListeners.add(listener);
@@ -80,7 +80,7 @@ public class PointerEventDispatcher extends InputEventReceiver {
     public void unregisterInputEventListener(PointerEventListener listener) {
         synchronized (mListeners) {
             if (!mListeners.contains(listener)) {
-                throw new IllegalStateException("registerInputEventListener: " + listener +
+                throw new IllegalStateException("registerInputEventListener: " + listener
                         " not registered.");
             }
             mListeners.remove(listener);

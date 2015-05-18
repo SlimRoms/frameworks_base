@@ -37,23 +37,23 @@ public class ColorTemperatureFilter extends Filter {
     private int mTarget = FrameFormat.TARGET_UNSPECIFIED;
 
     private final String mColorTemperatureShader =
-            "precision mediump float;\n" +
-            "uniform sampler2D tex_sampler_0;\n" +
-            "uniform float scale;\n" +
-            "varying vec2 v_texcoord;\n" +
-            "void main() {\n" +
-            "  vec4 color = texture2D(tex_sampler_0, v_texcoord);\n" +
-            "  vec3 new_color = color.rgb;\n" +
-            "  new_color.r = color.r + color.r * ( 1.0 - color.r) * scale;\n" +
-            "  new_color.b = color.b - color.b * ( 1.0 - color.b) * scale;\n" +
-            "  if (scale > 0.0) { \n" +
-            "    new_color.g = color.g + color.g * ( 1.0 - color.g) * scale * 0.25;\n" +
-            "  }\n" +
-            "  float max_value = max(new_color.r, max(new_color.g, new_color.b));\n" +
-            "  if (max_value > 1.0) { \n" +
-            "     new_color /= max_value;\n" +
-            "  } \n" +
-            "  gl_FragColor = vec4(new_color, color.a);\n" +
+            "precision mediump float;\n"
+            "uniform sampler2D tex_sampler_0;\n"
+            "uniform float scale;\n"
+            "varying vec2 v_texcoord;\n"
+            "void main() {\n"
+            "  vec4 color = texture2D(tex_sampler_0, v_texcoord);\n"
+            "  vec3 new_color = color.rgb;\n"
+            "  new_color.r = color.r + color.r * ( 1.0 - color.r) * scale;\n"
+            "  new_color.b = color.b - color.b * ( 1.0 - color.b) * scale;\n"
+            "  if (scale > 0.0) { \n"
+            "    new_color.g = color.g + color.g * ( 1.0 - color.g) * scale * 0.25;\n"
+            "  }\n"
+            "  float max_value = max(new_color.r, max(new_color.g, new_color.b));\n"
+            "  if (max_value > 1.0) { \n"
+            "     new_color /= max_value;\n"
+            "  } \n"
+            "  gl_FragColor = vec4(new_color, color.a);\n"
             "}\n";
 
     public ColorTemperatureFilter(String name) {
@@ -80,7 +80,7 @@ public class ColorTemperatureFilter extends Filter {
                 break;
 
             default:
-                throw new RuntimeException("Filter Sharpen does not support frames of " +
+                throw new RuntimeException("Filter Sharpen does not support frames of "
                     "target " + target + "!");
         }
         mTarget = target;

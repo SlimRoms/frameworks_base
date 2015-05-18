@@ -118,7 +118,7 @@ public final class CellIdentityLte implements Parcelable {
     @Override
     public int hashCode() {
         int primeNum = 31;
-        return (mMcc * primeNum) + (mMnc * primeNum) + (mCi * primeNum) + (mPci * primeNum) +
+        return (mMcc * primeNum) + (mMnc * primeNum) + (mCi * primeNum) + (mPci * primeNum)
                 (mTac * primeNum);
     }
 

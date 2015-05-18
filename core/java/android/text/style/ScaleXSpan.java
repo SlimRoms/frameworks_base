@@ -32,11 +32,11 @@ public class ScaleXSpan extends MetricAffectingSpan implements ParcelableSpan {
     public ScaleXSpan(Parcel src) {
         mProportion = src.readFloat();
     }
-    
+
     public int getSpanTypeId() {
         return TextUtils.SCALE_X_SPAN;
     }
-    
+
     public int describeContents() {
         return 0;
     }

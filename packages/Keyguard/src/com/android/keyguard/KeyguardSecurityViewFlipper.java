@@ -196,11 +196,11 @@ public class KeyguardSecurityViewFlipper extends ViewFlipper implements Keyguard
         final int widthMode = MeasureSpec.getMode(widthSpec);
         final int heightMode = MeasureSpec.getMode(heightSpec);
         if (DEBUG && widthMode != MeasureSpec.AT_MOST) {
-            Log.w(TAG, "onMeasure: widthSpec " + MeasureSpec.toString(widthSpec) +
+            Log.w(TAG, "onMeasure: widthSpec " + MeasureSpec.toString(widthSpec)
                     " should be AT_MOST");
         }
         if (DEBUG && heightMode != MeasureSpec.AT_MOST) {
-            Log.w(TAG, "onMeasure: heightSpec " + MeasureSpec.toString(heightSpec) +
+            Log.w(TAG, "onMeasure: heightSpec " + MeasureSpec.toString(heightSpec)
                     " should be AT_MOST");
         }
 

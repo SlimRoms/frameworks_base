@@ -177,7 +177,7 @@ public class SyncOperation implements Comparable {
     /**
      * Determine whether if this sync operation is running, the provided operation would conflict
      * with it.
-     * Parallel syncs allow multiple accounts to be synced at the same time. 
+     * Parallel syncs allow multiple accounts to be synced at the same time.
      */
     public boolean isConflict(SyncOperation toRun) {
         final SyncStorageEngine.EndPoint other = toRun.target;

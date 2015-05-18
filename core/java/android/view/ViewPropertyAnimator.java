@@ -44,7 +44,7 @@ import java.util.Set;
  * <p>This class is not constructed by the caller, but rather by the View whose properties
  * it will animate. Calls to {@link android.view.View#animate()} will return a reference
  * to the appropriate ViewPropertyAnimator object for that View.</p>
- * 
+ *
  */
 public class ViewPropertyAnimator {
 
@@ -265,7 +265,7 @@ public class ViewPropertyAnimator {
      */
     public ViewPropertyAnimator setDuration(long duration) {
         if (duration < 0) {
-            throw new IllegalArgumentException("Animators cannot have negative duration: " +
+            throw new IllegalArgumentException("Animators cannot have negative duration: "
                     duration);
         }
         mDurationSet = true;
@@ -322,7 +322,7 @@ public class ViewPropertyAnimator {
      */
     public ViewPropertyAnimator setStartDelay(long startDelay) {
         if (startDelay < 0) {
-            throw new IllegalArgumentException("Animators cannot have negative start " +
+            throw new IllegalArgumentException("Animators cannot have negative start "
                 "delay: " + startDelay);
         }
         mStartDelaySet = true;
@@ -334,7 +334,7 @@ public class ViewPropertyAnimator {
      * Sets the interpolator for the underlying animator that animates the requested properties.
      * By default, the animator uses the default interpolator for ValueAnimator. Calling this method
      * will cause the declared object to be used instead.
-     * 
+     *
      * @param interpolator The TimeInterpolator to be used for ensuing property animations. A value
      * of <code>null</code> will result in linear interpolation.
      * @return This object, allowing calls to methods in this class to be chained.

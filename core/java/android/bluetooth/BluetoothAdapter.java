@@ -1381,7 +1381,7 @@ public final class BluetoothAdapter {
             randomizer = Arrays.copyOfRange(ret, 16, 32);
 
             if (DBG) {
-                Log.d(TAG, "readOutOfBandData:" + Arrays.toString(hash) +
+                Log.d(TAG, "readOutOfBandData:" + Arrays.toString(hash)
                   ":" + Arrays.toString(randomizer));
             }
             return new Pair<byte[], byte[]>(hash, randomizer);

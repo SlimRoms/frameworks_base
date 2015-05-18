@@ -187,18 +187,18 @@ public class NetworkAgentInfo {
     }
 
     public String toString() {
-        return "NetworkAgentInfo{ ni{" + networkInfo + "}  network{" +
-                network + "}  lp{" +
-                linkProperties + "}  nc{" +
-                networkCapabilities + "}  Score{" + getCurrentScore() + "}  " +
-                "everValidated{" + everValidated + "}  lastValidated{" + lastValidated + "}  " +
-                "created{" + created + "}  " +
+        return "NetworkAgentInfo{ ni{" + networkInfo + "}  network{"
+                network + "}  lp{"
+                linkProperties + "}  nc{"
+                networkCapabilities + "}  Score{" + getCurrentScore() + "}  "
+                "everValidated{" + everValidated + "}  lastValidated{" + lastValidated + "}  "
+                "created{" + created + "}  "
                 "explicitlySelected{" + networkMisc.explicitlySelected + "} }";
     }
 
     public String name() {
-        return "NetworkAgentInfo [" + networkInfo.getTypeName() + " (" +
-                networkInfo.getSubtypeName() + ") - " +
+        return "NetworkAgentInfo [" + networkInfo.getTypeName() + " ("
+                networkInfo.getSubtypeName() + ") - "
                 (network == null ? "null" : network.toString()) + "]";
     }
 

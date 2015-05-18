@@ -88,7 +88,7 @@ public class PatternsTest extends TestCase {
         t = Patterns.WEB_URL.matcher("\uB3C4\uBA54\uC778.\uD55C\uAD6D").matches();
         assertTrue("Valid URL", t);
 
-        t = Patterns.WEB_URL.matcher("http://brainstormtech.blogs.fortune.cnn.com/2010/03/11/" +
+        t = Patterns.WEB_URL.matcher("http://brainstormtech.blogs.fortune.cnn.com/2010/03/11/"
             "top-five-moments-from-eric-schmidt\u2019s-talk-in-abu-dhabi/").matches();
         assertTrue("Valid URL", t);
 

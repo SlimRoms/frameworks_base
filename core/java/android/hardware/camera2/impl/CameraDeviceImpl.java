@@ -392,7 +392,7 @@ public class CameraDeviceImpl extends CameraDevice {
                 success = true;
             } catch (CameraRuntimeException e) {
                 if (e.getReason() == CAMERA_IN_USE) {
-                    throw new IllegalStateException("The camera is currently busy." +
+                    throw new IllegalStateException("The camera is currently busy."
                             " You must wait until the previous operation completes.");
                 }
 

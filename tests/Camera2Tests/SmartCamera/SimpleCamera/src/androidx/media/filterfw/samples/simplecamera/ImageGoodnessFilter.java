@@ -123,7 +123,7 @@ public class ImageGoodnessFilter extends Filter {
         float[] motionValues = (float[]) motionValuesFrameValue.getValue();
 
 
-        float vectorAccel = (float) Math.sqrt(Math.pow(motionValues[0], 2) +
+        float vectorAccel = (float) Math.sqrt(Math.pow(motionValues[0], 2)
                 Math.pow(motionValues[1], 2) + Math.pow(motionValues[2], 2));
         String outStr;
 
@@ -213,7 +213,7 @@ public class ImageGoodnessFilter extends Filter {
            float colorfulness, float contrast, float score) {
         float result = (-0.0223f * sharpness + -0.0563f * underExposure + 0.0137f * colorfulness
                 + 0.3102f * contrast + 0.0314f * vectorAccel + -0.0094f * score + 0.0227f *
-                sharpnessMean + 0.0459f * underExposureMean + -0.3934f * contrastMean +
+                sharpnessMean + 0.0459f * underExposureMean + -0.3934f * contrastMean
                 -0.0697f * motionMean + 0.0091f * scoreMean + -0.0152f);
         return result;
     }

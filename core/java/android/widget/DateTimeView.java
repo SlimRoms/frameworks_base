@@ -84,7 +84,7 @@ public class DateTimeView extends TextView {
         }
         ri.addView(this);
     }
-        
+
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();

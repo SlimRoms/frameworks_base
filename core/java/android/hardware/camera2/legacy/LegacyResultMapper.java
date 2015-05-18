@@ -89,7 +89,7 @@ public class LegacyResultMapper {
         }
 
         if (VERBOSE) {
-            Log.v(TAG, "cachedConvertResultMetadata - cached? " + cached +
+            Log.v(TAG, "cachedConvertResultMetadata - cached? " + cached
                     " timestamp = " + timestamp);
 
             Log.v(TAG, "----- beginning of result dump ------");
@@ -184,7 +184,7 @@ public class LegacyResultMapper {
                 // In case of SCENE_MODE == FACE_PRIORITY, LegacyFaceDetectMapper will override
                 // the result to say SCENE_MODE == FACE_PRIORITY.
             }  else {
-                Log.w(TAG, "Unknown scene mode " + legacySceneMode +
+                Log.w(TAG, "Unknown scene mode " + legacySceneMode
                         " returned by camera HAL, setting to disabled.");
                 result.set(CaptureResult.CONTROL_SCENE_MODE, CONTROL_SCENE_MODE_DISABLED);
             }
@@ -199,7 +199,7 @@ public class LegacyResultMapper {
             if (mode != LegacyMetadataMapper.UNKNOWN_MODE) {
                 result.set(CaptureResult.CONTROL_EFFECT_MODE, mode);
             } else {
-                Log.w(TAG, "Unknown effect mode " + legacyEffectMode +
+                Log.w(TAG, "Unknown effect mode " + legacyEffectMode
                         " returned by camera HAL, setting to off.");
                 result.set(CaptureResult.CONTROL_EFFECT_MODE, CONTROL_EFFECT_MODE_OFF);
             }
@@ -308,14 +308,14 @@ public class LegacyResultMapper {
             m.set(CONTROL_AE_LOCK, lock);
             if (VERBOSE) {
                 Log.v(TAG,
-                        "mapAe - android.control.aeLock = " + lock +
+                        "mapAe - android.control.aeLock = " + lock
                         ", supported = " + p.isAutoExposureLockSupported());
             }
 
             Boolean requestLock = request.get(CaptureRequest.CONTROL_AE_LOCK);
             if (requestLock != null && requestLock != lock) {
                 Log.w(TAG,
-                        "mapAe - android.control.aeLock was requested to " + requestLock +
+                        "mapAe - android.control.aeLock was requested to " + requestLock
                         " but resulted in " + lock);
             }
         }

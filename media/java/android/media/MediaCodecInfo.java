@@ -1976,7 +1976,7 @@ public final class MediaCodecInfo {
                     complexity = flacComplexity;
                 } else if (flacComplexity != null && complexity != flacComplexity) {
                     throw new IllegalArgumentException(
-                            "conflicting values for complexity and " +
+                            "conflicting values for complexity and "
                             "flac-compression-level");
                 }
             }

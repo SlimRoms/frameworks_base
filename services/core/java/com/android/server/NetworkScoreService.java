@@ -82,7 +82,7 @@ public class NetworkScoreService extends INetworkScoreService.Stub {
                     Intent.ACTION_PACKAGE_FULLY_REMOVED.equals(action)) &&
                     NetworkScorerAppManager.getActiveScorer(mContext) == null) {
                 // Package change has invalidated a scorer.
-                Log.i(TAG, "Package " + mRegisteredPackage +
+                Log.i(TAG, "Package " + mRegisteredPackage
                         " is no longer valid, disabling scoring");
                 setScorerInternal(null);
             }
@@ -145,7 +145,7 @@ public class NetworkScoreService extends INetworkScoreService.Stub {
     @Override
     public boolean updateScores(ScoredNetwork[] networks) {
         if (!NetworkScorerAppManager.isCallerActiveScorer(mContext, getCallingUid())) {
-            throw new SecurityException("Caller with UID " + getCallingUid() +
+            throw new SecurityException("Caller with UID " + getCallingUid()
                     " is not the active scorer.");
         }
 

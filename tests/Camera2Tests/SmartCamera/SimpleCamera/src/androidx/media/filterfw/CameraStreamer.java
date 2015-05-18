@@ -265,12 +265,12 @@ public class CameraStreamer {
     private class CamFrameHandlerICS extends CamFrameHandler  {
 
         protected static final String mCopyShaderSource =
-            "#extension GL_OES_EGL_image_external : require\n" +
-            "precision mediump float;\n" +
-            "uniform samplerExternalOES tex_sampler_0;\n" +
-            "varying vec2 v_texcoord;\n" +
-            "void main() {\n" +
-            "  gl_FragColor = texture2D(tex_sampler_0, v_texcoord);\n" +
+            "#extension GL_OES_EGL_image_external : require\n"
+            "precision mediump float;\n"
+            "uniform samplerExternalOES tex_sampler_0;\n"
+            "varying vec2 v_texcoord;\n"
+            "void main() {\n"
+            "  gl_FragColor = texture2D(tex_sampler_0, v_texcoord);\n"
             "}\n";
 
         /** The camera transform matrix */
@@ -409,7 +409,7 @@ public class CameraStreamer {
                 try {
                     camera.setPreviewTexture(mPreviewSurfaceTexture);
                 } catch (IOException e) {
-                    throw new RuntimeException("Could not bind camera surface texture: " +
+                    throw new RuntimeException("Could not bind camera surface texture: "
                                                e.getMessage() + "!");
                 }
                 mPreviewSurfaceTexture.setOnFrameAvailableListener(mOnCameraFrameListener);
@@ -486,55 +486,55 @@ public class CameraStreamer {
         final Object mBufferLock = new Object();
 
         private String mNV21ToRGBAFragment =
-            "precision mediump float;\n" +
-            "\n" +
-            "uniform sampler2D tex_sampler_0;\n" +
-            "varying vec2 v_y_texcoord;\n" +
-            "varying vec2 v_vu_texcoord;\n" +
-            "varying vec2 v_pixcoord;\n" +
-            "\n" +
-            "vec3 select(vec4 yyyy, vec4 vuvu, int s) {\n" +
-            "  if (s == 0) {\n" +
-            "    return vec3(yyyy.r, vuvu.g, vuvu.r);\n" +
-            "  } else if (s == 1) {\n" +
-            "    return vec3(yyyy.g, vuvu.g, vuvu.r);\n" +
-            " } else if (s == 2) {\n" +
-            "    return vec3(yyyy.b, vuvu.a, vuvu.b);\n" +
-            "  } else  {\n" +
-            "    return vec3(yyyy.a, vuvu.a, vuvu.b);\n" +
-            "  }\n" +
-            "}\n" +
-            "\n" +
-            "vec3 yuv2rgb(vec3 yuv) {\n" +
-            "  mat4 conversion = mat4(1.0,  0.0,    1.402, -0.701,\n" +
-            "                         1.0, -0.344, -0.714,  0.529,\n" +
-            "                         1.0,  1.772,  0.0,   -0.886,\n" +
-            "                         0, 0, 0, 0);" +
-            "  return (vec4(yuv, 1.0) * conversion).rgb;\n" +
-            "}\n" +
-            "\n" +
-            "void main() {\n" +
-            "  vec4 yyyy = texture2D(tex_sampler_0, v_y_texcoord);\n" +
-            "  vec4 vuvu = texture2D(tex_sampler_0, v_vu_texcoord);\n" +
-            "  int s = int(mod(floor(v_pixcoord.x), 4.0));\n" +
-            "  vec3 yuv = select(yyyy, vuvu, s);\n" +
-            "  vec3 rgb = yuv2rgb(yuv);\n" +
-            "  gl_FragColor = vec4(rgb, 1.0);\n" +
+            "precision mediump float;\n"
+            "\n"
+            "uniform sampler2D tex_sampler_0;\n"
+            "varying vec2 v_y_texcoord;\n"
+            "varying vec2 v_vu_texcoord;\n"
+            "varying vec2 v_pixcoord;\n"
+            "\n"
+            "vec3 select(vec4 yyyy, vec4 vuvu, int s) {\n"
+            "  if (s == 0) {\n"
+            "    return vec3(yyyy.r, vuvu.g, vuvu.r);\n"
+            "  } else if (s == 1) {\n"
+            "    return vec3(yyyy.g, vuvu.g, vuvu.r);\n"
+            " } else if (s == 2) {\n"
+            "    return vec3(yyyy.b, vuvu.a, vuvu.b);\n"
+            "  } else  {\n"
+            "    return vec3(yyyy.a, vuvu.a, vuvu.b);\n"
+            "  }\n"
+            "}\n"
+            "\n"
+            "vec3 yuv2rgb(vec3 yuv) {\n"
+            "  mat4 conversion = mat4(1.0,  0.0,    1.402, -0.701,\n"
+            "                         1.0, -0.344, -0.714,  0.529,\n"
+            "                         1.0,  1.772,  0.0,   -0.886,\n"
+            "                         0, 0, 0, 0);"
+            "  return (vec4(yuv, 1.0) * conversion).rgb;\n"
+            "}\n"
+            "\n"
+            "void main() {\n"
+            "  vec4 yyyy = texture2D(tex_sampler_0, v_y_texcoord);\n"
+            "  vec4 vuvu = texture2D(tex_sampler_0, v_vu_texcoord);\n"
+            "  int s = int(mod(floor(v_pixcoord.x), 4.0));\n"
+            "  vec3 yuv = select(yyyy, vuvu, s);\n"
+            "  vec3 rgb = yuv2rgb(yuv);\n"
+            "  gl_FragColor = vec4(rgb, 1.0);\n"
             "}";
 
         private String mNV21ToRGBAVertex =
-            "attribute vec4 a_position;\n" +
-            "attribute vec2 a_y_texcoord;\n" +
-            "attribute vec2 a_vu_texcoord;\n" +
-            "attribute vec2 a_pixcoord;\n" +
-            "varying vec2 v_y_texcoord;\n" +
-            "varying vec2 v_vu_texcoord;\n" +
-            "varying vec2 v_pixcoord;\n" +
-            "void main() {\n" +
-            "  gl_Position = a_position;\n" +
-            "  v_y_texcoord = a_y_texcoord;\n" +
-            "  v_vu_texcoord = a_vu_texcoord;\n" +
-            "  v_pixcoord = a_pixcoord;\n" +
+            "attribute vec4 a_position;\n"
+            "attribute vec2 a_y_texcoord;\n"
+            "attribute vec2 a_vu_texcoord;\n"
+            "attribute vec2 a_pixcoord;\n"
+            "varying vec2 v_y_texcoord;\n"
+            "varying vec2 v_vu_texcoord;\n"
+            "varying vec2 v_pixcoord;\n"
+            "void main() {\n"
+            "  gl_Position = a_position;\n"
+            "  v_y_texcoord = a_y_texcoord;\n"
+            "  v_vu_texcoord = a_vu_texcoord;\n"
+            "  v_pixcoord = a_pixcoord;\n"
             "}\n";
 
         private byte[] readBuffer() {
@@ -580,7 +580,7 @@ public class CameraStreamer {
                 try {
                     camera.setPreviewDisplay(previewDisplay.getHolder());
                 } catch (IOException e) {
-                    throw new RuntimeException("Could not start camera with given preview " +
+                    throw new RuntimeException("Could not start camera with given preview "
                             "display!");
                 }
             }

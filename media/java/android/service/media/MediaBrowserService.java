@@ -469,7 +469,7 @@ public abstract class MediaBrowserService extends Service {
          */
         public BrowserRoot(@NonNull String rootId, @Nullable Bundle extras) {
             if (rootId == null) {
-                throw new IllegalArgumentException("The root id in BrowserRoot cannot be null. " +
+                throw new IllegalArgumentException("The root id in BrowserRoot cannot be null. "
                         "Use null for BrowserRoot instead.");
             }
             mRootId = rootId;

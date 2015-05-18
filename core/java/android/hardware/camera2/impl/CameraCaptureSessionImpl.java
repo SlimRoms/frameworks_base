@@ -154,7 +154,7 @@ public class CameraCaptureSessionImpl extends CameraCaptureSession {
         handler = checkHandler(handler, callback);
 
         if (VERBOSE) {
-            Log.v(TAG, mIdString + "capture - request " + request + ", callback " + callback +
+            Log.v(TAG, mIdString + "capture - request " + request + ", callback " + callback
                     " handler " + handler);
         }
 
@@ -177,7 +177,7 @@ public class CameraCaptureSessionImpl extends CameraCaptureSession {
 
         if (VERBOSE) {
             CaptureRequest[] requestArray = requests.toArray(new CaptureRequest[0]);
-            Log.v(TAG, mIdString + "captureBurst - requests " + Arrays.toString(requestArray) +
+            Log.v(TAG, mIdString + "captureBurst - requests " + Arrays.toString(requestArray)
                     ", callback " + callback + " handler " + handler);
         }
 
@@ -197,7 +197,7 @@ public class CameraCaptureSessionImpl extends CameraCaptureSession {
         handler = checkHandler(handler, callback);
 
         if (VERBOSE) {
-            Log.v(TAG, mIdString + "setRepeatingRequest - request " + request + ", callback " +
+            Log.v(TAG, mIdString + "setRepeatingRequest - request " + request + ", callback "
                     callback + " handler" + " " + handler);
         }
 
@@ -220,7 +220,7 @@ public class CameraCaptureSessionImpl extends CameraCaptureSession {
 
         if (VERBOSE) {
             CaptureRequest[] requestArray = requests.toArray(new CaptureRequest[0]);
-            Log.v(TAG, mIdString + "setRepeatingBurst - requests " + Arrays.toString(requestArray) +
+            Log.v(TAG, mIdString + "setRepeatingBurst - requests " + Arrays.toString(requestArray)
                     ", callback " + callback + " handler" + "" + handler);
         }
 
@@ -647,7 +647,7 @@ public class CameraCaptureSessionImpl extends CameraCaptureSession {
                  * This operation is idempotent; a session will not be closed twice.
                  */
                     if (VERBOSE)
-                        Log.v(TAG, mIdString + "Session drain complete, skip unconfigure: " +
+                        Log.v(TAG, mIdString + "Session drain complete, skip unconfigure: "
                                 mSkipUnconfigure);
 
                     // Fast path: A new capture session has replaced this one; don't unconfigure.
@@ -669,7 +669,7 @@ public class CameraCaptureSessionImpl extends CameraCaptureSession {
                         // TODO: call onError instead of onClosed if this happens
                     } catch (IllegalStateException e) {
                         // Camera is already closed, so go straight to the close callback
-                        if (VERBOSE) Log.v(TAG, mIdString +
+                        if (VERBOSE) Log.v(TAG, mIdString
                                 "Camera was already closed or busy, skipping unconfigure");
                         mUnconfigureDrainer.taskFinished();
                     }

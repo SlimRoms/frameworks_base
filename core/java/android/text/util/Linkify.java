@@ -402,7 +402,7 @@ public class Linkify {
         }
 
         boolean hasPrefix = false;
-        
+
         for (int i = 0; i < prefixes.length; i++) {
             if (url.regionMatches(true, 0, prefixes[i], 0,
                                   prefixes[i].length())) {

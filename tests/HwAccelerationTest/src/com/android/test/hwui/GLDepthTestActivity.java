@@ -330,22 +330,22 @@ public class GLDepthTestActivity extends Activity {
         private FloatBuffer mTriangleVertices;
 
         private final String mVertexShader =
-                "uniform mat4 uMVPMatrix;\n" +
-                        "attribute vec4 aPosition;\n" +
-                        "attribute vec2 aTextureCoord;\n" +
-                        "varying vec2 vTextureCoord;\n" +
-                        "void main() {\n" +
-                        "  gl_Position = uMVPMatrix * aPosition;\n" +
-                        "  vTextureCoord = aTextureCoord;\n" +
+                "uniform mat4 uMVPMatrix;\n"
+                        "attribute vec4 aPosition;\n"
+                        "attribute vec2 aTextureCoord;\n"
+                        "varying vec2 vTextureCoord;\n"
+                        "void main() {\n"
+                        "  gl_Position = uMVPMatrix * aPosition;\n"
+                        "  vTextureCoord = aTextureCoord;\n"
                         "}\n";
 
         private final String mFragmentShader =
-                "precision mediump float;\n" +
-                        "varying vec2 vTextureCoord;\n" +
-                        "uniform sampler2D sTexture;\n" +
-                        "uniform vec4 uOverlay;\n" +
-                        "void main() {\n" +
-                        "  gl_FragColor = texture2D(sTexture, vTextureCoord) * uOverlay;\n" +
+                "precision mediump float;\n"
+                        "varying vec2 vTextureCoord;\n"
+                        "uniform sampler2D sTexture;\n"
+                        "uniform vec4 uOverlay;\n"
+                        "void main() {\n"
+                        "  gl_FragColor = texture2D(sTexture, vTextureCoord) * uOverlay;\n"
                         "}\n";
 
         private float[] mMVPMatrix = new float[16];

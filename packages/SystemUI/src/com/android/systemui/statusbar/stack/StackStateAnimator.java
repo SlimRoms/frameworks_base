@@ -180,7 +180,7 @@ public class StackStateAnimator {
             yTranslationChanging = true;
             float longerDurationFactor = viewState.notGoneIndex - mCurrentLastNotAddedIndex;
             longerDurationFactor = (float) Math.pow(longerDurationFactor, 0.7f);
-            duration = ANIMATION_DURATION_APPEAR_DISAPPEAR + 50 +
+            duration = ANIMATION_DURATION_APPEAR_DISAPPEAR + 50
                     (long) (100 * longerDurationFactor);
         }
 

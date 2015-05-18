@@ -97,7 +97,7 @@ public class PackageHelper {
                 return null;
             }
             String cachePath = mountService.getSecureContainerPath(cid);
-            if (localLOGV) Log.i(TAG, "Created secure container " + cid +
+            if (localLOGV) Log.i(TAG, "Created secure container " + cid
                     " at " + cachePath);
                 return cachePath;
         } catch (RemoteException e) {
@@ -158,13 +158,13 @@ public class PackageHelper {
        try {
            int rc = getMountService().renameSecureContainer(oldId, newId);
            if (rc != StorageResultCode.OperationSucceeded) {
-               Log.e(TAG, "Failed to rename " + oldId + " to " +
+               Log.e(TAG, "Failed to rename " + oldId + " to "
                        newId + "with rc " + rc);
                return false;
            }
            return true;
        } catch (RemoteException e) {
-           Log.i(TAG, "Failed ot rename  " + oldId + " to " + newId +
+           Log.i(TAG, "Failed ot rename  " + oldId + " to " + newId
                    " with exception : " + e);
        }
        return false;
@@ -174,7 +174,7 @@ public class PackageHelper {
        try {
             return getMountService().getSecureContainerPath(cid);
         } catch (RemoteException e) {
-            Log.e(TAG, "Failed to get container path for " + cid +
+            Log.e(TAG, "Failed to get container path for " + cid
                 " with exception " + e);
         }
         return null;
@@ -184,7 +184,7 @@ public class PackageHelper {
        try {
             return getMountService().getSecureContainerFilesystemPath(cid);
         } catch (RemoteException e) {
-            Log.e(TAG, "Failed to get container path for " + cid +
+            Log.e(TAG, "Failed to get container path for " + cid
                 " with exception " + e);
         }
         return null;
@@ -199,7 +199,7 @@ public class PackageHelper {
             }
             return true;
         } catch (RemoteException e) {
-            Log.e(TAG, "Failed to finalize container " + cid +
+            Log.e(TAG, "Failed to finalize container " + cid
                     " with exception " + e);
         }
         return false;
@@ -215,7 +215,7 @@ public class PackageHelper {
             }
             return true;
         } catch (RemoteException e) {
-            Log.e(TAG, "Failed to destroy container " + cid +
+            Log.e(TAG, "Failed to destroy container " + cid
                     " with exception " + e);
         }
         return false;
@@ -225,7 +225,7 @@ public class PackageHelper {
         try {
             return getMountService().getSecureContainerList();
         } catch (RemoteException e) {
-            Log.e(TAG, "Failed to get secure container list with exception" +
+            Log.e(TAG, "Failed to get secure container list with exception"
                     e);
         }
         return null;

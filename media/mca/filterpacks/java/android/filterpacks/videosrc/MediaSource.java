@@ -111,12 +111,12 @@ public class MediaSource extends Filter {
     // shader because reading from a SurfaceTexture requires the
     // GL_OES_EGL_image_external extension.
     private final String mFrameShader =
-            "#extension GL_OES_EGL_image_external : require\n" +
-            "precision mediump float;\n" +
-            "uniform samplerExternalOES tex_sampler_0;\n" +
-            "varying vec2 v_texcoord;\n" +
-            "void main() {\n" +
-            "  gl_FragColor = texture2D(tex_sampler_0, v_texcoord);\n" +
+            "#extension GL_OES_EGL_image_external : require\n"
+            "precision mediump float;\n"
+            "uniform samplerExternalOES tex_sampler_0;\n"
+            "varying vec2 v_texcoord;\n"
+            "void main() {\n"
+            "  gl_FragColor = texture2D(tex_sampler_0, v_texcoord);\n"
             "}\n";
 
     // The following transforms enable rotation of the decoded source.

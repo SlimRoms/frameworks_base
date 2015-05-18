@@ -225,7 +225,7 @@ public class AppWindowAnimator {
                 hasMoreFrames = true;
             } else {
                 if (false && WindowManagerService.DEBUG_ANIM) Slog.v(
-                        TAG, "Stepped animation in " + mAppToken + ": more=" + hasMoreFrames +
+                        TAG, "Stepped animation in " + mAppToken + ": more=" + hasMoreFrames
                                 ", xform=" + transformation);
                 deferFinalFrameCleanup = false;
                 animation = null;
@@ -255,7 +255,7 @@ public class AppWindowAnimator {
                     && animation != null) {
                 if (!animating) {
                     if (WindowManagerService.DEBUG_ANIM) Slog.v(
-                        TAG, "Starting animation in " + mAppToken +
+                        TAG, "Starting animation in " + mAppToken
                         " @ " + currentTime + " scale="
                         + mService.getTransitionAnimationScaleLocked()
                         + " allDrawn=" + mAppToken.allDrawn + " animating=" + animating);

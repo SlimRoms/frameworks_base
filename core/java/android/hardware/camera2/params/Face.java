@@ -246,7 +246,7 @@ public final class Face {
      */
     @Override
     public String toString() {
-        return String.format("{ bounds: %s, score: %s, id: %d, " +
+        return String.format("{ bounds: %s, score: %s, id: %d, "
                 "leftEyePosition: %s, rightEyePosition: %s, mouthPosition: %s }",
                 mBounds, mScore, mId, mLeftEye, mRightEye, mMouth);
     }

@@ -96,7 +96,7 @@ public class CaptureCollector {
                         // Send buffer dropped errors for each pending buffer if the request has
                         // started.
                         if (mFailedPreview) {
-                            Log.w(TAG, "Preview buffers dropped for request: " +
+                            Log.w(TAG, "Preview buffers dropped for request: "
                                     mRequest.getRequestId());
                             for (int i = 0; i < mRequest.numPreviewTargets(); i++) {
                                 CaptureCollector.this.mDeviceState.setCaptureResult(mRequest,
@@ -105,7 +105,7 @@ public class CaptureCollector {
                             }
                         }
                         if (mFailedJpeg) {
-                            Log.w(TAG, "Jpeg buffers dropped for request: " +
+                            Log.w(TAG, "Jpeg buffers dropped for request: "
                                     mRequest.getRequestId());
                             for (int i = 0; i < mRequest.numJpegTargets(); i++) {
                                 CaptureCollector.this.mDeviceState.setCaptureResult(mRequest,
@@ -317,7 +317,7 @@ public class CaptureCollector {
         lock.lock();
         try {
             if (DEBUG) {
-                Log.d(TAG, "queueRequest  for request " + holder.getRequestId() +
+                Log.d(TAG, "queueRequest  for request " + holder.getRequestId()
                         " - " + mInFlight + " requests remain in flight.");
             }
 
@@ -648,7 +648,7 @@ public class CaptureCollector {
 
         mInFlight--;
         if (DEBUG) {
-            Log.d(TAG, "Completed request " + request.getRequestId() +
+            Log.d(TAG, "Completed request " + request.getRequestId()
                     ", " + mInFlight + " requests remain in flight.");
         }
         if (mInFlight < 0) {

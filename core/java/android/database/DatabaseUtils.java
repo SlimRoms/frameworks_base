@@ -1107,7 +1107,7 @@ public class DatabaseUtils {
                     int i = getColumnIndex(key);
                     DatabaseUtils.bindObjectToProgram(stmt, i, e.getValue());
                     if (DEBUG) {
-                        Log.v(TAG, "binding " + e.getValue() + " to column " +
+                        Log.v(TAG, "binding " + e.getValue() + " to column "
                               i + " (" + key + ")");
                     }
                 }

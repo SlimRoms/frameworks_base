@@ -33,13 +33,13 @@ import java.nio.ByteBuffer;
 public class ToGrayValuesFilter extends Filter {
 
     private final static String mGrayPackFragment =
-        "precision mediump float;\n" +
-        "const vec4 coeff_y = vec4(0.299, 0.587, 0.114, 0);\n" +
-        "uniform sampler2D tex_sampler_0;\n" +
-        "uniform float pix_stride;\n" +
-        "varying vec2 v_texcoord;\n" +
-        "void main() {\n" +
-        "  for (int i = 0; i < 4; i++) {\n" +
+        "precision mediump float;\n"
+        "const vec4 coeff_y = vec4(0.299, 0.587, 0.114, 0);\n"
+        "uniform sampler2D tex_sampler_0;\n"
+        "uniform float pix_stride;\n"
+        "varying vec2 v_texcoord;\n"
+        "void main() {\n"
+        "  for (int i = 0; i < 4; i++) {\n"
         // Here is an example showing how this works:
         // Assuming the input texture is 1x4 while the output texture is 1x1
         // the coordinates of the 4 input pixels will be:
@@ -47,10 +47,10 @@ public class ToGrayValuesFilter extends Filter {
         // and the coordinates of the 1 output pixels will be:
         // { (0.5, 0.5) }
         // the equation below locates the 4 input pixels from the coordinate of the output pixel
-        "    vec4 p = texture2D(tex_sampler_0,\n" +
-        "                       v_texcoord + vec2(pix_stride * (float(i) - 1.5), 0.0));\n" +
-        "    gl_FragColor[i] = dot(p, coeff_y);\n" +
-        "  }\n" +
+        "    vec4 p = texture2D(tex_sampler_0,\n"
+        "                       v_texcoord + vec2(pix_stride * (float(i) - 1.5), 0.0));\n"
+        "    gl_FragColor[i] = dot(p, coeff_y);\n"
+        "  }\n"
         "}\n";
 
     private ImageShader mShader;

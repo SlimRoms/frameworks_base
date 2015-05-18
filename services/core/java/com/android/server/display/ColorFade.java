@@ -393,7 +393,7 @@ final class ColorFade {
 
     private void drawFaded(float opacity, float gamma, float saturation, float scale) {
         if (DEBUG) {
-            Slog.d(TAG, "drawFaded: opacity=" + opacity + ", gamma=" + gamma +
+            Slog.d(TAG, "drawFaded: opacity=" + opacity + ", gamma=" + gamma
                         ", saturation=" + saturation + ", scale=" + scale);
         }
         // Use shaders

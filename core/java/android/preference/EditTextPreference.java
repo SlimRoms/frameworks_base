@@ -47,17 +47,17 @@ public class EditTextPreference extends DialogPreference {
      * The edit text shown in the dialog.
      */
     private EditText mEditText;
-    
+
     private String mText;
 
     public EditTextPreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        
+
         mEditText = new EditText(context, attrs);
-        
+
         // Give it an ID so it can be saved/restored
         mEditText.setId(com.android.internal.R.id.edit);
-        
+
         /*
          * The preference framework and view framework both have an 'enabled'
          * attribute. Most likely, the 'enabled' specified in this XML is for
@@ -78,28 +78,28 @@ public class EditTextPreference extends DialogPreference {
     public EditTextPreference(Context context) {
         this(context, null);
     }
-    
+
     /**
      * Saves the text to the {@link SharedPreferences}.
-     * 
+     *
      * @param text The text to save
      */
     public void setText(String text) {
         final boolean wasBlocking = shouldDisableDependents();
-        
+
         mText = text;
-        
+
         persistString(text);
-        
-        final boolean isBlocking = shouldDisableDependents(); 
+
+        final boolean isBlocking = shouldDisableDependents();
         if (isBlocking != wasBlocking) {
             notifyDependencyChange(isBlocking);
         }
     }
-    
+
     /**
      * Gets the text from the {@link SharedPreferences}.
-     * 
+     *
      * @return The current preference value.
      */
     public String getText() {
@@ -112,7 +112,7 @@ public class EditTextPreference extends DialogPreference {
 
         EditText editText = mEditText;
         editText.setText(getText());
-        
+
         ViewParent oldParent = editText.getParent();
         if (oldParent != view) {
             if (oldParent != null) {
@@ -124,7 +124,7 @@ public class EditTextPreference extends DialogPreference {
 
     /**
      * Adds the EditText widget of this preference to the dialog's view.
-     * 
+     *
      * @param dialogView The dialog view.
      */
     protected void onAddEditTextToDialogView(View dialogView, EditText editText) {
@@ -135,11 +135,11 @@ public class EditTextPreference extends DialogPreference {
                     ViewGroup.LayoutParams.WRAP_CONTENT);
         }
     }
-    
+
     @Override
     protected void onDialogClosed(boolean positiveResult) {
         super.onDialogClosed(positiveResult);
-        
+
         if (positiveResult) {
             String value = mEditText.getText().toString();
             if (callChangeListener(value)) {
@@ -165,7 +165,7 @@ public class EditTextPreference extends DialogPreference {
 
     /**
      * Returns the {@link EditText} widget that will be shown in the dialog.
-     * 
+     *
      * @return The {@link EditText} widget that will be shown in the dialog.
      */
     public EditText getEditText() {
@@ -186,7 +186,7 @@ public class EditTextPreference extends DialogPreference {
             // No need to save instance state since it's persistent
             return superState;
         }
-        
+
         final SavedState myState = new SavedState(superState);
         myState.text = getText();
         return myState;
@@ -199,15 +199,15 @@ public class EditTextPreference extends DialogPreference {
             super.onRestoreInstanceState(state);
             return;
         }
-         
+
         SavedState myState = (SavedState) state;
         super.onRestoreInstanceState(myState.getSuperState());
         setText(myState.text);
     }
-    
+
     private static class SavedState extends BaseSavedState {
         String text;
-        
+
         public SavedState(Parcel source) {
             super(source);
             text = source.readString();
@@ -234,5 +234,5 @@ public class EditTextPreference extends DialogPreference {
             }
         };
     }
-    
+
 }

@@ -91,7 +91,7 @@ public class Build {
     /** The name of the hardware (from the kernel command line or /proc). */
     public static final String HARDWARE = getString("ro.hardware");
 
-    /** A hardware serial number, if available.  Alphanumeric only, case-insensitive. */ 
+    /** A hardware serial number, if available.  Alphanumeric only, case-insensitive. */
     public static final String SERIAL = getString("ro.serialno");
 
     /**
@@ -159,7 +159,7 @@ public class Build {
         /**
          * The user-visible SDK version of the framework in its raw String
          * representation; use {@link #SDK_INT} instead.
-         * 
+         *
          * @deprecated Use {@link #SDK_INT} to easily get this as an integer.
          */
         @Deprecated
@@ -207,25 +207,25 @@ public class Build {
          * not yet turned into an official release.
          */
         public static final int CUR_DEVELOPMENT = 10000;
-        
+
         /**
          * October 2008: The original, first, version of Android.  Yay!
          */
         public static final int BASE = 1;
-        
+
         /**
          * February 2009: First Android update, officially called 1.1.
          */
         public static final int BASE_1_1 = 2;
-        
+
         /**
          * May 2009: Android 1.5.
          */
         public static final int CUPCAKE = 3;
-        
+
         /**
          * September 2009: Android 1.6.
-         * 
+         *
          * <p>Applications targeting this or a later release will get these
          * new changes in behavior:</p>
          * <ul>
@@ -247,10 +247,10 @@ public class Build {
          * </ul>
          */
         public static final int DONUT = 4;
-        
+
         /**
          * November 2009: Android 2.0
-         * 
+         *
          * <p>Applications targeting this or a later release will get these
          * new changes in behavior:</p>
          * <ul>
@@ -267,22 +267,22 @@ public class Build {
          * </ul>
          */
         public static final int ECLAIR = 5;
-        
+
         /**
          * December 2009: Android 2.0.1
          */
         public static final int ECLAIR_0_1 = 6;
-        
+
         /**
          * January 2010: Android 2.1
          */
         public static final int ECLAIR_MR1 = 7;
-        
+
         /**
          * June 2010: Android 2.2
          */
         public static final int FROYO = 8;
-        
+
         /**
          * November 2010: Android 2.3
          *
@@ -294,7 +294,7 @@ public class Build {
          * </ul>
          */
         public static final int GINGERBREAD = 9;
-        
+
         /**
          * February 2011: Android 2.3.3.
          */
@@ -339,12 +339,12 @@ public class Build {
          * </ul>
          */
         public static final int HONEYCOMB = 11;
-        
+
         /**
          * May 2011: Android 3.1.
          */
         public static final int HONEYCOMB_MR1 = 12;
-        
+
         /**
          * June 2011: Android 3.2.
          *
@@ -597,7 +597,7 @@ public class Build {
          */
         public static final int LOLLIPOP_MR1 = 22;
     }
-    
+
     /** The type of build, like "user" or "eng". */
     public static final String TYPE = getString("ro.build.type");
 
@@ -614,13 +614,13 @@ public class Build {
     private static String deriveFingerprint() {
         String finger = SystemProperties.get("ro.build.fingerprint");
         if (TextUtils.isEmpty(finger)) {
-            finger = getString("ro.product.brand") + '/' +
-                    getString("ro.product.name") + '/' +
-                    getString("ro.product.device") + ':' +
-                    getString("ro.build.version.release") + '/' +
-                    getString("ro.build.id") + '/' +
-                    getString("ro.build.version.incremental") + ':' +
-                    getString("ro.build.type") + '/' +
+            finger = getString("ro.product.brand") + '/'
+                    getString("ro.product.name") + '/'
+                    getString("ro.product.device") + ':'
+                    getString("ro.build.version.release") + '/'
+                    getString("ro.build.id") + '/'
+                    getString("ro.build.version.incremental") + ':'
+                    getString("ro.build.type") + '/'
                     getString("ro.build.tags");
         }
         return finger;

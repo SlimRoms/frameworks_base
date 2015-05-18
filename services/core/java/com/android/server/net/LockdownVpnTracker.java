@@ -134,7 +134,7 @@ public class LockdownVpnTracker {
                 null : ConnectivityManager.getNetworkTypeName(egressInfo.getType());
         final String egressIface = (egressProp == null) ?
                 null : egressProp.getInterfaceName();
-        Slog.d(TAG, "handleStateChanged: egress=" + egressTypeName +
+        Slog.d(TAG, "handleStateChanged: egress=" + egressTypeName
                 " " + mAcceptedEgressIface + "->" + egressIface);
 
         if (egressDisconnected || egressChanged) {
@@ -185,7 +185,7 @@ public class LockdownVpnTracker {
                 return;
             }
 
-            Slog.d(TAG, "VPN connected using iface=" + iface +
+            Slog.d(TAG, "VPN connected using iface=" + iface
                     ", sourceAddr=" + sourceAddrs.toString());
             EventLogTags.writeLockdownVpnConnected(egressType);
             showNotification(R.string.vpn_lockdown_connected, R.drawable.vpn_connected);

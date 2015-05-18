@@ -22,8 +22,8 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 
 /**
- * A ContextWrapper that allows you to modify the theme from what is in the 
- * wrapped context. 
+ * A ContextWrapper that allows you to modify the theme from what is in the
+ * wrapped context.
  */
 public class ContextThemeWrapper extends ContextWrapper {
     private int mThemeResource;
@@ -35,7 +35,7 @@ public class ContextThemeWrapper extends ContextWrapper {
     public ContextThemeWrapper() {
         super(null);
     }
-    
+
     public ContextThemeWrapper(Context base, int themeres) {
         super(base);
         mThemeResource = themeres;
@@ -79,12 +79,12 @@ public class ContextThemeWrapper extends ContextWrapper {
             return mResources;
         }
     }
-    
+
     @Override public void setTheme(int resid) {
         mThemeResource = resid;
         initializeTheme();
     }
-    
+
     /** @hide */
     @Override
     public int getThemeResId() {
@@ -112,7 +112,7 @@ public class ContextThemeWrapper extends ContextWrapper {
         }
         return getBaseContext().getSystemService(name);
     }
-    
+
     /**
      * Called by {@link #setTheme} and {@link #getTheme} to apply a theme
      * resource to the current Theme object.  Can override to change the

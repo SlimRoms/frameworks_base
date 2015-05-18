@@ -401,7 +401,7 @@ public final class LinkProperties implements Parcelable {
             String routeIface = route.getInterface();
             if (routeIface != null && !routeIface.equals(mIfaceName)) {
                 throw new IllegalArgumentException(
-                   "Route added with non-matching interface: " + routeIface +
+                   "Route added with non-matching interface: " + routeIface
                    " vs. " + mIfaceName);
             }
             route = routeWithInterface(route);

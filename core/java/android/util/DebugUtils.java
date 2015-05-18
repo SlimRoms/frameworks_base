@@ -78,8 +78,8 @@ public class DebugUtils {
                         Method declaredMethod = null;
                         Class<?> parent = klass;
                         do {
-                            declaredMethod = parent.getDeclaredMethod("get" +
-                                    pair[0].substring(0, 1).toUpperCase(Locale.ROOT) +
+                            declaredMethod = parent.getDeclaredMethod("get"
+                                    pair[0].substring(0, 1).toUpperCase(Locale.ROOT)
                                     pair[0].substring(1),
                                     (Class[]) null);
                         } while ((parent = klass.getSuperclass()) != null &&

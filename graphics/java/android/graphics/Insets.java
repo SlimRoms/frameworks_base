@@ -104,11 +104,11 @@ public class Insets {
 
     @Override
     public String toString() {
-        return "Insets{" +
-                "left=" + left +
-                ", top=" + top +
-                ", right=" + right +
-                ", bottom=" + bottom +
+        return "Insets{"
+                "left=" + left
+                ", top=" + top
+                ", right=" + right
+                ", bottom=" + bottom
                 '}';
     }
 }

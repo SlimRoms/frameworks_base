@@ -43,14 +43,14 @@ public class BitmapOverlayFilter extends Filter {
     private int mTarget = FrameFormat.TARGET_UNSPECIFIED;
 
     private final String mOverlayShader =
-            "precision mediump float;\n" +
-            "uniform sampler2D tex_sampler_0;\n" +
-            "uniform sampler2D tex_sampler_1;\n" +
-            "varying vec2 v_texcoord;\n" +
-            "void main() {\n" +
-            "  vec4 original = texture2D(tex_sampler_0, v_texcoord);\n" +
-            "  vec4 mask = texture2D(tex_sampler_1, v_texcoord);\n" +
-            "  gl_FragColor = vec4(original.rgb * (1.0 - mask.a) + mask.rgb, 1.0);\n" +
+            "precision mediump float;\n"
+            "uniform sampler2D tex_sampler_0;\n"
+            "uniform sampler2D tex_sampler_1;\n"
+            "varying vec2 v_texcoord;\n"
+            "void main() {\n"
+            "  vec4 original = texture2D(tex_sampler_0, v_texcoord);\n"
+            "  vec4 mask = texture2D(tex_sampler_1, v_texcoord);\n"
+            "  gl_FragColor = vec4(original.rgb * (1.0 - mask.a) + mask.rgb, 1.0);\n"
             "}\n";
 
     public BitmapOverlayFilter(String name) {
@@ -77,7 +77,7 @@ public class BitmapOverlayFilter extends Filter {
                 break;
 
             default:
-                throw new RuntimeException("Filter FisheyeFilter does not support frames of " +
+                throw new RuntimeException("Filter FisheyeFilter does not support frames of "
                     "target " + target + "!");
         }
         mTarget = target;

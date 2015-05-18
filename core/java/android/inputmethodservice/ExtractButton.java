@@ -39,7 +39,7 @@ class ExtractButton extends Button {
     public ExtractButton(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
-    
+
     /**
      * Pretend like the window this view is in always has focus, so it will
      * highlight when selected.

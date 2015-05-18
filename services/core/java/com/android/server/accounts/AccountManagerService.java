@@ -2609,7 +2609,7 @@ public class AccountManagerService
                     if (PackageManager.SIGNATURE_MATCH !=
                             pm.checkSignatures(authenticatorUid, targetUid)) {
                         throw new SecurityException(
-                                "Activity to be started with KEY_INTENT must " +
+                                "Activity to be started with KEY_INTENT must "
                                "share Authenticator's signatures");
                     }
                 } finally {
@@ -2877,7 +2877,7 @@ public class AccountManagerService
             }
 
             if (oldVersion == 3) {
-                db.execSQL("UPDATE " + TABLE_ACCOUNTS + " SET " + ACCOUNTS_TYPE +
+                db.execSQL("UPDATE " + TABLE_ACCOUNTS + " SET " + ACCOUNTS_TYPE
                         " = 'com.google' WHERE " + ACCOUNTS_TYPE + " == 'com.google.GAIA'");
                 oldVersion++;
             }

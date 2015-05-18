@@ -427,7 +427,7 @@ public class ArrayMapTests {
         }
         ArrayMap mapCopy = new ArrayMap(newMap);
         if (!compare(mapCopy, newMap)) {
-            Log.e("test", "ArrayMap copy constructor failure: expected " +
+            Log.e("test", "ArrayMap copy constructor failure: expected "
                     newMap + ", got " + mapCopy);
             dump(newMap, mapCopy);
             return;
@@ -440,7 +440,7 @@ public class ArrayMapTests {
         }
         ArraySet setCopy = new ArraySet(newSet);
         if (!compare(setCopy, newSet)) {
-            Log.e("test", "ArraySet copy constructor failure: expected " +
+            Log.e("test", "ArraySet copy constructor failure: expected "
                     newSet + ", got " + setCopy);
             dump(newSet, setCopy);
             return;
@@ -458,7 +458,7 @@ public class ArrayMapTests {
         ArrayMap<Integer, String> map2 = new ArrayMap<Integer, String>();
         HashMap<Integer, String> map3 = new HashMap<Integer, String>();
         if (!compare(map1, map2) || !compare(map1, map3) || !compare(map3, map2)) {
-            Log.e("test", "ArrayMap equals failure for empty maps " + map1 + ", " +
+            Log.e("test", "ArrayMap equals failure for empty maps " + map1 + ", "
                     map2 + ", " + map3);
             return false;
         }
@@ -470,21 +470,21 @@ public class ArrayMapTests {
             map3.put(i, value);
         }
         if (!compare(map1, map2) || !compare(map1, map3) || !compare(map3, map2)) {
-            Log.e("test", "ArrayMap equals failure for populated maps " + map1 + ", " +
+            Log.e("test", "ArrayMap equals failure for populated maps " + map1 + ", "
                     map2 + ", " + map3);
             return false;
         }
 
         map1.remove(0);
         if (compare(map1, map2) || compare(map1, map3) || compare(map3, map1)) {
-            Log.e("test", "ArrayMap equals failure for map size " + map1 + ", " +
+            Log.e("test", "ArrayMap equals failure for map size " + map1 + ", "
                     map2 + ", " + map3);
             return false;
         }
 
         map1.put(0, "-1");
         if (compare(map1, map2) || compare(map1, map3) || compare(map3, map1)) {
-            Log.e("test", "ArrayMap equals failure for map contents " + map1 + ", " +
+            Log.e("test", "ArrayMap equals failure for map contents " + map1 + ", "
                     map2 + ", " + map3);
             return false;
         }
@@ -497,7 +497,7 @@ public class ArrayMapTests {
         ArraySet<Integer> set2 = new ArraySet<Integer>();
         HashSet<Integer> set3 = new HashSet<Integer>();
         if (!compare(set1, set2) || !compare(set1, set3) || !compare(set3, set2)) {
-            Log.e("test", "ArraySet equals failure for empty sets " + set1 + ", " +
+            Log.e("test", "ArraySet equals failure for empty sets " + set1 + ", "
                     set2 + ", " + set3);
             return false;
         }
@@ -508,21 +508,21 @@ public class ArrayMapTests {
             set3.add(i);
         }
         if (!compare(set1, set2) || !compare(set1, set3) || !compare(set3, set2)) {
-            Log.e("test", "ArraySet equals failure for populated sets " + set1 + ", " +
+            Log.e("test", "ArraySet equals failure for populated sets " + set1 + ", "
                     set2 + ", " + set3);
             return false;
         }
 
         set1.remove(0);
         if (compare(set1, set2) || compare(set1, set3) || compare(set3, set1)) {
-            Log.e("test", "ArraSet equals failure for set size " + set1 + ", " +
+            Log.e("test", "ArraSet equals failure for set size " + set1 + ", "
                     set2 + ", " + set3);
             return false;
         }
 
         set1.add(-1);
         if (compare(set1, set2) || compare(set1, set3) || compare(set3, set1)) {
-            Log.e("test", "ArraySet equals failure for set contents " + set1 + ", " +
+            Log.e("test", "ArraySet equals failure for set contents " + set1 + ", "
                     set2 + ", " + set3);
             return false;
         }

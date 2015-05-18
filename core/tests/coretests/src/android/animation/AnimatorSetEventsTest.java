@@ -42,7 +42,7 @@ public class AnimatorSetEventsTest extends EventsTest {
 
     @Override
     protected long getTimeout() {
-        return (2 * mAnimator.getDuration()) + (2 * mAnimator.getStartDelay()) +
+        return (2 * mAnimator.getDuration()) + (2 * mAnimator.getStartDelay())
                 ANIM_DELAY + FUTURE_RELEASE_DELAY;
     }
 

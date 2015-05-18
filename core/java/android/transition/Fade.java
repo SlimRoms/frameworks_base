@@ -129,7 +129,7 @@ public class Fade extends Visibility {
             TransitionValues endValues) {
         if (DBG) {
             View startView = (startValues != null) ? startValues.view : null;
-            Log.d(LOG_TAG, "Fade.onAppear: startView, startVis, endView, endVis = " +
+            Log.d(LOG_TAG, "Fade.onAppear: startView, startVis, endView, endVis = "
                     startView + ", " + view);
         }
         return createAnimation(view, 0, 1);

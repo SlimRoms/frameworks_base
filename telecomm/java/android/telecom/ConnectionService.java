@@ -694,7 +694,7 @@ public abstract class ConnectionService extends Service {
             final ConnectionRequest request,
             boolean isIncoming,
             boolean isUnknown) {
-        Log.d(this, "createConnection, callManagerAccount: %s, callId: %s, request: %s, " +
+        Log.d(this, "createConnection, callManagerAccount: %s, callId: %s, request: %s, "
                 "isIncoming: %b, isUnknown: %b", callManagerAccount, callId, request, isIncoming,
                 isUnknown);
 
@@ -877,7 +877,7 @@ public abstract class ConnectionService extends Service {
                     conference1.onMerge(connection2);
                 } else {
                     // Call 2 is ALSO a conference; this should never happen.
-                    Log.wtf(this, "There can only be one conference and an attempt was made to " +
+                    Log.wtf(this, "There can only be one conference and an attempt was made to "
                             "merge two conferences.");
                     return;
                 }

@@ -40,22 +40,22 @@ public class FillLightFilter extends Filter {
     private int mTarget = FrameFormat.TARGET_UNSPECIFIED;
 
     private final String mFillLightShader =
-            "precision mediump float;\n" +
-            "uniform sampler2D tex_sampler_0;\n" +
-            "uniform float mult;\n" +
-            "uniform float igamma;\n" +
-            "varying vec2 v_texcoord;\n" +
-            "void main()\n" +
-            "{\n" +
-            "  const vec3 color_weights = vec3(0.25, 0.5, 0.25);\n" +
-            "  vec4 color = texture2D(tex_sampler_0, v_texcoord);\n" +
-            "  float lightmask = dot(color.rgb, color_weights);\n" +
-            "  float backmask = (1.0 - lightmask);\n" +
-            "  vec3 ones = vec3(1.0, 1.0, 1.0);\n" +
-            "  vec3 diff = pow(mult * color.rgb, igamma * ones) - color.rgb;\n" +
-            "  diff = min(diff, 1.0);\n" +
-            "  vec3 new_color = min(color.rgb + diff * backmask, 1.0);\n" +
-            "  gl_FragColor = vec4(new_color, color.a);\n" +
+            "precision mediump float;\n"
+            "uniform sampler2D tex_sampler_0;\n"
+            "uniform float mult;\n"
+            "uniform float igamma;\n"
+            "varying vec2 v_texcoord;\n"
+            "void main()\n"
+            "{\n"
+            "  const vec3 color_weights = vec3(0.25, 0.5, 0.25);\n"
+            "  vec4 color = texture2D(tex_sampler_0, v_texcoord);\n"
+            "  float lightmask = dot(color.rgb, color_weights);\n"
+            "  float backmask = (1.0 - lightmask);\n"
+            "  vec3 ones = vec3(1.0, 1.0, 1.0);\n"
+            "  vec3 diff = pow(mult * color.rgb, igamma * ones) - color.rgb;\n"
+            "  diff = min(diff, 1.0);\n"
+            "  vec3 new_color = min(color.rgb + diff * backmask, 1.0);\n"
+            "  gl_FragColor = vec4(new_color, color.a);\n"
             "}\n";
 
     public FillLightFilter(String name) {
@@ -83,7 +83,7 @@ public class FillLightFilter extends Filter {
                 break;
 
             default:
-                throw new RuntimeException("Filter FillLight does not support frames of " +
+                throw new RuntimeException("Filter FillLight does not support frames of "
                     "target " + target + "!");
         }
         mTarget = target;

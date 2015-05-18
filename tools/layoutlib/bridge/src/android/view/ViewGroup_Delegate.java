@@ -126,7 +126,7 @@ public class ViewGroup_Delegate {
         if (context instanceof BridgeContext) {
             return ((BridgeContext) context).getMetrics();
         }
-        throw new RuntimeException("View " + view.getClass().getName() + " not created with the " +
+        throw new RuntimeException("View " + view.getClass().getName() + " not created with the "
                 "right context");
     }
 

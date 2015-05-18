@@ -308,7 +308,7 @@ abstract class DhcpPacket {
         buf.put(mNextIp.getAddress());
         buf.put(mRelayIp.getAddress());
         buf.put(mClientMac);
-        buf.position(buf.position() +
+        buf.position(buf.position()
                      (16 - mClientMac.length) // pad addr to 16 bytes
                      + 64     // empty server host name (64 bytes)
                      + 128);  // empty boot file name (128 bytes)

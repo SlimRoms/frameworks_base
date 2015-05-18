@@ -49,8 +49,8 @@ class DhcpOfferPacket extends DhcpPacket {
             }
         }
 
-        return s + " OFFER, ip " + mYourIp + ", mask " + mSubnetMask +
-                dnsServers + ", gateway " + mGateway +
+        return s + " OFFER, ip " + mYourIp + ", mask " + mSubnetMask
+                dnsServers + ", gateway " + mGateway
                 " lease time " + mLeaseTime + ", domain " + mDomainName;
     }
 

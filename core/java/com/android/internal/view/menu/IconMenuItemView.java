@@ -31,30 +31,30 @@ import android.widget.TextView;
 import android.text.Layout;
 
 /**
- * The item view for each item in the {@link IconMenuView}.  
+ * The item view for each item in the {@link IconMenuView}.
  */
 public final class IconMenuItemView extends TextView implements MenuView.ItemView {
-    
+
     private static final int NO_ALPHA = 0xFF;
-    
+
     private IconMenuView mIconMenuView;
-    
+
     private ItemInvoker mItemInvoker;
-    private MenuItemImpl mItemData; 
-    
+    private MenuItemImpl mItemData;
+
     private Drawable mIcon;
-    
+
     private int mTextAppearance;
     private Context mTextAppearanceContext;
-    
+
     private float mDisabledAlpha;
 
     private Rect mPositionIconAvailable = new Rect();
     private Rect mPositionIconOutput = new Rect();
-    
+
     private boolean mShortcutCaptionMode;
     private String mShortcutCaption;
-    
+
     private static String sPrependShortcutLabel;
 
     public IconMenuItemView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
@@ -77,7 +77,7 @@ public final class IconMenuItemView extends TextView implements MenuView.ItemVie
         mTextAppearance = a.getResourceId(com.android.internal.R.styleable.
                                           MenuView_itemTextAppearance, -1);
         mTextAppearanceContext = context;
-        
+
         a.recycle();
     }
 
@@ -105,12 +105,12 @@ public final class IconMenuItemView extends TextView implements MenuView.ItemVie
         setTitle(title);
         setIcon(icon);
     }
-    
+
     public void initialize(MenuItemImpl itemData, int menuType) {
         mItemData = itemData;
 
         initialize(itemData.getTitleForItemView(this), itemData.getIcon());
-        
+
         setVisibility(itemData.isVisible() ? View.VISIBLE : View.GONE);
         setEnabled(itemData.isEnabled());
     }
@@ -125,7 +125,7 @@ public final class IconMenuItemView extends TextView implements MenuView.ItemVie
         if (super.performClick()) {
             return true;
         }
-        
+
         if ((mItemInvoker != null) && (mItemInvoker.invokeItem(mItemData))) {
             playSoundEffect(SoundEffectConstants.CLICK);
             return true;
@@ -133,9 +133,9 @@ public final class IconMenuItemView extends TextView implements MenuView.ItemVie
             return false;
         }
     }
-    
+
     public void setTitle(CharSequence title) {
-        
+
         if (mShortcutCaptionMode) {
             /*
              * Don't set the title directly since it will replace the
@@ -143,12 +143,12 @@ public final class IconMenuItemView extends TextView implements MenuView.ItemVie
              * mode so the new title is shown.
              */
             setCaptionMode(true);
-            
+
         } else if (title != null) {
             setText(title);
         }
     }
-    
+
     void setCaptionMode(boolean shortcut) {
         /*
          * If there is no item model, don't do any of the below (for example,
@@ -157,34 +157,34 @@ public final class IconMenuItemView extends TextView implements MenuView.ItemVie
         if (mItemData == null) {
             return;
         }
-        
+
         mShortcutCaptionMode = shortcut && (mItemData.shouldShowShortcut());
-        
+
         CharSequence text = mItemData.getTitleForItemView(this);
-        
+
         if (mShortcutCaptionMode) {
-            
+
             if (mShortcutCaption == null) {
                 mShortcutCaption = mItemData.getShortcutLabel();
             }
 
             text = mShortcutCaption;
         }
-        
+
         setText(text);
     }
-    
+
     public void setIcon(Drawable icon) {
         mIcon = icon;
-        
+
         if (icon != null) {
-            
+
             /* Set the bounds of the icon since setCompoundDrawables needs it. */
             icon.setBounds(0, 0, icon.getIntrinsicWidth(), icon.getIntrinsicHeight());
-            
+
             // Set the compound drawables
             setCompoundDrawables(null, icon, null, null);
-            
+
             // When there is an icon, make sure the text is at the bottom
             setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL);
 
@@ -192,11 +192,11 @@ public final class IconMenuItemView extends TextView implements MenuView.ItemVie
              * Request a layout to reposition the icon. The positioning of icon
              * depends on this TextView's line bounds, which is only available
              * after a layout.
-             */  
+             */
             requestLayout();
         } else {
             setCompoundDrawables(null, null, null, null);
-            
+
             // When there is no icon, make sure the text is centered vertically
             setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         }
@@ -205,7 +205,7 @@ public final class IconMenuItemView extends TextView implements MenuView.ItemVie
     public void setItemInvoker(ItemInvoker itemInvoker) {
         mItemInvoker = itemInvoker;
     }
-    
+
     @ViewDebug.CapturedViewProperty(retrieveReturn = true)
     public MenuItemImpl getItemData() {
         return mItemData;
@@ -214,13 +214,13 @@ public final class IconMenuItemView extends TextView implements MenuView.ItemVie
     @Override
     public void setVisibility(int v) {
         super.setVisibility(v);
-        
+
         if (mIconMenuView != null) {
             // On visibility change, mark the IconMenuView to refresh itself eventually
             mIconMenuView.markStaleChildren();
         }
     }
-    
+
     void setIconMenuView(IconMenuView iconMenuView) {
         mIconMenuView = iconMenuView;
     }
@@ -240,7 +240,7 @@ public final class IconMenuItemView extends TextView implements MenuView.ItemVie
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-        
+
         positionIcon();
     }
 
@@ -275,11 +275,11 @@ public final class IconMenuItemView extends TextView implements MenuView.ItemVie
      * the TextView's gravity).
      */
     private void positionIcon() {
-        
+
         if (mIcon == null) {
             return;
         }
-        
+
         // We reuse the output rectangle as a temp rect
         Rect tmpRect = mPositionIconOutput;
         getLineBounds(0, tmpRect);
@@ -298,7 +298,7 @@ public final class IconMenuItemView extends TextView implements MenuView.ItemVie
     }
 
     public void setShortcut(boolean showShortcut, char shortcutKey) {
-        
+
         if (mShortcutCaptionMode) {
             /*
              * Shortcut has changed and we're showing it right now, need to

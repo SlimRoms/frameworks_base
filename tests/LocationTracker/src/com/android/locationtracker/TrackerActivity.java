@@ -184,11 +184,11 @@ public class TrackerActivity extends ListActivity {
                 exportWriter.write(line);
             }
             exportWriter.write(trackerData.getOutputFooter());
-            Toast.makeText(this, "Successfully exported data to " +
+            Toast.makeText(this, "Successfully exported data to "
                     exportFileName, Toast.LENGTH_SHORT).show();
 
         } catch (IOException e) {
-            Toast.makeText(this, "Error exporting file: " +
+            Toast.makeText(this, "Error exporting file: "
                     e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
 
             Log.e(LOG_TAG, "Error exporting file", e);

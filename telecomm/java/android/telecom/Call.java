@@ -174,7 +174,7 @@ public final class Call {
          */
         public static final int CAPABILITY_DISCONNECT_FROM_CONFERENCE = 0x00002000;
 
-        /** 
+        /**
          * @hide
          */
         public static final int CAPABILITY_CALL_TYPE_MODIFIABLE = 0x00020000;
@@ -441,19 +441,19 @@ public final class Call {
         @Override
         public int hashCode() {
             return
-                    Objects.hashCode(mHandle) +
-                    Objects.hashCode(mHandlePresentation) +
-                    Objects.hashCode(mCallerDisplayName) +
-                    Objects.hashCode(mCallerDisplayNamePresentation) +
-                    Objects.hashCode(mAccountHandle) +
-                    Objects.hashCode(mCallCapabilities) +
-                    Objects.hashCode(mCallProperties) +
-                    Objects.hashCode(mDisconnectCause) +
-                    Objects.hashCode(mConnectTimeMillis) +
-                    Objects.hashCode(mGatewayInfo) +
-                    Objects.hashCode(mVideoState) +
-                    Objects.hashCode(mStatusHints) +
-                    Objects.hashCode(mExtras) +
+                    Objects.hashCode(mHandle)
+                    Objects.hashCode(mHandlePresentation)
+                    Objects.hashCode(mCallerDisplayName)
+                    Objects.hashCode(mCallerDisplayNamePresentation)
+                    Objects.hashCode(mAccountHandle)
+                    Objects.hashCode(mCallCapabilities)
+                    Objects.hashCode(mCallProperties)
+                    Objects.hashCode(mDisconnectCause)
+                    Objects.hashCode(mConnectTimeMillis)
+                    Objects.hashCode(mGatewayInfo)
+                    Objects.hashCode(mVideoState)
+                    Objects.hashCode(mStatusHints)
+                    Objects.hashCode(mExtras)
                     Objects.hashCode(mCallSubstate);
         }
 

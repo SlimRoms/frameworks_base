@@ -440,10 +440,10 @@ public class NinePatchDrawable extends Drawable {
             }
 
             if (bitmap == null) {
-                throw new XmlPullParserException(a.getPositionDescription() +
+                throw new XmlPullParserException(a.getPositionDescription()
                         ": <nine-patch> requires a valid src attribute");
             } else if (bitmap.getNinePatchChunk() == null) {
-                throw new XmlPullParserException(a.getPositionDescription() +
+                throw new XmlPullParserException(a.getPositionDescription()
                         ": <nine-patch> requires a valid 9-patch source image");
             }
 

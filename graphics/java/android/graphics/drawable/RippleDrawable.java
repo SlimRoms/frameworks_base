@@ -428,7 +428,7 @@ public class RippleDrawable extends LayerDrawable {
     private void verifyRequiredAttributes(TypedArray a) throws XmlPullParserException {
         if (mState.mColor == null && (mState.mTouchThemeAttrs == null
                 || mState.mTouchThemeAttrs[R.styleable.RippleDrawable_color] == 0)) {
-            throw new XmlPullParserException(a.getPositionDescription() +
+            throw new XmlPullParserException(a.getPositionDescription()
                     ": <ripple> requires a valid color attribute");
         }
     }

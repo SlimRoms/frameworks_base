@@ -31,18 +31,18 @@ public class BrightnessFilter extends Filter {
     private ImageShader mShader;
 
     private static final String mBrightnessShader =
-            "precision mediump float;\n" +
-            "uniform sampler2D tex_sampler_0;\n" +
-            "uniform float brightness;\n" +
-            "varying vec2 v_texcoord;\n" +
-            "void main() {\n" +
-            "  vec4 color = texture2D(tex_sampler_0, v_texcoord);\n" +
-            "  if (brightness < 0.5) {\n" +
-            "    gl_FragColor = color * (2.0 * brightness);\n" +
-            "  } else {\n" +
-            "    vec4 diff = 1.0 - color;\n" +
-            "    gl_FragColor = color + diff * (2.0 * (brightness - 0.5));\n" +
-            "  }\n" +
+            "precision mediump float;\n"
+            "uniform sampler2D tex_sampler_0;\n"
+            "uniform float brightness;\n"
+            "varying vec2 v_texcoord;\n"
+            "void main() {\n"
+            "  vec4 color = texture2D(tex_sampler_0, v_texcoord);\n"
+            "  if (brightness < 0.5) {\n"
+            "    gl_FragColor = color * (2.0 * brightness);\n"
+            "  } else {\n"
+            "    vec4 diff = 1.0 - color;\n"
+            "    gl_FragColor = color + diff * (2.0 * (brightness - 0.5));\n"
+            "  }\n"
             "}\n";
 
 

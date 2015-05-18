@@ -117,12 +117,12 @@ public class SurfaceTextureSource extends Filter {
                                                    1, 0, 0, 1 };
     // Shader for output
     private final String mRenderShader =
-            "#extension GL_OES_EGL_image_external : require\n" +
-            "precision mediump float;\n" +
-            "uniform samplerExternalOES tex_sampler_0;\n" +
-            "varying vec2 v_texcoord;\n" +
-            "void main() {\n" +
-            "  gl_FragColor = texture2D(tex_sampler_0, v_texcoord);\n" +
+            "#extension GL_OES_EGL_image_external : require\n"
+            "precision mediump float;\n"
+            "uniform samplerExternalOES tex_sampler_0;\n"
+            "varying vec2 v_texcoord;\n"
+            "void main() {\n"
+            "  gl_FragColor = texture2D(tex_sampler_0, v_texcoord);\n"
             "}\n";
 
     // Variables for logging

@@ -187,7 +187,7 @@ public final class ContentService extends IContentService.Stub {
         synchronized (mRootNode) {
             mRootNode.addObserverLocked(uri, observer, notifyForDescendants, mRootNode,
                     Binder.getCallingUid(), Binder.getCallingPid(), userHandle);
-            if (false) Log.v(TAG, "Registered observer " + observer + " at " + uri +
+            if (false) Log.v(TAG, "Registered observer " + observer + " at " + uri
                     " with notifyForDescendants " + notifyForDescendants);
         }
     }

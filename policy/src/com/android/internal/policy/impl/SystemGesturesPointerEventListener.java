@@ -115,13 +115,13 @@ public class SystemGesturesPointerEventListener implements PointerEventListener 
     private void captureDown(MotionEvent event, int pointerIndex) {
         final int pointerId = event.getPointerId(pointerIndex);
         final int i = findIndex(pointerId);
-        if (DEBUG) Slog.d(TAG, "pointer " + pointerId +
+        if (DEBUG) Slog.d(TAG, "pointer " + pointerId
                 " down pointerIndex=" + pointerIndex + " trackingIndex=" + i);
         if (i != UNTRACKED_POINTER) {
             mDownX[i] = event.getX(pointerIndex);
             mDownY[i] = event.getY(pointerIndex);
             mDownTime[i] = event.getEventTime();
-            if (DEBUG) Slog.d(TAG, "pointer " + pointerId +
+            if (DEBUG) Slog.d(TAG, "pointer " + pointerId
                     " down x=" + mDownX[i] + " y=" + mDownY[i]);
         }
     }

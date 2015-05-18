@@ -815,7 +815,7 @@ public final class Path_Delegate {
         if (matrix.hasPerspective()) {
             assert false;
             Bridge.getLog().fidelityWarning(LayoutLog.TAG_MATRIX_AFFINE,
-                    "android.graphics.Path#transform() only " +
+                    "android.graphics.Path#transform() only "
                     "supports affine transformations.", null, null /*data*/);
         }
 

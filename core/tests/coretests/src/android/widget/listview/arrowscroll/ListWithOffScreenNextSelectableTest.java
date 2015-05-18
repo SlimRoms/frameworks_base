@@ -47,7 +47,7 @@ public class ListWithOffScreenNextSelectableTest
         assertFalse(mListView.getAdapter().isEnabled(1));
         assertFalse(mListView.getAdapter().isEnabled(2));
         assertFalse(mListView.getAdapter().isEnabled(3));
-        assertEquals("only 4 children should be on screen (so that next selectable is off " +
+        assertEquals("only 4 children should be on screen (so that next selectable is off "
                 "screen) for this test to be meaningful.",
                 4, mListView.getChildCount());
         assertEquals(0, mListView.getSelectedItemPosition());
@@ -66,7 +66,7 @@ public class ListWithOffScreenNextSelectableTest
                 listBottom - mListView.getVerticalFadingEdgeLength(), lastVisibleView.getBottom());
         assertEquals("selection should not have moved yet",
                 0, mListView.getSelectedItemPosition());
-        
+
         sendKeys(KeyEvent.KEYCODE_DPAD_DOWN);
         assertEquals("selection should have moved",
                 4, mListView.getSelectedItemPosition());

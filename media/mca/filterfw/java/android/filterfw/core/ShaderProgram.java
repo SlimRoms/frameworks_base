@@ -131,7 +131,7 @@ public class ShaderProgram extends Program {
     @Override
     public void setHostValue(String variableName, Object value) {
         if (!setUniformValue(variableName, value)) {
-            throw new RuntimeException("Error setting uniform value for variable '" +
+            throw new RuntimeException("Error setting uniform value for variable '"
                                        variableName + "'!");
         }
     }
@@ -143,7 +143,7 @@ public class ShaderProgram extends Program {
 
     public void setAttributeValues(String attributeName, float[] data, int componentCount) {
         if (!setShaderAttributeValues(attributeName, data, componentCount)) {
-            throw new RuntimeException("Error setting attribute value for attribute '" +
+            throw new RuntimeException("Error setting attribute value for attribute '"
                                        attributeName + "'!");
         }
     }
@@ -162,7 +162,7 @@ public class ShaderProgram extends Program {
                                            strideInBytes,
                                            offsetInBytes,
                                            normalize)) {
-            throw new RuntimeException("Error setting attribute value for attribute '" +
+            throw new RuntimeException("Error setting attribute value for attribute '"
                                        attributeName + "'!");
         }
     }

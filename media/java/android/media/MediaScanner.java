@@ -620,7 +620,7 @@ public class MediaScanner
                         if (isaudio || isvideo || isimage) {
                             if (mExternalIsEmulated && path.startsWith(mExternalStoragePath)) {
                                 // try to rewrite the path to bypass the sd card fuse layer
-                                String directPath = Environment.getMediaStorageDirectory() +
+                                String directPath = Environment.getMediaStorageDirectory()
                                         path.substring(mExternalStoragePath.length());
                                 File f = new File(directPath);
                                 if (f.exists()) {
@@ -1172,7 +1172,7 @@ public class MediaScanner
 
         if (filePath != null) {
             // query for only one file
-            where = MediaStore.Files.FileColumns._ID + ">?" +
+            where = MediaStore.Files.FileColumns._ID + ">?"
                 " AND " + Files.FileColumns.DATA + "=?";
             selectionArgs = new String[] { "", filePath };
         } else {
@@ -1360,7 +1360,7 @@ public class MediaScanner
                 String [] foo = new String [size];
                 foo = whereArgs.toArray(foo);
                 int numrows = mProvider.delete(mPackageName, mBaseUri,
-                        MediaStore.MediaColumns._ID + " IN (" +
+                        MediaStore.MediaColumns._ID + " IN ("
                         whereClause.toString() + ")", foo);
                 //Log.i("@@@@@@@@@", "rows deleted: " + numrows);
                 whereClause.setLength(0);

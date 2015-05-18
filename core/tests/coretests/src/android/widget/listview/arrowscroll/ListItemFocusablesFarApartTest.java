@@ -91,14 +91,14 @@ public class ListItemFocusablesFarApartTest extends ActivityInstrumentationTestC
             if (getBottomOfChildOfItem(0, 0) < mListTop) {
                 assertFalse("after " + counter + " downs, top button not visible, should not have focus",
                         topButton.isFocused());
-                assertFalse("after " + counter + " downs, neither top button nor botom button visible, nothng within first list " +
+                assertFalse("after " + counter + " downs, neither top button nor botom button visible, nothng within first list "
                         "item should have focus", mListView.getChildAt(0).hasFocus());
             } else {
                 assertTrue("after " + counter + " downs, top button still visible, should have focus",
                         topButton.isFocused());
             }
 
-            assertEquals("after " + counter + " downs, " +
+            assertEquals("after " + counter + " downs, "
                     "should have panned by max scroll amount",
                     expectedTop, mListView.getChildAt(0).getTop());
 

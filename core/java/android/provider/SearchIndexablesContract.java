@@ -147,7 +147,7 @@ public class SearchIndexablesContract {
         private XmlResource() {
         }
 
-        public static final String MIME_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE +
+        public static final String MIME_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE
                 "/" + INDEXABLES_XML_RES;
 
         /**
@@ -169,7 +169,7 @@ public class SearchIndexablesContract {
         private RawData() {
         }
 
-        public static final String MIME_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE +
+        public static final String MIME_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE
                 "/" + INDEXABLES_RAW;
 
         /**
@@ -222,7 +222,7 @@ public class SearchIndexablesContract {
         private NonIndexableKey() {
         }
 
-        public static final String MIME_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE +
+        public static final String MIME_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE
                 "/" + NON_INDEXABLES_KEYS;
 
         /**

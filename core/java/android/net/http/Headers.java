@@ -449,7 +449,7 @@ public final class Headers {
         int extraLen = mExtraHeaderNames.size();
         for (int i = 0; i < extraLen; i++) {
             if (false) {
-                HttpLog.v("Headers.getHeaders() extra: " + i + " " +
+                HttpLog.v("Headers.getHeaders() extra: " + i + " "
                           mExtraHeaderNames.get(i) + " " + mExtraHeaderValues.get(i));
             }
             hcb.header(mExtraHeaderNames.get(i),

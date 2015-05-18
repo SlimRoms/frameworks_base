@@ -32,7 +32,7 @@ class FileBackupHelperBase {
     long mPtr;
     Context mContext;
     boolean mExceptionLogged;
-    
+
     FileBackupHelperBase(Context context) {
         mPtr = ctor();
         mContext = context;

@@ -35,7 +35,7 @@ import android.view.accessibility.AccessibilityNodeInfo;
 
 /**
  * An extension to TextView that supports the {@link android.widget.Checkable} interface.
- * This is useful when used in a {@link android.widget.ListView ListView} where the it's 
+ * This is useful when used in a {@link android.widget.ListView ListView} where the it's
  * {@link android.widget.ListView#setChoiceMode(int) setChoiceMode} has been set to
  * something other than {@link android.widget.ListView#CHOICE_MODE_NONE CHOICE_MODE_NONE}.
  *
@@ -379,7 +379,7 @@ public class CheckedTextView extends TextView implements Checkable {
                     y = (getHeight() - height) / 2;
                     break;
             }
-            
+
             final boolean checkMarkAtStart = isCheckMarkAtStart();
             final int width = getWidth();
             final int top = y;
@@ -406,7 +406,7 @@ public class CheckedTextView extends TextView implements Checkable {
             }
         }
     }
-    
+
     @Override
     protected int[] onCreateDrawableState(int extraSpace) {
         final int[] drawableState = super.onCreateDrawableState(extraSpace + 1);
@@ -419,13 +419,13 @@ public class CheckedTextView extends TextView implements Checkable {
     @Override
     protected void drawableStateChanged() {
         super.drawableStateChanged();
-        
+
         if (mCheckMarkDrawable != null) {
             int[] myDrawableState = getDrawableState();
-            
+
             // Set the state of the Drawable
             mCheckMarkDrawable.setState(myDrawableState);
-            
+
             invalidate();
         }
     }

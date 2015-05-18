@@ -3804,8 +3804,8 @@ public class TextView extends View implements ViewTreeObserver.OnPreDrawListener
                         restored = "(restored) ";
                     }
 
-                    Log.e(LOG_TAG, "Saved cursor position " + ss.selStart +
-                          "/" + ss.selEnd + " out of range for " + restored +
+                    Log.e(LOG_TAG, "Saved cursor position " + ss.selStart
+                          "/" + ss.selEnd + " out of range for " + restored
                           "text " + mText);
                 } else {
                     Selection.setSelection((Spannable) mText, ss.selStart, ss.selEnd);
@@ -4495,7 +4495,7 @@ public class TextView extends View implements ViewTreeObserver.OnPreDrawListener
                 View v = focusSearch(FOCUS_FORWARD);
                 if (v != null) {
                     if (!v.requestFocus(FOCUS_FORWARD)) {
-                        throw new IllegalStateException("focus search returned a view " +
+                        throw new IllegalStateException("focus search returned a view "
                                 "that wasn't able to take focus!");
                     }
                 }
@@ -4505,7 +4505,7 @@ public class TextView extends View implements ViewTreeObserver.OnPreDrawListener
                 View v = focusSearch(FOCUS_BACKWARD);
                 if (v != null) {
                     if (!v.requestFocus(FOCUS_BACKWARD)) {
-                        throw new IllegalStateException("focus search returned a view " +
+                        throw new IllegalStateException("focus search returned a view "
                                 "that wasn't able to take focus!");
                     }
                 }
@@ -5011,7 +5011,7 @@ public class TextView extends View implements ViewTreeObserver.OnPreDrawListener
 
     @Override
     protected int getLeftPaddingOffset() {
-        return getCompoundPaddingLeft() - mPaddingLeft +
+        return getCompoundPaddingLeft() - mPaddingLeft
                 (int) Math.min(0, mShadowDx - mShadowRadius);
     }
 
@@ -5033,7 +5033,7 @@ public class TextView extends View implements ViewTreeObserver.OnPreDrawListener
 
     @Override
     protected int getRightPaddingOffset() {
-        return -(getFudgedPaddingRight() - mPaddingRight) +
+        return -(getFudgedPaddingRight() - mPaddingRight)
                 (int) Math.max(0, mShadowDx + mShadowRadius);
     }
 
@@ -5318,7 +5318,7 @@ public class TextView extends View implements ViewTreeObserver.OnPreDrawListener
             if (dr.mDrawableLeft != null) {
                 canvas.save();
                 canvas.translate(scrollX + mPaddingLeft + leftOffset,
-                                 scrollY + compoundPaddingTop +
+                                 scrollY + compoundPaddingTop
                                  (vspace - dr.mDrawableHeightLeft) / 2);
                 dr.mDrawableLeft.draw(canvas);
                 canvas.restore();
@@ -5339,7 +5339,7 @@ public class TextView extends View implements ViewTreeObserver.OnPreDrawListener
             // Make sure to update invalidateDrawable() when changing this code.
             if (dr.mDrawableTop != null) {
                 canvas.save();
-                canvas.translate(scrollX + compoundPaddingLeft +
+                canvas.translate(scrollX + compoundPaddingLeft
                         (hspace - dr.mDrawableWidthTop) / 2, scrollY + mPaddingTop);
                 dr.mDrawableTop.draw(canvas);
                 canvas.restore();
@@ -5349,7 +5349,7 @@ public class TextView extends View implements ViewTreeObserver.OnPreDrawListener
             // Make sure to update invalidateDrawable() when changing this code.
             if (dr.mDrawableBottom != null) {
                 canvas.save();
-                canvas.translate(scrollX + compoundPaddingLeft +
+                canvas.translate(scrollX + compoundPaddingLeft
                         (hspace - dr.mDrawableWidthBottom) / 2,
                          scrollY + bottom - top - mPaddingBottom - dr.mDrawableSizeBottom);
                 dr.mDrawableBottom.draw(canvas);
@@ -5931,7 +5931,7 @@ public class TextView extends View implements ViewTreeObserver.OnPreDrawListener
                             if (v != null) {
                                 if (!v.requestFocus(FOCUS_DOWN)) {
                                     throw new IllegalStateException(
-                                            "focus search returned a view " +
+                                            "focus search returned a view "
                                             "that wasn't able to take focus!");
                                 }
 

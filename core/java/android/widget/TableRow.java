@@ -217,7 +217,7 @@ public class TableRow extends LinearLayout {
                     Math.max(0, columnWidth - lp.leftMargin - lp.rightMargin), measureMode
             );
             int childHeightMeasureSpec = getChildMeasureSpec(heightMeasureSpec,
-                    mPaddingTop + mPaddingBottom + lp.topMargin +
+                    mPaddingTop + mPaddingBottom + lp.topMargin
                     lp .bottomMargin + totalHeight, lp.height);
 
             child.measure(childWidthMeasureSpec, childHeightMeasureSpec);
@@ -311,7 +311,7 @@ public class TableRow extends LinearLayout {
                     }
                     child.measure(spec, spec);
 
-                    final int width = child.getMeasuredWidth() + layoutParams.leftMargin +
+                    final int width = child.getMeasuredWidth() + layoutParams.leftMargin
                             layoutParams.rightMargin;
                     columnWidths[i] = width;
                 } else {
@@ -395,7 +395,7 @@ public class TableRow extends LinearLayout {
      * <p>Set of layout parameters used in table rows.</p>
      *
      * @see android.widget.TableLayout.LayoutParams
-     * 
+     *
      * @attr ref android.R.styleable#TableRow_Cell_layout_column
      * @attr ref android.R.styleable#TableRow_Cell_layout_span
      */

@@ -995,7 +995,7 @@ public class AccessibilityNodeInfo implements Parcelable {
         enforceNotSealed();
 
         if ((action & ACTION_TYPE_MASK) != 0) {
-            throw new IllegalArgumentException("Action is not a combination of the standard " +
+            throw new IllegalArgumentException("Action is not a combination of the standard "
                     "actions: " + action);
         }
 

@@ -373,9 +373,9 @@ public class ColorStateList implements Parcelable {
 
     @Override
     public String toString() {
-        return "ColorStateList{" +
-               "mStateSpecs=" + Arrays.deepToString(mStateSpecs) +
-               "mColors=" + Arrays.toString(mColors) +
+        return "ColorStateList{"
+               "mStateSpecs=" + Arrays.deepToString(mStateSpecs)
+               "mColors=" + Arrays.toString(mColors)
                "mDefaultColor=" + mDefaultColor + '}';
     }
 

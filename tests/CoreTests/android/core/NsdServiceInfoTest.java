@@ -56,9 +56,9 @@ public class NsdServiceInfoTest extends AndroidTestCase {
         // Single key + value length too long.
         exceptionThrown = false;
         try {
-            String longValue = "loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo" +
-                    "oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo" +
-                    "oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo" +
+            String longValue = "loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo"
+                    "oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo"
+                    "oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo"
                     "ooooooooooooooooooooooooooooong";  // 248 characters.
             info.setAttribute("longcat", longValue);  // Key + value == 255 characters.
         } catch (IllegalArgumentException e) {

@@ -43,7 +43,7 @@ public class ServicesTests extends InstrumentationTestCase {
                     resultFile.exists());
             File completeFile = new File(targetFilesDir, "Service" + i + ".complete");
             completeFile.delete();
-            assertFalse("Failed to delete completion file '" + completeFile.getAbsolutePath() +
+            assertFalse("Failed to delete completion file '" + completeFile.getAbsolutePath()
                     "'.", completeFile.exists());
        }
         for (int i = MIN_SERVICE; i <= MAX_SERVICE; i++) {

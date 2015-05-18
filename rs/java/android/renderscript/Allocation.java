@@ -511,7 +511,7 @@ public class Allocation extends BaseObj {
         mRS.validate();
         validateIsObject();
         if (d.length != mCurrentCount) {
-            throw new RSIllegalArgumentException("Array size mismatch, allocation sizeX = " +
+            throw new RSIllegalArgumentException("Array size mismatch, allocation sizeX = "
                                                  mCurrentCount + ", array length = " + d.length);
         }
 
@@ -539,40 +539,40 @@ public class Allocation extends BaseObj {
         switch (bc) {
         case ALPHA_8:
             if (mType.getElement().mKind != Element.DataKind.PIXEL_A) {
-                throw new RSIllegalArgumentException("Allocation kind is " +
-                                                     mType.getElement().mKind + ", type " +
-                                                     mType.getElement().mType +
-                                                     " of " + mType.getElement().getBytesSize() +
+                throw new RSIllegalArgumentException("Allocation kind is "
+                                                     mType.getElement().mKind + ", type "
+                                                     mType.getElement().mType
+                                                     " of " + mType.getElement().getBytesSize()
                                                      " bytes, passed bitmap was " + bc);
             }
             break;
         case ARGB_8888:
             if ((mType.getElement().mKind != Element.DataKind.PIXEL_RGBA) ||
                 (mType.getElement().getBytesSize() != 4)) {
-                throw new RSIllegalArgumentException("Allocation kind is " +
-                                                     mType.getElement().mKind + ", type " +
-                                                     mType.getElement().mType +
-                                                     " of " + mType.getElement().getBytesSize() +
+                throw new RSIllegalArgumentException("Allocation kind is "
+                                                     mType.getElement().mKind + ", type "
+                                                     mType.getElement().mType
+                                                     " of " + mType.getElement().getBytesSize()
                                                      " bytes, passed bitmap was " + bc);
             }
             break;
         case RGB_565:
             if ((mType.getElement().mKind != Element.DataKind.PIXEL_RGB) ||
                 (mType.getElement().getBytesSize() != 2)) {
-                throw new RSIllegalArgumentException("Allocation kind is " +
-                                                     mType.getElement().mKind + ", type " +
-                                                     mType.getElement().mType +
-                                                     " of " + mType.getElement().getBytesSize() +
+                throw new RSIllegalArgumentException("Allocation kind is "
+                                                     mType.getElement().mKind + ", type "
+                                                     mType.getElement().mType
+                                                     " of " + mType.getElement().getBytesSize()
                                                      " bytes, passed bitmap was " + bc);
             }
             break;
         case ARGB_4444:
             if ((mType.getElement().mKind != Element.DataKind.PIXEL_RGBA) ||
                 (mType.getElement().getBytesSize() != 2)) {
-                throw new RSIllegalArgumentException("Allocation kind is " +
-                                                     mType.getElement().mKind + ", type " +
-                                                     mType.getElement().mType +
-                                                     " of " + mType.getElement().getBytesSize() +
+                throw new RSIllegalArgumentException("Allocation kind is "
+                                                     mType.getElement().mKind + ", type "
+                                                     mType.getElement().mType
+                                                     " of " + mType.getElement().getBytesSize()
                                                      " bytes, passed bitmap was " + bc);
             }
             break;
@@ -781,7 +781,7 @@ public class Allocation extends BaseObj {
 
         int count = data_length / eSize;
         if ((eSize * count) != data_length) {
-            throw new RSIllegalArgumentException("Field packer length " + data_length +
+            throw new RSIllegalArgumentException("Field packer length " + data_length
                                                " not divisible by element size " + eSize + ".");
         }
         copy1DRangeFromUnchecked(xoff, count, data);
@@ -810,7 +810,7 @@ public class Allocation extends BaseObj {
         eSize *= mType.mElement.mArraySizes[component_number];
 
         if (data_length != eSize) {
-            throw new RSIllegalArgumentException("Field packer sizelength " + data_length +
+            throw new RSIllegalArgumentException("Field packer sizelength " + data_length
                                                " does not match component size " + eSize + ".");
         }
 
@@ -827,7 +827,7 @@ public class Allocation extends BaseObj {
             throw new RSIllegalArgumentException("Count must be >= 1.");
         }
         if((off + count) > mCurrentCount) {
-            throw new RSIllegalArgumentException("Overflow, Available count " + mCurrentCount +
+            throw new RSIllegalArgumentException("Overflow, Available count " + mCurrentCount
                                                ", got " + count + " at offset " + off + ".");
         }
         if(len < dataSize) {

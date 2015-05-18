@@ -33,11 +33,11 @@ public class BackgroundColorSpan extends CharacterStyle
     public BackgroundColorSpan(Parcel src) {
         mColor = src.readInt();
     }
-    
+
     public int getSpanTypeId() {
         return TextUtils.BACKGROUND_COLOR_SPAN;
     }
-    
+
     public int describeContents() {
         return 0;
     }

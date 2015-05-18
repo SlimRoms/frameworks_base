@@ -97,7 +97,7 @@ public class CSVWriterFilter extends Filter {
         FrameValue motionValuesFrameValue =
                 getConnectedInputPort("motionValues").pullFrame().asFrameValue();
         float[] motionValues = (float[]) motionValuesFrameValue.getValue();
-        float vectorAccel = (float) Math.sqrt(Math.pow(motionValues[0], 2) +
+        float vectorAccel = (float) Math.sqrt(Math.pow(motionValues[0], 2)
                 Math.pow(motionValues[1], 2) + Math.pow(motionValues[2], 2));
 
         FrameValue imageFileNameFrameValue =
@@ -114,7 +114,7 @@ public class CSVWriterFilter extends Filter {
                 FileWriter fileWriter = new FileWriter(csvFilePath + "/CSVFile.csv");
                 BufferedWriter csvWriter = new BufferedWriter(fileWriter);
 
-                csvWriter.write("FileName,Sharpness,OverExposure,UnderExposure,Colorfulness," +
+                csvWriter.write("FileName,Sharpness,OverExposure,UnderExposure,Colorfulness,"
                             "ContrastRating,Brightness,Motion");
                 csvWriter.newLine();
                 csvWriter.close();
@@ -130,11 +130,11 @@ public class CSVWriterFilter extends Filter {
             FileWriter fileWriter = new FileWriter(csvFilePath + mFileName, true);
             BufferedWriter csvWriter = new BufferedWriter(fileWriter);
 
-            csvWriter.write(imageFileName + "," + sharpness + "," + overExposure + "," +
-                    underExposure + "," + colorfulness + "," + contrast + "," + brightness +
+            csvWriter.write(imageFileName + "," + sharpness + "," + overExposure + ","
+                    underExposure + "," + colorfulness + "," + contrast + "," + brightness
                     "," + vectorAccel);
-            Log.v(TAG, "" + imageFileName + "," + sharpness + "," + overExposure + "," +
-                    underExposure + "," + colorfulness + "," + contrast + "," + brightness +
+            Log.v(TAG, "" + imageFileName + "," + sharpness + "," + overExposure + ","
+                    underExposure + "," + colorfulness + "," + contrast + "," + brightness
                     "," + vectorAccel);
             csvWriter.newLine();
             csvWriter.close();

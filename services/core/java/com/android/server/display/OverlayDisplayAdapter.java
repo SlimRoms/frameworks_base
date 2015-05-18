@@ -256,7 +256,7 @@ final class OverlayDisplayAdapter extends DisplayAdapter {
                 mInfo.densityDpi = mDensityDpi;
                 mInfo.xDpi = mDensityDpi;
                 mInfo.yDpi = mDensityDpi;
-                mInfo.presentationDeadlineNanos = mDisplayPresentationDeadlineNanos +
+                mInfo.presentationDeadlineNanos = mDisplayPresentationDeadlineNanos
                         1000000000L / (int) mRefreshRate;   // display's deadline + 1 frame
                 mInfo.flags = DisplayDeviceInfo.FLAG_PRESENTATION;
                 if (mSecure) {

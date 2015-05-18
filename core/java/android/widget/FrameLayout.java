@@ -96,13 +96,13 @@ public class FrameLayout extends ViewGroup {
     protected boolean mForegroundInPadding = true;
 
     boolean mForegroundBoundsChanged = false;
-    
+
     private final ArrayList<View> mMatchParentChildren = new ArrayList<View>(1);
-    
+
     public FrameLayout(Context context) {
         super(context);
     }
-    
+
     public FrameLayout(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
@@ -124,7 +124,7 @@ public class FrameLayout extends ViewGroup {
         if (d != null) {
             setForeground(d);
         }
-        
+
         if (a.getBoolean(com.android.internal.R.styleable.FrameLayout_measureAllChildren, false)) {
             setMeasureAllChildren(true);
         }
@@ -260,9 +260,9 @@ public class FrameLayout extends ViewGroup {
      * views in the frame layout.  Any padding in the Drawable will be taken
      * into account by ensuring that the children are inset to be placed
      * inside of the padding area.
-     * 
+     *
      * @param d The Drawable to be drawn on top of the children.
-     * 
+     *
      * @attr ref android.R.styleable#FrameLayout_foreground
      */
     public void setForeground(Drawable d) {
@@ -476,7 +476,7 @@ public class FrameLayout extends ViewGroup {
                 final MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
                 int childWidthMeasureSpec;
                 int childHeightMeasureSpec;
-                
+
                 if (lp.width == LayoutParams.MATCH_PARENT) {
                     childWidthMeasureSpec = MeasureSpec.makeMeasureSpec(getMeasuredWidth() -
                             getPaddingLeftWithForeground() - getPaddingRightWithForeground() -
@@ -484,11 +484,11 @@ public class FrameLayout extends ViewGroup {
                             MeasureSpec.EXACTLY);
                 } else {
                     childWidthMeasureSpec = getChildMeasureSpec(widthMeasureSpec,
-                            getPaddingLeftWithForeground() + getPaddingRightWithForeground() +
+                            getPaddingLeftWithForeground() + getPaddingRightWithForeground()
                             lp.leftMargin + lp.rightMargin,
                             lp.width);
                 }
-                
+
                 if (lp.height == LayoutParams.MATCH_PARENT) {
                     childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(getMeasuredHeight() -
                             getPaddingTopWithForeground() - getPaddingBottomWithForeground() -
@@ -496,7 +496,7 @@ public class FrameLayout extends ViewGroup {
                             MeasureSpec.EXACTLY);
                 } else {
                     childHeightMeasureSpec = getChildMeasureSpec(heightMeasureSpec,
-                            getPaddingTopWithForeground() + getPaddingBottomWithForeground() +
+                            getPaddingTopWithForeground() + getPaddingBottomWithForeground()
                             lp.topMargin + lp.bottomMargin,
                             lp.height);
                 }
@@ -505,7 +505,7 @@ public class FrameLayout extends ViewGroup {
             }
         }
     }
- 
+
     /**
      * {@inheritDoc}
      */
@@ -525,7 +525,7 @@ public class FrameLayout extends ViewGroup {
         final int parentBottom = bottom - top - getPaddingBottomWithForeground();
 
         mForegroundBoundsChanged = true;
-        
+
         for (int i = 0; i < count; i++) {
             final View child = getChildAt(i);
             if (child.getVisibility() != GONE) {
@@ -548,7 +548,7 @@ public class FrameLayout extends ViewGroup {
 
                 switch (absoluteGravity & Gravity.HORIZONTAL_GRAVITY_MASK) {
                     case Gravity.CENTER_HORIZONTAL:
-                        childLeft = parentLeft + (parentRight - parentLeft - width) / 2 +
+                        childLeft = parentLeft + (parentRight - parentLeft - width) / 2
                         lp.leftMargin - lp.rightMargin;
                         break;
                     case Gravity.RIGHT:
@@ -566,7 +566,7 @@ public class FrameLayout extends ViewGroup {
                         childTop = parentTop + lp.topMargin;
                         break;
                     case Gravity.CENTER_VERTICAL:
-                        childTop = parentTop + (parentBottom - parentTop - height) / 2 +
+                        childTop = parentTop + (parentBottom - parentTop - height) / 2
                         lp.topMargin - lp.bottomMargin;
                         break;
                     case Gravity.BOTTOM:
@@ -620,7 +620,7 @@ public class FrameLayout extends ViewGroup {
                         layoutDirection);
                 foreground.setBounds(overlayBounds);
             }
-            
+
             foreground.draw(canvas);
         }
     }
@@ -682,7 +682,7 @@ public class FrameLayout extends ViewGroup {
      */
     @Override
     public LayoutParams generateLayoutParams(AttributeSet attrs) {
-        return new FrameLayout.LayoutParams(getContext(), attrs);        
+        return new FrameLayout.LayoutParams(getContext(), attrs);
     }
 
     @Override
@@ -720,7 +720,7 @@ public class FrameLayout extends ViewGroup {
      * Per-child layout information for layouts that support margins.
      * See {@link android.R.styleable#FrameLayout_Layout FrameLayout Layout Attributes}
      * for a list of all child view attributes that this class supports.
-     * 
+     *
      * @attr ref android.R.styleable#FrameLayout_Layout_layout_gravity
      */
     public static class LayoutParams extends MarginLayoutParams {
@@ -729,7 +729,7 @@ public class FrameLayout extends ViewGroup {
          * are associated.
          *
          * @see android.view.Gravity
-         * 
+         *
          * @attr ref android.R.styleable#FrameLayout_Layout_layout_gravity
          */
         public int gravity = -1;

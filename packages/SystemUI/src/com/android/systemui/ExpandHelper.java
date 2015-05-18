@@ -266,10 +266,10 @@ public class ExpandHelper implements Gefingerpoken {
         }
         trackVelocity(ev);
         final int action = ev.getAction();
-        if (DEBUG_SCALE) Log.d(TAG, "intercept: act=" + MotionEvent.actionToString(action) +
-                         " expanding=" + mExpanding +
-                         (0 != (mExpansionStyle & BLINDS) ? " (blinds)" : "") +
-                         (0 != (mExpansionStyle & PULL) ? " (pull)" : "") +
+        if (DEBUG_SCALE) Log.d(TAG, "intercept: act=" + MotionEvent.actionToString(action)
+                         " expanding=" + mExpanding
+                         (0 != (mExpansionStyle & BLINDS) ? " (blinds)" : "")
+                         (0 != (mExpansionStyle & PULL) ? " (pull)" : "")
                          (0 != (mExpansionStyle & STRETCH) ? " (stretch)" : ""));
         // check for a spread-finger vertical pull gesture
         mSGD.onTouchEvent(ev);
@@ -397,10 +397,10 @@ public class ExpandHelper implements Gefingerpoken {
         }
         trackVelocity(ev);
         final int action = ev.getActionMasked();
-        if (DEBUG_SCALE) Log.d(TAG, "touch: act=" + MotionEvent.actionToString(action) +
-                " expanding=" + mExpanding +
-                (0 != (mExpansionStyle & BLINDS) ? " (blinds)" : "") +
-                (0 != (mExpansionStyle & PULL) ? " (pull)" : "") +
+        if (DEBUG_SCALE) Log.d(TAG, "touch: act=" + MotionEvent.actionToString(action)
+                " expanding=" + mExpanding
+                (0 != (mExpansionStyle & BLINDS) ? " (blinds)" : "")
+                (0 != (mExpansionStyle & PULL) ? " (pull)" : "")
                 (0 != (mExpansionStyle & STRETCH) ? " (stretch)" : ""));
 
         mSGD.onTouchEvent(ev);
@@ -519,7 +519,7 @@ public class ExpandHelper implements Gefingerpoken {
             if (DEBUG) Log.d(TAG, "working on a non-expandable child");
             mNaturalHeight = mOldHeight;
         }
-        if (DEBUG) Log.d(TAG, "got mOldHeight: " + mOldHeight +
+        if (DEBUG) Log.d(TAG, "got mOldHeight: " + mOldHeight
                     " mNaturalHeight: " + mNaturalHeight);
         return true;
     }

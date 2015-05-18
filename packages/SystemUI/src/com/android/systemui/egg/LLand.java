@@ -493,7 +493,7 @@ public class LLand extends FrameLayout {
         if (mPlaying && (t - mLastPipeTime) > PARAMS.OBSTACLE_PERIOD) {
             mLastPipeTime = t;
             final int obstacley =
-                    (int)(frand() * (mHeight - 2*PARAMS.OBSTACLE_MIN - PARAMS.OBSTACLE_GAP)) +
+                    (int)(frand() * (mHeight - 2*PARAMS.OBSTACLE_MIN - PARAMS.OBSTACLE_GAP))
                     PARAMS.OBSTACLE_MIN;
 
             final int inset = (PARAMS.OBSTACLE_WIDTH - PARAMS.OBSTACLE_STEM_WIDTH) / 2;
@@ -570,7 +570,7 @@ public class LLand extends FrameLayout {
 
         if (DEBUG_DRAW) invalidate();
     }
-    
+
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         L("touch: %s", ev);

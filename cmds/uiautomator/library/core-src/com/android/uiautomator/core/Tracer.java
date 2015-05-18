@@ -122,7 +122,7 @@ public class Tracer {
             switch (mode) {
                 case FILE:
                     if (mOutputFile == null) {
-                        throw new IllegalArgumentException("Please provide a filename before " +
+                        throw new IllegalArgumentException("Please provide a filename before "
                                 "attempting write trace to a file");
                     }
                     mSinks.add(new FileSink(mOutputFile));
@@ -133,7 +133,7 @@ public class Tracer {
                 case ALL:
                     mSinks.add(new LogcatSink());
                     if (mOutputFile == null) {
-                        throw new IllegalArgumentException("Please provide a filename before " +
+                        throw new IllegalArgumentException("Please provide a filename before "
                                 "attempting write trace to a file");
                     }
                     mSinks.add(new FileSink(mOutputFile));

@@ -691,13 +691,13 @@ public class CameraMetadataNative implements Parcelable {
         // Face id and landmarks are only required by FULL mode.
         if (faceDetectMode == CaptureResult.STATISTICS_FACE_DETECT_MODE_FULL) {
             if (faceIds == null || faceLandmarks == null) {
-                Log.w(TAG, "Expect face ids and landmarks to be non-null for FULL mode," +
+                Log.w(TAG, "Expect face ids and landmarks to be non-null for FULL mode,"
                         "fallback to SIMPLE mode");
                 faceDetectMode = CaptureResult.STATISTICS_FACE_DETECT_MODE_SIMPLE;
             } else {
                 if (faceIds.length != numFaces ||
                         faceLandmarks.length != numFaces * FACE_LANDMARK_SIZE) {
-                    Log.w(TAG, String.format("Face id size(%d), or face landmark size(%d) don't" +
+                    Log.w(TAG, String.format("Face id size(%d), or face landmark size(%d) don't"
                             "match face number(%d)!",
                             faceIds.length, faceLandmarks.length * FACE_LANDMARK_SIZE, numFaces));
                 }
@@ -815,7 +815,7 @@ public class CameraMetadataNative implements Parcelable {
         set(CaptureRequest.JPEG_GPS_COORDINATES, coords);
 
         if (processMethod == null) {
-            Log.w(TAG, "setGpsLocation - No process method, Location is not from a GPS or NETWORK" +
+            Log.w(TAG, "setGpsLocation - No process method, Location is not from a GPS or NETWORK"
                     "provider");
         } else {
             setBase(CaptureRequest.JPEG_GPS_PROCESSING_METHOD, processMethod);

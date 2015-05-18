@@ -75,13 +75,13 @@ public class NativeFrame extends Frame {
         // Get the structure class
         Class structClass = getFormat().getObjectClass();
         if (structClass == null) {
-            throw new RuntimeException("Attempting to get object data from frame that does " +
+            throw new RuntimeException("Attempting to get object data from frame that does "
                                        "not specify a structure object class!");
         }
 
         // Make sure it is a NativeBuffer subclass
         if (!NativeBuffer.class.isAssignableFrom(structClass)) {
-            throw new RuntimeException("NativeFrame object class must be a subclass of " +
+            throw new RuntimeException("NativeFrame object class must be a subclass of "
                                        "NativeBuffer!");
         }
 
@@ -90,7 +90,7 @@ public class NativeFrame extends Frame {
         try {
           structData = (NativeBuffer)structClass.newInstance();
         } catch (Exception e) {
-          throw new RuntimeException("Could not instantiate new structure instance of type '" +
+          throw new RuntimeException("Could not instantiate new structure instance of type '"
                                      structClass + "'!");
         }
 
@@ -110,7 +110,7 @@ public class NativeFrame extends Frame {
         assertFrameMutable();
         if (ints.length * nativeIntSize() > getFormat().getSize()) {
             throw new RuntimeException(
-                "NativeFrame cannot hold " + ints.length + " integers. (Can only hold " +
+                "NativeFrame cannot hold " + ints.length + " integers. (Can only hold "
                 (getFormat().getSize() / nativeIntSize()) + " integers).");
         } else if (!setNativeInts(ints)) {
             throw new RuntimeException("Could not set int values for native frame!");
@@ -127,7 +127,7 @@ public class NativeFrame extends Frame {
         assertFrameMutable();
         if (floats.length * nativeFloatSize() > getFormat().getSize()) {
             throw new RuntimeException(
-                "NativeFrame cannot hold " + floats.length + " floats. (Can only hold " +
+                "NativeFrame cannot hold " + floats.length + " floats. (Can only hold "
                 (getFormat().getSize() / nativeFloatSize()) + " floats).");
         } else if (!setNativeFloats(floats)) {
             throw new RuntimeException("Could not set int values for native frame!");
@@ -146,12 +146,12 @@ public class NativeFrame extends Frame {
         assertFrameMutable();
         byte[] bytes = buffer.array();
         if ((length + offset) > buffer.limit()) {
-            throw new RuntimeException("Offset and length exceed buffer size in native setData: " +
-                                       (length + offset) + " bytes given, but only " + buffer.limit() +
+            throw new RuntimeException("Offset and length exceed buffer size in native setData: "
+                                       (length + offset) + " bytes given, but only " + buffer.limit()
                                        " bytes available!");
         } else if (getFormat().getSize() != length) {
-            throw new RuntimeException("Data size in setData does not match native frame size: " +
-                                       "Frame size is " + getFormat().getSize() + " bytes, but " +
+            throw new RuntimeException("Data size in setData does not match native frame size: "
+                                       "Frame size is " + getFormat().getSize() + " bytes, but "
                                        length + " bytes given!");
         } else if (!setNativeData(bytes, offset, length)) {
             throw new RuntimeException("Could not set native frame data!");
@@ -203,7 +203,7 @@ public class NativeFrame extends Frame {
         // Make sure frame fits
         if (getFormat().getSize() < frame.getFormat().getSize()) {
             throw new RuntimeException(
-                "Attempting to assign frame of size " + frame.getFormat().getSize() + " to " +
+                "Attempting to assign frame of size " + frame.getFormat().getSize() + " to "
                 "smaller native frame of size " + getFormat().getSize() + "!");
         }
 

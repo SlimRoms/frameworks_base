@@ -277,7 +277,7 @@ public class DeviceStorageMonitorService extends SystemService {
                         sendNotification();
                         mLowMemFlag = true;
                     } else {
-                        if (localLOGV) Slog.v(TAG, "Running low on memory " +
+                        if (localLOGV) Slog.v(TAG, "Running low on memory "
                                 "notification already sent. do nothing");
                     }
                 }

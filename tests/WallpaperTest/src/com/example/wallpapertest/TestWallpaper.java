@@ -33,7 +33,7 @@ import android.view.WindowInsets;
 
 public class TestWallpaper extends WallpaperService {
     private static final String LOG_TAG = "PolarClock";
-    
+
     private final Handler mHandler = new Handler();
 
     @Override

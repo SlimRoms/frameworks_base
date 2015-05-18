@@ -228,7 +228,7 @@ public class NetworkActivity extends Activity {
 
         StringBuilder htmlString = new StringBuilder();
         htmlString.append("<h3>" + getResources().getString(R.string.page_title) + "</h3>");
-        htmlString.append("<em>" + getResources().getString(R.string.updated) + " " +
+        htmlString.append("<em>" + getResources().getString(R.string.updated) + " "
                 formatter.format(rightNow.getTime()) + "</em>");
 
         try {

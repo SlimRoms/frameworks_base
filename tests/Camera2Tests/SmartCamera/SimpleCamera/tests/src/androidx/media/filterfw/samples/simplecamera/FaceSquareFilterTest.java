@@ -113,21 +113,21 @@ public class FaceSquareFilterTest extends MffFilterTestCase {
         for (int j = 0; j < (bottom - top); j++) {
             // Left edge
             if (left > 0 && top > 0) {
-                pixels[ImageConstants.PIX_CHANNELS * (bitmap.getWidth() * (top + j) + left) +
+                pixels[ImageConstants.PIX_CHANNELS * (bitmap.getWidth() * (top + j) + left)
                        ImageConstants.RED_OFFSET] = (byte) ImageConstants.MAX_BYTE;
-                pixels[ImageConstants.PIX_CHANNELS * (bitmap.getWidth() * (top + j) + left) +
+                pixels[ImageConstants.PIX_CHANNELS * (bitmap.getWidth() * (top + j) + left)
                        ImageConstants.GREEN_OFFSET] = (byte) ImageConstants.MAX_BYTE;
-                pixels[ImageConstants.PIX_CHANNELS * (bitmap.getWidth() * (top + j) + left) +
+                pixels[ImageConstants.PIX_CHANNELS * (bitmap.getWidth() * (top + j) + left)
                        ImageConstants.BLUE_OFFSET] = (byte) ImageConstants.MAX_BYTE;
             }
 
             // Right edge
             if (right > 0 && top > 0) {
-                pixels[ImageConstants.PIX_CHANNELS * (bitmap.getWidth() * (top + j) + right) +
+                pixels[ImageConstants.PIX_CHANNELS * (bitmap.getWidth() * (top + j) + right)
                        ImageConstants.RED_OFFSET] = (byte) ImageConstants.MAX_BYTE;
-                pixels[ImageConstants.PIX_CHANNELS * (bitmap.getWidth() * (top + j) + right) +
+                pixels[ImageConstants.PIX_CHANNELS * (bitmap.getWidth() * (top + j) + right)
                        ImageConstants.GREEN_OFFSET] = (byte) ImageConstants.MAX_BYTE;
-                pixels[ImageConstants.PIX_CHANNELS * (bitmap.getWidth() * (top + j) + right) +
+                pixels[ImageConstants.PIX_CHANNELS * (bitmap.getWidth() * (top + j) + right)
                        ImageConstants.BLUE_OFFSET] = (byte) ImageConstants.MAX_BYTE;
             }
 
@@ -135,21 +135,21 @@ public class FaceSquareFilterTest extends MffFilterTestCase {
         for (int k = 0; k < (right - left); k++) {
             // Top edge
             if (top < bitmap.getHeight()) {
-                pixels[ImageConstants.PIX_CHANNELS * (bitmap.getWidth() * top + left + k) +
+                pixels[ImageConstants.PIX_CHANNELS * (bitmap.getWidth() * top + left + k)
                        ImageConstants.RED_OFFSET] = (byte) ImageConstants.MAX_BYTE;
-                pixels[ImageConstants.PIX_CHANNELS * (bitmap.getWidth() * top + left + k) +
+                pixels[ImageConstants.PIX_CHANNELS * (bitmap.getWidth() * top + left + k)
                        ImageConstants.GREEN_OFFSET] = (byte) ImageConstants.MAX_BYTE;
-                pixels[ImageConstants.PIX_CHANNELS * (bitmap.getWidth() * top + left + k) +
+                pixels[ImageConstants.PIX_CHANNELS * (bitmap.getWidth() * top + left + k)
                        ImageConstants.BLUE_OFFSET] = (byte) ImageConstants.MAX_BYTE;
 
             }
             // Bottom edge
             if (bottom < bitmap.getHeight()) {
-                pixels[ImageConstants.PIX_CHANNELS * (bitmap.getWidth() * bottom + left + k) +
+                pixels[ImageConstants.PIX_CHANNELS * (bitmap.getWidth() * bottom + left + k)
                        ImageConstants.RED_OFFSET] = (byte) ImageConstants.MAX_BYTE;
-                pixels[ImageConstants.PIX_CHANNELS * (bitmap.getWidth() * bottom + left + k) +
+                pixels[ImageConstants.PIX_CHANNELS * (bitmap.getWidth() * bottom + left + k)
                        ImageConstants.GREEN_OFFSET] = (byte) ImageConstants.MAX_BYTE;
-                pixels[ImageConstants.PIX_CHANNELS * (bitmap.getWidth() * bottom + left + k) +
+                pixels[ImageConstants.PIX_CHANNELS * (bitmap.getWidth() * bottom + left + k)
                        ImageConstants.BLUE_OFFSET] = (byte) ImageConstants.MAX_BYTE;
             }
         }

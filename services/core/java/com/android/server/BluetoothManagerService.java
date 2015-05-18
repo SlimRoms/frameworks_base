@@ -341,14 +341,14 @@ class BluetoothManagerService extends IBluetoothManager.Stub {
         if (name != null) {
             Settings.Secure.putString(mContentResolver, SECURE_SETTINGS_BLUETOOTH_NAME, name);
             mName = name;
-            if (DBG) Log.d(TAG,"Stored Bluetooth name: " +
+            if (DBG) Log.d(TAG,"Stored Bluetooth name: "
                 Settings.Secure.getString(mContentResolver,SECURE_SETTINGS_BLUETOOTH_NAME));
         }
 
         if (address != null) {
             Settings.Secure.putString(mContentResolver, SECURE_SETTINGS_BLUETOOTH_ADDRESS, address);
             mAddress=address;
-            if (DBG)  Log.d(TAG,"Stored Bluetoothaddress: " +
+            if (DBG)  Log.d(TAG,"Stored Bluetoothaddress: "
                 Settings.Secure.getString(mContentResolver,SECURE_SETTINGS_BLUETOOTH_ADDRESS));
         }
 
@@ -433,7 +433,7 @@ class BluetoothManagerService extends IBluetoothManager.Stub {
 
     public void getNameAndAddress() {
         if (DBG) {
-            Log.d(TAG,"getNameAndAddress(): mBluetooth = " + mBluetooth +
+            Log.d(TAG,"getNameAndAddress(): mBluetooth = " + mBluetooth
                   " mBinding = " + mBinding);
         }
         Message msg = mHandler.obtainMessage(MESSAGE_GET_NAME_AND_ADDRESS);
@@ -445,7 +445,7 @@ class BluetoothManagerService extends IBluetoothManager.Stub {
                                                 "Need BLUETOOTH ADMIN permission");
 
         if (DBG) {
-            Log.d(TAG,"enableNoAutoConnect():  mBluetooth =" + mBluetooth +
+            Log.d(TAG,"enableNoAutoConnect():  mBluetooth =" + mBluetooth
                     " mBinding = " + mBinding);
         }
         int callingAppId = UserHandle.getAppId(Binder.getCallingUid());
@@ -472,7 +472,7 @@ class BluetoothManagerService extends IBluetoothManager.Stub {
         mContext.enforceCallingOrSelfPermission(BLUETOOTH_ADMIN_PERM,
                                                 "Need BLUETOOTH ADMIN permission");
         if (DBG) {
-            Log.d(TAG,"enable():  mBluetooth =" + mBluetooth +
+            Log.d(TAG,"enable():  mBluetooth =" + mBluetooth
                     " mBinding = " + mBinding);
         }
 
@@ -506,7 +506,7 @@ class BluetoothManagerService extends IBluetoothManager.Stub {
         }
 
         if (DBG) {
-            Log.d(TAG,"disable(): mBluetooth = " + mBluetooth +
+            Log.d(TAG,"disable(): mBluetooth = " + mBluetooth
                 " mBinding = " + mBinding);
         }
 
@@ -525,7 +525,7 @@ class BluetoothManagerService extends IBluetoothManager.Stub {
 
     public void unbindAndFinish() {
         if (DBG) {
-            Log.d(TAG,"unbindAndFinish(): " + mBluetooth +
+            Log.d(TAG,"unbindAndFinish(): " + mBluetooth
                 " mBinding = " + mBinding);
         }
 
@@ -569,7 +569,7 @@ class BluetoothManagerService extends IBluetoothManager.Stub {
             IBluetoothProfileServiceConnection proxy) {
         if (!mEnable) {
             if (DBG) {
-                Log.d(TAG, "Trying to bind to profile: " + bluetoothProfile +
+                Log.d(TAG, "Trying to bind to profile: " + bluetoothProfile
                         ", while Bluetooth was disabled");
             }
             return false;
@@ -914,7 +914,7 @@ class BluetoothManagerService extends IBluetoothManager.Stub {
 
         public void onServiceDisconnected(ComponentName className) {
             // Called if we unexpected disconnected.
-            if (DBG) Log.d(TAG, "BluetoothServiceConnection, disconnected: " +
+            if (DBG) Log.d(TAG, "BluetoothServiceConnection, disconnected: "
                            className.getClassName());
             Message msg = mHandler.obtainMessage(MESSAGE_BLUETOOTH_SERVICE_DISCONNECTED);
             if (className.getClassName().equals("com.android.bluetooth.btservice.AdapterService")) {

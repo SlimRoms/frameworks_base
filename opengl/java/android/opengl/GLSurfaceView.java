@@ -1899,7 +1899,7 @@ public class GLSurfaceView extends SurfaceView implements SurfaceHolder.Callback
                     mMultipleGLESContextsAllowed = true;
                 }
                 if (LOG_SURFACE) {
-                    Log.w(TAG, "checkGLESVersion mGLESVersion =" +
+                    Log.w(TAG, "checkGLESVersion mGLESVersion ="
                             " " + mGLESVersion + " mMultipleGLESContextsAllowed = " + mMultipleGLESContextsAllowed);
                 }
                 mGLESVersionCheckComplete = true;

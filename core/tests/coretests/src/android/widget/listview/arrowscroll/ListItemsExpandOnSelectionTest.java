@@ -72,7 +72,7 @@ public class ListItemsExpandOnSelectionTest extends ActivityInstrumentationTestC
 
         sendKeys(KeyEvent.KEYCODE_DPAD_UP);
 
-        assertEquals("bottom of 2nd itme should have stayed the same when " +
+        assertEquals("bottom of 2nd itme should have stayed the same when "
                 "moving back up",
                 oldBottom,
                 mListView.getChildAt(1).getBottom());

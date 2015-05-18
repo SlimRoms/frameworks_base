@@ -90,7 +90,7 @@ public final class MarshalHelpers {
             return klass;
         }
 
-        throw new UnsupportedOperationException("Unsupported class '" + klass +
+        throw new UnsupportedOperationException("Unsupported class '" + klass
                 "'; expected a metadata primitive class");
     }
 

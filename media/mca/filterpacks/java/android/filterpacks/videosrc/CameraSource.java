@@ -90,12 +90,12 @@ public class CameraSource extends Filter {
     private Camera.Parameters mCameraParameters;
 
     private static final String mFrameShader =
-            "#extension GL_OES_EGL_image_external : require\n" +
-            "precision mediump float;\n" +
-            "uniform samplerExternalOES tex_sampler_0;\n" +
-            "varying vec2 v_texcoord;\n" +
-            "void main() {\n" +
-            "  gl_FragColor = texture2D(tex_sampler_0, v_texcoord);\n" +
+            "#extension GL_OES_EGL_image_external : require\n"
+            "precision mediump float;\n"
+            "uniform samplerExternalOES tex_sampler_0;\n"
+            "varying vec2 v_texcoord;\n"
+            "void main() {\n"
+            "  gl_FragColor = texture2D(tex_sampler_0, v_texcoord);\n"
             "}\n";
 
     private final boolean mLogVerbose;
@@ -150,7 +150,7 @@ public class CameraSource extends Filter {
         try {
             mCamera.setPreviewTexture(mSurfaceTexture);
         } catch (IOException e) {
-            throw new RuntimeException("Could not bind camera surface texture: " +
+            throw new RuntimeException("Could not bind camera surface texture: "
                                        e.getMessage() + "!");
         }
 

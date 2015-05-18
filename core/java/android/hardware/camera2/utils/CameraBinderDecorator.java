@@ -82,7 +82,7 @@ public class CameraBinderDecorator {
                         "Process hosting the camera service has died unexpectedly",
                         t);
             } else if (t instanceof RemoteException) {
-                throw new UnsupportedOperationException("An unknown RemoteException was thrown" +
+                throw new UnsupportedOperationException("An unknown RemoteException was thrown"
                         " which should never happen.", t);
             }
 

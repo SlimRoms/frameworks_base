@@ -104,7 +104,7 @@ public class AppCompatibility extends InstrumentationTestCase {
             assertNull(getStackTrace(err), err);
             assertTrue("App crashed after launch.", processStillUp(packageName));
         } else {
-            Log.d(TAG, "Missing argument, use " + PACKAGE_TO_LAUNCH +
+            Log.d(TAG, "Missing argument, use " + PACKAGE_TO_LAUNCH
                     " to specify the package to launch");
         }
     }

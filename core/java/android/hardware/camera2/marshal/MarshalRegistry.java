@@ -84,9 +84,9 @@ public class MarshalRegistry {
 
             if (marshaler == null) {
                 throw new UnsupportedOperationException(
-                        "Could not find marshaler that matches the requested " +
-                                "combination of type reference " +
-                                typeToken + " and native type " +
+                        "Could not find marshaler that matches the requested "
+                                "combination of type reference "
+                                typeToken + " and native type "
                                 MarshalHelpers.toStringNativeType(nativeType));
             }
 

@@ -128,7 +128,7 @@ public final class RouteInfo implements Parcelable {
                 }
             } else {
                 // no destination, no gateway. invalid.
-                throw new IllegalArgumentException("Invalid arguments passed in: " + gateway + "," +
+                throw new IllegalArgumentException("Invalid arguments passed in: " + gateway + ","
                                                    destination);
             }
         }

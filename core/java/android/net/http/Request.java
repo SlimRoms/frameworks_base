@@ -42,7 +42,7 @@ import org.apache.http.protocol.RequestContent;
 
 /**
  * Represents an HTTP request for a given host.
- * 
+ *
  * {@hide}
  */
 
@@ -252,7 +252,7 @@ class Request {
             statusCode = statusLine.getStatusCode();
         } while (statusCode < HttpStatus.SC_OK);
         if (HttpLog.LOGV) HttpLog.v(
-                "Request.readResponseStatus() " +
+                "Request.readResponseStatus() "
                 statusLine.toString().length() + " " + statusLine);
 
         ProtocolVersion v = statusLine.getProtocolVersion();
@@ -351,7 +351,7 @@ class Request {
         mEventHandler.endData();
         complete();
 
-        if (HttpLog.LOGV) HttpLog.v("Request.readResponse(): done " +
+        if (HttpLog.LOGV) HttpLog.v("Request.readResponse(): done "
                                     mHost.getSchemeName() + "://" + getHostPort() + mPath);
     }
 
@@ -419,7 +419,7 @@ class Request {
                 mBodyProvider.reset();
             } catch (IOException ex) {
                 if (HttpLog.LOGV) HttpLog.v(
-                        "failed to reset body provider " +
+                        "failed to reset body provider "
                         getUri());
             }
             setBodyProvider(mBodyProvider, mBodyLength);

@@ -141,7 +141,7 @@ public class DownloadManagerBaseTest extends InstrumentationTestCase {
                     Log.i(LOG_TAG, "Received Notification for download: " + id);
                     if (!downloadIds.contains(id)) {
                         ++mNumDownloadsCompleted;
-                        Log.i(LOG_TAG, "MultipleDownloadsCompletedReceiver got intent: " +
+                        Log.i(LOG_TAG, "MultipleDownloadsCompletedReceiver got intent: "
                                 intent.getAction() + " --> total count: " + mNumDownloadsCompleted);
                         downloadIds.add(id);
 
@@ -557,7 +557,7 @@ public class DownloadManagerBaseTest extends InstrumentationTestCase {
         Settings.Global.putInt(mContext.getContentResolver(), Settings.Global.AIRPLANE_MODE_ON,
                 state);
 
-        String timeoutMessage = "Timed out waiting for airplane mode to be " +
+        String timeoutMessage = "Timed out waiting for airplane mode to be "
                 (enable ? "enabled!" : "disabled!");
 
         // wait for airplane mode to change state
@@ -625,7 +625,7 @@ public class DownloadManagerBaseTest extends InstrumentationTestCase {
                     randomData = chunkSizeData;
                 }
                 output.write(randomData);
-                Log.i(TAG, "while creating " + fileSize + " file, " +
+                Log.i(TAG, "while creating " + fileSize + " file, "
                         "remaining bytes to be written: " + remaining);
             }
         } catch (IOException e) {

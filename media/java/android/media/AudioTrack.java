@@ -548,7 +548,7 @@ public class AudioTrack
         }
         final int channelCount = Integer.bitCount(channelConfig);
         if (channelCount > CHANNEL_COUNT_MAX) {
-            loge("Channel configuration contains too many channels " +
+            loge("Channel configuration contains too many channels "
                     channelCount + ">" + CHANNEL_COUNT_MAX);
             return false;
         }

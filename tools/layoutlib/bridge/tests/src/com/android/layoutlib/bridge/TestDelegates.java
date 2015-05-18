@@ -126,7 +126,7 @@ public class TestDelegates extends TestCase {
                 // check the return type of the methods match.
                 if (delegateMethod.getReturnType() != originalMethod.getReturnType()) {
                     mErrors.add(
-                            String.format("Delegate method %1$s.%2$s does not match the " +
+                            String.format("Delegate method %1$s.%2$s does not match the "
                                     "corresponding framework method which returns %3$s",
                             delegateClass.getName(),
                             getMethodName(delegateMethod),
@@ -136,7 +136,7 @@ public class TestDelegates extends TestCase {
                 // check that the method has the annotation
                 if (delegateMethod.getAnnotation(LayoutlibDelegate.class) == null) {
                     mErrors.add(
-                            String.format("Delegate method %1$s for class %2$s does not have the " +
+                            String.format("Delegate method %1$s for class %2$s does not have the "
                                             "@LayoutlibDelegate annotation",
                                     delegateMethod.getName(),
                                     originalClass.getName()));

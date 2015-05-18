@@ -465,7 +465,7 @@ public class SyncStorageEngineTest extends AndroidTestCase {
     public void testComponentSettings() throws Exception {
         EndPoint target1 = new EndPoint(syncService1, 0);
         engine.updateOrAddPeriodicSync(target1, dayPoll, dayFuzz, Bundle.EMPTY);
-        
+
         engine.setIsTargetServiceActive(target1.service, 0, true);
         boolean active = engine.getIsTargetServiceActive(target1.service, 0);
         assert(active);

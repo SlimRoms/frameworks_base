@@ -542,8 +542,8 @@ public class Notification implements Parcelable
     public static final int COLOR_DEFAULT = 0; // AKA Color.TRANSPARENT
 
     /**
-     * Sphere of visibility of this notification, which affects how and when the SystemUI reveals 
-     * the notification's presence and contents in untrusted situations (namely, on the secure 
+     * Sphere of visibility of this notification, which affects how and when the SystemUI reveals
+     * the notification's presence and contents in untrusted situations (namely, on the secure
      * lockscreen).
      *
      * The default level, {@link #VISIBILITY_PRIVATE}, behaves exactly as notifications have always

@@ -336,7 +336,7 @@ final class WiredAccessoryManager implements WiredAccessoryCallbacks {
                             updateStateLocked(uei.getDevPath(), uei.getDevName(), curState);
                         }
                     } catch (FileNotFoundException e) {
-                        Slog.w(TAG, uei.getSwitchStatePath() +
+                        Slog.w(TAG, uei.getSwitchStatePath()
                                 " not found while attempting to determine initial switch state");
                     } catch (Exception e) {
                         Slog.e(TAG, "" , e);

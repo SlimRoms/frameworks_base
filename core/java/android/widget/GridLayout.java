@@ -834,7 +834,7 @@ public class GridLayout extends ViewGroup {
         int count = axis.definedCount;
         if (count != UNDEFINED) {
             if (span.max > count) {
-                handleInvalidParams(groupName +
+                handleInvalidParams(groupName
                         " indices (start + span) mustn't exceed the " + groupName + " count");
             }
             if (span.size() > count) {
@@ -1283,8 +1283,8 @@ public class GridLayout extends ViewGroup {
 
         public void setCount(int count) {
             if (count != UNDEFINED && count < getMaxIndex()) {
-                handleInvalidParams((horizontal ? "column" : "row") +
-                        "Count must be greater than or equal to the maximum of all grid indices " +
+                handleInvalidParams((horizontal ? "column" : "row")
+                        "Count must be greater than or equal to the maximum of all grid indices "
                         "(and spans) defined in the LayoutParams of each child");
             }
             this.definedCount = count;
@@ -1589,7 +1589,7 @@ public class GridLayout extends ViewGroup {
                     removed.add(arc);
                 }
             }
-            mPrinter.println(axisName + " constraints: " + arcsToString(culprits) +
+            mPrinter.println(axisName + " constraints: " + arcsToString(culprits)
                     " are inconsistent; permanently removing: " + arcsToString(removed) + ". ");
         }
 
@@ -2422,9 +2422,9 @@ public class GridLayout extends ViewGroup {
 
         @Override
         public String toString() {
-            return "Bounds{" +
-                    "before=" + before +
-                    ", after=" + after +
+            return "Bounds{"
+                    "before=" + before
+                    ", after=" + after
                     '}';
         }
     }

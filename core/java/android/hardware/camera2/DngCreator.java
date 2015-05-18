@@ -129,7 +129,7 @@ public final class DngCreator implements AutoCloseable {
     public DngCreator setOrientation(int orientation) {
         if (orientation < ExifInterface.ORIENTATION_UNDEFINED ||
                 orientation > ExifInterface.ORIENTATION_ROTATE_270) {
-            throw new IllegalArgumentException("Orientation " + orientation +
+            throw new IllegalArgumentException("Orientation " + orientation
                     " is not a valid EXIF orientation value");
         }
         nativeSetOrientation(orientation);
@@ -159,8 +159,8 @@ public final class DngCreator implements AutoCloseable {
         int height = pixels.getHeight();
 
         if (width > MAX_THUMBNAIL_DIMENSION || height > MAX_THUMBNAIL_DIMENSION) {
-            throw new IllegalArgumentException("Thumbnail dimensions width,height (" + width +
-                    "," + height + ") too large, dimensions must be smaller than " +
+            throw new IllegalArgumentException("Thumbnail dimensions width,height (" + width
+                    "," + height + ") too large, dimensions must be smaller than "
                     MAX_THUMBNAIL_DIMENSION);
         }
 
@@ -199,8 +199,8 @@ public final class DngCreator implements AutoCloseable {
         int height = pixels.getHeight();
 
         if (width > MAX_THUMBNAIL_DIMENSION || height > MAX_THUMBNAIL_DIMENSION) {
-            throw new IllegalArgumentException("Thumbnail dimensions width,height (" + width +
-                    "," + height + ") too large, dimensions must be smaller than " +
+            throw new IllegalArgumentException("Thumbnail dimensions width,height (" + width
+                    "," + height + ") too large, dimensions must be smaller than "
                     MAX_THUMBNAIL_DIMENSION);
         }
 
@@ -308,7 +308,7 @@ public final class DngCreator implements AutoCloseable {
         int width = size.getWidth();
         int height = size.getHeight();
         if (width <= 0 || height <= 0) {
-            throw new IllegalArgumentException("Size with invalid width, height: (" + width + "," +
+            throw new IllegalArgumentException("Size with invalid width, height: (" + width + ","
                     height + ") passed to writeInputStream");
         }
         nativeWriteInputStream(dngOutput, pixels, width, height, offset);
@@ -449,18 +449,18 @@ public final class DngCreator implements AutoCloseable {
     private void writeByteBuffer(int width, int height, ByteBuffer pixels, OutputStream dngOutput,
                                  int pixelStride, int rowStride, long offset)  throws IOException {
         if (width <= 0 || height <= 0) {
-            throw new IllegalArgumentException("Image with invalid width, height: (" + width + "," +
+            throw new IllegalArgumentException("Image with invalid width, height: (" + width + ","
                     height + ") passed to write");
         }
         long capacity = pixels.capacity();
         long totalSize = rowStride * height + offset;
         if (capacity < totalSize) {
-            throw new IllegalArgumentException("Image size " + capacity +
+            throw new IllegalArgumentException("Image size " + capacity
                     " is too small (must be larger than " + totalSize + ")");
         }
         int minRowStride = pixelStride * width;
         if (minRowStride > rowStride) {
-            throw new IllegalArgumentException("Invalid image pixel stride, row byte width " +
+            throw new IllegalArgumentException("Invalid image pixel stride, row byte width "
                     minRowStride + " is too large, expecting " + rowStride);
         }
         pixels.clear(); // Reset mark and limit

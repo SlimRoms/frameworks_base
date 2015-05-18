@@ -305,7 +305,7 @@ public class ScrollBarDrawable extends Drawable {
 
     @Override
     public String toString() {
-        return "ScrollBarDrawable: range=" + mRange + " offset=" + mOffset +
+        return "ScrollBarDrawable: range=" + mRange + " offset=" + mOffset
                " extent=" + mExtent + (mVertical ? " V" : " H");
     }
 }

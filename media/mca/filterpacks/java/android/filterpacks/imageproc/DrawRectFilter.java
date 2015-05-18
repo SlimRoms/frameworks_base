@@ -45,16 +45,16 @@ public class DrawRectFilter extends Filter {
     private float mColorBlue = 0.0f;
 
     private final String mVertexShader =
-        "attribute vec4 aPosition;\n" +
-        "void main() {\n" +
-        "  gl_Position = aPosition;\n" +
+        "attribute vec4 aPosition;\n"
+        "void main() {\n"
+        "  gl_Position = aPosition;\n"
         "}\n";
 
     private final String mFixedColorFragmentShader =
-        "precision mediump float;\n" +
-        "uniform vec4 color;\n" +
-        "void main() {\n" +
-        "  gl_FragColor = color;\n" +
+        "precision mediump float;\n"
+        "uniform vec4 color;\n"
+        "void main() {\n"
+        "  gl_FragColor = color;\n"
         "}\n";
 
     private ShaderProgram mProgram;

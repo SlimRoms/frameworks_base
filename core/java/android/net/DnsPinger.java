@@ -166,7 +166,7 @@ public final class DnsPinger extends Handler {
                     DatagramPacket packet = new DatagramPacket(buf,
                             buf.length, dnsAddress, DNS_PORT);
                     if (DBG) {
-                        log("Sending a ping " + newActivePing.internalId +
+                        log("Sending a ping " + newActivePing.internalId
                                 " to " + dnsAddress.getHostAddress()
                                 + " with packetId " + newActivePing.packetId + ".");
                     }
@@ -278,8 +278,8 @@ public final class DnsPinger extends Handler {
 
     private void sendResponse(int internalId, int externalId, int responseVal) {
         if(DBG) {
-            log("Responding to packet " + internalId +
-                    " externalId " + externalId +
+            log("Responding to packet " + internalId
+                    " externalId " + externalId
                     " and val " + responseVal);
         }
         mTarget.sendMessage(obtainMessage(DNS_PING_RESULT, internalId, responseVal));

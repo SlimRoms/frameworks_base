@@ -256,7 +256,7 @@ class VideoDumpView extends GLSurfaceView implements MediaPlayerControl {
     public int getAudioSessionId() {
         return 0;
     }
- 
+
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         attachMediaController();
@@ -291,23 +291,23 @@ class VideoDumpView extends GLSurfaceView implements MediaPlayerControl {
         private FloatBuffer mTriangleVertices;
 
         private final String mVertexShader =
-                "uniform mat4 uMVPMatrix;\n" +
-                "uniform mat4 uSTMatrix;\n" +
-                "attribute vec4 aPosition;\n" +
-                "attribute vec4 aTextureCoord;\n" +
-                "varying vec2 vTextureCoord;\n" +
-                "void main() {\n" +
-                "  gl_Position = uMVPMatrix * aPosition;\n" +
-                "  vTextureCoord = (uSTMatrix * aTextureCoord).xy;\n" +
+                "uniform mat4 uMVPMatrix;\n"
+                "uniform mat4 uSTMatrix;\n"
+                "attribute vec4 aPosition;\n"
+                "attribute vec4 aTextureCoord;\n"
+                "varying vec2 vTextureCoord;\n"
+                "void main() {\n"
+                "  gl_Position = uMVPMatrix * aPosition;\n"
+                "  vTextureCoord = (uSTMatrix * aTextureCoord).xy;\n"
                 "}\n";
 
         private final String mFragmentShader =
-                "#extension GL_OES_EGL_image_external : require\n" +
-                "precision mediump float;\n" +
-                "varying vec2 vTextureCoord;\n" +
-                "uniform samplerExternalOES sTexture;\n" +
-                "void main() {\n" +
-                "  gl_FragColor = texture2D(sTexture, vTextureCoord);\n" +
+                "#extension GL_OES_EGL_image_external : require\n"
+                "precision mediump float;\n"
+                "varying vec2 vTextureCoord;\n"
+                "uniform samplerExternalOES sTexture;\n"
+                "void main() {\n"
+                "  gl_FragColor = texture2D(sTexture, vTextureCoord);\n"
                 "}\n";
 
         private float[] mMVPMatrix = new float[16];
@@ -460,7 +460,7 @@ class VideoDumpView extends GLSurfaceView implements MediaPlayerControl {
 
         /**
          * Called when the surface changed size.
-         * Called after the surface is created and whenever the OpenGL surface size changes. 
+         * Called after the surface is created and whenever the OpenGL surface size changes.
          */
         public void onSurfaceChanged(GL10 glUnused, int width, int height) {
             Log.d(TAG, "Surface size: " + width + "x" + height);

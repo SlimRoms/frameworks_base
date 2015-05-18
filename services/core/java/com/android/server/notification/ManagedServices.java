@@ -538,7 +538,7 @@ abstract public class ManagedServices {
 
         private void update(Uri uri) {
             if (uri == null || mSecureSettingsUri.equals(uri)) {
-                if (DEBUG) Slog.d(TAG, "Setting changed: mSecureSettingsUri=" + mSecureSettingsUri +
+                if (DEBUG) Slog.d(TAG, "Setting changed: mSecureSettingsUri=" + mSecureSettingsUri
                         " / uri=" + uri);
                 rebindServices();
             }

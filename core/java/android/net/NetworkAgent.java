@@ -188,7 +188,7 @@ public abstract class NetworkAgent extends Handler {
             }
             case CMD_REPORT_NETWORK_STATUS: {
                 if (VDBG) {
-                    log("CMD_REPORT_NETWORK_STATUS(" +
+                    log("CMD_REPORT_NETWORK_STATUS("
                             (msg.arg1 == VALID_NETWORK ? "VALID)" : "INVALID)"));
                 }
                 networkStatus(msg.arg1);

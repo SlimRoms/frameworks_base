@@ -280,7 +280,7 @@ class WindowStateAnimator {
         mTransformation.clear();
         final boolean more = mAnimation.getTransformation(currentTime, mTransformation);
         if (false && DEBUG_ANIM) Slog.v(
-            TAG, "Stepped animation in " + this +
+            TAG, "Stepped animation in " + this
             ": more=" + more + ", xform=" + mTransformation);
         return more;
     }
@@ -300,10 +300,10 @@ class WindowStateAnimator {
                 mHasLocalTransformation = true;
                 if (!mLocalAnimating) {
                     if (DEBUG_ANIM) Slog.v(
-                        TAG, "Starting animation in " + this +
-                        " @ " + currentTime + ": ww=" + mWin.mFrame.width() +
-                        " wh=" + mWin.mFrame.height() +
-                        " dw=" + mAnimDw + " dh=" + mAnimDh +
+                        TAG, "Starting animation in " + this
+                        " @ " + currentTime + ": ww=" + mWin.mFrame.width()
+                        " wh=" + mWin.mFrame.height()
+                        " dw=" + mAnimDw + " dh=" + mAnimDh
                         " scale=" + mService.getWindowAnimationScaleLocked());
                     mAnimation.initialize(mWin.mFrame.width(), mWin.mFrame.height(),
                             mAnimDw, mAnimDh);
@@ -323,7 +323,7 @@ class WindowStateAnimator {
                     }
                 }
                 if (DEBUG_ANIM) Slog.v(
-                    TAG, "Finished animation in " + this +
+                    TAG, "Finished animation in " + this
                     " @ " + currentTime);
                 //WindowManagerService.this.dump();
             }
@@ -580,7 +580,7 @@ class WindowStateAnimator {
         @Override
         public void setAlpha(float alpha) {
             if (mSurfaceTraceAlpha != alpha) {
-                if (logSurfaceTrace) Slog.v(SURFACE_TAG, "setAlpha(" + alpha + "): OLD:" + this +
+                if (logSurfaceTrace) Slog.v(SURFACE_TAG, "setAlpha(" + alpha + "): OLD:" + this
                         ". Called by " + Debug.getCallers(3));
                 mSurfaceTraceAlpha = alpha;
             }
@@ -1207,7 +1207,7 @@ class WindowStateAnimator {
         }
 
         if (WindowManagerService.localLOGV) Slog.v(
-                TAG, "computeShownFrameLocked: " + this +
+                TAG, "computeShownFrameLocked: " + this
                 " not attached, mAlpha=" + mAlpha);
 
         final boolean applyUniverseTransformation = (mAnimator.mUniverseBackground != null

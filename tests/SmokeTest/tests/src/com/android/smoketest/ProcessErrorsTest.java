@@ -243,13 +243,13 @@ public class ProcessErrorsTest extends AndroidTestCase {
     /**
      * A helper function to create an {@link Intent} to run, given a {@link ResolveInfo} specifying
      * an activity to be launched.
-     * 
+     *
      * @return the {@link Intent} or <code>null</code> if given app is disabled
      */
     Intent intentForActivity(ResolveInfo app) {
         final ComponentName component = new ComponentName(app.activityInfo.packageName,
                 app.activityInfo.name);
-        if (getContext().getPackageManager().getComponentEnabledSetting(component) == 
+        if (getContext().getPackageManager().getComponentEnabledSetting(component) ==
                 PackageManager.COMPONENT_ENABLED_STATE_DISABLED) {
             return null;
         }
@@ -275,7 +275,7 @@ public class ProcessErrorsTest extends AndroidTestCase {
 
     /**
      * This helper function will dump the actual error reports.
-     * 
+     *
      * @param errList The error report containing one or more error records.
      * @return Returns a string containing all of the errors.
      */

@@ -191,17 +191,17 @@ public final class BluetoothLeAdvertiser {
             }
             // 16 bit service uuids are grouped into one field when doing advertising.
             if (num16BitUuids != 0) {
-                size += OVERHEAD_BYTES_PER_FIELD +
+                size += OVERHEAD_BYTES_PER_FIELD
                         num16BitUuids * BluetoothUuid.UUID_BYTES_16_BIT;
             }
             // 32 bit service uuids are grouped into one field when doing advertising.
             if (num32BitUuids != 0) {
-                size += OVERHEAD_BYTES_PER_FIELD +
+                size += OVERHEAD_BYTES_PER_FIELD
                         num32BitUuids * BluetoothUuid.UUID_BYTES_32_BIT;
             }
             // 128 bit service uuids are grouped into one field when doing advertising.
             if (num128BitUuids != 0) {
-                size += OVERHEAD_BYTES_PER_FIELD +
+                size += OVERHEAD_BYTES_PER_FIELD
                         num128BitUuids * BluetoothUuid.UUID_BYTES_128_BIT;
             }
         }
@@ -210,7 +210,7 @@ public final class BluetoothLeAdvertiser {
                     + byteLength(data.getServiceData().get(uuid));
         }
         for (int i = 0; i < data.getManufacturerSpecificData().size(); ++i) {
-            size += OVERHEAD_BYTES_PER_FIELD + MANUFACTURER_SPECIFIC_DATA_LENGTH +
+            size += OVERHEAD_BYTES_PER_FIELD + MANUFACTURER_SPECIFIC_DATA_LENGTH
                     byteLength(data.getManufacturerSpecificData().valueAt(i));
         }
         if (data.getIncludeTxPowerLevel()) {

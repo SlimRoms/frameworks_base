@@ -63,7 +63,7 @@ class FocusedStackFrame {
     }
 
     private void draw(Rect bounds, int color) {
-        if (false && DEBUG_STACK) Slog.i(TAG, "draw: bounds=" + bounds.toShortString() +
+        if (false && DEBUG_STACK) Slog.i(TAG, "draw: bounds=" + bounds.toShortString()
                 " color=" + Integer.toHexString(color));
         mTmpDrawRect.set(bounds);
         Canvas c = null;
@@ -108,8 +108,8 @@ class FocusedStackFrame {
     // Note: caller responsible for being inside
     // Surface.openTransaction() / closeTransaction()
     public void setVisibility(boolean on) {
-        if (false && DEBUG_STACK) Slog.i(TAG, "setVisibility: on=" + on +
-                " mLastBounds=" + mLastBounds.toShortString() +
+        if (false && DEBUG_STACK) Slog.i(TAG, "setVisibility: on=" + on
+                " mLastBounds=" + mLastBounds.toShortString()
                 " mBounds=" + mBounds.toShortString());
         if (mSurfaceControl == null) {
             return;

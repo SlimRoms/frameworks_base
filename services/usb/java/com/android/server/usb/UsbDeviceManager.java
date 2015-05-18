@@ -693,7 +693,7 @@ public class UsbDeviceManager {
                     UserHandle userHandle = new UserHandle(msg.arg1);
                     if (userManager.hasUserRestriction(UserManager.DISALLOW_USB_FILE_TRANSFER,
                             userHandle)) {
-                        Slog.v(TAG, "Switched to user " + msg.arg1 +
+                        Slog.v(TAG, "Switched to user " + msg.arg1
                                 " with DISALLOW_USB_FILE_TRANSFER restriction; disabling USB.");
                         setUsbConfig("none");
                         mCurrentUser = msg.arg1;

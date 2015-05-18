@@ -497,7 +497,7 @@ public class Matrix {
         for (int i=0 ; i<4 ; i++) {
             int tmi = tmOffset + i;
             int mi = mOffset + i;
-            tm[12 + tmi] = m[mi] * x + m[4 + mi] * y + m[8 + mi] * z +
+            tm[12 + tmi] = m[mi] * x + m[4 + mi] * y + m[8 + mi] * z
                 m[12 + mi];
         }
     }

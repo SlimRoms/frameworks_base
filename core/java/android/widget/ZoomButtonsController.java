@@ -182,7 +182,7 @@ public class ZoomButtonsController implements View.OnTouchListener {
                     if (mOwnerView.getWindowToken() == null) {
                         // Doh, it is still null, just ignore the set visible call
                         Log.e(TAG,
-                                "Cannot make the zoom controller visible if the owner view is " +
+                                "Cannot make the zoom controller visible if the owner view is "
                                 "not attached to a window.");
                     } else {
                         setVisible(true);
@@ -490,7 +490,7 @@ public class ZoomButtonsController implements View.OnTouchListener {
                     setVisible(false);
                     return true;
                 }
-                
+
             } else {
                 dismissControlsDelayed(ZOOM_CONTROLS_TIMEOUT);
             }

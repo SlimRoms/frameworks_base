@@ -699,7 +699,7 @@ public class Switch extends CompoundButton {
         mThumbDrawable.getPadding(mTempRect);
         final int thumbTop = mSwitchTop - mTouchSlop;
         final int thumbLeft = mSwitchLeft + thumbOffset - mTouchSlop;
-        final int thumbRight = thumbLeft + mThumbWidth +
+        final int thumbRight = thumbLeft + mThumbWidth
                 mTempRect.left + mTempRect.right + mTouchSlop;
         final int thumbBottom = mSwitchBottom + mTouchSlop;
         return x > thumbLeft && x < thumbRight && y > thumbTop && y < thumbBottom;

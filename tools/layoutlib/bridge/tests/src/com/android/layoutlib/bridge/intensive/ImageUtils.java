@@ -152,12 +152,12 @@ public class ImageUtils {
         if (percentDifference > maxPercentDifferent) {
             error = String.format("Images differ (by %.1f%%)", percentDifference);
         } else if (Math.abs(goldenImage.getWidth() - image.getWidth()) >= 2) {
-            error = "Widths differ too much for " + imageName + ": " +
-                    goldenImage.getWidth() + "x" + goldenImage.getHeight() +
+            error = "Widths differ too much for " + imageName + ": "
+                    goldenImage.getWidth() + "x" + goldenImage.getHeight()
                     "vs" + image.getWidth() + "x" + image.getHeight();
         } else if (Math.abs(goldenImage.getHeight() - image.getHeight()) >= 2) {
-            error = "Heights differ too much for " + imageName + ": " +
-                    goldenImage.getWidth() + "x" + goldenImage.getHeight() +
+            error = "Heights differ too much for " + imageName + ": "
+                    goldenImage.getWidth() + "x" + goldenImage.getHeight()
                     "vs" + image.getWidth() + "x" + image.getHeight();
         }
 

@@ -286,7 +286,7 @@ class TaskStackViewTouchHandler implements SwipeHelper.Callback {
                             0, 0,
                             mScroller.progressToScrollRange(mSv.mLayoutAlgorithm.mMinScrollP),
                             mScroller.progressToScrollRange(mSv.mLayoutAlgorithm.mMaxScrollP),
-                            0, Constants.Values.TaskStackView.TaskStackMinOverscrollRange +
+                            0, Constants.Values.TaskStackView.TaskStackMinOverscrollRange
                                     overscrollRange);
                     // Invalidate to kick off computeScroll
                     mSv.invalidate();

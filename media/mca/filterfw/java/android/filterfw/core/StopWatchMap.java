@@ -58,7 +58,7 @@ class StopWatch {
         ++mNumCalls;
         mStartTime = -1;
         if (mNumCalls % STOP_WATCH_LOGGING_PERIOD == 0) {
-            Log.i(TAG, "AVG ms/call " + mName + ": " +
+            Log.i(TAG, "AVG ms/call " + mName + ": "
                   String.format("%.1f", mTotalTime * 1.0f / mNumCalls));
             mTotalTime = 0;
             mNumCalls = 0;

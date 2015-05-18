@@ -4005,7 +4005,7 @@ public class View implements Drawable.Callback, KeyEvent.Callback,
                                         String idText = id == NO_ID ? "" : " with id '"
                                                 + getContext().getResources().getResourceEntryName(
                                                     id) + "'";
-                                        throw new IllegalStateException("Could not find a method " +
+                                        throw new IllegalStateException("Could not find a method "
                                                 handlerName + "(View) in the activity "
                                                 + getContext().getClass() + " for onClick handler"
                                                 + " on view " + View.this.getClass() + idText, e);
@@ -6961,7 +6961,7 @@ public class View implements Drawable.Callback, KeyEvent.Callback,
                 mTransientStateCount - 1;
         if (mTransientStateCount < 0) {
             mTransientStateCount = 0;
-            Log.e(VIEW_LOG_TAG, "hasTransientState decremented below 0: " +
+            Log.e(VIEW_LOG_TAG, "hasTransientState decremented below 0: "
                     "unmatched pair of setHasTransientState calls");
         } else if ((hasTransientState && mTransientStateCount == 1) ||
                 (!hasTransientState && mTransientStateCount == 0)) {
@@ -6972,7 +6972,7 @@ public class View implements Drawable.Callback, KeyEvent.Callback,
                 try {
                     mParent.childHasTransientStateChanged(this, hasTransientState);
                 } catch (AbstractMethodError e) {
-                    Log.e(VIEW_LOG_TAG, mParent.getClass().getSimpleName() +
+                    Log.e(VIEW_LOG_TAG, mParent.getClass().getSimpleName()
                             " does not fully implement ViewParent", e);
                 }
             }
@@ -8009,7 +8009,7 @@ public class View implements Drawable.Callback, KeyEvent.Callback,
                     mParent.notifySubtreeAccessibilityStateChanged(
                             this, this, AccessibilityEvent.CONTENT_CHANGE_TYPE_SUBTREE);
                 } catch (AbstractMethodError e) {
-                    Log.e(VIEW_LOG_TAG, mParent.getClass().getSimpleName() +
+                    Log.e(VIEW_LOG_TAG, mParent.getClass().getSimpleName()
                             " does not fully implement ViewParent", e);
                 }
             }
@@ -13220,7 +13220,7 @@ public class View implements Drawable.Callback, KeyEvent.Callback,
                             mPrivateFlags2 |= PFLAG2_LAYOUT_DIRECTION_RESOLVED_RTL;
                         }
                     } catch (AbstractMethodError e) {
-                        Log.e(VIEW_LOG_TAG, mParent.getClass().getSimpleName() +
+                        Log.e(VIEW_LOG_TAG, mParent.getClass().getSimpleName()
                                 " does not fully implement ViewParent", e);
                     }
                     break;
@@ -13255,7 +13255,7 @@ public class View implements Drawable.Callback, KeyEvent.Callback,
                     try {
                         return mParent.canResolveLayoutDirection();
                     } catch (AbstractMethodError e) {
-                        Log.e(VIEW_LOG_TAG, mParent.getClass().getSimpleName() +
+                        Log.e(VIEW_LOG_TAG, mParent.getClass().getSimpleName()
                                 " does not fully implement ViewParent", e);
                     }
                 }
@@ -13625,7 +13625,7 @@ public class View implements Drawable.Callback, KeyEvent.Callback,
         mPrivateFlags3 &= ~PFLAG3_CALLED_SUPER;
         onCancelPendingInputEvents();
         if ((mPrivateFlags3 & PFLAG3_CALLED_SUPER) != PFLAG3_CALLED_SUPER) {
-            throw new SuperNotCalledException("View " + getClass().getSimpleName() +
+            throw new SuperNotCalledException("View " + getClass().getSimpleName()
                     " did not call through to super.onCancelPendingInputEvents()");
         }
     }
@@ -14077,9 +14077,9 @@ public class View implements Drawable.Callback, KeyEvent.Callback,
      */
     @SuppressWarnings({"UnusedDeclaration"})
     public void outputDirtyFlags(String indent, boolean clear, int clearMask) {
-        Log.d("View", indent + this + "             DIRTY(" + (mPrivateFlags & View.PFLAG_DIRTY_MASK) +
-                ") DRAWN(" + (mPrivateFlags & PFLAG_DRAWN) + ")" + " CACHE_VALID(" +
-                (mPrivateFlags & View.PFLAG_DRAWING_CACHE_VALID) +
+        Log.d("View", indent + this + "             DIRTY(" + (mPrivateFlags & View.PFLAG_DIRTY_MASK)
+                ") DRAWN(" + (mPrivateFlags & PFLAG_DRAWN) + ")" + " CACHE_VALID("
+                (mPrivateFlags & View.PFLAG_DRAWING_CACHE_VALID)
                 ") INVALIDATED(" + (mPrivateFlags & PFLAG_INVALIDATED) + ")");
         if (clear) {
             mPrivateFlags &= clearMask;
@@ -17384,7 +17384,7 @@ public class View implements Drawable.Callback, KeyEvent.Callback,
         }
 
         output = debugIndent(depth);
-        output += "mMeasureWidth=" + mMeasuredWidth +
+        output += "mMeasureWidth=" + mMeasuredWidth
                 " mMeasureHeight=" + mMeasuredHeight;
         Log.d(VIEW_LOG_TAG, output);
 
@@ -18754,7 +18754,7 @@ public class View implements Drawable.Callback, KeyEvent.Callback,
                         return true;
                     }
                 } catch (AbstractMethodError e) {
-                    Log.e(VIEW_LOG_TAG, "ViewParent " + p + " does not implement interface " +
+                    Log.e(VIEW_LOG_TAG, "ViewParent " + p + " does not implement interface "
                             "method onStartNestedScroll", e);
                     // Allow the search upward to continue
                 }
@@ -19113,7 +19113,7 @@ public class View implements Drawable.Callback, KeyEvent.Callback,
                             return false;
                         }
                     } catch (AbstractMethodError e) {
-                        Log.e(VIEW_LOG_TAG, mParent.getClass().getSimpleName() +
+                        Log.e(VIEW_LOG_TAG, mParent.getClass().getSimpleName()
                                 " does not fully implement ViewParent", e);
                         mPrivateFlags2 |= PFLAG2_TEXT_DIRECTION_RESOLVED |
                                 PFLAG2_TEXT_DIRECTION_RESOLVED_DEFAULT;
@@ -19125,7 +19125,7 @@ public class View implements Drawable.Callback, KeyEvent.Callback,
                     try {
                         parentResolvedDirection = mParent.getTextDirection();
                     } catch (AbstractMethodError e) {
-                        Log.e(VIEW_LOG_TAG, mParent.getClass().getSimpleName() +
+                        Log.e(VIEW_LOG_TAG, mParent.getClass().getSimpleName()
                                 " does not fully implement ViewParent", e);
                         parentResolvedDirection = TEXT_DIRECTION_LTR;
                     }
@@ -19177,7 +19177,7 @@ public class View implements Drawable.Callback, KeyEvent.Callback,
                     try {
                         return mParent.canResolveTextDirection();
                     } catch (AbstractMethodError e) {
-                        Log.e(VIEW_LOG_TAG, mParent.getClass().getSimpleName() +
+                        Log.e(VIEW_LOG_TAG, mParent.getClass().getSimpleName()
                                 " does not fully implement ViewParent", e);
                     }
                 }
@@ -19347,7 +19347,7 @@ public class View implements Drawable.Callback, KeyEvent.Callback,
                             return false;
                         }
                     } catch (AbstractMethodError e) {
-                        Log.e(VIEW_LOG_TAG, mParent.getClass().getSimpleName() +
+                        Log.e(VIEW_LOG_TAG, mParent.getClass().getSimpleName()
                                 " does not fully implement ViewParent", e);
                         mPrivateFlags2 |= PFLAG2_TEXT_ALIGNMENT_RESOLVED |
                                 PFLAG2_TEXT_ALIGNMENT_RESOLVED_DEFAULT;
@@ -19358,7 +19358,7 @@ public class View implements Drawable.Callback, KeyEvent.Callback,
                     try {
                         parentResolvedTextAlignment = mParent.getTextAlignment();
                     } catch (AbstractMethodError e) {
-                        Log.e(VIEW_LOG_TAG, mParent.getClass().getSimpleName() +
+                        Log.e(VIEW_LOG_TAG, mParent.getClass().getSimpleName()
                                 " does not fully implement ViewParent", e);
                         parentResolvedTextAlignment = TEXT_ALIGNMENT_GRAVITY;
                     }
@@ -19414,7 +19414,7 @@ public class View implements Drawable.Callback, KeyEvent.Callback,
                     try {
                         return mParent.canResolveTextAlignment();
                     } catch (AbstractMethodError e) {
-                        Log.e(VIEW_LOG_TAG, mParent.getClass().getSimpleName() +
+                        Log.e(VIEW_LOG_TAG, mParent.getClass().getSimpleName()
                                 " does not fully implement ViewParent", e);
                     }
                 }
@@ -19803,7 +19803,7 @@ public class View implements Drawable.Callback, KeyEvent.Callback,
             }
             int size = getSize(measureSpec) + delta;
             if (size < 0) {
-                Log.e(VIEW_LOG_TAG, "MeasureSpec.adjust: new size would be negative! (" + size +
+                Log.e(VIEW_LOG_TAG, "MeasureSpec.adjust: new size would be negative! (" + size
                         ") spec: " + toString(measureSpec) + " delta: " + delta);
                 size = 0;
             }

@@ -190,7 +190,7 @@ public class HeapTest extends TestCase {
             }
         }
         if (!ok) {
-            throw new RuntimeException("Test failed: " +
+            throw new RuntimeException("Test failed: "
                     "weak refs not cleared");
         }
     }
@@ -251,7 +251,7 @@ public class HeapTest extends TestCase {
             }
         }
         if (!ok) {
-            throw new RuntimeException("Test failed: " +
+            throw new RuntimeException("Test failed: "
                     "phantom refs not marked as enqueued");
         }
 
@@ -269,12 +269,12 @@ public class HeapTest extends TestCase {
                 }
             }
             if (i == objects.length) {
-                throw new RuntimeException("Test failed: " +
+                throw new RuntimeException("Test failed: "
                         "unexpected ref on queue");
             }
             if (objects[i] != null) {
-                throw new RuntimeException("Test failed: " +
-                        "reference enqueued for strongly-reachable " +
+                throw new RuntimeException("Test failed: "
+                        "reference enqueued for strongly-reachable "
                         "object");
             }
             refs[i] = null;
@@ -296,13 +296,13 @@ public class HeapTest extends TestCase {
         */
         for (int i = 0; i < objects.length; i++) {
             if (objects[i] == null && refs[i] != null) {
-//                System.out.println("HeapTest/PhantomRefs: refs[" + i +
+//                System.out.println("HeapTest/PhantomRefs: refs[" + i
 //                        "] should be enqueued");
                 ok = false;
             }
         }
         if (!ok) {
-            throw new RuntimeException("Test failed: " +
+            throw new RuntimeException("Test failed: "
                     "phantom refs not enqueued");
         }
     }
@@ -392,8 +392,8 @@ public class HeapTest extends TestCase {
         Runtime.getRuntime().runFinalization();
         checkRefs(objects, refs);
         if (sNumFinalized != numCleared) {
-            throw new RuntimeException("Test failed: " +
-                    "expected " + numCleared + " finalizations, saw " +
+            throw new RuntimeException("Test failed: "
+                    "expected " + numCleared + " finalizations, saw "
                     sNumFinalized);
         }
 
@@ -412,8 +412,8 @@ public class HeapTest extends TestCase {
         Runtime.getRuntime().runFinalization();
         checkRefs(objects, refs);
         if (sNumFinalized != numCleared) {
-            throw new RuntimeException("Test failed: " +
-                    "expected " + numCleared + " finalizations, saw " +
+            throw new RuntimeException("Test failed: "
+                    "expected " + numCleared + " finalizations, saw "
                     sNumFinalized);
         }
     }
@@ -437,7 +437,7 @@ public class HeapTest extends TestCase {
         }
 
         if (!sawEx) {
-            throw new RuntimeException("Test failed: " +
+            throw new RuntimeException("Test failed: "
                     "OutOfMemoryError not thrown");
         }
     }
@@ -465,7 +465,7 @@ public class HeapTest extends TestCase {
             }
 
             if (!sawEx) {
-                throw new RuntimeException("Test failed: " +
+                throw new RuntimeException("Test failed: "
                         "OutOfMemoryError not thrown while filling heap");
             }
             sawEx = false;

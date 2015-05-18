@@ -287,7 +287,7 @@ public final class BluetoothLeScanner {
          */
         @Override
         public void onClientRegistered(int status, int clientIf) {
-            Log.d(TAG, "onClientRegistered() - status=" + status +
+            Log.d(TAG, "onClientRegistered() - status=" + status
                     " clientIf=" + clientIf);
             synchronized (this) {
                 if (mClientIf == -1) {
@@ -348,7 +348,7 @@ public final class BluetoothLeScanner {
         @Override
         public void onFoundOrLost(final boolean onFound, final ScanResult scanResult) {
             if (VDBG) {
-                Log.d(TAG, "onFoundOrLost() - onFound = " + onFound +
+                Log.d(TAG, "onFoundOrLost() - onFound = " + onFound
                         " " + scanResult.toString());
             }
 

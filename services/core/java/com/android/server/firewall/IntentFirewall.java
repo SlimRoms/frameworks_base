@@ -281,8 +281,8 @@ public class IntentFirewall {
             }
         }
 
-        Slog.i(TAG, "Read new rules (A:" + resolvers[TYPE_ACTIVITY].filterSet().size() +
-                " B:" + resolvers[TYPE_BROADCAST].filterSet().size() +
+        Slog.i(TAG, "Read new rules (A:" + resolvers[TYPE_ACTIVITY].filterSet().size()
+                " B:" + resolvers[TYPE_BROADCAST].filterSet().size()
                 " S:" + resolvers[TYPE_SERVICE].filterSet().size() + ")");
 
         synchronized (mAms.getAMSLock()) {

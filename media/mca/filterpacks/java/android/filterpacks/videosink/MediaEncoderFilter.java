@@ -341,7 +341,7 @@ public class MediaEncoderFilter extends Filter {
             mLastTimeLapseFrameRealTimestampNs = timestampNs;
             mTimestampNs = timestampNs;
             if (mLogVerbose) Log.v(TAG, "timelapse: FIRST frame, last real t= "
-                    + mLastTimeLapseFrameRealTimestampNs +
+                    + mLastTimeLapseFrameRealTimestampNs
                     ", setting t = " + mTimestampNs );
             return false;
         }
@@ -361,13 +361,13 @@ public class MediaEncoderFilter extends Filter {
             // - Reset mLastTimeLapseFrameRealTimestampNs to current time.
             // - Artificially modify timestampNs to be one frame time (1/framerate) ahead
             // of the last encoded frame's time stamp.
-            if (mLogVerbose) Log.v(TAG, "timelapse: encoding frame, Timestamp t = " + timestampNs +
-                    ", last real t= " + mLastTimeLapseFrameRealTimestampNs +
+            if (mLogVerbose) Log.v(TAG, "timelapse: encoding frame, Timestamp t = " + timestampNs
+                    ", last real t= " + mLastTimeLapseFrameRealTimestampNs
                     ", interval = " + mTimeBetweenTimeLapseFrameCaptureUs);
             mLastTimeLapseFrameRealTimestampNs = timestampNs;
             mTimestampNs = mTimestampNs + (1000000000L / (long)mFps);
             if (mLogVerbose) Log.v(TAG, "timelapse: encoding frame, setting t = "
-                    + mTimestampNs + ", delta t = " + (1000000000L / (long)mFps) +
+                    + mTimestampNs + ", delta t = " + (1000000000L / (long)mFps)
                     ", fps = " + mFps );
             return false;
         }

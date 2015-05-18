@@ -144,7 +144,7 @@ public final class WebViewFactory {
             // First fetch the package info so we can log the webview package version.
             String packageName = getWebViewPackageName();
             sPackageInfo = initialApplication.getPackageManager().getPackageInfo(packageName, 0);
-            Log.i(LOGTAG, "Loading " + packageName + " version " + sPackageInfo.versionName +
+            Log.i(LOGTAG, "Loading " + packageName + " version " + sPackageInfo.versionName
                           " (code " + sPackageInfo.versionCode + ")");
 
             // Construct a package context to load the Java code into the current app.
@@ -192,7 +192,7 @@ public final class WebViewFactory {
                     Log.v(LOGTAG, "address space reserved: " + addressSpaceToReserve + " bytes");
                 }
             } else {
-                Log.e(LOGTAG, "reserving " + addressSpaceToReserve +
+                Log.e(LOGTAG, "reserving " + addressSpaceToReserve
                         " bytes of address space failed");
             }
         } catch (Throwable t) {
@@ -255,7 +255,7 @@ public final class WebViewFactory {
                 }
 
                 if (DEBUG) {
-                    Log.v(LOGTAG, "Based on library size, need " + newVmSize +
+                    Log.v(LOGTAG, "Based on library size, need " + newVmSize
                             " bytes of address space.");
                 }
                 // The required memory can be larger than the file on disk (due to .bss), and an
@@ -353,7 +353,7 @@ public final class WebViewFactory {
                     Log.e(LOGTAG, "Invalid RelroFileCreator args: " + Arrays.toString(args));
                     return;
                 }
-                Log.v(LOGTAG, "RelroFileCreator (64bit = " + is64Bit + "), " +
+                Log.v(LOGTAG, "RelroFileCreator (64bit = " + is64Bit + "), "
                         " 32-bit lib: " + args[0] + ", 64-bit lib: " + args[1]);
                 if (!sAddressSpaceReserved) {
                     Log.e(LOGTAG, "can't create relro file; address space not reserved");

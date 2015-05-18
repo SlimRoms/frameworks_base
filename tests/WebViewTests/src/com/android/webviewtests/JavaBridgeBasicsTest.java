@@ -109,11 +109,11 @@ public class JavaBridgeBasicsTest extends JavaBridgeTestBase {
 
     // Note that this requires that we can pass a JavaScript boolean to Java.
     private void assertRaisesException(String script) throws Throwable {
-        executeJavaScript("try {" +
-                          script + ";" +
-                          "  testController.setBooleanValue(false);" +
-                          "} catch (exception) {" +
-                          "  testController.setBooleanValue(true);" +
+        executeJavaScript("try {"
+                          script + ";"
+                          "  testController.setBooleanValue(false);"
+                          "} catch (exception) {"
+                          "  testController.setBooleanValue(true);"
                           "}");
         assertTrue(mTestController.waitForBooleanValue());
     }
@@ -394,8 +394,8 @@ public class JavaBridgeBasicsTest extends JavaBridgeTestBase {
             private int privateField;
         }, "testObject");
         executeJavaScript(
-                "var result = \"\"; " +
-                "for (x in testObject) { result += \" \" + x } " +
+                "var result = \"\"; "
+                "for (x in testObject) { result += \" \" + x } "
                 "testController.setStringValue(result);");
         // LIVECONNECT_COMPLIANCE: Should be able to enumerate members.
         assertEquals("", mTestController.waitForStringValue());
@@ -406,7 +406,7 @@ public class JavaBridgeBasicsTest extends JavaBridgeTestBase {
             public String method() { return "foo"; }
         }, "testObject");
         assertEquals("foo", executeJavaScriptAndGetStringResult(
-                "testObject.getClass().getMethod('method', null).invoke(testObject, null)" +
+                "testObject.getClass().getMethod('method', null).invoke(testObject, null)"
                 ".toString()"));
     }
 

@@ -64,7 +64,7 @@ public class InstrumentationInfo extends PackageItemInfo implements Parcelable {
 
     /**
      * Full path to the directory where the native JNI libraries are stored.
-     * 
+     *
      * {@hide}
      */
     public String nativeLibraryDir;
@@ -73,7 +73,7 @@ public class InstrumentationInfo extends PackageItemInfo implements Parcelable {
      * Specifies whether or not this instrumentation will handle profiling.
      */
     public boolean handleProfiling;
-    
+
     /** Specifies whether or not to run this instrumentation as a functional test */
     public boolean functionalTest;
 

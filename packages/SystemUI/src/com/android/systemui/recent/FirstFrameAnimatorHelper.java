@@ -127,8 +127,8 @@ public class FirstFrameAnimatorHelper extends AnimatorListenerAdapter
 
     public void print(ValueAnimator animation) {
         float flatFraction = animation.getCurrentPlayTime() / (float) animation.getDuration();
-        Log.d("FirstFrameAnimatorHelper", sGlobalFrameCounter +
-              "(" + (sGlobalFrameCounter - mStartFrame) + ") " + mTarget + " dirty? " +
+        Log.d("FirstFrameAnimatorHelper", sGlobalFrameCounter
+              "(" + (sGlobalFrameCounter - mStartFrame) + ") " + mTarget + " dirty? "
               mTarget.isDirty() + " " + flatFraction + " " + this + " " + animation);
     }
 }

@@ -39,13 +39,13 @@ public class ToGrayFilter extends SimpleImageFilter {
     private MutableFrameFormat mOutputFormat;
 
     private static final String mColorToGray4Shader =
-            "precision mediump float;\n" +
-            "uniform sampler2D tex_sampler_0;\n" +
-            "varying vec2 v_texcoord;\n" +
-            "void main() {\n" +
-            "  vec4 color = texture2D(tex_sampler_0, v_texcoord);\n" +
-            "  float y = dot(color, vec4(0.299, 0.587, 0.114, 0));\n" +
-            "  gl_FragColor = vec4(y, y, y, color.a);\n" +
+            "precision mediump float;\n"
+            "uniform sampler2D tex_sampler_0;\n"
+            "varying vec2 v_texcoord;\n"
+            "void main() {\n"
+            "  vec4 color = texture2D(tex_sampler_0, v_texcoord);\n"
+            "  float y = dot(color, vec4(0.299, 0.587, 0.114, 0));\n"
+            "  gl_FragColor = vec4(y, y, y, color.a);\n"
             "}\n";
 
     public ToGrayFilter(String name) {
@@ -68,7 +68,7 @@ public class ToGrayFilter extends SimpleImageFilter {
     protected Program getShaderProgram(FilterContext context) {
         int inputChannels = getInputFormat("image").getBytesPerSample();
         if (inputChannels != 4) {
-            throw new RuntimeException("Unsupported GL input channels: " +
+            throw new RuntimeException("Unsupported GL input channels: "
                                        inputChannels + "! Channels must be 4!");
         }
         ShaderProgram program = new ShaderProgram(context, mColorToGray4Shader);

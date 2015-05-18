@@ -319,7 +319,7 @@ public class SyncRequest implements Parcelable {
 
         private void setupInterval(long at, long before) {
             if (before > at) {
-                throw new IllegalArgumentException("Specified run time for the sync must be" +
+                throw new IllegalArgumentException("Specified run time for the sync must be"
                     " after the specified flex time.");
             }
             mSyncRunTimeSecs = at;
@@ -423,7 +423,7 @@ public class SyncRequest implements Parcelable {
          * {@link #build()}.
          * <p>Throws <code>IllegalArgumentException</code> if called and
          * {@link #setDisallowMetered(boolean)} has been set.
-         * 
+         *
          *
          * @param ignoreSettings true to ignore the sync automatically settings. Default false.
          */
@@ -521,7 +521,7 @@ public class SyncRequest implements Parcelable {
             }
             // Ensure that a target for the sync has been set.
             if (mSyncTarget == SYNC_TARGET_UNKNOWN) {
-                throw new IllegalArgumentException("Must specify an adapter with" +
+                throw new IllegalArgumentException("Must specify an adapter with"
                         " setSyncAdapter(Account, String");
             }
             return new SyncRequest(this);

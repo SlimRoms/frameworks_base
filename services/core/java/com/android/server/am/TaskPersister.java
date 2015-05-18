@@ -265,8 +265,8 @@ public class TaskPersister {
             } else if (mNextWriteTime == 0) {
                 mNextWriteTime = SystemClock.uptimeMillis() + PRE_TASK_DELAY_MS;
             }
-            if (DEBUG_PERSISTER) Slog.d(TAG, "saveImage: filename=" + filename + " now=" +
-                    SystemClock.uptimeMillis() + " mNextWriteTime=" +
+            if (DEBUG_PERSISTER) Slog.d(TAG, "saveImage: filename=" + filename + " now="
+                    SystemClock.uptimeMillis() + " mNextWriteTime="
                     mNextWriteTime + " Callers=" + Debug.getCallers(4));
             notifyAll();
         }
@@ -381,7 +381,7 @@ public class TaskPersister {
                         if (TAG_TASK.equals(name)) {
                             final TaskRecord task =
                                     TaskRecord.restoreFromXml(in, mStackSupervisor);
-                            if (DEBUG_PERSISTER) Slog.d(TAG, "restoreTasksLocked: restored task=" +
+                            if (DEBUG_PERSISTER) Slog.d(TAG, "restoreTasksLocked: restored task="
                                     task);
                             if (task != null) {
                                 task.isPersistable = true;
@@ -394,11 +394,11 @@ public class TaskPersister {
                                 recoveredTaskIds.add(taskId);
                                 mStackSupervisor.setNextTaskId(taskId);
                             } else {
-                                Slog.e(TAG, "Unable to restore taskFile=" + taskFile + ": " +
+                                Slog.e(TAG, "Unable to restore taskFile=" + taskFile + ": "
                                         fileToString(taskFile));
                             }
                         } else {
-                            Slog.wtf(TAG, "restoreTasksLocked Unknown xml event=" + event +
+                            Slog.wtf(TAG, "restoreTasksLocked Unknown xml event=" + event
                                     " name=" + name);
                         }
                     }
@@ -470,7 +470,7 @@ public class TaskPersister {
                     continue;
                 }
                 if (!persistentTaskIds.contains(taskId)) {
-                    if (true || DEBUG_PERSISTER) Slog.d(TAG, "removeObsoleteFile: deleting file=" +
+                    if (true || DEBUG_PERSISTER) Slog.d(TAG, "removeObsoleteFile: deleting file="
                             file.getName());
                     file.delete();
                 }
@@ -945,7 +945,7 @@ public class TaskPersister {
                         if (DEBUG_PERSISTER) Slog.d(TAG, "mRecents=" + tasks);
                         for (int taskNdx = tasks.size() - 1; taskNdx >= 0; --taskNdx) {
                             final TaskRecord task = tasks.get(taskNdx);
-                            if (DEBUG_PERSISTER) Slog.d(TAG, "LazyTaskWriter: task=" + task +
+                            if (DEBUG_PERSISTER) Slog.d(TAG, "LazyTaskWriter: task=" + task
                                     " persistable=" + task.isPersistable);
                             if ((task.isPersistable || task.inRecents)
                                     && (task.stack == null || !task.stack.isHomeStack())) {
@@ -967,7 +967,7 @@ public class TaskPersister {
                     if (mNextWriteTime != FLUSH_QUEUE) {
                         // The next write we don't have to wait so long.
                         mNextWriteTime = SystemClock.uptimeMillis() + INTER_WRITE_DELAY_MS;
-                        if (DEBUG_PERSISTER) Slog.d(TAG, "Next write time may be in " +
+                        if (DEBUG_PERSISTER) Slog.d(TAG, "Next write time may be in "
                                 INTER_WRITE_DELAY_MS + " msec. (" + mNextWriteTime + ")");
                     }
 
@@ -998,7 +998,7 @@ public class TaskPersister {
                                 + mWriteQueue.size());
                     while (now < mNextWriteTime) {
                         try {
-                            if (DEBUG_PERSISTER) Slog.d(TAG, "LazyTaskWriter: waiting " +
+                            if (DEBUG_PERSISTER) Slog.d(TAG, "LazyTaskWriter: waiting "
                                     (mNextWriteTime - now));
                             TaskPersister.this.wait(mNextWriteTime - now);
                         } catch (InterruptedException e) {
@@ -1054,7 +1054,7 @@ public class TaskPersister {
                             if (file != null) {
                                 atomicFile.failWrite(file);
                             }
-                            Slog.e(TAG, "Unable to open " + atomicFile + " for persisting. " +
+                            Slog.e(TAG, "Unable to open " + atomicFile + " for persisting. "
                                     e);
                         }
                     }

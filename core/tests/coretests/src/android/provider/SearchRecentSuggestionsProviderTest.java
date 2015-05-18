@@ -376,7 +376,7 @@ public class SearchRecentSuggestionsProviderTest extends ProviderTestCase2<TestP
     private Cursor getQueryCursor(String queryString) {
         ContentResolver cr = getMockContext().getContentResolver();
 
-        String uriStr = "content://" + TestProvider.AUTHORITY +
+        String uriStr = "content://" + TestProvider.AUTHORITY
         '/' + SearchManager.SUGGEST_URI_PATH_QUERY;
         Uri contentUri = Uri.parse(uriStr);
 

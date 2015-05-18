@@ -46,9 +46,9 @@ class DhcpAckPacket extends DhcpPacket {
             dnsServers += dnsServer.toString() + " ";
         }
 
-        return s + " ACK: your new IP " + mYourIp +
-                ", netmask " + mSubnetMask +
-                ", gateway " + mGateway + dnsServers +
+        return s + " ACK: your new IP " + mYourIp
+                ", netmask " + mSubnetMask
+                ", gateway " + mGateway + dnsServers
                 ", lease time " + mLeaseTime;
     }
 

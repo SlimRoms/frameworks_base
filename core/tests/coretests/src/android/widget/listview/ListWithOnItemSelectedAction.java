@@ -34,7 +34,7 @@ public class ListWithOnItemSelectedAction extends ListScenario {
     @Override
     protected void positionSelected(int positon) {
         if (positon != getListView().getSelectedItemPosition()) {
-            throw new IllegalStateException("something is fishy... the selected postion does not " +
+            throw new IllegalStateException("something is fishy... the selected postion does not "
                     "match what the list reports.");
         }
         setHeaderValue(

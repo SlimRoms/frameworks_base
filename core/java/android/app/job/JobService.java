@@ -146,7 +146,7 @@ public abstract class JobService extends Service {
                         try {
                             callback.jobFinished(params.getJobId(), needsReschedule);
                         } catch (RemoteException e) {
-                            Log.e(TAG, "Error reporting job finish to system: binder has gone" +
+                            Log.e(TAG, "Error reporting job finish to system: binder has gone"
                                     "away.");
                         }
                     } else {

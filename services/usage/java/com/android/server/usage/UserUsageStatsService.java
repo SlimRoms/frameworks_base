@@ -107,8 +107,8 @@ class UserUsageStatsService {
                     mCurrentStats[UsageStatsManager.INTERVAL_DAILY].beginTime);
             mDailyExpiryDate.addDays(1);
             mDailyExpiryDate.truncateToDay();
-            Slog.i(TAG, mLogPrefix + "Rollover scheduled @ " +
-                    sDateFormat.format(mDailyExpiryDate.getTimeInMillis()) +
+            Slog.i(TAG, mLogPrefix + "Rollover scheduled @ "
+                    sDateFormat.format(mDailyExpiryDate.getTimeInMillis())
                     "(" + mDailyExpiryDate.getTimeInMillis() + ")");
         }
 
@@ -257,7 +257,7 @@ class UserUsageStatsService {
                 truncatedEndTime, combiner);
         if (DEBUG) {
             Slog.d(TAG, "Got " + (results != null ? results.size() : 0) + " results from disk");
-            Slog.d(TAG, "Current stats beginTime=" + currentStats.beginTime +
+            Slog.d(TAG, "Current stats beginTime=" + currentStats.beginTime
                     " endTime=" + currentStats.endTime);
         }
 
@@ -414,8 +414,8 @@ class UserUsageStatsService {
             final long lastBeginTime = mDatabase.getLatestUsageStatsBeginTime(intervalType);
             if (lastBeginTime >= tempCal.getTimeInMillis()) {
                 if (DEBUG) {
-                    Slog.d(TAG, mLogPrefix + "Loading existing stats @ " +
-                            sDateFormat.format(lastBeginTime) + "(" + lastBeginTime +
+                    Slog.d(TAG, mLogPrefix + "Loading existing stats @ "
+                            sDateFormat.format(lastBeginTime) + "(" + lastBeginTime
                             ") for interval " + intervalType);
                 }
                 mCurrentStats[intervalType] = mDatabase.getLatestUsageStats(intervalType);
@@ -425,8 +425,8 @@ class UserUsageStatsService {
 
             if (mCurrentStats[intervalType] == null) {
                 if (DEBUG) {
-                    Slog.d(TAG, "Creating new stats @ " +
-                            sDateFormat.format(tempCal.getTimeInMillis()) + "(" +
+                    Slog.d(TAG, "Creating new stats @ "
+                            sDateFormat.format(tempCal.getTimeInMillis()) + "("
                             tempCal.getTimeInMillis() + ") for interval " + intervalType);
 
                 }
@@ -439,8 +439,8 @@ class UserUsageStatsService {
         mDailyExpiryDate.setTimeInMillis(currentTimeMillis);
         mDailyExpiryDate.addDays(1);
         mDailyExpiryDate.truncateToDay();
-        Slog.i(TAG, mLogPrefix + "Rollover scheduled @ " +
-                sDateFormat.format(mDailyExpiryDate.getTimeInMillis()) + "(" +
+        Slog.i(TAG, mLogPrefix + "Rollover scheduled @ "
+                sDateFormat.format(mDailyExpiryDate.getTimeInMillis()) + "("
                 tempCal.getTimeInMillis() + ")");
     }
 

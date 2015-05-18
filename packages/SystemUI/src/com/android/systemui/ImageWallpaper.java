@@ -127,20 +127,20 @@ public class ImageWallpaper extends WallpaperService {
         private EGLSurface mEglSurface;
 
         private static final String sSimpleVS =
-                "attribute vec4 position;\n" +
-                "attribute vec2 texCoords;\n" +
-                "varying vec2 outTexCoords;\n" +
-                "uniform mat4 projection;\n" +
-                "\nvoid main(void) {\n" +
-                "    outTexCoords = texCoords;\n" +
-                "    gl_Position = projection * position;\n" +
+                "attribute vec4 position;\n"
+                "attribute vec2 texCoords;\n"
+                "varying vec2 outTexCoords;\n"
+                "uniform mat4 projection;\n"
+                "\nvoid main(void) {\n"
+                "    outTexCoords = texCoords;\n"
+                "    gl_Position = projection * position;\n"
                 "}\n\n";
         private static final String sSimpleFS =
-                "precision mediump float;\n\n" +
-                "varying vec2 outTexCoords;\n" +
-                "uniform sampler2D texture;\n" +
-                "\nvoid main(void) {\n" +
-                "    gl_FragColor = texture2D(texture, outTexCoords);\n" +
+                "precision mediump float;\n\n"
+                "varying vec2 outTexCoords;\n"
+                "uniform sampler2D texture;\n"
+                "\nvoid main(void) {\n"
+                "    gl_FragColor = texture2D(texture, outTexCoords);\n"
                 "}\n\n";
 
         private static final int FLOAT_SIZE_BYTES = 4;
@@ -340,10 +340,10 @@ public class ImageWallpaper extends WallpaperService {
                 // Load bitmap if it is not yet loaded or if it was loaded at a different size
                 if (mBackground == null || surfaceDimensionsChanged) {
                     if (DEBUG) {
-                        Log.d(TAG, "Reloading bitmap: mBackground, bgw, bgh, dw, dh = " +
-                                mBackground + ", " +
-                                ((mBackground == null) ? 0 : mBackground.getWidth()) + ", " +
-                                ((mBackground == null) ? 0 : mBackground.getHeight()) + ", " +
+                        Log.d(TAG, "Reloading bitmap: mBackground, bgw, bgh, dw, dh = "
+                                mBackground + ", "
+                                ((mBackground == null) ? 0 : mBackground.getWidth()) + ", "
+                                ((mBackground == null) ? 0 : mBackground.getHeight()) + ", "
                                 dw + ", " + dh);
                     }
                     mWallpaperManager.forgetLoadedWallpaper();
@@ -356,8 +356,8 @@ public class ImageWallpaper extends WallpaperService {
                     }
                     if (DEBUG) {
                         if (dw != mBackground.getWidth() || dh != mBackground.getHeight()) {
-                            Log.d(TAG, "Surface != bitmap dimensions: surface w/h, bitmap w/h: " +
-                                    dw + ", " + dh + ", " + mBackground.getWidth() + ", " +
+                            Log.d(TAG, "Surface != bitmap dimensions: surface w/h, bitmap w/h: "
+                                    dw + ", " + dh + ", " + mBackground.getWidth() + ", "
                                     mBackground.getHeight());
                         }
                     }
@@ -655,13 +655,13 @@ public class ImageWallpaper extends WallpaperService {
 
             mEglDisplay = mEgl.eglGetDisplay(EGL_DEFAULT_DISPLAY);
             if (mEglDisplay == EGL_NO_DISPLAY) {
-                throw new RuntimeException("eglGetDisplay failed " +
+                throw new RuntimeException("eglGetDisplay failed "
                         GLUtils.getEGLErrorString(mEgl.eglGetError()));
             }
 
             int[] version = new int[2];
             if (!mEgl.eglInitialize(mEglDisplay, version)) {
-                throw new RuntimeException("eglInitialize failed " +
+                throw new RuntimeException("eglInitialize failed "
                         GLUtils.getEGLErrorString(mEgl.eglGetError()));
             }
 
@@ -672,7 +672,7 @@ public class ImageWallpaper extends WallpaperService {
 
             mEglContext = createContext(mEgl, mEglDisplay, mEglConfig);
             if (mEglContext == EGL_NO_CONTEXT) {
-                throw new RuntimeException("createContext failed " +
+                throw new RuntimeException("createContext failed "
                         GLUtils.getEGLErrorString(mEgl.eglGetError()));
             }
 
@@ -694,8 +694,8 @@ public class ImageWallpaper extends WallpaperService {
             if(frame.width() > maxSize[0] || frame.height() > maxSize[0]) {
                 mEgl.eglDestroyContext(mEglDisplay, mEglContext);
                 mEgl.eglTerminate(mEglDisplay);
-                Log.e(GL_LOG_TAG, "requested  texture size " +
-                    frame.width() + "x" + frame.height() + " exceeds the support maximum of " +
+                Log.e(GL_LOG_TAG, "requested  texture size "
+                    frame.width() + "x" + frame.height() + " exceeds the support maximum of "
                     maxSize[0] + "x" + maxSize[0]);
                 return false;
             }
@@ -704,16 +704,16 @@ public class ImageWallpaper extends WallpaperService {
             if (mEglSurface == null || mEglSurface == EGL_NO_SURFACE) {
                 int error = mEgl.eglGetError();
                 if (error == EGL_BAD_NATIVE_WINDOW || error == EGL_BAD_ALLOC) {
-                    Log.e(GL_LOG_TAG, "createWindowSurface returned " +
+                    Log.e(GL_LOG_TAG, "createWindowSurface returned "
                                          GLUtils.getEGLErrorString(error) + ".");
                     return false;
                 }
-                throw new RuntimeException("createWindowSurface failed " +
+                throw new RuntimeException("createWindowSurface failed "
                         GLUtils.getEGLErrorString(error));
             }
 
             if (!mEgl.eglMakeCurrent(mEglDisplay, mEglSurface, mEglSurface, mEglContext)) {
-                throw new RuntimeException("eglMakeCurrent failed " +
+                throw new RuntimeException("eglMakeCurrent failed "
                         GLUtils.getEGLErrorString(mEgl.eglGetError()));
             }
 
@@ -731,7 +731,7 @@ public class ImageWallpaper extends WallpaperService {
             EGLConfig[] configs = new EGLConfig[1];
             int[] configSpec = getConfig();
             if (!mEgl.eglChooseConfig(mEglDisplay, configSpec, configs, 1, configsCount)) {
-                throw new IllegalArgumentException("eglChooseConfig failed " +
+                throw new IllegalArgumentException("eglChooseConfig failed "
                         GLUtils.getEGLErrorString(mEgl.eglGetError()));
             } else if (configsCount[0] > 0) {
                 return configs[0];

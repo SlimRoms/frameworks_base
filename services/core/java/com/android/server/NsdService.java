@@ -306,7 +306,7 @@ public class NsdService extends INsdManager.Stub {
                         id = getUniqueId();
                         if (discoverServices(id, servInfo.getServiceType())) {
                             if (DBG) {
-                                Slog.d(TAG, "Discover " + msg.arg2 + " " + id +
+                                Slog.d(TAG, "Discover " + msg.arg2 + " " + id
                                         servInfo.getServiceType());
                             }
                             storeRequestMap(msg.arg2, id, clientInfo, msg.what);
@@ -915,7 +915,7 @@ public class NsdService extends INsdManager.Stub {
                 clientId = mClientIds.keyAt(i);
                 globalId = mClientIds.valueAt(i);
                 mIdToClientInfoMap.remove(globalId);
-                if (DBG) Slog.d(TAG, "Terminating client-ID " + clientId +
+                if (DBG) Slog.d(TAG, "Terminating client-ID " + clientId
                         " global-ID " + globalId + " type " + mClientRequests.get(clientId));
                 switch (mClientRequests.get(clientId)) {
                     case NsdManager.DISCOVER_SERVICES:

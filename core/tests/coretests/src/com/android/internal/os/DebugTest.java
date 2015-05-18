@@ -27,8 +27,8 @@ public class DebugTest extends TestCase {
     private final static String EXPECTED_GET_CALLER =
             "com\\.android\\.internal\\.os\\.DebugTest\\.testGetCaller:\\d\\d";
     private final static String EXPECTED_GET_CALLERS =
-            "com\\.android\\.internal\\.os\\.DebugTest.callDepth3:\\d\\d " +
-            "com\\.android\\.internal\\.os\\.DebugTest.callDepth2:\\d\\d " +
+            "com\\.android\\.internal\\.os\\.DebugTest.callDepth3:\\d\\d "
+            "com\\.android\\.internal\\.os\\.DebugTest.callDepth2:\\d\\d "
             "com\\.android\\.internal\\.os\\.DebugTest.callDepth1:\\d\\d ";
 
     /**

@@ -447,7 +447,7 @@ public class ValidateNotificationPeople implements NotificationSignalExtractor {
                 }
             }
             if (DEBUG) {
-                Slog.d(TAG, "Validation finished in " + (System.currentTimeMillis() - timeStartMs) +
+                Slog.d(TAG, "Validation finished in " + (System.currentTimeMillis() - timeStartMs)
                         "ms");
             }
         }

@@ -167,10 +167,10 @@ final class ProcessRecord {
     boolean debugging;          // was app launched for debugging?
     boolean waitedForDebugger;  // has process show wait for debugger dialog?
     Dialog waitDialog;          // current wait for debugger dialog
-    
+
     String shortStringName;     // caching of toShortString() result.
     String stringName;          // caching of toString() result.
-    
+
     // These reports are generated & stored when an app gets into an error condition.
     // They will be "null" when all is OK.
     ActivityManager.ProcessErrorStateInfo crashingReport;
@@ -388,7 +388,7 @@ final class ProcessRecord {
             }
         }
     }
-    
+
     ProcessRecord(BatteryStatsImpl _batteryStats, ApplicationInfo _info,
             String _processName, int _uid) {
         mBatteryStats = _batteryStats;
@@ -472,7 +472,7 @@ final class ProcessRecord {
         }
         return false;
     }
-    
+
     public void stopFreezingAllLocked() {
         int i = activities.size();
         while (i > 0) {
@@ -480,7 +480,7 @@ final class ProcessRecord {
             activities.get(i).stopFreezingScreenLocked(true);
         }
     }
-    
+
     public void unlinkDeathRecipient() {
         if (deathRecipient != null && thread != null) {
             thread.asBinder().unlinkToDeath(deathRecipient, 0);
@@ -545,7 +545,7 @@ final class ProcessRecord {
         toShortString(sb);
         return shortStringName = sb.toString();
     }
-    
+
     void toShortString(StringBuilder sb) {
         sb.append(pid);
         sb.append(':');
@@ -570,7 +570,7 @@ final class ProcessRecord {
             }
         }
     }
-    
+
     public String toString() {
         if (stringName != null) {
             return stringName;
@@ -680,7 +680,7 @@ final class ProcessRecord {
             pkgList.put(info.packageName, new ProcessStats.ProcessStateHolder(info.versionCode));
         }
     }
-    
+
     public String[] getPackageList() {
         int size = pkgList.size();
         if (size == 0) {

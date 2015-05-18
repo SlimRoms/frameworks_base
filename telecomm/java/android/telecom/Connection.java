@@ -1346,7 +1346,7 @@ public abstract class Connection implements IConferenceable {
     public final void setConnectionService(ConnectionService connectionService) {
         checkImmutable();
         if (mConnectionService != null) {
-            Log.e(this, new Exception(), "Trying to set ConnectionService on a connection " +
+            Log.e(this, new Exception(), "Trying to set ConnectionService on a connection "
                     "which is already associated with another ConnectionService.");
         } else {
             mConnectionService = connectionService;
@@ -1358,7 +1358,7 @@ public abstract class Connection implements IConferenceable {
      */
     public final void unsetConnectionService(ConnectionService connectionService) {
         if (mConnectionService != connectionService) {
-            Log.e(this, new Exception(), "Trying to remove ConnectionService from a Connection " +
+            Log.e(this, new Exception(), "Trying to remove ConnectionService from a Connection "
                     "that does not belong to the ConnectionService.");
         } else {
             mConnectionService = null;

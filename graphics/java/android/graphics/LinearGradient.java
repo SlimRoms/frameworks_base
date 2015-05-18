@@ -105,7 +105,7 @@ public class LinearGradient extends Shader {
                 copy = new LinearGradient(mX0, mY0, mX1, mY1, mColor0, mColor1, mTileMode);
                 break;
             default:
-                throw new IllegalArgumentException("LinearGradient should be created with either " +
+                throw new IllegalArgumentException("LinearGradient should be created with either "
                         "colors and positions or start color and end color");
         }
         copyLocalMatrix(copy);

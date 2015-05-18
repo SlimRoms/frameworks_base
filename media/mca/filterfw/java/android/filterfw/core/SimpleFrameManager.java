@@ -80,7 +80,7 @@ public class SimpleFrameManager extends FrameManager {
             }
 
             default:
-                throw new RuntimeException("Unsupported frame target type: " +
+                throw new RuntimeException("Unsupported frame target type: "
                                            FrameFormat.targetToString(format.getTarget()) + "!");
         }
         return result;

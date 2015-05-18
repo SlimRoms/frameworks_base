@@ -443,7 +443,7 @@ public class EffectFactory {
     public Effect createEffect(String effectName) {
         Class effectClass = getEffectClassByName(effectName);
         if (effectClass == null) {
-            throw new IllegalArgumentException("Cannot instantiate unknown effect '" +
+            throw new IllegalArgumentException("Cannot instantiate unknown effect '"
                 effectName + "'!");
         }
         return instantiateEffect(effectClass, effectName);

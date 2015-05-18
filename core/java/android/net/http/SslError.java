@@ -221,8 +221,8 @@ public class SslError {
      * @return A String representation of this object.
      */
     public String toString() {
-        return "primary error: " + getPrimaryError() +
-                " certificate: " + getCertificate() +
+        return "primary error: " + getPrimaryError()
+                " certificate: " + getCertificate()
                 " on URL: " + getUrl();
     }
 }

@@ -1121,7 +1121,7 @@ public abstract class Drawable {
                 }
                 break;
             default:
-                throw new XmlPullParserException(parser.getPositionDescription() +
+                throw new XmlPullParserException(parser.getPositionDescription()
                         ": invalid drawable tag " + name);
 
         }

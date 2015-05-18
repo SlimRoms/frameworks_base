@@ -128,29 +128,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     private void createSecureTable(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE secure (" +
-                "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "name TEXT UNIQUE ON CONFLICT REPLACE," +
-                "value TEXT" +
+        db.execSQL("CREATE TABLE secure ("
+                "_id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                "name TEXT UNIQUE ON CONFLICT REPLACE,"
+                "value TEXT"
                 ");");
         db.execSQL("CREATE INDEX secureIndex1 ON secure (name);");
     }
 
     private void createGlobalTable(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE global (" +
-                "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "name TEXT UNIQUE ON CONFLICT REPLACE," +
-                "value TEXT" +
+        db.execSQL("CREATE TABLE global ("
+                "_id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                "name TEXT UNIQUE ON CONFLICT REPLACE,"
+                "value TEXT"
                 ");");
         db.execSQL("CREATE INDEX globalIndex1 ON global (name);");
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE system (" +
-                    "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    "name TEXT UNIQUE ON CONFLICT REPLACE," +
-                    "value TEXT" +
+        db.execSQL("CREATE TABLE system ("
+                    "_id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    "name TEXT UNIQUE ON CONFLICT REPLACE,"
+                    "value TEXT"
                     ");");
         db.execSQL("CREATE INDEX systemIndex1 ON system (name);");
 
@@ -161,21 +161,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             createGlobalTable(db);
         }
 
-        db.execSQL("CREATE TABLE bluetooth_devices (" +
-                    "_id INTEGER PRIMARY KEY," +
-                    "name TEXT," +
-                    "addr TEXT," +
-                    "channel INTEGER," +
-                    "type INTEGER" +
+        db.execSQL("CREATE TABLE bluetooth_devices ("
+                    "_id INTEGER PRIMARY KEY,"
+                    "name TEXT,"
+                    "addr TEXT,"
+                    "channel INTEGER,"
+                    "type INTEGER"
                     ");");
 
-        db.execSQL("CREATE TABLE bookmarks (" +
-                    "_id INTEGER PRIMARY KEY," +
-                    "title TEXT," +
-                    "folder TEXT," +
-                    "intent TEXT," +
-                    "shortcut INTEGER," +
-                    "ordering INTEGER" +
+        db.execSQL("CREATE TABLE bookmarks ("
+                    "_id INTEGER PRIMARY KEY,"
+                    "title TEXT,"
+                    "folder TEXT,"
+                    "intent TEXT,"
+                    "shortcut INTEGER,"
+                    "ordering INTEGER"
                     ");");
 
         db.execSQL("CREATE INDEX bookmarksIndex1 ON bookmarks (folder);");
@@ -261,7 +261,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 // The value of the constants for preferring wifi or preferring mobile have been
                 // swapped, so reload the default.
                 db.execSQL("DELETE FROM system WHERE name='network_preference'");
-                db.execSQL("INSERT INTO system ('name', 'value') values ('network_preference', '" +
+                db.execSQL("INSERT INTO system ('name', 'value') values ('network_preference', '"
                         ConnectivityManager.DEFAULT_NETWORK_PREFERENCE + "')");
                 db.setTransactionSuccessful();
             } finally {
@@ -404,8 +404,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             if (!TextUtils.isEmpty(wifiWatchList)) {
                 db.beginTransaction();
                 try {
-                    db.execSQL("INSERT OR IGNORE INTO secure(name,value) values('" +
-                            Settings.Secure.WIFI_WATCHDOG_WATCH_LIST + "','" +
+                    db.execSQL("INSERT OR IGNORE INTO secure(name,value) values('"
+                            Settings.Secure.WIFI_WATCHDOG_WATCH_LIST + "','"
                             wifiWatchList + "');");
                     db.setTransactionSuccessful();
                 } finally {
@@ -491,7 +491,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             try {
                 String value =
                         mContext.getResources().getBoolean(R.bool.assisted_gps_enabled) ? "1" : "0";
-                db.execSQL("INSERT OR IGNORE INTO secure(name,value) values('" +
+                db.execSQL("INSERT OR IGNORE INTO secure(name,value) values('"
                         Settings.Global.ASSISTED_GPS_ENABLED + "','" + value + "');");
                 db.setTransactionSuccessful();
             } finally {
@@ -601,13 +601,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
               */
             db.beginTransaction();
             try {
-                db.execSQL("INSERT INTO secure(name,value) values('" +
+                db.execSQL("INSERT INTO secure(name,value) values('"
                         Settings.Secure.MOUNT_PLAY_NOTIFICATION_SND + "','1');");
-                db.execSQL("INSERT INTO secure(name,value) values('" +
+                db.execSQL("INSERT INTO secure(name,value) values('"
                         Settings.Secure.MOUNT_UMS_AUTOSTART + "','0');");
-                db.execSQL("INSERT INTO secure(name,value) values('" +
+                db.execSQL("INSERT INTO secure(name,value) values('"
                         Settings.Secure.MOUNT_UMS_PROMPT + "','1');");
-                db.execSQL("INSERT INTO secure(name,value) values('" +
+                db.execSQL("INSERT INTO secure(name,value) values('"
                         Settings.Secure.MOUNT_UMS_NOTIFY_ENABLED + "','1');");
                 db.setTransactionSuccessful();
             } finally {
@@ -994,9 +994,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     R.string.airplane_mode_toggleable_radios);
             db.beginTransaction();
             try {
-                db.execSQL("UPDATE system SET value='" + airplaneRadios + "' " +
+                db.execSQL("UPDATE system SET value='" + airplaneRadios + "' "
                         "WHERE name='" + Settings.System.AIRPLANE_MODE_RADIOS + "'");
-                db.execSQL("UPDATE system SET value='" + toggleableRadios + "' " +
+                db.execSQL("UPDATE system SET value='" + toggleableRadios + "' "
                         "WHERE name='" + Settings.System.AIRPLANE_MODE_TOGGLEABLE_RADIOS + "'");
                 db.setTransactionSuccessful();
             } finally {
@@ -1766,7 +1766,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.beginTransaction();
             SQLiteStatement stmt = null;
             try {
-                stmt = db.compileStatement("UPDATE system SET value = ? " +
+                stmt = db.compileStatement("UPDATE system SET value = ? "
                         "WHERE name = ? AND value = ?;");
                 stmt.bindString(1, Settings.System.SIP_ADDRESS_ONLY);
                 stmt.bindString(2, Settings.System.SIP_CALL_OPTIONS);
@@ -1883,7 +1883,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             // Added for diagnosing settings.db wipes after the fact
             String wipeReason = oldVersion + "/" + upgradeVersion + "/" + currentVersion;
-            db.execSQL("INSERT INTO secure(name,value) values('" +
+            db.execSQL("INSERT INTO secure(name,value) values('"
                     "wiped_db_reason" + "','" + wipeReason + "');");
         }
     }
@@ -2058,7 +2058,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             String value =
                     mContext.getResources().getBoolean(
                     R.bool.def_screen_brightness_automatic_mode) ? "1" : "0";
-            db.execSQL("INSERT OR REPLACE INTO system(name,value) values('" +
+            db.execSQL("INSERT OR REPLACE INTO system(name,value) values('"
                     Settings.System.SCREEN_BRIGHTNESS_MODE + "','" + value + "');");
             db.setTransactionSuccessful();
         } finally {

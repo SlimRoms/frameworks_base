@@ -814,7 +814,7 @@ public final class NdefRecord implements Parcelable {
                 } else if (inChunk && tnf != NdefRecord.TNF_UNCHANGED) {
                     throw new FormatException("expected TNF_UNCHANGED in non-leading chunk");
                 } else if (!inChunk && tnf == NdefRecord.TNF_UNCHANGED) {
-                    throw new FormatException("" +
+                    throw new FormatException(""
                             "unexpected TNF_UNCHANGED in first chunk or unchunked record");
                 }
 

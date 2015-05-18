@@ -130,7 +130,7 @@ public class BluetoothControllerImpl implements BluetoothController {
     }
 
     private static String infoToString(DeviceInfo info) {
-        return info == null ? null : ("connectionState=" +
+        return info == null ? null : ("connectionState="
                 connectionStateToString(CONNECTION_STATES[info.connectionStateIndex])
                 + ",bonded=" + info.bonded + ",profiles="
                 + profilesToString(info.connectedProfiles));

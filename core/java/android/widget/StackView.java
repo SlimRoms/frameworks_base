@@ -671,10 +671,10 @@ public class StackView extends AdapterViewAnimator {
                 activeIndex = (swipeGestureType == GESTURE_SLIDE_DOWN) ? 1 : 0;
             }
 
-            boolean endOfStack = mLoopViews && adapterCount == 1 && 
+            boolean endOfStack = mLoopViews && adapterCount == 1 &&
                 ((mStackMode == ITEMS_SLIDE_UP && swipeGestureType == GESTURE_SLIDE_UP) ||
                  (mStackMode == ITEMS_SLIDE_DOWN && swipeGestureType == GESTURE_SLIDE_DOWN));
-            boolean beginningOfStack = mLoopViews && adapterCount == 1 && 
+            boolean beginningOfStack = mLoopViews && adapterCount == 1 &&
                 ((mStackMode == ITEMS_SLIDE_DOWN && swipeGestureType == GESTURE_SLIDE_UP) ||
                  (mStackMode == ITEMS_SLIDE_UP && swipeGestureType == GESTURE_SLIDE_DOWN));
 
@@ -1050,9 +1050,9 @@ public class StackView extends AdapterViewAnimator {
             if (mView != null) {
                 final LayoutParams viewLp = (LayoutParams) mView.getLayoutParams();
 
-                float d = (float) Math.sqrt(Math.pow(viewLp.horizontalOffset, 2) +
+                float d = (float) Math.sqrt(Math.pow(viewLp.horizontalOffset, 2)
                         Math.pow(viewLp.verticalOffset, 2));
-                float maxd = (float) Math.sqrt(Math.pow(mSlideAmount, 2) +
+                float maxd = (float) Math.sqrt(Math.pow(mSlideAmount, 2)
                         Math.pow(0.4f * mSlideAmount, 2));
 
                 if (velocity == 0) {
@@ -1188,7 +1188,7 @@ public class StackView extends AdapterViewAnimator {
         float factorY = 1/(1 - PERSPECTIVE_SHIFT_FACTOR_Y);
         if (heightSpecMode == MeasureSpec.UNSPECIFIED) {
             heightSpecSize = haveChildRefSize ?
-                    Math.round(mReferenceChildHeight * (1 + factorY)) +
+                    Math.round(mReferenceChildHeight * (1 + factorY))
                     mPaddingTop + mPaddingBottom : 0;
         } else if (heightSpecMode == MeasureSpec.AT_MOST) {
             if (haveChildRefSize) {
@@ -1208,7 +1208,7 @@ public class StackView extends AdapterViewAnimator {
         float factorX = 1/(1 - PERSPECTIVE_SHIFT_FACTOR_X);
         if (widthSpecMode == MeasureSpec.UNSPECIFIED) {
             widthSpecSize = haveChildRefSize ?
-                    Math.round(mReferenceChildWidth * (1 + factorX)) +
+                    Math.round(mReferenceChildWidth * (1 + factorX))
                     mPaddingLeft + mPaddingRight : 0;
         } else if (heightSpecMode == MeasureSpec.AT_MOST) {
             if (haveChildRefSize) {

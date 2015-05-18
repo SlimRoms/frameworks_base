@@ -368,12 +368,12 @@ public class ContentProviderOperation implements Parcelable {
 
     @Override
     public String toString() {
-        return "mType: " + mType + ", mUri: " + mUri +
-                ", mSelection: " + mSelection +
-                ", mExpectedCount: " + mExpectedCount +
-                ", mYieldAllowed: " + mYieldAllowed +
-                ", mValues: " + mValues +
-                ", mValuesBackReferences: " + mValuesBackReferences +
+        return "mType: " + mType + ", mUri: " + mUri
+                ", mSelection: " + mSelection
+                ", mExpectedCount: " + mExpectedCount
+                ", mYieldAllowed: " + mYieldAllowed
+                ", mValues: " + mValues
+                ", mValuesBackReferences: " + mValuesBackReferences
                 ", mSelectionArgsBackReferences: " + mSelectionArgsBackReferences;
     }
 

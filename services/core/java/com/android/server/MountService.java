@@ -513,7 +513,7 @@ class MountService extends IMountService.Stub
                                     RETRY_UNMOUNT_DELAY);
                         } else {
                             if (ucb.retries >= MAX_UNMOUNT_RETRIES) {
-                                Slog.i(TAG, "Failed to unmount media inspite of " +
+                                Slog.i(TAG, "Failed to unmount media inspite of "
                                         MAX_UNMOUNT_RETRIES + " retries. Forcibly killing processes now");
                             }
                             sizeArr[sizeArrN++] = i;
@@ -1412,10 +1412,10 @@ class MountService extends IMountService.Stub
                     long maxFileSize = a.getInt(
                             com.android.internal.R.styleable.Storage_maxFileSize, 0) * 1024L * 1024L;
 
-                    Slog.d(TAG, "got storage path: " + path + " description: " + description +
-                            " primary: " + primary + " removable: " + removable +
-                            " emulated: " + emulated +  " mtpReserve: " + mtpReserve +
-                            " allowMassStorage: " + allowMassStorage +
+                    Slog.d(TAG, "got storage path: " + path + " description: " + description
+                            " primary: " + primary + " removable: " + removable
+                            " emulated: " + emulated +  " mtpReserve: " + mtpReserve
+                            " allowMassStorage: " + allowMassStorage
                             " maxFileSize: " + maxFileSize + " allowMtp: " + allowMtp);
 
                     if (emulated) {
@@ -1679,7 +1679,7 @@ class MountService extends IMountService.Stub
                      * notified when we are done so shutdown sequence can continue.
                      */
                     mountShutdownLatch.countDown();
-                    Slog.i(TAG, "Unmount completed: " + path +
+                    Slog.i(TAG, "Unmount completed: " + path
                         ", result code: " + StorageResultCode.OperationSucceeded);
                 }
             }
@@ -1748,7 +1748,7 @@ class MountService extends IMountService.Stub
             if (!enable) {
                 doShareUnshareVolume(path, method, enable);
                 if (doMountVolume(path) != StorageResultCode.OperationSucceeded) {
-                    Slog.e(TAG, "Failed to remount " + path +
+                    Slog.e(TAG, "Failed to remount " + path
                             " after disabling share method " + method);
                     /*
                      * Even though the mount failed, the unshare didn't so don't indicate an error.
@@ -2160,7 +2160,7 @@ class MountService extends IMountService.Stub
         final int packageUid = mPms.getPackageUid(packageName, UserHandle.getUserId(callerUid));
 
         if (DEBUG_OBB) {
-            Slog.d(TAG, "packageName = " + packageName + ", packageUid = " +
+            Slog.d(TAG, "packageName = " + packageName + ", packageUid = "
                     packageUid + ", callerUid = " + callerUid);
         }
 

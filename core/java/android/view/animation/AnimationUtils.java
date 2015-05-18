@@ -73,12 +73,12 @@ public class AnimationUtils {
             parser = context.getResources().getAnimation(id);
             return createAnimationFromXml(context, parser);
         } catch (XmlPullParserException ex) {
-            NotFoundException rnf = new NotFoundException("Can't load animation resource ID #0x" +
+            NotFoundException rnf = new NotFoundException("Can't load animation resource ID #0x"
                     Integer.toHexString(id));
             rnf.initCause(ex);
             throw rnf;
         } catch (IOException ex) {
-            NotFoundException rnf = new NotFoundException("Can't load animation resource ID #0x" +
+            NotFoundException rnf = new NotFoundException("Can't load animation resource ID #0x"
                     Integer.toHexString(id));
             rnf.initCause(ex);
             throw rnf;
@@ -151,12 +151,12 @@ public class AnimationUtils {
             parser = context.getResources().getAnimation(id);
             return createLayoutAnimationFromXml(context, parser);
         } catch (XmlPullParserException ex) {
-            NotFoundException rnf = new NotFoundException("Can't load animation resource ID #0x" +
+            NotFoundException rnf = new NotFoundException("Can't load animation resource ID #0x"
                     Integer.toHexString(id));
             rnf.initCause(ex);
             throw rnf;
         } catch (IOException ex) {
-            NotFoundException rnf = new NotFoundException("Can't load animation resource ID #0x" +
+            NotFoundException rnf = new NotFoundException("Can't load animation resource ID #0x"
                     Integer.toHexString(id));
             rnf.initCause(ex);
             throw rnf;
@@ -272,12 +272,12 @@ public class AnimationUtils {
             parser = context.getResources().getAnimation(id);
             return createInterpolatorFromXml(context.getResources(), context.getTheme(), parser);
         } catch (XmlPullParserException ex) {
-            NotFoundException rnf = new NotFoundException("Can't load animation resource ID #0x" +
+            NotFoundException rnf = new NotFoundException("Can't load animation resource ID #0x"
                     Integer.toHexString(id));
             rnf.initCause(ex);
             throw rnf;
         } catch (IOException ex) {
-            NotFoundException rnf = new NotFoundException("Can't load animation resource ID #0x" +
+            NotFoundException rnf = new NotFoundException("Can't load animation resource ID #0x"
                     Integer.toHexString(id));
             rnf.initCause(ex);
             throw rnf;
@@ -302,12 +302,12 @@ public class AnimationUtils {
             parser = res.getAnimation(id);
             return createInterpolatorFromXml(res, theme, parser);
         } catch (XmlPullParserException ex) {
-            NotFoundException rnf = new NotFoundException("Can't load animation resource ID #0x" +
+            NotFoundException rnf = new NotFoundException("Can't load animation resource ID #0x"
                     Integer.toHexString(id));
             rnf.initCause(ex);
             throw rnf;
         } catch (IOException ex) {
-            NotFoundException rnf = new NotFoundException("Can't load animation resource ID #0x" +
+            NotFoundException rnf = new NotFoundException("Can't load animation resource ID #0x"
                     Integer.toHexString(id));
             rnf.initCause(ex);
             throw rnf;

@@ -107,7 +107,7 @@ public class TimeUtils {
         synchronized(sLastUniqueLockObj) {
             if ((country != null) && country.equals(sLastUniqueCountry)) {
                 if (DBG) {
-                    Log.d(TAG, "getTimeZonesWithUniqueOffsets(" +
+                    Log.d(TAG, "getTimeZonesWithUniqueOffsets("
                             country + "): return cached version");
                 }
                 return sLastUniqueZoneOffsets;
@@ -128,7 +128,7 @@ public class TimeUtils {
             }
             if (found == false) {
                 if (DBG) {
-                    Log.d(TAG, "getTimeZonesWithUniqueOffsets: add unique offset=" +
+                    Log.d(TAG, "getTimeZonesWithUniqueOffsets: add unique offset="
                             zone.getRawOffset() + " zone.getID=" + zone.getID());
                 }
                 uniqueTimeZones.add(zone);

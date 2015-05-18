@@ -46,7 +46,7 @@ public class EGLImpl implements EGL10 {
     public native boolean     eglCopyBuffers(EGLDisplay display, EGLSurface surface, Object native_pixmap);
     public native boolean     eglWaitGL();
     public native boolean     eglWaitNative(int engine, Object bindTarget);
-    
+
     /** @hide **/
     public static native int  getInitCount(EGLDisplay display);
 
@@ -95,7 +95,7 @@ public class EGLImpl implements EGL10 {
                     native_window, attrib_list);
         } else {
             throw new java.lang.UnsupportedOperationException(
-                "eglCreateWindowSurface() can only be called with an instance of " +
+                "eglCreateWindowSurface() can only be called with an instance of "
                 "Surface, SurfaceView, SurfaceHolder or SurfaceTexture at the moment.");
         }
 

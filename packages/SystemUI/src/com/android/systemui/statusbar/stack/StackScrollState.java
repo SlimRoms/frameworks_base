@@ -89,7 +89,7 @@ public class StackScrollState {
             ExpandableView child = (ExpandableView) mHostView.getChildAt(i);
             ViewState state = mStateMap.get(child);
             if (state == null) {
-                Log.wtf(CHILD_NOT_FOUND_TAG, "No child state was found when applying this state " +
+                Log.wtf(CHILD_NOT_FOUND_TAG, "No child state was found when applying this state "
                         "to the hostView");
                 continue;
             }

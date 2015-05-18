@@ -38,32 +38,32 @@ public class SaturateFilter extends Filter {
     private int mTarget = FrameFormat.TARGET_UNSPECIFIED;
 
     private final String mBenSaturateShader =
-            "precision mediump float;\n" +
-            "uniform sampler2D tex_sampler_0;\n" +
-            "uniform float scale;\n" +
-            "uniform float shift;\n" +
-            "uniform vec3 weights;\n" +
-            "varying vec2 v_texcoord;\n" +
-            "void main() {\n" +
-            "  vec4 color = texture2D(tex_sampler_0, v_texcoord);\n" +
-            "  float kv = dot(color.rgb, weights) + shift;\n" +
-            "  vec3 new_color = scale * color.rgb + (1.0 - scale) * kv;\n" +
-            "  gl_FragColor = vec4(new_color, color.a);\n" +
+            "precision mediump float;\n"
+            "uniform sampler2D tex_sampler_0;\n"
+            "uniform float scale;\n"
+            "uniform float shift;\n"
+            "uniform vec3 weights;\n"
+            "varying vec2 v_texcoord;\n"
+            "void main() {\n"
+            "  vec4 color = texture2D(tex_sampler_0, v_texcoord);\n"
+            "  float kv = dot(color.rgb, weights) + shift;\n"
+            "  vec3 new_color = scale * color.rgb + (1.0 - scale) * kv;\n"
+            "  gl_FragColor = vec4(new_color, color.a);\n"
             "}\n";
 
     private final String mHerfSaturateShader =
-            "precision mediump float;\n" +
-            "uniform sampler2D tex_sampler_0;\n" +
-            "uniform vec3 weights;\n" +
-            "uniform vec3 exponents;\n" +
-            "varying vec2 v_texcoord;\n" +
-            "void main() {\n" +
-            "  vec4 color = texture2D(tex_sampler_0, v_texcoord);\n" +
-            "  float de = dot(color.rgb, weights);\n" +
-            "  float inv_de = 1.0 / de;\n" +
-            "  vec3 new_color = de * pow(color.rgb * inv_de, exponents);\n" +
-            "  float max_color = max(max(max(new_color.r, new_color.g), new_color.b), 1.0);\n" +
-            "  gl_FragColor = vec4(new_color / max_color, color.a);\n" +
+            "precision mediump float;\n"
+            "uniform sampler2D tex_sampler_0;\n"
+            "uniform vec3 weights;\n"
+            "uniform vec3 exponents;\n"
+            "varying vec2 v_texcoord;\n"
+            "void main() {\n"
+            "  vec4 color = texture2D(tex_sampler_0, v_texcoord);\n"
+            "  float de = dot(color.rgb, weights);\n"
+            "  float inv_de = 1.0 / de;\n"
+            "  vec3 new_color = de * pow(color.rgb * inv_de, exponents);\n"
+            "  float max_color = max(max(max(new_color.r, new_color.g), new_color.b), 1.0);\n"
+            "  gl_FragColor = vec4(new_color / max_color, color.a);\n"
             "}\n";
 
 
@@ -96,7 +96,7 @@ public class SaturateFilter extends Filter {
                 break;
 
             default:
-                throw new RuntimeException("Filter Sharpen does not support frames of " +
+                throw new RuntimeException("Filter Sharpen does not support frames of "
                     "target " + target + "!");
         }
         mTarget = target;

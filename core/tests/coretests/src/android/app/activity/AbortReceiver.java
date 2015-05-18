@@ -42,7 +42,7 @@ public class AbortReceiver extends BroadcastReceiver
             data.recycle();
         } catch (RemoteException ex) {
         }
-        
+
         // abort the broadcast!!!
         abortBroadcast();
     }

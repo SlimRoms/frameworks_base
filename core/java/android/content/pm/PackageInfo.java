@@ -71,20 +71,20 @@ public class PackageInfo implements Parcelable {
      * attribute.
      */
     public String sharedUserId;
-    
+
     /**
      * The shared user ID label of this package, as specified by the &lt;manifest&gt;
      * tag's {@link android.R.styleable#AndroidManifest_sharedUserLabel sharedUserLabel}
      * attribute.
      */
     public int sharedUserLabel;
-    
+
     /**
      * Information collected from the &lt;application&gt; tag, or null if
      * there was none.
      */
     public ApplicationInfo applicationInfo;
-    
+
     /**
      * The time at which the app was first installed.  Units are as
      * per {@link System#currentTimeMillis()}.
@@ -142,7 +142,7 @@ public class PackageInfo implements Parcelable {
      * {@link PackageManager#GET_INSTRUMENTATION} was set.
      */
     public InstrumentationInfo[] instrumentation;
-    
+
     /**
      * Array of all {@link android.R.styleable#AndroidManifestPermission
      * &lt;permission&gt;} tags included under &lt;manifest&gt;,
@@ -150,7 +150,7 @@ public class PackageInfo implements Parcelable {
      * {@link PackageManager#GET_PERMISSIONS} was set.
      */
     public PermissionInfo[] permissions;
-    
+
     /**
      * Array of all {@link android.R.styleable#AndroidManifestUsesPermission
      * &lt;uses-permission&gt;} tags included under &lt;manifest&gt;,
@@ -160,7 +160,7 @@ public class PackageInfo implements Parcelable {
      * by the system at install time.
      */
     public String[] requestedPermissions;
-    
+
     /**
      * Array of flags of all {@link android.R.styleable#AndroidManifestUsesPermission
      * &lt;uses-permission&gt;} tags included under &lt;manifest&gt;,
@@ -190,7 +190,7 @@ public class PackageInfo implements Parcelable {
      * in if the flag {@link PackageManager#GET_SIGNATURES} was set.
      */
     public Signature[] signatures;
-    
+
     /**
      * Application specified preferred configuration
      * {@link android.R.styleable#AndroidManifestUsesConfiguration

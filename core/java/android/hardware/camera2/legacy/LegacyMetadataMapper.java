@@ -314,7 +314,7 @@ public class LegacyMetadataMapper {
 
             if (previewSizes.isEmpty()) {
                 // Fall-back to the original faulty behavior, but at least work
-                Log.w(TAG, "mapScalerStreamConfigs - failed to find any preview size matching " +
+                Log.w(TAG, "mapScalerStreamConfigs - failed to find any preview size matching "
                         "JPEG aspect ratio " + jpegAspectRatio);
                 previewSizes = p.getSupportedPreviewSizes();
             }
@@ -390,7 +390,7 @@ public class LegacyMetadataMapper {
             for (String mode : antiBandingModes) {
                 int convertedMode = convertAntiBandingMode(mode);
                 if (VERBOSE && convertedMode == -1) {
-                    Log.v(TAG, "Antibanding mode " + ((mode == null) ? "NULL" : mode) +
+                    Log.v(TAG, "Antibanding mode " + ((mode == null) ? "NULL" : mode)
                             " not supported, skipping...");
                 } else {
                     modes[j++] = convertedMode;
@@ -518,7 +518,7 @@ public class LegacyMetadataMapper {
             m.set(CONTROL_AF_AVAILABLE_MODES, ArrayUtils.toIntArray(afAvail));
 
             if (VERBOSE) {
-                Log.v(TAG, "mapControlAf - control.afAvailableModes set to " +
+                Log.v(TAG, "mapControlAf - control.afAvailableModes set to "
                         ListUtils.listToString(afAvail));
             }
         }
@@ -568,7 +568,7 @@ public class LegacyMetadataMapper {
             m.set(CONTROL_AWB_AVAILABLE_MODES, ArrayUtils.toIntArray(awbAvail));
 
             if (VERBOSE) {
-                Log.v(TAG, "mapControlAwb - control.awbAvailableModes set to " +
+                Log.v(TAG, "mapControlAwb - control.awbAvailableModes set to "
                         ListUtils.listToString(awbAvail));
             }
         }
@@ -1295,7 +1295,7 @@ public class LegacyMetadataMapper {
             }
 
             if (VERBOSE) {
-                Log.v(TAG, "createRequestTemplate (templateId=" + templateId + ")," +
+                Log.v(TAG, "createRequestTemplate (templateId=" + templateId + "),"
                         " afMode=" + afMode + ", minimumFocusDistance=" + minimumFocusDistance);
             }
 
@@ -1435,7 +1435,7 @@ public class LegacyMetadataMapper {
             String defaultMode = supportedFocusModes.get(0);
             Log.w(TAG,
                     String.format(
-                            "convertAfModeToLegacy - ignoring unsupported mode %d, " +
+                            "convertAfModeToLegacy - ignoring unsupported mode %d, "
                             "defaulting to %s", mode, defaultMode));
             param = defaultMode;
         }

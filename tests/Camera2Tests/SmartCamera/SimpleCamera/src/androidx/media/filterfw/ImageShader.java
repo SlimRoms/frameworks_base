@@ -58,20 +58,20 @@ public class ImageShader {
     private final static int FLOAT_SIZE = 4;
 
     private final static String mDefaultVertexShader =
-        "attribute vec4 a_position;\n" +
-        "attribute vec2 a_texcoord;\n" +
-        "varying vec2 v_texcoord;\n" +
-        "void main() {\n" +
-        "  gl_Position = a_position;\n" +
-        "  v_texcoord = a_texcoord;\n" +
+        "attribute vec4 a_position;\n"
+        "attribute vec2 a_texcoord;\n"
+        "varying vec2 v_texcoord;\n"
+        "void main() {\n"
+        "  gl_Position = a_position;\n"
+        "  v_texcoord = a_texcoord;\n"
         "}\n";
 
     private final static String mIdentityShader =
-        "precision mediump float;\n" +
-        "uniform sampler2D tex_sampler_0;\n" +
-        "varying vec2 v_texcoord;\n" +
-        "void main() {\n" +
-        "  gl_FragColor = texture2D(tex_sampler_0, v_texcoord);\n" +
+        "precision mediump float;\n"
+        "uniform sampler2D tex_sampler_0;\n"
+        "varying vec2 v_texcoord;\n"
+        "void main() {\n"
+        "  gl_FragColor = texture2D(tex_sampler_0, v_texcoord);\n"
         "}\n";
 
     private static class VertexAttribute {

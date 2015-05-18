@@ -218,7 +218,7 @@ public class CarrierText extends LinearLayout {
             CharSequence plmn, CharSequence spn) {
         CharSequence carrierText = null;
         StatusMode status = getStatusForIccState(simState);
-        if (DEBUG) Log.d(TAG, "getCarrierTextForSimState: status=" + status +
+        if (DEBUG) Log.d(TAG, "getCarrierTextForSimState: status=" + status
                 " plmn=" + plmn + " spn=" + spn);
         switch (status) {
             case Normal:

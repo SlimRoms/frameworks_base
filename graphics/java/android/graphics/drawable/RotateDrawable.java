@@ -369,7 +369,7 @@ public class RotateDrawable extends Drawable implements Drawable.Callback {
         mState.mDrawable.setLevel(level);
         onBoundsChange(getBounds());
 
-        mState.mCurrentDegrees = mState.mFromDegrees +
+        mState.mCurrentDegrees = mState.mFromDegrees
                 (mState.mToDegrees - mState.mFromDegrees) *
                         (level / MAX_LEVEL);
 

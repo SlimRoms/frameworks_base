@@ -1243,8 +1243,8 @@ public final class MediaSession {
 
         @Override
         public String toString() {
-            return "MediaSession.QueueItem {" +
-                    "Description=" + mDescription +
+            return "MediaSession.QueueItem {"
+                    "Description=" + mDescription
                     ", Id=" + mId + " }";
         }
     }

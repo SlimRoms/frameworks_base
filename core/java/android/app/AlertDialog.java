@@ -44,7 +44,7 @@ import android.widget.ListView;
  * FrameLayout fl = (FrameLayout) findViewById(android.R.id.custom);
  * fl.addView(myView, new LayoutParams(MATCH_PARENT, WRAP_CONTENT));
  * </pre>
- * 
+ *
  * <p>The AlertDialog class takes care of automatically setting
  * {@link WindowManager.LayoutParams#FLAG_ALT_FOCUSABLE_IM
  * WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM} for you based on whether
@@ -68,13 +68,13 @@ public class AlertDialog extends Dialog implements DialogInterface {
      * the traditional (pre-Holo) alert dialog theme.
      */
     public static final int THEME_TRADITIONAL = 1;
-    
+
     /**
      * Special theme constant for {@link #AlertDialog(Context, int)}: use
      * the holographic alert theme with a dark background.
      */
     public static final int THEME_HOLO_DARK = 2;
-    
+
     /**
      * Special theme constant for {@link #AlertDialog(Context, int)}: use
      * the holographic alert theme with a light background.
@@ -104,7 +104,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
      * @hide
      */
     public static final int LAYOUT_HINT_SIDE = 1;
-    
+
     protected AlertDialog(Context context) {
         this(context, resolveDialogTheme(context, 0), true);
     }
@@ -173,13 +173,13 @@ public class AlertDialog extends Dialog implements DialogInterface {
 
     /**
      * Gets the list view used in the dialog.
-     *  
+     *
      * @return The {@link ListView} from the dialog.
      */
     public ListView getListView() {
         return mAlert.getListView();
     }
-    
+
     @Override
     public void setTitle(CharSequence title) {
         super.setTitle(title);
@@ -192,7 +192,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
     public void setCustomTitle(View customTitleView) {
         mAlert.setCustomTitle(customTitleView);
     }
-    
+
     public void setMessage(CharSequence message) {
         mAlert.setMessage(message);
     }
@@ -203,9 +203,9 @@ public class AlertDialog extends Dialog implements DialogInterface {
     public void setView(View view) {
         mAlert.setView(view);
     }
-    
+
     /**
-     * Set the view to display in that dialog, specifying the spacing to appear around that 
+     * Set the view to display in that dialog, specifying the spacing to appear around that
      * view.
      *
      * @param view The view to show in the content area of the dialog
@@ -229,7 +229,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
 
     /**
      * Set a message to be sent when a button is pressed.
-     * 
+     *
      * @param whichButton Which button to set the message for, can be one of
      *            {@link DialogInterface#BUTTON_POSITIVE},
      *            {@link DialogInterface#BUTTON_NEGATIVE}, or
@@ -240,10 +240,10 @@ public class AlertDialog extends Dialog implements DialogInterface {
     public void setButton(int whichButton, CharSequence text, Message msg) {
         mAlert.setButton(whichButton, text, null, msg);
     }
-    
+
     /**
      * Set a listener to be invoked when the positive button of the dialog is pressed.
-     * 
+     *
      * @param whichButton Which button to set the listener on, can be one of
      *            {@link DialogInterface#BUTTON_POSITIVE},
      *            {@link DialogInterface#BUTTON_NEGATIVE}, or
@@ -263,7 +263,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
     public void setButton(CharSequence text, Message msg) {
         setButton(BUTTON_POSITIVE, text, msg);
     }
-        
+
     /**
      * @deprecated Use {@link #setButton(int, CharSequence, Message)} with
      *             {@link DialogInterface#BUTTON_NEGATIVE}.
@@ -284,7 +284,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
 
     /**
      * Set a listener to be invoked when button 1 of the dialog is pressed.
-     * 
+     *
      * @param text The text to display in button 1.
      * @param listener The {@link DialogInterface.OnClickListener} to use.
      * @deprecated Use
@@ -330,7 +330,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
     public void setIcon(int resId) {
         mAlert.setIcon(resId);
     }
-    
+
     public void setIcon(Drawable icon) {
         mAlert.setIcon(icon);
     }
@@ -349,7 +349,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
     public void setInverseBackgroundForced(boolean forceInverseBackground) {
         mAlert.setInverseBackgroundForced(forceInverseBackground);
     }
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -367,11 +367,11 @@ public class AlertDialog extends Dialog implements DialogInterface {
         if (mAlert.onKeyUp(keyCode, event)) return true;
         return super.onKeyUp(keyCode, event);
     }
-    
+
     public static class Builder {
         private final AlertController.AlertParams P;
         private int mTheme;
-        
+
         /**
          * Constructor using a context for this builder and the {@link AlertDialog} it creates.
          */
@@ -395,7 +395,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
                     context, resolveDialogTheme(context, theme)));
             mTheme = theme;
         }
-        
+
         /**
          * Returns a {@link Context} with the appropriate theme for dialogs created by this Builder.
          * Applications should use this Context for obtaining LayoutInflaters for inflating views
@@ -417,7 +417,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
             P.mTitle = P.mContext.getText(titleId);
             return this;
         }
-        
+
         /**
          * Set the title displayed in the {@link Dialog}.
          *
@@ -427,14 +427,14 @@ public class AlertDialog extends Dialog implements DialogInterface {
             P.mTitle = title;
             return this;
         }
-        
+
         /**
          * Set the title using the custom view {@code customTitleView}. The
          * methods {@link #setTitle(int)} and {@link #setIcon(int)} should be
          * sufficient for most titles, but this is provided if the title needs
          * more customization. Using this will replace the title and icon set
          * via the other methods.
-         * 
+         *
          * @param customTitleView The custom view to use as the title.
          *
          * @return This Builder object to allow for chaining of calls to set methods
@@ -443,7 +443,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
             P.mCustomTitleView = customTitleView;
             return this;
         }
-        
+
         /**
          * Set the message to display using the given resource id.
          *
@@ -453,7 +453,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
             P.mMessage = P.mContext.getText(messageId);
             return this;
         }
-        
+
         /**
          * Set the message to display.
           *
@@ -463,7 +463,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
             P.mMessage = message;
             return this;
         }
-        
+
         /**
          * Set the resource id of the {@link Drawable} to be used in the title.
          * <p>
@@ -475,7 +475,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
             P.mIconId = iconId;
             return this;
         }
-        
+
         /**
          * Set the {@link Drawable} to be used in the title.
           *
@@ -514,7 +514,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
             P.mPositiveButtonListener = listener;
             return this;
         }
-        
+
         /**
          * Set a listener to be invoked when the positive button of the dialog is pressed.
          * @param text The text to display in the positive button
@@ -527,7 +527,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
             P.mPositiveButtonListener = listener;
             return this;
         }
-        
+
         /**
          * Set a listener to be invoked when the negative button of the dialog is pressed.
          * @param textId The resource id of the text to display in the negative button
@@ -540,7 +540,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
             P.mNegativeButtonListener = listener;
             return this;
         }
-        
+
         /**
          * Set a listener to be invoked when the negative button of the dialog is pressed.
          * @param text The text to display in the negative button
@@ -553,7 +553,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
             P.mNegativeButtonListener = listener;
             return this;
         }
-        
+
         /**
          * Set a listener to be invoked when the neutral button of the dialog is pressed.
          * @param textId The resource id of the text to display in the neutral button
@@ -566,7 +566,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
             P.mNeutralButtonListener = listener;
             return this;
         }
-        
+
         /**
          * Set a listener to be invoked when the neutral button of the dialog is pressed.
          * @param text The text to display in the neutral button
@@ -579,7 +579,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
             P.mNeutralButtonListener = listener;
             return this;
         }
-        
+
         /**
          * Sets whether the dialog is cancelable or not.  Default is true.
          *
@@ -589,7 +589,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
             P.mCancelable = cancelable;
             return this;
         }
-        
+
         /**
          * Sets the callback that will be called if the dialog is canceled.
          *
@@ -607,7 +607,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
             P.mOnCancelListener = onCancelListener;
             return this;
         }
-        
+
         /**
          * Sets the callback that will be called when the dialog is dismissed for any reason.
          *
@@ -627,7 +627,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
             P.mOnKeyListener = onKeyListener;
             return this;
         }
-        
+
         /**
          * Set a list of items to be displayed in the dialog as the content, you will be notified of the
          * selected item via the supplied listener. This should be an array type i.e. R.array.foo
@@ -639,7 +639,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
             P.mOnClickListener = listener;
             return this;
         }
-        
+
         /**
          * Set a list of items to be displayed in the dialog as the content, you will be notified of the
          * selected item via the supplied listener.
@@ -651,12 +651,12 @@ public class AlertDialog extends Dialog implements DialogInterface {
             P.mOnClickListener = listener;
             return this;
         }
-        
+
         /**
          * Set a list of items, which are supplied by the given {@link ListAdapter}, to be
          * displayed in the dialog as the content, you will be notified of the
          * selected item via the supplied listener.
-         * 
+         *
          * @param adapter The {@link ListAdapter} to supply the list of items
          * @param listener The listener that will be called when an item is clicked.
          *
@@ -667,12 +667,12 @@ public class AlertDialog extends Dialog implements DialogInterface {
             P.mOnClickListener = listener;
             return this;
         }
-        
+
         /**
          * Set a list of items, which are supplied by the given {@link Cursor}, to be
          * displayed in the dialog as the content, you will be notified of the
          * selected item via the supplied listener.
-         * 
+         *
          * @param cursor The {@link Cursor} to supply the list of items
          * @param listener The listener that will be called when an item is clicked.
          * @param labelColumn The column name on the cursor containing the string to display
@@ -687,7 +687,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
             P.mOnClickListener = listener;
             return this;
         }
-        
+
         /**
          * Set a list of items to be displayed in the dialog as the content,
          * you will be notified of the selected item via the supplied listener.
@@ -695,7 +695,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
          * a check mark displayed to the right of the text for each checked
          * item. Clicking on an item in the list will not dismiss the dialog.
          * Clicking on a button will dismiss the dialog.
-         * 
+         *
          * @param itemsId the resource id of an array i.e. R.array.foo
          * @param checkedItems specifies which items are checked. It should be null in which case no
          *        items are checked. If non null it must be exactly the same length as the array of
@@ -706,7 +706,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
          *
          * @return This Builder object to allow for chaining of calls to set methods
          */
-        public Builder setMultiChoiceItems(int itemsId, boolean[] checkedItems, 
+        public Builder setMultiChoiceItems(int itemsId, boolean[] checkedItems,
                 final OnMultiChoiceClickListener listener) {
             P.mItems = P.mContext.getResources().getTextArray(itemsId);
             P.mOnCheckboxClickListener = listener;
@@ -714,14 +714,14 @@ public class AlertDialog extends Dialog implements DialogInterface {
             P.mIsMultiChoice = true;
             return this;
         }
-        
+
         /**
          * Set a list of items to be displayed in the dialog as the content,
          * you will be notified of the selected item via the supplied listener.
          * The list will have a check mark displayed to the right of the text
          * for each checked item. Clicking on an item in the list will not
          * dismiss the dialog. Clicking on a button will dismiss the dialog.
-         * 
+         *
          * @param items the text of the items to be displayed in the list.
          * @param checkedItems specifies which items are checked. It should be null in which case no
          *        items are checked. If non null it must be exactly the same length as the array of
@@ -732,7 +732,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
          *
          * @return This Builder object to allow for chaining of calls to set methods
          */
-        public Builder setMultiChoiceItems(CharSequence[] items, boolean[] checkedItems, 
+        public Builder setMultiChoiceItems(CharSequence[] items, boolean[] checkedItems,
                 final OnMultiChoiceClickListener listener) {
             P.mItems = items;
             P.mOnCheckboxClickListener = listener;
@@ -740,14 +740,14 @@ public class AlertDialog extends Dialog implements DialogInterface {
             P.mIsMultiChoice = true;
             return this;
         }
-        
+
         /**
          * Set a list of items to be displayed in the dialog as the content,
          * you will be notified of the selected item via the supplied listener.
          * The list will have a check mark displayed to the right of the text
          * for each checked item. Clicking on an item in the list will not
          * dismiss the dialog. Clicking on a button will dismiss the dialog.
-         * 
+         *
          * @param cursor the cursor used to provide the items.
          * @param isCheckedColumn specifies the column name on the cursor to use to determine
          *        whether a checkbox is checked or not. It must return an integer value where 1
@@ -760,7 +760,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
          *
          * @return This Builder object to allow for chaining of calls to set methods
          */
-        public Builder setMultiChoiceItems(Cursor cursor, String isCheckedColumn, String labelColumn, 
+        public Builder setMultiChoiceItems(Cursor cursor, String isCheckedColumn, String labelColumn,
                 final OnMultiChoiceClickListener listener) {
             P.mCursor = cursor;
             P.mOnCheckboxClickListener = listener;
@@ -769,14 +769,14 @@ public class AlertDialog extends Dialog implements DialogInterface {
             P.mIsMultiChoice = true;
             return this;
         }
-        
+
         /**
          * Set a list of items to be displayed in the dialog as the content, you will be notified of
          * the selected item via the supplied listener. This should be an array type i.e.
          * R.array.foo The list will have a check mark displayed to the right of the text for the
          * checked item. Clicking on an item in the list will not dismiss the dialog. Clicking on a
          * button will dismiss the dialog.
-         * 
+         *
          * @param itemsId the resource id of an array i.e. R.array.foo
          * @param checkedItem specifies which item is checked. If -1 no items are checked.
          * @param listener notified when an item on the list is clicked. The dialog will not be
@@ -785,7 +785,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
          *
          * @return This Builder object to allow for chaining of calls to set methods
          */
-        public Builder setSingleChoiceItems(int itemsId, int checkedItem, 
+        public Builder setSingleChoiceItems(int itemsId, int checkedItem,
                 final OnClickListener listener) {
             P.mItems = P.mContext.getResources().getTextArray(itemsId);
             P.mOnClickListener = listener;
@@ -793,13 +793,13 @@ public class AlertDialog extends Dialog implements DialogInterface {
             P.mIsSingleChoice = true;
             return this;
         }
-        
+
         /**
          * Set a list of items to be displayed in the dialog as the content, you will be notified of
          * the selected item via the supplied listener. The list will have a check mark displayed to
          * the right of the text for the checked item. Clicking on an item in the list will not
          * dismiss the dialog. Clicking on a button will dismiss the dialog.
-         * 
+         *
          * @param cursor the cursor to retrieve the items from.
          * @param checkedItem specifies which item is checked. If -1 no items are checked.
          * @param labelColumn The column name on the cursor containing the string to display in the
@@ -810,7 +810,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
          *
          * @return This Builder object to allow for chaining of calls to set methods
          */
-        public Builder setSingleChoiceItems(Cursor cursor, int checkedItem, String labelColumn, 
+        public Builder setSingleChoiceItems(Cursor cursor, int checkedItem, String labelColumn,
                 final OnClickListener listener) {
             P.mCursor = cursor;
             P.mOnClickListener = listener;
@@ -819,13 +819,13 @@ public class AlertDialog extends Dialog implements DialogInterface {
             P.mIsSingleChoice = true;
             return this;
         }
-        
+
         /**
          * Set a list of items to be displayed in the dialog as the content, you will be notified of
          * the selected item via the supplied listener. The list will have a check mark displayed to
          * the right of the text for the checked item. Clicking on an item in the list will not
          * dismiss the dialog. Clicking on a button will dismiss the dialog.
-         * 
+         *
          * @param items the items to be displayed.
          * @param checkedItem specifies which item is checked. If -1 no items are checked.
          * @param listener notified when an item on the list is clicked. The dialog will not be
@@ -840,14 +840,14 @@ public class AlertDialog extends Dialog implements DialogInterface {
             P.mCheckedItem = checkedItem;
             P.mIsSingleChoice = true;
             return this;
-        } 
-        
+        }
+
         /**
          * Set a list of items to be displayed in the dialog as the content, you will be notified of
          * the selected item via the supplied listener. The list will have a check mark displayed to
          * the right of the text for the checked item. Clicking on an item in the list will not
          * dismiss the dialog. Clicking on a button will dismiss the dialog.
-         * 
+         *
          * @param adapter The {@link ListAdapter} to supply the list of items
          * @param checkedItem specifies which item is checked. If -1 no items are checked.
          * @param listener notified when an item on the list is clicked. The dialog will not be
@@ -863,10 +863,10 @@ public class AlertDialog extends Dialog implements DialogInterface {
             P.mIsSingleChoice = true;
             return this;
         }
-        
+
         /**
          * Sets a listener to be invoked when an item in the list is selected.
-         * 
+         *
          * @param listener The listener to be invoked.
          * @see AdapterView#setOnItemSelectedListener(android.widget.AdapterView.OnItemSelectedListener)
          *
@@ -876,7 +876,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
             P.mOnItemSelectedListener = listener;
             return this;
         }
-        
+
         /**
          * Set a custom view resource to be the contents of the Dialog. The
          * resource will be inflated, adding all top-level views to the screen.
@@ -897,7 +897,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
          * of a {@link ListView} the light background will be used.
          *
          * @param view The view to use as the contents of the Dialog.
-         * 
+         *
          * @return This Builder object to allow for chaining of calls to set methods
          */
         public Builder setView(View view) {
@@ -906,12 +906,12 @@ public class AlertDialog extends Dialog implements DialogInterface {
             P.mViewSpacingSpecified = false;
             return this;
         }
-        
+
         /**
          * Set a custom view to be the contents of the Dialog, specifying the
          * spacing to appear around that view. If the supplied view is an
          * instance of a {@link ListView} the light background will be used.
-         * 
+         *
          * @param view The view to use as the contents of the Dialog.
          * @param viewSpacingLeft Spacing between the left edge of the view and
          *        the dialog frame
@@ -923,8 +923,8 @@ public class AlertDialog extends Dialog implements DialogInterface {
          *        and the dialog frame
          * @return This Builder object to allow for chaining of calls to set
          *         methods
-         *         
-         * 
+         *
+         *
          * This is currently hidden because it seems like people should just
          * be able to put padding around the view.
          * @hide
@@ -940,13 +940,13 @@ public class AlertDialog extends Dialog implements DialogInterface {
             P.mViewSpacingBottom = viewSpacingBottom;
             return this;
         }
-        
+
         /**
          * Sets the Dialog to use the inverse background, regardless of what the
          * contents is.
-         * 
+         *
          * @param useInverseBackground Whether to use the inverse background
-         * 
+         *
          * @return This Builder object to allow for chaining of calls to set methods
          */
         public Builder setInverseBackgroundForced(boolean useInverseBackground) {
@@ -994,5 +994,5 @@ public class AlertDialog extends Dialog implements DialogInterface {
             return dialog;
         }
     }
-    
+
 }

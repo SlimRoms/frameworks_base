@@ -84,7 +84,7 @@ import java.lang.reflect.Array;
 
                 if (c != '\n')
                     throw new RuntimeException(
-                            "PARAGRAPH span must start at paragraph boundary" +
+                            "PARAGRAPH span must start at paragraph boundary"
                             " (" + start + " follows " + c + ")");
             }
 
@@ -93,7 +93,7 @@ import java.lang.reflect.Array;
 
                 if (c != '\n')
                     throw new RuntimeException(
-                            "PARAGRAPH span must end at paragraph boundary" +
+                            "PARAGRAPH span must end at paragraph boundary"
                             " (" + end + " follows " + c + ")");
             }
         }
@@ -201,7 +201,7 @@ import java.lang.reflect.Array;
             }
         }
 
-        return 0; 
+        return 0;
     }
 
     public <T> T[] getSpans(int queryStart, int queryEnd, Class<T> kind) {
@@ -340,22 +340,22 @@ import java.lang.reflect.Array;
 
     private void checkRange(final String operation, int start, int end) {
         if (end < start) {
-            throw new IndexOutOfBoundsException(operation + " " +
-                                                region(start, end) +
+            throw new IndexOutOfBoundsException(operation + " "
+                                                region(start, end)
                                                 " has end before start");
         }
 
         int len = length();
 
         if (start > len || end > len) {
-            throw new IndexOutOfBoundsException(operation + " " +
-                                                region(start, end) +
+            throw new IndexOutOfBoundsException(operation + " "
+                                                region(start, end)
                                                 " ends beyond length " + len);
         }
 
         if (start < 0 || end < 0) {
-            throw new IndexOutOfBoundsException(operation + " " +
-                                                region(start, end) +
+            throw new IndexOutOfBoundsException(operation + " "
+                                                region(start, end)
                                                 " starts before 0");
         }
     }

@@ -36,7 +36,7 @@ import android.os.Parcelable.Creator;
  * if it is not already running.  Registered alarms are retained while the
  * device is asleep (and can optionally wake the device up if they go off
  * during that time), but will be cleared if it is turned off and rebooted.
- * 
+ *
  * <p>The Alarm Manager holds a CPU wake lock as long as the alarm receiver's
  * onReceive() method is executing. This guarantees that the phone will not sleep
  * until you have finished handling the broadcast. Once onReceive() returns, the
@@ -163,7 +163,7 @@ public class AlarmManager
      * {@link Intent#EXTRA_ALARM_COUNT Intent.EXTRA_ALARM_COUNT} that indicates
      * how many past alarm events have been accumulated into this intent
      * broadcast.  Recurring alarms that have gone undelivered because the
-     * phone was asleep may have a count greater than one when delivered.  
+     * phone was asleep may have a count greater than one when delivered.
      *
      * <div class="note">
      * <p>
@@ -235,10 +235,10 @@ public class AlarmManager
      * set a recurring alarm for the top of every hour but the phone was asleep
      * from 7:45 until 8:45, an alarm will be sent as soon as the phone awakens,
      * then the next alarm will be sent at 9:00.
-     * 
-     * <p>If your application wants to allow the delivery times to drift in 
+     *
+     * <p>If your application wants to allow the delivery times to drift in
      * order to guarantee that at least a certain time interval always elapses
-     * between alarms, then the approach to take is to use one-time alarms, 
+     * between alarms, then the approach to take is to use one-time alarms,
      * scheduling the next one yourself when handling each alarm delivery.
      *
      * <p class="note">
@@ -516,7 +516,7 @@ public class AlarmManager
             long intervalMillis, PendingIntent operation) {
         setImpl(type, triggerAtMillis, WINDOW_HEURISTIC, intervalMillis, operation, null, null);
     }
-    
+
     /**
      * Remove any alarms with a matching {@link Intent}.
      * Any alarm, of any type, whose Intent matches this one (as defined by
@@ -606,7 +606,7 @@ public class AlarmManager
         /**
          * Creates a new alarm clock description.
          *
-         * @param triggerTime time at which the underlying alarm is triggered in wall time 
+         * @param triggerTime time at which the underlying alarm is triggered in wall time
          *                    milliseconds since the epoch
          * @param showIntent an intent that can be used to show or edit details of
          *                        the alarm clock.
@@ -639,7 +639,7 @@ public class AlarmManager
          * Returns an intent intent that can be used to show or edit details of the alarm clock in
          * the application that scheduled it.
          *
-         * <p class="note">Beware that any application can retrieve and send this intent, 
+         * <p class="note">Beware that any application can retrieve and send this intent,
          * potentially with additional fields filled in. See
          * {@link PendingIntent#send(android.content.Context, int, android.content.Intent)
          * PendingIntent.send()} and {@link android.content.Intent#fillIn Intent.fillIn()}

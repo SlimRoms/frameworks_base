@@ -56,7 +56,7 @@ public class RequestQueue {
         BurstHolder next = mRequestQueue.poll();
         if (next == null && mRepeatingRequest != null) {
             next = mRepeatingRequest;
-            mCurrentRepeatingFrameNumber = mCurrentFrameNumber +
+            mCurrentRepeatingFrameNumber = mCurrentFrameNumber
                     next.getNumberOfRequests();
         }
 

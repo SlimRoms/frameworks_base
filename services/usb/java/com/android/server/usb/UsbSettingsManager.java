@@ -357,10 +357,10 @@ class UsbSettingsManager {
 
         @Override
         public String toString() {
-            return "DeviceFilter[mVendorId=" + mVendorId + ",mProductId=" + mProductId +
-                    ",mClass=" + mClass + ",mSubclass=" + mSubclass +
-                    ",mProtocol=" + mProtocol + ",mManufacturerName=" + mManufacturerName +
-                    ",mProductName=" + mProductName + ",mSerialNumber=" + mSerialNumber +
+            return "DeviceFilter[mVendorId=" + mVendorId + ",mProductId=" + mProductId
+                    ",mClass=" + mClass + ",mSubclass=" + mSubclass
+                    ",mProtocol=" + mProtocol + ",mManufacturerName=" + mManufacturerName
+                    ",mProductName=" + mProductName + ",mSerialNumber=" + mSerialNumber
                     "]";
         }
     }
@@ -469,8 +469,8 @@ class UsbSettingsManager {
 
         @Override
         public String toString() {
-            return "AccessoryFilter[mManufacturer=\"" + mManufacturer +
-                                "\", mModel=\"" + mModel +
+            return "AccessoryFilter[mManufacturer=\"" + mManufacturer
+                                "\", mModel=\"" + mModel
                                 "\", mVersion=\"" + mVersion + "\"]";
         }
     }
@@ -1027,7 +1027,7 @@ class UsbSettingsManager {
         try {
             ApplicationInfo aInfo = mPackageManager.getApplicationInfo(packageName, 0);
             if (aInfo.uid != uid) {
-                throw new IllegalArgumentException("package " + packageName +
+                throw new IllegalArgumentException("package " + packageName
                         " does not match caller's uid " + uid);
             }
         } catch (PackageManager.NameNotFoundException e) {

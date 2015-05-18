@@ -147,7 +147,7 @@ class BlockingAudioTrack {
         // much point not doing that again.
         if (mBytesWritten < mAudioBufferSize && !mStopped) {
             if (DBG) {
-                Log.d(TAG, "Stopping audio track to flush audio, state was : " +
+                Log.d(TAG, "Stopping audio track to flush audio, state was : "
                         track.getPlayState() + ",stopped= " + mStopped);
             }
 
@@ -294,7 +294,7 @@ class BlockingAudioTrack {
                 blockedTimeMs += sleepTimeMs;
                 // If we've taken too long to make progress, bail.
                 if (blockedTimeMs > MAX_PROGRESS_WAIT_MS) {
-                    Log.w(TAG, "Waited unsuccessfully for " + MAX_PROGRESS_WAIT_MS + "ms " +
+                    Log.w(TAG, "Waited unsuccessfully for " + MAX_PROGRESS_WAIT_MS + "ms "
                             "for AudioTrack to make progress, Aborting");
                     break;
                 }
@@ -304,7 +304,7 @@ class BlockingAudioTrack {
             previousPosition = currentPosition;
 
             if (DBG) {
-                Log.d(TAG, "About to sleep for : " + sleepTimeMs + " ms," +
+                Log.d(TAG, "About to sleep for : " + sleepTimeMs + " ms,"
                         " Playback position : " + currentPosition + ", Length in frames : "
                         + lengthInFrames);
             }

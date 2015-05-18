@@ -22,7 +22,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 
 /**
- * Defines an oval shape. 
+ * Defines an oval shape.
  * The oval can be drawn to a Canvas with its own draw() method,
  * but more graphical control is available if you instead pass
  * the OvalShape to a {@link android.graphics.drawable.ShapeDrawable}.

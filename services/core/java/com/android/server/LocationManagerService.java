@@ -378,7 +378,7 @@ public class LocationManagerService extends ILocationManager.Stub {
                 PackageInfo pInfo;
                 pInfo = pm.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
                 if (!ServiceWatcher.isSignatureMatch(pInfo.signatures, sigSets)) {
-                    Log.w(TAG, packageName + " resolves service " + FUSED_LOCATION_SERVICE_ACTION +
+                    Log.w(TAG, packageName + " resolves service " + FUSED_LOCATION_SERVICE_ACTION
                             ", but has wrong signature, ignoring");
                     continue;
                 }
@@ -463,7 +463,7 @@ public class LocationManagerService extends ILocationManager.Stub {
         ArrayList<String> providerPackageNames = new ArrayList<String>();
         String[] pkgs = resources.getStringArray(
                 com.android.internal.R.array.config_locationProviderPackageNames);
-        if (D) Log.d(TAG, "certificates for location providers pulled from: " +
+        if (D) Log.d(TAG, "certificates for location providers pulled from: "
                 Arrays.toString(pkgs));
         if (pkgs != null) providerPackageNames.addAll(Arrays.asList(pkgs));
 
@@ -1134,13 +1134,13 @@ public class LocationManagerService extends ILocationManager.Stub {
         if (allowedResolutionLevel < requiredResolutionLevel) {
             switch (requiredResolutionLevel) {
                 case RESOLUTION_LEVEL_FINE:
-                    throw new SecurityException("\"" + providerName + "\" location provider " +
+                    throw new SecurityException("\"" + providerName + "\" location provider "
                             "requires ACCESS_FINE_LOCATION permission.");
                 case RESOLUTION_LEVEL_COARSE:
-                    throw new SecurityException("\"" + providerName + "\" location provider " +
+                    throw new SecurityException("\"" + providerName + "\" location provider "
                             "requires ACCESS_COARSE_LOCATION or ACCESS_FINE_LOCATION permission.");
                 default:
-                    throw new SecurityException("Insufficient permission for \"" + providerName +
+                    throw new SecurityException("Insufficient permission for \"" + providerName
                             "\" location provider.");
             }
         }
@@ -1759,13 +1759,13 @@ public class LocationManagerService extends ILocationManager.Stub {
         final long identity = Binder.clearCallingIdentity();
         try {
             if (mBlacklist.isBlacklisted(packageName)) {
-                if (D) Log.d(TAG, "not returning last loc for blacklisted app: " +
+                if (D) Log.d(TAG, "not returning last loc for blacklisted app: "
                         packageName);
                 return null;
             }
 
             if (!reportLocationAccessNoThrow(uid, packageName, allowedResolutionLevel)) {
-                if (D) Log.d(TAG, "not returning last loc for no op app: " +
+                if (D) Log.d(TAG, "not returning last loc for no op app: "
                         packageName);
                 return null;
             }
@@ -2084,7 +2084,7 @@ public class LocationManagerService extends ILocationManager.Stub {
             return;
         }
 
-        throw new SecurityException("need INSTALL_LOCATION_PROVIDER permission, " +
+        throw new SecurityException("need INSTALL_LOCATION_PROVIDER permission, "
                 "or UID of a currently bound location provider");
     }
 
@@ -2231,22 +2231,22 @@ public class LocationManagerService extends ILocationManager.Stub {
             int receiverUserId = UserHandle.getUserId(receiver.mUid);
             if (!isCurrentProfile(receiverUserId) && !isUidALocationProvider(receiver.mUid)) {
                 if (D) {
-                    Log.d(TAG, "skipping loc update for background user " + receiverUserId +
-                            " (current user: " + mCurrentUserId + ", app: " +
+                    Log.d(TAG, "skipping loc update for background user " + receiverUserId
+                            " (current user: " + mCurrentUserId + ", app: "
                             receiver.mPackageName + ")");
                 }
                 continue;
             }
 
             if (mBlacklist.isBlacklisted(receiver.mPackageName)) {
-                if (D) Log.d(TAG, "skipping loc update for blacklisted app: " +
+                if (D) Log.d(TAG, "skipping loc update for blacklisted app: "
                         receiver.mPackageName);
                 continue;
             }
 
             if (!reportLocationAccessNoThrow(receiver.mUid, receiver.mPackageName,
                     receiver.mAllowedResolutionLevel)) {
-                if (D) Log.d(TAG, "skipping loc update for no op app: " +
+                if (D) Log.d(TAG, "skipping loc update for no op app: "
                         receiver.mPackageName);
                 continue;
             }

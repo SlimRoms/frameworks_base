@@ -457,7 +457,7 @@ public final class NetworkCapabilities implements Parcelable {
      */
     public void setNetworkSpecifier(String networkSpecifier) {
         if (TextUtils.isEmpty(networkSpecifier) == false && Long.bitCount(mTransportTypes) != 1) {
-            throw new IllegalStateException("Must have a single transport specified to use " +
+            throw new IllegalStateException("Must have a single transport specified to use "
                     "setNetworkSpecifier");
         }
         mNetworkSpecifier = networkSpecifier;
@@ -529,12 +529,12 @@ public final class NetworkCapabilities implements Parcelable {
 
     @Override
     public int hashCode() {
-        return ((int)(mNetworkCapabilities & 0xFFFFFFFF) +
-                ((int)(mNetworkCapabilities >> 32) * 3) +
-                ((int)(mTransportTypes & 0xFFFFFFFF) * 5) +
-                ((int)(mTransportTypes >> 32) * 7) +
-                (mLinkUpBandwidthKbps * 11) +
-                (mLinkDownBandwidthKbps * 13) +
+        return ((int)(mNetworkCapabilities & 0xFFFFFFFF)
+                ((int)(mNetworkCapabilities >> 32) * 3)
+                ((int)(mTransportTypes & 0xFFFFFFFF) * 5)
+                ((int)(mTransportTypes >> 32) * 7)
+                (mLinkUpBandwidthKbps * 11)
+                (mLinkDownBandwidthKbps * 13)
                 (TextUtils.isEmpty(mNetworkSpecifier) ? 0 : mNetworkSpecifier.hashCode() * 17));
     }
 
@@ -608,9 +608,9 @@ public final class NetworkCapabilities implements Parcelable {
             if (++i < types.length) capabilities += "&";
         }
 
-        String upBand = ((mLinkUpBandwidthKbps > 0) ? " LinkUpBandwidth>=" +
+        String upBand = ((mLinkUpBandwidthKbps > 0) ? " LinkUpBandwidth>="
                 mLinkUpBandwidthKbps + "Kbps" : "");
-        String dnBand = ((mLinkDownBandwidthKbps > 0) ? " LinkDnBandwidth>=" +
+        String dnBand = ((mLinkDownBandwidthKbps > 0) ? " LinkDnBandwidth>="
                 mLinkDownBandwidthKbps + "Kbps" : "");
 
         String specifier = (mNetworkSpecifier == null ?

@@ -46,7 +46,7 @@ public final class MtpDevice {
 
     /**
      * Opens the MTP device.  Once the device is open it takes ownership of the
-     * {@link android.hardware.usb.UsbDeviceConnection}.  
+     * {@link android.hardware.usb.UsbDeviceConnection}.
      * The connection will be closed when you call {@link #close()}
      * The connection will also be closed if this method fails.
      *

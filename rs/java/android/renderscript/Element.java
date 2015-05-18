@@ -900,7 +900,7 @@ public class Element extends BaseObj {
         }
 
         default: {
-            throw new RSIllegalArgumentException("Cannot create vector of " +
+            throw new RSIllegalArgumentException("Cannot create vector of "
                 "non-primitive type.");
         }
         }

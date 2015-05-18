@@ -248,7 +248,7 @@ public final class BluetoothGatt implements BluetoothProfile {
                              int srvcInstId, ParcelUuid srvcUuid,
                              int charInstId, ParcelUuid charUuid,
                              int charProps) {
-                if (VDBG) Log.d(TAG, "onGetCharacteristic() - Device=" + address + " UUID=" +
+                if (VDBG) Log.d(TAG, "onGetCharacteristic() - Device=" + address + " UUID="
                                charUuid);
 
                 if (!address.equals(mDevice.getAddress())) {
@@ -579,7 +579,7 @@ public final class BluetoothGatt implements BluetoothProfile {
              * @hide
              */
             public void onReadRemoteRssi(String address, int rssi, int status) {
-                if (VDBG) Log.d(TAG, "onReadRemoteRssi() - Device=" + address +
+                if (VDBG) Log.d(TAG, "onReadRemoteRssi() - Device=" + address
                             " rssi=" + rssi + " status=" + status);
                 if (!address.equals(mDevice.getAddress())) {
                     return;
@@ -596,7 +596,7 @@ public final class BluetoothGatt implements BluetoothProfile {
              * @hide
              */
             public void onConfigureMTU(String address, int mtu, int status) {
-                if (DBG) Log.d(TAG, "onConfigureMTU() - Device=" + address +
+                if (DBG) Log.d(TAG, "onConfigureMTU() - Device=" + address
                             " mtu=" + mtu + " status=" + status);
                 if (!address.equals(mDevice.getAddress())) {
                     return;

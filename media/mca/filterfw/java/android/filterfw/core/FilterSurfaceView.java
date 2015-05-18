@@ -144,7 +144,7 @@ public class FilterSurfaceView extends SurfaceView implements SurfaceHolder.Call
     private void registerSurface() {
         mSurfaceId = mGLEnv.registerSurface(getHolder().getSurface());
         if (mSurfaceId < 0) {
-            throw new RuntimeException("Could not register Surface: " + getHolder().getSurface() +
+            throw new RuntimeException("Could not register Surface: " + getHolder().getSurface()
                                        " in FilterSurfaceView!");
         }
     }

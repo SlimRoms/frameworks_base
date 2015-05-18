@@ -248,7 +248,7 @@ final class DeviceDiscoveryAction extends HdmiCecFeatureAction {
 
         DeviceInfo current = mDevices.get(mProcessedDeviceCount);
         if (current.mLogicalAddress != cmd.getSource()) {
-            Slog.w(TAG, "Unmatched address[expected:" + current.mLogicalAddress + ", actual:" +
+            Slog.w(TAG, "Unmatched address[expected:" + current.mLogicalAddress + ", actual:"
                     cmd.getSource());
             return;
         }
@@ -274,7 +274,7 @@ final class DeviceDiscoveryAction extends HdmiCecFeatureAction {
 
         DeviceInfo current = mDevices.get(mProcessedDeviceCount);
         if (current.mLogicalAddress != cmd.getSource()) {
-            Slog.w(TAG, "Unmatched address[expected:" + current.mLogicalAddress + ", actual:" +
+            Slog.w(TAG, "Unmatched address[expected:" + current.mLogicalAddress + ", actual:"
                     cmd.getSource());
             return;
         }
@@ -297,7 +297,7 @@ final class DeviceDiscoveryAction extends HdmiCecFeatureAction {
 
         DeviceInfo current = mDevices.get(mProcessedDeviceCount);
         if (current.mLogicalAddress != cmd.getSource()) {
-            Slog.w(TAG, "Unmatched address[expected:" + current.mLogicalAddress + ", actual:" +
+            Slog.w(TAG, "Unmatched address[expected:" + current.mLogicalAddress + ", actual:"
                     cmd.getSource());
             return;
         }

@@ -334,7 +334,7 @@ public class RecentsView extends FrameLayout implements TaskStackView.TaskStackV
             mClearRecents.setLayoutParams(params);
         }
 
-        // Measure each TaskStackView with the full width and height of the window since the 
+        // Measure each TaskStackView with the full width and height of the window since the
         // transition view is a child of that stack view
         int childCount = getChildCount();
         for (int i = 0; i < childCount; i++) {
@@ -389,7 +389,7 @@ public class RecentsView extends FrameLayout implements TaskStackView.TaskStackV
                     searchBarSpaceBounds.right, searchBarSpaceBounds.bottom);
         }
 
-        // Layout each TaskStackView with the full width and height of the window since the 
+        // Layout each TaskStackView with the full width and height of the window since the
         // transition view is a child of that stack view
         int childCount = getChildCount();
         for (int i = 0; i < childCount; i++) {
