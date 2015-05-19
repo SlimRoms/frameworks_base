@@ -333,6 +333,7 @@ public class PackageManagerService extends IPackageManager.Stub {
     private static final String PACKAGE_MIME_TYPE = "application/vnd.android.package-archive";
 
     private static final String VENDOR_OVERLAY_DIR = "/vendor/overlay";
+    private static final String DATA_OVERLAY_DIR = "/data/system/overlay/enabled";
 
     private static String sPreferredInstructionSet;
 
@@ -1582,6 +1583,10 @@ public class PackageManagerService extends IPackageManager.Stub {
             // overlay packages if they reside in VENDOR_OVERLAY_DIR.
             File vendorOverlayDir = new File(VENDOR_OVERLAY_DIR);
             scanDirLI(vendorOverlayDir, PackageParser.PARSE_IS_SYSTEM
+                    | PackageParser.PARSE_IS_SYSTEM_DIR, scanFlags | SCAN_TRUSTED_OVERLAY, 0);
+
+            File dataOverlayDir = new File(DATA_OVERLAY_DIR);
+            scanDirLI(dataOverlayDir, PackageParser.PARSE_IS_SYSTEM
                     | PackageParser.PARSE_IS_SYSTEM_DIR, scanFlags | SCAN_TRUSTED_OVERLAY, 0);
 
             // Find base frameworks (resource packages without code).

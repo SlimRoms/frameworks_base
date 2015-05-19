@@ -162,8 +162,9 @@ static void verifySystemIdmaps()
                 }
 
                 execl(AssetManager::IDMAP_BIN, AssetManager::IDMAP_BIN, "--scan",
-                        AssetManager::OVERLAY_DIR, AssetManager::TARGET_PACKAGE_NAME,
-                        AssetManager::TARGET_APK_PATH, AssetManager::IDMAP_DIR, (char*)NULL);
+                        AssetManager::OVERLAY_DIR, AssetManager::DATA_OVERLAY_DIR,
+                        AssetManager::TARGET_PACKAGE_NAME, AssetManager::TARGET_APK_PATH,
+                        AssetManager::IDMAP_DIR, (char*)NULL);
                 ALOGE("failed to execl for idmap: %s", strerror(errno));
                 exit(1); // should never get here
             }

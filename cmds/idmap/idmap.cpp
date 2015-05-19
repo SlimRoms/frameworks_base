@@ -166,8 +166,8 @@ NOTES \n\
         return idmap_create_path(target_apk_path, overlay_apk_path, idmap_path);
     }
 
-    int maybe_scan(const char *overlay_dir, const char *target_package_name,
-            const char *target_apk_path, const char *idmap_dir)
+    int maybe_scan(const char *overlay_dir, const char *data_overlay_dir,
+            const char *target_package_name, const char *target_apk_path, const char *idmap_dir)
     {
         if (!verify_root_or_system()) {
             fprintf(stderr, "error: permission denied: not user root or user system\n");
@@ -176,6 +176,11 @@ NOTES \n\
 
         if (!verify_directory_readable(overlay_dir)) {
             ALOGD("error: no read access to %s: %s\n", overlay_dir, strerror(errno));
+            return -1;
+        }
+
+        if (!verify_directory_readable(data_overlay_dir)) {
+            ALOGD("error: no read access to %s: %s\n", data_overlay_dir, strerror(errno));
             return -1;
         }
 
@@ -189,7 +194,7 @@ NOTES \n\
             return -1;
         }
 
-        return idmap_scan(overlay_dir, target_package_name, target_apk_path, idmap_dir);
+        return idmap_scan(overlay_dir, data_overlay_dir, target_package_name, target_apk_path, idmap_dir);
     }
 
     int maybe_inspect(const char *idmap_path)
@@ -231,7 +236,7 @@ int main(int argc, char **argv)
     }
 
     if (argc == 6 && !strcmp(argv[1], "--scan")) {
-        return maybe_scan(argv[2], argv[3], argv[4], argv[5]);
+        return maybe_scan(argv[2], argv[3], argv[4], argv[5], argv[6]);
     }
 
     if (argc == 3 && !strcmp(argv[1], "--inspect")) {
