@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_033ff826",
+        "filename": "core/java/android/provider/Settings.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2125,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-19T20:32:45Z",
+      "side": 1,
+      "message": "yup spaces are are bad this will cause conflicts in the future",
+      "range": {
+        "startLine": 2125,
+        "startChar": 8,
+        "endLine": 2125,
+        "endChar": 11
+      },
+      "revId": "aa5789dbac6974aff5d364531886849f03df9ce1",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_233af436",
+        "filename": "core/java/android/provider/Settings.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2183,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-19T20:32:45Z",
+      "side": 1,
+      "message": "No need to mess with this, could cause problems in the future",
+      "range": {
+        "startLine": 2183,
+        "startChar": 9,
+        "endLine": 2183,
+        "endChar": 10
+      },
+      "revId": "aa5789dbac6974aff5d364531886849f03df9ce1",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_e33bdc36",
+        "filename": "core/java/com/android/internal/statusbar/IStatusBar.aidl",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-19T20:32:45Z",
+      "side": 1,
+      "message": "Conflicts for the future no bueno",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 0
+      },
+      "revId": "aa5789dbac6974aff5d364531886849f03df9ce1",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_c348e0ce",
+        "filename": "core/java/com/android/internal/statusbar/IStatusBarService.aidl",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-19T20:32:45Z",
+      "side": 1,
+      "message": "No bueno",
+      "range": {
+        "startLine": 13,
+        "startChar": 27,
+        "endLine": 13,
+        "endChar": 35
+      },
+      "revId": "aa5789dbac6974aff5d364531886849f03df9ce1",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_a345e4b4",
+        "filename": "packages/SystemUI/AndroidManifest.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-19T20:32:45Z",
+      "side": 1,
+      "message": "How does it compile?!",
+      "range": {
+        "startLine": 134,
+        "startChar": 18,
+        "endLine": 135,
+        "endChar": 7
+      },
+      "revId": "aa5789dbac6974aff5d364531886849f03df9ce1",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_8312e8b2",
+        "filename": "packages/SystemUI/res/drawable/ic_heads_up_snooze.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-19T20:32:45Z",
+      "side": 1,
+      "message": "date",
+      "range": {
+        "startLine": 2,
+        "startChar": 14,
+        "endLine": 2,
+        "endChar": 18
+      },
+      "revId": "aa5789dbac6974aff5d364531886849f03df9ce1",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_6317cca4",
+        "filename": "packages/SystemUI/res/values/config.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-19T20:32:45Z",
+      "side": 1,
+      "message": "And again how is this compiling?!",
+      "range": {
+        "startLine": 178,
+        "startChar": 0,
+        "endLine": 178,
+        "endChar": 7
+      },
+      "revId": "aa5789dbac6974aff5d364531886849f03df9ce1",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_430cd094",
+        "filename": "packages/SystemUI/res/values/slim_strings.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-19T20:32:45Z",
+      "side": 1,
+      "message": "Bad",
+      "range": {
+        "startLine": 30,
+        "startChar": 8,
+        "endLine": 30,
+        "endChar": 12
+      },
+      "revId": "aa5789dbac6974aff5d364531886849f03df9ce1",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_2311d4ac",
+        "filename": "packages/SystemUI/src/com/android/systemui/SwipeHelper.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-19T20:32:45Z",
+      "side": 1,
+      "message": "Should be split if possible",
+      "range": {
+        "startLine": 323,
+        "startChar": 55,
+        "endLine": 323,
+        "endChar": 80
+      },
+      "revId": "aa5789dbac6974aff5d364531886849f03df9ce1",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
