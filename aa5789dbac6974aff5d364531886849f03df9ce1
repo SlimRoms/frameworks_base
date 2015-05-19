@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_e322bc00",
+        "filename": "packages/SystemUI/AndroidManifest.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-19T20:34:43Z",
+      "side": 0,
+      "message": "Should be fixed in the previous commit",
+      "range": {
+        "startLine": 138,
+        "startChar": 66,
+        "endLine": 138,
+        "endChar": 67
+      },
+      "revId": "aa5789dbac6974aff5d364531886849f03df9ce1",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_c31fc0b6",
+        "filename": "packages/SystemUI/res/values/config.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-19T20:34:43Z",
+      "side": 0,
+      "message": "last commit not here",
+      "range": {
+        "startLine": 152,
+        "startChar": 7,
+        "endLine": 152,
+        "endChar": 8
+      },
+      "revId": "aa5789dbac6974aff5d364531886849f03df9ce1",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_a31cc4c2",
+        "filename": "packages/SystemUI/res/values/slim_strings.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-19T20:34:43Z",
+      "side": 0,
+      "message": "last commit",
+      "range": {
+        "startLine": 30,
+        "startChar": 8,
+        "endLine": 30,
+        "endChar": 12
+      },
+      "revId": "aa5789dbac6974aff5d364531886849f03df9ce1",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
