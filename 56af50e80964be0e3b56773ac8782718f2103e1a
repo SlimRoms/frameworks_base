@@ -1,0 +1,389 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_036db832",
+        "filename": "core/java/android/service/gesture/EdgeGestureManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-19T21:21:54Z",
+      "side": 1,
+      "message": "date",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "56af50e80964be0e3b56773ac8782718f2103e1a",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_e3699c26",
+        "filename": "core/java/android/service/gesture/IEdgeGestureActivationListener.aidl",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-19T21:21:54Z",
+      "side": 1,
+      "message": "Header should be added",
+      "revId": "56af50e80964be0e3b56773ac8782718f2103e1a",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_c376a006",
+        "filename": "core/java/android/service/gesture/IEdgeGestureHostCallback.aidl",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-19T21:21:54Z",
+      "side": 1,
+      "message": "Header",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 7
+      },
+      "revId": "56af50e80964be0e3b56773ac8782718f2103e1a",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_a373a414",
+        "filename": "core/java/android/service/gesture/IEdgeGestureService.aidl",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-19T21:21:54Z",
+      "side": 1,
+      "message": "header",
+      "range": {
+        "startLine": 1,
+        "startChar": 31,
+        "endLine": 1,
+        "endChar": 32
+      },
+      "revId": "56af50e80964be0e3b56773ac8782718f2103e1a",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_8360a836",
+        "filename": "core/java/android/service/gesture/package.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-19T21:21:54Z",
+      "side": 1,
+      "message": "What does this do? and header if needed",
+      "range": {
+        "startLine": 1,
+        "startChar": 5,
+        "endLine": 1,
+        "endChar": 6
+      },
+      "revId": "56af50e80964be0e3b56773ac8782718f2103e1a",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_435a9084",
+        "filename": "core/java/com/android/internal/util/gesture/EdgeGesturePosition.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-19T21:21:54Z",
+      "side": 1,
+      "message": "date",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "56af50e80964be0e3b56773ac8782718f2103e1a",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_235f9474",
+        "filename": "core/java/com/android/internal/util/gesture/EdgeServiceConstants.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-19T21:21:54Z",
+      "side": 1,
+      "message": "date",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "56af50e80964be0e3b56773ac8782718f2103e1a",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_03549852",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/CommandQueue.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-19T21:21:54Z",
+      "side": 1,
+      "message": "format",
+      "range": {
+        "startLine": 66,
+        "startChar": 53,
+        "endLine": 66,
+        "endChar": 60
+      },
+      "revId": "56af50e80964be0e3b56773ac8782718f2103e1a",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_e3507c60",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/NavigationBarOverlay.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-19T21:21:54Z",
+      "side": 1,
+      "message": "date",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "56af50e80964be0e3b56773ac8782718f2103e1a",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_c34d80c6",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/pie/PieItem.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-19T21:21:54Z",
+      "side": 1,
+      "message": "date",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "56af50e80964be0e3b56773ac8782718f2103e1a",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_a34a84aa",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/pie/PieSliceContainer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-19T21:21:54Z",
+      "side": 1,
+      "message": "date",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "56af50e80964be0e3b56773ac8782718f2103e1a",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_83c78812",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/pie/PieSysInfo.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-19T21:21:54Z",
+      "side": 1,
+      "message": "date",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "56af50e80964be0e3b56773ac8782718f2103e1a",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_63cc6c36",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/pie/PieView.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-19T21:21:54Z",
+      "side": 1,
+      "message": "date",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "56af50e80964be0e3b56773ac8782718f2103e1a",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_43d170cc",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/policy/PieController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-19T21:21:54Z",
+      "side": 1,
+      "message": "date",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "56af50e80964be0e3b56773ac8782718f2103e1a",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_23d674c6",
+        "filename": "services/java/com/android/server/gesture/EdgeGestureInputFilter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-19T21:21:54Z",
+      "side": 1,
+      "message": "date",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "56af50e80964be0e3b56773ac8782718f2103e1a",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_03db78ee",
+        "filename": "services/java/com/android/server/gesture/EdgeGestureService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-19T21:21:54Z",
+      "side": 1,
+      "message": "date",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "56af50e80964be0e3b56773ac8782718f2103e1a",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_e3d75cbe",
+        "filename": "services/java/com/android/server/gesture/EdgeGestureTracker.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-19T21:21:54Z",
+      "side": 1,
+      "message": "date",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "56af50e80964be0e3b56773ac8782718f2103e1a",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
