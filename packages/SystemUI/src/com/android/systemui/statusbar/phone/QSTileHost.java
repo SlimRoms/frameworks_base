@@ -331,6 +331,8 @@ public class QSTileHost implements QSTile.Host {
                 return new AmbientDisplayTile(this);
             case QSConstants.TILE_SCREENSHOT:
                 return new ScreenshotTile(this);
+            case QSConstants.TILE_EXPANDED_DESKTOP:
+                return new ExpandedDesktopTile(this);
             default:
                 throw new IllegalArgumentException("Bad tile spec: " + tileSpec);
         }
