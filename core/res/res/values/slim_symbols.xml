@@ -109,6 +109,8 @@
   <java-symbol type="drawable" name="ic_shortcut_action_ring_vib_silent" />
   <java-symbol type="drawable" name="ic_shortcut_action_screenshot" />
   <java-symbol type="drawable" name="ic_shortcut_action_search" />
+  <java-symbol type="drawable" name="ic_shortcut_action_auto_rotate" />
+  <java-symbol type="drawable" name="ic_shortcut_action_volume_panel" />
 
   <!-- Flashlight notification -->
   <java-symbol type="string" name="notification_flashlight_on_title" />
