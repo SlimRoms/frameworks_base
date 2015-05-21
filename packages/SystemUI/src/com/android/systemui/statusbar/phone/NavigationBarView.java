@@ -99,6 +99,7 @@ public class NavigationBarView extends LinearLayout {
     private int mMenuVisibility;
     private int mMenuSetting;
     private boolean mOverrideMenuKeys;
+    private boolean mIsImeButtonVisible = false;
 
     final Display mDisplay;
     View mCurrentView = null;
@@ -614,6 +615,7 @@ public class NavigationBarView extends LinearLayout {
         final boolean showImeButton = ((hints & StatusBarManager.NAVIGATION_HINT_IME_SHOWN) != 0);
         if (getImeSwitchButton() != null)
             getImeSwitchButton().setVisibility(showImeButton ? View.VISIBLE : View.GONE);
+            mIsImeButtonVisible = showImeButton;
 
         // Update menu button in case the IME state has changed.
         setMenuVisibility(mShowMenu, true);
@@ -733,7 +735,8 @@ public class NavigationBarView extends LinearLayout {
             return;
         } else if (mMenuVisibility == MENU_VISIBILITY_NEVER) {
             leftMenuKeyView.setVisibility(View.INVISIBLE);
-            rightMenuKeyView.setVisibility(View.INVISIBLE);
+            rightMenuKeyView.setVisibility(
+                    mIsImeButtonVisible ? View.GONE : View.INVISIBLE);
         }
 
 
@@ -747,7 +750,8 @@ public class NavigationBarView extends LinearLayout {
                 && shouldShow;
 
         leftMenuKeyView.setVisibility(showLeftMenuButton ? View.VISIBLE : View.INVISIBLE);
-        rightMenuKeyView.setVisibility(showRightMenuButton ? View.VISIBLE : View.INVISIBLE);
+        rightMenuKeyView.setVisibility(showRightMenuButton ? View.VISIBLE
+                : (mIsImeButtonVisible ? View.GONE : View.INVISIBLE));
         mShowMenu = show;
     }
 
