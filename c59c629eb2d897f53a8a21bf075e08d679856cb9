@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa3479d7_98191d7c",
+        "filename": "core/java/com/android/internal/util/slim/Action.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2015-05-22T17:27:05Z",
+      "side": 1,
+      "message": "this was getting NPE because mContext is still null.  yes, you declared it above, but now you need to define it using the Context context passed to processActionWithOptions void.  in other words:\n\nmContext \u003d context;",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 0
+      },
+      "revId": "c59c629eb2d897f53a8a21bf075e08d679856cb9",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
