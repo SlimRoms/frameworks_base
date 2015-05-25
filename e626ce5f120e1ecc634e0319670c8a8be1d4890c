@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa3479d7_1b464724",
+        "filename": "services/core/java/com/android/server/notification/ZenModeHelper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1000083
+      },
+      "writtenOn": "2015-05-25T13:38:59Z",
+      "side": 1,
+      "message": "Is this needed?",
+      "range": {
+        "startLine": 331,
+        "startChar": 20,
+        "endLine": 331,
+        "endChar": 42
+      },
+      "revId": "e626ce5f120e1ecc634e0319670c8a8be1d4890c",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa3479d7_3b410b0c",
+        "filename": "services/core/java/com/android/server/notification/ZenModeHelper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1000083
+      },
+      "writtenOn": "2015-05-25T13:38:59Z",
+      "side": 1,
+      "message": "typo: off",
+      "range": {
+        "startLine": 360,
+        "startChar": 50,
+        "endLine": 360,
+        "endChar": 52
+      },
+      "revId": "e626ce5f120e1ecc634e0319670c8a8be1d4890c",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
