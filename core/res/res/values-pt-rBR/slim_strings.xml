@@ -96,4 +96,16 @@
   <string name="reboot_confirm">O seu telefone irá reiniciar.</string>
   <string name="global_action_reboot">Reiniciar</string>
   <string name="default_string">Padrão</string>
+  <string name="permlab_accessTorchService">acessar a lanterna</string>
+  <string name="permdesc_accessTorchService">Permite a um aplicativo acessar a lanterna. Não deveria ser necessário para aplicativos normais.</string>
+  <string name="global_actions_pie_mode_on_status">A SlimPie está LIGADA</string>
+  <string name="global_actions_pie_mode_off_status">A SlimPie está DESLIGADA</string>
+  <string name="disable_pie_navigation_error">Você não pode desativar os controles da SlimPie. Nenhuma outra navegação está habilitada. Ative primeiro a barra de navegação para depois desativar os controles da SlimPie.</string>
+  <string name="global_actions_nav_bar_mode_on_status">A barra de navegação está LIGADA</string>
+  <string name="global_actions_nav_bar_mode_off_status">A barra de navegação está DESLIGADA</string>
+  <string name="disable_navigation_pie_error">Você não pode desativar a barra de navegação. Nenhuma outra navegação está ativada. Ative primeiro a SlimPie para depois desativar a barra de navegação.</string>
+  <string name="notification_flashlight_on_title">Lanterna está ligada</string>
+  <string name="notification_flashlight_on_summary">Toque para desligar</string>
+  <string name="permlab_changeHeadsUpState">ativar ou desativar o heads up</string>
+  <string name="permdesc_changeHeadsUpState">Permite que o aplicativo altere se outro aplicativo pode mostrar notificações normais como sendo notificações heads up.</string>
 </resources>

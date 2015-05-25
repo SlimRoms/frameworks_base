@@ -79,6 +79,7 @@
   <string name="app_ops_write_sms">eine SMS-Nachricht schreiben</string>
   <string name="adb_net_active_notification_title">ADB über Netzwerk aktiviert</string>
   <string name="adb_both_active_notification_title">ADB über USB &amp; Netzwerk aktiviert</string>
+  <string name="adb_active_generic_notification_message">Berühren um Debugging zu deaktivieren.</string>
   <string name="usb_charging_notification_title">Im Ladebetrieb verbunden</string>
   <string name="progress_nomediapresent" product="default">Kein Wechseldatenträger vorhanden\u2026</string>
   <string name="permission_remember_choice">Speichern</string>
@@ -95,4 +96,16 @@
   <string name="reboot_confirm">Ihr Telefon wird neu gestartet.</string>
   <string name="global_action_reboot">Neustart</string>
   <string name="default_string">Standard</string>
+  <string name="permlab_accessTorchService">Zugriff auf Taschenlampe</string>
+  <string name="permdesc_accessTorchService">Ermöglicht einer App, auf die Taschenlampe zuzugreifen. Dies sollte niemals für normale Apps benötigt werden.</string>
+  <string name="global_actions_pie_mode_on_status">SlimPIE ist AN</string>
+  <string name="global_actions_pie_mode_off_status">SlimPIE ist AUS</string>
+  <string name="disable_pie_navigation_error">Sie können SlimPIE nicht deaktivieren. Es ist keine andere Navigation aktiviert. Aktivieren Sie zunächst die Navigationsleiste um SlimPIE zu deaktivieren.</string>
+  <string name="global_actions_nav_bar_mode_on_status">Navigationsleiste ist AN</string>
+  <string name="global_actions_nav_bar_mode_off_status">Navigationsleiste ist AUS</string>
+  <string name="disable_navigation_pie_error">Die Navigationsleiste kann nicht deaktivieret werden. Es ist keine andere Navigation aktiviert. Aktivieren Sie zunächst SlimPIE um die Navigationsleiste zu deaktivieren.</string>
+  <string name="notification_flashlight_on_title">Taschenlampe ist an</string>
+  <string name="notification_flashlight_on_summary">Tippen um zu deaktivieren</string>
+  <string name="permlab_changeHeadsUpState">Heads-Up ein- oder ausschalten</string>
+  <string name="permdesc_changeHeadsUpState">Ermöglicht der App festzulegen, ob andere Apps normale Benachrichtigungen als Heads-Up-Meldung anzeigen dürfen.</string>
 </resources>

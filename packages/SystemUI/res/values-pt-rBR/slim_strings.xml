@@ -41,4 +41,23 @@
   <string name="quick_settings_usb_tether_label">USB tethering</string>
   <string name="quick_settings_reboot_label">Reiniciar</string>
   <string name="quick_settings_reboot_recovery_label">Recuperação</string>
+  <string name="quick_settings_ambient_display_label">Ambient Display</string>
+  <string name="quick_settings_screenshot">Captura de tela</string>
+  <string name="accessibility_quick_settings_ambient_display_off">Ambient Display desligado.</string>
+  <string name="accessibility_quick_settings_ambient_display_on">Ambient Display ligado.</string>
+  <string name="accessibility_quick_settings_ambient_display_changed_off">Ambient Display foi desligado.</string>
+  <string name="accessibility_quick_settings_ambient_display_changed_on">Ambient Display foi ligado.</string>
+  <string name="clear_recents">Fechar todas as recentes</string>
+  <string name="app_killed_message">Aplicativo encerrado</string>
+  <string name="shortcut_screenshot">Captura de tela</string>
+  <string name="heads_up_snooze_message">Heads up desativadas por <xliff:g id="number">%d</xliff:g> minutos.</string>
+  <string name="heads_up_snooze_button_title">Adiar heads up</string>
+  <string name="notification_inspect_heads_up_title_enabled">Ativar notificações heads up para este aplicativo</string>
+  <string name="notification_inspect_heads_up_title_disabled">Desativar notificações heads up para este aplicativo</string>
+  <string name="pie_battery_status_charging">Carregando (<xliff:g id="percent">%d</xliff:g>%%)</string>
+  <string name="pie_battery_status_full">Carregado</string>
+  <string name="pie_battery_status_discharging"><xliff:g id="%">%d</xliff:g>%% restantes</string>
+  <string name="pie_phone_status_no_service">Sem serviço</string>
+  <string name="pie_phone_status_airplane_mode">Modo avião ligado</string>
+  <string name="pie_phone_status_emergency_only">Apenas chamadas de emergência</string>
 </resources>

@@ -96,4 +96,16 @@
   <string name="reboot_confirm">Votre téléphone va redémarrer.</string>
   <string name="global_action_reboot">Redémarrer</string>
   <string name="default_string">Par défaut</string>
+  <string name="permlab_accessTorchService">accès à la lampe de poche</string>
+  <string name="permdesc_accessTorchService">Autoriser une application à accéder à la lampe de poche. Une application normale ne devrait jamais en avoir besoin.</string>
+  <string name="global_actions_pie_mode_on_status">SlimPie est activé</string>
+  <string name="global_actions_pie_mode_off_status">SlimPie est désactivé</string>
+  <string name="disable_pie_navigation_error">Vous ne pouvez pas désactiver le SlimPie car aucun autre moyen de navigation n\'est activé. Activez d\'abord la barre de navigation pour désactiver le SlimPie.</string>
+  <string name="global_actions_nav_bar_mode_on_status">La barre de navigation est activée</string>
+  <string name="global_actions_nav_bar_mode_off_status">La barre de navigation est désactivée</string>
+  <string name="disable_navigation_pie_error">Vous ne pouvez pas désactiver la barre de navigation car aucun autre moyen de navigation n\'est activé. Activez d\'abord le SlimPie pour désactiver la barre de navigation.</string>
+  <string name="notification_flashlight_on_title">La lampe de poche est allumée</string>
+  <string name="notification_flashlight_on_summary">Appuyer pour éteindre</string>
+  <string name="permlab_changeHeadsUpState">activer ou désactiver les notif. flottantes</string>
+  <string name="permdesc_changeHeadsUpState">Autorise l\'application à choisir si une autre application est autorisée à afficher les notifications en tant que notifications flottantes.</string>
 </resources>

@@ -96,4 +96,16 @@
   <string name="reboot_confirm">Ваше устройство будет перезагружено.</string>
   <string name="global_action_reboot">Перезагрузка</string>
   <string name="default_string">По умолчанию</string>
+  <string name="permlab_accessTorchService">доступ к фонарику</string>
+  <string name="permdesc_accessTorchService">Разрешить приложению доступ к фонарику. Не должно понадобиться обычным приложениям никогда.</string>
+  <string name="global_actions_pie_mode_on_status">SlimPie включен</string>
+  <string name="global_actions_pie_mode_off_status">SlimPie отключен</string>
+  <string name="disable_pie_navigation_error">Нельзя отключить управление pie, поскольку не включено иной навигации. Сначала включите панель навигации.</string>
+  <string name="global_actions_nav_bar_mode_on_status">Панель навигации включена</string>
+  <string name="global_actions_nav_bar_mode_off_status">Панель навигации отключена</string>
+  <string name="disable_navigation_pie_error">Нельзя отключить панель навигации, поскольку не включено иной навигации. Сначала включите управление pie.</string>
+  <string name="notification_flashlight_on_title">Фонарик включен</string>
+  <string name="notification_flashlight_on_summary">Нажмите для выключения</string>
+  <string name="permlab_changeHeadsUpState">вкл/выкл всплывающие уведомления</string>
+  <string name="permdesc_changeHeadsUpState">Разрешить приложению изменять вид уведомлений другого приложения на обычные или всплывающие.</string>
 </resources>
