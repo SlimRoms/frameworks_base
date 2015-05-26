@@ -212,7 +212,6 @@ public class NotificationsTile extends QSTile<NotificationsTile.NotificationsSta
 
         @Override
         public View createDetailView(Context context, View convertView, ViewGroup parent) {
-            if (convertView != null) return convertView;
             final VolumeComponent volumeComponent = mHost.getVolumeComponent();
             final VolumePanel vp = new VolumePanel(mContext, parent, mZenController);
             final View v = vp.getContentView();
