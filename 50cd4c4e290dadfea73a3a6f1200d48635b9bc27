@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa3479d7_bb6bbb84",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/BaseStatusBar.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2341,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-26T01:25:04Z",
+      "side": 1,
+      "message": "Needs to be wrapped. We try to stick to aosp format which is 100 char per lines",
+      "range": {
+        "startLine": 2341,
+        "startChar": 0,
+        "endLine": 2341,
+        "endChar": 184
+      },
+      "revId": "50cd4c4e290dadfea73a3a6f1200d48635b9bc27",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa3479d7_9b68f788",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/BaseStatusBar.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2359,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-05-26T01:25:04Z",
+      "side": 1,
+      "message": "Too long",
+      "range": {
+        "startLine": 2359,
+        "startChar": 0,
+        "endLine": 2359,
+        "endChar": 109
+      },
+      "revId": "50cd4c4e290dadfea73a3a6f1200d48635b9bc27",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
