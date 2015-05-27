@@ -96,4 +96,8 @@
   <string name="reboot_confirm">Il telefono sarà riavviato.</string>
   <string name="global_action_reboot">Riavvio</string>
   <string name="default_string">Predefinito</string>
+  <string name="permlab_accessTorchService">accesso servizio torcia</string>
+  <string name="permdesc_accessTorchService">Consente ad un\'app di accedere alla torcia. Non dovrebbe essere mai richiesto per le normali applicazioni.</string>
+  <string name="notification_flashlight_on_title">La torcia è attiva</string>
+  <string name="notification_flashlight_on_summary">Tocca per disattivarla</string>
 </resources>

@@ -23,15 +23,21 @@
   <string name="permdesc_changePrivacyGuardState">Permite à aplicação escolher se outra aplicação funciona com Proteção à Privacidade. Quando uma aplicação funciona com a Proteçao à Privacidade ativada, não terá acesso a dados pessoais como contactos, registo de chamadas ou mensagens.</string>
   <string name="privacy_guard_notification">Proteção à Privacidade ativa</string>
   <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> não poderá aceder a dados pessoais</string>
+  <string name="privacy_guard_dialog_title">Proteção da Privacidade</string>
+  <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s</xliff:g> gostaria de <xliff:g id="op">%2$s</xliff:g>.</string>
   <string name="app_ops_access_camera">aceder à câmara</string>
   <string name="app_ops_access_location">aceder à sua localização</string>
   <string name="app_ops_access_notifications">ler as suas notificações</string>
+  <string name="app_ops_activate_vpn">ativar uma VPN</string>
   <string name="app_ops_alarm_wakeup">acordar o dispositivo</string>
+  <string name="app_ops_su">Obter acesso Superuser</string>
+  <string name="app_ops_auto_start">iniciar no arranque</string>
   <string name="app_ops_delete_call_log">eliminar registo de chamadas</string>
   <string name="app_ops_delete_contacts">eliminar um contacto</string>
   <string name="app_ops_delete_mms">eliminar uma mensagem MMS</string>
   <string name="app_ops_delete_sms">eliminar uma mensagem SMS</string>
   <string name="app_ops_draw_on_top">desenhar na parte superior</string>
+  <string name="app_ops_get_usage_stats">obter estatísticas de utilização</string>
   <string name="app_ops_keep_device_awake">manter o seu dispositivo acordado</string>
   <string name="app_ops_make_phone_call">fazer uma chamada telefónica</string>
   <string name="app_ops_modify_calendar">atualizar o seu calendário</string>
@@ -39,6 +45,7 @@
   <string name="app_ops_modify_clipboard">modificar a área de transferência</string>
   <string name="app_ops_modify_contacts">atualizar contactos</string>
   <string name="app_ops_modify_settings">atualizar as definições de sistema</string>
+  <string name="app_ops_mute_unmute_microphone">ligar/desligar o microfone</string>
   <string name="app_ops_play_audio">reproduzir áudio</string>
   <string name="app_ops_post_notification">publicar uma notificação</string>
   <string name="app_ops_project_media">controlar projeto multimédia</string>
@@ -70,6 +77,9 @@
   <string name="app_ops_use_voice_volume">controlar o volume das chamadas de voz</string>
   <string name="app_ops_write_mms">escrever uma mensagem MMS</string>
   <string name="app_ops_write_sms">escrever uma mensagem SMS</string>
+  <string name="adb_net_active_notification_title">ADB sobre rede ativado</string>
+  <string name="adb_both_active_notification_title">ABD sobre USB &amp; rede ativado</string>
+  <string name="adb_active_generic_notification_message">Toque para desativar a depuração.</string>
   <string name="usb_charging_notification_title">Conectado ao computador em modo de carregamento</string>
   <string name="progress_nomediapresent" product="default">Sem media removível\u2026</string>
   <string name="permission_remember_choice">Lembrar</string>
@@ -86,4 +96,16 @@
   <string name="reboot_confirm">O seu telemóvel irá reiniciar.</string>
   <string name="global_action_reboot">Reiniciar</string>
   <string name="default_string">Predefinido</string>
+  <string name="permlab_accessTorchService">Aceder ao serviço da lanterna</string>
+  <string name="permdesc_accessTorchService">Permite a uma aplicação aceder ao serviço da lanterna. Nunca deverá ser necessário para aplicações normais.</string>
+  <string name="global_actions_pie_mode_on_status">SlimPie está ligada</string>
+  <string name="global_actions_pie_mode_off_status">SlimPie está desligada</string>
+  <string name="disable_pie_navigation_error">Você não pode desativar os controlos Pie. Nenhuma outra forma de navegação está ativada. Ative primeiro a sua barra de navegação antes de desativar os controlos Pie.</string>
+  <string name="global_actions_nav_bar_mode_on_status">Barra de navegação ligada</string>
+  <string name="global_actions_nav_bar_mode_off_status">Barra de navegação desligada</string>
+  <string name="disable_navigation_pie_error">Você não pode desativar a barra de navegação. Nenhuma outra forma de navegação está ativada. Ative primeiro os controlos Pie antes de desativar a sua barra de navegação.</string>
+  <string name="notification_flashlight_on_title">Lanterna está ligada</string>
+  <string name="notification_flashlight_on_summary">Toque para desligar</string>
+  <string name="permlab_changeHeadsUpState">Ativar ou desativar notificações pop-up</string>
+  <string name="permdesc_changeHeadsUpState">Permite que a aplicação altere se outra aplicação pode mostrar as notificações como notificações pop-up.</string>
 </resources>

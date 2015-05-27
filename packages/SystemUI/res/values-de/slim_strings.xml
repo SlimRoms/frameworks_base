@@ -21,6 +21,9 @@
   <string name="screenshot_notification_delete">Löschen</string>
   <string name="screenshot_delete_confirmation">Bildschirmfoto gelöscht.</string>
   <string name="su_session_active">SU-Sitzung aktiv</string>
+  <string name="accessibility_quick_settings_location_battery_saving">Standort-Berichterstattung: akkusparender Modus.</string>
+  <string name="accessibility_quick_settings_location_gps_only">Standort-Berichterstattung: nur Sensor.</string>
+  <string name="accessibility_quick_settings_location_high_accuracy">Standort-Berichterstattung: hohe Genauigkeit.</string>
   <string name="quick_settings_location_detail_title">Standort-Modus</string>
   <string name="quick_settings_location_battery_saving_label">Akku sparen</string>
   <string name="quick_settings_location_gps_only_label">Nur Gerät</string>
@@ -37,4 +40,18 @@
   <string name="quick_settings_usb_tether_label">USB-Tethering</string>
   <string name="quick_settings_reboot_label">Neustart</string>
   <string name="quick_settings_reboot_recovery_label">Recovery</string>
+  <string name="quick_settings_screenshot">Bildschirmfoto</string>
+  <string name="clear_recents">Anwendungsverlauf komplett schließen</string>
+  <string name="app_killed_message">App beendet</string>
+  <string name="shortcut_screenshot">Bildschirmfoto</string>
+  <string name="heads_up_snooze_message">Heads-Up ist für <xliff:g id="number">%d</xliff:g> Minuten deaktiviert.</string>
+  <string name="heads_up_snooze_button_title">Snooze Heads-up</string>
+  <string name="notification_inspect_heads_up_title_enabled">Heads-Up für diese Anwendung aktivieren</string>
+  <string name="notification_inspect_heads_up_title_disabled">Heads-Up für diese Anwendung deaktivieren</string>
+  <string name="pie_battery_status_charging">Laden (<xliff:g id="percent">%d</xliff:g>%%)</string>
+  <string name="pie_battery_status_full">Geladen</string>
+  <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% verbleibend</string>
+  <string name="pie_phone_status_no_service">Kein Dienst</string>
+  <string name="pie_phone_status_airplane_mode">Flugmodus an</string>
+  <string name="pie_phone_status_emergency_only">Nur Notrufe</string>
 </resources>

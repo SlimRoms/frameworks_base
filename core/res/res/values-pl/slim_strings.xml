@@ -23,15 +23,21 @@
   <string name="permdesc_changePrivacyGuardState">Pozwala aplikacji decydować, kiedy inna aplikacja zostanie uruchomiona w trybie ochrony prywatności. W trybie tym aplikacje nie mają dostępu do osobistych danych użytkownika, takich jak kontakty, historia połączeń czy wiadomości.</string>
   <string name="privacy_guard_notification">Ochrona Prywatności aktywna</string>
   <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g>  nie będzie mieć dostępu do osobistych danych</string>
+  <string name="privacy_guard_dialog_title">Ochrona prywatności</string>
+  <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s</xliff:g> chciałby <xliff:g id="op">%2$s</xliff:g>.</string>
   <string name="app_ops_access_camera">dostęp do kamery</string>
   <string name="app_ops_access_location">dostęp do twojej lokalizacji</string>
   <string name="app_ops_access_notifications">dostęp do powiadomień</string>
+  <string name="app_ops_activate_vpn">Aktywuj VPN</string>
   <string name="app_ops_alarm_wakeup">wybudzenie urządzenia</string>
+  <string name="app_ops_su">Uzyskaj dostęp administratora</string>
+  <string name="app_ops_auto_start">uruchom podczas włączania urządzenia</string>
   <string name="app_ops_delete_call_log">usuwanie dziennika połączeń</string>
   <string name="app_ops_delete_contacts">usuwanie kontaktów</string>
   <string name="app_ops_delete_mms">usuwanie wiadomości MMS</string>
   <string name="app_ops_delete_sms">usuwanie wiadomości SMS</string>
   <string name="app_ops_draw_on_top">rysowanie na wierzchu</string>
+  <string name="app_ops_get_usage_stats">uzyskaj statystyki użytkowania aplikacji</string>
   <string name="app_ops_keep_device_awake">zapobieganie przejściu telefonu w stan uśpienia</string>
   <string name="app_ops_make_phone_call">wykonywanie połączeń telefonicznych</string>
   <string name="app_ops_modify_calendar">aktualizowanie kalendarza</string>
@@ -39,6 +45,7 @@
   <string name="app_ops_modify_clipboard">modyfikowanie schowka</string>
   <string name="app_ops_modify_contacts">aktualizowanie kontaktów</string>
   <string name="app_ops_modify_settings">aktualizowanie ustawień systemowych</string>
+  <string name="app_ops_mute_unmute_microphone">Wycisz/Włącz mikrofon</string>
   <string name="app_ops_play_audio">odtwarzanie dźwięków</string>
   <string name="app_ops_post_notification">wysyłanie powiadomienia</string>
   <string name="app_ops_project_media">Kontrolowanie projektu mediów</string>
@@ -70,6 +77,9 @@
   <string name="app_ops_use_voice_volume">kontrolowanie głośności rozmów</string>
   <string name="app_ops_write_mms">pisanie MMS-ów</string>
   <string name="app_ops_write_sms">pisanie SMS-ów</string>
+  <string name="adb_net_active_notification_title">ADB przez sieć włączone</string>
+  <string name="adb_both_active_notification_title">ADB przez USB i sieć włączone</string>
+  <string name="adb_active_generic_notification_message">Dotknij, aby wyłączyć debugowanie.</string>
   <string name="usb_charging_notification_title">Podłączony w trybie ładowania</string>
   <string name="progress_nomediapresent" product="default">Brak wymiennego nośnika pamięci\u2026</string>
   <string name="permission_remember_choice">Należy pamiętać</string>
@@ -86,4 +96,16 @@
   <string name="reboot_confirm">Telefon zostanie uruchomiony ponownie.</string>
   <string name="global_action_reboot">Uruchom ponownie</string>
   <string name="default_string">Domyślny</string>
+  <string name="permlab_accessTorchService">dostęp do latarki</string>
+  <string name="permdesc_accessTorchService">Umożliwia aplikacji dostęp do latarki. Nie powinno być wymagane przez standardowe aplikacje.</string>
+  <string name="global_actions_pie_mode_on_status">SlimPie włączone</string>
+  <string name="global_actions_pie_mode_off_status">SlimPie wyłączone</string>
+  <string name="disable_pie_navigation_error">Nie możesz wyłączyć SlimPie. Żadna inna opcja nawigacji nie jest włączona. Włącz najpierw pasek nawigacji, aby wyłączyć SlimPie.</string>
+  <string name="global_actions_nav_bar_mode_on_status">Pasek nawigacji włączony</string>
+  <string name="global_actions_nav_bar_mode_off_status">Pasek nawigacji wyłączony</string>
+  <string name="disable_navigation_pie_error">Nie możesz wyłączyć paska nawigacji. Żadna inna opcja nawigacji nie jest włączona. Włącz najpierw SlimPie, aby wyłączyć pasek nawigacji.</string>
+  <string name="notification_flashlight_on_title">Latarka jest włączona</string>
+  <string name="notification_flashlight_on_summary">Dotknij, by wyłączyć</string>
+  <string name="permlab_changeHeadsUpState">włącz lub wyłącz wyskakujące powiadomienia</string>
+  <string name="permdesc_changeHeadsUpState">Pozwala aplikacji decydować czy inna aplikacja będzie mogła wyświetlić normalne powiadomienia jako powiadomienia wyskakujące.</string>
 </resources>
