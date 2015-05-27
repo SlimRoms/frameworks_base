@@ -197,4 +197,8 @@ public class TvStatusBar extends BaseStatusBar {
     @Override
     public void showScreenPinningRequest() {
     }
+
+    @Override // CommandQueue
+    public void toggleSmartPulldown() {
+    }
 }
