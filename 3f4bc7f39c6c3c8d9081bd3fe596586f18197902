@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da3975d1_34b47ef1",
+        "filename": "packages/SystemUI/src/com/android/systemui/qs/tiles/LiveDisplayTile.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000053
+      },
+      "writtenOn": "2015-05-27T22:00:19Z",
+      "side": 1,
+      "message": "move this to the live display commit",
+      "range": {
+        "startLine": 99,
+        "startChar": 21,
+        "endLine": 99,
+        "endChar": 37
+      },
+      "revId": "3f4bc7f39c6c3c8d9081bd3fe596586f18197902",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
