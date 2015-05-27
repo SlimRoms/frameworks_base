@@ -71,4 +71,5 @@ interface IStatusBarService
     void toggleKillApp();
     void hideHeadsUpCandidate(String packageName);
     void scheduleHeadsUpClose();
+    void toggleSmartPulldown();
 }
