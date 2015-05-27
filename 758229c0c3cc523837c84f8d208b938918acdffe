@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da3975d1_94ed6af2",
+        "filename": "services/core/Android.mk",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000053
+      },
+      "writtenOn": "2015-05-27T21:58:31Z",
+      "side": 1,
+      "message": "this should be removed again in the cmhardware service commit",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 48
+      },
+      "revId": "758229c0c3cc523837c84f8d208b938918acdffe",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
