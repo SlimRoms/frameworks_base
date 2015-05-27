@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da3975d1_34dd9e43",
+        "filename": "packages/SystemUI/src/com/android/systemui/qs/tiles/LiveDisplayTile.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000053
+      },
+      "writtenOn": "2015-05-27T21:56:05Z",
+      "side": 1,
+      "message": "line to long",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 107
+      },
+      "revId": "81d10c35d95829f8ff7abe91c8b9839bcce2b54f",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da3975d1_14e29a03",
+        "filename": "packages/SystemUI/src/com/android/systemui/qs/tiles/LiveDisplayTile.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1000053
+      },
+      "writtenOn": "2015-05-27T21:56:05Z",
+      "side": 1,
+      "message": "move this to the livedisplay commit",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 1
+      },
+      "revId": "81d10c35d95829f8ff7abe91c8b9839bcce2b54f",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
