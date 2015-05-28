@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da3975d1_17f85ce4",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1000083
+      },
+      "writtenOn": "2015-05-28T07:41:01Z",
+      "side": 1,
+      "message": "typo?  STATUS_BAR_TICKER_ENABLED",
+      "range": {
+        "startLine": 464,
+        "startChar": 36,
+        "endLine": 464,
+        "endChar": 62
+      },
+      "revId": "0db8dd6bf2dca94ab775fcf81f3238c5dc26ec12",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
