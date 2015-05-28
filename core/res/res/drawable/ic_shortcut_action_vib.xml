@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2015 The SlimRoms
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+
+    <path
+        android:fillColor="#ffffff"
+        android:pathData="M 17.58269,36.49859 c -0.0961,-0.007 -0.25684,-0.0352 -0.36473,-0.0635
+-0.82933,-0.21758 -1.44198,-0.92612 -1.53739,-1.778 -0.008,-0.0723
+-0.0102,-2.92658 -0.008,-10.72015 0.003,-10.017041 0.004,-10.626351
+0.0202,-10.705371 0.0911,-0.4484 0.26049,-0.78551 0.54416,-1.0832
+0.35327,-0.37071 0.81319,-0.59411 1.32092,-0.64158 0.14944,-0.014
+12.73219,-0.0141 12.8839-0.00016 0.71974,0.0663 1.3484,0.49629 1.67154,1.14334
+0.092,0.18431 0.14318,0.33816 0.19331,0.5816 0.0164,0.0794 0.0174,0.63461
+0.0205,10.705371 0.002,7.72825 0.00024,10.64842 -0.008,10.72015 -0.0676,0.60975
+-0.40661,1.1615 -0.92633,1.5076 -0.11952,0.0796 -0.33969,0.18585
+-0.48086,0.23207 -0.14467,0.0474 -0.32203,0.0845 -0.4704,0.0984 -0.0736,0.007
+-2.15036,0.01 -6.46167,0.008 -3.49427,-0.00095 -6.37319,-0.003 -6.39759,-0.005 z
+m 11.977,-12.4976 0,-9.724531 -5.55969,0 -5.55969,0 0,9.724531 0,9.72453
+5.55969,0 5.55969,0 0,-9.72453 z m -18.05914,0 0,-6.944691 1.38992,0 1.38992,0
+0,6.944691 0,6.94469 -1.38992,0 -1.38992,0 0,-6.94469 z m 22.21906,0 0,-6.944691
+1.38992,0 1.38992,0 0,6.944691 0,6.94469 -1.38992,0 -1.38992,0 0,-6.94469 z m
+-26.3888301,0 0,-4.164841 1.3899201,0 1.38992,0 0,4.164841 0,4.16484 -1.38992,0
+-1.3899201,0 0,-4.16484 z m 30.5586001,0 0,-4.164841 1.38992,0 1.38992,0
+0,4.164841 0,4.16484 -1.38992,0 -1.38992,0 0,-4.16484 z" />
+</vector>
