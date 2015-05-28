@@ -391,7 +391,7 @@ public class ArrayAdapter<T> extends BaseAdapter implements Filterable {
         if (item instanceof CharSequence) {
             text.setText((CharSequence)item);
         } else {
-            text.setText(item.toString());
+            text.setText(item == null ? "" : item.toString());
         }
 
         return view;
