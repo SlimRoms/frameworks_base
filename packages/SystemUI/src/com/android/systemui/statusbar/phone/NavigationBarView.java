@@ -727,30 +727,21 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
             return;
         }
 
-        mShowMenu = show;
-
         View leftMenuKeyView = getLeftMenuButton();
         View rightMenuKeyView = getRightMenuButton();
-
-        if (mOverrideMenuKeys) {
-            leftMenuKeyView.setVisibility(View.VISIBLE);
-            rightMenuKeyView.setVisibility(View.VISIBLE);
-            return;
-        } else if (mMenuVisibility == MENU_VISIBILITY_NEVER) {
-            leftMenuKeyView.setVisibility(View.INVISIBLE);
-            rightMenuKeyView.setVisibility(
-                    mIsImeButtonVisible ? View.GONE : View.INVISIBLE);
-        }
-
 
         // Only show Menu if IME switcher not shown.
         final boolean shouldShow =
                 ((mNavigationIconHints & StatusBarManager.NAVIGATION_HINT_IME_SHOWN) == 0);
-            boolean showLeftMenuButton = (mMenuVisibility == MENU_VISIBILITY_ALWAYS || show)
-                && (mMenuSetting == SHOW_LEFT_MENU || mMenuSetting == SHOW_BOTH_MENU);
-            boolean showRightMenuButton = (mMenuVisibility == MENU_VISIBILITY_ALWAYS || show)
+        boolean showLeftMenuButton = ((mMenuVisibility == MENU_VISIBILITY_ALWAYS || show)
+                && (mMenuSetting == SHOW_LEFT_MENU || mMenuSetting == SHOW_BOTH_MENU)
+                && (mMenuVisibility != MENU_VISIBILITY_NEVER))
+                || mOverrideMenuKeys;
+        boolean showRightMenuButton = ((mMenuVisibility == MENU_VISIBILITY_ALWAYS || show)
                 && (mMenuSetting == SHOW_RIGHT_MENU || mMenuSetting == SHOW_BOTH_MENU)
-                && shouldShow;
+                && (mMenuVisibility != MENU_VISIBILITY_NEVER)
+                && shouldShow)
+                || mOverrideMenuKeys;
 
         leftMenuKeyView.setVisibility(showLeftMenuButton ? View.VISIBLE : View.INVISIBLE);
         rightMenuKeyView.setVisibility(showRightMenuButton ? View.VISIBLE
