@@ -24,11 +24,16 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.VectorDrawable;
 import android.graphics.drawable.Drawable;
 
 public class ColorHelper {
 
-    public static Bitmap getColoredBitmap(Drawable d, int color) {
+    public static Drawable getColoredDrawable(Drawable d, int color) {
+        if (d instanceof VectorDrawable) {
+            d.setTint(color);
+            return d;
+        }
         Bitmap colorBitmap = ((BitmapDrawable) d).getBitmap();
         Bitmap grayscaleBitmap = toGrayscale(colorBitmap);
         Paint pp = new Paint();
@@ -37,7 +42,7 @@ public class ColorHelper {
         pp.setColorFilter(frontFilter);
         Canvas cc = new Canvas(grayscaleBitmap);
         cc.drawBitmap(grayscaleBitmap, 0, 0, pp);
-        return grayscaleBitmap;
+        return new BitmapDrawable(grayscaleBitmap);
     }
 
     private static Bitmap toGrayscale(Bitmap bmpOriginal) {
