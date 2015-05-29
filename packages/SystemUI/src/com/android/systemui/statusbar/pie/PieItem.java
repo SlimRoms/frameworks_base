@@ -20,6 +20,7 @@ package com.android.systemui.statusbar.pie;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.VectorDrawable;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -231,6 +232,9 @@ public class PieItem extends PieView.PieDrawable {
             }
 
             boolean colorize = true;
+            if (drawable instanceof VectorDrawable) { //todo: set color for vector
+                colorize = false;
+            }
             if (mPieIconType == 2 && drawableColorMode == 1
                     || mPieIconType == 1 && drawableColorMode != 0) {
                 colorize = false;
