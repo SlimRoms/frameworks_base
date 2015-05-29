@@ -21,6 +21,7 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Matrix;
@@ -33,6 +34,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader.TileMode;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.VectorDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
 
@@ -41,6 +43,9 @@ public class ImageHelper {
     public static Bitmap getColoredBitmap(Drawable d, int color) {
         if (d == null) {
             return null;
+        }
+        if (d instanceof VectorDrawable) {
+            return null; // just in case a vector somehow gets passed here
         }
         Bitmap colorBitmap = ((BitmapDrawable) d).getBitmap();
         Bitmap grayscaleBitmap = toGrayscale(colorBitmap);
@@ -53,6 +58,34 @@ public class ImageHelper {
         final Rect rect = new Rect(0, 0, grayscaleBitmap.getWidth(), grayscaleBitmap.getHeight());
         cc.drawBitmap(grayscaleBitmap, rect, rect, pp);
         return grayscaleBitmap;
+    }
+
+    public static Drawable getColoredVector(Drawable d, int color) {
+        if (d == null) {
+            return null;
+        }
+        if (d instanceof BitmapDrawable) {
+            return null; // just in case a bitmap somehow gets passed here
+        }
+
+        ColorMatrix m = new ColorMatrix();
+        m.setSaturation(0); // apply grayscale
+
+        // convert color int to values that can be used in matrix
+        float red = (float) (Color.red(color) / 255);
+        float green = (float) (Color.green(color) / 255);
+        float blue = (float) (Color.blue(color) / 255);
+
+        // now, apply the color tint
+        ColorMatrix tint = new ColorMatrix();
+        tint.setScale(red, green, blue, 1);
+        m.postConcat(tint);
+
+        // apply color filter to vector
+        d.setColorFilter(new ColorMatrixColorFilter(m));
+
+        //return the tinted vector
+        return d;
     }
 
     private static Bitmap toGrayscale(Bitmap bmpOriginal) {

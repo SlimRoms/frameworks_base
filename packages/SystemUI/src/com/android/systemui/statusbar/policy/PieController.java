@@ -33,6 +33,7 @@ import android.graphics.PixelFormat;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.VectorDrawable;
 import android.graphics.Point;
 import android.graphics.PorterDuff.Mode;
 import android.hardware.input.InputManager;
@@ -608,8 +609,13 @@ public class PieController implements BaseStatusBar.NavigationBarCallback, PieVi
             d = resizeIcon(null, d, true);
         }
         if ((customImageColorize != 1 || !customIcon) && customImageColorize != 3) {
-            d = new BitmapDrawable(mContext.getResources(),
-                    ImageHelper.getColoredBitmap(d, drawableColor));
+            if (d instanceof VectorDrawable) {
+                d = new VectorDrawable(mContext.getResources(),
+                        ImageHelper.getColoredVector(d, drawableColor));
+            } else {
+                d = new BitmapDrawable(mContext.getResources(),
+                        ImageHelper.getColoredBitmap(d, drawableColor));
+            }
         }
         return d;
     }
