@@ -40,22 +40,20 @@ public class ActionChecker {
 
         if (!actionConfigContainsAction(config, action)) return true;
 
+        int count = 0;
         for (int i = 0; i < mConfigs.size(); i++) {
             String configsString = Settings.System.getStringForUser(context.getContentResolver(),
                     mConfigs.get(i), UserHandle.USER_CURRENT);
 
-            if (configsString.contains(ActionConstants.ACTION_BACK)) {
+            if (configsString.contains(action)) {
                 String input = configsString;
-                int index = input.indexOf(ActionConstants.ACTION_BACK);
-                int count = 0;
+                int index = input.indexOf(action);
                 while (index != -1) {
                     count++;
                     input = input.substring(index + 1);
-                    index = input.indexOf(ActionConstants.ACTION_BACK);
+                    index = input.indexOf(action);
                 }
-                if (count <= 1) {
-                    return false;
-                } else {
+                if (count > 1) {
                     return true;
                 }
             }
