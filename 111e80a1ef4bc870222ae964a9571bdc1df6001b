@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da3975d1_f7e6f815",
+        "filename": "policy/src/com/android/internal/policy/impl/GlobalActions.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1033,
+      "author": {
+        "id": 1000083
+      },
+      "writtenOn": "2015-05-29T08:44:00Z",
+      "side": 1,
+      "message": "With the changes made, this one seems redundant?",
+      "range": {
+        "startLine": 1033,
+        "startChar": 12,
+        "endLine": 1033,
+        "endChar": 40
+      },
+      "revId": "111e80a1ef4bc870222ae964a9571bdc1df6001b",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
