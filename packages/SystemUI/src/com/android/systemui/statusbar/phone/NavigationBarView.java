@@ -489,9 +489,14 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
         }
 
         Drawable d = ActionHelper.getActionIconImage(mContext, clickAction, iconUri);
+
         if (d != null) {
             if (colorize && mNavBarButtonColorMode != 3) {
-                v.setImageBitmap(ColorHelper.getColoredBitmap(d, mNavBarButtonColor));
+                if (d instanceof VectorDrawable) {
+                    v.setImageDrawable(ColorHelper.getColoredVector(d, mNavBarButtonColor));
+                } else {
+                    v.setImageBitmap(ColorHelper.getColoredBitmap(d, mNavBarButtonColor));
+                }
             } else {
                 v.setImageDrawable(d);
             }
