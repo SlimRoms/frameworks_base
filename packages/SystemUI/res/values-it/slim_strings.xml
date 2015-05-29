@@ -24,9 +24,9 @@
   <string name="accessibility_quick_settings_location_battery_saving">Segnalazione di posizione: modalità di risparmio batteria.</string>
   <string name="accessibility_quick_settings_location_gps_only">Segnalazione di posizione: modalità solo sensori.</string>
   <string name="accessibility_quick_settings_location_high_accuracy">Segnalazione di posizione: modalità alta precisione.</string>
-  <string name="quick_settings_location_detail_title">Modalità di Geolocalizzazione</string>
-  <string name="quick_settings_location_battery_saving_label">Risparmio batteria</string>
-  <string name="quick_settings_location_gps_only_label">Solo Dispositivo</string>
+  <string name="quick_settings_location_detail_title">Modalità di geolocalizzazione</string>
+  <string name="quick_settings_location_battery_saving_label">Basso consumo</string>
+  <string name="quick_settings_location_gps_only_label">Solo dispositivo</string>
   <string name="quick_settings_location_high_accuracy_label">Alta precisione</string>
   <string name="quick_settings_network_adb_enabled_label">Attivato</string>
   <string name="quick_settings_network_adb_disabled_label">Disattivato</string>
@@ -47,4 +47,6 @@
   <string name="accessibility_quick_settings_ambient_display_changed_off">Display Ambient disattivato.</string>
   <string name="accessibility_quick_settings_ambient_display_changed_on">Display Ambient attivato.</string>
   <string name="clear_recents">Chiudi Tutti Recenti</string>
+  <string name="app_killed_message">Applicazione terminata</string>
+  <string name="shortcut_screenshot">Cattura Schermo</string>
 </resources>

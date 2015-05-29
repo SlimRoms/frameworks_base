@@ -20,4 +20,44 @@
   <string name="accessibility_su_active">Aktivní relace superuživatele</string>
   <string name="screenshot_notification_delete">Smazat</string>
   <string name="screenshot_delete_confirmation">Snímek obrazovky smazán.</string>
+  <string name="su_session_active">Aktivní relace superuživatele</string>
+  <string name="accessibility_quick_settings_location_battery_saving">Hlášení polohy: úspora baterie.</string>
+  <string name="accessibility_quick_settings_location_gps_only">Hlášení polohy: pouze GPS.</string>
+  <string name="accessibility_quick_settings_location_high_accuracy">Hlášení polohy: vysoká přesnost.</string>
+  <string name="quick_settings_location_detail_title">Režim určování polohy</string>
+  <string name="quick_settings_location_battery_saving_label">Úspora baterie</string>
+  <string name="quick_settings_location_gps_only_label">Pouze zařízení</string>
+  <string name="quick_settings_location_high_accuracy_label">Vysoká přesnost</string>
+  <string name="quick_settings_network_adb_enabled_label">Povoleno</string>
+  <string name="quick_settings_network_adb_disabled_label">Zakázáno</string>
+  <string name="quick_settings_nfc_label">NFC</string>
+  <string name="quick_settings_compass_label">Kompas</string>
+  <string name="quick_settings_compass_init">Spouštění\u2026</string>
+  <string name="quick_settings_lockscreen_label">Zámek obrazovky</string>
+  <string name="quick_settings_lockscreen_label_enforced">Vynucený zámek obrazovky</string>
+  <string name="quick_settings_network_adb_label">ADB po síti</string>
+  <string name="quick_settings_lte_label">LTE</string>
+  <string name="quick_settings_screen_timeout_detail_title">Časový limit obrazovky</string>
+  <string name="quick_settings_usb_tether_label">USB tethering</string>
+  <string name="quick_settings_reboot_label">Restartovat</string>
+  <string name="quick_settings_reboot_recovery_label">Recovery</string>
+  <string name="quick_settings_ambient_display_label">Ambientní displej</string>
+  <string name="quick_settings_screenshot">Snímek obrazovky</string>
+  <string name="accessibility_quick_settings_ambient_display_off">Ambientní displej vypnutý.</string>
+  <string name="accessibility_quick_settings_ambient_display_on">Ambientní displej zapnutý.</string>
+  <string name="accessibility_quick_settings_ambient_display_changed_off">Ambientní displej je vypnutý.</string>
+  <string name="accessibility_quick_settings_ambient_display_changed_on">Ambientní displej je zapnutý.</string>
+  <string name="clear_recents">Zavřít nedávné</string>
+  <string name="app_killed_message">Aplikace ukončena</string>
+  <string name="shortcut_screenshot">Snímek obrazovky</string>
+  <string name="heads_up_snooze_message">Plovoucí oznámení jsou zakázána na <xliff:g id="number">%d</xliff:g> minut.</string>
+  <string name="heads_up_snooze_button_title">Odložit plovoucí oznámení</string>
+  <string name="notification_inspect_heads_up_title_enabled">Povolit plovoucí oznámení pro tuto aplikaci</string>
+  <string name="notification_inspect_heads_up_title_disabled">Zakázat plovoucí oznámení pro tuto aplikaci</string>
+  <string name="pie_battery_status_charging">Nabíjení (<xliff:g id="percent">%d</xliff:g>%%)</string>
+  <string name="pie_battery_status_full">Nabito</string>
+  <string name="pie_battery_status_discharging">Zbývá <xliff:g id="percent">%d</xliff:g>%%</string>
+  <string name="pie_phone_status_no_service">Žádná služba</string>
+  <string name="pie_phone_status_airplane_mode">Režim letadlo zapnut</string>
+  <string name="pie_phone_status_emergency_only">Pouze tísňová volání</string>
 </resources>

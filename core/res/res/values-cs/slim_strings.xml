@@ -77,6 +77,9 @@
   <string name="app_ops_use_voice_volume">ovládat hlasitost hovoru</string>
   <string name="app_ops_write_mms">vytvořit MMS zprávu</string>
   <string name="app_ops_write_sms">vytvořit SMS zprávu</string>
+  <string name="adb_net_active_notification_title">ADB po síti povoleno</string>
+  <string name="adb_both_active_notification_title">ADB přes USB a po síti povoleno</string>
+  <string name="adb_active_generic_notification_message">Dotykem zakažte ladění.</string>
   <string name="usb_charging_notification_title">V režimu nabíjení</string>
   <string name="progress_nomediapresent" product="default">Není dostupné žádné vyměnitelné médium\u2026</string>
   <string name="permission_remember_choice">Zapamatovat</string>
@@ -93,4 +96,16 @@
   <string name="reboot_confirm">Vaše zařízení bude restartováno.</string>
   <string name="global_action_reboot">Restartovat</string>
   <string name="default_string">Výchozí</string>
+  <string name="permlab_accessTorchService">přístup ke svítilně</string>
+  <string name="permdesc_accessTorchService">Umožňuje aplikaci přístup ke svítilně. Běžná aplikace by to nikdy neměla mít zapotřebí.</string>
+  <string name="global_actions_pie_mode_on_status">SlimPie je zapnuto</string>
+  <string name="global_actions_pie_mode_off_status">SlimPie je vypnuto</string>
+  <string name="disable_pie_navigation_error">Nelze vypnout SlimPie. Žádný jiný způsob navigace není povolen. Nejprve povolte navigační lištu pro vypnuti kruhové nabídky.</string>
+  <string name="global_actions_nav_bar_mode_on_status">Navigační lišta je zapnutá</string>
+  <string name="global_actions_nav_bar_mode_off_status">Navigační lišta je vypnutá</string>
+  <string name="disable_navigation_pie_error">Nelze vypnout navigační lištu.  Žádný jiný způsob navigace není povolen. Nejprve povolte SlimPie pro vypnutí navigační lišty.</string>
+  <string name="notification_flashlight_on_title">Svítilna je zapnutá</string>
+  <string name="notification_flashlight_on_summary">Klepnutím ji vypnete</string>
+  <string name="permlab_changeHeadsUpState">povolit nebo zakázat plovoucí oznámení</string>
+  <string name="permdesc_changeHeadsUpState">Umožňuje změnit, zda jiná aplikace má dovoleno zobrazovat normální upozornění jako plovoucí.</string>
 </resources>
