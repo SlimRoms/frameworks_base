@@ -88,6 +88,9 @@ public class QSUtils {
                     case QSConstants.TILE_AMBIENT_DISPLAY:
                         removeTile = !deviceSupportsDoze(context);
                         break;
+                    case QSConstants.TILE_LED:
+                        removeTile = !deviceSupportsLed(context);
+                        break;
                 }
                 if (removeTile) {
                     iterator.remove();
@@ -161,4 +164,11 @@ public class QSUtils {
                     com.android.internal.R.string.config_dozeComponent);
         return !TextUtils.isEmpty(name);
     }
+
+    public static boolean deviceSupportsLed(Context context) {
+        Boolean value = context.getResources().getBoolean(
+        com.android.internal.R.bool.config_intrusiveNotificationLed);
+        return value;
+    }
+
 }
