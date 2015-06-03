@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba3e81b7_f394ca45",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/NavigationBarView.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 1000083
+      },
+      "writtenOn": "2015-06-03T16:24:19Z",
+      "side": 1,
+      "message": "Technically,  shouldn\u0027t this statement be included in the if condition?",
+      "range": {
+        "startLine": 619,
+        "startChar": 12,
+        "endLine": 619,
+        "endChar": 48
+      },
+      "revId": "3d802efb027af146b85cb70338258375657c8d5f",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
