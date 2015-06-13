@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a288981_03413c39",
+        "filename": "core/res/res/layout/global_actions_silent_mode.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-06-13T00:34:08Z",
+      "side": 1,
+      "message": "nothing changes here",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 64
+      },
+      "revId": "3311100766ba186eaa42cc95791c91c7968e224e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a288981_e33d10bd",
+        "filename": "core/res/res/values/colors.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-06-13T00:34:08Z",
+      "side": 1,
+      "message": "no need for this either",
+      "range": {
+        "startLine": 177,
+        "startChar": 0,
+        "endLine": 177,
+        "endChar": 0
+      },
+      "revId": "3311100766ba186eaa42cc95791c91c7968e224e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a288981_c34a1455",
+        "filename": "policy/src/com/android/internal/policy/impl/GlobalActions.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-06-13T00:34:08Z",
+      "side": 1,
+      "message": "Add slim copyright as we mod it? Might want to ask Cybo",
+      "range": {
+        "startLine": 3,
+        "startChar": 1,
+        "endLine": 3,
+        "endChar": 2
+      },
+      "revId": "3311100766ba186eaa42cc95791c91c7968e224e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
