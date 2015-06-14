@@ -92,7 +92,6 @@
   <string name="reboot_fastboot">Fastboot</string>
   <string name="reboot_download">letöltés</string>
   <string name="reboot_progress">Újraindulás\u2026</string>
-  <string name="reboot_confirm">A telefon újra fog indulni.</string>
   <string name="global_action_reboot">Újraindítás</string>
   <string name="default_string">Alapértelmezett</string>
 </resources>
