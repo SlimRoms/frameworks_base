@@ -93,7 +93,6 @@
   <string name="reboot_fastboot">Fastboot</string>
   <string name="reboot_download">Download</string>
   <string name="reboot_progress">Neu starten\u2026</string>
-  <string name="reboot_confirm">Ihr Telefon wird neu gestartet.</string>
   <string name="global_action_reboot">Neustart</string>
   <string name="default_string">Standard</string>
   <string name="permlab_accessTorchService">Zugriff auf Taschenlampe</string>
