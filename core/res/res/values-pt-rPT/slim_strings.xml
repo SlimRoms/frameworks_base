@@ -93,7 +93,6 @@
   <string name="reboot_fastboot">Fastboot</string>
   <string name="reboot_download">Download</string>
   <string name="reboot_progress">A reiniciar\u2026</string>
-  <string name="reboot_confirm">O seu telemóvel irá reiniciar.</string>
   <string name="global_action_reboot">Reiniciar</string>
   <string name="default_string">Predefinido</string>
   <string name="permlab_accessTorchService">Aceder ao serviço da lanterna</string>

@@ -93,7 +93,6 @@
   <string name="reboot_fastboot">Fastboot</string>
   <string name="reboot_download">Download</string>
   <string name="reboot_progress">Riavvio in corso\u2026</string>
-  <string name="reboot_confirm">Il telefono sarà riavviato.</string>
   <string name="global_action_reboot">Riavvio</string>
   <string name="default_string">Predefinito</string>
   <string name="permlab_accessTorchService">accesso servizio torcia</string>
