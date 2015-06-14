@@ -90,7 +90,6 @@
   <string name="reboot_fastboot">Modo Fastboot</string>
   <string name="reboot_download">Modo Descarga</string>
   <string name="reboot_progress">Reiniciando\u2026</string>
-  <string name="reboot_confirm">El dispositivo se reiniciará.</string>
   <string name="global_action_reboot">Reiniciar</string>
   <string name="default_string">Defecto</string>
 </resources>
