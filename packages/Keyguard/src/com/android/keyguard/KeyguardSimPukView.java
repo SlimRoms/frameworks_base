@@ -203,7 +203,7 @@ public class KeyguardSimPukView extends KeyguardPinBasedInputView {
         super.onFinishInflate();
 
         mSubDisplayName = (TextView) findViewById(R.id.sub_display_name);
-        mSubId = mKgUpdateMonitor.getSimPukLockSubId();
+        mSubId = mKgUpdateMonitor.getNextSubIdForState(IccCardConstants.State.PUK_REQUIRED);
         mSimImageView = (ImageView) findViewById(R.id.keyguard_sim);
         if ( mKgUpdateMonitor.getNumPhones() > 1 ) {
 
@@ -413,7 +413,7 @@ public class KeyguardSimPukView extends KeyguardPinBasedInputView {
     }
 
     private void handleSubInfoChangeIfNeeded() {
-        int subId = mKgUpdateMonitor.getSimPukLockSubId();
+        int subId = mKgUpdateMonitor.getNextSubIdForState(IccCardConstants.State.PUK_REQUIRED);
         if (subId != mSubId && SubscriptionManager.isValidSubscriptionId(subId)) {
             mSubId = subId;
             handleSubInfoChange();
