@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="material_grey_50">#ff000000</color>
+    <color name="material_grey_300">#ff111111</color>
+    <color name="item_doc_grid_background">#ff111111</color>
+    <color name="item_doc_grid_protect_background">#88000000</color>
+    <color name="item_doc_grid_overlay_activated">#88555555</color>
+    <color name="item_doc_grid_overlay_disabled">#88333333</color>
+    <color name="item_doc_list_overlay_disabled">#88333333</color>
+    <color name="item_doc_list_background_activated">#99555555</color>
+    <color name="exposed_activity_background_color">#ff111111</color>
+    <color name="exposed_font_color_doc_grid">#ffffffff</color>
+</resources>
