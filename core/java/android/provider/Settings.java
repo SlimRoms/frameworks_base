@@ -3249,12 +3249,6 @@ public final class Settings {
         public static final String KEYBOARD_ROTATION_TIMEOUT = "keyboard_rotation_timeout";
 
         /**
-         * Whether custom hardware key rebinding is enabled
-         * @hide
-         */
-        public static final String HARDWARE_KEY_REBINDING = "hardware_key_rebinding";
-
-        /**
          * Action to perform when the back key is pressed (default: ACTION_BACK)
          * (See ButtonsConstants.java for valid values)
          * @hide
