@@ -14,10 +14,10 @@ Copyright (C) 2014 The Android Open Source Project
     limitations under the License.
 -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-        android:width="17dp"
-        android:height="17dp"
-        android:viewportWidth="24.0"
-        android:viewportHeight="24.0">
+        android:width="0.0dip"
+        android:height="0.0dip"
+        android:viewportWidth="00"
+        android:viewportHeight="0.0">
 
     <path
         android:fillColor="#4DFFFFFF"
