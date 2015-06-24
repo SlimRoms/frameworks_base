@@ -240,7 +240,7 @@ public class PieItem extends PieView.PieDrawable {
             if (colorize && drawableColorMode != 3) {
                 drawable = ImageHelper.getColoredDrawable(drawable, drawableColor);
             }
-            imageView.setImageDrawable(drawable);
+            imageView.setImageBitmap(ImageHelper.drawableToBitmap(drawable));
         }
     }
 
