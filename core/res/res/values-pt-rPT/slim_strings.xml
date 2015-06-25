@@ -108,4 +108,20 @@
   <string name="notification_flashlight_on_summary">Toque para desligar</string>
   <string name="permlab_changeHeadsUpState">Ativar ou desativar notificações pop-up</string>
   <string name="permdesc_changeHeadsUpState">Permite que a aplicação altere se outra aplicação pode mostrar as notificações como notificações pop-up.</string>
+  <string name="permlab_useHardwareFramework">Utilizar a estrutura de hardware</string>
+  <string name="permdesc_useHardwareFramework">Permite o acesso duma aplicação à estrutura de hardware CM.</string>
+  <string name="live_display_auto">Automático</string>
+  <string name="live_display_day">Dia</string>
+  <string name="live_display_day_summary">Utilizar só as definições de dia</string>
+  <string name="live_display_night">Noite</string>
+  <string name="live_display_night_summary">Utilizar só as definições de noite</string>
+  <string name="live_display_outdoor">Ao ar livre (sol brilhante)</string>
+  <string name="live_display_outdoor_summary">Utilizar só as definições de ar livre</string>
+  <string name="live_display_hint">LiveDisplay pode ajudar a reduzir a fadiga ocular e ajudá-lo a dormir à noite. Clique aqui para experimentar!</string>
+  <string name="permgrouplab_security">Segurança</string>
+  <string name="permgroupdesc_security">Permissões relacionadas com as informações de segurança do dispositivo.</string>
+  <string name="permlab_readPhoneBlacklist">ler a lista negra do telefone</string>
+  <string name="permdesc_readPhoneBlacklist">Permite a uma aplicação ler informações sobre números de telefone que são bloqueados para chamadas ou mensagens de entrada.</string>
+  <string name="permlab_changePhoneBlacklist">alterar a lista negra do telefone</string>
+  <string name="permdesc_changePhoneBlacklist">Permite a uma aplicação alterar os números de telefone que são bloqueados para chamadas ou mensagens de entrada.</string>
 </resources>

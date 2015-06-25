@@ -108,4 +108,23 @@
   <string name="notification_flashlight_on_summary">Appuyer pour éteindre</string>
   <string name="permlab_changeHeadsUpState">activer ou désactiver les notif. flottantes</string>
   <string name="permdesc_changeHeadsUpState">Autorise l\'application à choisir si une autre application est autorisée à afficher les notifications en tant que notifications flottantes.</string>
+  <string name="permlab_useHardwareFramework">utiliser le framework matériel</string>
+  <string name="permdesc_useHardwareFramework">Permet à une application l\'accès au framework matériel de CM.</string>
+  <string name="live_display_auto">Automatique</string>
+  <string name="live_display_auto_summary">Ajuster automatiquement la température de couleur de l\'écran après le coucher et le lever du soleil</string>
+  <string name="live_display_off">Désactivé</string>
+  <string name="live_display_off_summary">Désactiver tous les ajustements</string>
+  <string name="live_display_day">Jour</string>
+  <string name="live_display_day_summary">Utiliser les paramètres de jour seulement</string>
+  <string name="live_display_night">Nuit</string>
+  <string name="live_display_night_summary">Utiliser les paramètres de nuit seulement</string>
+  <string name="live_display_outdoor">Extérieur (plein soleil)</string>
+  <string name="live_display_outdoor_summary">Utiliser seulement les paramètres d\'extérieur</string>
+  <string name="live_display_hint">LiveDisplay peut aider à réduire la fatigue oculaire et vous aider à dormir la nuit. Cliquez ici pour l\'essayer !</string>
+  <string name="permgrouplab_security">Sécurité</string>
+  <string name="permgroupdesc_security">Autorisations liées à des informations de sécurité de l\'appareil.</string>
+  <string name="permlab_readPhoneBlacklist">lire la liste noire du téléphone</string>
+  <string name="permdesc_readPhoneBlacklist">Permet à l\'application de lire les informations sur les numéros de téléphone qui sont bloqués pour les appels ou les messages entrants.</string>
+  <string name="permlab_changePhoneBlacklist">modifier la liste noire du téléphone</string>
+  <string name="permdesc_changePhoneBlacklist">Permet à l\'application de modifier les numéros de téléphone qui sont bloqués pour les appels ou les messages entrants.</string>
 </resources>

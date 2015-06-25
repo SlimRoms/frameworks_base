@@ -108,4 +108,23 @@
   <string name="notification_flashlight_on_summary">Toque para desligar</string>
   <string name="permlab_changeHeadsUpState">ativar ou desativar o heads up</string>
   <string name="permdesc_changeHeadsUpState">Permite que o aplicativo altere se outro aplicativo pode mostrar notificações normais como sendo notificações heads up.</string>
+  <string name="permlab_useHardwareFramework">utilizar a estrutura de hardware</string>
+  <string name="permdesc_useHardwareFramework">Permite que o aplicativo acesse a estrutura de hardware CM.</string>
+  <string name="live_display_auto">Automático</string>
+  <string name="live_display_auto_summary">Ajusta automaticamente a cor da tela após o pôr do sol e o nascer do sol</string>
+  <string name="live_display_off">Desligado</string>
+  <string name="live_display_off_summary">Desativar todos os ajustes</string>
+  <string name="live_display_day">Dia</string>
+  <string name="live_display_day_summary">Utilizar apenas as configurações de dia</string>
+  <string name="live_display_night">Noite</string>
+  <string name="live_display_night_summary">Utilizar apenas as configurações de noite</string>
+  <string name="live_display_outdoor">Ao ar livre (sol forte)</string>
+  <string name="live_display_outdoor_summary">Utilizar apenas as configurações ao ar livre</string>
+  <string name="live_display_hint">LiveDisplay pode ajudar a reduzir a fadiga ocular e ajudá-lo a dormir à noite. Clique aqui para experimentar!</string>
+  <string name="permgrouplab_security">Segurança</string>
+  <string name="permgroupdesc_security">Permissões relacionadas com as informações de segurança do dispositivo.</string>
+  <string name="permlab_readPhoneBlacklist">ler a lista de bloqueio do telefone</string>
+  <string name="permdesc_readPhoneBlacklist">Permite que o aplicativo leia informações sobre os números de telefone que estão bloqueados para efetuar chamadas ou enviar mensagens.</string>
+  <string name="permlab_changePhoneBlacklist">alterar a lista de bloqueio do telefone</string>
+  <string name="permdesc_changePhoneBlacklist">Permite que o aplicativo altere os números de telefone que estão  bloqueados para efetuar chamadas ou enviar mensagens.</string>
 </resources>

@@ -108,4 +108,20 @@
   <string name="notification_flashlight_on_summary">Klepnutím ji vypnete</string>
   <string name="permlab_changeHeadsUpState">povolit nebo zakázat plovoucí oznámení</string>
   <string name="permdesc_changeHeadsUpState">Umožňuje změnit, zda jiná aplikace má dovoleno zobrazovat normální upozornění jako plovoucí.</string>
+  <string name="permlab_useHardwareFramework">využít hardware zařízení</string>
+  <string name="permdesc_useHardwareFramework">Umožnit aplikaci přistupovat přímo k hardware zařízení.</string>
+  <string name="live_display_auto">Automaticky</string>
+  <string name="live_display_day">Den</string>
+  <string name="live_display_day_summary">Použít pouze nastavení Den</string>
+  <string name="live_display_night">Noc</string>
+  <string name="live_display_night_summary">Použít pouze nastavení Noc</string>
+  <string name="live_display_outdoor">Outdoor (jasné slunce)</string>
+  <string name="live_display_outdoor_summary">Použít pouze nastavení Outdoor</string>
+  <string name="live_display_hint">LiveDisplay vám může pomoci snížit namáhání očí a v noci lépe spát. Chcete si to vyzkoušet?</string>
+  <string name="permgrouplab_security">Bezpečnost</string>
+  <string name="permgroupdesc_security">Oprávnění vztahující se k informacím o zabezpečení zařízení.</string>
+  <string name="permlab_readPhoneBlacklist">čtení černé listiny telefonu</string>
+  <string name="permdesc_readPhoneBlacklist">Umožnit aplikacím číst informace o blokovaných telefonních číslech pro příchozí volání a zprávy.</string>
+  <string name="permlab_changePhoneBlacklist">měnit černou listinu telefonu</string>
+  <string name="permdesc_changePhoneBlacklist">Umožnit aplikacím měnit telefonní čísla blokována pro příchozí volání a zprávy.</string>
 </resources>
