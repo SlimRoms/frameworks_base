@@ -29,7 +29,7 @@
   <string name="app_ops_access_location">Ihren Standort abrufen</string>
   <string name="app_ops_access_notifications">Ihre Benachrichtigungen lesen</string>
   <string name="app_ops_activate_vpn">ein VPN aktivieren</string>
-  <string name="app_ops_alarm_wakeup">Das Gerät aufwecken</string>
+  <string name="app_ops_alarm_wakeup">das Gerät aufwecken</string>
   <string name="app_ops_su">Superuser-Zugriff erhalten</string>
   <string name="app_ops_auto_start">beim Start ausführen</string>
   <string name="app_ops_delete_call_log">Anrufliste löschen</string>
@@ -79,7 +79,7 @@
   <string name="app_ops_write_sms">eine SMS-Nachricht schreiben</string>
   <string name="adb_net_active_notification_title">ADB über Netzwerk aktiviert</string>
   <string name="adb_both_active_notification_title">ADB über USB &amp; Netzwerk aktiviert</string>
-  <string name="adb_active_generic_notification_message">Berühren um Debugging zu deaktivieren.</string>
+  <string name="adb_active_generic_notification_message">Berühren, um Debugging zu deaktivieren.</string>
   <string name="usb_charging_notification_title">Im Ladebetrieb verbunden</string>
   <string name="progress_nomediapresent" product="default">Kein Wechseldatenträger vorhanden\u2026</string>
   <string name="permission_remember_choice">Speichern</string>
@@ -108,4 +108,22 @@
   <string name="notification_flashlight_on_summary">Tippen um zu deaktivieren</string>
   <string name="permlab_changeHeadsUpState">Heads-Up ein- oder ausschalten</string>
   <string name="permdesc_changeHeadsUpState">Ermöglicht der App festzulegen, ob andere Apps normale Benachrichtigungen als Heads-Up-Meldung anzeigen dürfen.</string>
+  <string name="permlab_useHardwareFramework">Hardware-Framework verwenden</string>
+  <string name="permdesc_useHardwareFramework">Ermöglicht einer App, auf das CM-Hardware-Framework zuzugreifen.</string>
+  <string name="live_display_auto">Automatisch</string>
+  <string name="live_display_off">Aus</string>
+  <string name="live_display_off_summary">Alle Anpassungen deaktivieren</string>
+  <string name="live_display_day">Tag</string>
+  <string name="live_display_day_summary">Nur die \"Tag\"-Einstellungen verwenden</string>
+  <string name="live_display_night">Nacht</string>
+  <string name="live_display_night_summary">Nur die \"Nacht\"-Einstellungen verweden</string>
+  <string name="live_display_outdoor">Outdoor (helle Sonne)</string>
+  <string name="live_display_outdoor_summary">Nur \"Outdoor\"-Einstellungen verwenden</string>
+  <string name="live_display_hint">LiveDisplay entlastet Ihre Augen und lässt Sie nachts besser schlafen. Klicken Sie hier, um es auszuprobieren!</string>
+  <string name="permgrouplab_security">Sicherheit</string>
+  <string name="permgroupdesc_security">Berechtigungen bezüglich der Informationen zur Geräte-Sicherheit.</string>
+  <string name="permlab_readPhoneBlacklist">Telefon-Sperrliste lesen</string>
+  <string name="permdesc_readPhoneBlacklist">Erlaubt es einer App, Informationen über Nummern, von denen eingehende Anrufe und Nachrichten blockiert werden, zu lesen.</string>
+  <string name="permlab_changePhoneBlacklist">Telefon-Sperrliste ändern</string>
+  <string name="permdesc_changePhoneBlacklist">Erlaubt es einer App, Informationen über Nummern, von denen eingehende Anrufe und Nachrichten blockiert werden, zu ändern.</string>
 </resources>

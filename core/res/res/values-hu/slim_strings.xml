@@ -78,6 +78,7 @@
   <string name="app_ops_write_mms">MMS írása</string>
   <string name="app_ops_write_sms">SMS írása</string>
   <string name="adb_net_active_notification_title">ADB hálozaton keresztül engedélyezve</string>
+  <string name="adb_both_active_notification_title">ADB USB-n &amp; hálózaton keresztül engedélyezve</string>
   <string name="adb_active_generic_notification_message">Érintsd meg a hibakeresés letiltásához</string>
   <string name="usb_charging_notification_title">jelzés,ha a telefon USB töltés módban csatlakozik a PC-hez</string>
   <string name="progress_nomediapresent" product="default">Nincs eltávolítható memóriakártya\u2026</string>
@@ -95,4 +96,32 @@
   <string name="reboot_confirm">A telefon újra fog indulni.</string>
   <string name="global_action_reboot">Újraindítás</string>
   <string name="default_string">Alapértelmezett</string>
+  <string name="permlab_accessTorchService">hozzáférés a zseblámpa szolgáltatáshoz</string>
+  <string name="permdesc_accessTorchService">Lehetővé teszi az alkalmazás számára, hogy hozzáférjen a zseblámpa szolgáltatáshoz. Általános alkalmazásoknak nincs szüksége ilyen engedélyre.</string>
+  <string name="global_actions_pie_mode_on_status">SlimPie bekapcsolva</string>
+  <string name="global_actions_pie_mode_off_status">SlimPie kikapcsolva</string>
+  <string name="disable_pie_navigation_error">A pie vezérlő nem kapcsolható ki, mert jelenleg nincs másik vezérlő engedélyezve. Először engedélyezze a navigációs sávot a pie vezérlő kikapcsolásához.</string>
+  <string name="global_actions_nav_bar_mode_on_status">Navigációs sáv BE</string>
+  <string name="global_actions_nav_bar_mode_off_status">Navigációs sáv KI</string>
+  <string name="disable_navigation_pie_error">A navigációs sáv nem kapcsolható ki, mert jelenleg nincs másik vezérlő engedélyezve. Először engedélyezze a pie vezérlőt a navigációs sáv kikapcsolásához.</string>
+  <string name="notification_flashlight_on_title">Zseblámpa bekapcsolva</string>
+  <string name="notification_flashlight_on_summary">Érintse meg kikapcsoláshoz</string>
+  <string name="permlab_changeHeadsUpState">lebegő értesítések engedélyezése vagy tiltása</string>
+  <string name="permdesc_changeHeadsUpState">Lehetővé teszi az alkalmazás számára, hogy egy másik alkalmazás normál értesítéseit mint lebegő értesítéseket jelenítse meg.</string>
+  <string name="permlab_useHardwareFramework">hardver keretrendszert használ</string>
+  <string name="permdesc_useHardwareFramework">Lehetővé teszi az alkalmazás számára, hogy a CM hardver hozzáférjen a keretrendszerhez.</string>
+  <string name="live_display_auto">Automatikus</string>
+  <string name="live_display_day">Nappal</string>
+  <string name="live_display_day_summary">Nappali beállítások használata</string>
+  <string name="live_display_night">Éjszaka</string>
+  <string name="live_display_night_summary">Éjszakai beállítások használata</string>
+  <string name="live_display_outdoor">Kültéri (napfényes)</string>
+  <string name="live_display_outdoor_summary">Kizárólag a szabadtéri beállítások használata</string>
+  <string name="live_display_hint">A LiveDisplay  csökkentheti a szem terhelését éjszakai használat esetén. Kattintson ide, és próbálja ki!</string>
+  <string name="permgrouplab_security">Biztonság</string>
+  <string name="permgroupdesc_security">Engedélyek az eszköz biztonsági információira vonatkozóan.</string>
+  <string name="permlab_readPhoneBlacklist">tiltólista olvasása</string>
+  <string name="permdesc_readPhoneBlacklist">Engedélyezi az alkalmazásnak, hogy olvassa azokat a számokat melyek blokkolva vannak bejövő hívásnál vagy üzenetnél.</string>
+  <string name="permlab_changePhoneBlacklist">tiltólista módosítása</string>
+  <string name="permdesc_changePhoneBlacklist">Lehetővé teszi az alkalmazás számára, hogy szerkessze azokat a telefonszámokat melyek blokkolva vannak bejövő hívásnál vagy üzenetnél.</string>
 </resources>

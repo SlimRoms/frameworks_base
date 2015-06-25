@@ -42,11 +42,46 @@
   <string name="quick_settings_reboot_label">Riavvio</string>
   <string name="quick_settings_reboot_recovery_label">Recovery</string>
   <string name="quick_settings_ambient_display_label">Display Ambient</string>
+  <string name="quick_settings_screenshot">Screenshot</string>
+  <string name="quick_settings_expanded_desktop">Esteso</string>
+  <string name="quick_settings_expanded_desktop_off">Normale</string>
   <string name="accessibility_quick_settings_ambient_display_off">Display Ambient disattivato</string>
   <string name="accessibility_quick_settings_ambient_display_on">Display Ambient attivato</string>
   <string name="accessibility_quick_settings_ambient_display_changed_off">Display Ambient disattivato.</string>
   <string name="accessibility_quick_settings_ambient_display_changed_on">Display Ambient attivato.</string>
   <string name="clear_recents">Chiudi Tutti Recenti</string>
   <string name="app_killed_message">Applicazione terminata</string>
+  <string name="cancel">Annulla</string>
+  <string name="dlg_ok">Ok</string>
+  <string name="yes">Sì</string>
+  <string name="no">No</string>
+  <string name="shortcut_picker">Collegamenti Slim</string>
   <string name="shortcut_screenshot">Cattura Schermo</string>
+  <string name="shortcut_chamber">Camera dei segreti</string>
+  <string name="chamber_disabled">La camera dei segreti è chiusa</string>
+  <string name="chamber_title">Impostazioni di immissione</string>
+  <string name="chamber_message">Inserisci una stringa di impostazione, sia essa una checkbox on off o una lista di preferenze. Per esempio, quiet_hours_ringer o simili. Le impostazioni possono essere trovate nel file Settings.java. Attenzione: è una procedura pericolosa!</string>
+  <string name="chamber_invalid">Questo è un input non valido. Fai attenzione.</string>
+  <string name="chamber_invalid_setting">Prova a commutare manualmente il settaggio per assicurarti che esista il database per questa azione.</string>
+  <string name="chamber_checkbox">Interruttore</string>
+  <string name="chamber_chk_message">È questa impostazione un interruttore?</string>
+  <string name="chamber_int">Valori di input</string>
+  <string name="chamber_int_message">Inserisci i valori che vorresti commutare. Separa ognuno di essi con una virgola. Le impostazioni colore accettano valori hex come #FF00aacc o nomi base come red, green, e yellow.</string>
+  <string name="chamber_name_title">Nome del collegamento</string>
+  <string name="chamber_name_message">Dai un nome al collegamento da visualizzare con l\'icona.</string>
+  <string name="chamber_name_toast">Utilizzando il nome predefinito</string>
+  <string name="off">Disattivato</string>
+  <string name="on">Attivato</string>
+  <string name="toggle">Interrutore</string>
+  <string name="shortcut_toggle_title">Azione da eseguire</string>
+  <string name="heads_up_snooze_message">Le heads up sono disattivate per <xliff:g id="number">%d</xliff:g> minuti.</string>
+  <string name="heads_up_snooze_button_title">Posticipa heads up</string>
+  <string name="notification_inspect_heads_up_title_enabled">Abilita le heads up per questa applicazione</string>
+  <string name="notification_inspect_heads_up_title_disabled">Disabilita le heads up per questa applicazione</string>
+  <string name="pie_battery_status_charging">In carica (<xliff:g id="percent">%d</xliff:g>%%)</string>
+  <string name="pie_battery_status_full">Carico</string>
+  <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% rimanente</string>
+  <string name="pie_phone_status_no_service">Nessun servizio</string>
+  <string name="pie_phone_status_airplane_mode">Modalità aereo ON</string>
+  <string name="pie_phone_status_emergency_only">Solo chiamate di emergenza</string>
 </resources>
