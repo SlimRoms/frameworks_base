@@ -120,6 +120,9 @@ public class HeadsUpNotificationView extends LinearLayout implements SwipeHelper
         mSnoozeButtonVisibility = show;
         if (mSnoozeButton != null) {
             mSnoozeButton.setVisibility(show ? View.VISIBLE : View.GONE);
+            if (mSnoozeButtonVisibility) {
+                mSnoozeButton.bringToFront();
+            }
         }
     }
 
@@ -161,6 +164,7 @@ public class HeadsUpNotificationView extends LinearLayout implements SwipeHelper
             if (mSnoozeButton != null) {
                 mSnoozeButton.setAlpha(mMaxAlpha);
                 mIsSnoozeButtonNowVisible = true;
+                mSnoozeButton.bringToFront();
             }
 
             mHeadsUp.setInterruption();
@@ -308,6 +312,9 @@ public class HeadsUpNotificationView extends LinearLayout implements SwipeHelper
                 }
             });
             mSnoozeButton.setVisibility(mSnoozeButtonVisibility ? View.VISIBLE : View.GONE);
+            if (mSnoozeButtonVisibility) {
+                mSnoozeButton.bringToFront();
+            }
         }
 
         if (mHeadsUp != null) {
