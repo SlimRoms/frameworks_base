@@ -27,7 +27,6 @@ import android.provider.Settings;
 import android.util.ArrayMap;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.animation.Interpolator;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -35,7 +34,7 @@ import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
 import android.view.ViewTreeObserver;
 import android.view.accessibility.AccessibilityEvent;
-import android.widget.LinearLayout;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 
 import com.android.systemui.ExpandHelper;
@@ -48,7 +47,7 @@ import com.android.systemui.statusbar.phone.PhoneStatusBar;
 
 import java.util.ArrayList;
 
-public class HeadsUpNotificationView extends LinearLayout implements SwipeHelper.Callback, ExpandHelper.Callback,
+public class HeadsUpNotificationView extends FrameLayout implements SwipeHelper.Callback, ExpandHelper.Callback,
         ViewTreeObserver.OnComputeInternalInsetsListener {
     private static final String TAG = "HeadsUpNotificationView";
     private static final boolean DEBUG = false;
@@ -72,9 +71,7 @@ public class HeadsUpNotificationView extends LinearLayout implements SwipeHelper
     private ViewGroup mContentHolder;
     private int mSnoozeLengthMs;
     private ContentObserver mSettingsObserver;
-    private ViewGroup mBelowContentContainer;
     private ImageButton mSnoozeButton;
-    private boolean mIsSnoozeButtonNowVisible;
     private boolean mSnoozeButtonVisibility;
 
     private NotificationData.Entry mHeadsUp;
@@ -96,18 +93,10 @@ public class HeadsUpNotificationView extends LinearLayout implements SwipeHelper
     }
 
     public void updateResources() {
-        final int width = getResources().getDimensionPixelSize(R.dimen.notification_panel_width);
-        final int gravity = getResources().getInteger(R.integer.notification_panel_layout_gravity);
-        if (mBelowContentContainer != null) {
-            final LayoutParams lp = (LayoutParams) mBelowContentContainer.getLayoutParams();
-            lp.width = width;
-            lp.gravity = gravity;
-            mBelowContentContainer.setLayoutParams(lp);
-        }
         if (mContentHolder != null) {
             final LayoutParams lp = (LayoutParams) mContentHolder.getLayoutParams();
-            lp.width = width;
-            lp.gravity = gravity;
+            lp.width = getResources().getDimensionPixelSize(R.dimen.notification_panel_width);
+            lp.gravity = getResources().getInteger(R.integer.notification_panel_layout_gravity);
             mContentHolder.setLayoutParams(lp);
         }
     }
@@ -153,15 +142,13 @@ public class HeadsUpNotificationView extends LinearLayout implements SwipeHelper
             mContentHolder.setVisibility(View.VISIBLE);
             mContentHolder.setAlpha(mMaxAlpha);
             mContentHolder.addView(mHeadsUp.row);
+            if (mSnoozeButton != null) {
+                mContentHolder.addView(mSnoozeButton);
+            }
             sendAccessibilityEvent(AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED);
 
             mSwipeHelper.snapChild(mContentHolder, 1f);
             mStartTouchTime = SystemClock.elapsedRealtime() + mTouchSensitivityDelay;
-
-            if (mSnoozeButton != null) {
-                mSnoozeButton.setAlpha(mMaxAlpha);
-                mIsSnoozeButtonNowVisible = true;
-            }
 
             mHeadsUp.setInterruption();
 
@@ -277,8 +264,6 @@ public class HeadsUpNotificationView extends LinearLayout implements SwipeHelper
         int minHeight = getResources().getDimensionPixelSize(R.dimen.notification_min_height);
         int maxHeight = getResources().getDimensionPixelSize(R.dimen.notification_max_height);
 
-        mBelowContentContainer = (ViewGroup) findViewById(R.id.below_content_container);
-
         mContentHolder = (ViewGroup) findViewById(R.id.content_holder);
         mContentHolder.setOutlineProvider(CONTENT_HOLDER_OUTLINE_PROVIDER);
 
@@ -370,36 +355,6 @@ public class HeadsUpNotificationView extends LinearLayout implements SwipeHelper
         mSwipeHelper.setPagingTouchSlop(pagingTouchSlop);
     }
 
-    /**
-     * Animate the snooze button to a new visibility.
-     *
-     * @param nowVisible should it now be visible
-     */
-    private void animateSnoozeButton(boolean nowVisible) {
-        if (mSnoozeButton == null) {
-            return;
-        }
-        mSnoozeButton.animate().cancel();
-        if (!mSnoozeButtonVisibility) {
-            return;
-        }
-        if (nowVisible != mIsSnoozeButtonNowVisible) {
-            mIsSnoozeButtonNowVisible = nowVisible;
-            // Animate snooze button
-            float endValue = nowVisible ? mMaxAlpha : 0.0f;
-            Interpolator interpolator;
-            if (nowVisible) {
-                interpolator = PhoneStatusBar.ALPHA_IN;
-            } else {
-                interpolator = PhoneStatusBar.ALPHA_OUT;
-            }
-            mSnoozeButton.animate()
-                    .alpha(endValue)
-                    .setInterpolator(interpolator)
-                    .setDuration(260);
-        }
-    }
-
     // ExpandHelper.Callback methods
 
     @Override
@@ -455,22 +410,17 @@ public class HeadsUpNotificationView extends LinearLayout implements SwipeHelper
 
     @Override
     public void onChildDismissed(View v, boolean direction) {
-        if (DEBUG)  Log.v(TAG, "User swiped heads up to dismiss");
+        Log.v(TAG, "User swiped heads up to dismiss");
         mBar.onHeadsUpDismissed(direction);
-        if (mSnoozeButton != null) {
-            mSnoozeButton.animate().cancel();
-        }
     }
 
     @Override
     public void onBeginDrag(View v) {
-        animateSnoozeButton(false);
     }
 
     @Override
     public void onDragCancelled(View v) {
         mContentHolder.setAlpha(mMaxAlpha); // sometimes this isn't quite reset
-        animateSnoozeButton(true);
     }
 
     @Override
