@@ -72,7 +72,6 @@ public class HeadsUpNotificationView extends LinearLayout implements SwipeHelper
     private ViewGroup mContentHolder;
     private int mSnoozeLengthMs;
     private ContentObserver mSettingsObserver;
-    private ViewGroup mBelowContentContainer;
     private ImageButton mSnoozeButton;
     private boolean mIsSnoozeButtonNowVisible;
     private boolean mSnoozeButtonVisibility;
@@ -98,12 +97,7 @@ public class HeadsUpNotificationView extends LinearLayout implements SwipeHelper
     public void updateResources() {
         final int width = getResources().getDimensionPixelSize(R.dimen.notification_panel_width);
         final int gravity = getResources().getInteger(R.integer.notification_panel_layout_gravity);
-        if (mBelowContentContainer != null) {
-            final LayoutParams lp = (LayoutParams) mBelowContentContainer.getLayoutParams();
-            lp.width = width;
-            lp.gravity = gravity;
-            mBelowContentContainer.setLayoutParams(lp);
-        }
+
         if (mContentHolder != null) {
             final LayoutParams lp = (LayoutParams) mContentHolder.getLayoutParams();
             lp.width = width;
@@ -276,8 +270,6 @@ public class HeadsUpNotificationView extends LinearLayout implements SwipeHelper
 
         int minHeight = getResources().getDimensionPixelSize(R.dimen.notification_min_height);
         int maxHeight = getResources().getDimensionPixelSize(R.dimen.notification_max_height);
-
-        mBelowContentContainer = (ViewGroup) findViewById(R.id.below_content_container);
 
         mContentHolder = (ViewGroup) findViewById(R.id.content_holder);
         mContentHolder.setOutlineProvider(CONTENT_HOLDER_OUTLINE_PROVIDER);
