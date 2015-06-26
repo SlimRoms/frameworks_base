@@ -29,8 +29,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Environment;
 import android.os.FileUtils;
 import android.os.SystemProperties;
+import android.provider.Settings;
 import android.support.v4.content.FileProvider;
 import android.text.format.DateUtils;
 import android.util.Patterns;
@@ -38,6 +40,11 @@ import android.util.Patterns;
 import com.google.android.collect.Lists;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 
 /**
@@ -65,14 +72,36 @@ public class BugreportReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        final File bugreportFile = getFileExtra(intent, EXTRA_BUGREPORT);
-        final File screenshotFile = getFileExtra(intent, EXTRA_SCREENSHOT);
+        File bugreport = getFileExtra(intent, EXTRA_BUGREPORT);
+        File screenshot = getFileExtra(intent, EXTRA_SCREENSHOT);
 
+        boolean slimBugreport = Settings.System.getInt(
+                context.getContentResolver(), "slim_bugreport", 0) == 1;
+
+        Settings.System.putInt(context.getContentResolver(), "slim_bugreport", 0);
+
+        if (slimBugreport) {
+            try {
+                bugreport = copyFile(bugreport);
+                screenshot = copyFile(screenshot);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        final File bugreportFile = bugreport;
+        final File screenshotFile = screenshot;
+        
         // Files are kept on private storage, so turn into Uris that we can
         // grant temporary permissions for.
-        final Uri bugreportUri = FileProvider.getUriForFile(context, AUTHORITY, bugreportFile);
-        final Uri screenshotUri = FileProvider.getUriForFile(context, AUTHORITY, screenshotFile);
-
+        Uri bugreportUri, screenshotUri;
+        if (slimBugreport) {
+            bugreportUri = Uri.fromFile(bugreportFile);
+            screenshotUri = Uri.fromFile(screenshotFile);
+        } else {
+            bugreportUri = FileProvider.getUriForFile(context, AUTHORITY, bugreportFile);
+            screenshotUri = FileProvider.getUriForFile(context, AUTHORITY, screenshotFile);
+        }
         Intent sendIntent = buildSendIntent(context, bugreportUri, screenshotUri);
         Intent notifIntent;
 
@@ -84,6 +113,10 @@ public class BugreportReceiver extends BroadcastReceiver {
         }
         notifIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
+        if (slimBugreport) {
+            context.startActivity(buildSlimIntent(context, bugreportUri, screenshotUri));
+            return;
+        }
         final Notification.Builder builder = new Notification.Builder(context)
                 .setSmallIcon(com.android.internal.R.drawable.stat_sys_adb)
                 .setContentTitle(context.getString(R.string.bugreport_finished_title))
@@ -109,6 +142,36 @@ public class BugreportReceiver extends BroadcastReceiver {
                 return null;
             }
         }.execute();
+    }
+
+    private Intent buildSlimIntent(Context context, Uri bugreportUri, Uri screenshotUri) {
+        Intent i = new Intent("com.slim.bugreport.PARSE_BUGREPORT");
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        final ArrayList<Uri> attachments = Lists.newArrayList(bugreportUri, screenshotUri);
+        i.putParcelableArrayListExtra(Intent.EXTRA_STREAM, attachments);
+
+        return i;
+    }
+
+    public File copyFile(File src) throws IOException {
+        File dst = new File(Environment.getExternalStorageDirectory()
+                + "/Slim/bugreport/" + src.getName());
+        if (!dst.getParentFile().exists()) {
+            if (!dst.getParentFile().mkdirs()) throw new IOException();
+        }
+        InputStream in = new FileInputStream(src);
+        OutputStream out = new FileOutputStream(dst);
+
+        // Transfer bytes from in to out
+        byte[] buf = new byte[1024];
+        int len;
+        while ((len = in.read(buf)) > 0) {
+            out.write(buf, 0, len);
+        }
+        in.close();
+        out.close();
+        return dst;
     }
 
     private static Intent buildWarningIntent(Context context, Intent sendIntent) {
