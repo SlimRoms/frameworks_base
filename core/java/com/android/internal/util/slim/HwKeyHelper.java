@@ -210,7 +210,7 @@ public class HwKeyHelper {
     }
 
     public static String getLongPressOnAppSwitchBehavior(Context context, boolean getDefault) {
-        String defaultValue = ActionConstants.ACTION_NULL;
+        String defaultValue = ActionConstants.ACTION_MENU_BIG;
         if (getDefault) {
             return defaultValue;
         }

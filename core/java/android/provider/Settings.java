@@ -3361,7 +3361,7 @@ public final class Settings {
         public static final String KEY_APP_SWITCH_ACTION = "key_app_switch_action";
 
         /**
-         * Action to perform when the app switch key is long-pressed. (default: ACTION_NULL)
+         * Action to perform when the app switch key is long-pressed. (default: ACTION_MENU)
          * (See ButtonsConstants.java for valid values)
          * @hide
          */
