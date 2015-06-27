@@ -355,7 +355,7 @@
     <string name="hidden_notifications_setup" msgid="41079514801976810">"Setup"</string>
     <string name="zen_mode_and_condition" msgid="4462471036429759903">"<xliff:g id="ZEN_MODE">%1$s</xliff:g>. <xliff:g id="EXIT_CONDITION">%2$s</xliff:g>"</string>
     <string name="screen_pinning_title" msgid="3273740381976175811">"Screen is pinned"</string>
-    <string name="screen_pinning_description" msgid="1346522416878235405">"This keeps it in view until you unpin. Touch and hold Back and Overview at the same time to unpin."</string>
+    <string name="screen_pinning_description" msgid="1346522416878235405">"This keeps it in view until you unpin. Touch and hold the two 3-dot menu buttons at the same time to unpin."</string>
     <string name="screen_pinning_description_accessible" msgid="8518446209564202557">"This keeps it in view until you unpin. Touch and hold Overview to unpin."</string>
     <string name="screen_pinning_positive" msgid="3783985798366751226">"Got it"</string>
     <string name="screen_pinning_negative" msgid="3741602308343880268">"No, thanks"</string>
