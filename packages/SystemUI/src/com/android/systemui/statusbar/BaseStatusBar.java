@@ -207,6 +207,7 @@ public abstract class BaseStatusBar extends SystemUI implements
     protected boolean mDisableNotificationAlerts = false;
 
     private int mHeadsUpSnoozeTime;
+    private boolean mHeadsUpGlobalSwitch;
     private long mHeadsUpSnoozeStartTime;
     protected String mHeadsUpPackageName;
 
@@ -994,10 +995,12 @@ public abstract class BaseStatusBar extends SystemUI implements
             if (isThisASystemPackage(pkg, pmUser)) {
                 headsUpButton.setVisibility(View.GONE);
             } else {
-                boolean isHeadsUpEnabled = mNoMan.getHeadsUpNotificationsEnabledForPackage(
-                        pkg, appUidF) != Notification.HEADS_UP_NEVER;
-                headsUpButton.setAlpha(isHeadsUpEnabled ? 1f : 0.5f);
-                setHeadsUpButtonContentDescription((View) headsUpButton, isHeadsUpEnabled);
+                boolean isHeadsUpEnabledForPackage =
+                        mNoMan.getHeadsUpNotificationsEnabledForPackage(
+                            pkg, appUidF) != Notification.HEADS_UP_NEVER;
+                headsUpButton.setAlpha(isHeadsUpEnabledForPackage ? 1f : 0.5f);
+                setHeadsUpButtonContentDescription((View) headsUpButton,
+                        isHeadsUpEnabledForPackage);
                 headsUpButton.setVisibility(View.VISIBLE);
                 headsUpButton.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
@@ -2315,6 +2318,14 @@ public abstract class BaseStatusBar extends SystemUI implements
                 mHeadsUpSnoozeTime / 60 / 1000), Toast.LENGTH_LONG).show();
     }
 
+    protected boolean isHeadsUpEnabled() {
+        return mHeadsUpGlobalSwitch;
+    }
+
+    protected void setHeadsUpEnabled(boolean headsUpGlobalSwitch) {
+        mHeadsUpGlobalSwitch = headsUpGlobalSwitch;
+    }
+
     protected boolean isHeadsUpInSnooze() {
         return (mHeadsUpSnoozeStartTime + mHeadsUpSnoozeTime - System.currentTimeMillis()) > 0;
     }
@@ -2342,6 +2353,11 @@ public abstract class BaseStatusBar extends SystemUI implements
             if (DEBUG) {
                 Log.d(TAG, "Skipping HUN check for " + sbn.getKey() + " since it's filtered out.");
             }
+            return false;
+        }
+
+        // Stop here if headsup is globally disabled
+        if (!isHeadsUpEnabled()) {
             return false;
         }
 
