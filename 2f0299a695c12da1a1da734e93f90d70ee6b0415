@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "da6255ed_2c7c3b72",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2015-07-01T16:44:04Z",
+      "side": 1,
+      "message": "should say \"frameworks\"",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 8
+      },
+      "revId": "2f0299a695c12da1a1da734e93f90d70ee6b0415",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da6255ed_ac4a6b53",
         "filename": "policy/src/com/android/internal/policy/impl/PhoneWindowManager.java",
         "patchSetId": 5
