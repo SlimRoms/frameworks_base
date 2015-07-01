@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da6255ed_ac8f0b75",
+        "filename": "packages/SystemUI/src/com/android/systemui/qs/QSTileView.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1000083
+      },
+      "writtenOn": "2015-07-01T16:51:51Z",
+      "side": 1,
+      "message": "labelText will get overwritten if both the dual label and the normal label exist. Probably need to nullify the normal label after this?",
+      "range": {
+        "startLine": 131,
+        "startChar": 16,
+        "endLine": 131,
+        "endChar": 66
+      },
+      "revId": "dfa55df5359c1a928c79fcc20e4f75ba3accef51",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
