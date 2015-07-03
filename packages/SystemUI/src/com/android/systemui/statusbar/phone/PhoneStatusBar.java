@@ -3269,6 +3269,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         return 0 == (mSystemUiVisibility & View.SYSTEM_UI_FLAG_LOW_PROFILE);
     }
 
+    private boolean isTickerEnabled() {
+        return Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.TICKER_ENABLED, 0) == 1;
+    }
+
     public void setLightsOn(boolean on) {
         Log.v(TAG, "setLightsOn(" + on + ")");
         if (on) {
@@ -3321,6 +3326,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         // no ticking in lights-out mode
         if (!areLightsOn()) return;
+
+        // user has ticker disabled
+        if (!isTickerEnabled()) return;
 
         // no ticking in Setup
         if (!isDeviceProvisioned()) return;
