@@ -31,7 +31,7 @@
         android:layout_width="match_parent"
         >
 
-        <LinearLayout
+        <view class="com.android.systemui.statusbar.phone.NavigationBarView$Nb"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:orientation="horizontal"
@@ -127,7 +127,7 @@
                     android:layout_gravity="end" />
             </FrameLayout>
 
-        </LinearLayout>
+        </view>
 
         <!-- lights out layout to match exactly -->
         <LinearLayout
@@ -194,7 +194,7 @@
         android:paddingTop="0dp"
         >
 
-        <LinearLayout 
+        <view class="com.android.systemui.statusbar.phone.NavigationBarView$Nb" 
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:orientation="vertical"
@@ -276,7 +276,7 @@
                 android:layout_weight="0"
                 android:visibility="invisible"
                 />
-        </LinearLayout>
+        </view>
 
         <!-- lights out layout to match exactly -->
         <LinearLayout 
