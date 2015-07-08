@@ -290,7 +290,7 @@ public class KeyButtonView extends ImageView {
                 break;
         }
 
-        return true;
+        return action != MotionEvent.ACTION_DOWN;
     }
 
     public void playSoundEffect(int soundConstant) {
