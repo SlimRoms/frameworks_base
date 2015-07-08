@@ -53,6 +53,7 @@ import com.android.internal.util.slim.ActionConstants;
 import com.android.internal.util.slim.Action;
 
 import com.android.systemui.R;
+import com.android.systemui.statusbar.phone.NavigationBarView;
 
 import java.util.ArrayList;
 
@@ -290,6 +291,7 @@ public class KeyButtonView extends ImageView {
                 break;
         }
 
+        ((NavigationBarView) (getParent().getParent().getParent())).onNavButtonTouched();
         return true;
     }
 
