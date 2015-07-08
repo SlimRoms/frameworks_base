@@ -140,6 +140,10 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
     private FrameLayout mRot0;
     private FrameLayout mRot90;
 
+    private float mOriginalAlpha = 1.0f;
+    private float mDimAlpha = 0.5f;
+    private boolean mIsDim = false;
+
     private ArrayList<ActionConfig> mButtonsConfig;
     private List<Integer> mButtonIdList;
 
@@ -212,6 +216,19 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
         }
     };
 
+    private final OnTouchListener mNavButtonsTouchListener = new OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            mHandler.removeCallbacks(mDimNavButtons);
+            if (getNavButtons() != null && mIsDim == true) {
+                mIsDim = false;
+                getNavButtons().setAlpha(mOriginalAlpha);
+            }
+            mHandler.postDelayed(mDimNavButtons, 3000);
+            return true;
+        }
+    };
+
     private class H extends Handler {
         public void handleMessage(Message m) {
             switch (m.what) {
@@ -232,6 +249,14 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
                     }
                     break;
             }
+        }
+    }
+
+    private class Nb extends ViewGroup {
+        @Override
+        public boolean onInterceptTouchEvent(MotionEvent event) {
+            mHandler.post(mListenToNavButtons);
+            return super.onInterceptTouchEvent(event);
         }
     }
 
@@ -362,6 +387,10 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
 
     public View getImeSwitchButton() {
         return mCurrentView.findViewById(R.id.ime_switcher);
+    }
+
+    public Nb getNavButtons() {
+        return (Nb) mCurrentView.findViewById(R.id.nav_buttons);
     }
 
     public View getLeftImeArrowButton() {
@@ -699,9 +728,8 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
             setSlippery(disableHome && disableRecent && disableBack);
         }
 
-        ViewGroup navButtons = (ViewGroup) mCurrentView.findViewById(R.id.nav_buttons);
-        if (navButtons != null) {
-            LayoutTransition lt = navButtons.getLayoutTransition();
+        if (getNavButtons() != null) {
+            LayoutTransition lt = getNavButtons().getLayoutTransition();
             if (lt != null) {
                 if (!lt.getTransitionListeners().contains(mTransitionListener)) {
                     lt.addTransitionListener(mTransitionListener);
@@ -1184,4 +1212,23 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
     public interface OnVerticalChangedListener {
         void onVerticalChanged(boolean isVertical);
     }
+
+    private Runnable mDimNavButtons = new Runnable() {
+        @Override
+        public void run() {
+            if (getNavButtons() != null && mIsDim == false) {
+                mOriginalAlpha = getNavButtons().getAlpha();
+                mIsDim = true;
+                getNavButtons().setAlpha(mDimAlpha);
+            }
+        }
+    };
+
+    private Runnable mListenToNavButtons = new Runnable() {
+        @Override
+        public void run() {
+            if (getNavButtons() != null)
+                getNavButtons().setOnTouchListener(mNavButtonsTouchListener);
+        }
+    };
 }
