@@ -140,6 +140,10 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
     private FrameLayout mRot0;
     private FrameLayout mRot90;
 
+    private float mOriginalAlpha = 1.0f;
+    private float mDimAlpha = 0.5f;
+    private boolean mIsDim = false;
+
     private ArrayList<ActionConfig> mButtonsConfig;
     private List<Integer> mButtonIdList;
 
@@ -232,6 +236,27 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
                     }
                     break;
             }
+        }
+    }
+
+    private class Nb extends LinearLayout {
+        private Nb(Context context) {
+            super(context);
+        }
+        private Nb(Context context, AttributeSet attrs) {
+            super(context, attrs);
+        }
+        private Nb(Context context, AttributeSet attrs, int defStyleAttr) {
+            super(context, attrs, defStyleAttr);
+        }
+        private Nb(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+            super(context, attrs, defStyleAttr, defStyleRes);
+        }
+
+        @Override
+        public boolean onInterceptTouchEvent(MotionEvent event) {
+            mHandler.post(mNavButtonsIntercept);
+            return super.onInterceptTouchEvent(event);
         }
     }
 
@@ -362,6 +387,10 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
 
     public View getImeSwitchButton() {
         return mCurrentView.findViewById(R.id.ime_switcher);
+    }
+
+    public Nb getNavButtons() {
+        return (Nb) mCurrentView.findViewById(R.id.nav_buttons);
     }
 
     public View getLeftImeArrowButton() {
@@ -1184,4 +1213,27 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
     public interface OnVerticalChangedListener {
         void onVerticalChanged(boolean isVertical);
     }
+
+    private Runnable mDimNavButtons = new Runnable() {
+        @Override
+        public void run() {
+            if (getNavButtons() != null && mIsDim == false) {
+                mOriginalAlpha = getNavButtons().getAlpha();
+                mIsDim = true;
+                getNavButtons().setAlpha(mDimAlpha);
+            }
+        }
+    };
+
+    private Runnable mNavButtonsIntercept = new Runnable() {
+        @Override
+        public void run() {
+            mHandler.removeCallbacks(mDimNavButtons);
+            if (getNavButtons() != null && mIsDim == true) {
+                mIsDim = false;
+                getNavButtons().setAlpha(mOriginalAlpha);
+            }
+            mHandler.postDelayed(mDimNavButtons, 3000);
+        }
+    };
 }
