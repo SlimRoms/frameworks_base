@@ -140,6 +140,11 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
     private FrameLayout mRot0;
     private FrameLayout mRot90;
 
+    private ViewGroup mNavButtons;
+    private float mOriginalAlpha = 1.0f;
+    private float mDimAlpha = 0.5f;
+    private boolean mIsDim = false;
+
     private ArrayList<ActionConfig> mButtonsConfig;
     private List<Integer> mButtonIdList;
 
@@ -290,6 +295,13 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        mNavButtons = (ViewGroup) mCurrentView.findViewById(R.id.nav_buttons);
+        mHandler.removeCallbacks(mDimNavButtons);
+        if (mNavButtons != null && mIsDim == true) {
+            mIsDim = false;
+            mNavButtons.setAlpha(mOriginalAlpha);
+        }
+        mHandler.postDelayed(mDimNavButtons, 3000);
         initDownStates(event);
         if (!mDelegateIntercepted && mTaskSwitchHelper.onTouchEvent(event)) {
             return true;
@@ -699,9 +711,9 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
             setSlippery(disableHome && disableRecent && disableBack);
         }
 
-        ViewGroup navButtons = (ViewGroup) mCurrentView.findViewById(R.id.nav_buttons);
-        if (navButtons != null) {
-            LayoutTransition lt = navButtons.getLayoutTransition();
+        mNavButtons = (ViewGroup) mCurrentView.findViewById(R.id.nav_buttons);
+        if (mNavButtons != null) {
+            LayoutTransition lt = mNavButtons.getLayoutTransition();
             if (lt != null) {
                 if (!lt.getTransitionListeners().contains(mTransitionListener)) {
                     lt.addTransitionListener(mTransitionListener);
@@ -1184,4 +1196,15 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
     public interface OnVerticalChangedListener {
         void onVerticalChanged(boolean isVertical);
     }
+
+    private Runnable mDimNavButtons = new Runnable() {
+        @Override
+        public void run() {
+            if (mNavButtons != null && mIsDim == false) {
+                mOriginalAlpha = mNavButtons.getAlpha();
+                mIsDim = true;
+                mNavButtons.setAlpha(mDimAlpha);
+            }
+        }
+    };
 }
