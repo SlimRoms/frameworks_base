@@ -243,7 +243,7 @@ public final class ActivityStackSupervisor implements DisplayListener {
      * setWindowManager is called. **/
     private boolean mLeanbackOnlyDevice;
 
-    private PowerManager mPm;
+    PowerManager mPm;
 
     /**
      * Is the privacy guard currently enabled? Shared between ActivityStacks
