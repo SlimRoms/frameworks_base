@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5c5d37_47a62ec3",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/NavigationBarView.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 896,
+      "author": {
+        "id": 1000011
+      },
+      "writtenOn": "2015-07-15T01:06:01Z",
+      "side": 1,
+      "message": "Add here : onNavButtonTouched();\n\nFixes not dimming on reorient and wakeup.",
+      "range": {
+        "startLine": 896,
+        "startChar": 0,
+        "endLine": 896,
+        "endChar": 5
+      },
+      "revId": "55be4fe8f4ab9a971178997e6c49aed91924a110",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
