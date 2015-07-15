@@ -21,6 +21,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.provider.Settings;
+import android.telephony.TelephonyManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,11 +49,14 @@ public class CellularTile extends QSTile<QSTile.SignalState> {
 
     private final NetworkController mController;
     private final CellularDetailAdapter mDetailAdapter;
+    private final TelephonyManager mTelephonyManager;
 
     public CellularTile(Host host) {
         super(host);
         mController = host.getNetworkController();
         mDetailAdapter = new CellularDetailAdapter();
+        mTelephonyManager =
+                (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
     }
 
     @Override
@@ -82,9 +86,22 @@ public class CellularTile extends QSTile<QSTile.SignalState> {
     @Override
     protected void handleClick() {
         if (mController.isMobileDataSupported()) {
-            showDetail(true);
+            mController.setMobileDataEnabled(!mController.isMobileDataEnabled());
         } else {
             mHost.startSettingsActivity(DATA_USAGE_SETTINGS);
+        }
+    }
+
+    @Override
+    protected void handleSecondaryClick() {
+        if (mController.isMobileDataSupported()) {
+            showDetail(true);
+        } else {
+            if (mTelephonyManager.getDefault().getPhoneCount() > 1) {
+                mHost.startSettingsActivity(MOBILE_NETWORK_SETTINGS_MSIM);
+            } else {
+                mHost.startSettingsActivity(MOBILE_NETWORK_SETTINGS);
+            }
         }
     }
 
