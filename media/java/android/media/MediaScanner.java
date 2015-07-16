@@ -63,6 +63,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.android.internal.R;
 
@@ -360,6 +362,11 @@ public class MediaScanner
     private boolean mCaseInsensitivePaths;
 
     private final BitmapFactory.Options mBitmapOptions = new BitmapFactory.Options();
+
+    // For basic VorbisComment DATE tag support. It can take two forms, YYYY
+    // or YYYY-MM. This pattern is used to extract the year for compatibility
+    // with the ID3 YEAR tag.
+    private static final Pattern DATE_YEAR_DETECT_PATTERN = Pattern.compile("^(\\d{4})(-\\d{2})?$");
 
     private static class FileEntry {
         long mRowId;
@@ -687,6 +694,13 @@ public class MediaScanner
                 mGenre = getGenreName(value);
             } else if (name.equalsIgnoreCase("year") || name.startsWith("year;")) {
                 mYear = parseSubstring(value, 0, 0);
+            } else if (mYear == 0 && name.equalsIgnoreCase("date") || name.startsWith("date;")) {
+                // Since Android doesn't support DATE tag itself, just use it to extract
+                // the year, if the YEAR tag isn't present.
+                Matcher m = DATE_YEAR_DETECT_PATTERN.matcher(value);
+                if (m.find()) {
+                    mYear = parseSubstring(m.group(1), 0, 0);
+                }
             } else if (name.equalsIgnoreCase("tracknumber") || name.startsWith("tracknumber;")) {
                 // track number might be of the form "2/12"
                 // we just read the number before the slash
