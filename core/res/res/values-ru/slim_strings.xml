@@ -84,6 +84,9 @@
   <string name="progress_nomediapresent" product="default">Отсутствует внешний накопитель</string>
   <string name="permission_remember_choice">Запомнить</string>
   <string name="permission">Разрешение</string>
+  <string name="perf_profile_pwrsv">Экономичный</string>
+  <string name="perf_profile_bal">Сбалансированный</string>
+  <string name="perf_profile_perf">Высокая производительность</string>
   <string name="reboot_system" product="tablet">Перезагрузка планшета</string>
   <string name="reboot_system" product="default">Перезагрузка телефона</string>
   <string name="reboot_reboot">Перезагрузить</string>
@@ -93,7 +96,8 @@
   <string name="reboot_fastboot">Fastboot</string>
   <string name="reboot_download">Режим обновления ПО</string>
   <string name="reboot_progress">Перезагрузка\u2026</string>
-  <string name="reboot_confirm">Ваше устройство будет перезагружено.</string>
+  <string name="reboot_confirm" product="tablet">Ваш планшет будет перезагружен.</string>
+  <string name="reboot_confirm" product="default">Ваше устройство будет перезагружено.</string>
   <string name="global_action_reboot">Перезагрузка</string>
   <string name="default_string">По умолчанию</string>
   <string name="permlab_accessTorchService">доступ к фонарику</string>
@@ -108,4 +112,23 @@
   <string name="notification_flashlight_on_summary">Нажмите для выключения</string>
   <string name="permlab_changeHeadsUpState">вкл/выкл всплывающие уведомления</string>
   <string name="permdesc_changeHeadsUpState">Разрешить приложению изменять вид уведомлений другого приложения на обычные или всплывающие.</string>
+  <string name="permlab_useHardwareFramework">использовать аппаратные абстракции</string>
+  <string name="permdesc_useHardwareFramework">Приложение сможет получать доступ к подсистеме аппаратных абстракций.</string>
+  <string name="live_display_auto">Авто</string>
+  <string name="live_display_auto_summary">Автоматически регулировать температуру цвета после заката и восхода солнца</string>
+  <string name="live_display_off">Выкл</string>
+  <string name="live_display_off_summary">Отключить все улучшения</string>
+  <string name="live_display_day">День</string>
+  <string name="live_display_day_summary">Использовать только дневные параметры</string>
+  <string name="live_display_night">Ночь</string>
+  <string name="live_display_night_summary">Использовать только ночные параметры</string>
+  <string name="live_display_outdoor">Улица (солнце)</string>
+  <string name="live_display_outdoor_summary">Использовать только параметры улицы</string>
+  <string name="live_display_hint">LiveDisplay помогает снизить напряжение глаз и улучшает ночной сон. Нажмите здесь, чтобы попробовать!</string>
+  <string name="permgrouplab_security">Безопасность</string>
+  <string name="permgroupdesc_security">Разрешения, относящиеся к безопасности данных на устройстве.</string>
+  <string name="permlab_readPhoneBlacklist">просмотр чёрного списка</string>
+  <string name="permdesc_readPhoneBlacklist">Приложение сможет считывать информацию о списке абонентов, от которых заблокированы входящие звонки или сообщения.</string>
+  <string name="permlab_changePhoneBlacklist">изменение чёрного списка</string>
+  <string name="permdesc_changePhoneBlacklist">Приложение сможет изменять список абонентов, от которых заблокированы входящие звонки или сообщения.</string>
 </resources>

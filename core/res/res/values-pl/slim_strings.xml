@@ -93,7 +93,7 @@
   <string name="reboot_fastboot">Fastboot</string>
   <string name="reboot_download">Download</string>
   <string name="reboot_progress">Ponowne uruchamianie\u2026</string>
-  <string name="reboot_confirm">Telefon zostanie uruchomiony ponownie.</string>
+  <string name="reboot_confirm" product="default">Telefon zostanie uruchomiony ponownie.</string>
   <string name="global_action_reboot">Uruchom ponownie</string>
   <string name="default_string">Domyślny</string>
   <string name="permlab_accessTorchService">dostęp do latarki</string>

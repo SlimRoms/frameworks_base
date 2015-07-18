@@ -83,4 +83,7 @@
   <string name="pie_phone_status_no_service">Pas de réseau</string>
   <string name="pie_phone_status_airplane_mode">Mode Avion activé</string>
   <string name="pie_phone_status_emergency_only">Appels d\'urgence uniquement</string>
+  <string name="quick_settings_sync">Synchro. activée</string>
+  <string name="quick_settings_sync_off">Synchro. désactivée</string>
+  <string name="smart_pulldown_disabled">Le déroulement intelligent est désactivé</string>
 </resources>

@@ -93,7 +93,7 @@
   <string name="reboot_fastboot">Fastboot</string>
   <string name="reboot_download">letöltés</string>
   <string name="reboot_progress">Újraindulás\u2026</string>
-  <string name="reboot_confirm">A telefon újra fog indulni.</string>
+  <string name="reboot_confirm" product="default">A telefon újra fog indulni.</string>
   <string name="global_action_reboot">Újraindítás</string>
   <string name="default_string">Alapértelmezett</string>
   <string name="permlab_accessTorchService">hozzáférés a zseblámpa szolgáltatáshoz</string>
@@ -111,6 +111,9 @@
   <string name="permlab_useHardwareFramework">hardver keretrendszert használ</string>
   <string name="permdesc_useHardwareFramework">Lehetővé teszi az alkalmazás számára, hogy a CM hardver hozzáférjen a keretrendszerhez.</string>
   <string name="live_display_auto">Automatikus</string>
+  <string name="live_display_auto_summary">Automatikusan beállítja a képernyő színhőmérsékletét naplemente és napkelte után</string>
+  <string name="live_display_off">Kikapcsol</string>
+  <string name="live_display_off_summary">Összes módosítás letiltása</string>
   <string name="live_display_day">Nappal</string>
   <string name="live_display_day_summary">Nappali beállítások használata</string>
   <string name="live_display_night">Éjszaka</string>

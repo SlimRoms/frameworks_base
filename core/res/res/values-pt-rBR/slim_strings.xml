@@ -84,6 +84,9 @@
   <string name="progress_nomediapresent" product="default">Nenhuma mídia removível presente\u2026</string>
   <string name="permission_remember_choice">Lembrar-se da escolha</string>
   <string name="permission">Permissão</string>
+  <string name="perf_profile_pwrsv">Economia de energia</string>
+  <string name="perf_profile_bal">Balanceado</string>
+  <string name="perf_profile_perf">Desempenho</string>
   <string name="reboot_system" product="tablet">Reiniciar tablet</string>
   <string name="reboot_system" product="default">Reiniciar telefone</string>
   <string name="reboot_reboot">Reiniciar</string>
@@ -93,7 +96,8 @@
   <string name="reboot_fastboot">Fastboot</string>
   <string name="reboot_download">Download</string>
   <string name="reboot_progress">Reiniciando\u2026</string>
-  <string name="reboot_confirm">O seu telefone irá reiniciar.</string>
+  <string name="reboot_confirm" product="tablet">Seu tablet será reiniciado.</string>
+  <string name="reboot_confirm" product="default">O seu telefone irá reiniciar.</string>
   <string name="global_action_reboot">Reiniciar</string>
   <string name="default_string">Padrão</string>
   <string name="permlab_accessTorchService">acessar a lanterna</string>
