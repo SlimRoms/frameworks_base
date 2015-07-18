@@ -23,15 +23,21 @@
   <string name="permdesc_changePrivacyGuardState">Επιτρέπει στην εφαρμογή τον χειρισμό άλλων εφαρμογών με την Προστασία Απορρήτου. Όταν μια εφαρμογή τρέχει με την Προστασία Απορρήτου, δεν θα έχει πρόσβαση στα προσωπικά σας δεδομένα όπως επαφές, μηνύματα ή το αρχείο κλήσεων.</string>
   <string name="privacy_guard_notification">Προστασία Απορρήτου ενεργή</string>
   <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> δεν θα μπορεί να έχει πρόσβαση στα προσωπικά σας δεδομένα</string>
+  <string name="privacy_guard_dialog_title">Προστασία Απορρήτου</string>
+  <string name="privacy_guard_dialog_summary">Το <xliff:g id="app">%1$s</xliff:g> ζητά να: <xliff:g id="op">%2$s</xliff:g>.</string>
   <string name="app_ops_access_camera">πρόσβαση στην φωτογραφική μηχανή</string>
   <string name="app_ops_access_location">πρόσβαση στην τοποθεσία σας</string>
   <string name="app_ops_access_notifications">ανάγνωση των ειδοποιήσεών σας</string>
+  <string name="app_ops_activate_vpn">ενεργοποίηση VPN</string>
   <string name="app_ops_alarm_wakeup">αφύπνιση της συσκευής</string>
+  <string name="app_ops_su">Αποκτήστε πρόσβαση υπερχρήστη</string>
+  <string name="app_ops_auto_start">έναρξη κατά την εκκίνηση</string>
   <string name="app_ops_delete_call_log">Καθαρισμός ιστορικού κλήσεων</string>
   <string name="app_ops_delete_contacts">διαγραφή μιας επαφής</string>
   <string name="app_ops_delete_mms">διαγραφή μηνύματος MMS</string>
   <string name="app_ops_delete_sms">διαγραφή μηνύματος SMS</string>
   <string name="app_ops_draw_on_top">μεταφορά στην κορυφή</string>
+  <string name="app_ops_get_usage_stats">λήψη στατιστικών χρήσης εφαρμογών</string>
   <string name="app_ops_keep_device_awake">διατήρηση της συσκευής σας σε αφύπνιση</string>
   <string name="app_ops_make_phone_call">πραγματοποίηση μιας τηλεφωνικής κλήσης</string>
   <string name="app_ops_modify_calendar">ενημέρωση του ημερολογίου σας</string>
@@ -39,6 +45,7 @@
   <string name="app_ops_modify_clipboard">τροποποίηση του προχείρου</string>
   <string name="app_ops_modify_contacts">ενημέρωση των επαφών σας</string>
   <string name="app_ops_modify_settings">ενημέρωση των ρυθμίσεων συστήματος</string>
+  <string name="app_ops_mute_unmute_microphone">σίγαση/κατάργηση σίγασης του μικροφώνου</string>
   <string name="app_ops_play_audio">αναπαραγωγή ήχου</string>
   <string name="app_ops_post_notification">εμφάνιση μιας ειδοποίησης</string>
   <string name="app_ops_project_media">έλεγχος του έργου των μέσων ενημέρωσης</string>
@@ -70,6 +77,9 @@
   <string name="app_ops_use_voice_volume">έλεγχο της έντασης φωνητικής κλήσης</string>
   <string name="app_ops_write_mms">εγγραφή ενός μηνύματος MMS</string>
   <string name="app_ops_write_sms">εγγραφή ενός μηνύματος SMS</string>
+  <string name="adb_net_active_notification_title">ADB μέσω δικτύου ενεργοποιημένο</string>
+  <string name="adb_both_active_notification_title">ADB μέσω USB &amp; δικτύου ενεργοποιημένο</string>
+  <string name="adb_active_generic_notification_message">Αγγίξτε για απενεργοποίηση του εντοπισμού σφαλμάτων.</string>
   <string name="usb_charging_notification_title">Συνδεδεμένο σε λειτουργία φόρτισης</string>
   <string name="progress_nomediapresent" product="default">Δεν υπάρχουν αφαιρούμενα μέσα\u2026</string>
   <string name="permission_remember_choice">Θυμήσου</string>
@@ -83,7 +93,38 @@
   <string name="reboot_fastboot">Γρήγορη εκκίνηση</string>
   <string name="reboot_download">Λήψη</string>
   <string name="reboot_progress">Επανεκκίνηση\u2026</string>
-  <string name="reboot_confirm">Το τηλέφωνό σας θα επανεκκινήσει.</string>
+  <string name="reboot_confirm" product="default">Το τηλέφωνό σας θα επανεκκινήσει.</string>
   <string name="global_action_reboot">Επανεκκίνηση</string>
   <string name="default_string">Προεπιλογή</string>
+  <string name="permlab_accessTorchService">πρόσβαση στην υπηρεσία φακού</string>
+  <string name="permdesc_accessTorchService">Επιτρέπει σε μια εφαρμογή την πρόσβαση στην υπηρεσία φακού. Δεν πρέπει να απαιτείται από κανονικές εφαρμογές.</string>
+  <string name="global_actions_pie_mode_on_status">SlimPie είναι ενεργοποιημένο</string>
+  <string name="global_actions_pie_mode_off_status">SlimPie είναι απενεργοποιημένο</string>
+  <string name="disable_pie_navigation_error">Δεν μπορείτε να απενεργοποιήσετε τα Pie control. Δεν υπαρχει αλλη γραμμη πλοήγησης ενεργοποιημένη. Ενεργοποιήσετε πρώτα την γραμμή πλοήγησης για να απενεργοποιήσετε τα Pie controls.</string>
+  <string name="global_actions_nav_bar_mode_on_status">Η μπάρα πλοήγησης είναι ενεργή</string>
+  <string name="global_actions_nav_bar_mode_off_status">Η μπάρα πλοήγησης είναι ανενεργή</string>
+  <string name="disable_navigation_pie_error">Δεν μπορείτε να απενεργοποιήσετε τη μπάρα πλοήγησης. Δεν υπάρχει άλλη μπάρα πλοήγησης ενεργοποιημένη. Ενεργοποίηστε πρώτα τα Pie controls  για να απενεργοποιήσετε τη μπάρα πλοήγησης.</string>
+  <string name="notification_flashlight_on_title">Ο φακός είναι ενεργοποιημένος</string>
+  <string name="notification_flashlight_on_summary">Πατήστε για απενεργοποίηση</string>
+  <string name="permlab_changeHeadsUpState">ενεργοποιήση ή απενεργοποιήση του heads up</string>
+  <string name="permdesc_changeHeadsUpState">Επιτρέπει στην εφαρμογή να αλλάξει είτε σε μια άλλη εφαρμογή επιτρέπεται να εμφανίζονται κανονικές ειδοποιήσεις σαν ειδοποιήσεις heads up.</string>
+  <string name="permlab_useHardwareFramework">χρήση του πλαισίου υλικού</string>
+  <string name="permdesc_useHardwareFramework">Επιτρέπει σε μια εφαρμογή την πρόσβαση στο πλαίσιο υλικού του CM.</string>
+  <string name="live_display_auto">Αυτόματο</string>
+  <string name="live_display_auto_summary">Ρυθμίζει αυτόματα τη θερμοκρασία χρώματος της οθόνης μετά από το ηλιοβασίλεμα και την ανατολή του ηλίου</string>
+  <string name="live_display_off">Ανενεργό</string>
+  <string name="live_display_off_summary">Απενεργοποιήστε όλες τις ρυθμίσεις</string>
+  <string name="live_display_day">Ημέρα</string>
+  <string name="live_display_day_summary">Χρήση μόνο των ρυθμίσεων ημέρας</string>
+  <string name="live_display_night">Νύχτα</string>
+  <string name="live_display_night_summary">Χρήση μόνο των ρυθμίσεων νύχτας</string>
+  <string name="live_display_outdoor">Έξω (λαμπερός ήλιος)</string>
+  <string name="live_display_outdoor_summary">Χρήση εξωτερικών ρυθμίσεων μόνο</string>
+  <string name="live_display_hint">Το LiveDisplay μπορεί να βοηθήσει στη μείωση της κόπωσης των ματιών και να σας βοηθήσει να κοιμηθείτε το βράδυ. Κάντε κλικ εδώ για να το δοκιμάσετε!</string>
+  <string name="permgrouplab_security">Ασφάλεια</string>
+  <string name="permgroupdesc_security">Δικαιώματα που σχετίζονται με την ασφάλεια των πληροφοριών της συσκευής.</string>
+  <string name="permlab_readPhoneBlacklist">ανάγνωση της μαύρης λίστας τηλεφώνου</string>
+  <string name="permdesc_readPhoneBlacklist">Επιτρέπει σε μια εφαρμογή την ανάγνωση πληροφοριών σχετικά με τους αριθμούς τηλεφώνου που έχουν αποκλειστεί για εισερχόμενες κλήσεις ή μηνύματα.</string>
+  <string name="permlab_changePhoneBlacklist">αλλαγή της μαύρης λίστας τηλεφώνου</string>
+  <string name="permdesc_changePhoneBlacklist">Επιτρέπει σε μια εφαρμογή την αλλαγή των αριθμών τηλεφώνου που έχουν αποκλειστεί για εισερχόμενες κλήσεις ή μηνύματα.</string>
 </resources>

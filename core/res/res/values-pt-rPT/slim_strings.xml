@@ -84,6 +84,9 @@
   <string name="progress_nomediapresent" product="default">Sem media removível\u2026</string>
   <string name="permission_remember_choice">Lembrar</string>
   <string name="permission">Permissão</string>
+  <string name="perf_profile_pwrsv">Poupança de energia</string>
+  <string name="perf_profile_bal">Equilibrado</string>
+  <string name="perf_profile_perf">Desempenho</string>
   <string name="reboot_system" product="tablet">Reiniciar tablet</string>
   <string name="reboot_system" product="default">Reiniciar telemóvel</string>
   <string name="reboot_reboot">Reiniciar</string>
@@ -93,7 +96,8 @@
   <string name="reboot_fastboot">Fastboot</string>
   <string name="reboot_download">Download</string>
   <string name="reboot_progress">A reiniciar\u2026</string>
-  <string name="reboot_confirm">O seu telemóvel irá reiniciar.</string>
+  <string name="reboot_confirm" product="tablet">O seu tablet irá reiniciar.</string>
+  <string name="reboot_confirm" product="default">O seu telemóvel irá reiniciar.</string>
   <string name="global_action_reboot">Reiniciar</string>
   <string name="default_string">Predefinido</string>
   <string name="permlab_accessTorchService">Aceder ao serviço da lanterna</string>
@@ -111,6 +115,9 @@
   <string name="permlab_useHardwareFramework">Utilizar a estrutura de hardware</string>
   <string name="permdesc_useHardwareFramework">Permite o acesso duma aplicação à estrutura de hardware CM.</string>
   <string name="live_display_auto">Automático</string>
+  <string name="live_display_auto_summary">Ajusta automaticamente a temperatura da cor do ecrâ após o pôr e o nascer do sol</string>
+  <string name="live_display_off">Desligado</string>
+  <string name="live_display_off_summary">Desativar todos os ajustes</string>
   <string name="live_display_day">Dia</string>
   <string name="live_display_day_summary">Utilizar só as definições de dia</string>
   <string name="live_display_night">Noite</string>

@@ -35,6 +35,6 @@
   <string name="reboot_fastboot">Fastboot</string>
   <string name="reboot_download">حَمِل</string>
   <string name="reboot_progress">أعادة التشغيل \ u2026</string>
-  <string name="reboot_confirm">سيتم إعادة تشغيل هاتفك.</string>
+  <string name="reboot_confirm" product="default">سيتم إعادة تشغيل هاتفك.</string>
   <string name="global_action_reboot">أعد تشغيل</string>
 </resources>

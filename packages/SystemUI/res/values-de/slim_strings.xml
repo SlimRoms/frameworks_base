@@ -80,4 +80,7 @@
   <string name="pie_phone_status_no_service">Kein Dienst</string>
   <string name="pie_phone_status_airplane_mode">Flugmodus an</string>
   <string name="pie_phone_status_emergency_only">Nur Notrufe</string>
+  <string name="quick_settings_sync">Sync</string>
+  <string name="quick_settings_sync_off">Sync aus</string>
+  <string name="smart_pulldown_disabled">Intelligentes Aufklappen ist deaktiviert</string>
 </resources>

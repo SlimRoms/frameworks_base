@@ -84,6 +84,9 @@
   <string name="progress_nomediapresent" product="default">Kein Wechseldatenträger vorhanden\u2026</string>
   <string name="permission_remember_choice">Speichern</string>
   <string name="permission">Berechtigung</string>
+  <string name="perf_profile_pwrsv">Energie sparen</string>
+  <string name="perf_profile_bal">Ausgewogen</string>
+  <string name="perf_profile_perf">Leistung</string>
   <string name="reboot_system" product="tablet">Tablet neu starten</string>
   <string name="reboot_system" product="default">Telefon neu starten</string>
   <string name="reboot_reboot">Neustart</string>
@@ -93,7 +96,8 @@
   <string name="reboot_fastboot">Fastboot</string>
   <string name="reboot_download">Download</string>
   <string name="reboot_progress">Neu starten\u2026</string>
-  <string name="reboot_confirm">Ihr Telefon wird neu gestartet.</string>
+  <string name="reboot_confirm" product="tablet">Ihr Tablet wird neu gestartet.</string>
+  <string name="reboot_confirm" product="default">Ihr Telefon wird neu gestartet.</string>
   <string name="global_action_reboot">Neustart</string>
   <string name="default_string">Standard</string>
   <string name="permlab_accessTorchService">Zugriff auf Taschenlampe</string>
@@ -111,6 +115,7 @@
   <string name="permlab_useHardwareFramework">Hardware-Framework verwenden</string>
   <string name="permdesc_useHardwareFramework">Ermöglicht einer App, auf das CM-Hardware-Framework zuzugreifen.</string>
   <string name="live_display_auto">Automatisch</string>
+  <string name="live_display_auto_summary">Automatische Anpassung der Farbtemperatur des Bildschirms nach Sonnenauf- und -untergang</string>
   <string name="live_display_off">Aus</string>
   <string name="live_display_off_summary">Alle Anpassungen deaktivieren</string>
   <string name="live_display_day">Tag</string>

@@ -84,6 +84,9 @@
   <string name="progress_nomediapresent" product="default">Aucun support amovible présent\u2026</string>
   <string name="permission_remember_choice">Mémoriser</string>
   <string name="permission">Permission</string>
+  <string name="perf_profile_pwrsv">Économie d\'énergie</string>
+  <string name="perf_profile_bal">Équilibré</string>
+  <string name="perf_profile_perf">Performance</string>
   <string name="reboot_system" product="tablet">Redémarrer la tablette</string>
   <string name="reboot_system" product="default">Redémarrer le téléphone</string>
   <string name="reboot_reboot">Redémarrage</string>
@@ -93,7 +96,8 @@
   <string name="reboot_fastboot">Fastboot</string>
   <string name="reboot_download">Download</string>
   <string name="reboot_progress">Redémarrage en cours\u2026</string>
-  <string name="reboot_confirm">Votre téléphone va redémarrer.</string>
+  <string name="reboot_confirm" product="tablet">Votre tablette va redémarrer.</string>
+  <string name="reboot_confirm" product="default">Votre téléphone va redémarrer.</string>
   <string name="global_action_reboot">Redémarrer</string>
   <string name="default_string">Par défaut</string>
   <string name="permlab_accessTorchService">accès à la lampe de poche</string>

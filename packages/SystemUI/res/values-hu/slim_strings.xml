@@ -21,6 +21,13 @@
   <string name="screenshot_notification_delete">Törlés</string>
   <string name="screenshot_delete_confirmation">Képernyőkép törölve.</string>
   <string name="su_session_active">SU munkamenet aktív</string>
+  <string name="accessibility_quick_settings_location_battery_saving">Helymeghatározás:akkumulátor kímélő mód</string>
+  <string name="accessibility_quick_settings_location_gps_only">Helymeghatározás: csak GPS</string>
+  <string name="accessibility_quick_settings_location_high_accuracy">Helymeghatározás:Nagy pontosságú</string>
+  <string name="quick_settings_location_detail_title">Helymeghatározás módja</string>
+  <string name="quick_settings_location_battery_saving_label">Akkumulátor kímélő</string>
+  <string name="quick_settings_location_gps_only_label">Csak GPS</string>
+  <string name="quick_settings_location_high_accuracy_label">Nagy pontosságú</string>
   <string name="quick_settings_network_adb_enabled_label">Engedélyezve</string>
   <string name="quick_settings_network_adb_disabled_label">Tiltva</string>
   <string name="quick_settings_nfc_label">NFC</string>
@@ -35,8 +42,44 @@
   <string name="quick_settings_reboot_label">Újraindítás</string>
   <string name="quick_settings_reboot_recovery_label">Recovery</string>
   <string name="quick_settings_ambient_display_label">Ambient Display</string>
+  <string name="quick_settings_screenshot">Képernyőkép</string>
+  <string name="quick_settings_expanded_desktop">Kiterjesztett</string>
+  <string name="quick_settings_expanded_desktop_off">Normál</string>
   <string name="accessibility_quick_settings_ambient_display_off">Ambient Display kikapcsolva</string>
   <string name="accessibility_quick_settings_ambient_display_on">Ambient Display bekapcsolva</string>
   <string name="accessibility_quick_settings_ambient_display_changed_off">Ambient Display kikapcsolva</string>
   <string name="accessibility_quick_settings_ambient_display_changed_on">Ambient Display bekapcsolva</string>
+  <string name="clear_recents">Összes előzmény bezárása</string>
+  <string name="app_killed_message">Alkalmazás kilőve</string>
+  <string name="cancel">Töröl</string>
+  <string name="dlg_ok">OK</string>
+  <string name="yes">Igen</string>
+  <string name="no">Nem</string>
+  <string name="shortcut_picker">Slim Parancsikonok</string>
+  <string name="shortcut_screenshot">Képernyőkép</string>
+  <string name="shortcut_chamber">Titkok kamrája</string>
+  <string name="chamber_disabled">Titkok kamrája zárva</string>
+  <string name="chamber_message">Írja be a Beállítások karaktereit amely ki- és bekapcsolja (jelölőnégyzet) a funkciót vagy esetleg listából választ. Például quiet_hours_ringer vagy hasonló. Beállítások a Settings.java fájlban találhatóak. FIGYELEM: Ez a folyamat veszélyes!</string>
+  <string name="chamber_invalid">Érvénytelen bevitel. Légy óvatos.</string>
+  <string name="chamber_invalid_setting">Teszteld a beállítást annak érdekében, hogy az alapértelmezett adatbázis létezik ehhez a művelethez.</string>
+  <string name="chamber_checkbox">Váltás</string>
+  <string name="chamber_chk_message"> Ez a beállítás egy kapcsoló beállítás?</string>
+  <string name="chamber_int">bemeneti értékek</string>
+  <string name="chamber_int_message">Add meg az értékeket amik között változtatod a beállításokat. Értékeket vesszővel válaszd el. Színeket hex-értékben add meg, pl. #FF00aacc vagy alapszínként vörös, zöld és sárga.</string>
+  <string name="chamber_name_title">Parancsikon neve</string>
+  <string name="chamber_name_message">Adj nevet a parancsikonnak.</string>
+  <string name="chamber_name_toast">Alapértelmezett név használata</string>
+  <string name="off">Kikapcsolás</string>
+  <string name="on">Bekapcsolva</string>
+  <string name="toggle">Kapcsoló</string>
+  <string name="shortcut_toggle_title">Művelet végrehajtása</string>
+  <string name="heads_up_snooze_message">Lebegő értesítés kikapcsolva <xliff:g id="number">%d</xliff:g> percre.</string>
+  <string name="notification_inspect_heads_up_title_enabled">Lebegő értesítések engedélyezése ehhez az alkalmazáshoz</string>
+  <string name="notification_inspect_heads_up_title_disabled">Lebegő értesítések letiltása ettől az alkalmazástól</string>
+  <string name="pie_battery_status_charging">Töltés (<xliff:g id="percent">%d</xliff:g>%%)</string>
+  <string name="pie_battery_status_full">Feltöltve</string>
+  <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% hátralévő</string>
+  <string name="pie_phone_status_no_service">Nincs szolgáltatás</string>
+  <string name="pie_phone_status_airplane_mode">Repülőgép üzemmód be</string>
+  <string name="pie_phone_status_emergency_only">Csak segélyhívások</string>
 </resources>

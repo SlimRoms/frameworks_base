@@ -93,7 +93,7 @@
   <string name="reboot_fastboot">Fastboot</string>
   <string name="reboot_download">Download</string>
   <string name="reboot_progress">Restartování\u2026</string>
-  <string name="reboot_confirm">Vaše zařízení bude restartováno.</string>
+  <string name="reboot_confirm" product="default">Vaše zařízení bude restartováno.</string>
   <string name="global_action_reboot">Restartovat</string>
   <string name="default_string">Výchozí</string>
   <string name="permlab_accessTorchService">přístup ke svítilně</string>

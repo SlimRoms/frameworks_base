@@ -83,6 +83,6 @@
   <string name="reboot_fastboot">Fastboot</string>
   <string name="reboot_download">Download</string>
   <string name="reboot_progress">Herstarten\u2026</string>
-  <string name="reboot_confirm">Uw telefoon wordt herstart.</string>
+  <string name="reboot_confirm" product="default">Uw telefoon wordt herstart.</string>
   <string name="global_action_reboot">Herstart</string>
 </resources>

@@ -83,7 +83,7 @@
   <string name="reboot_fastboot">Fastboot</string>
   <string name="reboot_download">Download</string>
   <string name="reboot_progress">Перезавантаження\u2026</string>
-  <string name="reboot_confirm">Ваш телефон перезавантажиться.</string>
+  <string name="reboot_confirm" product="default">Ваш телефон перезавантажиться.</string>
   <string name="global_action_reboot">Перезавантаження</string>
   <string name="default_string">По замовчуванню</string>
 </resources>

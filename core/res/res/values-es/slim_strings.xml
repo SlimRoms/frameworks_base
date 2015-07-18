@@ -93,7 +93,7 @@
   <string name="reboot_fastboot">Modo Fastboot</string>
   <string name="reboot_download">Modo Descarga</string>
   <string name="reboot_progress">Reiniciando\u2026</string>
-  <string name="reboot_confirm">El dispositivo se reiniciará.</string>
+  <string name="reboot_confirm" product="default">El dispositivo se reiniciará.</string>
   <string name="global_action_reboot">Reiniciar</string>
   <string name="default_string">Defecto</string>
   <string name="permlab_accessTorchService">acceso a la linterna</string>
@@ -112,6 +112,9 @@
   <string name="permlab_useHardwareFramework">usar marco de hardware</string>
   <string name="permdesc_useHardwareFramework">Permite que la aplicación acceda al marco de hardware de CM.</string>
   <string name="live_display_auto">Automático</string>
+  <string name="live_display_auto_summary">Ajustar automáticamente la temperatura de color de pantalla después del atardecer y el amanecer</string>
+  <string name="live_display_off">Inactivo</string>
+  <string name="live_display_off_summary">Desactivar todos los ajustes</string>
   <string name="live_display_day">Dia</string>
   <string name="live_display_day_summary">Utilizar sólo la configuración de día</string>
   <string name="live_display_night">Noche</string>

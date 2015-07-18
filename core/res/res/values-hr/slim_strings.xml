@@ -83,7 +83,7 @@
   <string name="reboot_fastboot">Fastboot</string>
   <string name="reboot_download">Download</string>
   <string name="reboot_progress">Ponovno pokretanje\u2026</string>
-  <string name="reboot_confirm">Vaš će se telefon ponovno pokrenuti.</string>
+  <string name="reboot_confirm" product="default">Vaš će se telefon ponovno pokrenuti.</string>
   <string name="global_action_reboot">Ponovno pokrenuti</string>
   <string name="default_string">Zadano</string>
 </resources>
