@@ -121,6 +121,39 @@ public class SubscriptionManager {
     public static final int SIM_NOT_INSERTED = -1;
 
     /**
+     * The Network mode of SIM/sub.
+     * <P>Type: INTEGER (int)</P>
+     */
+    /** @hide */
+    public static final String NETWORK_MODE = "network_mode";
+
+    /**
+     * The user configured Network mode of SIM/sub.
+     * <P>Type: INTEGER (int)</P>
+     * {@hide}
+     */
+    public static final String USER_NETWORK_MODE = "user_network_mode";
+
+    /** @hide */
+    public static final int DEFAULT_NW_MODE = -1;
+
+    /**
+     * The activation state of SIM/sub.
+     * <P>Type: INTEGER (int)</P>
+     */
+    /** @hide */
+    public static final String SUB_STATE = "sub_state";
+
+    /** @hide */
+    public static final int INACTIVE = 0;
+
+    /** @hide */
+    public static final int ACTIVE = 1;
+
+    /** @hide */
+    public static final int SUB_CONFIGURATION_IN_PROGRESS = 2;
+
+    /**
      * TelephonyProvider column name for user displayed name.
      * <P>Type: TEXT (String)</P>
      */
