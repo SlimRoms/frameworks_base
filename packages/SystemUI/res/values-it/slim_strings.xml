@@ -84,4 +84,7 @@
   <string name="pie_phone_status_no_service">Nessun servizio</string>
   <string name="pie_phone_status_airplane_mode">Modalità aereo ON</string>
   <string name="pie_phone_status_emergency_only">Solo chiamate di emergenza</string>
+  <string name="quick_settings_sync">Sincronizzazione</string>
+  <string name="quick_settings_sync_off">Sincronizzazione disabilitata</string>
+  <string name="smart_pulldown_disabled">Smart pulldown è disabilitato</string>
 </resources>

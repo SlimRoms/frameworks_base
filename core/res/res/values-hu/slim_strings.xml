@@ -84,6 +84,9 @@
   <string name="progress_nomediapresent" product="default">Nincs eltávolítható memóriakártya\u2026</string>
   <string name="permission_remember_choice">emlékezzen</string>
   <string name="permission">Engedély</string>
+  <string name="perf_profile_pwrsv">Energiatakarékos</string>
+  <string name="perf_profile_bal">Kiegyensúlyozott</string>
+  <string name="perf_profile_perf">Teljesítménycentrikus</string>
   <string name="reboot_system" product="tablet">Tablet újraindítása</string>
   <string name="reboot_system" product="default">Telefon újraindítása</string>
   <string name="reboot_reboot">Újraindítás</string>
@@ -93,6 +96,7 @@
   <string name="reboot_fastboot">Fastboot</string>
   <string name="reboot_download">letöltés</string>
   <string name="reboot_progress">Újraindulás\u2026</string>
+  <string name="reboot_confirm" product="tablet">A táblagépe újraindul.</string>
   <string name="reboot_confirm" product="default">A telefon újra fog indulni.</string>
   <string name="global_action_reboot">Újraindítás</string>
   <string name="default_string">Alapértelmezett</string>
