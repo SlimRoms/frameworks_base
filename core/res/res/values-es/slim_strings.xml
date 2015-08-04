@@ -26,11 +26,11 @@
   <string name="privacy_guard_dialog_title">Protección de Privacidad</string>
   <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s </xliff:g> gustaría <xliff:g id="op">%2$s </xliff:g>.</string>
   <string name="app_ops_access_camera">Acceder a la cámara</string>
-  <string name="app_ops_access_location">Acceder a tu ubicación </string>
+  <string name="app_ops_access_location">Acceder a tu localización</string>
   <string name="app_ops_access_notifications">Leer notificaciones</string>
   <string name="app_ops_activate_vpn">Activar VPN</string>
   <string name="app_ops_alarm_wakeup">Despertar el dispositivo</string>
-  <string name="app_ops_su">Obtener acceso de superusuario</string>
+  <string name="app_ops_su">Obtener acceso administrativo (Root)</string>
   <string name="app_ops_auto_start">Ejecutar al iniciar</string>
   <string name="app_ops_delete_call_log">Borrar el registro de llamadas</string>
   <string name="app_ops_delete_contacts">Borrar contacto</string>
@@ -60,7 +60,7 @@
   <string name="app_ops_send_mms">Enviar MMS</string>
   <string name="app_ops_send_sms">Enviar SMS</string>
   <string name="app_ops_start_at_bootup">Ejecutar al iniciar</string>
-  <string name="app_ops_toast_window">Controlar mensajes emergentes</string>
+  <string name="app_ops_toast_window">Mostrar mensajes emergentes</string>
   <string name="app_ops_toggle_bluetooth">Cambiar Bluetooh</string>
   <string name="app_ops_toggle_mobile_data">Cambiar datos móviles</string>
   <string name="app_ops_toggle_nfc">Cambiar NFC</string>
@@ -84,8 +84,11 @@
   <string name="progress_nomediapresent" product="default">No hay medios extraíbles \u2026</string>
   <string name="permission_remember_choice">Recordar</string>
   <string name="permission">Permiso</string>
-  <string name="reboot_system" product="tablet">Reiniciar tablet</string>
-  <string name="reboot_system" product="default">Reiniciar teléfono</string>
+  <string name="perf_profile_pwrsv">Ahorro de energía</string>
+  <string name="perf_profile_bal">Equilibrado</string>
+  <string name="perf_profile_perf">Rendimiento</string>
+  <string name="reboot_system" product="tablet">Reiniciar la tablet</string>
+  <string name="reboot_system" product="default">Reiniciar el teléfono</string>
   <string name="reboot_reboot">Reiniciar</string>
   <string name="reboot_recovery">Modo Recovery</string>
   <string name="reboot_bootloader">Modo Bootloader</string>
@@ -93,22 +96,22 @@
   <string name="reboot_fastboot">Modo Fastboot</string>
   <string name="reboot_download">Modo Descarga</string>
   <string name="reboot_progress">Reiniciando\u2026</string>
-  <string name="reboot_confirm" product="default">El dispositivo se reiniciará.</string>
+  <string name="reboot_confirm" product="tablet">La tablet se reiniciará</string>
+  <string name="reboot_confirm" product="default">El teléfono se reiniciará.</string>
   <string name="global_action_reboot">Reiniciar</string>
   <string name="default_string">Defecto</string>
-  <string name="permlab_accessTorchService">acceso a la linterna</string>
+  <string name="permlab_accessTorchService">acceder a la linterna</string>
   <string name="permdesc_accessTorchService">Permite que la aplicación acceda a la linterna. Nunca debería ser necesario para aplicaciones normales.</string>
   <string name="global_actions_pie_mode_on_status">Controles PIE activados</string>
   <string name="global_actions_pie_mode_off_status">Controles PIE desactivados</string>
-  <string name="disable_pie_navigation_error">No puedes deshabilitar los controles PIE. No hay otro método de navegación disponible. Habilita la barra de navegación para desactivar PIE.</string>
+  <string name="disable_pie_navigation_error">No puedes desactivar los controles PIE. No hay otro método de navegación disponible. Habilita la barra de navegación para desactivar PIE.</string>
   <string name="global_actions_nav_bar_mode_on_status">Barra de navegación activada</string>
   <string name="global_actions_nav_bar_mode_off_status">Barra de navegación desactivada</string>
   <string name="disable_navigation_pie_error">No puedes desactivar la barra de navegación. No hay otro método de navegación disponible. Habilita los controles PIE para desactivar la barra de navegación.</string>
   <string name="notification_flashlight_on_title">La linterna está encendida</string>
   <string name="notification_flashlight_on_summary">Pulsa para apagar</string>
   <string name="permlab_changeHeadsUpState">activar o desactivar notificaciones emergentes</string>
-  <string name="permdesc_changeHeadsUpState">Permitir que la aplicación determine si se permite a otra aplicación mostrar notificaciones normales como emergentes.
-</string>
+  <string name="permdesc_changeHeadsUpState">Permite a la aplicación cambiar si tiene permisos para mostrar notificaciones normales como advertencias.</string>
   <string name="permlab_useHardwareFramework">usar marco de hardware</string>
   <string name="permdesc_useHardwareFramework">Permite que la aplicación acceda al marco de hardware de CM.</string>
   <string name="live_display_auto">Automático</string>
@@ -116,16 +119,16 @@
   <string name="live_display_off">Inactivo</string>
   <string name="live_display_off_summary">Desactivar todos los ajustes</string>
   <string name="live_display_day">Dia</string>
-  <string name="live_display_day_summary">Utilizar sólo la configuración de día</string>
+  <string name="live_display_day_summary">Utilizar solo la configuración de día</string>
   <string name="live_display_night">Noche</string>
-  <string name="live_display_night_summary">Utilizar sólo la configuración de noche</string>
+  <string name="live_display_night_summary">Utilizar solo la configuración de noche</string>
   <string name="live_display_outdoor">Exterior (brillo del sol)</string>
-  <string name="live_display_outdoor_summary">Usar sólo la configuración de exterior</string>
-  <string name="live_display_hint">LiveDisplay puede ayudar a reducir la fatiga de los ojos y ayudarle a dormir por la noche. Haga clic aquí para probarlo!</string>
+  <string name="live_display_outdoor_summary">Usar solo la configuración de exterior</string>
+  <string name="live_display_hint">LiveDisplay puede ayudarte a reducir la fatiga ocular y a dormir por la noche. Pulsa aquí para probarlo.</string>
   <string name="permgrouplab_security">Seguridad</string>
   <string name="permgroupdesc_security">Permisos relacionados con la seguridad de la información del dispositivo.</string>
-  <string name="permlab_readPhoneBlacklist">leer lista negra del telefono</string>
+  <string name="permlab_readPhoneBlacklist">leer la lista negra de teléfono</string>
   <string name="permdesc_readPhoneBlacklist">Permite que la aplicación lea la información sobre los números de teléfono bloqueados para llamadas o mensajes entrantes.</string>
-  <string name="permlab_changePhoneBlacklist">cambiar la lista negra del teléfono</string>
+  <string name="permlab_changePhoneBlacklist">cambiar la lista negra de teléfono</string>
   <string name="permdesc_changePhoneBlacklist">Permite a una aplicación cambiar los números de teléfono que están bloqueados para llamadas o mensajes entrantes.</string>
 </resources>

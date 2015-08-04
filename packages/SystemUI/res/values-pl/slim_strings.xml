@@ -43,13 +43,37 @@
   <string name="quick_settings_reboot_recovery_label">Uruchom w trybie Recovery</string>
   <string name="quick_settings_ambient_display_label">Sprytny ekran</string>
   <string name="quick_settings_screenshot">Zrzut ekranu</string>
+  <string name="quick_settings_expanded_desktop">Rozszerzony</string>
+  <string name="quick_settings_expanded_desktop_off">Normalny</string>
   <string name="accessibility_quick_settings_ambient_display_off">Sprytny ekran wył.</string>
   <string name="accessibility_quick_settings_ambient_display_on">Sprytny ekran wł.</string>
   <string name="accessibility_quick_settings_ambient_display_changed_off">Sprytny ekran wyłączony.</string>
   <string name="accessibility_quick_settings_ambient_display_changed_on">Sprytny ekran włączony.</string>
   <string name="clear_recents">Zamknij wszystkie ostatnie aplikacje</string>
   <string name="app_killed_message">Aplikacja wyłączona</string>
+  <string name="cancel">Anuluj</string>
+  <string name="dlg_ok">Ok</string>
+  <string name="yes">Tak</string>
+  <string name="no">Nie</string>
+  <string name="shortcut_picker">Skróty slim</string>
   <string name="shortcut_screenshot">Zrzut ekranu</string>
+  <string name="shortcut_chamber">Komnata tajemnic</string>
+  <string name="chamber_disabled">Komnata tajemnic jest zamknięta</string>
+  <string name="chamber_title">Wpisz ciąg z ustawień</string>
+  <string name="chamber_message">Wpisz ciąg znaków ustawienia, który jest przełącznikiem włącz/wyłącz lub listą wyboru. Na przykład, quiet_hours_ringer lub podobne. Ustawienia znajdziesz w pliku Settings.java. UWAGA: Ten proces jest niebezpieczny!</string>
+  <string name="chamber_invalid">Wprowadzono niepoprawne dane. Bądź ostrożny.</string>
+  <string name="chamber_invalid_setting">Spróbuj ręcznie przełączyć to ustawienie aby upewnić się, że to działania istnieje w bazie danych ustawień.</string>
+  <string name="chamber_checkbox">Przełącz</string>
+  <string name="chamber_chk_message">Czy to ustawienie jest przełącznikiem?</string>
+  <string name="chamber_int">Wprowadź wartości</string>
+  <string name="chamber_int_message">Wprowadź wartości, między którymi chcesz się przełączać. Oddziel każdą wartość przecinkiem. Ustawienia koloru przyjmują wartości hex takie jak #FF00aacc lub podstawowe nazwy kolorów jak red, green and yellow.</string>
+  <string name="chamber_name_title">Nazwa skrótu</string>
+  <string name="chamber_name_message">Nadaj skrótowi nazwę, która będzie wyświetlona wraz z ikoną.</string>
+  <string name="chamber_name_toast">Użyj domyślnej nazwy</string>
+  <string name="off">Wyłączone</string>
+  <string name="on">Włączone</string>
+  <string name="toggle">Przełącz</string>
+  <string name="shortcut_toggle_title">Akcja do wykonania</string>
   <string name="heads_up_snooze_message">Wyskakujące powiadomienia są wyłączone na <xliff:g id="number">%d</xliff:g> minut.</string>
   <string name="heads_up_snooze_button_title">Uśpij wyskakujące powiadomienia</string>
   <string name="notification_inspect_heads_up_title_enabled">Włącz wyskakujące powiadomienia dla tej aplikacji</string>
@@ -60,4 +84,7 @@
   <string name="pie_phone_status_no_service">Brak usługi</string>
   <string name="pie_phone_status_airplane_mode">Tryb samolotowy włączony</string>
   <string name="pie_phone_status_emergency_only">Tylko połączenia alarmowe</string>
+  <string name="quick_settings_sync">Synchronizacja</string>
+  <string name="quick_settings_sync_off">Synchronizacja wył</string>
+  <string name="smart_pulldown_disabled">Sprytne wysuwanie wył</string>
 </resources>

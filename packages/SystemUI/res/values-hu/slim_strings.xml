@@ -59,6 +59,7 @@
   <string name="shortcut_screenshot">Képernyőkép</string>
   <string name="shortcut_chamber">Titkok kamrája</string>
   <string name="chamber_disabled">Titkok kamrája zárva</string>
+  <string name="chamber_title">Beállítás karakterek bevitele</string>
   <string name="chamber_message">Írja be a Beállítások karaktereit amely ki- és bekapcsolja (jelölőnégyzet) a funkciót vagy esetleg listából választ. Például quiet_hours_ringer vagy hasonló. Beállítások a Settings.java fájlban találhatóak. FIGYELEM: Ez a folyamat veszélyes!</string>
   <string name="chamber_invalid">Érvénytelen bevitel. Légy óvatos.</string>
   <string name="chamber_invalid_setting">Teszteld a beállítást annak érdekében, hogy az alapértelmezett adatbázis létezik ehhez a művelethez.</string>
@@ -74,6 +75,7 @@
   <string name="toggle">Kapcsoló</string>
   <string name="shortcut_toggle_title">Művelet végrehajtása</string>
   <string name="heads_up_snooze_message">Lebegő értesítés kikapcsolva <xliff:g id="number">%d</xliff:g> percre.</string>
+  <string name="heads_up_snooze_button_title">Szundi heads up</string>
   <string name="notification_inspect_heads_up_title_enabled">Lebegő értesítések engedélyezése ehhez az alkalmazáshoz</string>
   <string name="notification_inspect_heads_up_title_disabled">Lebegő értesítések letiltása ettől az alkalmazástól</string>
   <string name="pie_battery_status_charging">Töltés (<xliff:g id="percent">%d</xliff:g>%%)</string>
@@ -82,4 +84,7 @@
   <string name="pie_phone_status_no_service">Nincs szolgáltatás</string>
   <string name="pie_phone_status_airplane_mode">Repülőgép üzemmód be</string>
   <string name="pie_phone_status_emergency_only">Csak segélyhívások</string>
+  <string name="quick_settings_sync">Szinkronizálás</string>
+  <string name="quick_settings_sync_off">Szinkronizálás ki</string>
+  <string name="smart_pulldown_disabled">Intelligens legördülő kikapcsolva</string>
 </resources>
