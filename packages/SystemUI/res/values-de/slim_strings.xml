@@ -57,10 +57,13 @@
   <string name="no">Nein</string>
   <string name="shortcut_picker">Slim-Verknüpfungen</string>
   <string name="shortcut_screenshot">Bildschirmfoto</string>
+  <string name="shortcut_chamber">Geheimkammer</string>
+  <string name="chamber_disabled">Geheimkammer geschlossen</string>
   <string name="chamber_title">\"Settings string\"-Eingabe</string>
   <string name="chamber_message">Geben Sie einen String ein, der entweder auf eine Ein-/Aus-Funktion (Checkbox) oder aber auf eine vorgegebene Liste verweist (z. B. »doze_enabled« oder ähnliches). Die Strings finden Sie in der Settings.java-Datei. WARNUNG: Dieser Vorgang ist gefährlich!</string>
   <string name="chamber_invalid">Dies ist eine ungültige Eingabe. Seien Sie vorsichtig.</string>
   <string name="chamber_invalid_setting">Testen Sie die Einstellung selbst, um sicherzustellen, dass die Einstellungs-Datenbank für diese Aktion existiert.</string>
+  <string name="chamber_chk_message">Ist diese Einstellung eine Schaltereinstellung?</string>
   <string name="chamber_int">Eingabewerte</string>
   <string name="chamber_int_message">Geben Sie die Werte ein, zwischen denen die Einstellung umschalten soll. Trennen Sie die Einzelwerte durch Kommas. Bei Farbeinstellungen werden hexadezimale Werte, wie #FF00aacc, oder Grundfarbwerte, wie rot, grün und gelb, akzeptiert.</string>
   <string name="chamber_name_title">Name der Verknüpfung</string>

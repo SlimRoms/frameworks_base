@@ -84,6 +84,9 @@
   <string name="progress_nomediapresent" product="default">Memoria rimovibile assente</string>
   <string name="permission_remember_choice">Ricorda</string>
   <string name="permission">Permesso</string>
+  <string name="perf_profile_pwrsv">Risparmio energetico</string>
+  <string name="perf_profile_bal">Bilanciato</string>
+  <string name="perf_profile_perf">Prestazioni</string>
   <string name="reboot_system" product="tablet">Riavvia il tablet</string>
   <string name="reboot_system" product="default">Riavvia il telefono</string>
   <string name="reboot_reboot">Riavvio</string>
@@ -93,6 +96,7 @@
   <string name="reboot_fastboot">Fastboot</string>
   <string name="reboot_download">Download</string>
   <string name="reboot_progress">Riavvio in corso\u2026</string>
+  <string name="reboot_confirm" product="tablet">Il dispositivo verrà riavviato.</string>
   <string name="reboot_confirm" product="default">Il telefono sarà riavviato.</string>
   <string name="global_action_reboot">Riavvio</string>
   <string name="default_string">Predefinito</string>
