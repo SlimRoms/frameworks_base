@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a51691d_ac9267f4",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/NavigationBarView.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2015-08-06T13:04:57Z",
+      "side": 1,
+      "message": "instead of checking for expanded desktop enabled, check visibility of navbar.  if it\u0027s hidden or the animation to hide it begins before the timeout period to start dimming ends, then don\u0027t dim.",
+      "range": {
+        "startLine": 266,
+        "startChar": 34,
+        "endLine": 266,
+        "endChar": 55
+      },
+      "revId": "20d6f58bd0908c0d788b7afbb10947164fa61581",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
