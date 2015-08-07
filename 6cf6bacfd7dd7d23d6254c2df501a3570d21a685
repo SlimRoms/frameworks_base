@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a51691d_cfc6b549",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/SignalClusterView.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-08-07T18:31:11Z",
+      "side": 1,
+      "message": "newline and add\nprivate int mInetCondition \u003d 0;",
+      "range": {
+        "startLine": 59,
+        "startChar": 35,
+        "endLine": 59,
+        "endChar": 36
+      },
+      "revId": "6cf6bacfd7dd7d23d6254c2df501a3570d21a685",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a51691d_afc37937",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/SignalClusterView.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-08-07T18:31:11Z",
+      "side": 1,
+      "message": "New line and add state.mInetCondition \u003d inetCondition",
+      "range": {
+        "startLine": 181,
+        "startChar": 9,
+        "endLine": 181,
+        "endChar": 39
+      },
+      "revId": "6cf6bacfd7dd7d23d6254c2df501a3570d21a685",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a51691d_0feccdc6",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/policy/NetworkControllerImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 949,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-08-07T18:31:11Z",
+      "side": 1,
+      "message": "should be ifdef\u0027d for the icon to be of or on",
+      "range": {
+        "startLine": 942,
+        "startChar": 8,
+        "endLine": 949,
+        "endChar": 9
+      },
+      "revId": "6cf6bacfd7dd7d23d6254c2df501a3570d21a685",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a51691d_efd051f9",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/policy/NetworkControllerImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1637,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-08-07T18:31:11Z",
+      "side": 1,
+      "message": "should be ifdef\u0027d for the on off switch",
+      "range": {
+        "startLine": 1626,
+        "startChar": 1,
+        "endLine": 1637,
+        "endChar": 9
+      },
+      "revId": "6cf6bacfd7dd7d23d6254c2df501a3570d21a685",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a51691d_6fdd8114",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/policy/NetworkControllerImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1812,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-08-07T18:31:11Z",
+      "side": 1,
+      "message": "void setWifiIndicators(boolean visible, int strengthIcon, int inetCondition,",
+      "range": {
+        "startLine": 1812,
+        "startChar": 64,
+        "endLine": 1812,
+        "endChar": 65
+      },
+      "revId": "6cf6bacfd7dd7d23d6254c2df501a3570d21a685",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a51691d_4fe2c5d6",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/policy/NetworkControllerImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1815,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-08-07T18:31:11Z",
+      "side": 1,
+      "message": "void setMobileDataIndicators(boolean visible, int strengthIcon, int activityIcon, int inetCondition,",
+      "range": {
+        "startLine": 1815,
+        "startChar": 8,
+        "endLine": 1815,
+        "endChar": 89
+      },
+      "revId": "6cf6bacfd7dd7d23d6254c2df501a3570d21a685",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a51691d_2fe789e6",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/policy/NetworkControllerImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1831,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-08-07T18:31:11Z",
+      "side": 1,
+      "message": "private final class SettingsObserver extends ContentObserver {\n        SettingsObserver(Handler handler) {\n            super(handler);\n        }\n\n        void observe() {\n            ContentResolver resolver \u003d mContext.getContentResolver();\n            resolver.registerContentObserver(Settings.System.getUriFor(\n                    Settings.System.STATUS_BAR_SHOW_NETWORK_ACTIVITY),\n                    false, this, UserHandle.USER_ALL);\n            mDirectionArrowsEnabled \u003d Settings.System.getIntForUser(resolver,\n                    Settings.System.STATUS_BAR_SHOW_NETWORK_ACTIVITY,\n                    0, UserHandle.USER_CURRENT) \u003d\u003d 1 ? true : false;\n        }\n\n        @Override\n        public void onChange(boolean selfChange) {\n            mDirectionArrowsEnabled \u003d Settings.System.getIntForUser(mContext.getContentResolver(),\n                    Settings.System.STATUS_BAR_SHOW_NETWORK_ACTIVITY,\n                    0, UserHandle.USER_CURRENT) \u003d\u003d 1 ? true : false;\n            refreshViews();\n        }\n    }\n// Register settings observer and set initial preferences\n        SettingsObserver settingsObserver \u003d new SettingsObserver(new Handler());\n        settingsObserver.observe();",
+      "revId": "6cf6bacfd7dd7d23d6254c2df501a3570d21a685",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
