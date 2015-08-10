@@ -2370,13 +2370,23 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     public void showClock(boolean show) {
         if (mStatusBarView == null) return;
         ContentResolver resolver = mContext.getContentResolver();
-        View clock = mStatusBarView.findViewById(R.id.clock);
-        View cclock = mStatusBarView.findViewById(R.id.center_clock);
-        if (mClockLocation == 0 && clock != null) {
-            clock.setVisibility(show ? (mShowClock ? View.VISIBLE : View.GONE) : View.GONE);
+        View viewRightClock = mStatusBarView.findViewById(R.id.clock);
+        View viewCenterClock = mStatusBarView.findViewById(R.id.center_clock);
+        View viewLeftClock = mStatusBarView.findViewById(R.id.left_clock);
+        final boolean showRightClock  = (mClockLocation == Clock.STYLE_CLOCK_RIGHT);
+        final boolean showCenterClock = (mClockLocation == Clock.STYLE_CLOCK_CENTER);
+        final boolean showLeftClock   = (mClockLocation == Clock.STYLE_CLOCK_LEFT);
+        if (viewRightClock != null) {
+            viewRightClock.setVisibility(show ? (showRightClock && mShowClock ?
+                    View.VISIBLE : View.GONE) : View.GONE);
         }
-        if (mClockLocation == 1 && cclock != null) {
-            cclock.setVisibility(show ? (mShowClock ? View.VISIBLE : View.GONE) : View.GONE);
+        if (viewCenterClock != null) {
+            viewCenterClock.setVisibility(show ? (showCenterClock && mShowClock ?
+                    View.VISIBLE : View.GONE) : View.GONE);
+        }
+        if (viewLeftClock != null) {
+            viewLeftClock.setVisibility(show ? (showLeftClock && mShowClock ?
+                    View.VISIBLE : View.GONE) : View.GONE);
         }
     }
 
