@@ -12,7 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+ifneq ($(TARGET_BOARD_PLATFORM),omap4)
 LOCAL_PATH := frameworks/base/data/sounds/slim
+else
+# use 44.1 kHz UI sounds
+LOCAL_PATH := frameworks/base/data/sounds/slim_441
+endif
 
 define create-copy-media-files
 $(strip $(foreach fp,\
