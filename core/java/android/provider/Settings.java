@@ -4382,6 +4382,7 @@ public final class Settings {
             MOVED_TO_GLOBAL.add(Settings.Global.WIFI_COUNTRY_CODE);
             MOVED_TO_GLOBAL.add(Settings.Global.WIFI_FRAMEWORK_SCAN_INTERVAL_MS);
             MOVED_TO_GLOBAL.add(Settings.Global.WIFI_FREQUENCY_BAND);
+            MOVED_TO_GLOBAL.add(Settings.Global.WIFI_COUNTRY_OVERRIDE);
             MOVED_TO_GLOBAL.add(Settings.Global.WIFI_IDLE_MS);
             MOVED_TO_GLOBAL.add(Settings.Global.WIFI_MAX_DHCP_RETRY_COUNT);
             MOVED_TO_GLOBAL.add(Settings.Global.WIFI_MOBILE_DATA_TRANSITION_WAKELOCK_TIMEOUT_MS);
@@ -7475,6 +7476,15 @@ public final class Settings {
         * @hide
         */
        public static final String WIFI_FREQUENCY_BAND = "wifi_frequency_band";
+
+       /**
+        * The operational wifi country
+        * Set to one country based on MCC or overide to
+        * user choice
+        *
+        * @hide
+        */
+       public static final String WIFI_COUNTRY_OVERRIDE = "wifi_country_override";
 
        /**
         * The Wi-Fi peer-to-peer device name
