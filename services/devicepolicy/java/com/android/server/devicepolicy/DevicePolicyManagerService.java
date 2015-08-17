@@ -3748,7 +3748,9 @@ public class DevicePolicyManagerService extends IDevicePolicyManager.Stub {
             try {
                 IBackupManager ibm = IBackupManager.Stub.asInterface(
                         ServiceManager.getService(Context.BACKUP_SERVICE));
-                ibm.setBackupServiceActive(UserHandle.USER_OWNER, false);
+                if (ibm != null) {
+                    ibm.setBackupServiceActive(UserHandle.USER_OWNER, false);
+                }
             } catch (RemoteException e) {
                 throw new IllegalStateException("Failed deactivating backup service.", e);
             } finally {
