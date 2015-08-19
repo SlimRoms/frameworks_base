@@ -1078,15 +1078,38 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
     private void adjustExtraKeyGravity(View navBar, boolean isLayoutRtl) {
         View menu = navBar.findViewById(R.id.menu);
         View imeSwitcher = navBar.findViewById(R.id.ime_switcher);
+
+        /**
+         * AOSP navbar places these views inside a FrameLayout, but slim's implementation
+         * adds them to the LinearLayout, causing a ClassCastException for the parameters.
+         * So, we need to determine which ViewGroup class the LayoutParams belongs to before
+         * casting it to a subclass (FrameLayout.LayoutParams or LinearLayout.LayoutParams)
+         */
         if (menu != null) {
-            FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) menu.getLayoutParams();
-            lp.gravity = isLayoutRtl ? Gravity.BOTTOM : Gravity.TOP;
-            menu.setLayoutParams(lp);
+            if (menu.getLayoutParams() instanceof FrameLayout.LayoutParams) {
+                FrameLayout.LayoutParams lp =
+                        (FrameLayout.LayoutParams) menu.getLayoutParams();
+                lp.gravity = isLayoutRtl ? Gravity.BOTTOM : Gravity.TOP;
+                menu.setLayoutParams(lp);
+            } else {
+                LinearLayout.LayoutParams lp =
+                        (LinearLayout.LayoutParams) menu.getLayoutParams();
+                lp.gravity = isLayoutRtl ? Gravity.BOTTOM : Gravity.TOP;
+                menu.setLayoutParams(lp);
+            }
         }
         if (imeSwitcher != null) {
-            FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) imeSwitcher.getLayoutParams();
-            lp.gravity = isLayoutRtl ? Gravity.BOTTOM : Gravity.TOP;
-            imeSwitcher.setLayoutParams(lp);
+            if (imeSwitcher.getLayoutParams() instanceof FrameLayout.LayoutParams) {
+                FrameLayout.LayoutParams lp =
+                        (FrameLayout.LayoutParams) imeSwitcher.getLayoutParams();
+                lp.gravity = isLayoutRtl ? Gravity.BOTTOM : Gravity.TOP;
+                imeSwitcher.setLayoutParams(lp);
+            } else {
+                LinearLayout.LayoutParams lp =
+                        (LinearLayout.LayoutParams) imeSwitcher.getLayoutParams();
+                lp.gravity = isLayoutRtl ? Gravity.BOTTOM : Gravity.TOP;
+                imeSwitcher.setLayoutParams(lp);
+            }
         }
     }
 
