@@ -12,7 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+ifneq ($(TARGET_NEED_44KHZ_SOUNDS),true)
 LOCAL_PATH := frameworks/base/data/sounds/slim
+else
+# use 44.1 kHz UI sounds
+LOCAL_PATH := frameworks/base/data/sounds/slim_441
+endif
 
 define create-copy-media-files
 $(strip $(foreach fp,\
