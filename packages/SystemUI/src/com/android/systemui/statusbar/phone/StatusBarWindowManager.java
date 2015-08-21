@@ -126,10 +126,9 @@ public class StatusBarWindowManager {
 
     private void applyKeyguardFlags(State state) {
         if (state.keyguardShowing) {
-            mLpChanged.flags |= WindowManager.LayoutParams.FLAG_SHOW_WALLPAPER;
             mLpChanged.privateFlags |= WindowManager.LayoutParams.PRIVATE_FLAG_KEYGUARD;
             if (!mKeyguardBlurEnabled) {
-                mLp.flags |= WindowManager.LayoutParams.FLAG_SHOW_WALLPAPER;
+                mLpChanged.flags |= WindowManager.LayoutParams.FLAG_SHOW_WALLPAPER;
             }
         } else {
             mLpChanged.flags &= ~WindowManager.LayoutParams.FLAG_SHOW_WALLPAPER;
