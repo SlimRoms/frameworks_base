@@ -2239,12 +2239,6 @@
   <java-symbol type="integer" name="ascrollboost_cpuboost" />
   <java-symbol type="integer" name="ascrollboost_pcdisbl" />
 
-  <!-- cpu boost for Animationboost -->
-  <java-symbol type="bool" name="config_enablePerfBoostForAnimation" />
-  <java-symbol type="integer" name="animationboost_timeout_param" />
-  <java-symbol type="integer" name="animationboost_schedboost_param" />
-  <java-symbol type="integer" name="animationboost_cpuboost_param" />
-
   <java-symbol type="bool" name="config_fetch_apn_from_omh_card" />
   <!-- Configuration to play sms ringtone during MO/MT call -->
   <java-symbol type="bool" name="config_sms_ringtone_incall" />
