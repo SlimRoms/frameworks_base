@@ -51,8 +51,6 @@ import com.android.systemui.statusbar.stack.StackScrollState.ViewState;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-import org.codeaurora.Performance;
-
 /**
  * A layout which handles a dynamic amount of notifications and presents them in a scrollable stack.
  */
@@ -204,15 +202,6 @@ public class NotificationStackScrollLayout extends ViewGroup
     private boolean mDisallowScrollingInThisMotion;
     private long mGoToFullShadeDelay;
 
-    /**
-     * Notification bar expand perf
-     */
-    public Performance mPerf = null;
-    public boolean mIsAnimationBoostEnabled = false;
-    public int aBoostTimeOut = 0;
-    public int aBoostCpuBoost = 0;
-    public int aBoostSchedBoost = 0;
-
     private ViewTreeObserver.OnPreDrawListener mChildrenUpdater
             = new ViewTreeObserver.OnPreDrawListener() {
         @Override
@@ -258,16 +247,6 @@ public class NotificationStackScrollLayout extends ViewGroup
             mDebugPaint.setStrokeWidth(2);
             mDebugPaint.setStyle(Paint.Style.STROKE);
         }
-        mIsAnimationBoostEnabled = context.getResources().getBoolean(
-                   com.android.systemui.R.bool.config_enablePerfBoostForShutterAnimation);
-        if(mIsAnimationBoostEnabled) {
-           aBoostSchedBoost = context.getResources().getInteger(
-                   com.android.systemui.R.integer.shutteranimationboost_schedboost_param);
-           aBoostTimeOut = context.getResources().getInteger(
-                   com.android.systemui.R.integer.shutteranimationboost_timeout_param);
-           aBoostCpuBoost = context.getResources().getInteger(
-                   com.android.systemui.R.integer.shutteranimationboost_cpuboost_param);
-       }
     }
 
     @Override
@@ -783,16 +762,6 @@ public class NotificationStackScrollLayout extends ViewGroup
                 && !mOnlyScrollingInThisMotion) {
             horizontalSwipeWantsIt = mSwipeHelper.onTouchEvent(ev);
         }
-
-        if (expandWantsIt && mIsBeingDragged) {
-            if (mIsAnimationBoostEnabled == true && mPerf == null) {
-                mPerf = new Performance();
-            }
-            if(mPerf != null) {
-                mPerf.perfLockAcquire(aBoostTimeOut, aBoostSchedBoost, aBoostCpuBoost);
-            }
-        }
-
         return horizontalSwipeWantsIt || scrollerWantsIt || expandWantsIt || super.onTouchEvent(ev);
     }
 

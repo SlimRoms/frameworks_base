@@ -340,11 +340,6 @@
     <!-- Enable the default volume dialog -->
     <bool name="enable_volume_ui">true</bool>
 
-    <bool name="config_enablePerfBoostForShutterAnimation">false</bool>
-    <integer name="shutteranimationboost_timeout_param">0</integer>
-    <integer name="shutteranimationboost_schedboost_param">0</integer>
-    <integer name="shutteranimationboost_cpuboost_param">0</integer>
-
     <!-- Sensivity of pie gestures controlls.
         Must be minimum 1 and maximum 10 (See @EdgeServiceConstants.java).
         Default for pie is high sensivity -->
