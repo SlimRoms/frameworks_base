@@ -6291,6 +6291,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         }
 
         if (enableScreen) {
+            if (mContext.getResources().getBoolean(com.android.internal.R.bool.config_cpuBoostOnWake)) {
+                mPowerManager.cpuBoost(4000000);
+            }
             try {
                 mWindowManager.enableScreenIfNeeded();
             } catch (RemoteException unhandled) {
