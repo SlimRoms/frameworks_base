@@ -2291,4 +2291,7 @@
     <integer name="config_nightColorTemperature">4500</integer>
     <integer name="config_outdoorAmbientLux">9000</integer>
 
+    <!-- Whether to boost cpu on wake to prevent jank -->
+    <bool name="config_cpuBoostOnWake">false</bool>
+
 </resources>
