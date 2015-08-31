@@ -4680,6 +4680,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         // Toggle the recents visibility flag
         mSystemUiVisibility ^= View.RECENT_APPS_VISIBLE;
         notifyUiVisibilityChanged(mSystemUiVisibility);
+        mContext.sendBroadcast(new Intent("com.slim.appsidebar.TOGGLE_SIDEBAR"));
         super.toggleRecents();
     }
 
