@@ -521,8 +521,8 @@ public class NotificationPanelView extends PanelView implements
     public void expandWithQs() {
         if (mQsExpansionEnabled) {
             mQsExpandImmediate = true;
+            expand();
         }
-        expand();
     }
 
     @Override
@@ -550,6 +550,13 @@ public class NotificationPanelView extends PanelView implements
         if (mBlockTouches) {
             return false;
         }
+
+        final boolean isQSEventBlocked = mLockPatternUtils.isSecure()
+                && mStatusBarLockedOnSecureKeyguard && mKeyguardShowing;
+        if (isQSEventBlocked) {
+            setQsExpansionEnabled(false);
+        }
+
         resetDownStates(event);
         int pointerIndex = event.findPointerIndex(mTrackingPointer);
         if (pointerIndex < 0) {
@@ -688,6 +695,12 @@ public class NotificationPanelView extends PanelView implements
             return false;
         }
 
+        final boolean isQSEventBlocked = mLockPatternUtils.isSecure()
+                && mStatusBarLockedOnSecureKeyguard && mKeyguardShowing;
+        if (isQSEventBlocked) {
+            setQsExpansionEnabled(false);
+        }
+
         if (mDoubleTapToSleepEnabled
                 && mStatusBarState == StatusBarState.KEYGUARD
                 && event.getY() < mStatusBarHeaderHeight) {
@@ -703,12 +716,9 @@ public class NotificationPanelView extends PanelView implements
             return true;
         }
 
-        boolean isQSEventBlocked = mLockPatternUtils.isSecure()
-                && mStatusBarLockedOnSecureKeyguard && mKeyguardShowing;
-
         if (event.getActionMasked() == MotionEvent.ACTION_DOWN && getExpandedFraction() == 1f
                 && mStatusBar.getBarState() != StatusBarState.KEYGUARD && !mQsExpanded
-                && mQsExpansionEnabled && !isQSEventBlocked) {
+                && mQsExpansionEnabled) {
 
             // Down in the empty area while fully expanded - go to QS.
             mQsTracking = true;
@@ -718,7 +728,7 @@ public class NotificationPanelView extends PanelView implements
             mInitialTouchY = event.getX();
             mInitialTouchX = event.getY();
         }
-        if (mExpandedHeight != 0 && !isQSEventBlocked) {
+        if (mExpandedHeight != 0 && mQsExpansionEnabled) {
             handleQsDown(event);
         }
         if (!mQsExpandImmediate && mQsTracking) {
@@ -753,7 +763,7 @@ public class NotificationPanelView extends PanelView implements
 
         if ((twoFingerQsEvent || oneFingerQsOverride)
                 && event.getY(event.getActionIndex()) < mStatusBarMinHeight
-                && !isQSEventBlocked) {
+                && mQsExpansionEnabled) {
             mQsExpandImmediate = true;
             requestPanelHeightUpdate();
 
@@ -921,6 +931,9 @@ public class NotificationPanelView extends PanelView implements
     }
 
     private void onQsExpansionStarted(int overscrollAmount) {
+        if (!mQsExpansionEnabled) {
+            return;
+        }
         cancelAnimation();
 
         // Reset scroll position and apply that position to the expanded height.
@@ -949,6 +962,13 @@ public class NotificationPanelView extends PanelView implements
             boolean goingToFullShade) {
         boolean keyguardShowing = statusBarState == StatusBarState.KEYGUARD
                 || statusBarState == StatusBarState.SHADE_LOCKED;
+
+        final boolean isQSEventBlocked = mLockPatternUtils.isSecure()
+                && mStatusBarLockedOnSecureKeyguard && keyguardShowing;
+        if (isQSEventBlocked) {
+            setQsExpansionEnabled(false);
+        }
+
         if (!mKeyguardShowing && keyguardShowing) {
             setQsTranslation(mQsExpansionHeight);
             mHeader.setTranslationY(0f);
@@ -1181,6 +1201,9 @@ public class NotificationPanelView extends PanelView implements
     }
 
     private void setQsExpansion(float height) {
+        if (!mQsExpansionEnabled) {
+           return;
+        }
         height = Math.min(Math.max(height, mQsMinExpansionHeight), mQsMaxExpansionHeight);
         mQsFullyExpanded = height == mQsMaxExpansionHeight;
         if (height > mQsMinExpansionHeight && !mQsExpanded && !mStackScrollerOverscrolling) {
