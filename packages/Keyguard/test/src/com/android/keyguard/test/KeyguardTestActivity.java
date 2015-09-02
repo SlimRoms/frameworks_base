@@ -284,26 +284,26 @@ public class KeyguardTestActivity extends Activity implements OnClickListener {
     @Override
     protected void onPause() {
         super.onPause();
-        try {
+        /*try {
             if (mService != null) {
                 mService.setHidden(true);
             }
         } catch (RemoteException e) {
             Log.e(TAG, "Remote service died");
             e.printStackTrace();
-        }
+        }*/
     }
 
     protected void onResume() {
         super.onResume();
-        try {
+        /*try {
             if (mService != null) {
                 mService.setHidden(false);
             }
         } catch (RemoteException e) {
             Log.e(TAG, "Remote service died");
             e.printStackTrace();
-        }
+        }*/
     }
 
     public int mSecurityModeMock;
