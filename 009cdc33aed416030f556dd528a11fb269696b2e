@@ -381,6 +381,30 @@
     },
     {
       "key": {
+        "uuid": "5a4e6583_8b1671f0",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1921,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2015-09-02T17:09:56Z",
+      "side": 1,
+      "message": "ensures that the user has run through the setup wizard at least once.",
+      "parentUuid": "5a4e6583_081167ac",
+      "range": {
+        "startLine": 1921,
+        "startChar": 17,
+        "endLine": 1921,
+        "endChar": 65
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a4e6583_e825eb0a",
         "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
         "patchSetId": 1
@@ -565,6 +589,30 @@
     },
     {
       "key": {
+        "uuid": "5a4e6583_6bd33539",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3723,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2015-09-02T17:09:56Z",
+      "side": 1,
+      "message": "see behavior when this flag is passed to animateCollapsePanels...\n        if ((flags \u0026 CommandQueue.FLAG_EXCLUDE_RECENTS_PANEL) \u003d\u003d 0) {\n            if (!mHandler.hasMessages(MSG_HIDE_RECENT_APPS)) {\n                mHandler.removeMessages(MSG_HIDE_RECENT_APPS);\n                mHandler.sendEmptyMessage(MSG_HIDE_RECENT_APPS);\n            }\n        }",
+      "parentUuid": "5a4e6583_088847e6",
+      "range": {
+        "startLine": 3722,
+        "startChar": 1,
+        "endLine": 3723,
+        "endChar": 87
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a4e6583_285ae383",
         "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
         "patchSetId": 1
@@ -581,6 +629,53 @@
         "startChar": 0,
         "endLine": 3735,
         "endChar": 59
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_4bd87953",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3735,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2015-09-02T17:09:56Z",
+      "side": 1,
+      "message": "the method is in the parent class (BaseStatusBar).  this ensures that the UserId sending the intent is the same UserId that is currently logged in.",
+      "parentUuid": "5a4e6583_285ae383",
+      "range": {
+        "startLine": 3735,
+        "startChar": 0,
+        "endLine": 3735,
+        "endChar": 59
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_2bdd3d43",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3822,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2015-09-02T17:09:56Z",
+      "side": 1,
+      "message": "WHITESPACE!!!!!",
+      "range": {
+        "startLine": 3822,
+        "startChar": 27,
+        "endLine": 3822,
+        "endChar": 28
       },
       "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
       "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
