@@ -95,6 +95,7 @@ public class StatusBarKeyguardViewManager {
         mStatusBarWindowManager = statusBarWindowManager;
         mScrimController = scrimController;
         mFingerprintUnlockController = fingerprintUnlockController;
+        if (mBouncer != null) mBouncer.removeView();
         mBouncer = new KeyguardBouncer(mContext, mViewMediatorCallback, mLockPatternUtils,
                 mStatusBarWindowManager, container);
     }
