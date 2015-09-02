@@ -1,0 +1,843 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a4e6583_28fe636c",
+        "filename": "core/jni/android_util_Binder.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "GC commit\nhttps://github.com/PRJosh/frameworks_base/commit/d0f34845cc5f852c9a096d9c7ae95413b455e14c",
+      "range": {
+        "startLine": 156,
+        "startChar": 4,
+        "endLine": 156,
+        "endChar": 22
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_0803a774",
+        "filename": "packages/Keyguard/Android.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "Not quite sure why AOSP decided kill this...\nhttps://github.com/SlimRoms/frameworks_base/commit/380ecb81db52a9d0197ca969951d07b91c20d2b9",
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_e8f72b8b",
+        "filename": "packages/Keyguard/test/src/com/android/keyguard/test/KeyguardTestActivity.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "Why the hell fuck with test folders? Aren\u0027t they ignored?",
+      "range": {
+        "startLine": 285,
+        "startChar": 2,
+        "endLine": 309,
+        "endChar": 5
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_c8f46f89",
+        "filename": "packages/SystemUI/src/com/android/systemui/keyguard/KeyguardService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "Probably relevant?\n\nhttps://github.com/PRJosh/frameworks_base/commit/3d30e80f029f6ff93f47ce07611eea1ef6c68e5d",
+      "range": {
+        "startLine": 73,
+        "startChar": 9,
+        "endLine": 73,
+        "endChar": 17
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_e83e0b29",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "https://github.com/PRJosh/frameworks_base/commit/3d30e80f029f6ff93f47ce07611eea1ef6c68e5d\n\nProbably not relevant",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 94
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_083a8736",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "https://github.com/PRJosh/frameworks_base/commit/3d30e80f029f6ff93f47ce07611eea1ef6c68e5d",
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_28354346",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "https://github.com/PRJosh/frameworks_base/commit/3d30e80f029f6ff93f47ce07611eea1ef6c68e5d",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 40
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_48307f56",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "https://github.com/PRJosh/frameworks_base/commit/3d30e80f029f6ff93f47ce07611eea1ef6c68e5d",
+      "range": {
+        "startLine": 143,
+        "startChar": 0,
+        "endLine": 143,
+        "endChar": 46
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_682b3bec",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "https://github.com/PRJosh/frameworks_base/commit/3d30e80f029f6ff93f47ce07611eea1ef6c68e5d",
+      "range": {
+        "startLine": 171,
+        "startChar": 23,
+        "endLine": 171,
+        "endChar": 24
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_88ee77b3",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "https://github.com/PRJosh/frameworks_base/commit/3d30e80f029f6ff93f47ce07611eea1ef6c68e5d",
+      "range": {
+        "startLine": 207,
+        "startChar": 0,
+        "endLine": 207,
+        "endChar": 21
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_a8f13397",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "https://github.com/PRJosh/frameworks_base/commit/3d30e80f029f6ff93f47ce07611eea1ef6c68e5d",
+      "range": {
+        "startLine": 210,
+        "startChar": 0,
+        "endLine": 210,
+        "endChar": 89
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_c83b4f37",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 746,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "https://github.com/PRJosh/frameworks_base/commit/3d30e80f029f6ff93f47ce07611eea1ef6c68e5d",
+      "range": {
+        "startLine": 745,
+        "startChar": 0,
+        "endLine": 746,
+        "endChar": 44
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_a84813cd",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 859,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "https://github.com/PRJosh/frameworks_base/commit/3d30e80f029f6ff93f47ce07611eea1ef6c68e5d",
+      "range": {
+        "startLine": 859,
+        "startChar": 0,
+        "endLine": 859,
+        "endChar": 45
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_884557b5",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1364,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "This is likely very relevant \n\nhttps://github.com/PRJosh/frameworks_base/commit/3d30e80f029f6ff93f47ce07611eea1ef6c68e5d",
+      "range": {
+        "startLine": 1359,
+        "startChar": 0,
+        "endLine": 1364,
+        "endChar": 25
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_68121bb6",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1723,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "https://github.com/PRJosh/frameworks_base/commit/3d30e80f029f6ff93f47ce07611eea1ef6c68e5d",
+      "range": {
+        "startLine": 1722,
+        "startChar": 16,
+        "endLine": 1723,
+        "endChar": 47
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_280c2394",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1779,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "Considering our headsup is twitchy this likely helps lag\n\nhttps://github.com/PRJosh/frameworks_base/commit/3d30e80f029f6ff93f47ce07611eea1ef6c68e5d",
+      "range": {
+        "startLine": 1763,
+        "startChar": 1,
+        "endLine": 1779,
+        "endChar": 5
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_081167ac",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1921,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "Not sure what this does...\n\nhttps://github.com/PRJosh/frameworks_base/commit/3d30e80f029f6ff93f47ce07611eea1ef6c68e5d",
+      "range": {
+        "startLine": 1921,
+        "startChar": 17,
+        "endLine": 1921,
+        "endChar": 65
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_e825eb0a",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2652,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "Probably fingerprint stuff same commit as before",
+      "range": {
+        "startLine": 2643,
+        "startChar": 0,
+        "endLine": 2652,
+        "endChar": 5
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_c8222f01",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2706,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "Probably relevant",
+      "range": {
+        "startLine": 2705,
+        "startChar": 0,
+        "endLine": 2706,
+        "endChar": 42
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_a81ff3b6",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2933,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "Likely relevant",
+      "range": {
+        "startLine": 2931,
+        "startChar": 0,
+        "endLine": 2933,
+        "endChar": 9
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_881c37c3",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3281,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "Maybe",
+      "range": {
+        "startLine": 3281,
+        "startChar": 8,
+        "endLine": 3281,
+        "endChar": 88
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_6879fbfb",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3636,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "The hell is this?",
+      "range": {
+        "startLine": 3632,
+        "startChar": 3,
+        "endLine": 3636,
+        "endChar": 9
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_487e3fe6",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3657,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "Probably important",
+      "range": {
+        "startLine": 3657,
+        "startChar": 0,
+        "endLine": 3657,
+        "endChar": 89
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_288303ce",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3692,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "Not important for wakeup but likely important for density changer",
+      "range": {
+        "startLine": 3690,
+        "startChar": 0,
+        "endLine": 3692,
+        "endChar": 5
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_088847e6",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3723,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "Huh?",
+      "range": {
+        "startLine": 3722,
+        "startChar": 1,
+        "endLine": 3723,
+        "endChar": 87
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_285ae383",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3735,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "I\u0027m confused, what does this do?",
+      "range": {
+        "startLine": 3735,
+        "startChar": 0,
+        "endLine": 3735,
+        "endChar": 59
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_884af7aa",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3953,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "Probably relevant",
+      "range": {
+        "startLine": 3946,
+        "startChar": 0,
+        "endLine": 3953,
+        "endChar": 9
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_48ccff35",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4032,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "Fingerprint stuff, probably not root cause but likely needed",
+      "range": {
+        "startLine": 3993,
+        "startChar": 2,
+        "endLine": 4032,
+        "endChar": 5
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_28d1c3cd",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4359,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "Probably not needed",
+      "range": {
+        "startLine": 4357,
+        "startChar": 4,
+        "endLine": 4359,
+        "endChar": 5
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_08d607c6",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4392,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "probably not important but relevant to line 4357",
+      "range": {
+        "startLine": 4391,
+        "startChar": 8,
+        "endLine": 4392,
+        "endChar": 75
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_e8da8be8",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4484,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "relevant to the huh comment above, not sure if relevant to the problem",
+      "range": {
+        "startLine": 4484,
+        "startChar": 33,
+        "endLine": 4484,
+        "endChar": 59
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_c8d7cfbe",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4512,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "maybe",
+      "range": {
+        "startLine": 4510,
+        "startChar": 5,
+        "endLine": 4512,
+        "endChar": 66
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_88e1d79c",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4535,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "issecure thing",
+      "range": {
+        "startLine": 4529,
+        "startChar": 1,
+        "endLine": 4535,
+        "endChar": 9
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_a8e493ac",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4575,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "wierd issecure stuff from earlier",
+      "range": {
+        "startLine": 4575,
+        "startChar": 0,
+        "endLine": 4575,
+        "endChar": 71
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_68ee9b8d",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4598,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "Density changer?",
+      "range": {
+        "startLine": 4595,
+        "startChar": 1,
+        "endLine": 4598,
+        "endChar": 46
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_48f3df73",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/StatusBarKeyguardViewManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "probably relevant",
+      "range": {
+        "startLine": 164,
+        "startChar": 8,
+        "endLine": 164,
+        "endChar": 52
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_28e8a37b",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/StatusBarKeyguardViewManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 1,
+      "message": "Probably relevant. Why AOSP disable ?\nhttps://github.com/SlimRoms/frameworks_base/commit/b145fd1e0509dd8ce34087a97dbc49140b717e0b",
+      "range": {
+        "startLine": 404,
+        "startChar": 8,
+        "endLine": 404,
+        "endChar": 61
+      },
+      "revId": "009cdc33aed416030f556dd528a11fb269696b2e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}

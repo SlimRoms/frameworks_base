@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a4e6583_e853ab6a",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3695,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 0,
+      "message": "probably bad idea?",
+      "range": {
+        "startLine": 3695,
+        "startChar": 0,
+        "endLine": 3695,
+        "endChar": 42
+      },
+      "revId": "66df31e479df7f45e002a72702738600ffc76fe4",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_a84db3c6",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3743,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 0,
+      "message": "Probably relevant",
+      "range": {
+        "startLine": 3734,
+        "startChar": 0,
+        "endLine": 3743,
+        "endChar": 20
+      },
+      "revId": "66df31e479df7f45e002a72702738600ffc76fe4",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_68c7bb13",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3931,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-02T00:34:49Z",
+      "side": 0,
+      "message": "Probably relevant, So this is making sure notification stuff to load up even if screen is off? Sounds like important, also battery hog",
+      "range": {
+        "startLine": 3921,
+        "startChar": 0,
+        "endLine": 3931,
+        "endChar": 9
+      },
+      "revId": "66df31e479df7f45e002a72702738600ffc76fe4",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
