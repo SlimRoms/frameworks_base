@@ -162,6 +162,7 @@ public class NotificationPanelView extends PanelView implements
 
     private boolean mBlockTouches;
     private int mNotificationScrimWaitDistance;
+    // Used for two finger gesture as well as accessibility shortcut to QS.
     private boolean mQsExpandImmediate;
     private boolean mTwoFingerQsExpandPossible;
 
