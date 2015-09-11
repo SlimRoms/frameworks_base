@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a4e6583_f3f15296",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/NavigationBarView.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2015-09-11T14:18:29Z",
+      "side": 1,
+      "message": "indent 4 more spaces",
+      "range": {
+        "startLine": 773,
+        "startChar": 8,
+        "endLine": 773,
+        "endChar": 60
+      },
+      "revId": "d4fa3e6a197b5f911873a73979aa5c2406c095b1",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_d3ee56b4",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/NavigationBarView.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 774,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2015-09-11T14:18:29Z",
+      "side": 1,
+      "message": "indent 4 more spaces",
+      "range": {
+        "startLine": 774,
+        "startChar": 8,
+        "endLine": 774,
+        "endChar": 93
+      },
+      "revId": "d4fa3e6a197b5f911873a73979aa5c2406c095b1",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
