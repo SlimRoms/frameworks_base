@@ -261,6 +261,7 @@ public class ScreenPinningRequest implements View.OnClickListener {
 
         @Override
         public void onDetachedFromWindow() {
+            super.onDetachedFromWindow();
             mContext.unregisterReceiver(mReceiver);
         }
 
