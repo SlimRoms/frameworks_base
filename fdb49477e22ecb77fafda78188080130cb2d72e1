@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a4e6583_53b5c6cb",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/NavigationBarView.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2015-09-11T13:19:52Z",
+      "side": 1,
+      "message": "need to wrap this in a null check.  otherwise, this results in NPE, with getBackButton() as a null object reference when you attempt to remove the back button from the navbar in nav button settings.",
+      "range": {
+        "startLine": 772,
+        "startChar": 0,
+        "endLine": 773,
+        "endChar": 93
+      },
+      "revId": "fdb49477e22ecb77fafda78188080130cb2d72e1",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
