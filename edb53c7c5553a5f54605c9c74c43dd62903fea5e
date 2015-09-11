@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a4e6583_33d12afc",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/NavigationBarView.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 772,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2015-09-11T14:04:05Z",
+      "side": 1,
+      "message": "getBackButton()",
+      "range": {
+        "startLine": 772,
+        "startChar": 5,
+        "endLine": 772,
+        "endChar": 18
+      },
+      "revId": "edb53c7c5553a5f54605c9c74c43dd62903fea5e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_13ce2e5b",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/NavigationBarView.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 772,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2015-09-11T14:04:05Z",
+      "side": 1,
+      "message": "make this 8 spaces instead of 2 tabs",
+      "range": {
+        "startLine": 772,
+        "startChar": 0,
+        "endLine": 772,
+        "endChar": 1
+      },
+      "revId": "edb53c7c5553a5f54605c9c74c43dd62903fea5e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_d3d776ec",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/NavigationBarView.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 772,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2015-09-11T14:04:05Z",
+      "side": 1,
+      "message": ") {\n(put a space in between these 2)",
+      "range": {
+        "startLine": 772,
+        "startChar": 27,
+        "endLine": 772,
+        "endChar": 29
+      },
+      "revId": "edb53c7c5553a5f54605c9c74c43dd62903fea5e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_f3da7216",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/NavigationBarView.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 775,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2015-09-11T14:04:05Z",
+      "side": 1,
+      "message": "make this 8 spaces instead of 2 tabs",
+      "range": {
+        "startLine": 775,
+        "startChar": 0,
+        "endLine": 775,
+        "endChar": 1
+      },
+      "revId": "edb53c7c5553a5f54605c9c74c43dd62903fea5e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
