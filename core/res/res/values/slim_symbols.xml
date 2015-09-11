@@ -25,4 +25,7 @@
     <java-symbol type="string" name="privacy_guard_dialog_title" />
     <java-symbol type="string" name="privacy_guard_dialog_summary" />
 
+    <!-- Wifi AP Disabled from Subscription change -->
+    <java-symbol type="string" name="subscription_change_disabled_wifi_ap" />
+
 </resources>
