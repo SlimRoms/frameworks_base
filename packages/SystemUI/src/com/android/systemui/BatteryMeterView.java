@@ -81,8 +81,100 @@ public class BatteryMeterView extends View implements DemoMode,
     private BatteryController mBatteryController;
     private boolean mPowerSaveEnabled;
 
+<<<<<<< HEAD
     private int mDarkModeBackgroundColor;
     private int mDarkModeFillColor;
+=======
+    protected BatteryMeterMode mMeterMode = null;
+
+    protected boolean mAttached;
+
+    private boolean mDemoMode;
+    protected BatteryTracker mDemoTracker = new BatteryTracker();
+    protected BatteryTracker mTracker = new BatteryTracker();
+    private BatteryMeterDrawable mBatteryMeterDrawable;
+
+    protected class BatteryTracker extends BroadcastReceiver {
+        public static final int UNKNOWN_LEVEL = -1;
+
+        // current battery status
+        boolean present = true;
+        int level = UNKNOWN_LEVEL;
+        String percentStr;
+        int plugType;
+        boolean plugged;
+        int health;
+        int status;
+        int chargeRate;
+        String technology;
+        int voltage;
+        int temperature;
+        boolean testmode = false;
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            final String action = intent.getAction();
+            if (action.equals(Intent.ACTION_BATTERY_CHANGED)) {
+                if (testmode && ! intent.getBooleanExtra("testmode", false)) return;
+
+                level = (int)(100f
+                        * intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0)
+                        / intent.getIntExtra(BatteryManager.EXTRA_SCALE, 100));
+
+                present = intent.getBooleanExtra(BatteryManager.EXTRA_PRESENT, true);
+                plugType = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0);
+                plugged = plugType != 0;
+                health = intent.getIntExtra(BatteryManager.EXTRA_HEALTH,
+                        BatteryManager.BATTERY_HEALTH_UNKNOWN);
+                status = intent.getIntExtra(BatteryManager.EXTRA_STATUS,
+                        BatteryManager.BATTERY_STATUS_UNKNOWN);
+                chargeRate = intent.getIntExtra(BatteryManager.EXTRA_CHARGE_RATE,
+                        BatteryManager.BATTERY_CHARGE_RATE_UNKNOWN);
+                technology = intent.getStringExtra(BatteryManager.EXTRA_TECHNOLOGY);
+                voltage = intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0);
+                temperature = intent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0);
+
+                setContentDescription(
+                        context.getString(R.string.accessibility_battery_level, level));
+                if (mBatteryMeterDrawable != null) {
+                    setVisibility(View.VISIBLE);
+                    invalidate();
+                }
+            } else if (action.equals(ACTION_LEVEL_TEST)) {
+                testmode = true;
+                post(new Runnable() {
+                    int curLevel = 0;
+                    int incr = 1;
+                    int saveLevel = level;
+                    int savePlugged = plugType;
+                    Intent dummy = new Intent(Intent.ACTION_BATTERY_CHANGED);
+                    @Override
+                    public void run() {
+                        if (curLevel < 0) {
+                            testmode = false;
+                            dummy.putExtra("level", saveLevel);
+                            dummy.putExtra("plugged", savePlugged);
+                            dummy.putExtra("testmode", false);
+                        } else {
+                            dummy.putExtra("level", curLevel);
+                            dummy.putExtra("plugged", incr > 0
+                                    ? BatteryManager.BATTERY_PLUGGED_AC : 0);
+                            dummy.putExtra("testmode", true);
+                        }
+                        getContext().sendBroadcast(dummy);
+
+                        if (!testmode) return;
+
+                        curLevel += incr;
+                        if (curLevel == 100) {
+                            incr *= -1;
+                        }
+                        postDelayed(this, 200);
+                    }
+                });
+            }
+        }
+>>>>>>> 2e65f0f... battery: Add fast charging UI support [3/3]
 
     private int mLightModeBackgroundColor;
     private int mLightModeFillColor;
@@ -282,6 +374,7 @@ public class BatteryMeterView extends View implements DemoMode,
         return (int) ArgbEvaluator.getInstance().evaluate(darkIntensity, lightColor, darkColor);
     }
 
+<<<<<<< HEAD
     @Override
     public void draw(Canvas c) {
         BatteryTracker tracker = mDemoMode ? mDemoTracker : mTracker;
@@ -361,6 +454,245 @@ public class BatteryMeterView extends View implements DemoMode,
                     mBoltPath.lineTo(
                             mBoltFrame.left + mBoltPoints[i] * mBoltFrame.width(),
                             mBoltFrame.top + mBoltPoints[i + 1] * mBoltFrame.height());
+=======
+    protected class NormalBatteryMeterDrawable implements BatteryMeterDrawable {
+        private static final boolean SINGLE_DIGIT_PERCENT = false;
+        private static final boolean SHOW_100_PERCENT = false;
+
+        private boolean mDisposed;
+
+        protected final boolean mHorizontal;
+
+        private final Paint mFramePaint, mBatteryPaint, mWarningTextPaint, mTextPaint, mBoltPaint;
+        private float mTextHeight, mWarningTextHeight;
+
+        private final int mChargeColor;
+        private final float[] mBoltPoints;
+        private final Path mBoltPath = new Path();
+
+        private final RectF mFrame = new RectF();
+        private final RectF mButtonFrame = new RectF();
+        private final RectF mBoltFrame = new RectF();
+        private boolean mFastCharging;
+
+        public NormalBatteryMeterDrawable(Resources res, boolean horizontal) {
+            super();
+            mHorizontal = horizontal;
+            mDisposed = false;
+
+            mFramePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            mFramePaint.setColor(mFrameColor);
+            mFramePaint.setDither(true);
+            mFramePaint.setStrokeWidth(0);
+            mFramePaint.setStyle(Paint.Style.FILL_AND_STROKE);
+
+            mBatteryPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            mBatteryPaint.setDither(true);
+            mBatteryPaint.setStrokeWidth(0);
+            mBatteryPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+
+            mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            Typeface font = Typeface.create("sans-serif-condensed", Typeface.BOLD);
+            mTextPaint.setTypeface(font);
+            mTextPaint.setTextAlign(Paint.Align.CENTER);
+
+            mWarningTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            mWarningTextPaint.setColor(mColors[1]);
+            font = Typeface.create("sans-serif", Typeface.BOLD);
+            mWarningTextPaint.setTypeface(font);
+            mWarningTextPaint.setTextAlign(Paint.Align.CENTER);
+
+            mChargeColor = getResources().getColor(R.color.batterymeter_charge_color);
+
+            mBoltPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            mBoltPaint.setColor(res.getColor(R.color.batterymeter_bolt_color));
+            mBoltPoints = loadBoltPoints(res);
+        }
+
+        @Override
+        public void onDraw(Canvas c, BatteryTracker tracker) {
+            if (mDisposed) return;
+
+            final int level = tracker.level;
+
+            if (level == BatteryTracker.UNKNOWN_LEVEL) return;
+
+            float drawFrac = (float) level / 100f;
+            final int pt = getPaddingTop() + (mHorizontal ? (int)(mHeight * 0.12f) : 0);
+            final int pl = getPaddingLeft();
+            final int pr = getPaddingRight();
+            final int pb = getPaddingBottom() + (mHorizontal ? (int)(mHeight * 0.08f) : 0);
+            final int height = mHeight - pt - pb;
+            final int width = mWidth - pl - pr;
+            final int buttonHeight = (int) ((mHorizontal ? width : height) * mButtonHeightFraction);
+            final boolean fastCharging;
+
+            fastCharging = tracker.chargeRate == BatteryManager.BATTERY_CHARGE_RATE_FAST_CHARGING;
+
+            mFrame.set(0, 0, width, height);
+            mFrame.offset(pl, pt);
+
+            if (mHorizontal) {
+                mButtonFrame.set(
+                        /*cover frame border of intersecting area*/
+                        width - buttonHeight - mFrame.left,
+                        mFrame.top + Math.round(height * 0.25f),
+                        mFrame.right,
+                        mFrame.bottom - Math.round(height * 0.25f));
+
+                mButtonFrame.top += mSubpixelSmoothingLeft;
+                mButtonFrame.bottom -= mSubpixelSmoothingRight;
+                mButtonFrame.right -= mSubpixelSmoothingRight;
+            } else {
+                // button-frame: area above the battery body
+                mButtonFrame.set(
+                        mFrame.left + Math.round(width * 0.25f),
+                        mFrame.top,
+                        mFrame.right - Math.round(width * 0.25f),
+                        mFrame.top + buttonHeight);
+
+                mButtonFrame.top += mSubpixelSmoothingLeft;
+                mButtonFrame.left += mSubpixelSmoothingLeft;
+                mButtonFrame.right -= mSubpixelSmoothingRight;
+            }
+
+            // frame: battery body area
+
+            if (mHorizontal) {
+                mFrame.right -= buttonHeight;
+            } else {
+                mFrame.top += buttonHeight;
+            }
+            mFrame.left += mSubpixelSmoothingLeft;
+            mFrame.top += mSubpixelSmoothingLeft;
+            mFrame.right -= mSubpixelSmoothingRight;
+            mFrame.bottom -= mSubpixelSmoothingRight;
+
+            // set the battery charging color
+            mBatteryPaint.setColor(tracker.plugged ? mChargeColor : getColorForLevel(level));
+
+            if (level >= FULL) {
+                drawFrac = 1f;
+            } else if (level <= mCriticalLevel) {
+                drawFrac = 0f;
+            }
+
+            final float levelTop;
+
+            if (drawFrac == 1f) {
+                if (mHorizontal) {
+                    levelTop = mButtonFrame.right;
+                } else {
+                    levelTop = mButtonFrame.top;
+                }
+            } else {
+                if (mHorizontal) {
+                    levelTop = (mFrame.right - (mFrame.width() * (1f - drawFrac)));
+                } else {
+                    levelTop = (mFrame.top + (mFrame.height() * (1f - drawFrac)));
+                }
+            }
+
+            // define the battery shape
+            mShapePath.reset();
+            mShapePath.moveTo(mButtonFrame.left, mButtonFrame.top);
+            if (mHorizontal) {
+                mShapePath.lineTo(mButtonFrame.right, mButtonFrame.top);
+                mShapePath.lineTo(mButtonFrame.right, mButtonFrame.bottom);
+                mShapePath.lineTo(mButtonFrame.left, mButtonFrame.bottom);
+                mShapePath.lineTo(mFrame.right, mFrame.bottom);
+                mShapePath.lineTo(mFrame.left, mFrame.bottom);
+                mShapePath.lineTo(mFrame.left, mFrame.top);
+                mShapePath.lineTo(mButtonFrame.left, mFrame.top);
+                mShapePath.lineTo(mButtonFrame.left, mButtonFrame.top);
+            } else {
+                mShapePath.lineTo(mButtonFrame.right, mButtonFrame.top);
+                mShapePath.lineTo(mButtonFrame.right, mFrame.top);
+                mShapePath.lineTo(mFrame.right, mFrame.top);
+                mShapePath.lineTo(mFrame.right, mFrame.bottom);
+                mShapePath.lineTo(mFrame.left, mFrame.bottom);
+                mShapePath.lineTo(mFrame.left, mFrame.top);
+                mShapePath.lineTo(mButtonFrame.left, mFrame.top);
+                mShapePath.lineTo(mButtonFrame.left, mButtonFrame.top);
+            }
+
+            if (tracker.plugged) {
+                // define the bolt shape
+                final float bl = mFrame.left + mFrame.width() / (mHorizontal ? 9f : 4.5f);
+                final float bt = mFrame.top + mFrame.height() / (mHorizontal ? 4.5f : 6f);
+                final float br = mFrame.right - mFrame.width() / (mHorizontal ? 6f : 7f);
+                final float bb = mFrame.bottom - mFrame.height() / (mHorizontal ? 7f : 10f);
+                if (mBoltFrame.left != bl || mBoltFrame.top != bt
+                        || mBoltFrame.right != br || mBoltFrame.bottom != bb
+                        || mFastCharging != fastCharging) {
+                    mBoltFrame.set(bl, bt, br, bb);
+                    mFastCharging = fastCharging;
+                    mBoltPath.reset();
+                    if (fastCharging) {
+                        final float size = Math.min(mFrame.width(), mFrame.height()) * .66f;
+                        final float thick = size * .33f;
+                        final float bx = (mFrame.width() - size) / 2;
+                        final float by = (mFrame.height() - size) / 3;
+                        final float x = bx + size/2 - thick/2;
+                        final float y = by*2 + size/2 - thick/2;
+                        mBoltPath.addRect(bx, y, bx + size, y + thick, Path.Direction.CW);
+                        mBoltPath.addRect(x, by*2, x + thick, by*2 + size, Path.Direction.CW);
+                    } else {
+                        mBoltPath.moveTo(
+                                mBoltFrame.left + mBoltPoints[0] * mBoltFrame.width(),
+                                mBoltFrame.top + mBoltPoints[1] * mBoltFrame.height());
+                        for (int i = 2; i < mBoltPoints.length; i += 2) {
+                            mBoltPath.lineTo(
+                                    mBoltFrame.left + mBoltPoints[i] * mBoltFrame.width(),
+                                    mBoltFrame.top + mBoltPoints[i + 1] * mBoltFrame.height());
+                        }
+                        mBoltPath.lineTo(
+                                mBoltFrame.left + mBoltPoints[0] * mBoltFrame.width(),
+                                mBoltFrame.top + mBoltPoints[1] * mBoltFrame.height());
+                    }
+                }
+
+                float boltPct = mHorizontal ?
+                        (mBoltFrame.left - levelTop) / (mBoltFrame.left - mBoltFrame.right) :
+                        (mBoltFrame.bottom - levelTop) / (mBoltFrame.bottom - mBoltFrame.top);
+                boltPct = Math.min(Math.max(boltPct, 0), 1);
+                if (boltPct <= BOLT_LEVEL_THRESHOLD) {
+                    // draw the bolt if opaque
+                    c.drawPath(mBoltPath, mBoltPaint);
+                } else {
+                    // otherwise cut the bolt out of the overall shape
+                    mShapePath.op(mBoltPath, Path.Op.DIFFERENCE);
+                }
+            }
+
+            // compute percentage text
+            boolean pctOpaque = false;
+            float pctX = 0, pctY = 0;
+            String pctText = null;
+            if (!tracker.plugged && level > mCriticalLevel && (mShowPercent
+                    && !(tracker.level == 100 && !SHOW_100_PERCENT))) {
+                mTextPaint.setColor(getColorForLevel(level));
+                final float full = mHorizontal ? 0.60f : 0.45f;
+                final float nofull = mHorizontal ? 0.75f : 0.6f;
+                final float single = mHorizontal ? 0.86f : 0.75f;
+                mTextPaint.setTextSize(height *
+                        (SINGLE_DIGIT_PERCENT ? single
+                                : (tracker.level == 100 ? full : nofull)));
+                mTextHeight = -mTextPaint.getFontMetrics().ascent;
+                pctText = String.valueOf(SINGLE_DIGIT_PERCENT ? (level/10) : level);
+                pctX = mWidth * 0.5f;
+                pctY = (mHeight + mTextHeight) * 0.47f;
+                if (mHorizontal) {
+                    pctOpaque = pctX > levelTop;
+                } else {
+                    pctOpaque = levelTop > pctY;
+                }
+                if (!pctOpaque) {
+                    mTextPath.reset();
+                    mTextPaint.getTextPath(pctText, 0, pctText.length(), pctX, pctY, mTextPath);
+                    // cut the percentage text out of the overall shape
+                    mShapePath.op(mTextPath, Path.Op.DIFFERENCE);
+>>>>>>> 2e65f0f... battery: Add fast charging UI support [3/3]
                 }
                 mBoltPath.lineTo(
                         mBoltFrame.left + mBoltPoints[0] * mBoltFrame.width(),
@@ -423,10 +755,77 @@ public class BatteryMeterView extends View implements DemoMode,
         }
     }
 
+<<<<<<< HEAD
     @Override
     public boolean hasOverlappingRendering() {
         return false;
     }
+=======
+    protected class CircleBatteryMeterDrawable implements BatteryMeterDrawable {
+        private static final boolean SINGLE_DIGIT_PERCENT = false;
+        private static final boolean SHOW_100_PERCENT = false;
+
+        private static final int FULL = 96;
+
+        public static final float STROKE_WITH = 6.5f;
+
+        private boolean mDisposed;
+
+        private int     mAnimOffset;
+        private boolean mIsAnimating;   // stores charge-animation status to reliably
+                                        //remove callbacks
+
+        private int     mCircleSize;    // draw size of circle
+        private RectF   mRectLeft;      // contains the precalculated rect used in drawArc(),
+                                        // derived from mCircleSize
+        private float   mTextX, mTextY; // precalculated position for drawText() to appear centered
+
+        private Paint   mTextPaint;
+        private Paint   mFastChargingPaint;
+        private Paint   mFrontPaint;
+        private Paint   mBackPaint;
+        private Paint   mBoltPaint;
+        private Paint   mWarningTextPaint;
+
+        private final RectF mBoltFrame = new RectF();
+
+        private final int mChargeColor;
+        private final float[] mBoltPoints;
+        private final Path mBoltPath = new Path();
+
+        public CircleBatteryMeterDrawable(Resources res) {
+            super();
+            mDisposed = false;
+
+            mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            Typeface font = Typeface.create("sans-serif-condensed", Typeface.BOLD);
+            mTextPaint.setTypeface(font);
+            mTextPaint.setTextAlign(Paint.Align.CENTER);
+
+            mFastChargingPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            font = Typeface.create("sans-serif", Typeface.BOLD);
+            mFastChargingPaint.setTypeface(font);
+            mFastChargingPaint.setTextAlign(Paint.Align.CENTER);
+
+            mFrontPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            mFrontPaint.setStrokeCap(Paint.Cap.BUTT);
+            mFrontPaint.setDither(true);
+            mFrontPaint.setStrokeWidth(0);
+            mFrontPaint.setStyle(Paint.Style.STROKE);
+
+            mBackPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            mBackPaint.setColor(res.getColor(R.color.batterymeter_frame_color));
+            mBackPaint.setStrokeCap(Paint.Cap.BUTT);
+            mBackPaint.setDither(true);
+            mBackPaint.setStrokeWidth(0);
+            mBackPaint.setStyle(Paint.Style.STROKE);
+
+            mWarningTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            mWarningTextPaint.setColor(mColors[1]);
+            font = Typeface.create("sans-serif", Typeface.BOLD);
+            mWarningTextPaint.setTypeface(font);
+            mWarningTextPaint.setTextAlign(Paint.Align.CENTER);
+>>>>>>> 2e65f0f... battery: Add fast charging UI support [3/3]
 
     private boolean mDemoMode;
     private BatteryTracker mDemoTracker = new BatteryTracker();
@@ -488,6 +887,7 @@ public class BatteryMeterView extends View implements DemoMode,
                 voltage = intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0);
                 temperature = intent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0);
 
+<<<<<<< HEAD
                 setContentDescription(
                         context.getString(R.string.accessibility_battery_level, level));
                 postInvalidate();
@@ -523,6 +923,55 @@ public class BatteryMeterView extends View implements DemoMode,
                         postDelayed(this, 200);
                     }
                 });
+=======
+        private void drawCircle(Canvas canvas, BatteryTracker tracker,
+                float textX, RectF drawRect) {
+            boolean unknownStatus = tracker.status == BatteryManager.BATTERY_STATUS_UNKNOWN;
+            boolean fastCharging;
+            int level = tracker.level;
+            Paint paint;
+
+            fastCharging = tracker.chargeRate == BatteryManager.BATTERY_CHARGE_RATE_FAST_CHARGING;
+
+            if (unknownStatus) {
+                paint = mBackPaint;
+                level = 100; // Draw all the circle;
+            } else {
+                paint = mFrontPaint;
+                paint.setColor(getColorForLevel(level));
+                if (tracker.status == BatteryManager.BATTERY_STATUS_FULL) {
+                    level = 100;
+                }
+            }
+
+            // draw thin gray ring first
+            canvas.drawArc(drawRect, 270, 360, false, mBackPaint);
+            if (level != 0) {
+                // draw colored arc representing charge level
+                canvas.drawArc(drawRect, 270 + mAnimOffset, 3.6f * level, false, paint);
+            }
+            // if chosen by options, draw percentage text in the middle
+            // always skip percentage when 100, so layout doesnt break
+            if (unknownStatus) {
+                mTextPaint.setColor(paint.getColor());
+                canvas.drawText("?", textX, mTextY, mTextPaint);
+            } else if (fastCharging) {
+                mFastChargingPaint.setColor(getColorForLevel(level));
+                canvas.drawText("+", textX, mTextY, mFastChargingPaint);
+            } else if (tracker.plugged) {
+                canvas.drawPath(mBoltPath, mBoltPaint);
+            } else {
+                if (level > mCriticalLevel
+                        && (mShowPercent && !(tracker.level == 100 && !SHOW_100_PERCENT))) {
+                    // draw the percentage text
+                    String pctText = String.valueOf(SINGLE_DIGIT_PERCENT ? (level/10) : level);
+                    mTextPaint.setColor(paint.getColor());
+                    canvas.drawText(pctText, textX, mTextY, mTextPaint);
+                } else if (level <= mCriticalLevel) {
+                    // draw the warning text
+                    canvas.drawText(mWarningString, textX, mTextY, mWarningTextPaint);
+                }
+>>>>>>> 2e65f0f... battery: Add fast charging UI support [3/3]
             }
         }
     }
@@ -532,11 +981,63 @@ public class BatteryMeterView extends View implements DemoMode,
             super(new Handler());
         }
 
+<<<<<<< HEAD
         @Override
         public void onChange(boolean selfChange, Uri uri) {
             super.onChange(selfChange, uri);
             updateShowPercent();
             postInvalidate();
+=======
+        /**
+         * initializes all size dependent variables
+         * sets stroke width and text size of all involved paints
+         * YES! i think the method name is appropriate
+         */
+        private void initSizeBasedStuff() {
+            mCircleSize = Math.min(getMeasuredWidth(), getMeasuredHeight());
+            mTextPaint.setTextSize(mCircleSize / 2f);
+            mFastChargingPaint.setTextSize(mCircleSize / 1.5f);
+            mWarningTextPaint.setTextSize(mCircleSize / 2f);
+
+            float strokeWidth = mCircleSize / STROKE_WITH;
+            mFrontPaint.setStrokeWidth(strokeWidth);
+            mBackPaint.setStrokeWidth(strokeWidth);
+
+            // calculate rectangle for drawArc calls
+            int pLeft = getPaddingLeft();
+            mRectLeft = new RectF(pLeft + strokeWidth / 2.0f, 0 + strokeWidth / 2.0f, mCircleSize
+                    - strokeWidth / 2.0f + pLeft, mCircleSize - strokeWidth / 2.0f);
+
+            // calculate Y position for text
+            Rect bounds = new Rect();
+            mTextPaint.getTextBounds("99", 0, "99".length(), bounds);
+            mTextX = mCircleSize / 2.0f + getPaddingLeft();
+            // the +1dp at end of formula balances out rounding issues.works out on all resolutions
+            mTextY = mCircleSize / 2.0f + (bounds.bottom - bounds.top) / 2.0f
+                    - strokeWidth / 2.0f + getResources().getDisplayMetrics().density;
+
+            // draw the bolt
+            final float bl = (int) (mRectLeft.left + mRectLeft.width() / 3.2f);
+            final float bt = (int) (mRectLeft.top + mRectLeft.height() / 4f);
+            final float br = (int) (mRectLeft.right - mRectLeft.width() / 5.2f);
+            final float bb = (int) (mRectLeft.bottom - mRectLeft.height() / 8f);
+            if (mBoltFrame.left != bl || mBoltFrame.top != bt
+                    || mBoltFrame.right != br || mBoltFrame.bottom != bb) {
+                mBoltFrame.set(bl, bt, br, bb);
+                mBoltPath.reset();
+                mBoltPath.moveTo(
+                        mBoltFrame.left + mBoltPoints[0] * mBoltFrame.width(),
+                        mBoltFrame.top + mBoltPoints[1] * mBoltFrame.height());
+                for (int i = 2; i < mBoltPoints.length; i += 2) {
+                    mBoltPath.lineTo(
+                            mBoltFrame.left + mBoltPoints[i] * mBoltFrame.width(),
+                            mBoltFrame.top + mBoltPoints[i + 1] * mBoltFrame.height());
+                }
+                mBoltPath.lineTo(
+                        mBoltFrame.left + mBoltPoints[0] * mBoltFrame.width(),
+                        mBoltFrame.top + mBoltPoints[1] * mBoltFrame.height());
+            }
+>>>>>>> 2e65f0f... battery: Add fast charging UI support [3/3]
         }
     }
 
