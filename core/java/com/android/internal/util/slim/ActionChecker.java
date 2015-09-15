@@ -28,6 +28,7 @@ public class ActionChecker {
 
     static {
         mConfigs.add(Settings.System.NAVIGATION_BAR_CONFIG);
+        mConfigs.add(Settings.System.PIE_BUTTONS_CONFIG);
     }
 
     public static boolean actionConfigContainsAction(ActionConfig config, String action) {
@@ -38,20 +39,26 @@ public class ActionChecker {
     public static boolean containsAction(Context context,
             ActionConfig config, String action) {
 
-        if (!actionConfigContainsAction(config, action)) return true;
+        if (config != null) {
+            if (!actionConfigContainsAction(config, action)) return true;
+        }
+
+        if (!Action.isNavBarDefault(context)) {
+            return true;
+        }
 
         for (int i = 0; i < mConfigs.size(); i++) {
             String configsString = Settings.System.getStringForUser(context.getContentResolver(),
                     mConfigs.get(i), UserHandle.USER_CURRENT);
 
-            if (configsString.contains(ActionConstants.ACTION_BACK)) {
+            if (configsString.contains(action)) {
                 String input = configsString;
-                int index = input.indexOf(ActionConstants.ACTION_BACK);
+                int index = input.indexOf(action);
                 int count = 0;
                 while (index != -1) {
                     count++;
                     input = input.substring(index + 1);
-                    index = input.indexOf(ActionConstants.ACTION_BACK);
+                    index = input.indexOf(action);
                 }
                 if (count <= 1) {
                     return false;
