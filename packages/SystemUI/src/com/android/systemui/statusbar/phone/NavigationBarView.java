@@ -218,14 +218,16 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
             // When dismissing ime during unlock, force the back button to run the same appearance
             // animation as home (if we catch this condition early enough).
             if (getBackButton() == null && getHomeButton() == null) return;
-            if (!mBackTransitioning && getBackButton().getVisibility() == VISIBLE
-                    && mHomeAppearing && getHomeButton().getAlpha() == 0) {
-                getBackButton().setAlpha(0);
-                ValueAnimator a = ObjectAnimator.ofFloat(getBackButton(), "alpha", 0, 1);
-                a.setStartDelay(mStartDelay);
-                a.setDuration(mDuration);
-                a.setInterpolator(mInterpolator);
-                a.start();
+            if (getBackButton() != null) {
+                if (!mBackTransitioning && getBackButton().getVisibility() == VISIBLE
+                        && mHomeAppearing && getHomeButton().getAlpha() == 0) {
+                    getBackButton().setAlpha(0);
+                    ValueAnimator a = ObjectAnimator.ofFloat(getBackButton(), "alpha", 0, 1);
+                    a.setStartDelay(mStartDelay);
+                    a.setDuration(mDuration);
+                    a.setInterpolator(mInterpolator);
+                    a.start();
+                }
             }
         }
     }
