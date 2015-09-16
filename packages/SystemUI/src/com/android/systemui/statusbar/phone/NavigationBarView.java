@@ -638,7 +638,8 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
         Drawable d = ActionHelper.getActionIconImage(mContext, clickAction, iconUri);
 
         if (d != null) {
-            if (colorize && mNavBarButtonColorMode != 3) {
+            if (colorize && mNavBarButtonColorMode != 3
+                    && !clickAction.equals(ActionConstants.ACTION_BACK)) {
                 d = ColorHelper.getColoredDrawable(d, mNavBarButtonColor);
             }
             v.setImageBitmap(ColorHelper.drawableToBitmap(d));
@@ -769,6 +770,12 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
         }
 
         mNavigationIconHints = hints;
+        if (getBackButton() != null ) {
+            ((ImageView) getBackButton()).setImageDrawable(null);
+            ((ImageView) getBackButton()).setImageDrawable(mVertical ? mBackLandIcon : mBackIcon);
+        }
+        mBackLandIcon.setImeVisible(backAlt);
+        mBackIcon.setImeVisible(backAlt);
 
         final boolean showImeButton = ((hints & StatusBarManager.NAVIGATION_HINT_IME_SHOWN) != 0
                     && !mImeArrowVisibility);
@@ -1212,6 +1219,38 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
         mImeArrowVisibility = (Settings.System.getIntForUser(resolver,
                 Settings.System.STATUS_BAR_IME_ARROWS, HIDE_IME_ARROW,
                 UserHandle.USER_CURRENT) == SHOW_IME_ARROW);
+
+        // update back button colors
+        if (mNavBarButtonColorMode != 3) {
+            Drawable backIcon, backIconLand;
+            ActionConfig actionConfig;
+            String backIconUri = ActionConstants.ICON_EMPTY;
+            for (int j = 0; j < mButtonsConfig.size(); j++) {
+                actionConfig = mButtonsConfig.get(j);
+                if (actionConfig.getClickAction() == ActionConstants.ACTION_BACK) {
+                    backIconUri = actionConfig.getIcon();
+                }
+            }
+
+            android.widget.Toast.makeText(mContext,
+                backIconUri,
+                500).show();
+
+            if (backIconUri == ActionConstants.ICON_EMPTY) {
+                backIcon = mContext.getResources().getDrawable(
+                        R.drawable.ic_sysbar_back);
+                backIconLand = mContext.getResources().getDrawable(
+                        R.drawable.ic_sysbar_back_land);
+            } else {
+                backIcon = ActionHelper.getActionIconImage(mContext, ActionConstants.ACTION_BACK, backIconUri);
+                backIconLand = backIcon;
+            }
+            
+            mBackIcon = new BackButtonDrawable(ColorHelper.getColoredDrawable(
+                    backIcon, mNavBarButtonColor));
+            mBackLandIcon = new BackButtonDrawable(ColorHelper.getColoredDrawable(
+                    backIconLand, mNavBarButtonColor));
+        }
 
         // construct the navigationbar
         makeBar();
