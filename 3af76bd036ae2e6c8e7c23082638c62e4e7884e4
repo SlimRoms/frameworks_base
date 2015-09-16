@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a4b7175_6ad33339",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/NavigationBarView.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1000103
+      },
+      "writtenOn": "2015-09-16T18:55:25Z",
+      "side": 1,
+      "message": "regardless of the root issue, i think the operator at this point should be || in order to prevent FC.",
+      "range": {
+        "startLine": 220,
+        "startChar": 40,
+        "endLine": 220,
+        "endChar": 42
+      },
+      "revId": "3af76bd036ae2e6c8e7c23082638c62e4e7884e4",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
