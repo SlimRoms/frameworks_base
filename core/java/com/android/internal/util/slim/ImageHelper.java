@@ -74,6 +74,25 @@ public class ImageHelper {
         return bitmap;
     }
 
+    public static Bitmap drawableToShortcutIconBitmap (Drawable drawable, int size) {
+        if (drawable == null) {
+            return null;
+        } else if (drawable instanceof BitmapDrawable) {
+            return ((BitmapDrawable) drawable).getBitmap();
+        } else if (size < drawable.getIntrinsicHeight()
+                || size < drawable.getIntrinsicWidth()) {
+            return drawableToBitmap(drawable);
+        }
+        Bitmap bitmap = Bitmap.createBitmap(size, size, Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds((size - drawable.getIntrinsicWidth()) / 2,
+                (size - drawable.getIntrinsicHeight()) / 2,
+                (size + drawable.getIntrinsicWidth()) / 2,
+                (size + drawable.getIntrinsicHeight()) / 2);
+        drawable.draw(canvas);
+        return Bitmap.createBitmap(bitmap);
+    }
+
     private static Bitmap toGrayscale(Bitmap bmpOriginal) {
         int width, height;
         height = bmpOriginal.getHeight();
