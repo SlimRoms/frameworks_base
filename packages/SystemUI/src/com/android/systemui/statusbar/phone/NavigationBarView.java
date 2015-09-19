@@ -67,7 +67,7 @@ import android.widget.LinearLayout;
 import com.android.internal.util.slim.ActionConfig;
 import com.android.internal.util.slim.ActionConstants;
 import com.android.internal.util.slim.ActionHelper;
-import com.android.internal.util.slim.ColorHelper;
+import com.android.internal.util.slim.ImageHelper;
 import com.android.internal.util.slim.DeviceUtils;
 import com.android.systemui.R;
 import com.android.systemui.statusbar.BaseStatusBar;
@@ -639,9 +639,9 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
 
         if (d != null) {
             if (colorize && mNavBarButtonColorMode != 3) {
-                d = ColorHelper.getColoredDrawable(d, mNavBarButtonColor);
+                d = ImageHelper.getColoredDrawable(d, mNavBarButtonColor);
             }
-            v.setImageBitmap(ColorHelper.drawableToBitmap(d));
+            v.setImageBitmap(ImageHelper.drawableToBitmap(d));
         }
         v.setRippleColor(mRippleColor);
         return v;
@@ -687,10 +687,10 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
             if (d instanceof VectorDrawable) {
                 d.setTint(mNavBarButtonColor);
             } else {
-                d = ColorHelper.getColoredDrawable(d, mNavBarButtonColor);
+                d = ImageHelper.getColoredDrawable(d, mNavBarButtonColor);
             }
         }
-        v.setImageBitmap(ColorHelper.drawableToBitmap(d));
+        v.setImageBitmap(ImageHelper.drawableToBitmap(d));
         v.setRippleColor(mRippleColor);
 
         return v;
