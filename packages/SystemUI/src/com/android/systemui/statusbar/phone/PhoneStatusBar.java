@@ -495,16 +495,40 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     Settings.System.HEADS_UP_GLOBAL_SWITCH),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.PIE_CONTROLS), false, this,
-                    UserHandle.USER_ALL);
+                    Settings.System.PIE_CONTROLS),
+                    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.USE_SLIM_RECENTS), false, this,
-                    UserHandle.USER_ALL);
+                    Settings.System.USE_SLIM_RECENTS),
+                    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.RECENT_CARD_BG_COLOR), false, this,
-                    UserHandle.USER_ALL);
+                    Settings.System.RECENT_CARD_BG_COLOR),
+                    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.RECENT_CARD_TEXT_COLOR), false, this,
+                    Settings.System.RECENT_CARD_TEXT_COLOR),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_IME_ARROWS),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.DIM_NAV_BUTTONS),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.DIM_NAV_BUTTONS_TIMEOUT),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.DIM_NAV_BUTTONS_ALPHA),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.DIM_NAV_BUTTONS_ANIMATE),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.DIM_NAV_BUTTONS_ANIMATE_DURATION),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.DIM_NAV_BUTTONS_TOUCH_ANYWHERE),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.Global.getUriFor(
+                    Settings.Global.POLICY_CONTROL), false, this,
                     UserHandle.USER_ALL);
             update();
         }
@@ -586,6 +610,29 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     || uri.equals(Settings.System.getUriFor(
                     Settings.System.RECENT_CARD_TEXT_COLOR))) {
                 rebuildRecentsScreen();
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_IME_ARROWS))) {
+                if (mNavigationBarView != null) {
+                    mNavigationBarView.updateNavigationBarSettings();
+                }
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.DIM_NAV_BUTTONS))
+                || uri.equals(Settings.System.getUriFor(
+                    Settings.System.DIM_NAV_BUTTONS_TIMEOUT))
+                || uri.equals(Settings.System.getUriFor(
+                    Settings.System.DIM_NAV_BUTTONS_ALPHA))
+                || uri.equals(Settings.System.getUriFor(
+                    Settings.System.DIM_NAV_BUTTONS_ANIMATE))
+                || uri.equals(Settings.System.getUriFor(
+                    Settings.System.DIM_NAV_BUTTONS_ANIMATE_DURATION))
+                || uri.equals(Settings.System.getUriFor(
+                    Settings.System.DIM_NAV_BUTTONS_TOUCH_ANYWHERE))
+                || uri.equals(Settings.System.getUriFor(
+                    Settings.Global.POLICY_CONTROL))) {
+                if (mNavigationBarView != null) {
+                    mNavigationBarView.updateNavigationBarSettings();
+                    mNavigationBarView.onNavButtonTouched();
+                }
             }
         }
 
