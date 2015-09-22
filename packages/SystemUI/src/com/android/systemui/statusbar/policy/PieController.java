@@ -610,6 +610,7 @@ public class PieController implements BaseStatusBar.NavigationBarCallback, PieVi
         } else if (customIcon) {
             d = resizeIcon(null, d, true);
         }
+        d.mutate();
         if ((customImageColorize != 1 || !customIcon) && customImageColorize != 3) {
             d = new BitmapDrawable(mContext.getResources(), ImageHelper.drawableToBitmap(
                     ImageHelper.getColoredDrawable(d, drawableColor)));
