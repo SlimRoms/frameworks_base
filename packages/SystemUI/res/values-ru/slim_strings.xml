@@ -87,4 +87,13 @@
   <string name="quick_settings_sync">Синхро</string>
   <string name="quick_settings_sync_off">Синхро выкл</string>
   <string name="smart_pulldown_disabled">\"Умные\" уведомления отключены</string>
+  <string name="navbar_dialog_title">Выберите действие</string>
+  <string name="navigation_ring_title">Ярлыки быстрого запуска</string>
+  <string name="navring_target_reset_message">Удалить пользовательские настройки ярлыков панели навигации и вернуть по умолчанию?</string>
+  <string name="navring_target_reset">Восстановлены стандартные ярлыки панели навигации</string>
+  <string name="navring_action_none">Нет</string>
+  <string name="navring_choose_action_title">Выберите действие</string>
+  <string name="select_application">Выберите приложение</string>
+  <string name="lockscreen_target_empty">Не выбрано</string>
+  <string name="zen_no_interruptions_but_alarm">Без прерываний (кроме будильника).</string>
 </resources>

@@ -87,4 +87,13 @@
   <string name="quick_settings_sync">Szinkronizálás</string>
   <string name="quick_settings_sync_off">Szinkronizálás ki</string>
   <string name="smart_pulldown_disabled">Intelligens legördülő kikapcsolva</string>
+  <string name="navbar_dialog_title">Válassz müveletet</string>
+  <string name="navigation_ring_title">Gyorsindítás hivatkozások</string>
+  <string name="navring_target_reset_message">Törlöd és visszaállítod alaphelyzetbe az összes navigációs sáv hivatkozást?</string>
+  <string name="navring_target_reset">Navigációs sáv alapbeállításai visszaállítva</string>
+  <string name="navring_action_none">Semmi</string>
+  <string name="navring_choose_action_title">Válassz műveletet</string>
+  <string name="select_application">Válassz alkalmazást</string>
+  <string name="lockscreen_target_empty">Üres</string>
+  <string name="zen_no_interruptions_but_alarm">Megszakítás nélkül. Kivéve a riasztások</string>
 </resources>
