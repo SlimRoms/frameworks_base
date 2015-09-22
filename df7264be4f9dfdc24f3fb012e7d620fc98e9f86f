@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a4b7175_8ea1dcab",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/NavigationBarView.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 1285,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-09-22T22:41:06Z",
+      "side": 1,
+      "message": "space",
+      "range": {
+        "startLine": 1285,
+        "startChar": 0,
+        "endLine": 1285,
+        "endChar": 8
+      },
+      "revId": "df7264be4f9dfdc24f3fb012e7d620fc98e9f86f",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
