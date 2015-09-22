@@ -86,4 +86,13 @@
   <string name="quick_settings_sync">Synchro. activée</string>
   <string name="quick_settings_sync_off">Synchro. désactivée</string>
   <string name="smart_pulldown_disabled">Le déroulement intelligent est désactivé</string>
+  <string name="navbar_dialog_title">Choisir l\'action à assigner</string>
+  <string name="navigation_ring_title">Raccourcis de lancement rapide</string>
+  <string name="navring_target_reset_message">Supprimer tous les raccourcis de la barre de navigation et revenir à la configuration d\'origine ?</string>
+  <string name="navring_target_reset">Raccourcis de la barre de navigation réinitialisés</string>
+  <string name="navring_action_none">Aucun</string>
+  <string name="navring_choose_action_title">Choisir l\'action</string>
+  <string name="select_application">Sélectionner une application</string>
+  <string name="lockscreen_target_empty">Vide</string>
+  <string name="zen_no_interruptions_but_alarm">Aucune interruption. Sauf les alarmes.</string>
 </resources>

@@ -87,4 +87,13 @@
   <string name="quick_settings_sync">Sincronização</string>
   <string name="quick_settings_sync_off">Sincronização desligada</string>
   <string name="smart_pulldown_disabled">Smart pulldown está desativado</string>
+  <string name="navbar_dialog_title">Escolher uma ação para ser atribuida</string>
+  <string name="navigation_ring_title">Atalhos de início rápido</string>
+  <string name="navring_target_reset_message">Excluir todos os atalhos personalizados criados na barra de navegação e restaurar para o padrão?</string>
+  <string name="navring_target_reset">Restaurar atalhos da barra de navegação para o padrão</string>
+  <string name="navring_action_none">Nenhum</string>
+  <string name="navring_choose_action_title">Escolha a ação</string>
+  <string name="select_application">Selecione o aplicativo</string>
+  <string name="lockscreen_target_empty">Vazio</string>
+  <string name="zen_no_interruptions_but_alarm">Sem interrupções. Exceto os alarmes.</string>
 </resources>
