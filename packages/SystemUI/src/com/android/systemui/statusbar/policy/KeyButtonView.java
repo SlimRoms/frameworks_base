@@ -23,9 +23,11 @@ import android.app.ActivityManagerNative;
 import android.app.IActivityManager;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.RectF;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.hardware.input.InputManager;
 import android.media.AudioManager;
@@ -86,6 +88,8 @@ public class KeyButtonView extends ImageView {
     private PowerManager mPm;
     private final Handler mHandler = new Handler();
 
+    private boolean mBlockLayout;
+
     private final Runnable mCheckLongPress = new Runnable() {
         public void run() {
             mIsLongpressed = true;
@@ -133,6 +137,34 @@ public class KeyButtonView extends ImageView {
         mAudioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
         setBackground(mRipple = new KeyButtonRipple(context, this));
         mPm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+    }
+
+    @Override
+    public void requestLayout() {
+        if (!mBlockLayout) {
+            super.requestLayout();
+        }
+    }
+
+    @Override
+    public void setImageDrawable(Drawable drawable) {
+        mBlockLayout = true;
+        super.setImageDrawable(drawable);
+        mBlockLayout = false;
+    }
+
+    @Override
+    public void draw(Canvas canvas) {
+        // For security reasons if it was recycled and we do not
+        // know it. This should never happen. So just in case.
+        Drawable drawable = getDrawable();
+        if (drawable != null && drawable instanceof BitmapDrawable) {
+            Bitmap bitmap = ((BitmapDrawable)drawable).getBitmap();
+            if (bitmap != null && bitmap.isRecycled()) {
+                return;
+            }
+        }
+        super.draw(canvas);
     }
 
     @Override
