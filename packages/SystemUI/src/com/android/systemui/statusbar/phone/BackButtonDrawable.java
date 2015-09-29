@@ -31,7 +31,7 @@ public class BackButtonDrawable extends Drawable {
     private float mRotation;
     private Animator mCurrentAnimator;
 
-    private static final int ANIMATION_DURATION = 200;
+    private static final int ANIMATION_DURATION = 2500;
     public static final Property<BackButtonDrawable, Float> ROTATION
             = new FloatProperty<BackButtonDrawable>("rotation") {
         @Override
