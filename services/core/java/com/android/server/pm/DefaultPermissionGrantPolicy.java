@@ -571,6 +571,43 @@ final class DefaultPermissionGrantPolicy {
                 grantRuntimePermissionsLPw(musicPackage, STORAGE_PERMISSIONS, userId);
             }
 
+            // Google Account
+            PackageParser.Package googleaccountPackage = getDefaultProviderAuthorityPackageLPr(
+                    "com.google.android.gsf.login", userId);
+            if (googleaccountPackage != null) {
+                grantRuntimePermissionsLPw(calendarPackage, CONTACTS_PERMISSIONS, userId);
+                grantRuntimePermissionsLPw(verifierPackage, PHONE_PERMISSIONS, false, userId);
+            }
+
+            // Google App
+            PackageParser.Package googleappPackage = getDefaultProviderAuthorityPackageLPr(
+                    "com.google.android.googlequicksearchbox", userId);
+            if (googleappPackage != null) {
+                grantRuntimePermissionsLPw(calendarProviderPackage, CALENDAR_PERMISSIONS,
+                grantRuntimePermissionsLPw(cameraPackage, CAMERA_PERMISSIONS, userId);
+                grantRuntimePermissionsLPw(calendarPackage, CONTACTS_PERMISSIONS, userId);
+                grantRuntimePermissionsLPw(mapsPackage, LOCATION_PERMISSIONS, userId);
+                grantRuntimePermissionsLPw(cameraPackage, MICROPHONE_PERMISSIONS, userId);
+                grantRuntimePermissionsLPw(verifierPackage, PHONE_PERMISSIONS, false, userId);
+                grantRuntimePermissionsLPw(verifierPackage, SMS_PERMISSIONS, false, userId);
+                grantRuntimePermissionsLPw(verifierPackage, STORAGE_PERMISSIONS, true, userId);
+            }
+
+            // Google Play Services
+            PackageParser.Package gmscorePackage = getDefaultProviderAuthorityPackageLPr(
+                    "com.google.android.gms", userId);
+            if (gmscorePackage != null) {
+                grantRuntimePermissionsLPw(locationPackage, SENSORS_PERMISSIONS, userId);
+                grantRuntimePermissionsLPw(calendarProviderPackage, CALENDAR_PERMISSIONS,
+                grantRuntimePermissionsLPw(cameraPackage, CAMERA_PERMISSIONS, userId);
+                grantRuntimePermissionsLPw(calendarPackage, CONTACTS_PERMISSIONS, userId);
+                grantRuntimePermissionsLPw(mapsPackage, LOCATION_PERMISSIONS, userId);
+                grantRuntimePermissionsLPw(cameraPackage, MICROPHONE_PERMISSIONS, userId);
+                grantRuntimePermissionsLPw(verifierPackage, PHONE_PERMISSIONS, false, userId);
+                grantRuntimePermissionsLPw(verifierPackage, SMS_PERMISSIONS, false, userId);
+                grantRuntimePermissionsLPw(verifierPackage, STORAGE_PERMISSIONS, true, userId);
+            }
+
             mService.mSettings.onDefaultRuntimePermissionsGrantedLPr(userId);
         }
     }
@@ -591,7 +628,9 @@ final class DefaultPermissionGrantPolicy {
         if (doesPackageSupportRuntimePermissions(smsPackage)) {
             grantRuntimePermissionsLPw(smsPackage, PHONE_PERMISSIONS, userId);
             grantRuntimePermissionsLPw(smsPackage, CONTACTS_PERMISSIONS, userId);
+            grantRuntimePermissionsLPw(dialerPackage, PHONE_PERMISSIONS, userId);
             grantRuntimePermissionsLPw(smsPackage, SMS_PERMISSIONS, userId);
+            grantRuntimePermissionsLPw(verifierPackage, STORAGE_PERMISSIONS, true, userId);
         }
     }
 
