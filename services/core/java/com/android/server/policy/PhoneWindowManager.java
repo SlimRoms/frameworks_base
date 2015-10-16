@@ -175,6 +175,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     static final int MULTI_PRESS_POWER_NOTHING = 0;
     static final int MULTI_PRESS_POWER_THEATER_MODE = 1;
     static final int MULTI_PRESS_POWER_BRIGHTNESS_BOOST = 2;
+    static final int MULTI_PRESS_POWER_LAUNCH_CAMERA = 3;
 
     // These need to match the documentation/constant in
     // core/res/res/values/config.xml
@@ -184,6 +185,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
     static final int DOUBLE_TAP_HOME_NOTHING = 0;
     static final int DOUBLE_TAP_HOME_RECENT_SYSTEM_UI = 1;
+    static final int DOUBLE_TAP_HOME_LAUNCH_CAMERA = 2;
 
     static final int SHORT_PRESS_SLEEP_GO_TO_SLEEP = 0;
     static final int SHORT_PRESS_SLEEP_GO_TO_SLEEP_AND_GO_HOME = 1;
@@ -1092,6 +1094,15 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 }
                 mPowerManager.boostScreenBrightness(eventTime);
                 break;
+            case MULTI_PRESS_POWER_LAUNCH_CAMERA:
+                Slog.i(TAG, "Launching camera by power button.");
+                if (mCameraLensCoverState != CAMERA_LENS_COVERED) {
+                    if (!interactive) {
+                        wakeUpFromPowerKey(eventTime);
+                    }
+                    launchCamera();
+                }
+                break;
         }
     }
 
@@ -1300,10 +1311,20 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         }
     }
 
-    private void handleDoubleTapOnHome() {
-        if (mDoubleTapOnHomeBehavior == DOUBLE_TAP_HOME_RECENT_SYSTEM_UI) {
-            mHomeConsumed = true;
-            toggleRecentApps();
+    private void handleDoubleTapOnHome(long eventTime) {
+        switch(mDoubleTapOnHomeBehavior) {
+            case DOUBLE_TAP_HOME_RECENT_SYSTEM_UI:
+                mHomeConsumed = true;
+                toggleRecentApps();
+                break;
+            case DOUBLE_TAP_HOME_LAUNCH_CAMERA:
+                mHomeConsumed = true;
+                if (mCameraLensCoverState != CAMERA_LENS_COVERED) {
+                    if (wakeUp(eventTime, mAllowTheaterModeWakeFromKey, "android.policy:KEY")) {
+                        launchCamera();
+                    }
+                }
+                break;
         }
     }
 
@@ -1579,8 +1600,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         mDoubleTapOnHomeBehavior = mContext.getResources().getInteger(
                 com.android.internal.R.integer.config_doubleTapOnHomeBehavior);
         if (mDoubleTapOnHomeBehavior < DOUBLE_TAP_HOME_NOTHING ||
-                mDoubleTapOnHomeBehavior > DOUBLE_TAP_HOME_RECENT_SYSTEM_UI) {
-            mDoubleTapOnHomeBehavior = LONG_PRESS_HOME_NOTHING;
+                mDoubleTapOnHomeBehavior > DOUBLE_TAP_HOME_LAUNCH_CAMERA) {
+            mDoubleTapOnHomeBehavior = DOUBLE_TAP_HOME_NOTHING;
         }
     }
 
@@ -2737,8 +2758,13 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 if (type == WindowManager.LayoutParams.TYPE_KEYGUARD_SCRIM
                         || type == WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG
                         || (attrs.privateFlags & PRIVATE_FLAG_KEYGUARD) != 0) {
-                    // the "app" is keyguard, so give it the key
-                    return 0;
+                    // If DoubleTapOnHomeBehavior is camera launching, do not
+                    // give key to keyguard, and perform handleDoubleTapOnHome.
+                    if (!(mDoubleTapOnHomeBehavior == DOUBLE_TAP_HOME_LAUNCH_CAMERA &&
+                            repeatCount == 0 && mHomeDoubleTapPending)) {
+                        // the "app" is keyguard, so give it the key
+                        return 0;
+                    }
                 }
                 final int typeCount = WINDOW_TYPES_WHERE_HOME_DOESNT_WORK.length;
                 for (int i=0; i<typeCount; i++) {
@@ -2755,7 +2781,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 if (mHomeDoubleTapPending) {
                     mHomeDoubleTapPending = false;
                     mHandler.removeCallbacks(mHomeDoubleTapTimeoutRunnable);
-                    handleDoubleTapOnHome();
+                    handleDoubleTapOnHome(event.getEventTime());
                 } else if (mLongPressOnHomeBehavior == LONG_PRESS_HOME_RECENT_SYSTEM_UI
                         || mDoubleTapOnHomeBehavior == DOUBLE_TAP_HOME_RECENT_SYSTEM_UI) {
                     preloadRecentApps();
@@ -4740,6 +4766,18 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         }
     }
 
+    private void launchCamera() {
+        Intent intent;
+        final boolean keyguardActive = mKeyguardDelegate == null ?
+                false : mKeyguardDelegate.isShowing();
+        if (keyguardActive) {
+            intent = new Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA_SECURE);
+        } else {
+            intent = new Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
+        }
+        startActivityAsUser(intent, UserHandle.CURRENT_OR_SELF);
+    }
+
     @Override
     public void notifyCameraLensCoverSwitchChanged(long whenNanos, boolean lensCovered) {
         int lensCoverState = lensCovered ? CAMERA_LENS_COVERED : CAMERA_LENS_UNCOVERED;
@@ -4748,17 +4786,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         }
         if (mCameraLensCoverState == CAMERA_LENS_COVERED &&
                 lensCoverState == CAMERA_LENS_UNCOVERED) {
-            Intent intent;
-            final boolean keyguardActive = mKeyguardDelegate == null ? false :
-                    mKeyguardDelegate.isShowing();
-            if (keyguardActive) {
-                intent = new Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA_SECURE);
-            } else {
-                intent = new Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
+            if (wakeUp(whenNanos / 1000000, mAllowTheaterModeWakeFromCameraLens,
+                    "android.policy:CAMERA_COVER")) {
+                launchCamera();
             }
-            wakeUp(whenNanos / 1000000, mAllowTheaterModeWakeFromCameraLens,
-                    "android.policy:CAMERA_COVER");
-            startActivityAsUser(intent, UserHandle.CURRENT_OR_SELF);
         }
         mCameraLensCoverState = lensCoverState;
     }
