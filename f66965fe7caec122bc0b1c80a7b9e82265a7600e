@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a486d77_862b0c94",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/StatusBarWindowManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2015-10-26T14:11:33Z",
+      "side": 1,
+      "message": "import android.view.Display;",
+      "revId": "f66965fe7caec122bc0b1c80a7b9e82265a7600e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a486d77_66181085",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/StatusBarWindowManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2015-10-26T14:11:33Z",
+      "side": 1,
+      "message": "if (mKeyguardScreenRotation \u0026\u0026 (Display.getState() !\u003d Display.STATE_DOZE || Display.getState() !\u003d Display.STATE_DOZE_SUSPEND)) {",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 42
+      },
+      "revId": "f66965fe7caec122bc0b1c80a7b9e82265a7600e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
