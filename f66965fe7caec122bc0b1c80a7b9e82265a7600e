@@ -19,6 +19,29 @@
     },
     {
       "key": {
+        "uuid": "1a486d77_8602ec09",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/StatusBarWindowManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2015-10-27T00:20:31Z",
+      "side": 1,
+      "message": "To long",
+      "range": {
+        "startLine": 58,
+        "startChar": 8,
+        "endLine": 61,
+        "endChar": 106
+      },
+      "revId": "f66965fe7caec122bc0b1c80a7b9e82265a7600e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a486d77_66181085",
         "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/StatusBarWindowManager.java",
         "patchSetId": 5
