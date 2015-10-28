@@ -47,6 +47,7 @@ import android.view.WindowManagerPolicyControl;
 import android.widget.Toast;
 
 import com.android.internal.statusbar.IStatusBarService;
+import com.android.internal.util.slim.TaskerIntent;
 
 import java.net.URISyntaxException;
 
@@ -371,6 +372,21 @@ public class Action {
                 try {
                     barService.toggleScreenshot();
                 } catch (RemoteException e) {}
+                return;
+            } else if (action.startsWith(ActionConstants.ACTION_TASKER)) {
+                // we should start a tasker intent with action text minus ACTION_TASKER prefix
+                final TaskerIntent.Status taskerStatus = TaskerIntent.testStatus(context);
+	        if (taskerStatus.equals(TaskerIntent.Status.OK)) {
+                    final String taskerAction =
+                        action.replace(ActionConstants.ACTION_TASKER, "");
+                    final TaskerIntent intent = new TaskerIntent(taskerAction);
+                    context.sendBroadcast(intent);
+                } else {
+                    // show error toast
+                    Toast.makeText(mContext,
+                        TaskerIntent.getStatusStringRes(taskerStatus),
+                        Toast.LENGTH_LONG).show();
+                }
                 return;
             } else {
                 // we must have a custom uri

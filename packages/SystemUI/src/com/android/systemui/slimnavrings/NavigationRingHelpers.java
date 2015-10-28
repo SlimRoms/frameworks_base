@@ -36,6 +36,7 @@ import java.net.URISyntaxException;
 
 import static com.android.internal.util.slim.ActionConstants.*;
 import com.android.internal.util.slim.ActionHelper;
+import com.android.internal.util.slim.TaskerIntent;
 
 public class NavigationRingHelpers {
     public static final int MAX_ACTIONS = 3;
@@ -65,6 +66,7 @@ public class NavigationRingHelpers {
 
         filterAction(result, ACTION_ASSIST, isAssistantAvailable(context));
         filterAction(result, ACTION_TORCH, isTorchAvailable(context));
+        filterAction(result, ACTION_TASKER, isTaskerAvailable(context));
 
         return result;
     }
@@ -96,6 +98,11 @@ public class NavigationRingHelpers {
     public static boolean isTorchAvailable(Context context) {
         TorchManager torchManager = (TorchManager) context.getSystemService(Context.TORCH_SERVICE);
         return torchManager.isTorchSupported();
+    }
+
+    public static boolean isTaskerAvailable(Context context) {
+        final TaskerIntent.Status taskerStatus = TaskerIntent.testStatus(context);
+        return taskerStatus.equals(TaskerIntent.Status.OK);
     }
 
     public static Drawable getTargetDrawable(Context context, String action) {

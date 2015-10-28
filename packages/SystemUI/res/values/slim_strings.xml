@@ -149,4 +149,7 @@
     <!-- No interuptions except alarms -->
     <string name="zen_no_interruptions_but_alarm">No interruptions. Except alarms.</string>
 
+    <!-- Tasker integration strings -->
+    <string name="tasker_no_tasks_found">No tasks found</string>
+
 </resources>

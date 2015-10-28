@@ -60,6 +60,7 @@ import java.util.List;
 
 import static com.android.internal.util.slim.ActionConstants.ACTION_ASSIST;
 import static com.android.internal.util.slim.ActionConstants.ACTION_NULL;
+import static com.android.internal.util.slim.ActionConstants.ACTION_TASKER;
 import static com.android.systemui.slimnavrings.NavigationRingConstants.BROADCAST;
 
 public class SearchPanelView extends FrameLayout implements StatusBarPanel,
@@ -420,6 +421,16 @@ public class SearchPanelView extends FrameLayout implements StatusBarPanel,
             int index = mTargetViews.indexOf(mSelectedView);
             Settings.Secure.putString(mContext.getContentResolver(),
                     Settings.Secure.NAVIGATION_RING_TARGETS[index], uri);
+        }
+    }
+
+    @Override
+    public void taskPicked(String taskName) {
+        if (taskName != null) {
+            final int index = mTargetViews.indexOf(mSelectedView);
+            final String taskToSave = ACTION_TASKER + taskName;
+            Settings.Secure.putString(mContext.getContentResolver(),
+                    Settings.Secure.NAVIGATION_RING_TARGETS[index], taskToSave);
         }
     }
 

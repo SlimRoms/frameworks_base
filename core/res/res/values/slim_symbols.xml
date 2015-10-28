@@ -177,4 +177,9 @@
   <!-- PlatLogo -->
   <java-symbol type="drawable" name="slim_platlogo" />
 
+  <!-- Tasker integration strings -->
+  <java-symbol type="string" name="tasker_not_installed" />
+  <java-symbol type="string" name="tasker_not_enabled" />
+  <java-symbol type="string" name="tasker_no_external_access" />
+
 </resources>

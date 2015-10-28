@@ -19,6 +19,7 @@
     android:layout_height="wrap_content"
     android:minHeight="?android:attr/listPreferredItemHeightSmall"
     android:textAppearance="?android:attr/textAppearanceMedium"
+    android:id="@+id/tvPickItem"
     android:gravity="center_vertical"
     android:drawablePadding="8dip"
     android:paddingStart="11dip"

@@ -138,6 +138,9 @@
     <!-- LiveDisplay -->
     <uses-permission android:name="android.permission.HARDWARE_ABSTRACTION_ACCESS" />
 
+    <!-- Tasker integration -->
+    <uses-permission android:name="net.dinglisch.android.tasker.PERMISSION_RUN_TASKS" />
+
     <application
         android:name=".SystemUIApplication"
         android:persistent="true"

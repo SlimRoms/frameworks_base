@@ -33,6 +33,10 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.database.Cursor;
+import android.widget.ArrayAdapter;
+import android.net.Uri;
+import android.widget.Toast;
 
 import com.android.systemui.R;
 
@@ -43,11 +47,13 @@ import java.util.List;
 import static com.android.internal.util.slim.ActionConstants.*;
 import com.android.internal.util.slim.DeviceUtils;
 import com.android.internal.util.slim.DeviceUtils.FilteredDeviceFeaturesArray;
+import com.android.internal.util.slim.TaskerIntent;
 
 public class ShortcutPickHelper {
     private static final String SETTINGS_METADATA_NAME = "com.android.settings";
     private final Context mContext;
     private final AppPickAdapter mAdapter;
+    private TaskerPickAdapter mTaskerAdapter = null;
     private final Intent mBaseIntent;
     private final int mIconSize;
     private OnPickListener mListener;
@@ -56,6 +62,7 @@ public class ShortcutPickHelper {
 
     public interface OnPickListener {
         void shortcutPicked(String uri);
+        void taskPicked(String taskName);
     }
 
     public ShortcutPickHelper(Context context, OnPickListener listener) {
@@ -64,6 +71,8 @@ public class ShortcutPickHelper {
         mBaseIntent = new Intent(Intent.ACTION_MAIN);
         mBaseIntent.addCategory(Intent.CATEGORY_LAUNCHER);
         mAdapter = new AppPickAdapter();
+        mTaskerAdapter = new TaskerPickAdapter(mContext, R.layout.pick_item,
+            R.id.tvPickItem, new ArrayList<String>());
         mListener = listener;
         mIconSize = context.getResources().getDimensionPixelSize(android.R.dimen.app_icon_size);
         createActionList();
@@ -110,6 +119,14 @@ public class ShortcutPickHelper {
         }
     }
 
+    private class TaskerPickAdapter extends ArrayAdapter<String> {
+
+        TaskerPickAdapter(Context context, int layout, int textViewResId,
+            List<String> items) {
+            super(context, layout, textViewResId, items);
+        }
+    }
+
     private void pickApp() {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext)
                 .setTitle(R.string.navbar_dialog_title)
@@ -138,6 +155,56 @@ public class ShortcutPickHelper {
         dialog.show();
     }
 
+    private void pickTasker()
+    {
+        mTaskerAdapter.clear();
+        final TaskerIntent.Status taskerStatus = TaskerIntent.testStatus(mContext);
+        if (taskerStatus.equals(TaskerIntent.Status.OK)) {
+            final Cursor cursor = mContext.getContentResolver()
+                .query(Uri.parse(TaskerIntent.TASKER_TASKS_URI), null, null, null, null);
+            if (cursor != null) {
+                final int index = cursor.getColumnIndex(TaskerIntent.COLUMN_NAME);
+                while (cursor.moveToNext()) {
+                    mTaskerAdapter.add(cursor.getString(index));
+                }
+                cursor.close();
+            }
+        } else {
+            Toast.makeText(mContext,
+                TaskerIntent.getStatusStringRes(taskerStatus),
+                Toast.LENGTH_LONG).show();
+            return;
+        }
+        mTaskerAdapter.notifyDataSetChanged();
+        if (mTaskerAdapter.getCount() > 0) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(mContext)
+                .setTitle(R.string.navbar_dialog_title)
+                .setAdapter(mTaskerAdapter, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mListener.taskPicked(mTaskerAdapter.getItem(which));
+                        dialog.dismiss();
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        mListener.taskPicked(null);
+                        dialog.cancel();
+                    }
+                });
+
+            Dialog dialog = builder.create();
+            dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_NAVIGATION_BAR_PANEL);
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.show();
+        } else {
+            Toast.makeText(mContext,
+                R.string.tasker_no_tasks_found,
+                Toast.LENGTH_LONG).show();
+        }
+    }
+
     public void pickShortcut(boolean showNone) {
         if (showNone) {
             mActions.addAction(ACTION_NULL, R.string.navring_action_none, 0);
@@ -152,6 +219,9 @@ public class ShortcutPickHelper {
                         String item = mActions.getAction(which);
                         if (item.equals(ACTION_APP)) {
                             pickApp();
+                            dialog.dismiss();
+                        } else if (item.equals(ACTION_TASKER)) {
+                            pickTasker();
                             dialog.dismiss();
                         } else {
                             mListener.shortcutPicked(item);
