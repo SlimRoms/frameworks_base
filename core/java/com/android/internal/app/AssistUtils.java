@@ -29,6 +29,7 @@ import android.os.ServiceManager;
 import android.provider.Settings;
 import android.util.Log;
 
+
 /**
  * Utility method for dealing with the assistant aspects of
  * {@link com.android.internal.app.IVoiceInteractionManagerService IVoiceInteractionManagerService}.
