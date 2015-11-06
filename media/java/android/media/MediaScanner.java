@@ -1041,6 +1041,7 @@ public class MediaScanner
                 // Set the setting to the given URI
                 Settings.System.putString(cr, settingName,
                         ContentUris.withAppendedId(uri, rowId).toString());
+                Settings.System.putInt(cr, settingSetIndicatorName(settingName), 1);
             }
             Settings.System.putInt(cr, settingSetIndicatorName(settingName), 1);
         }
