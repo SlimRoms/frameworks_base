@@ -149,11 +149,7 @@ static void nativeSendPowerHint(JNIEnv *env, jclass clazz, jint hintId, jint dat
     int data_param = data;
 
     if (gPowerModule && gPowerModule->powerHint) {
-        if(data)
-            gPowerModule->powerHint(gPowerModule, (power_hint_t)hintId, &data_param);
-        else {
-            gPowerModule->powerHint(gPowerModule, (power_hint_t)hintId, NULL);
-        }
+        gPowerModule->powerHint(gPowerModule, (power_hint_t)hintId, &data_param);
     }
 }
 
