@@ -225,6 +225,12 @@
         <item name="android:colorControlActivated">@color/system_accent_color</item>
     </style>
 
+    <style name="TextAppearance.StatusBar.PhoneTicker"
+        parent="@*android:style/TextAppearance.StatusBar.Ticker">
+        <!-- Note: must be dp to fit in status bar -->
+        <item name="android:textSize">14dp</item>
+    </style>
+
     <style name="Theme.SystemUI.Dialog" parent="@android:style/Theme.DeviceDefault.Light.Dialog">
         <item name="android:colorPrimary">@color/system_primary_color</item>
         <item name="android:colorControlActivated">@color/system_accent_color</item>
