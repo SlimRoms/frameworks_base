@@ -1831,8 +1831,10 @@ public abstract class BaseStatusBar extends SystemUI implements
         setShowLockscreenNotifications(show && allowedByDpm);
     }
 
+    protected abstract void haltTicker();
     protected abstract void setAreThereNotifications();
     protected abstract void updateNotifications();
+    protected abstract void tick(StatusBarNotification n, boolean firstTime);
     public abstract boolean shouldDisableNavbarGestures();
 
     public abstract void addNotification(StatusBarNotification notification,
@@ -1912,8 +1914,11 @@ public abstract class BaseStatusBar extends SystemUI implements
             // Is this for you?
             boolean isForCurrentUser = isNotificationForCurrentProfiles(notification);
             Log.d(TAG, "notification is " + (isForCurrentUser ? "" : "not ") + "for you");
+        // Restart the ticker if it's still running
+        if (updateTicker && isForCurrentUser) {
+            haltTicker();
+            tick(notification, false);
         }
-
         setAreThereNotifications();
     }
 
@@ -1985,6 +1990,9 @@ public abstract class BaseStatusBar extends SystemUI implements
                         && oldPublicContentView.getLayoutId() == publicContentView.getLayoutId());
         return contentsUnchanged && bigContentsUnchanged && headsUpContentsUnchanged
                 && publicUnchanged;
+        boolean updateTicker = n.tickerText != null
+                && !TextUtils.equals(n.tickerText,
+                oldEntry.notification.getNotification().tickerText);
     }
 
     private void updateNotificationViews(Entry entry, StatusBarNotification notification) {
