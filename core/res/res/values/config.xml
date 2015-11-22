@@ -2637,4 +2637,8 @@
     <bool name="config_regional_hotspot_show_broadcast_ssid_checkbox">false</bool>
     <bool name="config_regional_hotspot_show_notification_when_turn_on">false</bool>
     <bool name="config_passpoint_setting_on">false</bool>
+
+    <!-- Older rotation sensors are not setting event.timestamp correctly. Setting to
+         true will use SystemClock.elapsedRealtimeNanos() to set timestamp. -->
+    <bool name="config_useSystemClockforRotationSensor">false</bool>
 </resources>
