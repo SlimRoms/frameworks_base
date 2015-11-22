@@ -2421,4 +2421,6 @@
   <!-- Config.xml entries -->
   <java-symbol type="bool" name="config_samsung_stk" />
 
+  <!--Set timestamp for older devices-->
+  <java-symbol type="bool" name="config_useSystemClockforSensors" />
 </resources>
