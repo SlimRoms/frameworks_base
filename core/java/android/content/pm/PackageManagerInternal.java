@@ -160,4 +160,12 @@ public abstract class PackageManagerInternal {
      * Whether a package's data be cleared.
      */
     public abstract boolean canPackageBeWiped(int userId, String packageName);
+
+    /**
+     * Get all overlay packages for a user.
+     * @param userId The user for which to get the overlays.
+     * @return A list of overlay packages. An empty list is returned if the
+     *         user has no installed overlay packages.
+     */
+    public abstract List<PackageInfo> getOverlayPackages(int userId);
 }

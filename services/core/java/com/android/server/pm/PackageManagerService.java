@@ -21060,6 +21060,25 @@ Slog.v(TAG, ":: stepped forward, applying functor at tag " + parser.getName());
             return mProtectedPackages.canPackageBeWiped(userId,
                     packageName);
         }
+
+        public List<PackageInfo> getOverlayPackages(int userId) {
+            final ArrayList<PackageInfo> overlayPackages = new ArrayList<PackageInfo>();
+
+            enforceCrossUserPermission(Binder.getCallingUid(), userId, true, false, "get overlay packages");
+
+            // reader
+            synchronized (mPackages) {
+                for (PackageParser.Package p : mPackages.values()) {
+                    if (p.mOverlayTarget != null) {
+                        PackageInfo pkg = generatePackageInfo((PackageSetting)p.mExtras, 0, userId);
+                        if (pkg != null) {
+                            overlayPackages.add(pkg);
+                        }
+                    }
+                }
+            }
+            return overlayPackages;
+        }
     }
 
     @Override
