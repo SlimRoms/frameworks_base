@@ -1582,6 +1582,8 @@ public:
     status_t add(ResTable* src, bool isSystemAsset=false);
     status_t addEmpty(const int32_t cookie=-1);
 
+    status_t remove(const int32_t cookie);
+
     status_t getError() const;
 
     void uninit();

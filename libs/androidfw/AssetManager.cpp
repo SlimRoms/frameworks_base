@@ -357,6 +357,26 @@ String8 AssetManager::getAssetPath(const int32_t cookie) const
     return mAssetPaths.itemAt(index).path;
 }
 
+bool AssetManager::removeAsset(const int32_t cookie)
+{
+    ResTable* res = mResources;
+    if (!res) {
+        return false;
+    }
+
+    AutoMutex _l(mLock);
+
+    const ssize_t index = mAssetPaths.cookieToIndex(cookie);
+    if (index < 0) {
+        return false;
+    }
+    if (res->remove(cookie) != NO_ERROR) {
+        return false;
+    }
+    mAssetPaths.removeAt(index);
+    return true;
+}
+
 /*
  * Set the current locale.  Use NULL to indicate no locale.
  *

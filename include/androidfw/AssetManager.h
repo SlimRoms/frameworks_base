@@ -130,6 +130,8 @@ public:
      */
     String8 getAssetPath(const int32_t cookie) const;
 
+    bool removeAsset(const int32_t cookie);
+
     /*
      * Set the current locale and vendor.  The locale can change during
      * the lifetime of an AssetManager if the user updates the device's
@@ -396,6 +398,11 @@ private:
             inline const asset_path& itemAt(size_t index) const
             {
                 return mAssetPaths.itemAt(index);
+            }
+
+            inline ssize_t removeAt(size_t index)
+            {
+                return mAssetPaths.removeAt(index);
             }
 
             ssize_t add(const asset_path& ap, int32_t *cookie);

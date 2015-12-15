@@ -571,6 +571,16 @@ static jint android_content_AssetManager_addOverlayPath(JNIEnv* env, jobject cla
     return (res) ? (jint)cookie : 0;
 }
 
+static jboolean android_content_AssetManager_removeAsset(JNIEnv* env, jobject clazz,
+                                                         jint cookie)
+{
+    AssetManager* am = assetManagerForJavaObject(env, clazz);
+    if (am == NULL) {
+        return 0;
+    }
+    return am->removeAsset(static_cast<int32_t>(cookie));
+}
+
 static jboolean android_content_AssetManager_isUpToDate(JNIEnv* env, jobject clazz)
 {
     AssetManager* am = assetManagerForJavaObject(env, clazz);
@@ -2187,6 +2197,8 @@ static const JNINativeMethod gAssetManagerMethods[] = {
         (void*) android_content_AssetManager_addAssetPath },
     { "addOverlayPathNative",   "(Ljava/lang/String;)I",
         (void*) android_content_AssetManager_addOverlayPath },
+    { "removeAssetNative",   "(I)Z",
+        (void*) android_content_AssetManager_removeAsset },
     { "isUpToDate",     "()Z",
         (void*) android_content_AssetManager_isUpToDate },
 

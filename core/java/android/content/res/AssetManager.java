@@ -667,6 +667,22 @@ public final class AssetManager implements AutoCloseable {
 
     private native final int addAssetPathNative(String path, boolean appAsLib);
 
+    /**
+     * {@hide}
+     */
+    public final boolean removeAsset(int cookie) {
+        synchronized (this) {
+            boolean res = removeAssetNative(cookie);
+            makeStringBlocks(mStringBlocks);
+            return res;
+        }
+    }
+
+    /**
+     * {@hide}
+     */
+    public native final boolean removeAssetNative(int cookie);
+
      /**
      * Add a set of assets to overlay an already added set of assets.
      *
