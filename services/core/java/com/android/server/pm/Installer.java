@@ -129,7 +129,12 @@ public final class Installer extends SystemService {
             return Long.parseLong(res[1]);
         } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
             throw new InstallerException("Invalid inode result: " + Arrays.toString(res));
-        }
+
+    public int removeIdmap(String overlayApkPath) {
+        StringBuilder builder = new StringBuilder("rmidmap");
+        builder.append(' ');
+        builder.append(overlayApkPath);
+        return mInstaller.execute(builder.toString());
     }
 
     public void dexopt(String apkPath, int uid, String instructionSet, int dexoptNeeded,

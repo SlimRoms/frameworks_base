@@ -1811,12 +1811,17 @@ public class PackageParser {
                     mParseError = PackageManager.INSTALL_PARSE_FAILED_MANIFEST_MALFORMED;
                     return null;
                 }
-                if (pkg.mOverlayPriority < 0 || pkg.mOverlayPriority > 9999) {
-                    outError[0] = "<overlay> priority must be between 0 and 9999";
-                    mParseError =
-                        PackageManager.INSTALL_PARSE_FAILED_MANIFEST_MALFORMED;
+
+                if (pkg.mOverlayPriority != -1 && !trustedOverlay) {
+                    Slog.w(TAG, "overlay package " + pkg.packageName + " installed in " +
+                            "unreliable location, priority will be ignored");
+                    pkg.mOverlayPriority = -1;
+                } else if (pkg.mOverlayPriority == -1 && trustedOverlay) {
+                    outError[0] = "Trusted overlay requires a priority attribute";
+                    mParseError = PackageManager.INSTALL_PARSE_FAILED_MANIFEST_MALFORMED;
                     return null;
                 }
+
                 XmlUtils.skipCurrentTag(parser);
 
             } else if (tagName.equals(TAG_KEY_SETS)) {
