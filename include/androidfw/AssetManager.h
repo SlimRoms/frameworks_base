@@ -30,6 +30,11 @@
 #include <utils/threads.h>
 #include <utils/Vector.h>
 
+#include <stdint.h> // INT32_MAX
+#ifndef INT32_MAX
+#define INT32_MAX ((int32_t)(0x7FFFFFFF))
+#endif
+
 /*
  * Native-app access is via the opaque typedef struct AAssetManager in the C namespace.
  */
@@ -238,13 +243,16 @@ public:
 private:
     struct asset_path
     {
-        asset_path() : path(""), type(kFileTypeRegular), idmap(""),
-                       isSystemOverlay(false), isSystemAsset(false) {}
+        asset_path() :
+            path(""), type(kFileTypeRegular), targetPath(""), idmap(""),
+            isSystemOverlay(false), isSystemAsset(false), cookie(-1) {}
         String8 path;
         FileType type;
+        String8 targetPath;
         String8 idmap;
         bool isSystemOverlay;
         bool isSystemAsset;
+        int32_t cookie;
     };
 
     Asset* openInPathLocked(const char* fileName, AccessMode mode,
@@ -289,7 +297,7 @@ private:
     Asset* openIdmapLocked(const struct asset_path& ap) const;
 
     void addSystemOverlays(const char* pathOverlaysList, const String8& targetPackagePath,
-            ResTable* sharedRes, size_t offset) const;
+            ResTable* sharedRes) const;
 
     class SharedZip : public RefBase {
     public:
@@ -368,12 +376,43 @@ private:
         mutable Vector<sp<SharedZip> > mZipFile;
     };
 
+    class AssetPaths {
+        public:
+            enum {
+                // The old index-based implementation used cookie values close to zero.
+                // Switch to a completely different range of expected values to
+                // smoke out any uses of the old implementation.
+                FIRST_VALID_COOKIE = 1234,
+                NO_SUCH_COOKIE = INT32_MAX
+            };
+
+            AssetPaths() : mNextCookie(FIRST_VALID_COOKIE) {}
+
+            inline size_t size() const
+            {
+                return mAssetPaths.size();
+            }
+
+            inline const asset_path& itemAt(size_t index) const
+            {
+                return mAssetPaths.itemAt(index);
+            }
+
+            ssize_t add(const asset_path& ap, int32_t *cookie);
+            int32_t nextCookie(const int32_t cookie) const;
+            ssize_t cookieToIndex(const int32_t cookie) const;
+
+        private:
+            int32_t mNextCookie;
+            Vector<asset_path> mAssetPaths;
+    };
+
     // Protect all internal state.
     mutable Mutex   mLock;
 
     ZipSet          mZipSet;
 
-    Vector<asset_path> mAssetPaths;
+    AssetPaths      mAssetPaths;
     char*           mLocale;
     char*           mVendor;
 

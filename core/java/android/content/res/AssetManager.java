@@ -302,8 +302,8 @@ public final class AssetManager implements AutoCloseable {
     }
 
     /*package*/ final CharSequence getPooledStringForCookie(int cookie, int id) {
-        // Cookies map to string blocks starting at 1.
-        return mStringBlocks[cookie - 1].get(id);
+        final int index = cookieToIndex(cookie);
+        return mStringBlocks[index].get(id);
     }
 
     /**
@@ -860,6 +860,8 @@ public final class AssetManager implements AutoCloseable {
 
     private native final void init(boolean isSystem);
     private native final void destroy();
+
+    private native final int cookieToIndex(int cookie);
 
     private final void incRefsLocked(long id) {
         if (DEBUG_REFS) {

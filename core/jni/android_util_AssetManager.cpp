@@ -1031,6 +1031,20 @@ static jobject android_content_AssetManager_getAssignedPackageIdentifiers(JNIEnv
     return sparseArray;
 }
 
+static jint android_content_AssetManager_cookieToIndex(JNIEnv* env, jobject clazz, jint cookie)
+{
+    AssetManager* am = assetManagerForJavaObject(env, clazz);
+    if (am == NULL) {
+        return -1;
+    }
+    const ResTable& res = am->getResources();
+    ssize_t index = res.cookieToHeaderIndex(static_cast<int32_t>(cookie));
+    if (index < 0) {
+        jniThrowException(env, "java/lang/IllegalArgumentException", "Unknown cookie");
+    }
+    return index;
+}
+
 static jlong android_content_AssetManager_newTheme(JNIEnv* env, jobject clazz)
 {
     AssetManager* am = assetManagerForJavaObject(env, clazz);
@@ -2207,6 +2221,8 @@ static const JNINativeMethod gAssetManagerMethods[] = {
         (void*) android_content_AssetManager_getCookieName },
     { "getAssignedPackageIdentifiers","()Landroid/util/SparseArray;",
         (void*) android_content_AssetManager_getAssignedPackageIdentifiers },
+    { "cookieToIndex","(I)I",
+        (void*) android_content_AssetManager_cookieToIndex },
 
     // Themes.
     { "newTheme", "()J",
