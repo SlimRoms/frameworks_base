@@ -19,6 +19,9 @@ package com.android.systemui.statusbar.phone;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.net.Uri;
+import android.os.Handler;
+import android.provider.Settings;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -83,6 +86,7 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
     private Switch mQsDetailHeaderSwitch;
     private ImageView mQsDetailHeaderProgress;
     private TextView mEmergencyCallsOnly;
+    private BatteryMeterView mBatteryView;
     private TextView mBatteryLevel;
     private TextView mAlarmStatus;
 
@@ -127,9 +131,50 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
     private float mCurrentT;
     private boolean mShowingDetail;
     private boolean mDetailTransitioning;
+    private boolean mShowBatteryText;
+    private boolean mShowBatteryTextExpanded;
+    private boolean mShowBatteryTextCharging;
+    private boolean mBatteryIsCharging;
+    private int mBatteryChargeLevel;
+
+    public void updateBatteryIconSettings() {
+        mBatteryView.updateBatteryIconSettings();
+        updateVisibilities();
+        requestCaptureValues();
+    };
 
     public StatusBarHeaderView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        loadShowBatteryTextSetting();
+    }
+
+    private void loadShowBatteryTextSetting() {
+        int batteryText = Settings.System.getInt(getContext().getContentResolver(),
+                Settings.System.STATUS_BAR_BATTERY_PERCENT, 0);
+        int batteryStyle = Settings.System.getInt(getContext().getContentResolver(),
+                Settings.System.STATUS_BAR_BATTERY_STYLE, 0);
+        switch (batteryStyle) {
+            case 4:
+                //meterMode = BatteryMeterMode.BATTERY_METER_GONE;
+                mShowBatteryText = false;
+                mShowBatteryTextExpanded = true;
+                mShowBatteryTextCharging = true;
+                break;
+
+            case 6:
+                //meterMode = BatteryMeterMode.BATTERY_METER_TEXT;
+                mShowBatteryText = true;
+                mShowBatteryTextExpanded = true;
+                mShowBatteryTextCharging = true;
+                break;
+
+            default:
+                mShowBatteryText = (batteryText == 2);
+                // Only show when percent is not already shown inside icon
+                mShowBatteryTextExpanded = (batteryText != 1);
+                mShowBatteryTextCharging = false;
+                break;
+        }
     }
 
     @Override
@@ -155,6 +200,7 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         mQsDetailHeaderSwitch = (Switch) mQsDetailHeader.findViewById(android.R.id.toggle);
         mQsDetailHeaderProgress = (ImageView) findViewById(R.id.qs_detail_header_progress);
         mEmergencyCallsOnly = (TextView) findViewById(R.id.header_emergency_calls_only);
+        mBatteryView = (BatteryMeterView) findViewById(R.id.battery);
         mBatteryLevel = (TextView) findViewById(R.id.battery_level);
         mAlarmStatus = (TextView) findViewById(R.id.alarm_status);
         mAlarmStatus.setOnClickListener(this);
@@ -278,7 +324,7 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
 
     public void setBatteryController(BatteryController batteryController) {
         mBatteryController = batteryController;
-        ((BatteryMeterView) findViewById(R.id.battery)).setBatteryController(batteryController);
+        mBatteryView.setBatteryController(batteryController);
     }
 
     public void setNextAlarmController(NextAlarmController nextAlarmController) {
@@ -340,7 +386,11 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
             updateSignalClusterDetachment();
         }
         mEmergencyCallsOnly.setVisibility(mExpanded && mShowEmergencyCallsOnly ? VISIBLE : GONE);
-        mBatteryLevel.setVisibility(mExpanded ? View.VISIBLE : View.GONE);
+        loadShowBatteryTextSetting();
+        updateBatteryLevelText();
+        mBatteryLevel.setVisibility(
+                mExpanded ? (mShowBatteryTextExpanded ? View.VISIBLE : View.GONE)
+                          : (mShowBatteryText         ? View.VISIBLE : View.GONE));
         mSettingsContainer.findViewById(R.id.tuner_icon).setVisibility(
                 TunerService.isTunerEnabled(mContext) ? View.VISIBLE : View.INVISIBLE);
     }
@@ -407,10 +457,26 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         mAmPm.setTranslationX((rtl ? 1 : -1) * mTime.getWidth() * (1 - mTime.getScaleX()));
     }
 
+    private void updateBatteryLevelText() {
+        if (mBatteryIsCharging & mShowBatteryTextCharging) {
+            mBatteryLevel.setText(getResources().getString(
+                    R.string.battery_level_template_charging, mBatteryChargeLevel));
+        } else {
+            mBatteryLevel.setText(getResources().getString(
+                    R.string.battery_level_template, mBatteryChargeLevel));
+        }
+    }
+
+    public void updateBatteryLevel(int level, boolean charging) {
+        mBatteryIsCharging = charging;
+        mBatteryChargeLevel = level;
+        loadShowBatteryTextSetting();
+        updateBatteryLevelText();
+    }
+
     @Override
     public void onBatteryLevelChanged(int level, boolean pluggedIn, boolean charging) {
-        String percentage = NumberFormat.getPercentInstance().format((double) level / 100.0);
-        mBatteryLevel.setText(percentage);
+        updateBatteryLevel(level, charging);
     }
 
     @Override
@@ -829,4 +895,14 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
                     .start();
         }
     };
+
+    @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+    }
 }
