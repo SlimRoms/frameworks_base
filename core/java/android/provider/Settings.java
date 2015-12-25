@@ -3252,7 +3252,7 @@ public final class Settings {
          * the setting value. See an example above.
          */
 
-         /**
+        /**
          * Whether wifi settings will connect to access point automatically
          * 0 = automatically
          * 1 = manually
@@ -3312,7 +3312,9 @@ public final class Settings {
             RINGTONE,
             LOCK_TO_APP_ENABLED,
             NOTIFICATION_SOUND,
-            WIFI_AUTO_CONNECT_TYPE
+            WIFI_AUTO_CONNECT_TYPE,
+            STATUS_BAR_BATTERY_STYLE,
+            STATUS_BAR_BATTERY_PERCENT
         };
 
         /**
