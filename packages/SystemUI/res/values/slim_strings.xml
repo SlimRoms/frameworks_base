@@ -49,5 +49,10 @@
     <string name="on">On</string>
     <string name="toggle">Toggle</string>
     <string name="shortcut_toggle_title">Action to perform</string>
+    <!-- Battery level for expanded quick settings [CHAR LIMIT=2] -->
+    <string name="battery_level_template"><xliff:g id="level" example="45">%d</xliff:g>%%</string>
+
+    <!-- Battery level text while charging [CHAR LIMIT=2] -->
+    <string name="battery_level_template_charging"><xliff:g id="level" example="45">%d</xliff:g>~</string>
 
 </resources>
