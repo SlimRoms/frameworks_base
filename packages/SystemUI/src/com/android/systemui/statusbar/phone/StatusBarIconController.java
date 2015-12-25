@@ -74,6 +74,7 @@ public class StatusBarIconController implements Tunable {
     private View mNotificationIconArea;
     private ImageView mMoreIcon;
     private BatteryMeterView mBatteryMeterView;
+    private TextView mBatteryLevelText;
     private TextView mClock;
 
     private int mIconSize;
@@ -118,6 +119,7 @@ public class StatusBarIconController implements Tunable {
         mNotificationIcons.setOverflowIndicator(mMoreIcon);
         mStatusIconsKeyguard = (LinearLayout) keyguardStatusBar.findViewById(R.id.statusIcons);
         mBatteryMeterView = (BatteryMeterView) statusBar.findViewById(R.id.battery);
+        mBatteryLevelText = (TextView) statusBar.findViewById(R.id.battery_level_text);
         mClock = (TextView) statusBar.findViewById(R.id.clock);
         mLinearOutSlowIn = AnimationUtils.loadInterpolator(mContext,
                 android.R.interpolator.linear_out_slow_in);
@@ -393,6 +395,7 @@ public class StatusBarIconController implements Tunable {
         mSignalCluster.setIconTint(mIconTint, mDarkIntensity);
         mMoreIcon.setImageTintList(ColorStateList.valueOf(mIconTint));
         mBatteryMeterView.setDarkIntensity(mDarkIntensity);
+        mBatteryLevelText.setTextColor(mIconTint);
         mClock.setTextColor(mIconTint);
         applyNotificationIconsTint();
     }
