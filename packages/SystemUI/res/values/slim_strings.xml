@@ -22,4 +22,10 @@
     <!-- Screenshot -->
     <string name="shortcut_screenshot">Screenshot</string>
 
+    <!-- Battery level for expanded quick settings [CHAR LIMIT=2] -->
+    <string name="battery_level_template"><xliff:g id="level" example="45">%d</xliff:g>%%</string>
+
+    <!-- Battery level text while charging [CHAR LIMIT=2] -->
+    <string name="battery_level_template_charging"><xliff:g id="level" example="45">%d</xliff:g>~</string>
+
 </resources>
