@@ -19,17 +19,19 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="keyboardview_keycode_random">Recarregar aleatoriamente os botões</string>
+  <string name="keyboardview_keycode_random">Ponovno otvori PIN tipkovnicu</string>
   <plurals name="missed_calls">
-    <item quantity="one">%d chamada perdida</item>
-    <item quantity="other">%d chamadas perdidas</item>
+    <item quantity="one">%d propušten poziv</item>
+    <item quantity="few">%d propuštena poziva</item>
+    <item quantity="other">%d propuštenih poziva</item>
   </plurals>
   <plurals name="unread_messages">
-    <item quantity="one">%d mensagem não lida</item>
-    <item quantity="other">%d mensagens não lidas</item>
+    <item quantity="one">%d nepročitana poruka</item>
+    <item quantity="few">%d nepročitane poruke</item>
+    <item quantity="other">%d nepročitanih poruka</item>
   </plurals>
-  <string name="missed_call">Chamada perdida</string>
-  <string name="message_from">mensagem de</string>
-  <string name="message_from_person">mensagem de %1$s</string>
+  <string name="missed_call">propušten poziv</string>
+  <string name="message_from">poruka od</string>
+  <string name="message_from_person">poruka od %1$s</string>
   <string name="full_wday_month_day_no_year">EEEEMMMMd</string>
 </resources>
