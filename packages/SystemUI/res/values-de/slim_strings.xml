@@ -31,7 +31,7 @@
   <string name="off">Aus</string>
   <string name="on">An</string>
   <string name="toggle">Umschalten</string>
-  <string name="shortcut_picker">Slim-Verknüpfung</string>
+  <string name="shortcut_picker">Slim-Verknüpfungen</string>
   <string name="shortcut_immersive">Erweiterter Desktop</string>
   <string name="shortcut_quiethours">Ruhige Stunden (Zeitvorgaben werden ignoriert)</string>
   <string name="shortcut_rotation">Rotation</string>
@@ -43,8 +43,8 @@
   <string name="shortcut_screenshot">Bildschirmfoto</string>
   <string name="shortcut_volume">Lautstärke</string>
   <string name="shortcut_toggle_title">Auszuführende Aktion</string>
-  <string name="shortcut_chamber">Kammer des Schreckens</string>
-  <string name="chamber_disabled">Kammer des Schreckens geschlossen</string>
+  <string name="shortcut_chamber">Geheimkammer</string>
+  <string name="chamber_disabled">Geheimkammer geschlossen</string>
   <string name="chamber_title">\"Settings string\"-Eingabe</string>
   <string name="chamber_message">Geben Sie einen String ein, der entweder auf eine Ein-/Aus-Funktion (Checkbox) oder aber auf eine vorgegebene Liste verweist (z. B. »quiet_hours_ringer« oder ähnliches). Die Strings finden Sie in der Settings.java-Datei. WARNUNG: Dieser Vorgang ist gefährlich!</string>
   <string name="chamber_invalid">Dies ist eine ungültige Eingabe. Seien Sie vorsichtig.</string>
@@ -55,7 +55,7 @@
   <string name="chamber_int_message">Geben Sie die Werte ein, zwischen denen die Einstellung umschalten soll. Trennen Sie die Einzelwerte durch Kommas. Bei Farbeinstellungen werden hexadezimale Werte, wie #FF00aacc, oder Grundfarbwerte, wie rot, grün und gelb, akzeptiert.</string>
   <string name="chamber_name_title">Name der Verknüpfung</string>
   <string name="chamber_name_message">Geben Sie der Verknüpfung einen Namen, der mit dem Symbol angezeigt wird.</string>
-  <string name="chamber_name_toast">Standardnamen verwenden</string>
+  <string name="chamber_name_toast">Standardnamen werden verwendet</string>
   <string name="quick_settings_gps">GPS</string>
   <string name="quick_settings_gps_off">GPS aus</string>
   <string name="quick_settings_screen_sleep">Standby</string>
@@ -130,7 +130,7 @@
   <string name="pie_battery_status_charging">Laden (<xliff:g id="percent">%d</xliff:g>%%)</string>
   <string name="pie_battery_status_full">Geladen</string>
   <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% verbleibend</string>
-  <string name="pie_phone_status_no_service">Kein Service</string>
+  <string name="pie_phone_status_no_service">Kein Dienst</string>
   <string name="pie_phone_status_airplane_mode">Flugmodus an</string>
   <string name="pie_phone_status_emergency_only">Nur Notrufe</string>
   <string name="smart_pulldown_disabled">Intelligentes Aufklappen ist deaktiviert</string>

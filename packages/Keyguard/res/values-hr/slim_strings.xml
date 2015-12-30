@@ -19,5 +19,5 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="keyboardview_keycode_random">Recarregar aleatoriamente os botões</string>
+  <string name="keyboardview_keycode_random">Ponovno otvori PIN tipkovnicu</string>
 </resources>
