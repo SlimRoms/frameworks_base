@@ -42,6 +42,9 @@ public class IntentTile extends QSTile<QSTile.State> {
     private String mOnClickUri;
     private PendingIntent mOnLongClick;
     private String mOnLongClickUri;
+    private PendingIntent mOnLaunch;
+    private String mOnLaunchUri;
+
     private int mCurrentUserId;
     private String mIntentPackage;
 
@@ -71,6 +74,9 @@ public class IntentTile extends QSTile<QSTile.State> {
 
     @Override
     public void setListening(boolean listening) {
+        if (listening){
+            sendIntent("onLaunch", mOnLaunch, mOnLaunchUri);
+        }
     }
 
     @Override
@@ -150,6 +156,8 @@ public class IntentTile extends QSTile<QSTile.State> {
         mOnClickUri = intent.getStringExtra("onClickUri");
         mOnLongClick = intent.getParcelableExtra("onLongClick");
         mOnLongClickUri = intent.getStringExtra("onLongClickUri");
+        mOnLaunch = intent.getParcelableExtra("onLaunch");
+        mOnLaunchUri = intent.getStringExtra("onLaunchUri");
         mIntentPackage = intent.getStringExtra("package");
         mIntentPackage = mIntentPackage == null ? "" : mIntentPackage;
     }
