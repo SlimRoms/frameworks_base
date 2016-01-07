@@ -462,4 +462,31 @@ public class StatusBarIconController implements Tunable {
         }
         return ret;
     }
+
+    public void refreshAllStatusBarIcons() {
+        refreshAllIconsForLayout(mStatusIcons);
+        refreshAllIconsForLayout(mStatusIconsKeyguard);
+        refreshAllIconsForLayout(mNotificationIcons);
+    }
+
+    public LinearLayout getStatusIcons() {
+        return mStatusIcons;
+    }
+
+    public void cleanup() {
+        TunerService.get(mContext).removeTunable(this);
+        if (mSignalCluster != null) {
+            mSignalCluster.setSecurityController(null);
+        }
+    }
+
+    private void refreshAllIconsForLayout(LinearLayout ll) {
+        final int count = ll.getChildCount();
+        for (int n = 0; n < count; n++) {
+            View child = ll.getChildAt(n);
+            if (child instanceof StatusBarIconView) {
+                ((StatusBarIconView) child).updateDrawable();
+            }
+        }
+    }
 }
