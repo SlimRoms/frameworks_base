@@ -63,6 +63,8 @@ public class VolumeUI extends SystemUI {
 
     private VolumeDialogComponent mVolumeComponent;
 
+    private Configuration mConfiguration;
+
     @Override
     public void start() {
         mEnabled = mContext.getResources().getBoolean(R.bool.enable_volume_ui);
@@ -80,6 +82,7 @@ public class VolumeUI extends SystemUI {
                 mContext, Settings.Secure.VOLUME_CONTROLLER_SERVICE_COMPONENT,
                 new ServiceMonitorCallbacks());
         mVolumeControllerService.start();
+        mConfiguration = new Configuration(mContext.getResources().getConfiguration());
     }
 
     private VolumeComponent getVolumeComponent() {
@@ -91,6 +94,19 @@ public class VolumeUI extends SystemUI {
         super.onConfigurationChanged(newConfig);
         if (!mEnabled) return;
         getVolumeComponent().onConfigurationChanged(newConfig);
+
+        if (isThemeChange(newConfig)) {
+            mVolumeComponent.recreateDialog();
+        }
+        mConfiguration.setTo(newConfig);
+    }
+
+    private boolean isThemeChange(Configuration newConfig) {
+        if (mConfiguration != null) {
+            int changes = mConfiguration.updateFrom(newConfig);
+            return (changes) != 0;
+        }
+        return false;
     }
 
     @Override
