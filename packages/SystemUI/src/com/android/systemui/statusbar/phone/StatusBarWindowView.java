@@ -288,6 +288,20 @@ public class StatusBarWindowView extends FrameLayout {
         }
     }
 
+    public void addContent(View content) {
+        addView(content);
+        mStackScrollLayout = (NotificationStackScrollLayout) content.findViewById(
+                R.id.notification_stack_scroller);
+        mNotificationPanel = (NotificationPanelView) content.findViewById(R.id.notification_panel);
+        mDragDownHelper = new DragDownHelper(getContext(), this, mStackScrollLayout, mService);
+        mBrightnessMirror = content.findViewById(R.id.brightness_mirror);
+
+    }
+
+    public void removeContent(View content) {
+        removeView(content);
+    }
+
     public class LayoutParams extends FrameLayout.LayoutParams {
 
         public boolean ignoreRightInset;
