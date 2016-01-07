@@ -31,7 +31,7 @@
   <string name="reboot_reboot">Reiniciar</string>
   <string name="reboot_recovery">Recuperação</string>
   <string name="reboot_bootloader">Bootloader</string>
-  <string name="reboot_bootmenu">Menu de Boot</string>
+  <string name="reboot_bootmenu">Menu de Inicialização</string>
   <string name="reboot_fastboot">Fastboot</string>
   <string name="reboot_download">Download</string>
   <string name="reboot_progress">Reiniciando\u2026</string>

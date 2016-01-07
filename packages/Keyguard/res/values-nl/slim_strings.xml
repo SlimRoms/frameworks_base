@@ -19,17 +19,17 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="keyboardview_keycode_random">Recarregar aleatoriamente os botões</string>
+  <string name="keyboardview_keycode_random">Herlaad willekeurige knoppen</string>
   <plurals name="missed_calls">
-    <item quantity="one">%d chamada perdida</item>
-    <item quantity="other">%d chamadas perdidas</item>
+    <item quantity="one">%d gemiste oproep</item>
+    <item quantity="other">%d gemiste oproepen</item>
   </plurals>
   <plurals name="unread_messages">
-    <item quantity="one">%d mensagem não lida</item>
-    <item quantity="other">%d mensagens não lidas</item>
+    <item quantity="one">%d ongelezen bericht</item>
+    <item quantity="other">%d ongelezen berichten</item>
   </plurals>
-  <string name="missed_call">Chamada perdida</string>
-  <string name="message_from">mensagem de</string>
-  <string name="message_from_person">mensagem de %1$s</string>
+  <string name="missed_call">gemiste oproep</string>
+  <string name="message_from">bericht van</string>
+  <string name="message_from_person">bericht van %1$s</string>
   <string name="full_wday_month_day_no_year">EEEEMMMMd</string>
 </resources>
