@@ -143,6 +143,8 @@ class UserUsageStatsService {
             initializeDefaultsForApps(currentTimeMillis, deviceUsageTime,
                     mDatabase.isFirstUpdate());
         }
+
+        refreshAppIdleRollingWindow(currentTimeMillis);
     }
 
     /**
@@ -180,7 +182,7 @@ class UserUsageStatsService {
         persistActiveStats();
         mDatabase.onTimeChanged(newTime - oldTime);
         loadActiveStats(newTime, /* force= */ true, resetBeginIdleTime);
-        refreshAppIdleRollingWindow(newTime, deviceUsageTime);
+        refreshAppIdleRollingWindow(newTime);
     }
 
     void reportEvent(UsageEvents.Event event, long deviceUsageTime) {
@@ -477,7 +479,7 @@ class UserUsageStatsService {
         }
         persistActiveStats();
 
-        refreshAppIdleRollingWindow(currentTimeMillis, deviceUsageTime);
+        refreshAppIdleRollingWindow(currentTimeMillis);
 
         final long totalTime = SystemClock.elapsedRealtime() - startTime;
         Slog.i(TAG, mLogPrefix + "Rolling over usage stats complete. Took " + totalTime
@@ -611,6 +613,68 @@ class UserUsageStatsService {
             mAppIdleRollingWindow = new IntervalStats();
             mergePackageStats(mAppIdleRollingWindow,
                     mCurrentStats[UsageStatsManager.INTERVAL_YEARLY], deviceUsageTime);
+        } else {
+            mAppIdleRollingWindow = stats.get(0);
+        }
+    }
+
+    private static void mergePackageStats(IntervalStats dst, IntervalStats src) {
+        dst.endTime = Math.max(dst.endTime, src.endTime);
+
+        final int srcPackageCount = src.packageStats.size();
+        for (int i = 0; i < srcPackageCount; i++) {
+            final String packageName = src.packageStats.keyAt(i);
+            final UsageStats srcStats = src.packageStats.valueAt(i);
+            final UsageStats dstStats = dst.packageStats.get(packageName);
+            if (dstStats == null) {
+                dst.packageStats.put(packageName, new UsageStats(srcStats));
+            } else {
+                dstStats.add(src.packageStats.valueAt(i));
+            }
+        }
+    }
+
+    /**
+     * Merges all the stats into the first element of the resulting list.
+     */
+    private static final StatCombiner<IntervalStats> sPackageStatsMerger =
+            new StatCombiner<IntervalStats>() {
+        @Override
+        public void combine(IntervalStats stats, boolean mutable,
+                            List<IntervalStats> accumulatedResult) {
+            IntervalStats accum;
+            if (accumulatedResult.isEmpty()) {
+                accum = new IntervalStats();
+                accum.beginTime = stats.beginTime;
+                accumulatedResult.add(accum);
+            } else {
+                accum = accumulatedResult.get(0);
+            }
+
+            mergePackageStats(accum, stats);
+        }
+    };
+
+    /**
+     * App idle operates on a rolling window of time. When we roll over time, we end up with a
+     * period of time where in-memory stats are empty and we don't hit the disk for older stats
+     * for performance reasons. Suddenly all apps will become idle.
+     *
+     * Instead, at times we do a deep query to find all the apps that have run in the past few
+     * days and keep the cached data up to date.
+     *
+     * @param currentTimeMillis
+     */
+    void refreshAppIdleRollingWindow(long currentTimeMillis) {
+        // Start the rolling window for AppIdle requests.
+        List<IntervalStats> stats = mDatabase.queryUsageStats(UsageStatsManager.INTERVAL_DAILY,
+                currentTimeMillis - (1000 * 60 * 60 * 24 * 2), currentTimeMillis,
+                sPackageStatsMerger);
+
+        if (stats == null || stats.isEmpty()) {
+            mAppIdleRollingWindow = new IntervalStats();
+            mergePackageStats(mAppIdleRollingWindow,
+                    mCurrentStats[UsageStatsManager.INTERVAL_YEARLY]);
         } else {
             mAppIdleRollingWindow = stats.get(0);
         }
