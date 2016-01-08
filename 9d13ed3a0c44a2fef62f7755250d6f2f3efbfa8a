@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da7095c5_93049416",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/StatusBarIconController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1000011
+      },
+      "writtenOn": "2016-01-08T11:17:38Z",
+      "side": 1,
+      "message": "Comment out this line and clock color will stick",
+      "revId": "9d13ed3a0c44a2fef62f7755250d6f2f3efbfa8a",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
