@@ -41,6 +41,8 @@
     <color name="switch_thumb_disabled_material_dark">#ff616161</color>
     <color name="switch_thumb_disabled_material_light">#ffbdbdbd</color>
 
+    <color name="notification_action_text">@color/secondary_text_material_dark</color>
+
     <!-- Text & foreground colors -->
     <eat-comment />
 
