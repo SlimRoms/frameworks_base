@@ -225,12 +225,12 @@
         <item name="android:colorControlActivated">@color/system_accent_color</item>
     </style>
 
-    <style name="Theme.SystemUI.Dialog" parent="@android:style/Theme.DeviceDefault.Light.Dialog">
+    <style name="Theme.SystemUI.Dialog" parent="@android:style/Theme.Material.DayNight.Dialog">
         <item name="android:colorPrimary">@color/system_primary_color</item>
         <item name="android:colorControlActivated">@color/system_accent_color</item>
     </style>
 
-    <style name="Theme.SystemUI.Dialog.Alert" parent="@*android:style/Theme.DeviceDefault.Light.Dialog.Alert" />
+    <style name="Theme.SystemUI.Dialog.Alert" parent="@*android:style/Theme.Material.DayNight.Dialog.Alert" />
 
     <style name="QSBorderlessButton">
         <item name="android:padding">12dp</item>
