@@ -62,7 +62,7 @@ class VoiceInteractionManagerServiceImpl implements VoiceInteractionSessionConne
     final VoiceInteractionServiceInfo mInfo;
     final ComponentName mSessionComponentName;
     final IWindowManager mIWindowManager;
-    boolean mBound = false;
+    boolean mBound;
     IVoiceInteractionService mService;
 
     VoiceInteractionSessionConnection mActiveSession;
@@ -125,7 +125,7 @@ class VoiceInteractionManagerServiceImpl implements VoiceInteractionSessionConne
             return;
         }
         mInfo = info;
-        if (mInfo.getParseError() != null) {
+        if (mInfo.getParseError() != null || mInfo.getSessionService() == null) {
             Slog.w(TAG, "Bad voice interaction service: " + mInfo.getParseError());
             mSessionComponentName = null;
             mIWindowManager = null;
