@@ -568,8 +568,8 @@ public class UsageStatsService extends SystemService implements
             final int userCount = mUserState.size();
             for (int i = 0; i < userCount; i++) {
                 final UserUsageStatsService service = mUserState.valueAt(i);
-                service.onTimeChanged(expectedSystemTime, actualSystemTime, getScreenOnTimeLocked(),
-                        false);
+                service.onTimeChanged(expectedSystemTime, actualSystemTime, mScreenOnTime,
+                        resetBeginIdleTime);
             }
             mRealTimeSnapshot = actualRealtime;
             mSystemTimeSnapshot = actualSystemTime;
