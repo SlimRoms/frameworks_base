@@ -23,6 +23,7 @@ import android.telephony.SubscriptionInfo;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.systemui.statusbar.policy.NetworkController.IconState;
 import com.android.systemui.statusbar.policy.NetworkController.SignalCallback;
+import com.android.systemui.statusbar.policy.NetworkController.SignalCallbackExtended;
 import com.android.systemui.statusbar.policy.NetworkControllerImpl.EmergencyListener;
 
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ import java.util.List;
  * Implements network listeners and forwards the calls along onto other listeners but on
  * the current or specified Looper.
  */
-public class CallbackHandler extends Handler implements EmergencyListener, SignalCallback {
+public class CallbackHandler extends Handler implements EmergencyListener, SignalCallbackExtended {
     private static final int MSG_EMERGENCE_CHANGED           = 0;
     private static final int MSG_SUBS_CHANGED                = 1;
     private static final int MSG_NO_SIM_VISIBLE_CHANGED      = 2;
@@ -137,6 +138,34 @@ public class CallbackHandler extends Handler implements EmergencyListener, Signa
                             activityIn, activityOut, dataActivityId, mobileActivityId,
                             stackedDataIcon, stackedVoiceIcon,
                             typeContentDescription, description, isWide, subId);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void setMobileDataIndicators(final IconState statusIcon, final IconState qsIcon,
+            final int statusType, final int qsType, final boolean activityIn,
+            final boolean activityOut, final int dataActivityId, final int mobileActivityId,
+            final int stackedDataIcon, final int stackedVoiceIcon,
+            final String typeContentDescription, final String description, final boolean isWide,
+            final int subId, final int imsIconId, final boolean isImsInAirplane) {
+        post(new Runnable() {
+            @Override
+            public void run() {
+                for (SignalCallback signalCluster : mSignalCallbacks) {
+                    if (signalCluster instanceof SignalCallbackExtended) {
+                        ((SignalCallbackExtended)signalCluster).setMobileDataIndicators(
+                                statusIcon, qsIcon, statusType, qsType, activityIn,
+                                activityOut, dataActivityId, mobileActivityId,
+                                stackedDataIcon, stackedVoiceIcon, typeContentDescription,
+                                description, isWide, subId, imsIconId, isImsInAirplane);
+                    } else {
+                        signalCluster.setMobileDataIndicators(statusIcon, qsIcon, statusType,
+                                qsType, activityIn, activityOut, dataActivityId,
+                                mobileActivityId, stackedDataIcon, stackedVoiceIcon,
+                                typeContentDescription, description, isWide, subId);
+                    }
                 }
             }
         });
