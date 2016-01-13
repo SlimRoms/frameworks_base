@@ -68,7 +68,6 @@ class UserUsageStatsService {
 
     interface StatsUpdatedListener {
         void onStatsUpdated();
-        void onStatsReloaded();
         long getAppIdleRollingWindowDurationMillis();
     }
 
@@ -651,9 +650,11 @@ class UserUsageStatsService {
      */
     void refreshAppIdleRollingWindow(final long currentTimeMillis, final long deviceUsageTime) {
         // Start the rolling window for AppIdle requests.
+        final long startRangeMillis = currentTimeMillis -
+                mListener.getAppIdleRollingWindowDurationMillis();
+
         List<IntervalStats> stats = mDatabase.queryUsageStats(UsageStatsManager.INTERVAL_DAILY,
-                currentTimeMillis - (1000 * 60 * 60 * 24 * 2), currentTimeMillis,
-                new StatCombiner<IntervalStats>() {
+                startRangeMillis, currentTimeMillis, new StatCombiner<IntervalStats>() {
                     @Override
                     public void combine(IntervalStats stats, boolean mutable,
                                         List<IntervalStats> accumulatedResult) {
