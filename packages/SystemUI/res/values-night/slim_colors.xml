@@ -16,10 +16,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <!-- Navigation bar -->
-    <color name="navigationbar_button_default_color">#FFFFFFFF</color>
-
     <!-- Quick Settings Tuner -->
-    <color name="qs_edit_tile_text_color">#FF000000</color>
+    <color name="qs_edit_tile_text_color">#FFFFFFFF</color>
 
 </resources>

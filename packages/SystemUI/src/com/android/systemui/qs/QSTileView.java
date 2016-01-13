@@ -59,8 +59,8 @@ public class QSTileView extends ViewGroup {
     private final int mDualTileVerticalPaddingPx;
     private final View mTopBackgroundView;
 
-    private TextView mLabel;
-    private QSDualTileLabel mDualLabel;
+    protected TextView mLabel;
+    protected QSDualTileLabel mDualLabel;
     private boolean mDual;
     private OnClickListener mClickPrimary;
     private OnClickListener mClickSecondary;
@@ -121,7 +121,7 @@ public class QSTileView extends ViewGroup {
         }
     }
 
-    private void recreateLabel() {
+    protected void recreateLabel() {
         CharSequence labelText = null;
         CharSequence labelDescription = null;
         if (mLabel != null) {

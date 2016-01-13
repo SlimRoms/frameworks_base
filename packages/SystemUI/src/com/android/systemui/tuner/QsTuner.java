@@ -21,6 +21,7 @@ import android.app.Fragment;
 import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.PorterDuff.Mode;
 import android.os.Bundle;
 import android.provider.Settings.Secure;
 import android.text.TextUtils;
@@ -38,6 +39,7 @@ import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 
 import com.android.internal.logging.MetricsLogger;
@@ -373,10 +375,40 @@ public class QsTuner extends Fragment implements Callback {
         }
     }
 
+    private static class CustomTileView extends QSTileView {
+
+        private int mTextColor;
+        private int mIconColor;
+
+        protected CustomTileView(Context context) {
+            super(context);
+
+            mTextColor = 0xFF000000;
+            mIconColor = 0xFF000000;
+        }
+
+        @Override
+        protected void recreateLabel() {
+            super.recreateLabel();
+            if (mDualLabel != null) {
+                mDualLabel.setTextColor(mTextColor);
+            }
+            if (mLabel != null) {
+                //mLabel.setTextColor(mTextColor);
+            }
+        }
+
+        @Override
+        protected void setIcon(ImageView iv, QSTile.State state) {
+            super.setIcon(iv, state);
+            iv.setColorFilter(mIconColor, Mode.MULTIPLY);
+        }
+    }
+
     private static class DraggableTile extends QSTile<QSTile.State>
             implements DropListener {
         private String mSpec;
-        private QSTileView mView;
+        private CustomTileView mView;
 
         protected DraggableTile(QSTile.Host host, String tileSpec) {
             super(host);
@@ -386,7 +418,7 @@ public class QsTuner extends Fragment implements Callback {
 
         @Override
         public QSTileView createTileView(Context context) {
-            mView = super.createTileView(context);
+            mView = new CustomTileView(context);
             return mView;
         }
 
