@@ -3141,6 +3141,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         // Stop the command queue until the new status bar container settles and has a layout pass
         mCommandQueue.pause();
 
+        // fix notification panel being shifted to the left by calling
+        // instantCollapseNotificationPanel()
+        instantCollapseNotificationPanel();
+
         mStatusBarWindow.requestLayout();
         mStatusBarWindow.getViewTreeObserver().addOnGlobalLayoutListener(
                 new ViewTreeObserver.OnGlobalLayoutListener() {
