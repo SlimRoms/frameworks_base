@@ -286,11 +286,6 @@ public class UsageStatsService extends SystemService implements
     }
 
     @Override
-    public void onStatsReloaded() {
-        postOneTimeCheckIdleStates();
-    }
-
-    @Override
     public long getAppIdleRollingWindowDurationMillis() {
         return mAppIdleWallclockThresholdMillis * 2;
     }
