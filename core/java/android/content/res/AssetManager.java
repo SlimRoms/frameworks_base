@@ -612,9 +612,7 @@ public final class AssetManager implements AutoCloseable {
     public final int addAssetPath(String path) {
         synchronized (this) {
             int res = addAssetPathNative(path);
-            if (mStringBlocks != null) {
-                makeStringBlocks(mStringBlocks);
-            }
+            makeStringBlocks(mStringBlocks);
             return res;
         }
     }
@@ -629,12 +627,11 @@ public final class AssetManager implements AutoCloseable {
      *
      * {@hide}
      */
+
     public final int addOverlayPath(String idmapPath) {
         synchronized (this) {
             int res = addOverlayPathNative(idmapPath);
-            if (mStringBlocks != null) {
-                makeStringBlocks(mStringBlocks);
-            }
+            makeStringBlocks(mStringBlocks);
             return res;
         }
     }
