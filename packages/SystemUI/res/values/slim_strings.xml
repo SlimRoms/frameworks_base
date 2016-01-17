@@ -22,4 +22,12 @@
     <!-- Battery level text while charging [CHAR LIMIT=2] -->
     <string name="battery_level_template_charging"><xliff:g id="level" example="45">%d</xliff:g>~</string>
 
+    <!-- NavBar -->
+    <string name="default_button">None</string>
+    <string name="navbar_dialog_title">Choose action to assign</string>
+    <string name="remove_button">Remove Button</string>
+    <string name="single_click_action">Single click</string>
+    <string name="longpress_action">Longpress</string>
+    <string name="double_tap_action">Double tap</string>
+
 </resources>

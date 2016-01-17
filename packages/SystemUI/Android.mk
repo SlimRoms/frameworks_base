@@ -9,6 +9,8 @@ LOCAL_SRC_FILES := $(call all-java-files-under, src) \
 LOCAL_STATIC_JAVA_LIBRARIES := Keyguard
 LOCAL_JAVA_LIBRARIES := telephony-common
 
+LOCAL_JAVA_LIBRARIES += org.slim.framework
+
 LOCAL_PACKAGE_NAME := SystemUI
 LOCAL_CERTIFICATE := platform
 LOCAL_PRIVILEGED_MODULE := true

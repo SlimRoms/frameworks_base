@@ -67,6 +67,10 @@
     </PreferenceScreen>
 
     <Preference
+        android:key="navbar"
+        android:title="NavigationBarEditor" />
+
+    <Preference
         android:key="demo_mode"
         android:title="@string/demo_mode" />
 

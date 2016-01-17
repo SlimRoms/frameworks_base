@@ -19,6 +19,7 @@ import android.app.AlertDialog;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
 import android.database.ContentObserver;
 import android.net.Uri;
 import android.os.Bundle;
@@ -51,6 +52,10 @@ public class TunerFragment extends PreferenceFragment {
 
     private static final int MENU_REMOVE = Menu.FIRST + 1;
 
+    private boolean mEdit = false;
+    private final static Intent mIntent = new Intent("android.intent.action.NAVBAR_EDIT");
+
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -75,6 +80,16 @@ public class TunerFragment extends PreferenceFragment {
                 ft.replace(android.R.id.content, new DemoModeFragment(), "DemoMode");
                 ft.addToBackStack(null);
                 ft.commit();
+                return true;
+            }
+        });
+        findPreference("navbar").setOnPreferenceClickListener(new OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                mEdit = !mEdit;
+                mIntent.putExtra("edit", mEdit);
+                mIntent.putExtra("save", mEdit);
+                getActivity().sendBroadcast(mIntent);
                 return true;
             }
         });
