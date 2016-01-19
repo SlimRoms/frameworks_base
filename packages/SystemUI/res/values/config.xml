@@ -342,5 +342,7 @@
 
     <!-- Show 4GLTE for LTE -->
     <bool name="show_4glte_icon_for_lte">false</bool>
-</resources>
 
+    <!-- Show forbidden and greyed data icon when data is disabled -->
+    <bool name="config_data_signal_control">false</bool>
+</resources>
