@@ -5,7 +5,7 @@ LOCAL_ADDITIONAL_DEPENDENCIES := $(LOCAL_PATH)/Android.mk
 LOCAL_MODULE:= libregionalization
 LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := \
-        Enviroment.cpp
+        Environment.cpp
 LOCAL_C_INCLUDES := \
     frameworks/base/include
 LOCAL_SHARED_LIBRARIES := \

@@ -27,8 +27,8 @@
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef ANDROID_REGIONALIZATION_ENVIROMENT_H
-#define ANDROID_REGIONALIZATION_ENVIROMENT_H
+#ifndef ANDROID_REGIONALIZATION_ENVIRONMENT_H
+#define ANDROID_REGIONALIZATION_ENVIRONMENT_H
 
 namespace android {
 
@@ -36,11 +36,18 @@ namespace android {
  * Class used by Regionalization Carrier switching in order to get
  * the resource path of switched packages for Carrier.
  */
-class Enviroment {
+class Environment {
 public:
-Enviroment(void);
 
-~Enviroment(void);
+// For boot and shutdown animation and music
+const static int BOOT_STATUS;
+const static int SHUTDOWN_STATUS;
+const static int ANIMATION_TYPE;
+const static int MUSIC_TYPE;
+
+Environment(void);
+
+~Environment(void);
 
 static bool isSupported(void);
 
@@ -60,4 +67,4 @@ char* mOverlayDir;
 
 }; // namespace android
 
-#endif // ANDROID_REGIONALIZATION_ENVIROMENT_H
+#endif // ANDROID_REGIONALIZATION_ENVIRONMENT_H
