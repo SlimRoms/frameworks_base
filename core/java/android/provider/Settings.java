@@ -3246,6 +3246,13 @@ public final class Settings {
         public static final String WIFI_AUTO_CONNECT_TYPE = "wifi_auto_connect_type";
 
         /**
+         * Whether to show the IME arrows in the status bar
+         * @hide
+         */
+        public static final String STATUS_BAR_IME_ARROWS = "status_bar_ime_arrows";
+
+
+        /**
          * Whether custom hardware key rebinding is enabled
          * @hide
          */
