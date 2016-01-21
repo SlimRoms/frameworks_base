@@ -463,7 +463,8 @@ class TelephonyIcons {
                     mSelectedSignalStreagthIndex[slot] = SIGNAL_STRENGTH_TYPE_HP;
                 } else {
                     mSelectedDataActivityIndex[slot] = DATA_TYPE_3G;
-                    if(mRes.getBoolean(R.bool.config_show4gForHspap)){
+                    if(mRes.getBoolean(R.bool.config_show4gForHspap) ||
+                            mRes.getBoolean(R.bool.show_network_indicators)){
                         mSelectedDataTypeIcon[slot] = mRes.getIdentifier(
                                 mDataTypeGenerationArray[3], null, NS);
                         mSelectedQSDataTypeIcon[slot] = QS_DATA_4G;
