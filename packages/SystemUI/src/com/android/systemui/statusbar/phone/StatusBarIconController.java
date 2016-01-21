@@ -35,6 +35,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.internal.statusbar.StatusBarIcon;
+import com.android.internal.telephony.CarrierAppUtils;
 import com.android.internal.util.NotificationColorUtil;
 import com.android.systemui.BatteryMeterView;
 import com.android.systemui.FontSizeUtils;
@@ -386,9 +387,14 @@ public class StatusBarIconController implements Tunable {
     }
 
     private void applyIconTint() {
+        CarrierAppUtils.CARRIER carrier = CarrierAppUtils.getCarrierId();
+        boolean carrierOne = (carrier != null && (CarrierAppUtils.
+                CARRIER.TELEPHONY_CARRIER_ONE == carrier));
         for (int i = 0; i < mStatusIcons.getChildCount(); i++) {
             StatusBarIconView v = (StatusBarIconView) mStatusIcons.getChildAt(i);
-            v.setImageTintList(ColorStateList.valueOf(mIconTint));
+            if (!(carrierOne && v.getSlot().equals("vowifi"))) {
+                v.setImageTintList(ColorStateList.valueOf(mIconTint));
+            }
         }
         mSignalCluster.setIconTint(mIconTint, mDarkIntensity);
         mMoreIcon.setImageTintList(ColorStateList.valueOf(mIconTint));
