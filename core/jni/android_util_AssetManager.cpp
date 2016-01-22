@@ -27,7 +27,7 @@
 #include <sys/wait.h>
 
 #include <private/android_filesystem_config.h> // for AID_SYSTEM
-#include <private/regionalization/Enviroment.h>
+#include <private/regionalization/Environment.h>
 
 #include "androidfw/Asset.h"
 #include "androidfw/AssetManager.h"
@@ -2004,16 +2004,16 @@ static jintArray android_content_AssetManager_getStyleAttributes(JNIEnv* env, jo
 static void android_content_AssetManager_init(JNIEnv* env, jobject clazz, jboolean isSystem)
 {
     if (isSystem) {
-        // Load frameworks-res.apk's overlay through regionalization enviroment
-        if (Enviroment::isSupported()) {
-            Enviroment* enviroment = new Enviroment();
-            if (enviroment != NULL) {
-                const char* overlay_dir = enviroment->getOverlayDir();
+        // Load frameworks-res.apk's overlay through regionalization environment
+        if (Environment::isSupported()) {
+            Environment* environment = new Environment();
+            if (environment != NULL) {
+                const char* overlay_dir = environment->getOverlayDir();
                 if (overlay_dir != NULL && strcmp(overlay_dir, "") != 0) {
                     ALOGD("Regionalization - getOverlayDir:%s", overlay_dir);
                     verifySystemIdmaps(overlay_dir);
                 }
-                delete enviroment;
+                delete environment;
             }
         }
 

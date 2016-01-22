@@ -62,6 +62,8 @@
 #include <media/mediaplayer.h>
 #include <media/IMediaHTTPService.h>
 
+#include <private/regionalization/Environment.h>
+
 #include "BootAnimation.h"
 #include "AudioPlayer.h"
 
@@ -760,6 +762,18 @@ const char *BootAnimation::getAnimationFileName(ImageID image)
             SYSTEM_BOOTANIMATION_FILE,
             SYSTEM_ENCRYPTED_BOOTANIMATION_FILE };
 
+    // Load animations of Carrier through regionalization environment
+    if (Environment::isSupported()) {
+        Environment* environment = new Environment();
+        const char* animFile = environment->getMediaFile(
+                Environment::ANIMATION_TYPE, Environment::BOOT_STATUS);
+        if (animFile != NULL && strcmp(animFile, "") != 0) {
+           ALOGD("Get Carrier Animation file: %s", animFile);
+           return animFile;
+        }
+        delete environment;
+    }
+
     return fileName[image];
 }
 
@@ -774,6 +788,18 @@ const char *BootAnimation::getBootRingtoneFileName(ImageID image)
 
     const char *fileName[2] = { OEM_BOOT_MUSIC_FILE,
             SYSTEM_BOOT_MUSIC_FILE };
+
+    // Load ringtones of Carrier through regionalization environment
+    if (Environment::isSupported()) {
+        Environment* environment = new Environment();
+        const char* toneFile = environment->getMediaFile(
+                Environment::MUSIC_TYPE, Environment::BOOT_STATUS);
+        if (toneFile != NULL && strcmp(toneFile, "") != 0) {
+           ALOGD("Get Carrier boot ringtone file: %s", toneFile);
+           return toneFile;
+        }
+        delete environment;
+    }
 
     return fileName[image];
 }
