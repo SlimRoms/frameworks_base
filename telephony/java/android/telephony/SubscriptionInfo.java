@@ -27,6 +27,7 @@ import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.os.SystemProperties;
 import android.util.DisplayMetrics;
 
 /**
@@ -107,6 +108,11 @@ public class SubscriptionInfo implements Parcelable {
      * ISO Country code for the subscription's provider
      */
     private String mCountryIso;
+
+    /**
+     * System prop to check if custom sim icon feature is enabled
+     */
+    private final String CUSTOM_SIM_ICON_PROPERTY_NAME = "persist.radio.custom_sim_icon";
 
     /**
      * @hide
@@ -225,8 +231,10 @@ public class SubscriptionInfo implements Parcelable {
         paint.getTextBounds(index, 0, 1, textBound);
         final float xOffset = (width / 2.f) - textBound.centerX();
         final float yOffset = (height / 2.f) - textBound.centerY();
-        canvas.drawText(index, xOffset, yOffset, paint);
-
+        // Custom sim icon feature would be enabled when sim icon property is set true
+        if (!SystemProperties.getBoolean(CUSTOM_SIM_ICON_PROPERTY_NAME, false)) {
+            canvas.drawText(index, xOffset, yOffset, paint);
+        }
         return workingBitmap;
     }
 
