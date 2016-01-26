@@ -292,6 +292,7 @@ class TelephonyIcons {
     static final String NS = "com.android.systemui";
 
     static String[] mDataTypeArray, mDataTypeGenerationArray;
+    static String[] mForbiddenDataArray, mDataDisconnectedArray;
     static String[] mDataTypeDescriptionArray, mDataTypeGenerationDescArray;
     static String[] mDataActivityArray;
     static String[] mSignalStrengthArray, mSignalStrengthRoamingArray;
@@ -299,6 +300,8 @@ class TelephonyIcons {
     static String[] mSignalStrengthDesc;
 
     static int[] mSelectedDataTypeIcon;
+    static int[] mForbiddenDataTypeIcon;
+    static int[] mDataDisconnectedTypeIcon;
     static int[] mSelectedQSDataTypeIcon;
     static String[] mSelectedDataTypeDesc;
     static int[] mSelectedDataActivityIndex;
@@ -316,6 +319,8 @@ class TelephonyIcons {
 
         mRes = context.getResources();
         try {
+            mForbiddenDataArray = mRes.getStringArray(R.array.telephony_data_type_forbidden);
+            mDataDisconnectedArray = mRes.getStringArray(R.array.telephony_data_type_disconnected);
             mDataTypeArray = mRes.getStringArray(R.array.multi_data_type);
             mDataTypeDescriptionArray = mRes.getStringArray(
                     R.array.telephony_data_type_description);
@@ -339,6 +344,14 @@ class TelephonyIcons {
         if (mSelectedDataTypeIcon == null
             && mDataTypeArray.length != 0) {
             mSelectedDataTypeIcon = new int[mDataTypeArray.length];
+        }
+        if (mForbiddenDataTypeIcon == null
+            && mForbiddenDataArray.length != 0) {
+            mForbiddenDataTypeIcon = new int[mForbiddenDataArray.length];
+        }
+        if (mDataDisconnectedTypeIcon == null
+                && mDataDisconnectedArray.length != 0) {
+           mDataDisconnectedTypeIcon = new int[mDataDisconnectedArray.length];
         }
         if (mSelectedQSDataTypeIcon == null
             && mDataTypeArray.length != 0) {
@@ -396,6 +409,16 @@ class TelephonyIcons {
         String resName = mDataTypeArray[slot];
         int resId = mRes.getIdentifier(resName, null, NS);
         String[] dataTypeArray = mRes.getStringArray(resId);
+        if (mRes.getBoolean(R.bool.config_data_signal_control)) {
+            String forbiddenresName = mForbiddenDataArray[slot];
+            String dataDisconnectedResName = mDataDisconnectedArray[slot];
+            int forbiddenresId = mRes.getIdentifier(forbiddenresName, null, NS);
+            int dataDisconnectedResId = mRes.getIdentifier(dataDisconnectedResName , null, NS);
+            String[] forbiddenTypeArray = mRes.getStringArray(forbiddenresId);
+            String[] dataDisconnectedTypeArray = mRes.getStringArray(dataDisconnectedResId);
+            setForbiddenResource(slot, type, forbiddenTypeArray);
+            setDataDisconnectedResource(slot, type, dataDisconnectedTypeArray);
+        }
 
         log(TAG, "data type item name: " + resName + " id:" + resId);
 
@@ -574,6 +597,25 @@ class TelephonyIcons {
     static int getDataTypeIcon(int slot) {
         log(TAG, "getDataTypeIcon " + String.format("sub=%d", slot));
         return mSelectedDataTypeIcon[slot];
+    }
+    private static void setForbiddenResource(int slot, int type,
+        String[] forbiddenTypeArray) {
+        mForbiddenDataTypeIcon[slot] = mRes.getIdentifier(forbiddenTypeArray[type], null, NS);
+    }
+
+    private static void setDataDisconnectedResource(int slot, int type,
+        String[] disconnectedTypeArray) {
+        mDataDisconnectedTypeIcon[slot] = mRes.getIdentifier(disconnectedTypeArray[type], null, NS);
+    }
+
+    static int getForbiddenDataIcon(int slot) {
+        log(TAG, "getForbiddenDataIcon " + String.format("sub=%d", slot));
+        return mForbiddenDataTypeIcon[slot];
+    }
+
+    static int getDataDisconnectedIcon(int slot) {
+        log(TAG, "getDisconnectedDataIcon " + String.format("sub=%d", slot));
+        return mDataDisconnectedTypeIcon[slot];
     }
 
     static int getDataTypeDesc(int slot) {
