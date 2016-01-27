@@ -286,6 +286,11 @@ public class UsageStatsService extends SystemService implements
     }
 
     @Override
+    public void onStatsReloaded() {
+        postOneTimeCheckIdleStates();
+    }
+
+    @Override
     public long getAppIdleRollingWindowDurationMillis() {
         return mAppIdleWallclockThresholdMillis * 2;
     }
@@ -369,13 +374,7 @@ public class UsageStatsService extends SystemService implements
      * scheduling a series of repeating checkIdleStates each time we fired off one.
      */
     void postOneTimeCheckIdleStates() {
-        if (mDeviceIdleController == null) {
-            // Not booted yet; wait for it!
-            mPendingOneTimeCheckIdleStates = true;
-        } else {
-            mHandler.sendEmptyMessage(MSG_ONE_TIME_CHECK_IDLE_STATES);
-            mPendingOneTimeCheckIdleStates = false;
-        }
+        mHandler.sendEmptyMessage(MSG_ONE_TIME_CHECK_IDLE_STATES);
     }
 
     /** Check all running users' or specified user's apps to see if they enter an idle state. */
@@ -563,12 +562,11 @@ public class UsageStatsService extends SystemService implements
             final int userCount = mUserState.size();
             for (int i = 0; i < userCount; i++) {
                 final UserUsageStatsService service = mUserState.valueAt(i);
-                service.onTimeChanged(expectedSystemTime, actualSystemTime, mScreenOnTime,
-                        resetBeginIdleTime);
+                service.onTimeChanged(expectedSystemTime, actualSystemTime, getScreenOnTimeLocked(),
+                        false);
             }
             mRealTimeSnapshot = actualRealtime;
             mSystemTimeSnapshot = actualSystemTime;
-            postCheckIdleStates(UserHandle.USER_ALL);
         }
         return actualSystemTime;
     }
@@ -613,7 +611,6 @@ public class UsageStatsService extends SystemService implements
                     || event.mEventType == Event.SYSTEM_INTERACTION
                     || event.mEventType == Event.USER_INTERACTION)) {
                 if (previouslyIdle) {
-                    //Slog.d(TAG, "Informing listeners of out-of-idle " + event.mPackage);
                     mHandler.sendMessage(mHandler.obtainMessage(MSG_INFORM_LISTENERS, userId,
                             /* idle = */ 0, event.mPackage));
                     notifyBatteryStats(event.mPackage, userId, false);
