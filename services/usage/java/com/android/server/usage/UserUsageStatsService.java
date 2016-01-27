@@ -68,6 +68,7 @@ class UserUsageStatsService {
 
     interface StatsUpdatedListener {
         void onStatsUpdated();
+        void onStatsReloaded();
         long getAppIdleRollingWindowDurationMillis();
     }
 
@@ -548,71 +549,6 @@ class UserUsageStatsService {
 
         // Tell the listener that the stats reloaded, which may have changed idle states.
         mListener.onStatsReloaded();
-    }
-
-    private static void mergePackageStats(IntervalStats dst, IntervalStats src,
-                                          final long deviceUsageTime) {
-        dst.endTime = Math.max(dst.endTime, src.endTime);
-
-        final int srcPackageCount = src.packageStats.size();
-        for (int i = 0; i < srcPackageCount; i++) {
-            final String packageName = src.packageStats.keyAt(i);
-            final UsageStats srcStats = src.packageStats.valueAt(i);
-            UsageStats dstStats = dst.packageStats.get(packageName);
-            if (dstStats == null) {
-                dstStats = new UsageStats(srcStats);
-                dst.packageStats.put(packageName, dstStats);
-            } else {
-                dstStats.add(src.packageStats.valueAt(i));
-            }
-
-            // App idle times can not begin in the future. This happens if we had a time change.
-            if (dstStats.mBeginIdleTime > deviceUsageTime) {
-                dstStats.mBeginIdleTime = deviceUsageTime;
-            }
-        }
-    }
-
-    /**
-     * App idle operates on a rolling window of time. When we roll over time, we end up with a
-     * period of time where in-memory stats are empty and we don't hit the disk for older stats
-     * for performance reasons. Suddenly all apps will become idle.
-     *
-     * Instead, at times we do a deep query to find all the apps that have run in the past few
-     * days and keep the cached data up to date.
-     *
-     * @param currentTimeMillis
-     */
-    void refreshAppIdleRollingWindow(final long currentTimeMillis, final long deviceUsageTime) {
-        // Start the rolling window for AppIdle requests.
-        final long startRangeMillis = currentTimeMillis -
-                mListener.getAppIdleRollingWindowDurationMillis();
-
-        List<IntervalStats> stats = mDatabase.queryUsageStats(UsageStatsManager.INTERVAL_DAILY,
-                startRangeMillis, currentTimeMillis, new StatCombiner<IntervalStats>() {
-                    @Override
-                    public void combine(IntervalStats stats, boolean mutable,
-                                        List<IntervalStats> accumulatedResult) {
-                        IntervalStats accum;
-                        if (accumulatedResult.isEmpty()) {
-                            accum = new IntervalStats();
-                            accum.beginTime = stats.beginTime;
-                            accumulatedResult.add(accum);
-                        } else {
-                            accum = accumulatedResult.get(0);
-                        }
-
-                        mergePackageStats(accum, stats, deviceUsageTime);
-                    }
-                });
-
-        if (stats == null || stats.isEmpty()) {
-            mAppIdleRollingWindow = new IntervalStats();
-            mergePackageStats(mAppIdleRollingWindow,
-                    mCurrentStats[UsageStatsManager.INTERVAL_YEARLY], deviceUsageTime);
-        } else {
-            mAppIdleRollingWindow = stats.get(0);
-        }
     }
 
     private static void mergePackageStats(IntervalStats dst, IntervalStats src,
