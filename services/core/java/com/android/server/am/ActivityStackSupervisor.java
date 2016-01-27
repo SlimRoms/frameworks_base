@@ -2325,6 +2325,7 @@ public final class ActivityStackSupervisor implements DisplayListener {
                 if (DEBUG_TASKS) Slog.v(TAG_TASKS,
                         "Starting new activity " + r + " in new task " + r.task);
             } else {
+                reuseTask.stack = targetStack;
                 r.setTask(reuseTask, taskToAffiliate);
             }
             if (isLockTaskModeViolation(r.task)) {
@@ -2393,6 +2394,7 @@ public final class ActivityStackSupervisor implements DisplayListener {
             // An existing activity is starting this new activity, so we want
             // to keep the new one in the same task as the one that is starting
             // it.
+            sourceTask.stack = targetStack;
             r.setTask(sourceTask, null);
             if (DEBUG_TASKS) Slog.v(TAG_TASKS, "Starting new activity " + r
                     + " in existing task " + r.task + " from source " + sourceRecord);
