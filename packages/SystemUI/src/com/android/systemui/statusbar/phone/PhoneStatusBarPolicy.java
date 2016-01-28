@@ -174,11 +174,13 @@ public class PhoneStatusBarPolicy implements Callback {
         mCast.addCallback(mCastCallback);
 
         // hotspot
-        mService.setIcon(SLOT_HOTSPOT, R.drawable.stat_sys_hotspot, 0,
-                mContext.getString(R.string.accessibility_status_bar_hotspot));
-        mService.setIconVisibility(SLOT_HOTSPOT, mHotspot.isHotspotEnabled());
-        mHotspot.addCallback(mHotspotCallback);
-
+        if (!mContext.getResources().getBoolean(com.android.internal.R.bool
+               .config_regional_hotspot_show_notification_when_turn_on)) {
+            mService.setIcon(SLOT_HOTSPOT, R.drawable.stat_sys_hotspot, 0,
+                    mContext.getString(R.string.accessibility_status_bar_hotspot));
+            mService.setIconVisibility(SLOT_HOTSPOT, mHotspot.isHotspotEnabled());
+            mHotspot.addCallback(mHotspotCallback);
+        }
         // managed profile
         mService.setIcon(SLOT_MANAGED_PROFILE, R.drawable.stat_sys_managed_profile_status, 0,
                 mContext.getString(R.string.accessibility_managed_profile));
