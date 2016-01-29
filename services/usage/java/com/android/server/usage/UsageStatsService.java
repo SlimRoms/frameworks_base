@@ -374,7 +374,13 @@ public class UsageStatsService extends SystemService implements
      * scheduling a series of repeating checkIdleStates each time we fired off one.
      */
     void postOneTimeCheckIdleStates() {
-        mHandler.sendEmptyMessage(MSG_ONE_TIME_CHECK_IDLE_STATES);
+        if (mDeviceIdleController == null) {
+            // Not booted yet; wait for it!
+            mPendingOneTimeCheckIdleStates = true;
+        } else {
+            mHandler.sendEmptyMessage(MSG_ONE_TIME_CHECK_IDLE_STATES);
+            mPendingOneTimeCheckIdleStates = false;
+        }
     }
 
     /** Check all running users' or specified user's apps to see if they enter an idle state. */
