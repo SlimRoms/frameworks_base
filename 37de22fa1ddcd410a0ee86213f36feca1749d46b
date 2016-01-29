@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a7fa997_56bcb46c",
+        "filename": "packages/SystemUI/src/com/android/systemui/BatteryLevelTextView.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000108
+      },
+      "writtenOn": "2016-01-29T20:49:23Z",
+      "side": 1,
+      "message": "drop useless constants?",
+      "revId": "37de22fa1ddcd410a0ee86213f36feca1749d46b",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
