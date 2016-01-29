@@ -288,8 +288,13 @@ public class MobileSignalController extends SignalController<
         String dataContentDescription = getStringIfExists(icons.mDataContentDescription);
 
         // Show icon in QS when we are connected or need to show roaming.
-        boolean showDataIcon = mCurrentState.dataConnected
-                || mCurrentState.iconGroup == TelephonyIcons.ROAMING;
+        boolean showDataIcon = false;
+        if (mContext.getResources().getBoolean(R.bool.show_roaming_and_network_icons)) {
+            showDataIcon = mCurrentState.dataConnected;
+        } else {
+            showDataIcon = mCurrentState.dataConnected
+                    || mCurrentState.iconGroup == TelephonyIcons.ROAMING;
+        }
         IconState statusIcon = new IconState(mCurrentState.enabled && !mCurrentState.airplaneMode,
                 getCurrentIconId(), contentDescription);
 
@@ -309,8 +314,10 @@ public class MobileSignalController extends SignalController<
         boolean activityOut = mCurrentState.dataConnected
                         && !mCurrentState.carrierNetworkChangeMode
                         && mCurrentState.activityOut;
-        showDataIcon &= mCurrentState.isDefault
-                || mCurrentState.iconGroup == TelephonyIcons.ROAMING;
+        if (!mContext.getResources().getBoolean(R.bool.show_roaming_and_network_icons)) {
+            showDataIcon &= mCurrentState.isDefault
+                    || mCurrentState.iconGroup == TelephonyIcons.ROAMING;
+        }
         showDataIcon &= mStyle == STATUS_BAR_STYLE_ANDROID_DEFAULT;
         int typeIcon = showDataIcon ? icons.mDataType : 0;
         int dataActivityId = showMobileActivity() ? 0 : icons.mActivityId;
@@ -560,9 +567,7 @@ public class MobileSignalController extends SignalController<
         if (isCarrierNetworkChangeActive()) {
             mCurrentState.iconGroup = TelephonyIcons.CARRIER_NETWORK_CHANGE;
         } else if (isRoaming()) {
-            if (!mContext.getResources().getBoolean(R.bool.show_roaming_and_network_icons)) {
-                mCurrentState.iconGroup = TelephonyIcons.ROAMING;
-            }
+            mCurrentState.iconGroup = TelephonyIcons.ROAMING;
         }
         if (isEmergencyOnly() != mCurrentState.isEmergency) {
             mCurrentState.isEmergency = isEmergencyOnly();
@@ -676,7 +681,8 @@ public class MobileSignalController extends SignalController<
             dataContentDesc = TelephonyIcons.getDataTypeDesc(slotId);
             qsDataTypeIcon = TelephonyIcons.getQSDataTypeIcon(slotId);
         }
-        if (roaming) {
+        if (roaming && !mContext.getResources().getBoolean(
+                    R.bool.show_roaming_and_network_icons)) {
             dataTypeIcon = TelephonyIcons.ROAMING_ICON;
             qsDataTypeIcon = TelephonyIcons.QS_DATA_R;
         }
