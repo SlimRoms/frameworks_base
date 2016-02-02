@@ -2172,8 +2172,11 @@ public class SettingsProvider extends ContentProvider {
                     // Allow OEMs to set date format, time format and enable/disable accessibility
                     // services in resource.
                     final SettingsState dateAndTimeSettings = getSystemSettingsLocked(userId);
+                    final SettingsState vibrateWhenRinging = getSystemSettingsLocked(userId);
+                    final SettingsState dtmfToneWhenDialing = getSystemSettingsLocked(userId);
                     String defaultStringComponent;
                     int defaultIntComponent;
+                    boolean defaultBoolComponent;
                     defaultStringComponent = getContext().getResources().getString(
                             R.string.def_date_format);
                     if (!TextUtils.isEmpty(defaultStringComponent)) {
@@ -2197,6 +2200,23 @@ public class SettingsProvider extends ContentProvider {
                                 ENABLED_ACCESSIBILITY_SERVICES,defaultStringComponent,
                                 SettingsState.SYSTEM_PACKAGE_NAME);
                     }
+                    defaultBoolComponent = getContext().getResources()
+                            .getBoolean(R.bool.def_vibrate_when_ringing_enabled);
+                    if (defaultBoolComponent) {
+                        vibrateWhenRinging.insertSettingLocked(
+                                Settings.System.VIBRATE_WHEN_RINGING,
+                                "1",
+                                SettingsState.SYSTEM_PACKAGE_NAME);
+                    }
+                    defaultBoolComponent = getContext().getResources()
+                            .getBoolean(R.bool.def_dtmf_tones_enabled);
+                    if (!defaultBoolComponent) {
+                        dtmfToneWhenDialing.insertSettingLocked(
+                                Settings.System.DTMF_TONE_WHEN_DIALING,
+                                "0",
+                                SettingsState.SYSTEM_PACKAGE_NAME);
+                    }
+
                     currentVersion = 122;
                 }
                 // vXXX: Add new settings above this point.
