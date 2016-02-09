@@ -32,6 +32,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
+        android:id="@+id/ims_hd"
+        android:visibility="gone"
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
         android:id="@+id/data_inout"
         android:visibility="gone"
         />

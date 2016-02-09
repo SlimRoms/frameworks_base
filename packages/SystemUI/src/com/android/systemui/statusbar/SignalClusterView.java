@@ -49,7 +49,7 @@ import java.util.List;
 // Intimately tied to the design of res/layout/signal_cluster_view.xml
 public class SignalClusterView
         extends LinearLayout
-        implements NetworkControllerImpl.SignalCallback,
+        implements NetworkControllerImpl.SignalCallbackExtended,
         SecurityController.SecurityControllerCallback, Tunable {
 
     static final String TAG = "SignalClusterView";
@@ -69,6 +69,7 @@ public class SignalClusterView
     private int mEthernetIconId = 0;
     private int mLastEthernetIconId = -1;
     private boolean mWifiVisible = false;
+    private boolean mImsRegistered = false;
     private int mWifiStrengthId = 0, mWifiActivityId = 0;
     private int mLastWifiStrengthId = -1, mLastWifiActivityId = -1;
     private boolean mIsAirplaneMode = false;
@@ -84,7 +85,8 @@ public class SignalClusterView
 
     ViewGroup mEthernetGroup, mWifiGroup;
     View mNoSimsCombo;
-    ImageView mVpn, mEthernet, mWifi, mAirplane, mNoSims, mEthernetDark, mWifiDark, mNoSimsDark;
+    ImageView mVpn, mEthernet, mWifi, mAirplane,
+                mNoSims, mEthernetDark, mWifiDark, mNoSimsDark, mImsAirplane;
     ImageView mWifiActivity;
     View mWifiAirplaneSpacer;
     View mWifiSignalSpacer;
@@ -175,6 +177,7 @@ public class SignalClusterView
         mAirplane       = (ImageView) findViewById(R.id.airplane);
         mNoSims         = (ImageView) findViewById(R.id.no_sims);
         mNoSimsDark     = (ImageView) findViewById(R.id.no_sims_dark);
+        mImsAirplane    = (ImageView) findViewById(R.id.airplane_ims);
         mNoSimsCombo    =             findViewById(R.id.no_sims_combo);
         mWifiAirplaneSpacer =         findViewById(R.id.wifi_airplane_spacer);
         mWifiSignalSpacer =           findViewById(R.id.wifi_signal_spacer);
@@ -197,6 +200,7 @@ public class SignalClusterView
         mWifi           = null;
         mWifiActivity   = null;
         mAirplane       = null;
+        mImsAirplane    = null;
         mMobileSignalGroup.removeAllViews();
         mMobileSignalGroup = null;
         TunerService.get(mContext).removeTunable(this);
@@ -248,6 +252,23 @@ public class SignalClusterView
         state.mStackedVoiceId = stackedVoiceId;
 
         apply();
+    }
+
+    @Override
+    public void setMobileDataIndicators(IconState statusIcon, IconState qsIcon, int statusType,
+            int qsType, boolean activityIn, boolean activityOut, int dataActivityId,
+            int mobileActivityId, int stackedDataId, int stackedVoiceId,
+            String typeContentDescription, String description, boolean isWide, int subId,
+            int imsIconId, boolean isImsInAirplane) {
+        PhoneState state = getState(subId);
+        if (state == null) {
+            return;
+        }
+        state.mMobileImsId = imsIconId;
+        mImsRegistered = isImsInAirplane;
+        this.setMobileDataIndicators(statusIcon, qsIcon, statusType, qsType, activityIn,
+                activityOut, dataActivityId, mobileActivityId, stackedDataId,
+                stackedVoiceId, typeContentDescription, description, isWide, subId);
     }
 
     @Override
@@ -492,6 +513,12 @@ public class SignalClusterView
             mAirplane.setVisibility(View.GONE);
         }
 
+        if (mIsAirplaneMode && mImsRegistered){
+            mImsAirplane.setVisibility(View.VISIBLE);
+        } else {
+            mImsAirplane.setVisibility(View.GONE);
+        }
+
         if (mIsAirplaneMode && mWifiVisible) {
             mWifiAirplaneSpacer.setVisibility(View.VISIBLE);
         } else {
@@ -555,9 +582,9 @@ public class SignalClusterView
         private String mMobileDescription, mMobileTypeDescription;
 
         private ViewGroup mMobileGroup;
-        private ImageView mMobile, mMobileDark, mMobileType, mRoaming;
+        private ImageView mMobile, mMobileDark, mMobileType, mRoaming, mMobileIms;
 
-        private int mDataActivityId = 0, mMobileActivityId = 0;
+        private int mDataActivityId = 0, mMobileActivityId = 0, mMobileImsId = 0;
         private int mStackedDataId = 0, mStackedVoiceId = 0;
         private ImageView mDataActivity, mMobileActivity, mStackedData, mStackedVoice;
         private ViewGroup mMobileSingleGroup, mMobileStackedGroup;
@@ -575,6 +602,7 @@ public class SignalClusterView
             mMobileDark     = (ImageView) root.findViewById(R.id.mobile_signal_dark);
             mMobileType     = (ImageView) root.findViewById(R.id.mobile_type);
             mMobileActivity = (ImageView) root.findViewById(R.id.mobile_inout);
+            mMobileIms      = (ImageView) root.findViewById(R.id.ims_hd);
 
             mDataActivity   = (ImageView) root.findViewById(R.id.data_inout);
             mStackedData    = (ImageView) root.findViewById(R.id.mobile_signal_data);
@@ -624,6 +652,8 @@ public class SignalClusterView
                     }
                 }
 
+                mMobileIms.setImageResource(mMobileImsId);
+
                 if (mStackedDataId != 0 && mStackedVoiceId != 0) {
                     mStackedData.setImageResource(mStackedDataId);
                     mStackedVoice.setImageResource(mStackedVoiceId);
@@ -666,6 +696,7 @@ public class SignalClusterView
             mMobileType.setVisibility(mMobileTypeId != 0 ? View.VISIBLE : View.GONE);
             mDataActivity.setVisibility(mDataActivityId != 0 ? View.VISIBLE : View.GONE);
             mMobileActivity.setVisibility(mMobileActivityId != 0 ? View.VISIBLE : View.GONE);
+            mMobileIms.setVisibility(mMobileImsId != 0 ? View.VISIBLE : View.GONE);
 
             return mMobileVisible;
         }
