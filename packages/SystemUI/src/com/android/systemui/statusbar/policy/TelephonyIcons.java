@@ -462,13 +462,23 @@ class TelephonyIcons {
             case TelephonyManager.NETWORK_TYPE_HSDPA:
             case TelephonyManager.NETWORK_TYPE_HSUPA:
             case TelephonyManager.NETWORK_TYPE_HSPA:
-                if (hspaDistinguishable) {
-                    mSelectedDataActivityIndex[slot] = DATA_TYPE_H;
-                    mSelectedDataTypeIcon[slot] = mRes.getIdentifier(
-                            dataTypeArray[type], null, NS);
-                    mSelectedQSDataTypeIcon[slot] = QS_DATA_H;
+                boolean isCarrierOneEnabled = (carrier != null && (CarrierAppUtils.
+                        CARRIER.TELEPHONY_CARRIER_ONE == carrier));
+                if (hspaDistinguishable || isCarrierOneEnabled) {
                     mSelectedDataTypeDesc[slot] = mDataTypeDescriptionArray[type];
-                    mSelectedSignalStreagthIndex[slot] = SIGNAL_STRENGTH_TYPE_H;
+                    if (type == TelephonyManager.NETWORK_TYPE_HSPA &&
+                            isCarrierOneEnabled) {
+                        mSelectedDataActivityIndex[slot] = DATA_TYPE_HP;
+                        mSelectedDataTypeIcon[slot] = ICON_H_PLUS;
+                        mSelectedQSDataTypeIcon[slot] = QS_DATA_H_PLUS;
+                        mSelectedSignalStreagthIndex[slot] = SIGNAL_STRENGTH_TYPE_HP;
+                    } else {
+                        mSelectedDataActivityIndex[slot] = DATA_TYPE_H;
+                        mSelectedDataTypeIcon[slot] = mRes.getIdentifier(
+                                dataTypeArray[type], null, NS);
+                        mSelectedQSDataTypeIcon[slot] = QS_DATA_H;
+                        mSelectedSignalStreagthIndex[slot] = SIGNAL_STRENGTH_TYPE_H;
+                    }
                 } else {
                     mSelectedDataActivityIndex[slot] = DATA_TYPE_3G;
                     mSelectedDataTypeIcon[slot] = mRes.getIdentifier(
@@ -480,7 +490,8 @@ class TelephonyIcons {
                 }
                 break;
             case TelephonyManager.NETWORK_TYPE_HSPAP:
-                if (hspaDistinguishable) {
+                if (hspaDistinguishable || (carrier != null && (CarrierAppUtils.
+                        CARRIER.TELEPHONY_CARRIER_ONE == carrier))) {
                     mSelectedDataActivityIndex[slot] = DATA_TYPE_HP;
                     mSelectedDataTypeIcon[slot] = mRes.getIdentifier(
                             dataTypeArray[type], null, NS);
