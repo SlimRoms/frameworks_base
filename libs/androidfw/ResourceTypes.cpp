@@ -75,6 +75,7 @@ static const bool kDebugLoadTableSuperNoisy = false;
 static const bool kDebugTableTheme = false;
 static const bool kDebugResXMLTree = false;
 static const bool kDebugLibNoisy = false;
+static const bool kDebugTableInvariants = false;
 
 // TODO: This code uses 0xFFFFFFFF converted to bag_set* as a sentinel value. This is bad practice.
 
@@ -3902,6 +3903,9 @@ status_t ResTable::addInternal(const void* data, size_t dataSize, const void* id
     if (kDebugTableNoisy) {
         ALOGV("Returning from add with mError=%d\n", mError);
     }
+    if (kDebugTableInvariants) {
+        verifyInvariants();
+    }
     return mError;
 }
 
@@ -3977,6 +3981,10 @@ status_t ResTable::remove(const int32_t cookie)
     }
 
     delete header;
+
+    if (kDebugTableInvariants) {
+        verifyInvariants();
+    }
 
     return mError;
 }
@@ -7218,6 +7226,44 @@ void ResTable::print(bool inclValues) const
                     }
                 }
             }
+        }
+    }
+}
+
+void ResTable::verifyInvariants() const
+{
+    size_t numberOfPackages = 0;
+    for (size_t i = 0; i < mPackageGroups.size(); i++) {
+        const PackageGroup* pg = mPackageGroups[i];
+        numberOfPackages += pg->packages.size();
+    }
+    size_t numberOfHeaders = 0;
+    for (size_t i = 0; i < mHeaders.size(); i++) {
+        const ResTable_header* resHeader = mHeaders.itemAt(i)->header;
+        // Empty headers have no corresponding package, so ignore those for now.
+        // Note: for now, assume each header corresponds to a single package.
+        if (resHeader->header.size > sizeof(ResTable_header)) {
+            numberOfHeaders++;
+        }
+    }
+    LOG_ALWAYS_FATAL_IF(numberOfPackages != numberOfHeaders,
+            "packages and headers must map one-to-one");
+
+    size_t numberOfPackageGroupMappings = 0;
+    for (size_t i = 0; i < 256; i++) {
+        if (mPackageMap[i] != 0) {
+            numberOfPackageGroupMappings++;
+        }
+    }
+    LOG_ALWAYS_FATAL_IF(numberOfPackageGroupMappings != mPackageGroups.size(),
+            "package groups and mPackageMap must map one-to-one");
+
+    for (size_t i = 0; i < mPackageGroups.size(); i++) {
+        const PackageGroup* pg = mPackageGroups[i];
+        for (size_t j = 0; j < pg->types.size(); j++) {
+            const TypeList& tl = pg->types[j];
+            LOG_ALWAYS_FATAL_IF(tl.size() > pg->packages.size(),
+                    "number of types must not exceed number of packages");
         }
     }
 }
