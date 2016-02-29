@@ -189,8 +189,9 @@ public class ActionHelper {
             resId = systemUiResources.getIdentifier(
                         SYSTEMUI_METADATA_NAME + ":drawable/ic_sysbar_recent", null, null);
         } else if (clickAction.equals(ActionConstants.ACTION_SEARCH)
-                || clickAction.equals(ActionConstants.ACTION_VOICE_SEARCH)
                 || clickAction.equals(ActionConstants.ACTION_ASSIST)
+                || clickAction.equals(ActionConstants.ACTION_NOWONTAP)
+                || clickAction.equals(ActionConstants.ACTION_VOICE_SEARCH)
                 || clickAction.equals(ActionConstants.ACTION_KEYGUARD_SEARCH)) {
             resId = systemUiResources.getIdentifier(
                         SYSTEMUI_METADATA_NAME + ":drawable/ic_sysbar_search", null, null);
