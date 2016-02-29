@@ -28,6 +28,7 @@ import android.media.AudioManager;
 import android.media.session.MediaSessionLegacyHelper;
 import android.media.ToneGenerator;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.RemoteException;
 import android.os.ServiceManager;
@@ -141,6 +142,10 @@ public class Action {
                 }
                 try {
                     barService.expandSettingsPanel();
+                } catch (RemoteException e) {}
+            } else if (action.equals(ActionConstants.ACTION_NOWONTAP)) {
+                try {
+                    barService.startAssist(new Bundle());
                 } catch (RemoteException e) {}
             } else if (action.equals(ActionConstants.ACTION_LAST_APP)) {
                 if (isKeyguardShowing) {
