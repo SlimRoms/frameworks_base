@@ -52,6 +52,7 @@
 
     <!-- Hardware key rebinding -->
     <java-symbol type="integer" name="config_deviceHardwareKeys" />
+    <java-symbol type="string" name="config_deviceHardwareKeysFilePath" />
 
   <!-- Slim recent app screen-->
   <java-symbol type="integer" name="config_recentDefaultDur" />
