@@ -2471,6 +2471,10 @@
         config to 7. -->
     <integer name="config_deviceHardwareKeys">0</integer>
 
+    <!-- Control path for disabling the capacitive hardware keys, if they exist.
+         For example: "/proc/touchpanel/keypad_enable"  -->
+    <string name="config_deviceHardwareKeysFilePath" translatable="false">@null</string>
+
     <!-- Older rotation sensors are not setting event.timestamp correctly. Setting to
          true will use SystemClock.elapsedRealtimeNanos() to set timestamp. -->
     <bool name="config_useSystemClockforRotationSensor">false</bool>
