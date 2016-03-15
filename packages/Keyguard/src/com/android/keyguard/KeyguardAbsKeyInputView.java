@@ -150,6 +150,7 @@ public abstract class KeyguardAbsKeyInputView extends LinearLayout
 
     private void onPasswordChecked(boolean matched, int timeoutMs, boolean isValidPassword) {
         if (matched) {
+            mLockPatternUtils.sanitizePassword();
             mDismissing = true;
             mCallback.reportUnlockAttempt(true, 0);
             mCallback.dismiss(true);
