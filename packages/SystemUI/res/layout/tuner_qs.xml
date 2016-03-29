@@ -30,7 +30,7 @@
         android:orientation="vertical">
 
         <View
-            android:background="@color/qs_tile_divider"
+            android:background="@color/qs_edit_divider_color"
             android:layout_width="match_parent"
             android:layout_height="2dp" />
 
