@@ -30,7 +30,12 @@
         android:orientation="vertical">
 
         <View
-            android:background="@color/qs_tile_divider"
+            android:id="@+id/spacer"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/qs_tile_height" />
+
+        <View
+            android:background="@color/qs_edit_divider_color"
             android:layout_width="match_parent"
             android:layout_height="2dp" />
 
