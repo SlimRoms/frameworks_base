@@ -21,6 +21,7 @@ import android.app.Fragment;
 import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.PorterDuff.Mode;
 import android.os.Bundle;
 import android.provider.Settings.Secure;
 import android.text.TextUtils;
@@ -38,6 +39,7 @@ import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 
 import com.android.internal.logging.MetricsLogger;
@@ -107,6 +109,7 @@ public class QsTuner extends Fragment implements Callback {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         mScrollRoot = (ScrollView) inflater.inflate(R.layout.tuner_qs, container, false);
+        mScrollRoot.setBackgroundColor(0xFFFAFAFA);
 
         mQsPanel = new DraggableQsPanel(getContext());
         mTileHost = new CustomHost(getContext());
@@ -130,7 +133,7 @@ public class QsTuner extends Fragment implements Callback {
     }
 
     private void setupDropTarget() {
-        QSTileView tileView = new QSTileView(getContext());
+        QSTileView tileView = new CustomTileView(getContext());
         QSTile.State state = new QSTile.State();
         state.visible = true;
         state.icon = ResourceIcon.get(R.drawable.ic_delete);
@@ -147,7 +150,7 @@ public class QsTuner extends Fragment implements Callback {
     }
 
     private void setupAddTarget() {
-        QSTileView tileView = new QSTileView(getContext());
+        QSTileView tileView = new CustomTileView(getContext());
         QSTile.State state = new QSTile.State();
         state.visible = true;
         state.icon = ResourceIcon.get(R.drawable.ic_add_circle_qs);
@@ -373,6 +376,47 @@ public class QsTuner extends Fragment implements Callback {
         }
     }
 
+    private static class CustomTileView extends QSTileView {
+
+        private int mTextColor;
+        private int mIconColor;
+        private int mDividerColor;
+
+        protected CustomTileView(Context context) {
+            super(context);
+
+            mIconColor = context.getResources().getColor(R.color.qs_edit_tile_icon_color);
+            mTextColor = context.getResources().getColor(R.color.qs_edit_tile_text_color);
+            mDividerColor = context.getResources().getColor(R.color.qs_edit_divider_color);
+
+            setColors();
+        }
+
+        @Override
+        protected void recreateLabel() {
+            super.recreateLabel();
+            setColors();
+        }
+
+        private void setColors() {
+            if (mDualLabel != null) {
+                mDualLabel.setTextColor(mTextColor);
+            }
+            if (mLabel != null) {
+                mLabel.setTextColor(mTextColor);
+            }
+            if (mDivider != null) {
+                mDivider.setBackgroundColor(mDividerColor);
+            }
+        }
+
+        @Override
+        protected void setIcon(ImageView iv, QSTile.State state) {
+            super.setIcon(iv, state);
+            iv.setColorFilter(mIconColor, Mode.MULTIPLY);
+        }
+    }
+
     private static class DraggableTile extends QSTile<QSTile.State>
             implements DropListener {
         private String mSpec;
@@ -386,7 +430,7 @@ public class QsTuner extends Fragment implements Callback {
 
         @Override
         public QSTileView createTileView(Context context) {
-            mView = super.createTileView(context);
+            mView = new CustomTileView(context);
             return mView;
         }
 
