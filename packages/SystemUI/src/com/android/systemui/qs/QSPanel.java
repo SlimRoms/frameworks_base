@@ -25,6 +25,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.Settings;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -75,7 +76,7 @@ public class QSPanel extends ViewGroup {
     private Record mDetailRecord;
     private Callback mCallback;
     private BrightnessController mBrightnessController;
-    private QSTileHost mHost;
+    protected QSTileHost mHost;
 
     private QSFooter mFooter;
     private boolean mGridContentVisible = true;
@@ -459,11 +460,13 @@ public class QSPanel extends ViewGroup {
         int c = -1;
         int rows = 0;
         boolean rowIsDual = false;
+        int topColumns = Settings.System.getInt(getContext().getContentResolver(), "num_top_rows", 2);
         for (TileRecord record : mRecords) {
             if (record.tileView.getVisibility() == GONE) continue;
             // wrap to next column if we've reached the max # of columns
             // also don't allow dual + single tiles on the same row
-            if (r == -1 || c == (mColumns - 1) || rowIsDual != record.tile.supportsDualTargets()) {
+            if (r == -1 || c == (mColumns - 1) || rowIsDual != record.tile.supportsDualTargets()
+                        || (rowIsDual && r == 0 && c == topColumns - 1)) {
                 r++;
                 c = 0;
                 rowIsDual = record.tile.supportsDualTargets();
@@ -477,7 +480,8 @@ public class QSPanel extends ViewGroup {
 
         View previousView = mBrightnessView;
         for (TileRecord record : mRecords) {
-            if (record.tileView.setDual(record.tile.supportsDualTargets())) {
+            
+            if (record.tileView.setDual(dualRecord(record))) {
                 record.tileView.handleStateChanged(record.tile.getState());
             }
             if (record.tileView.getVisibility() == GONE) continue;
@@ -496,6 +500,10 @@ public class QSPanel extends ViewGroup {
         }
         mGridHeight = h;
         setMeasuredDimension(width, Math.max(h, mDetail.getMeasuredHeight()));
+    }
+
+    public boolean dualRecord(QSPanel.TileRecord record) {
+        return record.row == 0;
     }
 
     private static int exactly(int size) {
