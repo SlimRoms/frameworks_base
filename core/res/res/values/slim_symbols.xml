@@ -33,4 +33,7 @@
     <java-symbol type="string" name="reboot_system" />
     <java-symbol type="string" name="reboot_progress" />
 
+    <!-- Slim's drag sort list view -->
+    <java-symbol type="color" name="dslv_icon_dark" />
+
 </resources>
