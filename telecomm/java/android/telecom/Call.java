@@ -232,6 +232,15 @@ public final class Call {
 
         //******************************************************************************************
         // Next CAPABILITY value: 0x04000000
+
+        /**
+         * Call sends responses through connection.
+         * @hide
+         */
+        public static final int CAPABILITY_CAN_SEND_RESPONSE_VIA_CONNECTION = 0x00400000;
+
+        //******************************************************************************************
+        // Next CAPABILITY value: 0x00800000
         //******************************************************************************************
 
         /**

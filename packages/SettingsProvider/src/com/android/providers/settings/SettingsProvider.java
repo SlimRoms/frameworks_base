@@ -1860,7 +1860,7 @@ public class SettingsProvider extends ContentProvider {
         }
 
         private final class UpgradeController {
-            private static final int SETTINGS_VERSION = 122;
+            private static final int SETTINGS_VERSION = 123;
 
             private final int mUserId;
 
@@ -2219,6 +2219,16 @@ public class SettingsProvider extends ContentProvider {
 
                     currentVersion = 122;
                 }
+
+                if (currentVersion == 122) {
+                    final SettingsState globalSettings = getGlobalSettingsLocked();
+                    String defaultDisabledProfiles = (getContext().getResources().getString(
+                            R.string.def_bluetooth_disabled_profiles));
+                    globalSettings.insertSettingLocked(Settings.Global.BLUETOOTH_DISABLED_PROFILES,
+                            defaultDisabledProfiles, SettingsState.SYSTEM_PACKAGE_NAME);
+                    currentVersion = 123;
+                }
+
                 // vXXX: Add new settings above this point.
 
                 // Return the current version.
