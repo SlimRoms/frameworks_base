@@ -168,7 +168,8 @@ public class MediaActionSound {
                     mSoundPool.load(SOUND_FILES[soundName], 1);
             mSoundIds[soundName] = mSoundIdToPlay;
         } else {
-            mSoundPool.play(mSoundIds[soundName], 1.0f, 1.0f, 0, 0, 1.0f);
+            if (mSoundPool.play(mSoundIds[soundName], 1.0f, 1.0f, 0, 0, 1.0f) == 0)
+                mSoundIdToPlay = mSoundIds[soundName];
         }
     }
 

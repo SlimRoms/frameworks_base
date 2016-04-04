@@ -1906,7 +1906,8 @@ public class NotificationPanelView extends PanelView implements
     }
 
     private void updateMaxHeadsUpTranslation() {
-        mNotificationStackScroller.setHeadsUpBoundaries(getHeight(), mNavigationBarBottomHeight);
+        mNotificationStackScroller.setHeadsUpBoundaries(getHeight(), mNavigationBarBottomHeight
+                + getResources().getDimensionPixelSize(R.dimen.close_handle_underlap));
     }
 
     @Override

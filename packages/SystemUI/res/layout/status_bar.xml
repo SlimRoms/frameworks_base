@@ -48,6 +48,16 @@
         android:orientation="horizontal"
         >
 
+        <TextView android:id="@+id/network_label"
+            android:textSize="14dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:maxLength="@integer/config_operatorNameMaxLength"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:visibility="gone"
+            />
+
         <com.android.systemui.statusbar.AlphaOptimizedFrameLayout
             android:id="@+id/notification_icon_area"
             android:layout_width="0dip"

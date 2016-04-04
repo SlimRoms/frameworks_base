@@ -48,6 +48,7 @@ import android.webkit.WebViewFactory;
 
 import com.android.internal.R;
 import com.android.internal.os.BinderInternal;
+import com.android.internal.os.RegionalizationEnvironment;
 import com.android.internal.os.SamplingProfilerIntegration;
 import com.android.server.accessibility.AccessibilityManagerService;
 import com.android.server.accounts.AccountManagerService;
@@ -70,6 +71,7 @@ import com.android.server.media.projection.MediaProjectionManagerService;
 import com.android.server.net.NetworkPolicyManagerService;
 import com.android.server.net.NetworkStatsService;
 import com.android.server.notification.NotificationManagerService;
+import com.android.server.os.RegionalizationService;
 import com.android.server.os.SchedulingPolicyService;
 import com.android.server.pm.BackgroundDexOptService;
 import com.android.server.pm.Installer;
@@ -359,6 +361,12 @@ public final class SystemServer {
         } else if (ENCRYPTED_STATE.equals(cryptState)) {
             Slog.w(TAG, "Device encrypted - only parsing core apps");
             mOnlyCore = true;
+        }
+
+        if (RegionalizationEnvironment.isSupported()) {
+            Slog.i(TAG, "Regionalization Service");
+            RegionalizationService regionalizationService = new RegionalizationService();
+            ServiceManager.addService("regionalization", regionalizationService);
         }
 
         // Start the package manager.

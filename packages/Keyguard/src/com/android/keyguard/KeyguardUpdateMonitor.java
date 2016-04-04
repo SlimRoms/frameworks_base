@@ -790,6 +790,9 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener {
                 // This is required because telephony doesn't return to "READY" after
                 // these state transitions. See bug 7197471.
                 state = IccCardConstants.State.READY;
+            } else if (IccCardConstants.INTENT_VALUE_ICC_NOT_READY.equals(stateExtra)
+                    && TelephonyManager.getDefault().isMultiSimEnabled()) {
+                state = IccCardConstants.State.NOT_READY;
             } else {
                 state = IccCardConstants.State.UNKNOWN;
             }
@@ -1356,6 +1359,7 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener {
             KeyguardUpdateMonitorCallback cb = mCallbacks.get(j).get();
             if (cb != null) {
                 cb.onRefreshCarrierInfo();
+                cb.onServiceStateChanged(subId, serviceState);
             }
         }
     }
@@ -1582,6 +1586,21 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener {
         } else {
             return State.UNKNOWN;
         }
+    }
+
+    public boolean isOOS()
+    {
+        boolean ret = true;
+        for (int subId : mServiceStates.keySet()) {
+            ServiceState state = mServiceStates.get(subId);
+            if (((state.getVoiceRegState() != ServiceState.STATE_OUT_OF_SERVICE)
+                    && (state.getVoiceRegState() != ServiceState.STATE_POWER_OFF))
+                    || (state.isEmergencyOnly())) {
+                ret = false;
+                break;
+            }
+        }
+        return ret;
     }
 
     /**
