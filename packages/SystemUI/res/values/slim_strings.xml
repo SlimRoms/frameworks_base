@@ -30,4 +30,10 @@
     <string name="longpress_action">Longpress</string>
     <string name="double_tap_action">Double tap</string>
 
+    <!-- Kill app toast -->
+    <string name="app_killed_message">App Killed</string>
+
+    <!-- Screenshot -->
+    <string name="shortcut_screenshot">Screenshot</string>
+
 </resources>

@@ -399,7 +399,7 @@ public class NavigationBarView extends LinearLayout {
 
         mBackIcon = ActionHelper.getActionIconImage(mContext,
                 ActionConstants.ACTION_BACK, backIconUri);
-        mBackIconLand = backIcon;
+        mBackLandIcon = mBackIcon;
 
         boolean shouldColor = true;
         if (backIconUri != null && !backIconUri.equals(ActionConstants.ICON_EMPTY)
@@ -414,9 +414,9 @@ public class NavigationBarView extends LinearLayout {
             mBackIcon.setTintMode(PorterDuff.Mode.MULTIPLY);
             mBackIcon.setTint(mNavBarButtonColor);
 
-            mBackIconLand.mutate();
-            mBackIconLand.setTintMode(PorterDuff.Mode.MULTIPLY);
-            mBackIconLand.setTint(mNavBarButtonColor);
+            mBackLandIcon.mutate();
+            mBackLandIcon.setTintMode(PorterDuff.Mode.MULTIPLY);
+            mBackLandIcon.setTint(mNavBarButtonColor);
         }
     }
 
@@ -722,12 +722,10 @@ public class NavigationBarView extends LinearLayout {
 
         mNavigationIconHints = hints;
 
-        if (getBackButton() != null ) {
+        if (getBackButton() != null) {
             ((ImageView) getBackButton()).setImageDrawable(null);
             ((ImageView) getBackButton()).setImageDrawable(mVertical ? mBackLandIcon : mBackIcon);
         }
-        mBackLandIcon.setImeVisible(backAlt);
-        mBackIcon.setImeVisible(backAlt);
 
         final boolean showImeButton = ((hints & StatusBarManager.NAVIGATION_HINT_IME_SHOWN) != 0);
         if (getImeSwitchButton() != null) {
