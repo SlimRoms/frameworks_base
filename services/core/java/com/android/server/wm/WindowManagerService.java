@@ -23,6 +23,7 @@ import android.app.AppOpsManager;
 import android.app.IActivityManager;
 import android.app.StatusBarManager;
 import android.app.admin.DevicePolicyManager;
+import android.app.WallpaperManager;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -632,6 +633,9 @@ public class WindowManagerService extends IWindowManager.Stub
     // is a wallpaper target and is done animating out, but the opening app isn't a wallpaper
     // target and isn't done animating in.
     WindowState mDeferredHideWallpaper = null;
+
+    boolean mWallpaperHasResized = false;
+    WallpaperManager mWallpaperManager = null;
 
     AppWindowToken mFocusedApp = null;
 
@@ -2354,6 +2358,36 @@ public class WindowManagerService extends IWindowManager.Stub
                 dispatchWallpaperVisibility(wallpaper, visible);
             }
         }
+    }
+
+    public void setWallpaperResized() {
+        synchronized (mWindowMap) {
+            mWallpaperHasResized = true;
+        }
+    }
+
+    public boolean checkWallpaperResizeNeeded() {
+        if (mWallpaperManager == null) {
+            mWallpaperManager = (WallpaperManager) mContext.getSystemService(Context.WALLPAPER_SERVICE);
+        }
+
+        if (mWallpaperManager != null) {
+            boolean show = false;
+            synchronized(mWindowMap) {
+                final WindowList windows = getDefaultWindowListLocked();
+                final int N = windows.size();
+                for (int i = 0; i < N; i++) {
+                    WindowState ws = windows.get(i);
+                    if (ws.isOnScreen() && (ws.mAttrs.flags & FLAG_SHOW_WALLPAPER) != 0) {
+                        show = true;
+                    }
+                }
+            }
+            int maxWH = getDefaultDisplayContentLocked().getDisplay().getMaximumSizeDimension();
+            return show && ((mWallpaperManager.getDesiredMinimumWidth() < maxWH) || (mWallpaperManager.getDesiredMinimumHeight() < maxWH));
+        }
+
+        return false;
     }
 
     public int addWindow(Session session, IWindow client, int seq,
@@ -6612,6 +6646,8 @@ public class WindowManagerService extends IWindowManager.Stub
         mAltOrientation = altOrientation;
         mPolicy.setRotationLw(mRotation);
 
+        mWallpaperHasResized = false;
+        mH.sendEmptyMessageDelayed(H.WALLPAPER_RESIZE_TIMEOUT, 2000);
         mWindowsFreezingScreen = WINDOWS_FREEZING_SCREENS_ACTIVE;
         mH.removeMessages(H.WINDOW_FREEZE_TIMEOUT);
         mH.sendEmptyMessageDelayed(H.WINDOW_FREEZE_TIMEOUT, WINDOW_FREEZE_TIMEOUT_DURATION);
@@ -7743,6 +7779,8 @@ public class WindowManagerService extends IWindowManager.Stub
         public static final int RESET_ANR_MESSAGE = 38;
         public static final int WALLPAPER_DRAW_PENDING_TIMEOUT = 39;
 
+        public static final int WALLPAPER_RESIZE_TIMEOUT = 40;
+
         @Override
         public void handleMessage(Message msg) {
             if (DEBUG_WINDOW_TRACE) {
@@ -8271,6 +8309,17 @@ public class WindowManagerService extends IWindowManager.Stub
                             if (DEBUG_APP_TRANSITIONS || DEBUG_WALLPAPER) Slog.v(TAG,
                                     "*** WALLPAPER DRAW TIMEOUT");
                             performLayoutAndPlaceSurfacesLocked();
+                        }
+                    }
+                }
+                break;
+                case WALLPAPER_RESIZE_TIMEOUT: {
+                    synchronized (mWindowMap) {
+                        if (DEBUG_ORIENTATION || DEBUG_WALLPAPER) Slog.v(TAG,
+                                    "*** WALLPAPER RESIZE TIMEOUT");
+                        mWallpaperHasResized = true;
+                        if (mInnerFields.mOrientationChangeComplete) {
+                            stopFreezingDisplayLocked();
                         }
                     }
                 }
@@ -10862,16 +10911,19 @@ public class WindowManagerService extends IWindowManager.Stub
 
         if (mWaitingForConfig || mAppsFreezingScreen > 0
                 || mWindowsFreezingScreen == WINDOWS_FREEZING_SCREENS_ACTIVE
-                || mClientFreezingScreen || !mOpeningApps.isEmpty()) {
+                || mClientFreezingScreen || !mOpeningApps.isEmpty() || (checkWallpaperResizeNeeded() && !mWallpaperHasResized)) {
             if (DEBUG_ORIENTATION) Slog.d(TAG,
                 "stopFreezingDisplayLocked: Returning mWaitingForConfig=" + mWaitingForConfig
                 + ", mAppsFreezingScreen=" + mAppsFreezingScreen
                 + ", mWindowsFreezingScreen=" + mWindowsFreezingScreen
                 + ", mClientFreezingScreen=" + mClientFreezingScreen
-                + ", mOpeningApps.size()=" + mOpeningApps.size());
+                + ", mOpeningApps.size()=" + mOpeningApps.size()
+                + ", checkWallpaperResizeNeeded() = " + checkWallpaperResizeNeeded()
+                + ", mWallpaperHasResized = " + mWallpaperHasResized);
             return;
         }
 
+        mH.removeMessages(H.WALLPAPER_RESIZE_TIMEOUT);
         mDisplayFrozen = false;
         mLastDisplayFreezeDuration = (int)(SystemClock.elapsedRealtime() - mDisplayFreezeTime);
         StringBuilder sb = new StringBuilder(128);

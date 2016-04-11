@@ -190,6 +190,7 @@ interface IWindowSession {
 
     void wallpaperCommandComplete(IBinder window, in Bundle result);
 
+    void setWallpaperResized();
     /**
      * Notifies that a rectangle on the screen has been requested.
      */

@@ -828,7 +828,9 @@ public abstract class WallpaperService extends Service {
                                         + this);
                             onVisibilityChanged(false);
                         }
-
+                        if (sizeChanged) {
+                            mSession.setWallpaperResized();
+                        }
                     } finally {
                         mIsCreating = false;
                         mSurfaceCreated = true;
