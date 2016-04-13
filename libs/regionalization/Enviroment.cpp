@@ -31,11 +31,11 @@
 #include <stdlib.h>
 #include <cutils/properties.h>
 #include <utils/Log.h>
-#include <private/regionalization/Environment.h>
+#include <private/regionalization/Enviroment.h>
 
 using namespace android;
 
-static const char* ENVIRONMENT_PROP = "ro.regionalization.support";
+static const char* ENVIROMENT_PROP = "ro.regionalization.support";
 static const char* SPEC_FILE = "/persist/speccfg/spec";
 static const char* BOOT_SHUTDOWN_FILE[2][2] = {
         {"/system/media/bootanimation.zip", "/system/media/shutdownanimation.zip"},
@@ -44,12 +44,7 @@ static const char* OVERLAY_DIR = "/system/vendor/overlay";
 
 static const bool kIsDebug = true;
 
-const int Environment::BOOT_STATUS = 0;
-const int Environment::SHUTDOWN_STATUS = 1;
-const int Environment::ANIMATION_TYPE = 0;
-const int Environment::MUSIC_TYPE = 1;
-
-Environment::Environment(void)
+Enviroment::Enviroment(void)
     : mStoragePos(NULL), mPackagesCount(0),
       mPackages(NULL), mMediaFile(NULL),
       mOverlayDir(NULL)
@@ -59,7 +54,7 @@ Environment::Environment(void)
     mOverlayDir = new char[PATH_MAX];
     if (mStoragePos == NULL || mMediaFile == NULL || mOverlayDir == NULL) {
         if (kIsDebug) {
-            ALOGD("Regionalization Environment new memory error!");
+            ALOGD("Regionalization Enviroment new memory error!");
         }
         return;
     }
@@ -67,12 +62,12 @@ Environment::Environment(void)
     bool success = loadPackagesFromSpecFile();
     if (!success) {
         if (kIsDebug) {
-            ALOGD("Regionalization Environment load packages for Carrier error!");
+            ALOGD("Regionalization Enviroment load packages for Carrier error!");
         }
     }
 }
 
-Environment::~Environment(void)
+Enviroment::~Enviroment(void)
 {
     if (mStoragePos != NULL) {
         delete[] mStoragePos;
@@ -98,11 +93,11 @@ Environment::~Environment(void)
     }
 }
 
-bool Environment::isSupported(void)
+bool Enviroment::isSupported(void)
 {
     char value[PROPERTY_VALUE_MAX];
     memset(value, 0, PROPERTY_VALUE_MAX * sizeof(char));
-    property_get(ENVIRONMENT_PROP, value, "false");
+    property_get(ENVIROMENT_PROP, value, "false");
     if (!strcmp(value, "true")) {
         return true;
     }
@@ -110,7 +105,7 @@ bool Environment::isSupported(void)
     return false;
 }
 
-bool Environment::loadPackagesFromSpecFile(void) {
+bool Enviroment::loadPackagesFromSpecFile(void) {
     FILE* fSpec = NULL;
     if ((fSpec = fopen(SPEC_FILE, "r")) == NULL) {
         return false;
@@ -153,7 +148,7 @@ bool Environment::loadPackagesFromSpecFile(void) {
 
 // type: {0:Animation; 1:Audio}
 // state: {0:boot; 1:shutdown}
-const char* Environment::getMediaFile(int type, int state)
+const char* Enviroment::getMediaFile(int type, int state)
 {
     if (mPackagesCount != 0 && mStoragePos != NULL && mPackages != NULL) {
         for(int i = mPackagesCount-1; i >= 0; i--) {
@@ -164,7 +159,7 @@ const char* Environment::getMediaFile(int type, int state)
             strlcat(mMediaFile, BOOT_SHUTDOWN_FILE[type][state], PATH_MAX);
             if(access(mMediaFile, R_OK) == 0) {
                 if (kIsDebug) {
-                    ALOGD("Environment::getMediaFile() = %s\n", mMediaFile);
+                    ALOGD("Enviroment::getMediaFile() = %s\n", mMediaFile);
                 }
                 return mMediaFile;
             }
@@ -174,7 +169,7 @@ const char* Environment::getMediaFile(int type, int state)
     return NULL;
 }
 
-const char* Environment::getOverlayDir(void)
+const char* Enviroment::getOverlayDir(void)
 {
     if (mPackagesCount != 0 && mStoragePos != NULL && mPackages != NULL) {
         for (int i = mPackagesCount-1; i >= 0; i--) {
@@ -184,7 +179,7 @@ const char* Environment::getOverlayDir(void)
             strlcat(mOverlayDir, mPackages[i], PATH_MAX);
             strlcat(mOverlayDir, OVERLAY_DIR, PATH_MAX);
             if (kIsDebug) {
-                ALOGD("Environment::getOverlayDir() = %s\n", mOverlayDir);
+                ALOGD("Enviroment::getOverlayDir() = %s\n", mOverlayDir);
             }
             // Check if PackageFrameworksRes dir exists.
             char overlayFile[PATH_MAX];
@@ -195,7 +190,7 @@ const char* Environment::getOverlayDir(void)
             strlcat(overlayFile, "FrameworksRes", PATH_MAX);
             if (access(overlayFile, R_OK) == 0) {
                 if (kIsDebug) {
-                    ALOGD("Environment::getOverlayDir() - overlayFile exists!\n");
+                    ALOGD("Enviroment::getOverlayDir() - overlayFile exists!\n");
                 }
                 return mOverlayDir;
             }
