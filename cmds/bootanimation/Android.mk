@@ -23,8 +23,7 @@ LOCAL_SHARED_LIBRARIES := \
     libEGL \
     libGLESv1_CM \
     libgui \
-    libtinyalsa \
-    libmedia
+    libtinyalsa
 
 ifeq ($(TARGET_BOOTANIMATION_PRELOAD),true)
     LOCAL_CFLAGS += -DPRELOAD_BOOTANIMATION

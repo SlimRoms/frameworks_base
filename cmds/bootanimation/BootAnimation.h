@@ -93,17 +93,12 @@ private:
     bool readFile(const char* name, String8& outString);
     bool movie();
 
-    enum ImageID { IMG_DATA = 0, IMG_SYS = 1, IMG_ENC = 2 };
-    const char *getAnimationFileName(ImageID image);
-    const char *getBootRingtoneFileName(ImageID image);
-    void playBackgroundMusic();
     void checkExit();
-    void checkShowAndroid();
 
     sp<SurfaceComposerClient>       mSession;
     sp<AudioPlayer>                 mAudioPlayer;
     AssetManager mAssets;
-    Texture     mAndroid[3];
+    Texture     mAndroid[2];
     int         mWidth;
     int         mHeight;
     EGLDisplay  mDisplay;
