@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
      Copyright (C) 2019 gzosp
      Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,4 +22,10 @@
     -->
     <integer name="hardware_ui_align">53</integer>
 
+
+    <!-- Should we listen for fingerprints when the screen is off?  Devices
+         with a rear-mounted sensor want this, but certain devices have
+         the sensor embedded in the power key and listening all the time
+         causes a poor experience. -->
+    <bool name="config_fingerprintWakeAndUnlock">true</bool>
 </resources>
