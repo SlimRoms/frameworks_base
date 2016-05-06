@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-     Copyright (C) 2015 The CyanogenMod Project
+<!-- Copyright (C) 2015 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -14,13 +13,11 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <!-- adding new exposed theme components -->
-    <color name="drawer_background_color">#ffffffff</color>
-    <color name="font_color_doc_grid">#ffffffff</color>
-
-   <!-- Doze invert -->
-  <java-symbol type="bool" name="config_invert_colors_on_doze" />
+    <!-- Whether doze should invert colors for notifications. If the RRO theme causes
+    the NORMAL notification background to be dark and the text to be light, this boolean
+    needs to be set to false, to prevent the doze notifications from being light -->
+    <bool name="config_invert_colors_on_doze">true</bool>
 
 </resources>
