@@ -1551,6 +1551,12 @@ public final class PowerManagerService extends SystemService
             return false;
         }
 
+        if (SlimSettings.System.getIntForUser(mContext.getContentResolver(),
+                SlimSettings.System.WAKEUP_WHEN_PLUGGED_UNPLUGGED, 1,
+                UserHandle.USER_CURRENT) == 0) {
+            return false;
+        }
+
         // Otherwise wake up!
         return true;
     }
