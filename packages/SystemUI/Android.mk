@@ -7,8 +7,10 @@ LOCAL_SRC_FILES := $(call all-java-files-under, src) \
     src/com/android/systemui/EventLogTags.logtags
 
 LOCAL_STATIC_JAVA_LIBRARIES := Keyguard
-LOCAL_JAVA_LIBRARIES := telephony-common \
-    org.slim.framework
+LOCAL_JAVA_LIBRARIES := telephony-common
+
+# Slim Framework
+LOCAL_JAVA_LIBRARIES += org.slim.framework
 
 LOCAL_PACKAGE_NAME := SystemUI
 LOCAL_CERTIFICATE := platform
