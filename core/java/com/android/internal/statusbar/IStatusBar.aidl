@@ -86,4 +86,3 @@ oneway interface IStatusBar
     void toggleLastApp();
     void toggleKillApp();
 }
-
