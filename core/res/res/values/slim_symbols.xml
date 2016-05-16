@@ -34,4 +34,7 @@
     <!-- Wifi idle time default -->
     <java-symbol type="integer" name="def_wifi_idle_ms" />
 
+    <!-- Hardware key rebinding -->
+    <java-symbol type="integer" name="config_deviceHardwareKeys" />
+
 </resources>

@@ -17,6 +17,7 @@
 package com.android.server.statusbar;
 
 import android.app.StatusBarManager;
+import android.content.Intent;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.Handler;
@@ -528,6 +529,24 @@ public class StatusBarManagerService extends IStatusBarService.Stub {
     }
 
     @Override
+    public void toggleLastApp() {
+        if (mBar != null) {
+            try {
+                mBar.toggleLastApp();
+            } catch (RemoteException ex) {}
+        }
+    }
+
+    @Override
+    public void toggleKillApp() {
+        if (mBar != null) {
+            try {
+                mBar.toggleKillApp();
+            } catch (RemoteException ex) {}
+        }
+    }
+
+    @Override
     public void appTransitionCancelled() {
         if (mBar != null) {
             try {
@@ -552,6 +571,29 @@ public class StatusBarManagerService extends IStatusBarService.Stub {
         if (mBar != null) {
             try {
                 mBar.startAssist(args);
+            } catch (RemoteException ex) {}
+        }
+    }
+
+    /**
+     * Ask keyguard to invoke a custom intent after dismissing keyguard
+     * @hide
+     */
+    @Override
+    public void showCustomIntentAfterKeyguard(Intent intent) {
+        enforceStatusBarService();
+        if (mBar != null) {
+            try {
+                mBar.showCustomIntentAfterKeyguard(intent);
+            } catch (RemoteException ex) {}
+        }
+    }
+
+    @Override
+    public void toggleScreenshot() {
+        if (mBar != null) {
+            try {
+                mBar.toggleScreenshot();
             } catch (RemoteException ex) {}
         }
     }
