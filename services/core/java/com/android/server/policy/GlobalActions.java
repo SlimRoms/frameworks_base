@@ -40,7 +40,6 @@ import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.IPowerManager;
 import android.os.Message;
 import android.os.RemoteException;
 import android.os.ServiceManager;
@@ -389,14 +388,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
         @Override
         public void onPress() {
-            try {
-                IPowerManager pm = IPowerManager.Stub.asInterface(ServiceManager
-                        .getService(Context.POWER_SERVICE));
-                pm.reboot(true, null, false);
-            } catch (RemoteException e) {
-                Log.e(TAG, "PowerManager service died!", e);
-                return;
-            }
+            mWindowManagerFuncs.reboot();
         }
     }
 
@@ -451,6 +443,35 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                         com.android.internal.R.string.bugreport_status,
                         Build.VERSION.RELEASE,
                         Build.ID);
+            }
+        };
+    }
+
+    private Action getPowerAction() {
+        return new SinglePressAction(com.android.internal.R.drawable.ic_lock_power_off,
+                R.string.global_action_power_off) {
+
+            @Override
+            public void onPress() {
+                final boolean quickbootEnabled = Settings.System.getInt(
+                        mContext.getContentResolver(), "enable_quickboot", 0) == 1;
+                // go to quickboot mode if enabled
+                if (quickbootEnabled) {
+                    startQuickBoot();
+                    return;
+                }
+                // shutdown by making sure radio and power are handled accordingly.
+                mWindowManagerFuncs.shutdown(false /* confirm */);
+            }
+
+            @Override
+            public boolean showDuringKeyguard() {
+                return true;
+            }
+
+            @Override
+            public boolean showBeforeProvisioning() {
+                return true;
             }
         };
     }
