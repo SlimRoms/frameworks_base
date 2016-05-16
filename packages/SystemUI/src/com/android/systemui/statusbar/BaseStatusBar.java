@@ -137,6 +137,9 @@ public abstract class BaseStatusBar extends SystemUI implements
     protected static final int MSG_CANCEL_PRELOAD_RECENT_APPS = 1023;
     protected static final int MSG_SHOW_NEXT_AFFILIATED_TASK = 1024;
     protected static final int MSG_SHOW_PREV_AFFILIATED_TASK = 1025;
+    protected static final int MSG_TOGGLE_LAST_APP = 1026;
+    protected static final int MSG_TOGGLE_KILL_APP = 1027;
+    protected static final int MSG_TOGGLE_SCREENSHOT = 1028;
 
     // Slim Additions
     protected static final int MSG_TOGGLE_LAST_APP = 1026;
@@ -1083,6 +1086,27 @@ public abstract class BaseStatusBar extends SystemUI implements
     /** Jumps to the previous affiliated task in the group. */
     public void showPreviousAffiliatedTask() {
         int msg = MSG_SHOW_PREV_AFFILIATED_TASK;
+        mHandler.removeMessages(msg);
+        mHandler.sendEmptyMessage(msg);
+    }
+
+    @Override
+    public void toggleLastApp() {
+        int msg = MSG_TOGGLE_LAST_APP;
+        mHandler.removeMessages(msg);
+        mHandler.sendEmptyMessage(msg);
+    }
+
+    @Override
+    public void toggleKillApp() {
+        int msg = MSG_TOGGLE_KILL_APP;
+        mHandler.removeMessages(msg);
+        mHandler.sendEmptyMessage(msg);
+    }
+
+    @Override
+    public void toggleScreenshot() {
+        int msg = MSG_TOGGLE_SCREENSHOT;
         mHandler.removeMessages(msg);
         mHandler.sendEmptyMessage(msg);
     }
