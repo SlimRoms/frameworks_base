@@ -50,4 +50,7 @@
     <java-symbol type="string" name="reboot_system" />
     <java-symbol type="string" name="reboot_progress" />
 
+    <!-- Hardware key rebinding -->
+    <java-symbol type="integer" name="config_deviceHardwareKeys" />
+
 </resources>
