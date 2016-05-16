@@ -104,6 +104,10 @@ public class TvStatusBar extends BaseStatusBar {
     public void notificationLightPulse(int argb, int onMillis, int offMillis) {
     }
 
+    @Override // CommandQueue
+    public void showCustomIntentAfterKeyguard(Intent intent) {
+    }
+
     @Override
     protected void setAreThereNotifications() {
     }

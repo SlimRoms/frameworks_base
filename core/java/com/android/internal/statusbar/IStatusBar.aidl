@@ -46,6 +46,7 @@ oneway interface IStatusBar
     void preloadRecentApps();
     void cancelPreloadRecentApps();
     void showScreenPinningRequest();
+    void showCustomIntentAfterKeyguard(inout Intent intent);
 
     /**
      * Notifies the status bar that an app transition is pending to delay applying some flags with
@@ -86,4 +87,3 @@ oneway interface IStatusBar
     void toggleLastApp();
     void toggleKillApp();
 }
-
