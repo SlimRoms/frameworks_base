@@ -128,6 +128,9 @@ public class AssistManager {
             return;
         }
 
+        if (mView == null) {
+            onConfigurationChanged();
+        }
         final boolean isService = isAssistantService();
         if (!isService || !isVoiceSessionRunning()) {
             showOrb();

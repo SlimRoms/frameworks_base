@@ -3845,6 +3845,7 @@ public final class Settings {
             MOVED_TO_GLOBAL.add(Settings.Global.WIFI_ON);
             MOVED_TO_GLOBAL.add(Settings.Global.WIFI_P2P_DEVICE_NAME);
             MOVED_TO_GLOBAL.add(Settings.Global.WIFI_SAVED_STATE);
+            MOVED_TO_GLOBAL.add(Settings.Global.WIFI_HOTSPOT2_ENABLED);
             MOVED_TO_GLOBAL.add(Settings.Global.WIFI_SUPPLICANT_SCAN_INTERVAL_MS);
             MOVED_TO_GLOBAL.add(Settings.Global.WIFI_SUSPEND_OPTIMIZATIONS_ENABLED);
             MOVED_TO_GLOBAL.add(Settings.Global.WIFI_ENHANCED_AUTO_JOIN);
@@ -6059,6 +6060,25 @@ public final class Settings {
         public static final String AIRPLANE_MODE_TOGGLEABLE_RADIOS = "airplane_mode_toggleable_radios";
 
         /**
+         * A Long representing a bitmap of profiles that should be disabled when bluetooth starts.
+         * See {@link android.bluetooth.BluetoothProfile}.
+         * {@hide}
+         */
+        public static final String BLUETOOTH_DISABLED_PROFILES = "bluetooth_disabled_profiles";
+
+        /**
+         * A semi-colon separated list of Bluetooth interoperability workarounds.
+         * Each entry is a partial Bluetooth device address string and an integer representing
+         * the feature to be disabled, separated by a comma. The integer must correspond
+         * to a interoperability feature as defined in "interop.h" in /system/bt.
+         * <p>
+         * Example: <br/>
+         *   "00:11:22,0;01:02:03:04,2"
+         * @hide
+         */
+       public static final String BLUETOOTH_INTEROPERABILITY_LIST = "bluetooth_interoperability_list";
+
+        /**
          * The policy for deciding when Wi-Fi should go to sleep (which will in
          * turn switch to using the mobile data as an Internet connection).
          * <p>
@@ -6795,6 +6815,14 @@ public final class Settings {
        public static final String WIFI_SAVED_STATE = "wifi_saved_state";
 
        /**
+        * Used to save the hotspot2 on/off state.
+        * This state will be used to open/close passpoint functions
+        *
+        * @hide
+        */
+       public static final String WIFI_HOTSPOT2_ENABLED = "wifi_hotspot2_enabled";
+
+       /**
         * The interval in milliseconds to scan as used by the wifi supplicant
         * @hide
         */
@@ -7306,10 +7334,12 @@ public final class Settings {
          * The following keys are supported:
          *
          * <pre>
-         * idle_duration        (long)
+         * idle_duration2       (long)
          * wallclock_threshold  (long)
          * parole_interval      (long)
          * parole_duration      (long)
+         *
+         * idle_duration        (long) // This is deprecated and used to circumvent b/26355386.
          * </pre>
          *
          * <p>
@@ -8126,6 +8156,13 @@ public final class Settings {
          * @hide
          */
         public static final String CONTACT_METADATA_SYNC = "contact_metadata_sync";
+
+        /**
+         * Whether to enable cellular on boot.
+         * The value 1 - enable, 0 - disable
+         * @hide
+         */
+        public static final String ENABLE_CELLULAR_ON_BOOT = "enable_cellular_on_boot";
     }
 
     /**

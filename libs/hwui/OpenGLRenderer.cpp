@@ -181,6 +181,16 @@ void OpenGLRenderer::discardFramebuffer(float left, float top, float right, floa
 }
 
 void OpenGLRenderer::clear(float left, float top, float right, float bottom, bool opaque) {
+#ifdef QCOM_HARDWARE
+    mRenderState.scissor().setEnabled(true);
+    mRenderState.scissor().set(left, getViewportHeight() - bottom, right - left, bottom - top);
+    glClear(GL_COLOR_BUFFER_BIT);
+    mDirty = true;
+    if (opaque) {
+        mRenderState.scissor().reset();
+        return;
+    }
+#else
     if (!opaque) {
         mRenderState.scissor().setEnabled(true);
         mRenderState.scissor().set(left, getViewportHeight() - bottom, right - left, bottom - top);
@@ -190,6 +200,7 @@ void OpenGLRenderer::clear(float left, float top, float right, float bottom, boo
     }
 
     mRenderState.scissor().reset();
+#endif
 }
 
 void OpenGLRenderer::startTilingCurrentClip(bool opaque, bool expand) {
@@ -1699,6 +1710,7 @@ void OpenGLRenderer::drawPatch(const SkBitmap* bitmap, const Patch* mesh,
 
     Texture* texture = entry ? entry->texture : mCaches.textureCache.get(bitmap);
     if (!texture) return;
+    const AutoTexture autoCleanup(texture);
 
     // 9 patches are built for stretching - always filter
     int textureFillFlags = TextureFillFlags::ForceFilter;
@@ -2325,12 +2337,15 @@ void OpenGLRenderer::drawPath(const SkPath* path, const SkPaint* paint) {
 
     PathTexture* texture = mCaches.pathCache.get(path, paint);
     if (!texture) return;
-    const AutoTexture autoCleanup(texture);
 
     const float x = texture->left - texture->offset;
     const float y = texture->top - texture->offset;
 
     drawPathTexture(texture, x, y, paint);
+
+    if (texture->cleanup) {
+        mCaches.pathCache.remove(path, paint);
+    }
     mDirty = true;
 }
 

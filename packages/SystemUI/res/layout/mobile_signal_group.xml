@@ -32,6 +32,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
+        android:id="@+id/ims_hd"
+        android:visibility="gone"
+        />
+    <ImageView
+        android:id="@+id/dataNetwork_type_in_roaming"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="start|bottom"
+        android:layout_marginEnd="5dp"
+        android:visibility="gone"
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
         android:id="@+id/data_inout"
         android:visibility="gone"
         />
@@ -39,6 +54,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+        >
+        <ImageView
+            android:id="@+id/mobile_roaming"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            />
         <FrameLayout
             android:id="@+id/mobile_signal_single"
             android:layout_width="wrap_content"
@@ -71,6 +95,7 @@
                 android:layout_gravity="end|bottom"
                 />
         </FrameLayout>
+        </LinearLayout>
         <LinearLayout
             android:id="@+id/mobile_signal_stacked"
             android:layout_width="wrap_content"

@@ -554,6 +554,16 @@ interface ITelephony {
      */
     IccOpenLogicalChannelResponse iccOpenLogicalChannel(String AID);
 
+    /**
+     * Opens a logical channel to the ICC card.
+     *
+     * Input parameters equivalent to TS 27.007 AT+CCHO command.
+     *
+     * @param p2 P2 parameter
+     * @param AID Application id.
+     * @return an IccOpenLogicalChannelResponse object.
+     */
+    IccOpenLogicalChannelResponse iccOpenLogicalChannelWithP2(String AID, byte p2);
 
     /**
      * Opens a logical channel to the ICC card for a particular subId.
@@ -565,6 +575,16 @@ interface ITelephony {
      * @return an IccOpenLogicalChannelResponse object.
      */
     IccOpenLogicalChannelResponse iccOpenLogicalChannelUsingSubId(int subId, String AID);
+
+    /**
+     * Opens a logical channel to the ICC card for a particular subID
+     *
+     * @param subId user preferred subId.
+     * @param p2 P2 parameter
+     * @param AID Application id. See ETSI 102.221 and 101.220
+     */
+    IccOpenLogicalChannelResponse iccOpenLogicalChannelUsingSubIdWithP2(int subId,
+        String AID, byte p2);
 
     /**
      * Closes a previously opened logical channel to the ICC card.

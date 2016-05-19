@@ -233,7 +233,9 @@ public class KeyguardStatusView extends GridLayout {
             if (res.getBoolean(com.android.internal.R.bool.config_dateformat)) {
                 final String dateformat = Settings.System.getString(context.getContentResolver(),
                         Settings.System.DATE_FORMAT);
-                dateView = dateformat.equals(dateView) ? dateView : dateformat;
+                if (dateformat != null) {
+                    dateView = dateformat.equals(dateView) ? dateView : dateformat;
+                }
             } else {
                 final String key = locale.toString() + dateViewSkel + clockView12Skel +
                         clockView24Skel;
@@ -242,10 +244,12 @@ public class KeyguardStatusView extends GridLayout {
                 cacheKey = key;
             }
             clockView12 = DateFormat.getBestDateTimePattern(locale, clockView12Skel);
-            // CLDR insists on adding an AM/PM indicator even though it wasn't in the skeleton
-            // format.  The following code removes the AM/PM indicator if we didn't want it.
-            if (!clockView12Skel.contains("a")) {
-                clockView12 = clockView12.replaceAll("a", "").trim();
+            if(!context.getResources().getBoolean(R.bool.config_showAmpm)){
+                // CLDR insists on adding an AM/PM indicator even though it wasn't in the skeleton
+                // format.  The following code removes the AM/PM indicator if we didn't want it.
+                if (!clockView12Skel.contains("a")) {
+                    clockView12 = clockView12.replaceAll("a", "").trim();
+                }
             }
             clockView24 = DateFormat.getBestDateTimePattern(locale, clockView24Skel);
             // Use fancy colon.

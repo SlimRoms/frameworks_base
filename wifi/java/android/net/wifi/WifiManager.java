@@ -188,6 +188,14 @@ public class WifiManager {
     public static final int WIFI_STATE_UNKNOWN = 4;
 
     /**
+     * Wi-Fi is in failed state. This state will occur when load driver failed or start
+     * supplicant failed.
+     *
+     * @hide
+     */
+    public static final int WIFI_STATE_FAILED = 5;
+
+    /**
      * Broadcast intent action indicating that Wi-Fi AP has been enabled, disabled,
      * enabling, disabling, or failed.
      *
@@ -1422,6 +1430,19 @@ public class WifiManager {
     public boolean isDualBandSupported() {
         try {
             return mService.isDualBandSupported();
+        } catch (RemoteException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Check if the chipset supports IBSS (Adhoc) mode
+     * @return {@code true} if supported, {@code false} otherwise.
+     * @hide
+     */
+    public boolean isIbssSupported() {
+        try {
+            return mService.isIbssSupported();
         } catch (RemoteException e) {
             return false;
         }

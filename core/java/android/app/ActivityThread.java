@@ -893,9 +893,25 @@ public final class ActivityThread {
         public void scheduleRegisteredReceiver(IIntentReceiver receiver, Intent intent,
                 int resultCode, String dataStr, Bundle extras, boolean ordered,
                 boolean sticky, int sendingUser, int processState) throws RemoteException {
-            updateProcessState(processState, false);
-            receiver.performReceive(intent, resultCode, dataStr, extras, ordered,
-                    sticky, sendingUser);
+            RemoteException remoteException = null;
+            if (!Binder.isProxy(receiver)) {
+                updateProcessState(processState, false);
+                try {
+                    receiver.performReceive(intent, resultCode, dataStr, extras, ordered,
+                            sticky, sendingUser);
+                    return;
+                } catch (RemoteException e) {
+                    remoteException = e;
+                }
+            }
+            if (ordered) {
+                Slog.w(TAG, receiver + " is no longer alive");
+                ActivityManagerNative.getDefault().finishReceiver(receiver.asBinder(),
+                        resultCode, dataStr, extras, true, intent.getFlags());
+                if (remoteException != null) {
+                    throw remoteException;
+                }
+            }
         }
 
         @Override
@@ -4235,6 +4251,11 @@ public final class ActivityThread {
 
             configDiff = mConfiguration.updateFrom(config);
             config = applyCompatConfiguration(mCurDefaultDisplayDpi);
+
+            final Theme systemTheme = getSystemContext().getTheme();
+            if ((systemTheme.getChangingConfigurations() & configDiff) != 0) {
+                systemTheme.rebase();
+            }
         }
 
         ArrayList<ComponentCallbacks2> callbacks = collectComponentCallbacks(false, config);
@@ -4523,7 +4544,8 @@ public final class ActivityThread {
         }
 
 
-        final boolean is24Hr = "24".equals(mCoreSettings.getString(Settings.System.TIME_12_24));
+        final boolean is24Hr = android.text.format.DateFormat.is24HourFormat(
+            mCoreSettings.getString(Settings.System.TIME_12_24), data.config.locale);
         DateFormat.set24HourTimePref(is24Hr);
 
         View.mDebugViewAttributes =

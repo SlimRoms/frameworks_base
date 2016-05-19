@@ -24,6 +24,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.telephony.SubscriptionInfo;
+import android.telephony.TelephonyManager;
 import android.util.ArraySet;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -48,7 +49,7 @@ import java.util.List;
 // Intimately tied to the design of res/layout/signal_cluster_view.xml
 public class SignalClusterView
         extends LinearLayout
-        implements NetworkControllerImpl.SignalCallback,
+        implements NetworkControllerImpl.SignalCallbackExtended,
         SecurityController.SecurityControllerCallback, Tunable {
 
     static final String TAG = "SignalClusterView";
@@ -68,6 +69,7 @@ public class SignalClusterView
     private int mEthernetIconId = 0;
     private int mLastEthernetIconId = -1;
     private boolean mWifiVisible = false;
+    private boolean mImsRegistered = false;
     private int mWifiStrengthId = 0, mWifiActivityId = 0;
     private int mLastWifiStrengthId = -1, mLastWifiActivityId = -1;
     private boolean mIsAirplaneMode = false;
@@ -83,7 +85,8 @@ public class SignalClusterView
 
     ViewGroup mEthernetGroup, mWifiGroup;
     View mNoSimsCombo;
-    ImageView mVpn, mEthernet, mWifi, mAirplane, mNoSims, mEthernetDark, mWifiDark, mNoSimsDark;
+    ImageView mVpn, mEthernet, mWifi, mAirplane,
+                mNoSims, mEthernetDark, mWifiDark, mNoSimsDark, mImsAirplane;
     ImageView mWifiActivity;
     View mWifiAirplaneSpacer;
     View mWifiSignalSpacer;
@@ -174,6 +177,7 @@ public class SignalClusterView
         mAirplane       = (ImageView) findViewById(R.id.airplane);
         mNoSims         = (ImageView) findViewById(R.id.no_sims);
         mNoSimsDark     = (ImageView) findViewById(R.id.no_sims_dark);
+        mImsAirplane    = (ImageView) findViewById(R.id.airplane_ims);
         mNoSimsCombo    =             findViewById(R.id.no_sims_combo);
         mWifiAirplaneSpacer =         findViewById(R.id.wifi_airplane_spacer);
         mWifiSignalSpacer =           findViewById(R.id.wifi_signal_spacer);
@@ -196,6 +200,7 @@ public class SignalClusterView
         mWifi           = null;
         mWifiActivity   = null;
         mAirplane       = null;
+        mImsAirplane    = null;
         mMobileSignalGroup.removeAllViews();
         mMobileSignalGroup = null;
         TunerService.get(mContext).removeTunable(this);
@@ -247,6 +252,24 @@ public class SignalClusterView
         state.mStackedVoiceId = stackedVoiceId;
 
         apply();
+    }
+
+    @Override
+    public void setMobileDataIndicators(IconState statusIcon, IconState qsIcon, int statusType,
+            int qsType, boolean activityIn, boolean activityOut, int dataActivityId,
+            int mobileActivityId, int stackedDataId, int stackedVoiceId,
+            String typeContentDescription, String description, boolean isWide, int subId,
+            int imsIconId, boolean isImsInAirplane, int dataNetworkTypeInRoamingId) {
+        PhoneState state = getState(subId);
+        if (state == null) {
+            return;
+        }
+        state.mMobileImsId = imsIconId;
+        state.mDataNetworkTypeInRoamingId = dataNetworkTypeInRoamingId;
+        mImsRegistered = isImsInAirplane;
+        this.setMobileDataIndicators(statusIcon, qsIcon, statusType, qsType, activityIn,
+                activityOut, dataActivityId, mobileActivityId, stackedDataId,
+                stackedVoiceId, typeContentDescription, description, isWide, subId);
     }
 
     @Override
@@ -404,10 +427,13 @@ public class SignalClusterView
 
         for (PhoneState state : mPhoneStates) {
             if (state.mMobile != null) {
+                state.maybeStopAnimatableDrawable(state.mMobile);
                 state.mMobile.setImageDrawable(null);
+                state.mLastMobileStrengthId = -1;
             }
             if (state.mMobileType != null) {
                 state.mMobileType.setImageDrawable(null);
+                state.mLastMobileTypeId = -1;
             }
         }
 
@@ -491,6 +517,12 @@ public class SignalClusterView
             mAirplane.setVisibility(View.GONE);
         }
 
+        if (mIsAirplaneMode && mImsRegistered){
+            mImsAirplane.setVisibility(View.VISIBLE);
+        } else {
+            mImsAirplane.setVisibility(View.GONE);
+        }
+
         if (mIsAirplaneMode && mWifiVisible) {
             mWifiAirplaneSpacer.setVisibility(View.VISIBLE);
         } else {
@@ -550,13 +582,17 @@ public class SignalClusterView
         private final int mSubId;
         private boolean mMobileVisible = false;
         private int mMobileStrengthId = 0, mMobileTypeId = 0;
+        private int mLastMobileStrengthId = -1;
+        private int mLastMobileTypeId = -1;
         private boolean mIsMobileTypeIconWide;
         private String mMobileDescription, mMobileTypeDescription;
 
         private ViewGroup mMobileGroup;
-        private ImageView mMobile, mMobileDark, mMobileType;
+        private ImageView mMobile, mMobileDark, mMobileType, mRoaming, mMobileIms,
+                mDataNetworkTypeInRoaming;
 
-        private int mDataActivityId = 0, mMobileActivityId = 0;
+        private int mDataActivityId = 0, mMobileActivityId = 0, mMobileImsId = 0,
+                 mDataNetworkTypeInRoamingId =0;
         private int mStackedDataId = 0, mStackedVoiceId = 0;
         private ImageView mDataActivity, mMobileActivity, mStackedData, mStackedVoice;
         private ViewGroup mMobileSingleGroup, mMobileStackedGroup;
@@ -574,6 +610,9 @@ public class SignalClusterView
             mMobileDark     = (ImageView) root.findViewById(R.id.mobile_signal_dark);
             mMobileType     = (ImageView) root.findViewById(R.id.mobile_type);
             mMobileActivity = (ImageView) root.findViewById(R.id.mobile_inout);
+            mMobileIms      = (ImageView) root.findViewById(R.id.ims_hd);
+            mDataNetworkTypeInRoaming = (ImageView) root
+                    .findViewById(R.id.dataNetwork_type_in_roaming);
 
             mDataActivity   = (ImageView) root.findViewById(R.id.data_inout);
             mStackedData    = (ImageView) root.findViewById(R.id.mobile_signal_data);
@@ -581,26 +620,20 @@ public class SignalClusterView
 
             mMobileSingleGroup = (ViewGroup) root.findViewById(R.id.mobile_signal_single);
             mMobileStackedGroup = (ViewGroup) root.findViewById(R.id.mobile_signal_stacked);
+            mRoaming        = (ImageView) root.findViewById(R.id.mobile_roaming);
         }
 
         public boolean apply(boolean isSecondaryIcon) {
             if (mMobileVisible && !mIsAirplaneMode) {
-                mMobile.setImageResource(mMobileStrengthId);
-                Drawable mobileDrawable = mMobile.getDrawable();
-                if (mobileDrawable instanceof Animatable) {
-                    Animatable ad = (Animatable) mobileDrawable;
-                    if (!ad.isRunning()) {
-                        ad.start();
-                    }
+                if (mLastMobileStrengthId != mMobileStrengthId) {
+                    updateAnimatableIcon(mMobile, mMobileStrengthId);
+                    updateAnimatableIcon(mMobileDark, mMobileStrengthId);
+                    mLastMobileStrengthId = mMobileStrengthId;
                 }
 
-                mMobileDark.setImageResource(mMobileStrengthId);
-                Drawable mobileDarkDrawable = mMobileDark.getDrawable();
-                if (mobileDarkDrawable instanceof Animatable) {
-                    Animatable ad = (Animatable) mobileDarkDrawable;
-                    if (!ad.isRunning()) {
-                        ad.start();
-                    }
+                if (mLastMobileTypeId != mMobileTypeId) {
+                    mMobileType.setImageResource(mMobileTypeId);
+                    mLastMobileTypeId = mMobileTypeId;
                 }
 
                 mMobileType.setImageResource(mMobileTypeId);
@@ -623,6 +656,10 @@ public class SignalClusterView
                     }
                 }
 
+                mMobileIms.setImageResource(mMobileImsId);
+
+                mDataNetworkTypeInRoaming.setImageResource(mDataNetworkTypeInRoamingId);
+
                 if (mStackedDataId != 0 && mStackedVoiceId != 0) {
                     mStackedData.setImageResource(mStackedDataId);
                     mStackedVoice.setImageResource(mStackedVoiceId);
@@ -635,6 +672,15 @@ public class SignalClusterView
                     mMobileStackedGroup.setVisibility(View.GONE);
                 }
 
+                TelephonyManager tm =
+                        (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
+                if (tm != null && tm.isNetworkRoaming(mSubId) &&
+                        (mContext.getResources().getBoolean(R.bool.show_roaming_and_network_icons))) {
+                    mRoaming.setImageDrawable(getContext().getResources().getDrawable(
+                            R.drawable.stat_sys_data_fully_connected_roam));
+                } else {
+                    mRoaming.setImageDrawable(null);
+                }
                 mMobileGroup.setContentDescription(mMobileTypeDescription
                         + " " + mMobileDescription);
                 mMobileGroup.setVisibility(View.VISIBLE);
@@ -656,8 +702,37 @@ public class SignalClusterView
             mMobileType.setVisibility(mMobileTypeId != 0 ? View.VISIBLE : View.GONE);
             mDataActivity.setVisibility(mDataActivityId != 0 ? View.VISIBLE : View.GONE);
             mMobileActivity.setVisibility(mMobileActivityId != 0 ? View.VISIBLE : View.GONE);
+            mMobileIms.setVisibility(mMobileImsId != 0 ? View.VISIBLE : View.GONE);
+            mDataNetworkTypeInRoaming.setVisibility(mDataNetworkTypeInRoamingId != 0 ? View.VISIBLE
+                    : View.GONE);
 
             return mMobileVisible;
+        }
+
+        private void updateAnimatableIcon(ImageView view, int resId) {
+            maybeStopAnimatableDrawable(view);
+            view.setImageResource(resId);
+            maybeStartAnimatableDrawable(view);
+        }
+
+        private void maybeStopAnimatableDrawable(ImageView view) {
+            Drawable drawable = view.getDrawable();
+            if (drawable instanceof Animatable) {
+                Animatable ad = (Animatable) drawable;
+                if (ad.isRunning()) {
+                    ad.stop();
+                }
+            }
+        }
+
+        private void maybeStartAnimatableDrawable(ImageView view) {
+            Drawable drawable = view.getDrawable();
+            if (drawable instanceof Animatable) {
+                Animatable ad = (Animatable) drawable;
+                if (!ad.isRunning()) {
+                    ad.start();
+                }
+            }
         }
 
         public void populateAccessibilityEvent(AccessibilityEvent event) {

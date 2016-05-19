@@ -211,6 +211,7 @@ import com.android.internal.app.ResolverActivity;
 import com.android.internal.content.NativeLibraryHelper;
 import com.android.internal.content.PackageHelper;
 import com.android.internal.os.IParcelFileDescriptorFactory;
+import com.android.internal.os.RegionalizationEnvironment;
 import com.android.internal.os.SomeArgs;
 import com.android.internal.os.Zygote;
 import com.android.internal.util.ArrayUtils;
@@ -341,7 +342,7 @@ public class PackageManagerService extends IPackageManager.Stub {
      * minute but we sometimes do very lengthy I/O operations on this thread,
      * such as installing multi-gigabyte applications, so ours needs to be longer.
      */
-    private static final long WATCHDOG_TIMEOUT = 1000*60*10;     // ten minutes
+    private static final long WATCHDOG_TIMEOUT = 1000*60*60;     // sixty minutes
 
     /**
      * Wall-clock timeout (in milliseconds) after which we *require* that an fstrim
@@ -462,6 +463,9 @@ public class PackageManagerService extends IPackageManager.Stub {
     // Directory containing the private parts (e.g. code and non-resource assets) of forward-locked
     // apps.
     final File mDrmAppPrivateInstallDir;
+
+    // Directory containing the regionalization 3rd apps.
+    final File mRegionalizationAppInstallDir;
 
     // ----------------------------------------------------------------
 
@@ -1899,6 +1903,7 @@ public class PackageManagerService extends IPackageManager.Stub {
             mAsecInternalPath = new File(dataDir, "app-asec").getPath();
             mUserAppDataDir = new File(dataDir, "user");
             mDrmAppPrivateInstallDir = new File(dataDir, "app-private");
+            mRegionalizationAppInstallDir = new File(dataDir, "app-regional");
 
             sUserManager = new UserManagerService(context, this,
                     mInstallLock, mPackages);
@@ -2116,6 +2121,28 @@ public class PackageManagerService extends IPackageManager.Stub {
             scanDirLI(oemAppDir, PackageParser.PARSE_IS_SYSTEM
                     | PackageParser.PARSE_IS_SYSTEM_DIR, scanFlags, 0);
 
+            // Collect all Regionalization packages form Carrier's res packages.
+            if (RegionalizationEnvironment.isSupported()) {
+                Log.d(TAG, "Load Regionalization vendor apks");
+                final List<File> RegionalizationDirs =
+                        RegionalizationEnvironment.getAllPackageDirectories();
+                for (File f : RegionalizationDirs) {
+                    File RegionalizationSystemDir = new File(f, "system");
+                    // Collect packages in <Package>/system/priv-app
+                    scanDirLI(new File(RegionalizationSystemDir, "priv-app"),
+                            PackageParser.PARSE_IS_SYSTEM | PackageParser.PARSE_IS_SYSTEM_DIR
+                            | PackageParser.PARSE_IS_PRIVILEGED, scanFlags, 0);
+                    // Collect packages in <Package>/system/app
+                    scanDirLI(new File(RegionalizationSystemDir, "app"),
+                            PackageParser.PARSE_IS_SYSTEM | PackageParser.PARSE_IS_SYSTEM_DIR,
+                            scanFlags, 0);
+                    // Collect overlay in <Package>/system/vendor
+                    scanDirLI(new File(RegionalizationSystemDir, "vendor/overlay"),
+                            PackageParser.PARSE_IS_SYSTEM | PackageParser.PARSE_IS_SYSTEM_DIR,
+                            scanFlags | SCAN_TRUSTED_OVERLAY, 0);
+                }
+            }
+
             if (DEBUG_UPGRADE) Log.v(TAG, "Running installd update commands");
             mInstaller.moveFiles();
 
@@ -2193,6 +2220,18 @@ public class PackageManagerService extends IPackageManager.Stub {
 
                 scanDirLI(mDrmAppPrivateInstallDir, PackageParser.PARSE_FORWARD_LOCK,
                         scanFlags | SCAN_REQUIRE_KNOWN, 0);
+
+
+                // Collect all Regionalization 3rd packages.
+                if (RegionalizationEnvironment.isSupported()) {
+                    Log.d(TAG, "Load Regionalization 3rd apks from res packages.");
+                    final List<String> packages = RegionalizationEnvironment.getAllPackageNames();
+                    for (String pack : packages) {
+                        File appFolder = new File(mRegionalizationAppInstallDir, pack);
+                        Log.d(TAG, "Load Regionalization 3rd apks of path " + appFolder.getPath());
+                        scanDirLI(appFolder, 0, scanFlags | SCAN_REQUIRE_KNOWN, 0);
+                    }
+                }
 
                 /**
                  * Remove disable package settings for any updated system
@@ -5657,6 +5696,14 @@ public class PackageManagerService extends IPackageManager.Stub {
                 // Ignore entries which are not packages
                 continue;
             }
+
+            if (RegionalizationEnvironment.isSupported()) {
+                if (RegionalizationEnvironment.isExcludedApp(file.getName())) {
+                    Slog.d(TAG, "Regionalization Excluded:" + file.getName());
+                    continue;
+                }
+            }
+
             try {
                 scanPackageLI(file, parseFlags | PackageParser.PARSE_MUST_BE_APK,
                         scanFlags, currentTime, null);

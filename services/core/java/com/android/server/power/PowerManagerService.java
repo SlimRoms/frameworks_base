@@ -396,6 +396,14 @@ public final class PowerManagerService extends SystemService
     // Use -1 to disable.
     private int mScreenBrightnessOverrideFromWindowManager = -1;
 
+    // The window manager has determined the user to be inactive via other means.
+    // Set this to false to disable.
+    private boolean mUserInactiveOverrideFromWindowManager;
+
+    // The next possible user activity timeout after being explicitly told the user is inactive.
+    // Set to -1 when not told the user is inactive since the last period spent dozing or asleep.
+    private long mOverriddenTimeout = -1;
+
     // The user activity timeout override from the window manager
     // to allow the current foreground activity to override the user activity timeout.
     // Use -1 to disable.
@@ -551,26 +559,28 @@ public final class PowerManagerService extends SystemService
             // Initialize display power management.
             mDisplayManagerInternal.initPowerManagement(
                     mDisplayPowerCallbacks, mHandler, sensorManager);
+        }
 
-            // Register for broadcasts from other components of the system.
-            IntentFilter filter = new IntentFilter();
-            filter.addAction(Intent.ACTION_BATTERY_CHANGED);
-            filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
-            mContext.registerReceiver(new BatteryReceiver(), filter, null, mHandler);
+        // Register for broadcasts from other components of the system.
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_BATTERY_CHANGED);
+        filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
+        mContext.registerReceiver(new BatteryReceiver(), filter, null, mHandler);
 
-            filter = new IntentFilter();
-            filter.addAction(Intent.ACTION_DREAMING_STARTED);
-            filter.addAction(Intent.ACTION_DREAMING_STOPPED);
-            mContext.registerReceiver(new DreamReceiver(), filter, null, mHandler);
+        filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_DREAMING_STARTED);
+        filter.addAction(Intent.ACTION_DREAMING_STOPPED);
+        mContext.registerReceiver(new DreamReceiver(), filter, null, mHandler);
 
-            filter = new IntentFilter();
-            filter.addAction(Intent.ACTION_USER_SWITCHED);
-            mContext.registerReceiver(new UserSwitchedReceiver(), filter, null, mHandler);
+        filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_USER_SWITCHED);
+        mContext.registerReceiver(new UserSwitchedReceiver(), filter, null, mHandler);
 
-            filter = new IntentFilter();
-            filter.addAction(Intent.ACTION_DOCK_EVENT);
-            mContext.registerReceiver(new DockReceiver(), filter, null, mHandler);
+        filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_DOCK_EVENT);
+        mContext.registerReceiver(new DockReceiver(), filter, null, mHandler);
 
+        synchronized (mLock) {
             // Register for settings changes.
             final ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.Secure.getUriFor(
@@ -1044,6 +1054,11 @@ public final class PowerManagerService extends SystemService
 
             mNotifier.onUserActivity(event, uid);
 
+            if (mUserInactiveOverrideFromWindowManager) {
+                mUserInactiveOverrideFromWindowManager = false;
+                mOverriddenTimeout = -1;
+            }
+
             if (mWakefulness == WAKEFULNESS_ASLEEP
                     || mWakefulness == WAKEFULNESS_DOZING
                     || (flags & PowerManager.USER_ACTIVITY_FLAG_INDIRECT) != 0) {
@@ -1259,11 +1274,27 @@ public final class PowerManagerService extends SystemService
         }
     }
 
+    /**
+     * Logs the time the device would have spent awake before user activity timeout,
+     * had the system not been told the user was inactive.
+     */
+    private void logSleepTimeoutRecapturedLocked() {
+        final long now = SystemClock.uptimeMillis();
+        final long savedWakeTimeMs = mOverriddenTimeout - now;
+        if (savedWakeTimeMs >= 0) {
+            EventLog.writeEvent(EventLogTags.POWER_SOFT_SLEEP_REQUESTED, savedWakeTimeMs);
+            mOverriddenTimeout = -1;
+        }
+    }
+
     private void finishWakefulnessChangeIfNeededLocked() {
         if (mWakefulnessChanging && mDisplayReady) {
             if (mWakefulness == WAKEFULNESS_DOZING
                     && (mWakeLockSummary & WAKE_LOCK_DOZE) == 0) {
                 return; // wait until dream has enabled dozing
+            }
+            if (mWakefulness == WAKEFULNESS_DOZING || mWakefulness == WAKEFULNESS_ASLEEP) {
+                logSleepTimeoutRecapturedLocked();
             }
             mWakefulnessChanging = false;
             mNotifier.onWakefulnessChangeFinished();
@@ -1541,6 +1572,7 @@ public final class PowerManagerService extends SystemService
                 final int sleepTimeout = getSleepTimeoutLocked();
                 final int screenOffTimeout = getScreenOffTimeoutLocked(sleepTimeout);
                 final int screenDimDuration = getScreenDimDurationLocked(screenOffTimeout);
+                final boolean userInactiveOverride = mUserInactiveOverrideFromWindowManager;
 
                 mUserActivitySummary = 0;
                 if (mLastUserActivityTime >= mLastWakeTime) {
@@ -1572,6 +1604,7 @@ public final class PowerManagerService extends SystemService
                         }
                     }
                 }
+
                 if (mUserActivitySummary == 0) {
                     if (sleepTimeout >= 0) {
                         final long anyUserActivity = Math.max(mLastUserActivityTime,
@@ -1587,6 +1620,20 @@ public final class PowerManagerService extends SystemService
                         nextTimeout = -1;
                     }
                 }
+
+                if (mUserActivitySummary != USER_ACTIVITY_SCREEN_DREAM && userInactiveOverride) {
+                    if ((mUserActivitySummary &
+                            (USER_ACTIVITY_SCREEN_BRIGHT | USER_ACTIVITY_SCREEN_DIM)) != 0) {
+                        // Device is being kept awake by recent user activity
+                        if (nextTimeout >= now && mOverriddenTimeout == -1) {
+                            // Save when the next timeout would have occurred
+                            mOverriddenTimeout = nextTimeout;
+                        }
+                    }
+                    mUserActivitySummary = USER_ACTIVITY_SCREEN_DREAM;
+                    nextTimeout = -1;
+                }
+
                 if (mUserActivitySummary != 0 && nextTimeout >= 0) {
                     Message msg = mHandler.obtainMessage(MSG_USER_ACTIVITY_TIMEOUT);
                     msg.setAsynchronous(true);
@@ -2516,6 +2563,14 @@ public final class PowerManagerService extends SystemService
         }
     }
 
+    private void setUserInactiveOverrideFromWindowManagerInternal() {
+        synchronized (mLock) {
+            mUserInactiveOverrideFromWindowManager = true;
+            mDirty |= DIRTY_USER_ACTIVITY;
+            updatePowerStateLocked();
+        }
+    }
+
     private void setUserActivityTimeoutOverrideFromWindowManagerInternal(long timeoutMillis) {
         synchronized (mLock) {
             if (mUserActivityTimeoutOverrideFromWindowManager != timeoutMillis) {
@@ -2705,6 +2760,8 @@ public final class PowerManagerService extends SystemService
                     + mScreenBrightnessOverrideFromWindowManager);
             pw.println("  mUserActivityTimeoutOverrideFromWindowManager="
                     + mUserActivityTimeoutOverrideFromWindowManager);
+            pw.println("  mUserInactiveOverrideFromWindowManager="
+                    + mUserInactiveOverrideFromWindowManager);
             pw.println("  mTemporaryScreenBrightnessSettingOverride="
                     + mTemporaryScreenBrightnessSettingOverride);
             pw.println("  mTemporaryScreenAutoBrightnessAdjustmentSettingOverride="
@@ -3543,6 +3600,11 @@ public final class PowerManagerService extends SystemService
                 screenBrightness = PowerManager.BRIGHTNESS_DEFAULT;
             }
             setDozeOverrideFromDreamManagerInternal(screenState, screenBrightness);
+        }
+
+        @Override
+        public void setUserInactiveOverrideFromWindowManager() {
+            setUserInactiveOverrideFromWindowManagerInternal();
         }
 
         @Override

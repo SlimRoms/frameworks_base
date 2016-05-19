@@ -26,6 +26,7 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.util.SparseArray;
 
+import com.android.internal.telephony.CarrierAppUtils;
 import com.android.systemui.R;
 import com.android.systemui.statusbar.policy.MobileSignalController.MobileIconGroup;
 
@@ -149,6 +150,7 @@ class TelephonyIcons {
         };
 
     static final int QS_DATA_3G = R.drawable.ic_qs_signal_3g;
+    static final int QS_DATA_3G_PLUS = R.drawable.ic_qs_signal_3g_plus;
 
     static final int[][] DATA_E = {
             { R.drawable.stat_sys_data_fully_connected_e,
@@ -176,6 +178,7 @@ class TelephonyIcons {
     };
 
     static final int QS_DATA_H = R.drawable.ic_qs_signal_h;
+    static final int QS_DATA_H_PLUS = R.drawable.ic_qs_signal_h_plus;
 
     //CDMA
     // Use 3G icons for EVDO data and 1x icons for 1XRTT data
@@ -217,6 +220,8 @@ class TelephonyIcons {
               R.drawable.stat_sys_data_fully_connected_4g_plus }
     };
 
+    static final int QS_DATA_4G_LTE = R.drawable.ic_qs_signal_4g_lte;
+
     static final int QS_DATA_4G_PLUS = R.drawable.ic_qs_signal_4g_plus;
 
     // LTE branded "LTE"
@@ -232,15 +237,20 @@ class TelephonyIcons {
     };
 
     static final int QS_DATA_LTE = R.drawable.ic_qs_signal_lte;
+    static final int QS_DATA_LTE_PLUS = R.drawable.ic_qs_signal_lte_plus;
 
     static final int FLIGHT_MODE_ICON = R.drawable.stat_sys_airplane_mode;
     static final int ROAMING_ICON = R.drawable.stat_sys_data_fully_connected_roam;
     static final int ICON_LTE = R.drawable.stat_sys_data_fully_connected_lte;
+    static final int ICON_LTE_PLUS = R.drawable.stat_sys_data_fully_connected_lte_plus;
     static final int ICON_G = R.drawable.stat_sys_data_fully_connected_g;
     static final int ICON_E = R.drawable.stat_sys_data_fully_connected_e;
     static final int ICON_H = R.drawable.stat_sys_data_fully_connected_h;
+    static final int ICON_H_PLUS = R.drawable.stat_sys_data_fully_connected_h_plus;
     static final int ICON_3G = R.drawable.stat_sys_data_fully_connected_3g;
+    static final int ICON_3G_PLUS = R.drawable.stat_sys_data_fully_connected_3g_plus;
     static final int ICON_4G = R.drawable.stat_sys_data_fully_connected_4g;
+    static final int ICON_4G_LTE = R.drawable.stat_sys_data_fully_connected_4g_lte;
     static final int ICON_4G_PLUS = R.drawable.stat_sys_data_fully_connected_4g_plus;
     static final int ICON_1X = R.drawable.stat_sys_data_fully_connected_1x;
     static final int ICON_CARRIER_NETWORK_CHANGE =
@@ -249,6 +259,7 @@ class TelephonyIcons {
     static final int QS_ICON_LTE = R.drawable.ic_qs_signal_lte;
     static final int QS_ICON_3G = R.drawable.ic_qs_signal_3g;
     static final int QS_ICON_4G = R.drawable.ic_qs_signal_4g;
+    static final int QS_ICON_4G_LTE = R.drawable.ic_qs_signal_4g_lte;
     static final int QS_ICON_4G_PLUS = R.drawable.ic_qs_signal_4g_plus;
     static final int QS_ICON_1X = R.drawable.ic_qs_signal_1x;
     static final int QS_ICON_CARRIER_NETWORK_CHANGE =
@@ -263,6 +274,7 @@ class TelephonyIcons {
     static final int DATA_TYPE_HP = 7;
     static final int DATA_TYPE_1X = 8;
     static final int DATA_TYPE_LTE = 9;
+    static final int DATA_TYPE_4G_PLUS = 10;
 
     static final int SIGNAL_STRENGTH_TYPE_G = 0;
     static final int SIGNAL_STRENGTH_TYPE_E = 1;
@@ -282,6 +294,7 @@ class TelephonyIcons {
     static final String NS = "com.android.systemui";
 
     static String[] mDataTypeArray, mDataTypeGenerationArray;
+    static String[] mForbiddenDataArray, mDataDisconnectedArray;
     static String[] mDataTypeDescriptionArray, mDataTypeGenerationDescArray;
     static String[] mDataActivityArray;
     static String[] mSignalStrengthArray, mSignalStrengthRoamingArray;
@@ -289,11 +302,14 @@ class TelephonyIcons {
     static String[] mSignalStrengthDesc;
 
     static int[] mSelectedDataTypeIcon;
+    static int[] mForbiddenDataTypeIcon;
+    static int[] mDataDisconnectedTypeIcon;
     static int[] mSelectedQSDataTypeIcon;
     static String[] mSelectedDataTypeDesc;
     static int[] mSelectedDataActivityIndex;
     static int[] mSelectedSignalStreagthIndex;
     static SparseArray<Integer> mStacked2SingleIconLookup;
+    static CarrierAppUtils.CARRIER carrier = CarrierAppUtils.getCarrierId();
 
     private static Resources mRes;
     private static boolean isInitiated = false;
@@ -306,6 +322,8 @@ class TelephonyIcons {
 
         mRes = context.getResources();
         try {
+            mForbiddenDataArray = mRes.getStringArray(R.array.telephony_data_type_forbidden);
+            mDataDisconnectedArray = mRes.getStringArray(R.array.telephony_data_type_disconnected);
             mDataTypeArray = mRes.getStringArray(R.array.multi_data_type);
             mDataTypeDescriptionArray = mRes.getStringArray(
                     R.array.telephony_data_type_description);
@@ -329,6 +347,14 @@ class TelephonyIcons {
         if (mSelectedDataTypeIcon == null
             && mDataTypeArray.length != 0) {
             mSelectedDataTypeIcon = new int[mDataTypeArray.length];
+        }
+        if (mForbiddenDataTypeIcon == null
+            && mForbiddenDataArray.length != 0) {
+            mForbiddenDataTypeIcon = new int[mForbiddenDataArray.length];
+        }
+        if (mDataDisconnectedTypeIcon == null
+                && mDataDisconnectedArray.length != 0) {
+           mDataDisconnectedTypeIcon = new int[mDataDisconnectedArray.length];
         }
         if (mSelectedQSDataTypeIcon == null
             && mDataTypeArray.length != 0) {
@@ -386,6 +412,16 @@ class TelephonyIcons {
         String resName = mDataTypeArray[slot];
         int resId = mRes.getIdentifier(resName, null, NS);
         String[] dataTypeArray = mRes.getStringArray(resId);
+        if (mRes.getBoolean(R.bool.config_data_signal_control)) {
+            String forbiddenresName = mForbiddenDataArray[slot];
+            String dataDisconnectedResName = mDataDisconnectedArray[slot];
+            int forbiddenresId = mRes.getIdentifier(forbiddenresName, null, NS);
+            int dataDisconnectedResId = mRes.getIdentifier(dataDisconnectedResName , null, NS);
+            String[] forbiddenTypeArray = mRes.getStringArray(forbiddenresId);
+            String[] dataDisconnectedTypeArray = mRes.getStringArray(dataDisconnectedResId);
+            setForbiddenResource(slot, type, forbiddenTypeArray);
+            setDataDisconnectedResource(slot, type, dataDisconnectedTypeArray);
+        }
 
         log(TAG, "data type item name: " + resName + " id:" + resId);
 
@@ -426,13 +462,23 @@ class TelephonyIcons {
             case TelephonyManager.NETWORK_TYPE_HSDPA:
             case TelephonyManager.NETWORK_TYPE_HSUPA:
             case TelephonyManager.NETWORK_TYPE_HSPA:
-                if (hspaDistinguishable) {
-                    mSelectedDataActivityIndex[slot] = DATA_TYPE_H;
-                    mSelectedDataTypeIcon[slot] = mRes.getIdentifier(
-                            dataTypeArray[type], null, NS);
-                    mSelectedQSDataTypeIcon[slot] = QS_DATA_H;
+                boolean isCarrierOneEnabled = (carrier != null && (CarrierAppUtils.
+                        CARRIER.TELEPHONY_CARRIER_ONE == carrier));
+                if (hspaDistinguishable || isCarrierOneEnabled) {
                     mSelectedDataTypeDesc[slot] = mDataTypeDescriptionArray[type];
-                    mSelectedSignalStreagthIndex[slot] = SIGNAL_STRENGTH_TYPE_H;
+                    if (type == TelephonyManager.NETWORK_TYPE_HSPA &&
+                            isCarrierOneEnabled) {
+                        mSelectedDataActivityIndex[slot] = DATA_TYPE_HP;
+                        mSelectedDataTypeIcon[slot] = ICON_H_PLUS;
+                        mSelectedQSDataTypeIcon[slot] = QS_DATA_H_PLUS;
+                        mSelectedSignalStreagthIndex[slot] = SIGNAL_STRENGTH_TYPE_HP;
+                    } else {
+                        mSelectedDataActivityIndex[slot] = DATA_TYPE_H;
+                        mSelectedDataTypeIcon[slot] = mRes.getIdentifier(
+                                dataTypeArray[type], null, NS);
+                        mSelectedQSDataTypeIcon[slot] = QS_DATA_H;
+                        mSelectedSignalStreagthIndex[slot] = SIGNAL_STRENGTH_TYPE_H;
+                    }
                 } else {
                     mSelectedDataActivityIndex[slot] = DATA_TYPE_3G;
                     mSelectedDataTypeIcon[slot] = mRes.getIdentifier(
@@ -444,7 +490,8 @@ class TelephonyIcons {
                 }
                 break;
             case TelephonyManager.NETWORK_TYPE_HSPAP:
-                if (hspaDistinguishable) {
+                if (hspaDistinguishable || (carrier != null && (CarrierAppUtils.
+                        CARRIER.TELEPHONY_CARRIER_ONE == carrier))) {
                     mSelectedDataActivityIndex[slot] = DATA_TYPE_HP;
                     mSelectedDataTypeIcon[slot] = mRes.getIdentifier(
                             dataTypeArray[type], null, NS);
@@ -453,9 +500,16 @@ class TelephonyIcons {
                     mSelectedSignalStreagthIndex[slot] = SIGNAL_STRENGTH_TYPE_HP;
                 } else {
                     mSelectedDataActivityIndex[slot] = DATA_TYPE_3G;
-                    mSelectedDataTypeIcon[slot] = mRes.getIdentifier(
-                            mDataTypeGenerationArray[0], null, NS);
-                    mSelectedQSDataTypeIcon[slot] = QS_DATA_3G;
+                    if(mRes.getBoolean(R.bool.config_show4gForHspap) ||
+                            mRes.getBoolean(R.bool.show_network_indicators)){
+                        mSelectedDataTypeIcon[slot] = mRes.getIdentifier(
+                                mDataTypeGenerationArray[3], null, NS);
+                        mSelectedQSDataTypeIcon[slot] = QS_DATA_4G;
+                    } else {
+                        mSelectedDataTypeIcon[slot] = mRes.getIdentifier(
+                                mDataTypeGenerationArray[0], null, NS);
+                        mSelectedQSDataTypeIcon[slot] = QS_DATA_3G;
+                    }
                     mSelectedDataTypeDesc[slot] = mDataTypeGenerationDescArray[0];
                     mSelectedSignalStreagthIndex[slot] = SIGNAL_STRENGTH_TYPE_3G;
                 }
@@ -497,24 +551,34 @@ class TelephonyIcons {
                 break;
             case TelephonyManager.NETWORK_TYPE_LTE:
             case TelephonyManager.NETWORK_TYPE_LTE_CA:
-                if (show4GforLte) {
+                if (!show4GforLte || (carrier != null && (CarrierAppUtils.
+                        CARRIER.TELEPHONY_CARRIER_ONE == carrier))) {
+                    mSelectedDataActivityIndex[slot] = DATA_TYPE_LTE;
+                    mSelectedDataTypeIcon[slot] = mRes.getIdentifier(
+                            dataTypeArray[type], null, NS);
+                    if ( type == TelephonyManager.NETWORK_TYPE_LTE_CA) {
+                        mSelectedQSDataTypeIcon[slot] = QS_DATA_LTE_PLUS;
+                    } else {
+                        mSelectedQSDataTypeIcon[slot] = QS_DATA_LTE;
+                    }
+                    mSelectedDataTypeDesc[slot] = mDataTypeDescriptionArray[type];
+                    mSelectedSignalStreagthIndex[slot] = SIGNAL_STRENGTH_TYPE_4G;
+                } else {
                     mSelectedDataActivityIndex[slot] = DATA_TYPE_4G;
                     mSelectedDataTypeIcon[slot] = mRes.getIdentifier(
                         mDataTypeGenerationArray[1], null, NS);
                     if ( type == TelephonyManager.NETWORK_TYPE_LTE_CA) {
+                        mSelectedDataActivityIndex[slot] = DATA_TYPE_4G_PLUS;
                         //Select 4G+ icon.
                         mSelectedDataTypeIcon[slot] = mRes.getIdentifier(
                                 mDataTypeGenerationArray[2], null, NS);
+                    } else {
+                        mSelectedDataActivityIndex[slot] = DATA_TYPE_4G;
+                        mSelectedDataTypeIcon[slot] = mRes.getIdentifier(
+                                mDataTypeGenerationArray[1], null, NS);
                     }
                     mSelectedQSDataTypeIcon[slot] = QS_DATA_4G;
                     mSelectedDataTypeDesc[slot] = mDataTypeGenerationDescArray[1];
-                    mSelectedSignalStreagthIndex[slot] = SIGNAL_STRENGTH_TYPE_4G;
-                } else {
-                    mSelectedDataActivityIndex[slot] = DATA_TYPE_LTE;
-                    mSelectedDataTypeIcon[slot] = mRes.getIdentifier(
-                            dataTypeArray[type], null, NS);
-                    mSelectedQSDataTypeIcon[slot] = QS_DATA_LTE;
-                    mSelectedDataTypeDesc[slot] = mDataTypeDescriptionArray[type];
                     mSelectedSignalStreagthIndex[slot] = SIGNAL_STRENGTH_TYPE_4G;
                 }
                 break;
@@ -557,6 +621,25 @@ class TelephonyIcons {
     static int getDataTypeIcon(int slot) {
         log(TAG, "getDataTypeIcon " + String.format("sub=%d", slot));
         return mSelectedDataTypeIcon[slot];
+    }
+    private static void setForbiddenResource(int slot, int type,
+        String[] forbiddenTypeArray) {
+        mForbiddenDataTypeIcon[slot] = mRes.getIdentifier(forbiddenTypeArray[type], null, NS);
+    }
+
+    private static void setDataDisconnectedResource(int slot, int type,
+        String[] disconnectedTypeArray) {
+        mDataDisconnectedTypeIcon[slot] = mRes.getIdentifier(disconnectedTypeArray[type], null, NS);
+    }
+
+    static int getForbiddenDataIcon(int slot) {
+        log(TAG, "getForbiddenDataIcon " + String.format("sub=%d", slot));
+        return mForbiddenDataTypeIcon[slot];
+    }
+
+    static int getDataDisconnectedIcon(int slot) {
+        log(TAG, "getDisconnectedDataIcon " + String.format("sub=%d", slot));
+        return mDataDisconnectedTypeIcon[slot];
     }
 
     static int getDataTypeDesc(int slot) {
@@ -681,6 +764,21 @@ class TelephonyIcons {
             TelephonyIcons.QS_DATA_3G
             );
 
+    static final MobileIconGroup THREE_G_PLUS = new MobileIconGroup(
+            "3G+",
+            TelephonyIcons.TELEPHONY_SIGNAL_STRENGTH,
+            TelephonyIcons.QS_TELEPHONY_SIGNAL_STRENGTH,
+            AccessibilityContentDescriptions.PHONE_SIGNAL_STRENGTH,
+            0, 0,
+            TelephonyIcons.TELEPHONY_NO_NETWORK,
+            TelephonyIcons.QS_TELEPHONY_NO_NETWORK,
+            AccessibilityContentDescriptions.PHONE_SIGNAL_STRENGTH[0],
+            R.string.accessibility_data_connection_3g_plus,
+            TelephonyIcons.ICON_3G_PLUS,
+            true,
+            TelephonyIcons.QS_DATA_3G_PLUS
+            );
+
     static final MobileIconGroup WFC = new MobileIconGroup(
             "WFC",
             TelephonyIcons.TELEPHONY_SIGNAL_STRENGTH,
@@ -765,6 +863,21 @@ class TelephonyIcons {
             TelephonyIcons.QS_DATA_H
             );
 
+    static final MobileIconGroup H_PLUS = new MobileIconGroup(
+            "H+",
+            TelephonyIcons.TELEPHONY_SIGNAL_STRENGTH,
+            TelephonyIcons.QS_TELEPHONY_SIGNAL_STRENGTH,
+            AccessibilityContentDescriptions.PHONE_SIGNAL_STRENGTH,
+            0, 0,
+            TelephonyIcons.TELEPHONY_NO_NETWORK,
+            TelephonyIcons.QS_TELEPHONY_NO_NETWORK,
+            AccessibilityContentDescriptions.PHONE_SIGNAL_STRENGTH[0],
+            R.string.accessibility_data_connection_3_5g_plus,
+            TelephonyIcons.ICON_H_PLUS,
+            false,
+            TelephonyIcons.QS_DATA_H_PLUS
+            );
+
     static final MobileIconGroup FOUR_G = new MobileIconGroup(
             "4G",
             TelephonyIcons.TELEPHONY_SIGNAL_STRENGTH,
@@ -778,6 +891,21 @@ class TelephonyIcons {
             TelephonyIcons.ICON_4G,
             true,
             TelephonyIcons.QS_DATA_4G
+            );
+
+    static final MobileIconGroup FOUR_G_LTE = new MobileIconGroup(
+            "4GLTE",
+            TelephonyIcons.TELEPHONY_SIGNAL_STRENGTH,
+            TelephonyIcons.QS_TELEPHONY_SIGNAL_STRENGTH,
+            AccessibilityContentDescriptions.PHONE_SIGNAL_STRENGTH,
+            0, 0,
+            TelephonyIcons.TELEPHONY_NO_NETWORK,
+            TelephonyIcons.QS_TELEPHONY_NO_NETWORK,
+            AccessibilityContentDescriptions.PHONE_SIGNAL_STRENGTH[0],
+            R.string.accessibility_data_connection_4g_lte,
+            TelephonyIcons.ICON_4G_LTE,
+            true,
+            TelephonyIcons.QS_DATA_4G_LTE
             );
 
     static final MobileIconGroup FOUR_G_PLUS = new MobileIconGroup(
@@ -808,6 +936,21 @@ class TelephonyIcons {
             TelephonyIcons.ICON_LTE,
             true,
             TelephonyIcons.QS_DATA_LTE
+            );
+
+    static final MobileIconGroup LTE_PLUS = new MobileIconGroup(
+            "LTE+",
+            TelephonyIcons.TELEPHONY_SIGNAL_STRENGTH,
+            TelephonyIcons.QS_TELEPHONY_SIGNAL_STRENGTH,
+            AccessibilityContentDescriptions.PHONE_SIGNAL_STRENGTH,
+            0, 0,
+            TelephonyIcons.TELEPHONY_NO_NETWORK,
+            TelephonyIcons.QS_TELEPHONY_NO_NETWORK,
+            AccessibilityContentDescriptions.PHONE_SIGNAL_STRENGTH[0],
+            R.string.accessibility_data_connection_lte_plus,
+            TelephonyIcons.ICON_LTE_PLUS,
+            true,
+            TelephonyIcons.QS_DATA_LTE_PLUS
             );
 
     static final MobileIconGroup ROAMING = new MobileIconGroup(

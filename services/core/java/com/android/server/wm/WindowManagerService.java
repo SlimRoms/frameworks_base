@@ -155,6 +155,7 @@ import static android.view.WindowManager.LayoutParams.FIRST_APPLICATION_WINDOW;
 import static android.view.WindowManager.LayoutParams.FIRST_SUB_WINDOW;
 import static android.view.WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM;
 import static android.view.WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+import static android.view.WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS;
 import static android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
 import static android.view.WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
 import static android.view.WindowManager.LayoutParams.FLAG_SECURE;
@@ -306,6 +307,8 @@ public class WindowManagerService extends IWindowManager.Stub
     private static final String PROPERTY_EMULATOR_CIRCULAR = "ro.emulator.circular";
 
     final private KeyguardDisableHandler mKeyguardDisableHandler;
+
+    private final int mSfHwRotation;
 
     final BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -997,7 +1000,9 @@ public class WindowManagerService extends IWindowManager.Stub
             SurfaceControl.closeTransaction();
         }
 
-        updateCircularDisplayMaskIfNeeded();
+        // Load hardware rotation from prop
+        mSfHwRotation = android.os.SystemProperties.getInt("ro.sf.hwrotation",0) / 90;
+
         showEmulatorDisplayOverlayIfNeeded();
     }
 
@@ -2734,7 +2739,7 @@ public class WindowManagerService extends IWindowManager.Stub
         // to hold off on removing the window until the animation is done.
         // If the display is frozen, just remove immediately, since the
         // animation wouldn't be seen.
-        if (win.mHasSurface && okToDisplay()) {
+        if (win.mHasSurface && okToDisplay() && !win.mBinderDied) {
             // If we are not currently running the exit animation, we
             // need to see about starting one.
             wasVisible = win.isWinVisibleLw();
@@ -3800,7 +3805,7 @@ public class WindowManagerService extends IWindowManager.Stub
     }
 
     public int getOrientationLocked() {
-        if (mDisplayFrozen) {
+        if (mDisplayFrozen || mAppsFreezingScreen > 0) {
             if (mLastWindowForcedOrientation != ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED) {
                 if (DEBUG_ORIENTATION) Slog.v(TAG, "Display is frozen, return "
                         + mLastWindowForcedOrientation);
@@ -3825,8 +3830,8 @@ public class WindowManagerService extends IWindowManager.Stub
                     continue;
                 }
                 int req = win.mAttrs.screenOrientation;
-                if((req == ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED) ||
-                        (req == ActivityInfo.SCREEN_ORIENTATION_BEHIND)){
+                if ((req == ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED) ||
+                        (req == ActivityInfo.SCREEN_ORIENTATION_BEHIND)) {
                     continue;
                 }
 
@@ -3856,7 +3861,7 @@ public class WindowManagerService extends IWindowManager.Stub
                 }
                 if (DEBUG_ORIENTATION) Slog.v(TAG,
                         "No one is requesting an orientation when the screen is locked");
-                return mLastKeyguardForcedOrientation;
+                return mLastWindowForcedOrientation = mLastKeyguardForcedOrientation;
             }
         }
 
@@ -4442,13 +4447,8 @@ public class WindowManagerService extends IWindowManager.Stub
                         + " ShowWallpaper="
                         + ent.array.getBoolean(
                                 com.android.internal.R.styleable.Window_windowShowWallpaper, false));
-                final boolean windowIsTranslucentDefined = ent.array.hasValue(
-                        com.android.internal.R.styleable.Window_windowIsTranslucent);
-                final boolean windowIsTranslucent = ent.array.getBoolean(
-                        com.android.internal.R.styleable.Window_windowIsTranslucent, false);
-                final boolean windowSwipeToDismiss = ent.array.getBoolean(
-                        com.android.internal.R.styleable.Window_windowSwipeToDismiss, false);
-                if (windowIsTranslucent || (!windowIsTranslucentDefined && windowSwipeToDismiss)) {
+                if (ent.array.getBoolean(
+                        com.android.internal.R.styleable.Window_windowIsTranslucent, false)) {
                     return;
                 }
                 if (ent.array.getBoolean(
@@ -5949,7 +5949,7 @@ public class WindowManagerService extends IWindowManager.Stub
         }
     }
 
-    public void updateCircularDisplayMaskIfNeeded() {
+    private void updateCircularDisplayMaskIfNeeded() {
         // we're fullscreen and not hosted in an ActivityView
         if (mContext.getResources().getConfiguration().isScreenRound()
                 && mContext.getResources().getBoolean(
@@ -5989,8 +5989,8 @@ public class WindowManagerService extends IWindowManager.Stub
                 if (visible) {
                     // TODO(multi-display): support multiple displays
                     if (mCircularDisplayMask == null) {
-                        int screenOffset = mContext.getResources().getDimensionPixelSize(
-                                com.android.internal.R.dimen.circular_display_mask_offset);
+                        int screenOffset = mContext.getResources().getInteger(
+                                com.android.internal.R.integer.config_windowOutsetBottom);
                         int maskThickness = mContext.getResources().getDimensionPixelSize(
                                 com.android.internal.R.dimen.circular_display_mask_thickness);
 
@@ -6359,6 +6359,8 @@ public class WindowManagerService extends IWindowManager.Stub
 
                 // The screenshot API does not apply the current screen rotation.
                 int rot = getDefaultDisplayContentLocked().getDisplay().getRotation();
+                // Allow for abnormal hardware orientation
+                rot = (rot + mSfHwRotation) % 4;
 
                 if (rot == Surface.ROTATION_90 || rot == Surface.ROTATION_270) {
                     rot = (rot == Surface.ROTATION_90) ? Surface.ROTATION_270 : Surface.ROTATION_90;
@@ -7667,6 +7669,8 @@ public class WindowManagerService extends IWindowManager.Stub
             mActivityManager.updateConfiguration(null);
         } catch (RemoteException e) {
         }
+
+        updateCircularDisplayMaskIfNeeded();
     }
 
     private void displayReady(int displayId) {
@@ -7674,22 +7678,7 @@ public class WindowManagerService extends IWindowManager.Stub
             final DisplayContent displayContent = getDisplayContentLocked(displayId);
             if (displayContent != null) {
                 mAnimator.addDisplayLocked(displayId);
-                synchronized(displayContent.mDisplaySizeLock) {
-                    // Bootstrap the default logical display from the display manager.
-                    final DisplayInfo displayInfo = displayContent.getDisplayInfo();
-                    DisplayInfo newDisplayInfo = mDisplayManagerInternal.getDisplayInfo(displayId);
-                    if (newDisplayInfo != null) {
-                        displayInfo.copyFrom(newDisplayInfo);
-                    }
-                    displayContent.mInitialDisplayWidth = displayInfo.logicalWidth;
-                    displayContent.mInitialDisplayHeight = displayInfo.logicalHeight;
-                    displayContent.mInitialDisplayDensity = displayInfo.logicalDensityDpi;
-                    displayContent.mBaseDisplayWidth = displayContent.mInitialDisplayWidth;
-                    displayContent.mBaseDisplayHeight = displayContent.mInitialDisplayHeight;
-                    displayContent.mBaseDisplayDensity = displayContent.mInitialDisplayDensity;
-                    displayContent.mBaseDisplayRect.set(0, 0,
-                            displayContent.mBaseDisplayWidth, displayContent.mBaseDisplayHeight);
-                }
+                displayContent.initializeDisplayBaseInfo();
             }
         }
     }
@@ -8712,7 +8701,8 @@ public class WindowManagerService extends IWindowManager.Stub
             displayInfo.overscanBottom = bottom;
         }
 
-        mDisplaySettings.setOverscanLocked(displayInfo.uniqueId, left, top, right, bottom);
+        mDisplaySettings.setOverscanLocked(displayInfo.uniqueId, displayInfo.name, left, top,
+                right, bottom);
         mDisplaySettings.writeSettingsLocked();
 
         reconfigureDisplayLocked(displayContent);

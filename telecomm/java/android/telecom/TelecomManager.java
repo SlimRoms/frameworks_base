@@ -117,6 +117,15 @@ public class TelecomManager {
             "android.telecom.action.PHONE_ACCOUNT_REGISTERED";
 
     /**
+     * The {@link android.content.Intent} action used indicate that a phone account was
+     * just unregistered.
+     * @hide
+     */
+    @SystemApi
+    public static final String ACTION_PHONE_ACCOUNT_UNREGISTERED =
+            "android.telecom.action.PHONE_ACCOUNT_UNREGISTERED";
+
+    /**
      * Activity action: Shows a dialog asking the user whether or not they want to replace the
      * current default Dialer with the one specified in
      * {@link #EXTRA_CHANGE_DEFAULT_DIALER_PACKAGE_NAME}.
@@ -141,6 +150,17 @@ public class TelecomManager {
      */
     public static final String ACTION_DEFAULT_DIALER_CHANGED =
             "android.telecom.action.DEFAULT_DIALER_CHANGED";
+
+    /**
+     *@hide Broadcast intent action indicating the call type(CS call or Non-CS call).
+     * The string extra {@link #EXTRA_CALL_TYPE_CS} will contain the
+     * boolean value true if call is CS call else false.
+     *
+     * @see #EXTRA_CALL_TYPE_CS
+     */
+    public static final String ACTION_CALL_TYPE =
+            "codeaurora.telecom.action.CALL_TYPE";
+
 
     /**
      * Extra value used to provide the package name for {@link #ACTION_CHANGE_DEFAULT_DIALER}.
@@ -236,6 +256,13 @@ public class TelecomManager {
     @SystemApi
     public static final String EXTRA_CONNECTION_SERVICE =
             "android.telecom.extra.CONNECTION_SERVICE";
+
+    /**
+     *@hide  Extra value used to provide the call type for {@link #ACTION_CALL_TYPE}.
+     */
+    public static final String EXTRA_CALL_TYPE_CS =
+            "codeaurora.telecom.extra.CALL_TYPE_CS";
+
 
     /**
      * An optional {@link android.content.Intent#ACTION_CALL} intent extra denoting the
@@ -366,6 +393,48 @@ public class TelecomManager {
      */
     public static final String EXTRA_TTY_PREFERRED_MODE =
             "android.telecom.intent.extra.TTY_PREFERRED";
+
+    /**
+     * Broadcast intent action for letting custom component know to show the missed call
+     * notification.
+     * @hide
+     */
+    @SystemApi
+    public static final String ACTION_SHOW_MISSED_CALLS_NOTIFICATION =
+            "android.telecom.action.SHOW_MISSED_CALLS_NOTIFICATION";
+
+    /**
+     * The number of calls associated with the notification.
+     * @hide
+     */
+    @SystemApi
+    public static final String EXTRA_NOTIFICATION_COUNT =
+            "android.telecom.extra.NOTIFICATION_COUNT";
+
+    /**
+     * The number associated with the missed calls. This number is only relevant
+     * when EXTRA_NOTIFICATION_COUNT is 1.
+     * @hide
+     */
+    @SystemApi
+    public static final String EXTRA_NOTIFICATION_PHONE_NUMBER =
+            "android.telecom.extra.NOTIFICATION_PHONE_NUMBER";
+
+    /**
+     * The intent to clear missed calls.
+     * @hide
+     */
+    @SystemApi
+    public static final String EXTRA_CLEAR_MISSED_CALLS_INTENT =
+            "android.telecom.extra.CLEAR_MISSED_CALLS_INTENT";
+
+    /**
+     * The intent to call back a missed call.
+     * @hide
+     */
+    @SystemApi
+    public static final String EXTRA_CALL_BACK_INTENT =
+            "android.telecom.extra.CALL_BACK_INTENT";
 
     /**
      * The following 4 constants define how properties such as phone numbers and names are

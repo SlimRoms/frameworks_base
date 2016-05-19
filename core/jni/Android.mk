@@ -175,8 +175,7 @@ LOCAL_SRC_FILES:= \
     com_android_internal_net_NetworkStatsFactory.cpp \
     com_android_internal_os_Zygote.cpp \
     com_android_internal_util_VirtualRefBasePtr.cpp \
-    com_android_internal_view_animation_NativeInterpolatorFactoryHelper.cpp \
-    com_android_internal_app_ActivityTrigger.cpp
+    com_android_internal_view_animation_NativeInterpolatorFactoryHelper.cpp
 
 LOCAL_C_INCLUDES += \
     $(JNI_H_INCLUDE) \
@@ -258,7 +257,8 @@ LOCAL_SHARED_LIBRARIES := \
 
 LOCAL_SHARED_LIBRARIES += \
     libhwui \
-    libdl
+    libdl \
+    libregionalization
 
 # we need to access the private Bionic header
 # <bionic_tls.h> in com_google_android_gles_jni_GLImpl.cpp

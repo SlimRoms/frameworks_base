@@ -291,6 +291,8 @@ public class CarrierText extends TextView {
             case SimNotReady:
                 // Null is reserved for denoting missing, in this case we have nothing to display.
                 carrierText = ""; // nothing to display yet.
+                if (TelephonyManager.getDefault().isMultiSimEnabled())
+                    carrierText = text;
                 break;
 
             case NetworkLocked:
@@ -448,7 +450,8 @@ public class CarrierText extends TextView {
     }
 
     private String networkClassToString (int networkClass) {
-        final int[] classIds = { 0, // TelephonyManager.NETWORK_CLASS_UNKNOWN
+        final int[] classIds =
+            {com.android.internal.R.string.config_rat_unknown, // TelephonyManager.NETWORK_CLASS_UNKNOWN
             com.android.internal.R.string.config_rat_2g,
             com.android.internal.R.string.config_rat_3g,
             com.android.internal.R.string.config_rat_4g };

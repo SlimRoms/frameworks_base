@@ -110,12 +110,11 @@ void CanvasContext::setSwapBehavior(SwapBehavior swapBehavior) {
     mSwapBehavior = swapBehavior;
 }
 
-bool CanvasContext::initialize(ANativeWindow* window) {
+void CanvasContext::initialize(ANativeWindow* window) {
     setSurface(window);
-    if (mCanvas) return false;
+    if (mCanvas) return;
     mCanvas = new OpenGLRenderer(mRenderThread.renderState());
     mCanvas->initProperties();
-    return true;
 }
 
 void CanvasContext::updateSurface(ANativeWindow* window) {
@@ -289,11 +288,11 @@ void CanvasContext::doFrame() {
 
     ATRACE_CALL();
 
+    nsecs_t vsync = mRenderThread.timeLord().computeFrameTimeNanos();
     int64_t frameInfo[UI_THREAD_FRAME_INFO_SIZE];
     UiFrameInfoBuilder(frameInfo)
         .addFlag(FrameInfoFlags::RTAnimation)
-        .setVsync(mRenderThread.timeLord().computeFrameTimeNanos(),
-                mRenderThread.timeLord().latestVsync());
+        .setVsync(vsync, vsync);
 
     TreeInfo info(TreeInfo::MODE_RT_ONLY, mRenderThread.renderState());
     prepareTree(info, frameInfo, systemTime(CLOCK_MONOTONIC));

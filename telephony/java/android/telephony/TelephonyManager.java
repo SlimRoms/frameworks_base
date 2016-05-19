@@ -606,6 +606,46 @@ public class TelephonyManager {
     public static final String EXTRA_DATA_FAILURE_CAUSE = PhoneConstants.DATA_FAILURE_CAUSE_KEY;
 
     /**
+     * Broadcast intent action for letting custom component know to show voicemail notification.
+     * @hide
+     */
+    @SystemApi
+    public static final String ACTION_SHOW_VOICEMAIL_NOTIFICATION =
+            "android.telephony.action.SHOW_VOICEMAIL_NOTIFICATION";
+
+    /**
+     * The number of voice messages associated with the notification.
+     * @hide
+     */
+    @SystemApi
+    public static final String EXTRA_NOTIFICATION_COUNT =
+            "android.telephony.extra.NOTIFICATION_COUNT";
+
+    /**
+     * The voicemail number.
+     * @hide
+     */
+    @SystemApi
+    public static final String EXTRA_VOICEMAIL_NUMBER =
+            "android.telephony.extra.VOICEMAIL_NUMBER";
+
+    /**
+     * The intent to call voicemail.
+     * @hide
+     */
+    @SystemApi
+    public static final String EXTRA_CALL_VOICEMAIL_INTENT =
+            "android.telephony.extra.CALL_VOICEMAIL_INTENT";
+
+    /**
+     * The intent to launch voicemail settings.
+     * @hide
+     */
+    @SystemApi
+    public static final String EXTRA_LAUNCH_VOICEMAIL_SETTINGS_INTENT =
+            "android.telephony.extra.LAUNCH_VOICEMAIL_SETTINGS_INTENT";
+
+    /**
      * Response codes for sim activation. Activation completed successfully.
      * @hide
      */
@@ -2959,6 +2999,50 @@ public class TelephonyManager {
             ITelephony telephony = getITelephony();
             if (telephony != null)
                 return telephony.iccOpenLogicalChannel(AID);
+        } catch (RemoteException ex) {
+        } catch (NullPointerException ex) {
+        }
+        return null;
+    }
+
+    /**
+     * Opens a logical channel to the ICC card
+     *
+     * Input parameters equivalent to TS 27.007 AT+CCHO command.
+     *
+     * @param AID application id. See ETSI 102.221 and 101.220.
+     * @param p2  byte P2 parameter
+     * @return an IccOpenLogicalChannelResponse object
+     * @hide
+     */
+    public IccOpenLogicalChannelResponse iccOpenLogicalChannel(String AID, byte p2) {
+        try {
+            ITelephony telephony = getITelephony();
+            if (telephony != null) {
+               return telephony.iccOpenLogicalChannelWithP2(AID, p2);
+            }
+        } catch (RemoteException ex) {
+        } catch (NullPointerException ex) {
+        }
+        return null;
+    }
+
+    /**
+     * Opens a logical channel to the ICC card for the given subId
+     *
+     * @param subId subid to send the command to
+     * @param AID applcation id. See ETSI 102.221 and 101.220.
+     * @param p2 byte P2 parameter
+     * @return an IccOpenLogicalChannelResponse object
+     * @hide
+     */
+    public IccOpenLogicalChannelResponse iccOpenLogicalChannel(int subId,
+                String AID, byte p2) {
+        try {
+            ITelephony telephony = getITelephony();
+            if (telephony != null) {
+                return telephony.iccOpenLogicalChannelUsingSubIdWithP2(subId, AID, p2);
+            }
         } catch (RemoteException ex) {
         } catch (NullPointerException ex) {
         }

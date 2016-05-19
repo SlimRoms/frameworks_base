@@ -161,8 +161,14 @@
         3: Show data activity with data type at the left side
            of signal icon, and do not show two stacked icon on
            one slot.
+        4: Show LTE, LTE+ symbols on top of signal icon,
+           and shows IMS and embms icons on the left side
+           of the signal icon.
     -->
     <integer name="status_bar_style">0</integer>
+
+    <!-- For status bar style extended : 4 -->
+    <integer name="status_bar_style_extended">4</integer>
 
     <!-- Control whether status bar should fetch mobile signal icons from xml file dynamically -->
     <bool name="config_read_icons_from_xml">false</bool>
@@ -327,5 +333,25 @@
 
     <!-- Whether or not to show battery level text. -->
     <bool name="config_showBatteryPercentage">false</bool>
-</resources>
 
+    <!-- Show 4G for HSPAP -->
+    <bool name="config_show4gForHspap">false</bool>
+
+    <!-- Maximum length of operator name to be shown in status bar  -->
+    <integer name="config_operatorNameMaxLength">20</integer>
+
+    <!-- show different network indicators -->
+    <bool name="show_network_indicators">false</bool>
+
+    <!-- Show roaming and network icons -->
+    <bool name="show_roaming_and_network_icons">false</bool>
+
+    <!-- Show 4GLTE for LTE -->
+    <bool name="show_4glte_icon_for_lte">false</bool>
+
+    <!-- Show forbidden and greyed data icon when data is disabled -->
+    <bool name="config_data_signal_control">false</bool>
+
+    <!-- When true, show charging animation -->
+    <bool name="config_show_battery_charging_anim">true</bool>
+</resources>

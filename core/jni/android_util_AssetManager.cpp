@@ -19,6 +19,7 @@
 
 #include <android_runtime/android_util_AssetManager.h>
 
+#include <cutils/properties.h>
 #include <inttypes.h>
 #include <linux/capability.h>
 #include <stdio.h>
@@ -26,6 +27,7 @@
 #include <sys/wait.h>
 
 #include <private/android_filesystem_config.h> // for AID_SYSTEM
+#include <private/regionalization/Enviroment.h>
 
 #include "androidfw/Asset.h"
 #include "androidfw/AssetManager.h"
@@ -119,7 +121,7 @@ jint copyValue(JNIEnv* env, jobject outValue, const ResTable* table,
 }
 
 // This is called by zygote (running as user root) as part of preloadResources.
-static void verifySystemIdmaps()
+static void verifySystemIdmaps(const char* overlay_dir)
 {
     pid_t pid;
     char system_id[10];
@@ -163,7 +165,7 @@ static void verifySystemIdmaps()
                 }
 
                 execl(AssetManager::IDMAP_BIN, AssetManager::IDMAP_BIN, "--scan",
-                        AssetManager::OVERLAY_DIR, AssetManager::TARGET_PACKAGE_NAME,
+                        overlay_dir, AssetManager::TARGET_PACKAGE_NAME,
                         AssetManager::TARGET_APK_PATH, AssetManager::IDMAP_DIR, (char*)NULL);
                 ALOGE("failed to execl for idmap: %s", strerror(errno));
                 exit(1); // should never get here
@@ -2002,7 +2004,20 @@ static jintArray android_content_AssetManager_getStyleAttributes(JNIEnv* env, jo
 static void android_content_AssetManager_init(JNIEnv* env, jobject clazz, jboolean isSystem)
 {
     if (isSystem) {
-        verifySystemIdmaps();
+        // Load frameworks-res.apk's overlay through regionalization enviroment
+        if (Enviroment::isSupported()) {
+            Enviroment* enviroment = new Enviroment();
+            if (enviroment != NULL) {
+                const char* overlay_dir = enviroment->getOverlayDir();
+                if (overlay_dir != NULL && strcmp(overlay_dir, "") != 0) {
+                    ALOGD("Regionalization - getOverlayDir:%s", overlay_dir);
+                    verifySystemIdmaps(overlay_dir);
+                }
+                delete enviroment;
+            }
+        }
+
+        verifySystemIdmaps(AssetManager::OVERLAY_DIR);
     }
     AssetManager* am = new AssetManager();
     if (am == NULL) {
