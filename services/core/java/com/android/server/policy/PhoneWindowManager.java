@@ -2874,6 +2874,13 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             // Hijack modified menu keys for debugging features
             final int chordBug = KeyEvent.META_SHIFT_ON;
 
+            if (mTopFullscreenOpaqueWindowState != null &&
+                    (mTopFullscreenOpaqueWindowState.getAttrs().privateFlags
+                            & WindowManager.LayoutParams.PRIVATE_FLAG_PREVENT_SYSTEM_KEYS) != 0
+                    && mScreenOnFully) {
+                return 0;
+            }
+
             if (down && repeatCount == 0) {
                 if (mEnableShiftMenuBugReports && (metaState & chordBug) == chordBug) {
                     Intent intent = new Intent(Intent.ACTION_BUG_REPORT);
@@ -2912,6 +2919,13 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             }
             return 0;
         } else if (keyCode == KeyEvent.KEYCODE_APP_SWITCH) {
+            if (mTopFullscreenOpaqueWindowState != null &&
+                    (mTopFullscreenOpaqueWindowState.getAttrs().privateFlags
+                            & WindowManager.LayoutParams.PRIVATE_FLAG_PREVENT_SYSTEM_KEYS) != 0
+                    && mScreenOnFully) {
+                return 0;
+            }
+
             if (!keyguardOn) {
                 if (down && repeatCount == 0) {
                     preloadRecentApps();
@@ -5165,6 +5179,14 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 break;
             }
 
+            case KeyEvent.KEYCODE_HOME:
+                if (mTopFullscreenOpaqueWindowState != null &&
+                        (mTopFullscreenOpaqueWindowState.getAttrs().privateFlags
+                                & WindowManager.LayoutParams.PRIVATE_FLAG_PREVENT_SYSTEM_KEYS) != 0
+                        && mScreenOnFully) {
+                    return result;
+                }
+                break;
             case KeyEvent.KEYCODE_ENDCALL: {
                 result &= ~ACTION_PASS_TO_USER;
                 if (down) {
@@ -5203,8 +5225,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             }
 
             case KeyEvent.KEYCODE_POWER: {
-                if ((mTopFullscreenOpaqueWindowState.getAttrs().privateFlags
-                        & WindowManager.LayoutParams.PRIVATE_FLAG_PREVENT_POWER_KEY) != 0
+                if (mTopFullscreenOpaqueWindowState != null &&
+                        (mTopFullscreenOpaqueWindowState.getAttrs().privateFlags
+                        & WindowManager.LayoutParams.PRIVATE_FLAG_PREVENT_SYSTEM_KEYS) != 0
                         && mScreenOnFully) {
                     return result;
                 }
