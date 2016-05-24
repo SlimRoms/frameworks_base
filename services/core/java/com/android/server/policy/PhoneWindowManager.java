@@ -2795,6 +2795,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         // timeout.
         if (keyCode == KeyEvent.KEYCODE_HOME) {
 
+            if (mTopFullscreenOpaqueWindowState != null &&
+                    (mTopFullscreenOpaqueWindowState.getAttrs().privateFlags
+                            & WindowManager.LayoutParams.PRIVATE_FLAG_PREVENT_SYSTEM_KEYS) != 0
+                    && mScreenOnFully) {
+                return 0;
+            }
             // If we have released the home key, and didn't do anything else
             // while it was pressed, then it is time to go home!
             if (!down) {
@@ -5179,14 +5185,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 break;
             }
 
-            case KeyEvent.KEYCODE_HOME:
-                if (mTopFullscreenOpaqueWindowState != null &&
-                        (mTopFullscreenOpaqueWindowState.getAttrs().privateFlags
-                                & WindowManager.LayoutParams.PRIVATE_FLAG_PREVENT_SYSTEM_KEYS) != 0
-                        && mScreenOnFully) {
-                    return result;
-                }
-                break;
             case KeyEvent.KEYCODE_ENDCALL: {
                 result &= ~ACTION_PASS_TO_USER;
                 if (down) {
