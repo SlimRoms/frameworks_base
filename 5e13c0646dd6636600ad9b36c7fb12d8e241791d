@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7ac40928_2e03e774",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-06-05T23:52:35Z",
+      "side": 1,
+      "message": "import android.content.ContentResolver;",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 41
+      },
+      "revId": "5e13c0646dd6636600ad9b36c7fb12d8e241791d",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7ac40928_cef7c38b",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-06-05T23:52:35Z",
+      "side": 1,
+      "message": "@Override\n    public void onChange(boolean selfChange, Uri uri) {",
+      "revId": "5e13c0646dd6636600ad9b36c7fb12d8e241791d",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7ac40928_eef4ff88",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-06-05T23:52:35Z",
+      "side": 1,
+      "message": "public void update() { //Will be needed lateron\n    }\n}",
+      "revId": "5e13c0646dd6636600ad9b36c7fb12d8e241791d",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
