@@ -28,6 +28,7 @@ import android.app.PendingIntent;
 import android.app.StatusBarManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentCallbacks2;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -435,6 +436,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             update();
         }
 
+
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
             super.onChange(selfChange, uri);
 
             update();
@@ -483,6 +487,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 }
             }
         }
+
+        public void update() {
+        }
+    }
 
     // ensure quick settings is disabled until the current user makes it through the setup wizard
     private boolean mUserSetup = false;
