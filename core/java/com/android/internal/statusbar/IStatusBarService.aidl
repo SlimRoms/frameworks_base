@@ -16,6 +16,7 @@
 
 package com.android.internal.statusbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.service.notification.StatusBarNotification;
 
@@ -90,4 +91,12 @@ interface IStatusBarService
     void appTransitionStarting(long statusBarAnimationsStartTime, long statusBarAnimationsDuration);
 
     void startAssist(in Bundle args);
+
+    /**
+     * SlimActions additions
+     */
+    void showCustomIntentAfterKeyguard(inout Intent intent);
+    void toggleScreenshot();
+    void toggleLastApp();
+    void toggleKillApp();
 }
