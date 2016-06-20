@@ -67,7 +67,7 @@
 #define OEM_BOOTANIMATION_FILE "/oem/media/bootanimation.zip"
 #define SYSTEM_BOOTANIMATION_FILE "/system/media/bootanimation.zip"
 #define SYSTEM_ENCRYPTED_BOOTANIMATION_FILE "/system/media/bootanimation-encrypted.zip"
-
+#define THEME_BOOTANIMATION_FILE "/data/system/theme/bootanimation.zip"
 #define OEM_SHUTDOWN_ANIMATION_FILE "/oem/media/shutdownanimation.zip"
 #define SYSTEM_SHUTDOWN_ANIMATION_FILE "/system/media/shutdownanimation.zip"
 #define SYSTEM_ENCRYPTED_SHUTDOWN_ANIMATION_FILE "/system/media/shutdownanimation-encrypted.zip"
@@ -403,6 +403,9 @@ status_t BootAnimation::readyToRun() {
     if ((encryptedAnimation &&
             (access(getAnimationFileName(IMG_ENC), R_OK) == 0) &&
             ((zipFile = ZipFileRO::open(getAnimationFileName(IMG_ENC))) != NULL)) ||
+
+            ((access(THEME_BOOTANIMATION_FILE, R_OK) == 0) &&
+            ((zipFile = ZipFileRO::open(THEME_BOOTANIMATION_FILE)) != NULL)) ||
 
             ((access(OEM_BOOTANIMATION_FILE, R_OK) == 0) &&
             ((zipFile = ZipFileRO::open(OEM_BOOTANIMATION_FILE)) != NULL)) ||
