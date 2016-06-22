@@ -35,6 +35,7 @@ import android.os.UserHandle;
 import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.GestureDetector;
 import android.view.HapticFeedbackConstants;
 import android.view.InputDevice;
 import android.view.KeyCharacterMap;
@@ -64,13 +65,17 @@ public class KeyButtonView extends ImageView {
     private int mCode;
     String mClickAction;
     String mLongpressAction;
+    String mDoubleTapAction;
     private int mTouchSlop;
     boolean mSupportsLongpress = false;
     boolean mIsLongpressed = false;
+    boolean mDoubleTapPending = false;
+    boolean mDoubleTapConsumed = false;
     private AudioManager mAudioManager;
     private boolean mGestureAborted;
     private KeyButtonRipple mRipple;
     private LongClickCallback mCallback;
+    private GestureDetector mGestureDetector;
 
     private final Runnable mCheckLongPress = new Runnable() {
         public void run() {
@@ -87,6 +92,14 @@ public class KeyButtonView extends ImageView {
                 performLongClick();
                 setHapticFeedbackEnabled(true);
             }
+        }
+    };
+
+    private final Runnable mDoubleTapTimeout = new Runnable() {
+        @Override
+        public void run() {
+            mDoubleTapPending = false;
+            performClick();
         }
     };
 
@@ -116,6 +129,18 @@ public class KeyButtonView extends ImageView {
         mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         mAudioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
         setBackground(mRipple = new KeyButtonRipple(context, this));
+
+        mGestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onDown(MotionEvent e) {
+                return true;
+            }
+
+            @Override
+            public boolean onDoubleTap(MotionEvent e) {
+                return true;
+            }
+        });
     }
 
     @Override
@@ -164,6 +189,10 @@ public class KeyButtonView extends ImageView {
         }
     }
 
+    public void setDoubleTapAction(String action) {
+        mDoubleTapAction = action;
+    }
+
     @Override
     public boolean performAccessibilityActionInternal(int action, Bundle arguments) {
         if (action == ACTION_CLICK && mCode != 0) {
@@ -203,8 +232,15 @@ public class KeyButtonView extends ImageView {
                 if (mCode != 0) {
                     sendEvent(KeyEvent.ACTION_DOWN, 0, mDownTime);
                 }
-                removeCallbacks(mCheckLongPress);
-                postDelayed(mCheckLongPress, ViewConfiguration.getLongPressTimeout());
+                if (mDoubleTapPending) {
+                    mDoubleTapPending = false;
+                    removeCallbacks(mDoubleTapTimeout);
+                    doubleTap();
+                    mDoubleTapConsumed = true;
+                } else {
+                    removeCallbacks(mCheckLongPress);
+                    postDelayed(mCheckLongPress, ViewConfiguration.getLongPressTimeout());
+                }
                 break;
             case MotionEvent.ACTION_MOVE:
                 x = (int)ev.getX();
@@ -227,6 +263,15 @@ public class KeyButtonView extends ImageView {
             case MotionEvent.ACTION_UP:
                 final boolean doIt = isPressed();
                 setPressed(false);
+                if (mDoubleTapAction != null) {
+                    if (mDoubleTapConsumed) {
+                        mDoubleTapConsumed = false;
+                    } else {
+                        mDoubleTapPending = true;
+                        postDelayed(mDoubleTapTimeout,
+                                ViewConfiguration.getDoubleTapTimeout() - 100);
+                    }
+                }
                 if (!mIsLongpressed) {
                     if (mCode != 0) {
                         if (doIt) {
@@ -241,11 +286,11 @@ public class KeyButtonView extends ImageView {
                                 && !Action.isActionKeyEvent(mClickAction)) {
                                 performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                             }
-                            performClick();
                         }
                     }
                     if (doIt) {
                         sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_CLICKED);
+                        //performClick();
                     }
                 }
                 removeCallbacks(mCheckLongPress);
@@ -304,6 +349,10 @@ public class KeyButtonView extends ImageView {
     public void abortCurrentGesture() {
         setPressed(false);
         mGestureAborted = true;
+    }
+
+    private void doubleTap() {
+        Action.processAction(mContext, mDoubleTapAction, true);
     }
 
     public interface LongClickCallback {
