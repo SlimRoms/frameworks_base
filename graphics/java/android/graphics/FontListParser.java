@@ -153,7 +153,19 @@ public class FontListParser {
             if (parser.getEventType() != XmlPullParser.START_TAG) continue;
             String tag = parser.getName();
             if (tag.equals("font")) {
+<<<<<<< HEAD
                 fonts.add(readFont(parser, dirPath));
+=======
+                String indexStr = parser.getAttributeValue(null, "index");
+                int index = indexStr == null ? 0 : Integer.parseInt(indexStr);
+                List<Axis> axes = new ArrayList<Axis>();
+                String weightStr = parser.getAttributeValue(null, "weight");
+                int weight = weightStr == null ? 400 : Integer.parseInt(weightStr);
+                boolean isItalic = "italic".equals(parser.getAttributeValue(null, "style"));
+                String filename = parser.nextText();
+                String fullFilename = dirPath + File.separatorChar + filename;
+                fonts.add(new Font(fullFilename, index, axes, weight, isItalic));
+>>>>>>> 1e8532b... N-Extras: Add dynamic theme fonts support (Squash)
             } else {
                 skip(parser);
             }
