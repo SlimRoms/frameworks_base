@@ -154,8 +154,11 @@ public class FontListParser {
             String tag = parser.getName();
             if (tag.equals("font")) {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 fonts.add(readFont(parser, dirPath));
 =======
+=======
+>>>>>>> 1e8532b... N-Extras: Add dynamic theme fonts support (Squash)
                 String indexStr = parser.getAttributeValue(null, "index");
                 int index = indexStr == null ? 0 : Integer.parseInt(indexStr);
                 List<Axis> axes = new ArrayList<Axis>();
@@ -165,6 +168,9 @@ public class FontListParser {
                 String filename = parser.nextText();
                 String fullFilename = dirPath + File.separatorChar + filename;
                 fonts.add(new Font(fullFilename, index, axes, weight, isItalic));
+<<<<<<< HEAD
+>>>>>>> 1e8532b... N-Extras: Add dynamic theme fonts support (Squash)
+=======
 >>>>>>> 1e8532b... N-Extras: Add dynamic theme fonts support (Squash)
             } else {
                 skip(parser);
