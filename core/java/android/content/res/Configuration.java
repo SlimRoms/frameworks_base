@@ -1092,6 +1092,7 @@ public final class Configuration implements Parcelable, Comparable<Configuration
         }
         if (delta.assetSeq != 0 && assetSeq != delta.assetSeq) {
             changed |= ActivityInfo.CONFIG_ASSETS;
+            changed |= ActivityInfo.CONFIG_THEME_FONT;
             assetSeq = delta.assetSeq;
         }
         if (delta.seq != 0) {
@@ -1210,6 +1211,7 @@ public final class Configuration implements Parcelable, Comparable<Configuration
         }
         if (delta.assetSeq != 0 && assetSeq != delta.assetSeq) {
             changed |= ActivityInfo.CONFIG_ASSETS;
+            changed |= ActivityInfo.CONFIG_THEME_FONT;
         }
 
         return changed;
@@ -1230,7 +1232,8 @@ public final class Configuration implements Parcelable, Comparable<Configuration
     public static boolean needNewResources(@Config int configChanges,
             @Config int interestingChanges) {
         return (configChanges & (interestingChanges|ActivityInfo.CONFIG_FONT_SCALE|
-            ActivityInfo.CONFIG_ASSETS)) != 0;
+                    ActivityInfo.CONFIG_ASSETS|
+                    ActivityInfo.CONFIG_THEME_FONT)) != 0;
     }
 
     /**
