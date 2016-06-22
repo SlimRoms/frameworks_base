@@ -427,6 +427,7 @@ public class NavigationBarView extends LinearLayout {
                 KeyButtonView v = generateKey(landscape,
                         actionConfig.getClickAction(),
                         actionConfig.getLongpressAction(),
+                        actionConfig.getDoubleTapAction(),
                         actionConfig.getIcon());
                 v.setTag((landscape ? "key_land_" : "key_") + j);
 
@@ -465,12 +466,13 @@ public class NavigationBarView extends LinearLayout {
     }
 
     private KeyButtonView generateKey(boolean landscape, String clickAction,
-            String longpress,
+            String longpress, String doubleTap,
             String iconUri) {
 
         KeyButtonView v = new KeyButtonView(mContext, null);
         v.setClickAction(clickAction);
         v.setLongpressAction(longpress);
+        v.setDoubleTapAction(doubleTap);
         int i = mContext.getResources().getDimensionPixelSize(R.dimen.navigation_key_width);
         v.setLayoutParams(getLayoutParams(landscape, i));
 
