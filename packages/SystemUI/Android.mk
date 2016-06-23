@@ -20,6 +20,7 @@ LOCAL_PROGUARD_FLAG_FILES := proguard.flags
 
 LOCAL_RESOURCE_DIR := \
     frameworks/base/packages/Keyguard/res \
+    frameworks/opt/slim/res/res \
     $(LOCAL_PATH)/res
 LOCAL_AAPT_FLAGS := --auto-add-overlay --extra-packages com.android.keyguard
 
