@@ -312,7 +312,8 @@ class OverlayManagerServiceImpl {
         return mSettings.getOverlaysForUser(userId);
     }
 
-    boolean onSetEnabled(@NonNull String packageName, boolean enable, int userId) {
+    boolean onSetEnabled(@NonNull String packageName, boolean enable, int userId,
+            boolean shouldWait) {
         if (DEBUG) {
             Slog.d(TAG, String.format("onSetEnabled packageName=%s enable=%s userId=%d",
                         packageName, enable, userId));
@@ -327,7 +328,7 @@ class OverlayManagerServiceImpl {
             OverlayInfo oi = mSettings.getOverlayInfo(packageName, userId);
             PackageInfo targetPackage = mPackageManager.getPackageInfo(oi.targetPackageName, userId);
             mSettings.setEnabled(packageName, userId, enable);
-            updateState(targetPackage, overlayPackage, userId);
+            updateState(targetPackage, overlayPackage, userId, shouldWait);
             return true;
         } catch (OverlayManagerSettings.BadKeyException e) {
             return false;
@@ -369,6 +370,11 @@ class OverlayManagerServiceImpl {
 
     private void updateState(PackageInfo targetPackage, @NonNull PackageInfo overlayPackage,
             int userId) throws OverlayManagerSettings.BadKeyException {
+        updateState(targetPackage, overlayPackage, userId, false);
+    }
+
+    private void updateState(PackageInfo targetPackage, @NonNull PackageInfo overlayPackage,
+            int userId, boolean shouldWait) throws OverlayManagerSettings.BadKeyException {
         if (targetPackage != null) {
             mIdmapManager.createIdmap(targetPackage, overlayPackage, userId);
         }
@@ -385,7 +391,7 @@ class OverlayManagerServiceImpl {
                             OverlayInfo.stateToString(currentState),
                             OverlayInfo.stateToString(newState)));
             }
-            mSettings.setState(overlayPackage.packageName, userId, newState);
+            mSettings.setState(overlayPackage.packageName, userId, newState, shouldWait);
         }
     }
 
