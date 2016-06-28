@@ -1530,7 +1530,7 @@ status_t AaptAssets::buildIncludedResources(Bundle* bundle)
             printf("Including resources from package: %s\n", includes[i].string());
         }
 
-        if (!mIncludedAssets.addAssetPath(includes[i], NULL)) {
+        if (!mIncludedAssets.addAssetPath(includes[i], 0)) {
             fprintf(stderr, "ERROR: Asset package include '%s' not found.\n",
                     includes[i].string());
             return UNKNOWN_ERROR;
