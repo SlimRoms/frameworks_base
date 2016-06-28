@@ -263,7 +263,7 @@ struct Res_value
 
     // Always set to 0.
     uint8_t res0;
-        
+
     // Type of the data value.
     enum : uint8_t {
         // The 'data' is either 0 or 1, specifying this resource is either
@@ -598,7 +598,7 @@ struct ResXMLTree_cdataExt
 {
     // The raw CDATA character data.
     struct ResStringPool_ref data;
-    
+
     // The typed value of the character data if this is a CDATA node.
     struct Res_value typedData;
 };
@@ -611,7 +611,7 @@ struct ResXMLTree_namespaceExt
 {
     // The prefix of the namespace.
     struct ResStringPool_ref prefix;
-    
+
     // The URI of the namespace.
     struct ResStringPool_ref uri;
 };
@@ -624,7 +624,7 @@ struct ResXMLTree_endElementExt
 {
     // String of the full namespace of this element.
     struct ResStringPool_ref ns;
-    
+
     // String name of this node if it is an ELEMENT; the raw
     // character data if this is a CDATA node.
     struct ResStringPool_ref name;
@@ -639,28 +639,28 @@ struct ResXMLTree_attrExt
 {
     // String of the full namespace of this element.
     struct ResStringPool_ref ns;
-    
+
     // String name of this node if it is an ELEMENT; the raw
     // character data if this is a CDATA node.
     struct ResStringPool_ref name;
-    
+
     // Byte offset from the start of this structure where the attributes start.
     uint16_t attributeStart;
-    
+
     // Size of the ResXMLTree_attribute structures that follow.
     uint16_t attributeSize;
-    
+
     // Number of attributes associated with an ELEMENT.  These are
     // available as an array of ResXMLTree_attribute structures
     // immediately following this node.
     uint16_t attributeCount;
-    
+
     // Index (1-based) of the "id" attribute. 0 if none.
     uint16_t idIndex;
-    
+
     // Index (1-based) of the "class" attribute. 0 if none.
     uint16_t classIndex;
-    
+
     // Index (1-based) of the "style" attribute. 0 if none.
     uint16_t styleIndex;
 };
@@ -669,13 +669,13 @@ struct ResXMLTree_attribute
 {
     // Namespace of this attribute.
     struct ResStringPool_ref ns;
-    
+
     // Name of this attribute.
     struct ResStringPool_ref name;
 
     // The original raw string value of this attribute.
     struct ResStringPool_ref rawValue;
-    
+
     // Processesd typed value of this attribute.
     struct Res_value typedValue;
 };
@@ -691,9 +691,9 @@ public:
         BAD_DOCUMENT = -1,
         START_DOCUMENT = 0,
         END_DOCUMENT = 1,
-        
-        FIRST_CHUNK_CODE = RES_XML_FIRST_CHUNK_TYPE, 
-        
+
+        FIRST_CHUNK_CODE = RES_XML_FIRST_CHUNK_TYPE,
+
         START_NAMESPACE = RES_XML_START_NAMESPACE_TYPE,
         END_NAMESPACE = RES_XML_END_NAMESPACE_TYPE,
         START_TAG = RES_XML_START_ELEMENT_TYPE,
@@ -721,29 +721,29 @@ public:
     int32_t getCommentID() const;
     const char16_t* getComment(size_t* outLen) const;
     uint32_t getLineNumber() const;
-    
+
     // This is available for TEXT:
     int32_t getTextID() const;
     const char16_t* getText(size_t* outLen) const;
     ssize_t getTextValue(Res_value* outValue) const;
-    
+
     // These are available for START_NAMESPACE and END_NAMESPACE:
     int32_t getNamespacePrefixID() const;
     const char16_t* getNamespacePrefix(size_t* outLen) const;
     int32_t getNamespaceUriID() const;
     const char16_t* getNamespaceUri(size_t* outLen) const;
-    
+
     // These are available for START_TAG and END_TAG:
     int32_t getElementNamespaceID() const;
     const char16_t* getElementNamespace(size_t* outLen) const;
     int32_t getElementNameID() const;
     const char16_t* getElementName(size_t* outLen) const;
-    
+
     // Remaining methods are for retrieving information about attributes
     // associated with a START_TAG:
-    
+
     size_t getAttributeCount() const;
-    
+
     // Returns -1 if no namespace, -2 if idx out of range.
     int32_t getAttributeNamespaceID(size_t idx) const;
     const char16_t* getAttributeNamespace(size_t idx, size_t* outLen) const;
@@ -758,7 +758,7 @@ public:
 
     int32_t getAttributeValueStringID(size_t idx) const;
     const char16_t* getAttributeStringValue(size_t idx, size_t* outLen) const;
-    
+
     int32_t getAttributeDataType(size_t idx) const;
     int32_t getAttributeData(size_t idx) const;
     ssize_t getAttributeValue(size_t idx, Res_value* outValue) const;
@@ -776,7 +776,7 @@ public:
 
 private:
     friend class ResXMLTree;
-    
+
     event_code_t nextNode();
 
     const ResXMLTree&           mTree;
@@ -903,7 +903,7 @@ struct ResTable_config
 {
     // Number of bytes in this structure.
     uint32_t size;
-    
+
     union {
         struct {
             // Mobile country code (from SIM).  0 means "any".
@@ -913,7 +913,7 @@ struct ResTable_config
         };
         uint32_t imsi;
     };
-    
+
     union {
         struct {
             // This field can take three different forms:
@@ -939,7 +939,7 @@ struct ResTable_config
             // The layout is always bigendian irrespective of the runtime
             // architecture.
             char language[2];
-            
+
             // This field can take three different forms:
             // - \0\0 means "any".
             //
@@ -956,21 +956,21 @@ struct ResTable_config
         };
         uint32_t locale;
     };
-    
+
     enum {
         ORIENTATION_ANY  = ACONFIGURATION_ORIENTATION_ANY,
         ORIENTATION_PORT = ACONFIGURATION_ORIENTATION_PORT,
         ORIENTATION_LAND = ACONFIGURATION_ORIENTATION_LAND,
         ORIENTATION_SQUARE = ACONFIGURATION_ORIENTATION_SQUARE,
     };
-    
+
     enum {
         TOUCHSCREEN_ANY  = ACONFIGURATION_TOUCHSCREEN_ANY,
         TOUCHSCREEN_NOTOUCH  = ACONFIGURATION_TOUCHSCREEN_NOTOUCH,
         TOUCHSCREEN_STYLUS  = ACONFIGURATION_TOUCHSCREEN_STYLUS,
         TOUCHSCREEN_FINGER  = ACONFIGURATION_TOUCHSCREEN_FINGER,
     };
-    
+
     enum {
         DENSITY_DEFAULT = ACONFIGURATION_DENSITY_DEFAULT,
         DENSITY_LOW = ACONFIGURATION_DENSITY_LOW,
@@ -983,7 +983,7 @@ struct ResTable_config
         DENSITY_ANY = ACONFIGURATION_DENSITY_ANY,
         DENSITY_NONE = ACONFIGURATION_DENSITY_NONE
     };
-    
+
     union {
         struct {
             uint8_t orientation;
@@ -992,14 +992,14 @@ struct ResTable_config
         };
         uint32_t screenType;
     };
-    
+
     enum {
         KEYBOARD_ANY  = ACONFIGURATION_KEYBOARD_ANY,
         KEYBOARD_NOKEYS  = ACONFIGURATION_KEYBOARD_NOKEYS,
         KEYBOARD_QWERTY  = ACONFIGURATION_KEYBOARD_QWERTY,
         KEYBOARD_12KEY  = ACONFIGURATION_KEYBOARD_12KEY,
     };
-    
+
     enum {
         NAVIGATION_ANY  = ACONFIGURATION_NAVIGATION_ANY,
         NAVIGATION_NONAV  = ACONFIGURATION_NAVIGATION_NONAV,
@@ -1007,7 +1007,7 @@ struct ResTable_config
         NAVIGATION_TRACKBALL  = ACONFIGURATION_NAVIGATION_TRACKBALL,
         NAVIGATION_WHEEL  = ACONFIGURATION_NAVIGATION_WHEEL,
     };
-    
+
     enum {
         MASK_KEYSHIDDEN = 0x0003,
         KEYSHIDDEN_ANY = ACONFIGURATION_KEYSHIDDEN_ANY,
@@ -1015,7 +1015,7 @@ struct ResTable_config
         KEYSHIDDEN_YES = ACONFIGURATION_KEYSHIDDEN_YES,
         KEYSHIDDEN_SOFT = ACONFIGURATION_KEYSHIDDEN_SOFT,
     };
-    
+
     enum {
         MASK_NAVHIDDEN = 0x000c,
         SHIFT_NAVHIDDEN = 2,
@@ -1023,7 +1023,7 @@ struct ResTable_config
         NAVHIDDEN_NO = ACONFIGURATION_NAVHIDDEN_NO << SHIFT_NAVHIDDEN,
         NAVHIDDEN_YES = ACONFIGURATION_NAVHIDDEN_YES << SHIFT_NAVHIDDEN,
     };
-    
+
     union {
         struct {
             uint8_t keyboard;
@@ -1033,15 +1033,15 @@ struct ResTable_config
         };
         uint32_t input;
     };
-    
+
     enum {
         SCREENWIDTH_ANY = 0
     };
-    
+
     enum {
         SCREENHEIGHT_ANY = 0
     };
-    
+
     union {
         struct {
             uint16_t screenWidth;
@@ -1049,15 +1049,15 @@ struct ResTable_config
         };
         uint32_t screenSize;
     };
-    
+
     enum {
         SDKVERSION_ANY = 0
     };
-    
+
   enum {
         MINORVERSION_ANY = 0
     };
-    
+
     union {
         struct {
             uint16_t sdkVersion;
@@ -1067,7 +1067,7 @@ struct ResTable_config
         };
         uint32_t version;
     };
-    
+
     enum {
         // screenLayout bits for screen size class.
         MASK_SCREENSIZE = 0x0f,
@@ -1076,7 +1076,7 @@ struct ResTable_config
         SCREENSIZE_NORMAL = ACONFIGURATION_SCREENSIZE_NORMAL,
         SCREENSIZE_LARGE = ACONFIGURATION_SCREENSIZE_LARGE,
         SCREENSIZE_XLARGE = ACONFIGURATION_SCREENSIZE_XLARGE,
-        
+
         // screenLayout bits for wide/long screen variation.
         MASK_SCREENLONG = 0x30,
         SHIFT_SCREENLONG = 4,
@@ -1091,7 +1091,7 @@ struct ResTable_config
         LAYOUTDIR_LTR = ACONFIGURATION_LAYOUTDIR_LTR << SHIFT_LAYOUTDIR,
         LAYOUTDIR_RTL = ACONFIGURATION_LAYOUTDIR_RTL << SHIFT_LAYOUTDIR,
     };
-    
+
     enum {
         // uiMode bits for the mode type.
         MASK_UI_MODE_TYPE = 0x0f,
@@ -1120,7 +1120,7 @@ struct ResTable_config
         };
         uint32_t screenConfig;
     };
-    
+
     union {
         struct {
             uint16_t screenWidthDp;
@@ -1180,9 +1180,9 @@ struct ResTable_config
     bool localeScriptWasComputed;
 
     void copyFromDeviceNoSwap(const ResTable_config& o);
-    
+
     void copyFromDtoH(const ResTable_config& o);
-    
+
     void swapHtoD();
 
     int compare(const ResTable_config& o) const;
@@ -1212,11 +1212,11 @@ struct ResTable_config
         CONFIG_SCREEN_ROUND = ACONFIGURATION_SCREEN_ROUND,
         CONFIG_COLOR_MODE = ACONFIGURATION_COLOR_MODE,
     };
-    
+
     // Compare two configuration, returning CONFIG_* flags set for each value
     // that is different.
     int diff(const ResTable_config& o) const;
-    
+
     // Return true if 'this' is more specific than 'o'.
     bool isMoreSpecificThan(const ResTable_config& o) const;
 
@@ -1232,7 +1232,7 @@ struct ResTable_config
     // it wins.  If this IS generic, o wins (return false).
     bool isBetterThan(const ResTable_config& o, const ResTable_config* requested) const;
 
-    // Return true if 'this' can be considered a match for the parameters in 
+    // Return true if 'this' can be considered a match for the parameters in
     // 'settings'.
     // Note this is asymetric.  A default piece of data will match every request
     // but a request for the default should not match odd specifics
@@ -1322,12 +1322,12 @@ struct ResTable_typeSpec
     // at 1 (corresponding to the value of the type bits in a
     // resource identifier).  0 is invalid.
     uint8_t id;
-    
+
     // Must be 0.
     uint8_t res0;
     // Must be 0.
     uint16_t res1;
-    
+
     // Number of uint32_t entry configuration masks that follow.
     uint32_t entryCount;
 
@@ -1368,12 +1368,12 @@ struct ResTable_type
     enum {
         NO_ENTRY = 0xFFFFFFFF
     };
-    
+
     // The type identifier this chunk is holding.  Type IDs start
     // at 1 (corresponding to the value of the type bits in a
     // resource identifier).  0 is invalid.
     uint8_t id;
-    
+
     enum {
         // If set, the entry is sparse, and encodes both the entry ID and offset into each entry,
         // and a binary search is used to find the key. Only available on platforms >= O.
@@ -1385,7 +1385,7 @@ struct ResTable_type
 
     // Must be 0.
     uint16_t reserved;
-    
+
     // Number of uint32_t entry indices that follow.
     uint32_t entryCount;
 
@@ -1449,7 +1449,7 @@ struct ResTable_entry
         FLAG_WEAK = 0x0004
     };
     uint16_t flags;
-    
+
     // Reference into ResTable_package::keyStrings identifying this entry.
     struct ResStringPool_ref key;
 };
@@ -1501,7 +1501,7 @@ struct ResTable_map
         ATTR_TWO = Res_MAKEINTERNAL(7),
         ATTR_FEW = Res_MAKEINTERNAL(8),
         ATTR_MANY = Res_MAKEINTERNAL(9)
-        
+
     };
 
     // Bit mask of allowed types, for use with ATTR_TYPE.
@@ -1551,7 +1551,7 @@ struct ResTable_map
         L10N_NOT_REQUIRED = 0,
         L10N_SUGGESTED    = 1
     };
-    
+
     // This mapping's value.
     Res_value value;
 };
@@ -1643,11 +1643,11 @@ public:
 
     status_t add(const void* data, size_t size, const int32_t cookie=-1, bool copyData=false);
     status_t add(const void* data, size_t size, const void* idmapData, size_t idmapDataSize,
-            const int32_t cookie=-1, bool copyData=false, bool appAsLib=false);
+            const int32_t cookie=-1, bool copyData=false, bool appAsLib=false, const uint32_t pkgIdOverride=0);
 
     status_t add(Asset* asset, const int32_t cookie=-1, bool copyData=false);
     status_t add(Asset* asset, Asset* idmapAsset, const int32_t cookie=-1, bool copyData=false,
-            bool appAsLib=false, bool isSystemAsset=false);
+            bool appAsLib=false, bool isSystemAsset=false, const uint32_t pkgIdOverride=0);
 
     status_t add(ResTable* src, bool isSystemAsset=false);
     status_t addEmpty(const int32_t cookie);
@@ -1786,7 +1786,7 @@ public:
         uint32_t getChangingConfigurations() const;
 
         void dumpToLog() const;
-        
+
     private:
         Theme(const Theme&);
         Theme& operator=(const Theme&);
@@ -1977,7 +1977,8 @@ private:
     };
 
     status_t addInternal(const void* data, size_t size, const void* idmapData, size_t idmapDataSize,
-            bool appAsLib, const int32_t cookie, bool copyData, bool isSystemAsset=false);
+            bool appAsLib, const int32_t cookie, bool copyData, bool isSystemAsset=false,
+            const uint32_t pkgIdOverride=0);
 
     ssize_t getResourcePackageIndex(uint32_t resID) const;
 
@@ -1991,7 +1992,7 @@ private:
 
     status_t parsePackage(
         const ResTable_package* const pkg, const Header* const header,
-        bool appAsLib, bool isSystemAsset);
+        bool appAsLib, bool isSystemAsset, const uint32_t pkgIdOverride=0);
 
     void print_value(const Package* pkg, const Res_value& value) const;
 
