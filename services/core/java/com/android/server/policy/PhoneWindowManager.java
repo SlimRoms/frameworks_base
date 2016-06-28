@@ -783,7 +783,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 if (shouldEnableWakeGestureLp()) {
                     performHapticFeedbackLw(null, HapticFeedbackConstants.VIRTUAL_KEY, false);
                     wakeUp(SystemClock.uptimeMillis(), mAllowTheaterModeWakeFromWakeGesture,
-                            "android.policy:GESTURE");
+                            "android.policy:GESTURE", true);
                 }
             }
         }
