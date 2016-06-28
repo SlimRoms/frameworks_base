@@ -136,6 +136,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.lang.reflect.Constructor;
 
+import org.slim.provider.SlimSettings;
+
 import static android.view.WindowManager.LayoutParams.*;
 import static android.view.WindowManagerPolicy.WindowManagerFuncs.LID_ABSENT;
 import static android.view.WindowManagerPolicy.WindowManagerFuncs.LID_OPEN;
@@ -398,6 +400,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
     boolean mWakeGestureEnabledSetting;
     MyWakeGestureListener mWakeGestureListener;
+    boolean mProximityWakeEnabledSetting;
 
     // Default display does not rotate, apps that require non-default orientation will have to
     // have the orientation emulated.
@@ -762,6 +765,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.Global.getUriFor(
                     Settings.Global.POLICY_CONTROL), false, this,
+                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(SlimSettings.System.getUriFor(
+                    SlimSettings.System.PROXIMITY_ON_WAKE), false, this,
                     UserHandle.USER_ALL);
             updateSettings();
         }
@@ -1793,6 +1799,14 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             if (mWakeGestureEnabledSetting != wakeGestureEnabledSetting) {
                 mWakeGestureEnabledSetting = wakeGestureEnabledSetting;
                 updateWakeGestureListenerLp();
+            }
+
+            // Configure proximity wake.
+            boolean proximityWakeEnabledSetting = SlimSettings.System.getIntForUser(resolver,
+                    SlimSettings.System.PROXIMITY_ON_WAKE, 0,
+                    UserHandle.USER_CURRENT) == 1;
+            if (mProximityWakeEnabledSetting != proximityWakeEnabledSetting) {
+                mProximityWakeEnabledSetting = proximityWakeEnabledSetting;
             }
 
             // Configure rotation lock.
@@ -5685,6 +5699,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         if (theaterModeEnabled) {
             Settings.Global.putInt(mContext.getContentResolver(),
                     Settings.Global.THEATER_MODE_ON, 0);
+        }
+
+        if (mProximityWakeEnabledSetting && reason.equals("android.policy:GESTURE")) {
+            withProximityCheck = true;
         }
 
         if (withProximityCheck) {
