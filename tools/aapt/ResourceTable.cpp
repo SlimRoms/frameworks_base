@@ -1759,7 +1759,8 @@ status_t compileResourceFile(Bundle* bundle,
     return hasErrors ? STATUST(UNKNOWN_ERROR) : NO_ERROR;
 }
 
-ResourceTable::ResourceTable(Bundle* bundle, const String16& assetsPackage, ResourceTable::PackageType type)
+ResourceTable::ResourceTable(Bundle* bundle, const String16& assetsPackage,
+                             ResourceTable::PackageType type, ssize_t pkgIdOverride)
     : mAssetsPackage(assetsPackage)
     , mPackageType(type)
     , mTypeIdOffset(0)
