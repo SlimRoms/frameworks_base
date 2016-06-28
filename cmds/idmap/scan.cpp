@@ -25,7 +25,8 @@ namespace {
 
         bool operator<(Overlay const& rhs) const
         {
-            return rhs.priority > priority;
+            // Note: order is reversed by design
+            return rhs.priority < priority;
         }
 
         String8 apk_path;
