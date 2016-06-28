@@ -3276,8 +3276,9 @@ struct ResTable::Type
 struct ResTable::Package
 {
     Package(ResTable* _owner, const Header* _header, const ResTable_package* _package)
-        : owner(_owner), header(_header), package(_package), typeIdOffset(0) {
-        if (dtohs(package->header.headerSize) == sizeof(*package)) {
+        : owner(_owner), header(_header), package(_package), typeIdOffset(0),
+          pkgIdOverride(0) {
+        if (dtohs(package->header.headerSize) == sizeof(package)) {
             // The package structure is the same size as the definition.
             // This means it contains the typeIdOffset field.
             typeIdOffset = package->typeIdOffset;
@@ -3292,6 +3293,7 @@ struct ResTable::Package
     ResStringPool                   keyStrings;
 
     size_t                          typeIdOffset;
+    uint32_t                        pkgIdOverride;
 };
 
 // A group of objects describing a particular resource package.
@@ -3758,7 +3760,11 @@ ResTable::ResTable(const void* data, size_t size, const int32_t cookie, bool cop
 {
     memset(&mParams, 0, sizeof(mParams));
     memset(mPackageMap, 0, sizeof(mPackageMap));
+<<<<<<< HEAD
     addInternal(data, size, NULL, 0, false, cookie, copyData);
+=======
+    addInternal(data, size, NULL, 0, cookie, copyData, 0);
+>>>>>>> 35ac6e6... aapt: allow setting custom id for slim framework
     LOG_FATAL_IF(mError != NO_ERROR, "Error parsing resource table");
     if (kDebugTableSuperNoisy) {
         ALOGI("Creating ResTable %p\n", this);
@@ -3779,12 +3785,21 @@ inline ssize_t ResTable::getResourcePackageIndex(uint32_t resID) const
 }
 
 status_t ResTable::add(const void* data, size_t size, const int32_t cookie, bool copyData) {
+<<<<<<< HEAD
     return addInternal(data, size, NULL, 0, false, cookie, copyData);
 }
 
 status_t ResTable::add(const void* data, size_t size, const void* idmapData, size_t idmapDataSize,
         const int32_t cookie, bool copyData, bool appAsLib) {
     return addInternal(data, size, idmapData, idmapDataSize, appAsLib, cookie, copyData);
+=======
+    return addInternal(data, size, NULL, 0, cookie, copyData, 0);
+}
+
+status_t ResTable::add(const void* data, size_t size, const void* idmapData, size_t idmapDataSize,
+        const int32_t cookie, bool copyData, const uint32_t pkgIdOverride) {
+    return addInternal(data, size, idmapData, idmapDataSize, cookie, copyData, pkgIdOverride);
+>>>>>>> 35ac6e6... aapt: allow setting custom id for slim framework
 }
 
 status_t ResTable::add(Asset* asset, const int32_t cookie, bool copyData) {
@@ -3794,6 +3809,7 @@ status_t ResTable::add(Asset* asset, const int32_t cookie, bool copyData) {
         return UNKNOWN_ERROR;
     }
 
+<<<<<<< HEAD
     return addInternal(data, static_cast<size_t>(asset->getLength()), NULL, false, 0, cookie,
             copyData);
 }
@@ -3801,6 +3817,13 @@ status_t ResTable::add(Asset* asset, const int32_t cookie, bool copyData) {
 status_t ResTable::add(
         Asset* asset, Asset* idmapAsset, const int32_t cookie, bool copyData,
         bool appAsLib, bool isSystemAsset) {
+=======
+    return addInternal(data, static_cast<size_t>(asset->getLength()), NULL, 0, cookie, copyData, 0);
+}
+
+status_t ResTable::add(Asset* asset, Asset* idmapAsset, const int32_t cookie, bool copyData,
+        const uint32_t pkdIdOverride) {
+>>>>>>> 35ac6e6... aapt: allow setting custom id for slim framework
     const void* data = asset->getBuffer(true);
     if (data == NULL) {
         ALOGW("Unable to get buffer of resource asset file");
@@ -3819,7 +3842,11 @@ status_t ResTable::add(
     }
 
     return addInternal(data, static_cast<size_t>(asset->getLength()),
+<<<<<<< HEAD
             idmapData, idmapSize, appAsLib, cookie, copyData, isSystemAsset);
+=======
+            idmapData, idmapSize, cookie, copyData, pkdIdOverride);
+>>>>>>> 35ac6e6... aapt: allow setting custom id for slim framework
 }
 
 status_t ResTable::add(ResTable* src, bool isSystemAsset)
@@ -3874,7 +3901,11 @@ status_t ResTable::addEmpty(const int32_t cookie) {
 }
 
 status_t ResTable::addInternal(const void* data, size_t dataSize, const void* idmapData, size_t idmapDataSize,
+<<<<<<< HEAD
         bool appAsLib, const int32_t cookie, bool copyData, bool isSystemAsset)
+=======
+        const int32_t cookie, bool copyData, const uint32_t pkgIdOverride)
+>>>>>>> 35ac6e6... aapt: allow setting custom id for slim framework
 {
     if (!data) {
         return NO_ERROR;
@@ -3977,8 +4008,17 @@ status_t ResTable::addInternal(const void* data, size_t dataSize, const void* id
                 return (mError=BAD_TYPE);
             }
 
+<<<<<<< HEAD
             if (parsePackage(
                     (ResTable_package*)chunk, header, appAsLib, isSystemAsset) != NO_ERROR) {
+=======
+            // Warning: If the pkg id will be overriden and there is more than one package in the
+            // resource table then the caller should make sure there are enough unique ids above
+            // pkgIdOverride.
+            uint32_t idOverride = (pkgIdOverride == 0) ? 0 : pkgIdOverride + curPackage;
+
+            if (parsePackage((ResTable_package*)chunk, header, idOverride) != NO_ERROR) {
+>>>>>>> 35ac6e6... aapt: allow setting custom id for slim framework
                 return mError;
             }
             curPackage++;
@@ -5305,8 +5345,13 @@ bool ResTable::stringToValue(Res_value* outValue, String16* outString,
                 }
 
                 uint32_t packageId = Res_GETPACKAGE(rid) + 1;
+<<<<<<< HEAD
                 if (packageId != APP_PACKAGE_ID && packageId != SYS_PACKAGE_ID &&
                         packageId != SLIM_PACKAGE_ID) {
+=======
+                if (packageId != APP_PACKAGE_ID && packageId != SYS_PACKAGE_ID
+                        && packageId != SLIM_PACKAGE_ID) {
+>>>>>>> 35ac6e6... aapt: allow setting custom id for slim framework
                     outValue->dataType = Res_value::TYPE_DYNAMIC_REFERENCE;
                 }
                 outValue->data = rid;
@@ -5327,8 +5372,13 @@ bool ResTable::stringToValue(Res_value* outValue, String16* outString,
                         outValue->data = rid;
                         outValue->dataType = Res_value::TYPE_DYNAMIC_REFERENCE;
                         return true;
+<<<<<<< HEAD
                     } else if (packageId == APP_PACKAGE_ID || packageId == SYS_PACKAGE_ID ||
                             packageId == SLIM_PACKAGE_ID) {
+=======
+                    } else if (packageId == APP_PACKAGE_ID || packageId == SYS_PACKAGE_ID
+                            || packageId == SLIM_PACKAGE_ID) {
+>>>>>>> 35ac6e6... aapt: allow setting custom id for slim framework
                         // We accept packageId's generated as 0x01 in order to support
                         // building the android system resources
                         outValue->data = rid;
@@ -6278,7 +6328,11 @@ status_t ResTable::getEntry(
 }
 
 status_t ResTable::parsePackage(const ResTable_package* const pkg,
+<<<<<<< HEAD
                                 const Header* const header, bool appAsLib, bool isSystemAsset)
+=======
+                                const Header* const header, const uint32_t pkgIdOverride)
+>>>>>>> 35ac6e6... aapt: allow setting custom id for slim framework
 {
     const uint8_t* base = (const uint8_t*)pkg;
     status_t err = validate_chunk(&pkg->header, sizeof(*pkg) - sizeof(pkg->typeIdOffset),
@@ -6312,15 +6366,14 @@ status_t ResTable::parsePackage(const ResTable_package* const pkg,
 
     uint32_t id = dtohl(pkg->id);
     KeyedVector<uint8_t, IdmapEntries> idmapEntries;
+    uint8_t targetPackageId = 0;
 
     if (header->resourceIDMap != NULL) {
-        uint8_t targetPackageId = 0;
         status_t err = parseIdmap(header->resourceIDMap, header->resourceIDMapSize, &targetPackageId, &idmapEntries);
         if (err != NO_ERROR) {
             ALOGW("Overlay is broken");
             return (mError=err);
         }
-        id = targetPackageId;
     }
 
     if (id >= 256) {
@@ -6331,11 +6384,17 @@ status_t ResTable::parsePackage(const ResTable_package* const pkg,
         id = mNextPackageId++;
     }
 
+    if (pkgIdOverride != 0) {
+        ALOGV("Overriding pkg id %d with %d", id, pkgIdOverride);
+        id = pkgIdOverride;
+    }
+
     PackageGroup* group = NULL;
     Package* package = new Package(this, header, pkg);
     if (package == NULL) {
         return (mError=NO_MEMORY);
     }
+    package->pkgIdOverride = pkgIdOverride;
 
     err = package->typeStrings.setTo(base+dtohl(pkg->typeStrings),
                                    header->dataEnd-(base+dtohl(pkg->typeStrings)));
