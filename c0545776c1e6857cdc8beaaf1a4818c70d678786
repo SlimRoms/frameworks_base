@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ace114c_a2d83f54",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 957,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-01T01:55:45Z",
+      "side": 1,
+      "message": "To much indent?",
+      "range": {
+        "startLine": 957,
+        "startChar": 59,
+        "endLine": 957,
+        "endChar": 84
+      },
+      "revId": "c0545776c1e6857cdc8beaaf1a4818c70d678786",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
