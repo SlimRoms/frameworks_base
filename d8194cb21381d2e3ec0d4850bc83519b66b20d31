@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ace114c_e21647f1",
+        "filename": "tools/aapt/ResourceTable.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1756,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-01T01:28:33Z",
+      "side": 1,
+      "message": "two lines",
+      "range": {
+        "startLine": 1756,
+        "startChar": 1,
+        "endLine": 1756,
+        "endChar": 131
+      },
+      "revId": "d8194cb21381d2e3ec0d4850bc83519b66b20d31",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
