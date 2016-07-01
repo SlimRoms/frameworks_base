@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ace114c_c2022bb4",
+        "filename": "services/core/java/com/android/server/statusbar/StatusBarManagerService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 547,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-01T11:26:40Z",
+      "side": 1,
+      "message": "the fuck I do here?!?!",
+      "range": {
+        "startLine": 532,
+        "startChar": 0,
+        "endLine": 547,
+        "endChar": 5
+      },
+      "revId": "a4701c23ff99d2a84f343b4785c5be69ba4d99f1",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
