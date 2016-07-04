@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ace114c_9d8d6434",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3095,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2016-07-04T19:07:55Z",
+      "side": 1,
+      "message": "Possible fix for System FC",
+      "revId": "e6c43ffc3985abf979ecb24ccf84a31c9b8cfdf9",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
