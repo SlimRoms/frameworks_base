@@ -341,8 +341,11 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         }
         mEmergencyCallsOnly.setVisibility(mExpanded && mShowEmergencyCallsOnly ? VISIBLE : GONE);
         mBatteryLevel.setVisibility(mExpanded ? View.VISIBLE : View.GONE);
-        mSettingsContainer.findViewById(R.id.tuner_icon).setVisibility(
+        View v = mSettingsContainer.findViewById(R.id.tuner_icon);
+        if (v != null) {
+            v.setVisibility(
                 TunerService.isTunerEnabled(mContext) ? View.VISIBLE : View.INVISIBLE);
+        }
     }
 
     private void updateSignalClusterDetachment() {
