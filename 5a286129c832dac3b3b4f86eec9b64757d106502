@@ -114,6 +114,30 @@
       "revId": "5a286129c832dac3b3b4f86eec9b64757d106502",
       "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ace114c_58b94ae8",
+        "filename": "packages/SystemUI/src/com/android/systemui/shortcuts/ChamberOfSecrets.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2016-07-07T20:52:58Z",
+      "side": 1,
+      "message": "i don\u0027t see any other way around it.  what would you suggest?",
+      "parentUuid": "3ace114c_38dd5e43",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 52
+      },
+      "revId": "5a286129c832dac3b3b4f86eec9b64757d106502",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
     }
   ]
 }
