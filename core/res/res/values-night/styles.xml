@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- Notification text colors -->
+    <style name="TextAppearance.Material.Notification">
+        <item name="textColor">@color/secondary_text_material_dark</item>
+        <item name="textSize">@dimen/notification_text_size</item>
+    </style>
+
+    <style name="TextAppearance.Material.Notification.Title">
+        <item name="textColor">@color/primary_text_material_dark</item>
+        <item name="textSize">@dimen/notification_title_text_size</item>
+    </style>
+
+    <style name="TextAppearance.Material.Notification.Line2">
+        <item name="textColor">@color/secondary_text_material_dark</item>
+        <item name="textSize">@dimen/notification_subtext_size</item>
+    </style>
+
+    <style name="TextAppearance.Material.Notification.Info">
+        <item name="textColor">@color/secondary_text_material_dark</item>
+        <item name="textSize">@dimen/notification_subtext_size</item>
+    </style>
+
+    <style name="TextAppearance.Material.Notification.Time">
+        <item name="textColor">@color/secondary_text_material_dark</item>
+        <item name="textSize">@dimen/notification_subtext_size</item>
+    </style>
+
+    <style name="TextAppearance.Material.Notification.Emphasis">
+        <item name="textColor">#FFFFFF</item>
+    </style>
+
+    <!-- Theme used for the intent picker activity. -->
+    <style name="Theme.DeviceDefault.Resolver" parent="Theme.Material">
+        <item name="windowIsTranslucent">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowBackground">@color/transparent</item>
+        <item name="backgroundTint">@color/background_material_dark</item>
+        <item name="backgroundDimEnabled">true</item>
+        <item name="windowTranslucentStatus">false</item>
+        <item name="windowTranslucentNavigation">false</item>
+        <item name="windowDrawsSystemBarBackgrounds">false</item>
+        <item name="windowContentOverlay">@null</item>
+        <item name="colorControlActivated">?attr/colorControlHighlight</item>
+        <item name="listPreferredItemPaddingStart">?attr/dialogPreferredPadding</item>
+        <item name="listPreferredItemPaddingEnd">?attr/dialogPreferredPadding</item>
+    </style>
+
+</resources>
