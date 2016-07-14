@@ -19,12 +19,14 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <!-- Privacy Guard -->
   <string name="permlab_changePrivacyGuardState">Datenschutz aktivieren oder deaktivieren</string>
   <string name="permdesc_changePrivacyGuardState">Ermöglicht der App, den Datenschutz für andere Apps zu aktivieren oder deaktivieren. Eine App mit aktiviertem Datenschutz hat keinen Zugriff auf persönliche Daten wie Kontakte, Nachrichten oder das Anrufprotokoll.</string>
   <string name="privacy_guard_notification">Datenschutz aktiv</string>
   <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> hat keinen Zugriff auf persönliche Daten</string>
   <string name="privacy_guard_dialog_title">Datenschutz</string>
   <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s </xliff:g> möchte <xliff:g id="op">%2$s </xliff:g>.</string>
+  <!-- App ops requests -->
   <string name="app_ops_access_camera">Zugriff auf die Kamera</string>
   <string name="app_ops_access_location">Ihren Standort abrufen</string>
   <string name="app_ops_access_notifications">Ihre Benachrichtigungen lesen</string>
@@ -77,43 +79,76 @@
   <string name="app_ops_use_voice_volume">Anruflautstärke ändern</string>
   <string name="app_ops_write_mms">eine MMS-Nachricht schreiben</string>
   <string name="app_ops_write_sms">eine SMS-Nachricht schreiben</string>
+  <!-- ADB over network notification -->
   <string name="adb_net_active_notification_title">ADB über Netzwerk aktiviert</string>
+  <!-- ADB over USB and network notification -->
   <string name="adb_both_active_notification_title">ADB über USB &amp; Netzwerk aktiviert</string>
+  <!-- ADB notification message-->
   <string name="adb_active_generic_notification_message">Berühren, um Debugging zu deaktivieren.</string>
+  <!-- USB_PREFERENCES: Notification for when the user connects the phone to a computer via USB in CHARGING mode.  This is the title -->
   <string name="usb_charging_notification_title">Im Ladebetrieb verbunden</string>
+  <!-- Text for progress dialog while formatting SD card [CHAR LIMIT=NONE] -->
   <string name="progress_nomediapresent" product="default">Kein Wechseldatenträger vorhanden\u2026</string>
+  <!-- Text of the checkbox for the permission confirmation dialog to remember the user's choice. [CHAR LIMIT=40] -->
   <string name="permission_remember_choice">Speichern</string>
   <string name="permission">Berechtigung</string>
+  <!-- Default wi-fi hotspot ssid -->
+  <!-- Default wi-fi hotspot pass -->
+  <!-- Default wi-fi direct name -->
+  <!-- Performance profile modes -->
   <string name="perf_profile_pwrsv">Energie sparen</string>
   <string name="perf_profile_bal">Ausgewogen</string>
   <string name="perf_profile_perf">Leistung</string>
+  <!-- Button to reboot the phone, within the Phone Options dialog -->
   <string name="reboot_system" product="tablet">Tablet neu starten</string>
   <string name="reboot_system" product="default">Telefon neu starten</string>
+  <!-- Button to reboot the phone, within the Reboot Options dialog -->
   <string name="reboot_reboot">Neustart</string>
+  <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
   <string name="reboot_recovery">Recovery</string>
+  <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
   <string name="reboot_bootloader">Bootloader</string>
+  <!-- Button to reboot the phone into bootmenu, within the Reboot Options dialog -->
   <string name="reboot_bootmenu">Bootmenü</string>
+  <!-- Button to reboot the phone into fastboot, within the Reboot Options dialog -->
   <string name="reboot_fastboot">Fastboot</string>
+  <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
   <string name="reboot_download">Download</string>
+  <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
   <string name="reboot_progress">Neu starten\u2026</string>
+  <!-- Reboot Confirmation Dialog.  When the user chooses to reboot the phone, there will be a confirmation dialog.  This is the message. -->
   <string name="reboot_confirm" product="tablet">Ihr Tablet wird neu gestartet.</string>
   <string name="reboot_confirm" product="default">Ihr Telefon wird neu gestartet.</string>
+  <!-- label for item that reboots the phone in phone options dialog -->
   <string name="global_action_reboot">Neustart</string>
   <string name="default_string">Standard</string>
+  <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permlab_accessTorchService">Zugriff auf Taschenlampe</string>
+  <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_accessTorchService">Ermöglicht einer App, auf die Taschenlampe zuzugreifen. Dies sollte niemals für normale Apps benötigt werden.</string>
+  <!-- status message in phone options dialog for when pie is on -->
   <string name="global_actions_pie_mode_on_status">SlimPIE ist AN</string>
+  <!-- status message in phone options dialog for when pie is off -->
   <string name="global_actions_pie_mode_off_status">SlimPIE ist AUS</string>
+  <!-- Error message if user want to try to disable all navigation options -->
   <string name="disable_pie_navigation_error">Sie können SlimPIE nicht deaktivieren. Es ist keine andere Navigation aktiviert. Aktivieren Sie zunächst die Navigationsleiste um SlimPIE zu deaktivieren.</string>
+  <!-- status message in phone options dialog for when navigation bar is on -->
   <string name="global_actions_nav_bar_mode_on_status">Navigationsleiste ist AN</string>
+  <!-- status message in phone options dialog for when navigation bar is off -->
   <string name="global_actions_nav_bar_mode_off_status">Navigationsleiste ist AUS</string>
+  <!-- Error message if user want to try to disable all navigation options -->
   <string name="disable_navigation_pie_error">Die Navigationsleiste kann nicht deaktivieret werden. Es ist keine andere Navigation aktiviert. Aktivieren Sie zunächst SlimPIE um die Navigationsleiste zu deaktivieren.</string>
+  <!-- Flashlight notification -->
   <string name="notification_flashlight_on_title">Taschenlampe ist an</string>
   <string name="notification_flashlight_on_summary">Tippen um zu deaktivieren</string>
+  <!-- Heads up -->
   <string name="permlab_changeHeadsUpState">Heads-Up ein- oder ausschalten</string>
   <string name="permdesc_changeHeadsUpState">Ermöglicht der App festzulegen, ob andere Apps normale Benachrichtigungen als Heads-Up-Meldung anzeigen dürfen.</string>
+  <!-- Title of an application permission, listed so the user can choose whether they want the application to do this. -->
   <string name="permlab_useHardwareFramework">Hardware-Framework verwenden</string>
+  <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_useHardwareFramework">Ermöglicht einer App, auf das CM-Hardware-Framework zuzugreifen.</string>
+  <!-- LiveDisplay strings -->
   <string name="live_display_auto">Automatisch</string>
   <string name="live_display_auto_summary">Automatische Anpassung der Farbtemperatur des Bildschirms nach Sonnenauf- und -untergang</string>
   <string name="live_display_off">Aus</string>
@@ -125,10 +160,16 @@
   <string name="live_display_outdoor">Outdoor (helle Sonne)</string>
   <string name="live_display_outdoor_summary">Nur \"Outdoor\"-Einstellungen verwenden</string>
   <string name="live_display_hint">LiveDisplay entlastet Ihre Augen und lässt Sie nachts besser schlafen. Klicken Sie hier, um es auszuprobieren!</string>
+  <!-- Title of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permgrouplab_security">Sicherheit</string>
+  <!-- Description of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permgroupdesc_security">Berechtigungen bezüglich der Informationen zur Geräte-Sicherheit.</string>
+  <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permlab_readPhoneBlacklist">Telefon-Sperrliste lesen</string>
+  <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_readPhoneBlacklist">Erlaubt es einer App, Informationen über Nummern, von denen eingehende Anrufe und Nachrichten blockiert werden, zu lesen.</string>
+  <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permlab_changePhoneBlacklist">Telefon-Sperrliste ändern</string>
+  <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_changePhoneBlacklist">Erlaubt es einer App, Informationen über Nummern, von denen eingehende Anrufe und Nachrichten blockiert werden, zu ändern.</string>
 </resources>

@@ -17,17 +17,29 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <!-- Content description of the superuser tile -->
   <string name="accessibility_su_active">Aktivní relace superuživatele</string>
+  <!-- Battery level text while charging [CHAR LIMIT=2] -->
+  <!--ScreenShot Trash-->
   <string name="screenshot_notification_delete">Smazat</string>
   <string name="screenshot_delete_confirmation">Snímek obrazovky smazán.</string>
+  <!-- SU notification -->
   <string name="su_session_active">Aktivní relace superuživatele</string>
+  <!-- Content description of the location tile in quick settings when on, battery saving mode (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_location_battery_saving">Hlášení polohy: úspora baterie.</string>
+  <!-- Content description of the location tile in quick settings when on, sensors only mode (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_location_gps_only">Hlášení polohy: pouze GPS.</string>
+  <!-- Content description of the location tile in quick settings when on, high accuracy mode (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_location_high_accuracy">Hlášení polohy: vysoká přesnost.</string>
+  <!-- QuickSettings: Location detail panel title [CHAR LIMIT=NONE] -->
   <string name="quick_settings_location_detail_title">Režim určování polohy</string>
+  <!-- QuickSettings: Location (On, low-power) [CHAR LIMIT=NONE] -->
   <string name="quick_settings_location_battery_saving_label">Úspora baterie</string>
+  <!-- QuickSettings: Location (On, gps-only) [CHAR LIMIT=NONE] -->
   <string name="quick_settings_location_gps_only_label">Pouze zařízení</string>
+  <!-- QuickSettings: Location (On, high-accuracy) [CHAR LIMIT=NONE] -->
   <string name="quick_settings_location_high_accuracy_label">Vysoká přesnost</string>
+  <!-- QS Tiles -->
   <string name="quick_settings_network_adb_enabled_label">Povoleno</string>
   <string name="quick_settings_network_adb_disabled_label">Zakázáno</string>
   <string name="quick_settings_nfc_label">NFC</string>
@@ -43,21 +55,38 @@
   <string name="quick_settings_reboot_recovery_label">Recovery</string>
   <string name="quick_settings_ambient_display_label">Ambientní displej</string>
   <string name="quick_settings_screenshot">Snímek obrazovky</string>
+  <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_ambient_display_off">Ambientní displej vypnutý.</string>
+  <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_ambient_display_on">Ambientní displej zapnutý.</string>
+  <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_ambient_display_changed_off">Ambientní displej je vypnutý.</string>
+  <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_ambient_display_changed_on">Ambientní displej je zapnutý.</string>
+  <!-- The text for the button in the notification window-shade that clears
+         all of the currently visible notifications. [CHAR LIMIT=10]-->
   <string name="clear_recents">Zavřít nedávné</string>
+  <!-- Kill app toast -->
   <string name="app_killed_message">Aplikace ukončena</string>
+  <!-- Dialog Cancel/OK -->
+  <!-- Slim Shortcut Actions -->
   <string name="shortcut_screenshot">Snímek obrazovky</string>
+  <!-- Off/On/Toggle -->
+  <!-- Heads up -->
   <string name="heads_up_snooze_message">Plovoucí oznámení jsou zakázána na <xliff:g id="number">%d</xliff:g> minut.</string>
   <string name="heads_up_snooze_button_title">Odložit plovoucí oznámení</string>
   <string name="notification_inspect_heads_up_title_enabled">Povolit plovoucí oznámení pro tuto aplikaci</string>
   <string name="notification_inspect_heads_up_title_disabled">Zakázat plovoucí oznámení pro tuto aplikaci</string>
+  <!-- Battery status in pie controls -->
   <string name="pie_battery_status_charging">Nabíjení (<xliff:g id="percent">%d</xliff:g>%%)</string>
   <string name="pie_battery_status_full">Nabito</string>
   <string name="pie_battery_status_discharging">Zbývá <xliff:g id="percent">%d</xliff:g>%%</string>
+  <!-- Phone status in pie controls -->
   <string name="pie_phone_status_no_service">Žádná služba</string>
   <string name="pie_phone_status_airplane_mode">Režim letadlo zapnut</string>
   <string name="pie_phone_status_emergency_only">Pouze tísňová volání</string>
+  <!-- QS Tiles -->
+  <!-- Smart PullDown Warning -->
+  <!-- Navigation ring target shortcuts -->
+  <!-- No interuptions except alarms -->
 </resources>

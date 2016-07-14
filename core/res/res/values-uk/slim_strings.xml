@@ -19,10 +19,12 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <!-- Privacy Guard -->
   <string name="permlab_changePrivacyGuardState">увімк. або вимк. Сторожа Приватності</string>
   <string name="permdesc_changePrivacyGuardState">Програма може вибрати, чи буде друга програма працювати в захищеному режимі. Коли програму запущено в захищеному режимі, вона не отримає доступ до персональних даних, таких як контакти, повідомлення чи журнал дзвінків.</string>
   <string name="privacy_guard_notification">Сторож Приватності активний</string>
   <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> буде заборонено доступ до персональних даних</string>
+  <!-- App ops requests -->
   <string name="app_ops_access_camera">доступ до камери</string>
   <string name="app_ops_access_location">доступ до місцезнаходження</string>
   <string name="app_ops_access_notifications">читати ваші сповіщення</string>
@@ -70,20 +72,59 @@
   <string name="app_ops_use_voice_volume">отримати управління гучністю при розмові</string>
   <string name="app_ops_write_mms">створити MMS-повідомлення</string>
   <string name="app_ops_write_sms">створити SMS-повідомлення</string>
+  <!-- ADB over network notification -->
+  <!-- ADB over USB and network notification -->
+  <!-- ADB notification message-->
+  <!-- USB_PREFERENCES: Notification for when the user connects the phone to a computer via USB in CHARGING mode.  This is the title -->
   <string name="usb_charging_notification_title">Підключено в режимі зарядки</string>
+  <!-- Text for progress dialog while formatting SD card [CHAR LIMIT=NONE] -->
   <string name="progress_nomediapresent" product="default">Немає зовнішнього носія\u2026</string>
+  <!-- Text of the checkbox for the permission confirmation dialog to remember the user's choice. [CHAR LIMIT=40] -->
   <string name="permission_remember_choice">Запам\'ятати мій вибір</string>
   <string name="permission">Дозвіл</string>
+  <!-- Default wi-fi hotspot ssid -->
+  <!-- Default wi-fi hotspot pass -->
+  <!-- Default wi-fi direct name -->
+  <!-- Performance profile modes -->
+  <!-- Button to reboot the phone, within the Phone Options dialog -->
   <string name="reboot_system" product="tablet">Перезавантаження планшету</string>
   <string name="reboot_system" product="default">Перезавантаження телефону</string>
+  <!-- Button to reboot the phone, within the Reboot Options dialog -->
   <string name="reboot_reboot">Перезавантаження</string>
+  <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
   <string name="reboot_recovery">Recovery</string>
+  <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
   <string name="reboot_bootloader">Bootloader</string>
+  <!-- Button to reboot the phone into bootmenu, within the Reboot Options dialog -->
   <string name="reboot_bootmenu">Меню завантаження</string>
+  <!-- Button to reboot the phone into fastboot, within the Reboot Options dialog -->
   <string name="reboot_fastboot">Fastboot</string>
+  <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
   <string name="reboot_download">Download</string>
+  <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
   <string name="reboot_progress">Перезавантаження\u2026</string>
+  <!-- Reboot Confirmation Dialog.  When the user chooses to reboot the phone, there will be a confirmation dialog.  This is the message. -->
   <string name="reboot_confirm" product="default">Ваш телефон перезавантажиться.</string>
+  <!-- label for item that reboots the phone in phone options dialog -->
   <string name="global_action_reboot">Перезавантаження</string>
   <string name="default_string">По замовчуванню</string>
+  <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <!-- status message in phone options dialog for when pie is on -->
+  <!-- status message in phone options dialog for when pie is off -->
+  <!-- Error message if user want to try to disable all navigation options -->
+  <!-- status message in phone options dialog for when navigation bar is on -->
+  <!-- status message in phone options dialog for when navigation bar is off -->
+  <!-- Error message if user want to try to disable all navigation options -->
+  <!-- Flashlight notification -->
+  <!-- Heads up -->
+  <!-- Title of an application permission, listed so the user can choose whether they want the application to do this. -->
+  <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <!-- LiveDisplay strings -->
+  <!-- Title of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
+  <!-- Description of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
+  <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
 </resources>

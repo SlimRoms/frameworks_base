@@ -19,9 +19,50 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <!-- Privacy Guard -->
   <string name="permlab_changePrivacyGuardState">प्रवसी गार्ड को On या  Off करे</string>
+  <!-- App ops requests -->
   <string name="app_ops_play_audio">ऑडियो चलाएँ</string>
   <string name="app_ops_read_call_log">कॉल लॉग पढ़ें</string>
   <string name="app_ops_read_sms">अपने एसएमएस संदेश पढ़ें</string>
   <string name="app_ops_toggle_wifi">WiFi टॉगल करें</string>
+  <!-- ADB over network notification -->
+  <!-- ADB over USB and network notification -->
+  <!-- ADB notification message-->
+  <!-- USB_PREFERENCES: Notification for when the user connects the phone to a computer via USB in CHARGING mode.  This is the title -->
+  <!-- Text for progress dialog while formatting SD card [CHAR LIMIT=NONE] -->
+  <!-- Text of the checkbox for the permission confirmation dialog to remember the user's choice. [CHAR LIMIT=40] -->
+  <!-- Default wi-fi hotspot ssid -->
+  <!-- Default wi-fi hotspot pass -->
+  <!-- Default wi-fi direct name -->
+  <!-- Performance profile modes -->
+  <!-- Button to reboot the phone, within the Phone Options dialog -->
+  <!-- Button to reboot the phone, within the Reboot Options dialog -->
+  <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
+  <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
+  <!-- Button to reboot the phone into bootmenu, within the Reboot Options dialog -->
+  <!-- Button to reboot the phone into fastboot, within the Reboot Options dialog -->
+  <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
+  <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
+  <!-- Reboot Confirmation Dialog.  When the user chooses to reboot the phone, there will be a confirmation dialog.  This is the message. -->
+  <!-- label for item that reboots the phone in phone options dialog -->
+  <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <!-- status message in phone options dialog for when pie is on -->
+  <!-- status message in phone options dialog for when pie is off -->
+  <!-- Error message if user want to try to disable all navigation options -->
+  <!-- status message in phone options dialog for when navigation bar is on -->
+  <!-- status message in phone options dialog for when navigation bar is off -->
+  <!-- Error message if user want to try to disable all navigation options -->
+  <!-- Flashlight notification -->
+  <!-- Heads up -->
+  <!-- Title of an application permission, listed so the user can choose whether they want the application to do this. -->
+  <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <!-- LiveDisplay strings -->
+  <!-- Title of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
+  <!-- Description of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
+  <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
 </resources>

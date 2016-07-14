@@ -19,12 +19,14 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <!-- Privacy Guard -->
   <string name="permlab_changePrivacyGuardState">povolit či zakázat Ochranu soukromí</string>
   <string name="permdesc_changePrivacyGuardState">Umožní změnit pravidla, zda bude některá aplikace spuštěna v režimu Ochrany soukromí. Pokud je aplikace spuštěna v režimu Ochrany soukromí, tato aplikace nemá umožněn přístup k osobním datům jako jsou kontakty, historie volání nebo zprávy.</string>
   <string name="privacy_guard_notification">Ochrana soukromí aktivní</string>
   <string name="privacy_guard_notification_detail">Aplikaci <xliff:g id="app">%1$s</xliff:g> nebude umožňen přístup k osobním údajům</string>
   <string name="privacy_guard_dialog_title">Ochrana soukromí</string>
   <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s</xliff:g> by chtěla <xliff:g id="op">%2$s</xliff:g>.</string>
+  <!-- App ops requests -->
   <string name="app_ops_access_camera">používat fotoaparát</string>
   <string name="app_ops_access_location">zjišťovat polohu</string>
   <string name="app_ops_access_notifications">číst upozornění</string>
@@ -77,39 +79,72 @@
   <string name="app_ops_use_voice_volume">ovládat hlasitost hovoru</string>
   <string name="app_ops_write_mms">vytvořit MMS zprávu</string>
   <string name="app_ops_write_sms">vytvořit SMS zprávu</string>
+  <!-- ADB over network notification -->
   <string name="adb_net_active_notification_title">ADB po síti povoleno</string>
+  <!-- ADB over USB and network notification -->
   <string name="adb_both_active_notification_title">ADB přes USB a po síti povoleno</string>
+  <!-- ADB notification message-->
   <string name="adb_active_generic_notification_message">Dotykem zakažte ladění.</string>
+  <!-- USB_PREFERENCES: Notification for when the user connects the phone to a computer via USB in CHARGING mode.  This is the title -->
   <string name="usb_charging_notification_title">V režimu nabíjení</string>
+  <!-- Text for progress dialog while formatting SD card [CHAR LIMIT=NONE] -->
   <string name="progress_nomediapresent" product="default">Není dostupné žádné vyměnitelné médium\u2026</string>
+  <!-- Text of the checkbox for the permission confirmation dialog to remember the user's choice. [CHAR LIMIT=40] -->
   <string name="permission_remember_choice">Zapamatovat</string>
   <string name="permission">Oprávnění</string>
+  <!-- Default wi-fi hotspot ssid -->
+  <!-- Default wi-fi hotspot pass -->
+  <!-- Default wi-fi direct name -->
+  <!-- Performance profile modes -->
+  <!-- Button to reboot the phone, within the Phone Options dialog -->
   <string name="reboot_system" product="tablet">Restartovat tablet</string>
   <string name="reboot_system" product="default">Restartovat telefon</string>
+  <!-- Button to reboot the phone, within the Reboot Options dialog -->
   <string name="reboot_reboot">Restartovat</string>
+  <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
   <string name="reboot_recovery">Recovery</string>
+  <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
   <string name="reboot_bootloader">Bootloader režim</string>
+  <!-- Button to reboot the phone into bootmenu, within the Reboot Options dialog -->
   <string name="reboot_bootmenu">Bootmenu</string>
+  <!-- Button to reboot the phone into fastboot, within the Reboot Options dialog -->
   <string name="reboot_fastboot">Fastboot</string>
+  <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
   <string name="reboot_download">Download</string>
+  <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
   <string name="reboot_progress">Restartování\u2026</string>
+  <!-- Reboot Confirmation Dialog.  When the user chooses to reboot the phone, there will be a confirmation dialog.  This is the message. -->
   <string name="reboot_confirm" product="default">Vaše zařízení bude restartováno.</string>
+  <!-- label for item that reboots the phone in phone options dialog -->
   <string name="global_action_reboot">Restartovat</string>
   <string name="default_string">Výchozí</string>
+  <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permlab_accessTorchService">přístup ke svítilně</string>
+  <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_accessTorchService">Umožňuje aplikaci přístup ke svítilně. Běžná aplikace by to nikdy neměla mít zapotřebí.</string>
+  <!-- status message in phone options dialog for when pie is on -->
   <string name="global_actions_pie_mode_on_status">SlimPie je zapnuto</string>
+  <!-- status message in phone options dialog for when pie is off -->
   <string name="global_actions_pie_mode_off_status">SlimPie je vypnuto</string>
+  <!-- Error message if user want to try to disable all navigation options -->
   <string name="disable_pie_navigation_error">Nelze vypnout SlimPie. Žádný jiný způsob navigace není povolen. Nejprve povolte navigační lištu pro vypnuti kruhové nabídky.</string>
+  <!-- status message in phone options dialog for when navigation bar is on -->
   <string name="global_actions_nav_bar_mode_on_status">Navigační lišta je zapnutá</string>
+  <!-- status message in phone options dialog for when navigation bar is off -->
   <string name="global_actions_nav_bar_mode_off_status">Navigační lišta je vypnutá</string>
+  <!-- Error message if user want to try to disable all navigation options -->
   <string name="disable_navigation_pie_error">Nelze vypnout navigační lištu.  Žádný jiný způsob navigace není povolen. Nejprve povolte SlimPie pro vypnutí navigační lišty.</string>
+  <!-- Flashlight notification -->
   <string name="notification_flashlight_on_title">Svítilna je zapnutá</string>
   <string name="notification_flashlight_on_summary">Klepnutím ji vypnete</string>
+  <!-- Heads up -->
   <string name="permlab_changeHeadsUpState">povolit nebo zakázat plovoucí oznámení</string>
   <string name="permdesc_changeHeadsUpState">Umožňuje změnit, zda jiná aplikace má dovoleno zobrazovat normální upozornění jako plovoucí.</string>
+  <!-- Title of an application permission, listed so the user can choose whether they want the application to do this. -->
   <string name="permlab_useHardwareFramework">využít hardware zařízení</string>
+  <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_useHardwareFramework">Umožnit aplikaci přistupovat přímo k hardware zařízení.</string>
+  <!-- LiveDisplay strings -->
   <string name="live_display_auto">Automaticky</string>
   <string name="live_display_day">Den</string>
   <string name="live_display_day_summary">Použít pouze nastavení Den</string>
@@ -118,10 +153,16 @@
   <string name="live_display_outdoor">Outdoor (jasné slunce)</string>
   <string name="live_display_outdoor_summary">Použít pouze nastavení Outdoor</string>
   <string name="live_display_hint">LiveDisplay vám může pomoci snížit namáhání očí a v noci lépe spát. Chcete si to vyzkoušet?</string>
+  <!-- Title of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permgrouplab_security">Bezpečnost</string>
+  <!-- Description of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permgroupdesc_security">Oprávnění vztahující se k informacím o zabezpečení zařízení.</string>
+  <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permlab_readPhoneBlacklist">čtení černé listiny telefonu</string>
+  <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_readPhoneBlacklist">Umožnit aplikacím číst informace o blokovaných telefonních číslech pro příchozí volání a zprávy.</string>
+  <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permlab_changePhoneBlacklist">měnit černou listinu telefonu</string>
+  <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_changePhoneBlacklist">Umožnit aplikacím měnit telefonní čísla blokována pro příchozí volání a zprávy.</string>
 </resources>

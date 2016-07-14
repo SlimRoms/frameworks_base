@@ -19,12 +19,14 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <!-- Privacy Guard -->
   <string name="permlab_changePrivacyGuardState">adatvédelem engedélyezése vagy tiltása</string>
   <string name="permdesc_changePrivacyGuardState">Lehetővé teszi, hogy más alkalmazások számára engedélyezze, vagy letiltsa az adatvédelmet. Amikor az alkalmazás adatvédelmi módban fut, nem fog hozzáférni az Ön személyes adataihoz, mint a névjegyzékéhez, üzeneteihez, vagy a hívásnaplójához.</string>
   <string name="privacy_guard_notification">Adatvédelem aktív</string>
   <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> nem fog hozzáférni a személyes adataihoz</string>
   <string name="privacy_guard_dialog_title">Privacy Guard</string>
   <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s </xliff:g> szeretnék <xliff:g id="op">%2$s </xliff:g>.</string>
+  <!-- App ops requests -->
   <string name="app_ops_access_camera">hozzáférés a kamerához</string>
   <string name="app_ops_access_location">hozzáférés a helyadatokhoz</string>
   <string name="app_ops_access_notifications">értesítések olvasása</string>
@@ -77,43 +79,76 @@
   <string name="app_ops_use_voice_volume">hívás közbeni hang vezérlése</string>
   <string name="app_ops_write_mms">MMS írása</string>
   <string name="app_ops_write_sms">SMS írása</string>
+  <!-- ADB over network notification -->
   <string name="adb_net_active_notification_title">ADB hálozaton keresztül engedélyezve</string>
+  <!-- ADB over USB and network notification -->
   <string name="adb_both_active_notification_title">ADB USB-n &amp; hálózaton keresztül engedélyezve</string>
+  <!-- ADB notification message-->
   <string name="adb_active_generic_notification_message">Érintsd meg a hibakeresés letiltásához</string>
+  <!-- USB_PREFERENCES: Notification for when the user connects the phone to a computer via USB in CHARGING mode.  This is the title -->
   <string name="usb_charging_notification_title">jelzés,ha a telefon USB töltés módban csatlakozik a PC-hez</string>
+  <!-- Text for progress dialog while formatting SD card [CHAR LIMIT=NONE] -->
   <string name="progress_nomediapresent" product="default">Nincs eltávolítható memóriakártya\u2026</string>
+  <!-- Text of the checkbox for the permission confirmation dialog to remember the user's choice. [CHAR LIMIT=40] -->
   <string name="permission_remember_choice">emlékezzen</string>
   <string name="permission">Engedély</string>
+  <!-- Default wi-fi hotspot ssid -->
+  <!-- Default wi-fi hotspot pass -->
+  <!-- Default wi-fi direct name -->
+  <!-- Performance profile modes -->
   <string name="perf_profile_pwrsv">Energiatakarékos</string>
   <string name="perf_profile_bal">Kiegyensúlyozott</string>
   <string name="perf_profile_perf">Teljesítménycentrikus</string>
+  <!-- Button to reboot the phone, within the Phone Options dialog -->
   <string name="reboot_system" product="tablet">Tablet újraindítása</string>
   <string name="reboot_system" product="default">Telefon újraindítása</string>
+  <!-- Button to reboot the phone, within the Reboot Options dialog -->
   <string name="reboot_reboot">Újraindítás</string>
+  <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
   <string name="reboot_recovery">Recovery</string>
+  <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
   <string name="reboot_bootloader">Bootloader</string>
+  <!-- Button to reboot the phone into bootmenu, within the Reboot Options dialog -->
   <string name="reboot_bootmenu">Bootmenü</string>
+  <!-- Button to reboot the phone into fastboot, within the Reboot Options dialog -->
   <string name="reboot_fastboot">Fastboot</string>
+  <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
   <string name="reboot_download">letöltés</string>
+  <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
   <string name="reboot_progress">Újraindulás\u2026</string>
+  <!-- Reboot Confirmation Dialog.  When the user chooses to reboot the phone, there will be a confirmation dialog.  This is the message. -->
   <string name="reboot_confirm" product="tablet">A táblagépe újraindul.</string>
   <string name="reboot_confirm" product="default">A telefon újra fog indulni.</string>
+  <!-- label for item that reboots the phone in phone options dialog -->
   <string name="global_action_reboot">Újraindítás</string>
   <string name="default_string">Alapértelmezett</string>
+  <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permlab_accessTorchService">hozzáférés a zseblámpa szolgáltatáshoz</string>
+  <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_accessTorchService">Lehetővé teszi az alkalmazás számára, hogy hozzáférjen a zseblámpa szolgáltatáshoz. Általános alkalmazásoknak nincs szüksége ilyen engedélyre.</string>
+  <!-- status message in phone options dialog for when pie is on -->
   <string name="global_actions_pie_mode_on_status">SlimPie bekapcsolva</string>
+  <!-- status message in phone options dialog for when pie is off -->
   <string name="global_actions_pie_mode_off_status">SlimPie kikapcsolva</string>
+  <!-- Error message if user want to try to disable all navigation options -->
   <string name="disable_pie_navigation_error">A pie vezérlő nem kapcsolható ki, mert jelenleg nincs másik vezérlő engedélyezve. Először engedélyezze a navigációs sávot a pie vezérlő kikapcsolásához.</string>
+  <!-- status message in phone options dialog for when navigation bar is on -->
   <string name="global_actions_nav_bar_mode_on_status">Navigációs sáv BE</string>
+  <!-- status message in phone options dialog for when navigation bar is off -->
   <string name="global_actions_nav_bar_mode_off_status">Navigációs sáv KI</string>
+  <!-- Error message if user want to try to disable all navigation options -->
   <string name="disable_navigation_pie_error">A navigációs sáv nem kapcsolható ki, mert jelenleg nincs másik vezérlő engedélyezve. Először engedélyezze a pie vezérlőt a navigációs sáv kikapcsolásához.</string>
+  <!-- Flashlight notification -->
   <string name="notification_flashlight_on_title">Zseblámpa bekapcsolva</string>
   <string name="notification_flashlight_on_summary">Érintse meg kikapcsoláshoz</string>
+  <!-- Heads up -->
   <string name="permlab_changeHeadsUpState">lebegő értesítések engedélyezése vagy tiltása</string>
   <string name="permdesc_changeHeadsUpState">Lehetővé teszi az alkalmazás számára, hogy egy másik alkalmazás normál értesítéseit mint lebegő értesítéseket jelenítse meg.</string>
+  <!-- Title of an application permission, listed so the user can choose whether they want the application to do this. -->
   <string name="permlab_useHardwareFramework">hardver keretrendszert használ</string>
+  <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_useHardwareFramework">Lehetővé teszi az alkalmazás számára, hogy a CM hardver hozzáférjen a keretrendszerhez.</string>
+  <!-- LiveDisplay strings -->
   <string name="live_display_auto">Automatikus</string>
   <string name="live_display_auto_summary">Automatikusan beállítja a képernyő színhőmérsékletét naplemente és napkelte után</string>
   <string name="live_display_off">Kikapcsol</string>
@@ -125,10 +160,16 @@
   <string name="live_display_outdoor">Kültéri (napfényes)</string>
   <string name="live_display_outdoor_summary">Kizárólag a szabadtéri beállítások használata</string>
   <string name="live_display_hint">A LiveDisplay  csökkentheti a szem terhelését éjszakai használat esetén. Kattintson ide, és próbálja ki!</string>
+  <!-- Title of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permgrouplab_security">Biztonság</string>
+  <!-- Description of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permgroupdesc_security">Engedélyek az eszköz biztonsági információira vonatkozóan.</string>
+  <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permlab_readPhoneBlacklist">tiltólista olvasása</string>
+  <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_readPhoneBlacklist">Engedélyezi az alkalmazásnak, hogy olvassa azokat a számokat melyek blokkolva vannak bejövő hívásnál vagy üzenetnél.</string>
+  <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permlab_changePhoneBlacklist">tiltólista módosítása</string>
+  <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_changePhoneBlacklist">Lehetővé teszi az alkalmazás számára, hogy szerkessze azokat a telefonszámokat melyek blokkolva vannak bejövő hívásnál vagy üzenetnél.</string>
 </resources>

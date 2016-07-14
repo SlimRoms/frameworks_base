@@ -19,12 +19,14 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <!-- Privacy Guard -->
   <string name="permlab_changePrivacyGuardState">Включить/выключить защиту личных данных</string>
   <string name="permdesc_changePrivacyGuardState">Разрешает запуск приложения под защитой личных данных. Такое приложение не будет иметь доступа к личным данным, вроде контактов, журналов звонков или сообщений.</string>
   <string name="privacy_guard_notification">Защита личных данных включена</string>
   <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> не сможет иметь доступ к личным данным</string>
   <string name="privacy_guard_dialog_title">Менеджер защиты личных данных</string>
   <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s</xliff:g> требуется <xliff:g id="op">%2$s</xliff:g>.</string>
+  <!-- App ops requests -->
   <string name="app_ops_access_camera">получить доступ к камере</string>
   <string name="app_ops_access_location">получить доступ к местоположению устройства</string>
   <string name="app_ops_access_notifications">получить доступ к уведомлениям</string>
@@ -77,43 +79,76 @@
   <string name="app_ops_use_voice_volume">получить управление громкостью при разговоре</string>
   <string name="app_ops_write_mms">создать MMS-сообщение</string>
   <string name="app_ops_write_sms">создать SMS-сообщение</string>
+  <!-- ADB over network notification -->
   <string name="adb_net_active_notification_title">Включен ADB по сети</string>
+  <!-- ADB over USB and network notification -->
   <string name="adb_both_active_notification_title">Включен ADB по сети и USB</string>
+  <!-- ADB notification message-->
   <string name="adb_active_generic_notification_message">Нажмите для отключения отладки.</string>
+  <!-- USB_PREFERENCES: Notification for when the user connects the phone to a computer via USB in CHARGING mode.  This is the title -->
   <string name="usb_charging_notification_title">Подключен в режиме зарядки</string>
+  <!-- Text for progress dialog while formatting SD card [CHAR LIMIT=NONE] -->
   <string name="progress_nomediapresent" product="default">Отсутствует внешний накопитель</string>
+  <!-- Text of the checkbox for the permission confirmation dialog to remember the user's choice. [CHAR LIMIT=40] -->
   <string name="permission_remember_choice">Запомнить</string>
   <string name="permission">Разрешение</string>
+  <!-- Default wi-fi hotspot ssid -->
+  <!-- Default wi-fi hotspot pass -->
+  <!-- Default wi-fi direct name -->
+  <!-- Performance profile modes -->
   <string name="perf_profile_pwrsv">Экономичный</string>
   <string name="perf_profile_bal">Сбалансированный</string>
   <string name="perf_profile_perf">Высокая производительность</string>
+  <!-- Button to reboot the phone, within the Phone Options dialog -->
   <string name="reboot_system" product="tablet">Перезагрузка планшета</string>
   <string name="reboot_system" product="default">Перезагрузка телефона</string>
+  <!-- Button to reboot the phone, within the Reboot Options dialog -->
   <string name="reboot_reboot">Перезагрузить</string>
+  <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
   <string name="reboot_recovery">Recovery</string>
+  <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
   <string name="reboot_bootloader">Bootloader</string>
+  <!-- Button to reboot the phone into bootmenu, within the Reboot Options dialog -->
   <string name="reboot_bootmenu">Загрузочное меню</string>
+  <!-- Button to reboot the phone into fastboot, within the Reboot Options dialog -->
   <string name="reboot_fastboot">Fastboot</string>
+  <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
   <string name="reboot_download">Режим обновления ПО</string>
+  <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
   <string name="reboot_progress">Перезагрузка\u2026</string>
+  <!-- Reboot Confirmation Dialog.  When the user chooses to reboot the phone, there will be a confirmation dialog.  This is the message. -->
   <string name="reboot_confirm" product="tablet">Ваш планшет будет перезагружен.</string>
   <string name="reboot_confirm" product="default">Ваше устройство будет перезагружено.</string>
+  <!-- label for item that reboots the phone in phone options dialog -->
   <string name="global_action_reboot">Перезагрузка</string>
   <string name="default_string">По умолчанию</string>
+  <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permlab_accessTorchService">доступ к фонарику</string>
+  <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_accessTorchService">Разрешить приложению доступ к фонарику. Не должно понадобиться обычным приложениям никогда.</string>
+  <!-- status message in phone options dialog for when pie is on -->
   <string name="global_actions_pie_mode_on_status">SlimPie включен</string>
+  <!-- status message in phone options dialog for when pie is off -->
   <string name="global_actions_pie_mode_off_status">SlimPie отключен</string>
+  <!-- Error message if user want to try to disable all navigation options -->
   <string name="disable_pie_navigation_error">Нельзя отключить управление pie, поскольку не включено иной навигации. Сначала включите панель навигации.</string>
+  <!-- status message in phone options dialog for when navigation bar is on -->
   <string name="global_actions_nav_bar_mode_on_status">Панель навигации включена</string>
+  <!-- status message in phone options dialog for when navigation bar is off -->
   <string name="global_actions_nav_bar_mode_off_status">Панель навигации отключена</string>
+  <!-- Error message if user want to try to disable all navigation options -->
   <string name="disable_navigation_pie_error">Нельзя отключить панель навигации, поскольку не включено иной навигации. Сначала включите управление pie.</string>
+  <!-- Flashlight notification -->
   <string name="notification_flashlight_on_title">Фонарик включен</string>
   <string name="notification_flashlight_on_summary">Нажмите для выключения</string>
+  <!-- Heads up -->
   <string name="permlab_changeHeadsUpState">вкл/выкл всплывающие уведомления</string>
   <string name="permdesc_changeHeadsUpState">Разрешить приложению изменять вид уведомлений другого приложения на обычные или всплывающие.</string>
+  <!-- Title of an application permission, listed so the user can choose whether they want the application to do this. -->
   <string name="permlab_useHardwareFramework">использовать аппаратные абстракции</string>
+  <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_useHardwareFramework">Приложение сможет получать доступ к подсистеме аппаратных абстракций.</string>
+  <!-- LiveDisplay strings -->
   <string name="live_display_auto">Авто</string>
   <string name="live_display_auto_summary">Автоматически регулировать температуру цвета после заката и восхода солнца</string>
   <string name="live_display_off">Выкл</string>
@@ -125,10 +160,16 @@
   <string name="live_display_outdoor">Улица (солнце)</string>
   <string name="live_display_outdoor_summary">Использовать только параметры улицы</string>
   <string name="live_display_hint">LiveDisplay помогает снизить напряжение глаз и улучшает ночной сон. Нажмите здесь, чтобы попробовать!</string>
+  <!-- Title of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permgrouplab_security">Безопасность</string>
+  <!-- Description of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permgroupdesc_security">Разрешения, относящиеся к безопасности данных на устройстве.</string>
+  <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permlab_readPhoneBlacklist">просмотр чёрного списка</string>
+  <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_readPhoneBlacklist">Приложение сможет считывать информацию о списке абонентов, от которых заблокированы входящие звонки или сообщения.</string>
+  <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permlab_changePhoneBlacklist">изменение чёрного списка</string>
+  <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_changePhoneBlacklist">Приложение сможет изменять список абонентов, от которых заблокированы входящие звонки или сообщения.</string>
 </resources>

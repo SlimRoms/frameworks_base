@@ -17,17 +17,29 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <!-- Content description of the superuser tile -->
   <string name="accessibility_su_active">Sesión administrativa (Root) activa</string>
+  <!-- Battery level text while charging [CHAR LIMIT=2] -->
+  <!--ScreenShot Trash-->
   <string name="screenshot_notification_delete">Eliminar</string>
   <string name="screenshot_delete_confirmation">Captura de pantalla eliminada.</string>
+  <!-- SU notification -->
   <string name="su_session_active">Sesión administrativa (Root) activa</string>
+  <!-- Content description of the location tile in quick settings when on, battery saving mode (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_location_battery_saving">Informe: modo de ahorro de batería.</string>
+  <!-- Content description of the location tile in quick settings when on, sensors only mode (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_location_gps_only">Informe: modo de solo sensores.</string>
+  <!-- Content description of the location tile in quick settings when on, high accuracy mode (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_location_high_accuracy">Informe: modo de alta precisión.</string>
+  <!-- QuickSettings: Location detail panel title [CHAR LIMIT=NONE] -->
   <string name="quick_settings_location_detail_title">Tipo de informe</string>
+  <!-- QuickSettings: Location (On, low-power) [CHAR LIMIT=NONE] -->
   <string name="quick_settings_location_battery_saving_label">Ahorro de batería</string>
+  <!-- QuickSettings: Location (On, gps-only) [CHAR LIMIT=NONE] -->
   <string name="quick_settings_location_gps_only_label">Solo en dispositivo</string>
+  <!-- QuickSettings: Location (On, high-accuracy) [CHAR LIMIT=NONE] -->
   <string name="quick_settings_location_high_accuracy_label">Alta precisión</string>
+  <!-- QS Tiles -->
   <string name="quick_settings_network_adb_enabled_label">Activado</string>
   <string name="quick_settings_network_adb_disabled_label">Desactivado</string>
   <string name="quick_settings_nfc_label">NFC</string>
@@ -45,16 +57,25 @@
   <string name="quick_settings_screenshot">Captura de pantalla</string>
   <string name="quick_settings_expanded_desktop">Extendido</string>
   <string name="quick_settings_expanded_desktop_off">Normal</string>
+  <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_ambient_display_off">Pantalla ambiente desactivada</string>
+  <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_ambient_display_on">Pantalla ambiente activada</string>
+  <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_ambient_display_changed_off">Pantalla ambiente se ha desactivado</string>
+  <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_ambient_display_changed_on">Pantalla ambiente se ha activado</string>
+  <!-- The text for the button in the notification window-shade that clears
+         all of the currently visible notifications. [CHAR LIMIT=10]-->
   <string name="clear_recents">Cerrar recientes</string>
+  <!-- Kill app toast -->
   <string name="app_killed_message">Aplicación finalizada</string>
+  <!-- Dialog Cancel/OK -->
   <string name="cancel">Cancelar</string>
   <string name="dlg_ok">Aceptar</string>
   <string name="yes">Si</string>
   <string name="no">No</string>
+  <!-- Slim Shortcut Actions -->
   <string name="shortcut_picker">Accesos directos</string>
   <string name="shortcut_screenshot">Captura de pantalla</string>
   <string name="shortcut_chamber">Cámara de los Secretos</string>
@@ -70,21 +91,38 @@
   <string name="chamber_name_title">Nombre del acceso directo</string>
   <string name="chamber_name_message">Nombre del acceso directo que se mostrará junto al icono.</string>
   <string name="chamber_name_toast">Se usará el nombre predeterminado</string>
+  <!-- Off/On/Toggle -->
   <string name="off">Desactivado</string>
   <string name="on">Activado</string>
   <string name="toggle">Interruptor</string>
   <string name="shortcut_toggle_title">Acción a realizar</string>
+  <!-- Heads up -->
   <string name="heads_up_snooze_message">Heads up desactivado durante <xliff:g id="number">%d</xliff:g> minutos.</string>
   <string name="heads_up_snooze_button_title">Posponer heads up</string>
   <string name="notification_inspect_heads_up_title_enabled">Activar heads up para esta aplicación</string>
   <string name="notification_inspect_heads_up_title_disabled">Desactivar heads up para esta aplicación</string>
+  <!-- Battery status in pie controls -->
   <string name="pie_battery_status_charging">Cargando (<xliff:g id="percent">%d</xliff:g>%%)</string>
   <string name="pie_battery_status_full">Cargado</string>
   <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% restante</string>
+  <!-- Phone status in pie controls -->
   <string name="pie_phone_status_no_service">Sin servicio</string>
   <string name="pie_phone_status_airplane_mode">Modo avión activado</string>
   <string name="pie_phone_status_emergency_only">Solo llamada de emergencia</string>
+  <!-- QS Tiles -->
   <string name="quick_settings_sync">Sincronizar</string>
   <string name="quick_settings_sync_off">Sincronizar desactivado</string>
+  <!-- Smart PullDown Warning -->
   <string name="smart_pulldown_disabled">Despliegue inteligente desactivado</string>
+  <!-- Navigation ring target shortcuts -->
+  <string name="navbar_dialog_title">Elige la acción a asignar</string>
+  <string name="navigation_ring_title">Accesos directos rápidos</string>
+  <string name="navring_target_reset_message">¿Borrar los accesos directos de la barra de navegación y restaurar los predefinidos?</string>
+  <string name="navring_target_reset">Accesos directos por defecto de la barra de navegación restaurados</string>
+  <string name="navring_action_none">Ninguno</string>
+  <string name="navring_choose_action_title">Elegir acción</string>
+  <string name="select_application">Seleccionar aplicación</string>
+  <string name="lockscreen_target_empty">Vacío</string>
+  <!-- No interuptions except alarms -->
+  <string name="zen_no_interruptions_but_alarm">Sin interrupciones. Excepto alarmas.</string>
 </resources>

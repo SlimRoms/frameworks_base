@@ -17,17 +17,29 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <!-- Content description of the superuser tile -->
   <string name="accessibility_su_active">Session super-utilisateur active</string>
+  <!-- Battery level text while charging [CHAR LIMIT=2] -->
+  <!--ScreenShot Trash-->
   <string name="screenshot_notification_delete">Supprimer</string>
   <string name="screenshot_delete_confirmation">Capture d\'écran supprimée.</string>
+  <!-- SU notification -->
   <string name="su_session_active">Session SU active</string>
+  <!-- Content description of the location tile in quick settings when on, battery saving mode (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_location_battery_saving">Mode de localisation: économie de batterie.</string>
+  <!-- Content description of the location tile in quick settings when on, sensors only mode (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_location_gps_only">Mode de localisation: appareil uniquement.</string>
+  <!-- Content description of the location tile in quick settings when on, high accuracy mode (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_location_high_accuracy">Mode de localisation: haute précision.</string>
+  <!-- QuickSettings: Location detail panel title [CHAR LIMIT=NONE] -->
   <string name="quick_settings_location_detail_title">Mode de localisation</string>
+  <!-- QuickSettings: Location (On, low-power) [CHAR LIMIT=NONE] -->
   <string name="quick_settings_location_battery_saving_label">Économie de batterie</string>
+  <!-- QuickSettings: Location (On, gps-only) [CHAR LIMIT=NONE] -->
   <string name="quick_settings_location_gps_only_label">Appareil uniquement</string>
+  <!-- QuickSettings: Location (On, high-accuracy) [CHAR LIMIT=NONE] -->
   <string name="quick_settings_location_high_accuracy_label">Haute précision</string>
+  <!-- QS Tiles -->
   <string name="quick_settings_network_adb_enabled_label">Activé</string>
   <string name="quick_settings_network_adb_disabled_label">Désactivé</string>
   <string name="quick_settings_nfc_label">NFC</string>
@@ -45,16 +57,25 @@
   <string name="quick_settings_screenshot">Capture d\'écran</string>
   <string name="quick_settings_expanded_desktop">Étendu</string>
   <string name="quick_settings_expanded_desktop_off">Normal</string>
+  <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_ambient_display_off">Affichage en mode Veille désactivé.</string>
+  <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_ambient_display_on">Affichage en mode Veille activé.</string>
+  <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_ambient_display_changed_off">Affichage en mode Veille se désactive.</string>
+  <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_ambient_display_changed_on">Affichage en mode Veille s\'active.</string>
+  <!-- The text for the button in the notification window-shade that clears
+         all of the currently visible notifications. [CHAR LIMIT=10]-->
   <string name="clear_recents">Fermer tout</string>
+  <!-- Kill app toast -->
   <string name="app_killed_message">Application tuée</string>
+  <!-- Dialog Cancel/OK -->
   <string name="cancel">Annuler</string>
   <string name="dlg_ok">Ok</string>
   <string name="yes">Oui</string>
   <string name="no">Non</string>
+  <!-- Slim Shortcut Actions -->
   <string name="shortcut_picker">Raccourcis Slim</string>
   <string name="shortcut_screenshot">Capture d\'écran</string>
   <string name="shortcut_chamber">Chambre des Secrets</string>
@@ -69,23 +90,30 @@
   <string name="chamber_name_title">Nom du raccourci</string>
   <string name="chamber_name_message">Donner un nom au raccourci à afficher avec l\'icône.</string>
   <string name="chamber_name_toast">Utilisation du nom par défaut</string>
+  <!-- Off/On/Toggle -->
   <string name="off">Off</string>
   <string name="on">On</string>
   <string name="toggle">Basculer</string>
   <string name="shortcut_toggle_title">Action à réaliser</string>
+  <!-- Heads up -->
   <string name="heads_up_snooze_message">Heads Up désactivé pour <xliff:g id="number">%d</xliff:g> minutes.</string>
   <string name="heads_up_snooze_button_title">Reporter les notifications flottantes</string>
   <string name="notification_inspect_heads_up_title_enabled">Activer les notifications flottantes pour cette application</string>
   <string name="notification_inspect_heads_up_title_disabled">Désactiver les notifications flottantes pour cette application</string>
+  <!-- Battery status in pie controls -->
   <string name="pie_battery_status_charging">En charge (<xliff:g id="percent">%d</xliff:g>%%)</string>
   <string name="pie_battery_status_full">Chargée</string>
   <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% restants</string>
+  <!-- Phone status in pie controls -->
   <string name="pie_phone_status_no_service">Pas de réseau</string>
   <string name="pie_phone_status_airplane_mode">Mode Avion activé</string>
   <string name="pie_phone_status_emergency_only">Appels d\'urgence uniquement</string>
+  <!-- QS Tiles -->
   <string name="quick_settings_sync">Synchro. activée</string>
   <string name="quick_settings_sync_off">Synchro. désactivée</string>
+  <!-- Smart PullDown Warning -->
   <string name="smart_pulldown_disabled">Le déroulement intelligent est désactivé</string>
+  <!-- Navigation ring target shortcuts -->
   <string name="navbar_dialog_title">Choisir l\'action à assigner</string>
   <string name="navigation_ring_title">Raccourcis de lancement rapide</string>
   <string name="navring_target_reset_message">Supprimer tous les raccourcis de la barre de navigation et revenir à la configuration d\'origine ?</string>
@@ -94,5 +122,6 @@
   <string name="navring_choose_action_title">Choisir l\'action</string>
   <string name="select_application">Sélectionner une application</string>
   <string name="lockscreen_target_empty">Vide</string>
+  <!-- No interuptions except alarms -->
   <string name="zen_no_interruptions_but_alarm">Aucune interruption. Sauf les alarmes.</string>
 </resources>

@@ -19,22 +19,63 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <!-- Privacy Guard -->
   <string name="permlab_changePrivacyGuardState">مكن أو عطل حارس الخصوصية</string>
   <string name="privacy_guard_notification">حارس الخصوصية قاءم</string>
   <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> لن تتمكن من الأطلاع على معلوماتك الشخصية</string>
+  <!-- App ops requests -->
+  <!-- ADB over network notification -->
+  <!-- ADB over USB and network notification -->
+  <!-- ADB notification message-->
+  <!-- USB_PREFERENCES: Notification for when the user connects the phone to a computer via USB in CHARGING mode.  This is the title -->
   <string name="usb_charging_notification_title">موصّل و في وضع الشحن</string>
+  <!-- Text for progress dialog while formatting SD card [CHAR LIMIT=NONE] -->
   <string name="progress_nomediapresent" product="default">لاتوجد وسائط قابلة للإزالة في الوقت الحالى \u2026</string>
+  <!-- Text of the checkbox for the permission confirmation dialog to remember the user's choice. [CHAR LIMIT=40] -->
   <string name="permission_remember_choice">تذكر الاختيار</string>
   <string name="permission">إذن</string>
+  <!-- Default wi-fi hotspot ssid -->
+  <!-- Default wi-fi hotspot pass -->
+  <!-- Default wi-fi direct name -->
+  <!-- Performance profile modes -->
+  <!-- Button to reboot the phone, within the Phone Options dialog -->
   <string name="reboot_system" product="tablet">إعد تشغيل الكمبيوتر اللوحي</string>
   <string name="reboot_system" product="default">أعد تشغيل الهاتف</string>
+  <!-- Button to reboot the phone, within the Reboot Options dialog -->
   <string name="reboot_reboot">آعد التشغيل</string>
+  <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
   <string name="reboot_recovery">Recovery</string>
+  <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
   <string name="reboot_bootloader">Bootloader</string>
+  <!-- Button to reboot the phone into bootmenu, within the Reboot Options dialog -->
   <string name="reboot_bootmenu">Bootmenu</string>
+  <!-- Button to reboot the phone into fastboot, within the Reboot Options dialog -->
   <string name="reboot_fastboot">Fastboot</string>
+  <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
   <string name="reboot_download">حَمِل</string>
+  <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
   <string name="reboot_progress">أعادة التشغيل \ u2026</string>
+  <!-- Reboot Confirmation Dialog.  When the user chooses to reboot the phone, there will be a confirmation dialog.  This is the message. -->
   <string name="reboot_confirm" product="default">سيتم إعادة تشغيل هاتفك.</string>
+  <!-- label for item that reboots the phone in phone options dialog -->
   <string name="global_action_reboot">أعد تشغيل</string>
+  <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <!-- status message in phone options dialog for when pie is on -->
+  <!-- status message in phone options dialog for when pie is off -->
+  <!-- Error message if user want to try to disable all navigation options -->
+  <!-- status message in phone options dialog for when navigation bar is on -->
+  <!-- status message in phone options dialog for when navigation bar is off -->
+  <!-- Error message if user want to try to disable all navigation options -->
+  <!-- Flashlight notification -->
+  <!-- Heads up -->
+  <!-- Title of an application permission, listed so the user can choose whether they want the application to do this. -->
+  <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <!-- LiveDisplay strings -->
+  <!-- Title of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
+  <!-- Description of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
+  <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
 </resources>
