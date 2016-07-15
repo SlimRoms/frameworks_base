@@ -15,14 +15,16 @@
 -->
 <!-- Colors specific to Material themes. -->
 <resources>
-    <color name="background_floating_material_dark">@color/material_grey_850</color>
+    <!-- Primary & accent colors -->
+    <eat-comment />
 
-    <!-- Notification action text/button -->
-    <color name="notification_action_color_filter">#9F9F9F</color>
-    <color name="secondary_text_material_light">#A2A2A2</color>
+    <color name="material_grey_900">#ff21272b</color>
+    <color name="material_grey_850">#ff21272b</color>
+    <color name="material_grey_800">#ff263238</color>
+    <color name="material_grey_600">#ff546e7a</color>
+    <color name="material_grey_300">#ff90a4ae</color>
+    <color name="material_grey_100">#ffcfd8dc</color>
+    <color name="material_grey_50">#ffeceff1</color>
 
-    <!-- Notification action text -->
-    <color name="primary_text_default_material_dark">#FFFFFF</color>
-    <color name="secondary_text_default_material_dark">#FFFFFF</color>
-
+    <color name="material_deep_teal_200">#ff009688</color>
 </resources>
