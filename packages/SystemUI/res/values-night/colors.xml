@@ -22,4 +22,7 @@
     <!-- The color of the material notification background for media notifications when no custom
          color is specified -->
     <color name="notification_material_background_media_default_color">@*android:color/material_grey_850</color>
+
+    <color name="action_icon_color">#FFFFFFFF</color>
+
 </resources>
