@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ace114c_8472ece3",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-20T04:06:18Z",
+      "side": 1,
+      "message": "Should be\nprivate int mUiMode",
+      "range": {
+        "startLine": 306,
+        "startChar": 16,
+        "endLine": 306,
+        "endChar": 25
+      },
+      "revId": "340d105a9e61bb735fb31a986dda016719ad4e99",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ace114c_04a7dc50",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 814,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-20T04:06:18Z",
+      "side": 1,
+      "message": "to long",
+      "range": {
+        "startLine": 814,
+        "startChar": 8,
+        "endLine": 814,
+        "endChar": 103
+      },
+      "revId": "340d105a9e61bb735fb31a986dda016719ad4e99",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ace114c_a4636819",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 826,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-20T04:06:18Z",
+      "side": 1,
+      "message": "to long",
+      "range": {
+        "startLine": 826,
+        "startChar": 8,
+        "endLine": 826,
+        "endChar": 112
+      },
+      "revId": "340d105a9e61bb735fb31a986dda016719ad4e99",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ace114c_c468f4f7",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 829,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-20T04:06:18Z",
+      "side": 1,
+      "message": "to long",
+      "range": {
+        "startLine": 829,
+        "startChar": 17,
+        "endLine": 829,
+        "endChar": 105
+      },
+      "revId": "340d105a9e61bb735fb31a986dda016719ad4e99",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ace114c_646d8004",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 968,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-20T04:06:18Z",
+      "side": 1,
+      "message": "to long",
+      "range": {
+        "startLine": 968,
+        "startChar": 16,
+        "endLine": 968,
+        "endChar": 102
+      },
+      "revId": "340d105a9e61bb735fb31a986dda016719ad4e99",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ace114c_247778d6",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3097,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-20T04:06:18Z",
+      "side": 1,
+      "message": "Format here is horribly, and should be UiMode\n\nif (mUiMode !\u003d newConfig.uiMode) {\n    mUiMode \u003d newConfig.uiMode;\n    recreateStatusBar();\n    if (mNavigationBarView !\u003d null)  {\n        mNavigationBarView.updateResources();\n    }\n}",
+      "range": {
+        "startLine": 3092,
+        "startChar": 0,
+        "endLine": 3097,
+        "endChar": 18
+      },
+      "revId": "340d105a9e61bb735fb31a986dda016719ad4e99",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
