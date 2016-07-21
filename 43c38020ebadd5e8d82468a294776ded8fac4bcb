@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ace114c_5341240a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-21T00:50:36Z",
+      "side": 1,
+      "message": "xWASABI \u003cwasabi.dev@gmail.com\u003e",
+      "range": {
+        "startLine": 2,
+        "startChar": 12,
+        "endLine": 2,
+        "endChar": 45
+      },
+      "revId": "43c38020ebadd5e8d82468a294776ded8fac4bcb",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ace114c_93378cb0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-21T00:50:36Z",
+      "side": 1,
+      "message": "Pulling code from \nFrameworks/Systemui DayNight update\nSystemUI - DayNight notifications update",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 40
+      },
+      "revId": "43c38020ebadd5e8d82468a294776ded8fac4bcb",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ace114c_b33c0895",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-21T00:50:36Z",
+      "side": 1,
+      "message": "Signed-off: Martinusbe \u003cmartinusbe@gmail.com\u003e",
+      "revId": "43c38020ebadd5e8d82468a294776ded8fac4bcb",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ace114c_7346a025",
+        "filename": "core/res/res/values-night/colors.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-21T00:50:36Z",
+      "side": 1,
+      "message": "licensing",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 44
+      },
+      "revId": "43c38020ebadd5e8d82468a294776ded8fac4bcb",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ace114c_134b9c2c",
+        "filename": "core/res/res/values-night/styles.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-21T00:50:36Z",
+      "side": 1,
+      "message": "licensing",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 38
+      },
+      "revId": "43c38020ebadd5e8d82468a294776ded8fac4bcb",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ace114c_3348182d",
+        "filename": "packages/SystemUI/res/values-night/colors.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-21T00:50:36Z",
+      "side": 1,
+      "message": "licensing",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 38
+      },
+      "revId": "43c38020ebadd5e8d82468a294776ded8fac4bcb",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
