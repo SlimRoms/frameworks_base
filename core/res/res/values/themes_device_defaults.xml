@@ -489,14 +489,14 @@ easier.
 
     <!-- Variant of {@link #Theme_DeviceDefault_Light_Dialog} that has a nice minimum width for a
     regular dialog. -->
-    <style name="Theme.DeviceDefault.Light.Dialog.MinWidth" parent="Theme.Material.Light.Dialog.MinWidth" />
+    <style name="Theme.DeviceDefault.Light.Dialog.MinWidth" parent="Theme.Material.DayNight.Dialog.MinWidth" />
 
      <!-- Variant of {@link #Theme_DeviceDefault_Light_Dialog} without an action bar -->
-    <style name="Theme.DeviceDefault.Light.Dialog.NoActionBar" parent="Theme.Material.Light.Dialog.NoActionBar" />
+    <style name="Theme.DeviceDefault.Light.Dialog.NoActionBar" parent="Theme.Material.DayNight.Dialog.NoActionBar" />
 
     <!-- Variant of {@link #Theme_DeviceDefault_Light_Dialog_NoActionBar} that has a nice minimum
     width for a regular dialog. -->
-    <style name="Theme.DeviceDefault.Light.Dialog.NoActionBar.MinWidth" parent="Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
+    <style name="Theme.DeviceDefault.Light.Dialog.NoActionBar.MinWidth" parent="Theme.Material.DayNight.Dialog.NoActionBar.MinWidth" />
 
     <!-- Variant of Theme.DeviceDefault.Dialog that has a fixed size. -->
     <style name="Theme.DeviceDefault.Light.Dialog.FixedSize">
