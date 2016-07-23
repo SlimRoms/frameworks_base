@@ -27,5 +27,5 @@
     android:maxLines="4"
     android:textAppearance="?android:attr/textAppearance"
     android:textSize="@dimen/kg_status_line_font_size"
-    android:textColor="?android:attr/textColorSecondaryInverse" />
+    android:textColor="?android:attr/textColorSecondary" />
 
