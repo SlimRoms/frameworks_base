@@ -439,6 +439,15 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(SlimSettings.System.getUriFor(
                     SlimSettings.System.MENU_VISIBILITY),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(SlimSettings.System.getUriFor(
+                    SlimSettings.System.USE_SLIM_RECENTS), false, this,
+                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(SlimSettings.System.getUriFor(
+                    SlimSettings.System.RECENT_CARD_BG_COLOR), false, this,
+                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(SlimSettings.System.getUriFor(
+                    SlimSettings.System.RECENT_CARD_TEXT_COLOR), false, this,
+                    UserHandle.USER_ALL);
             update();
         }
 
@@ -473,6 +482,14 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             } else if (uri.equals(SlimSettings.System.getUriFor(
                     SlimSettings.System.NAVIGATION_BAR_SHOW))) {
                 updateNavigationBarVisibility();
+            } else if (uri.equals(SlimSettings.System.getUriFor(
+                    SlimSettings.System.USE_SLIM_RECENTS))) {
+                updateRecents();
+            } else if (uri.equals(SlimSettings.System.getUriFor(
+                    SlimSettings.System.RECENT_CARD_BG_COLOR))
+                    || uri.equals(SlimSettings.System.getUriFor(
+                    SlimSettings.System.RECENT_CARD_TEXT_COLOR))) {
+                rebuildRecentsScreen();
             }
             update();
         }
