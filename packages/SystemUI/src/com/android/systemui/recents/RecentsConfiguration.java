@@ -21,6 +21,7 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Rect;
+import android.os.UserHandle;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.view.animation.AnimationUtils;
@@ -30,6 +31,8 @@ import com.android.systemui.Prefs;
 import com.android.systemui.R;
 import com.android.systemui.recents.misc.Console;
 import com.android.systemui.recents.misc.SystemServicesProxy;
+
+import org.slim.provider.SlimSettings;
 
 
 /** A static Recents configuration for the current context
@@ -202,7 +205,9 @@ public class RecentsConfiguration {
                 res.getInteger(R.integer.recents_filter_animate_new_views_duration);
 
         // Loading
-        maxNumTasksToLoad = ActivityManager.getMaxRecentTasksStatic();
+        maxNumTasksToLoad = SlimSettings.System.getIntForUser(context.getContentResolver(),
+                SlimSettings.System.RECENTS_MAX_APPS, ActivityManager.getMaxRecentTasksStatic(),
+                UserHandle.USER_CURRENT);
 
         // Search Bar
         searchBarSpaceHeightPx = res.getDimensionPixelSize(R.dimen.recents_search_bar_space_height);
