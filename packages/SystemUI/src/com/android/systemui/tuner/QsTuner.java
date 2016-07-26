@@ -209,6 +209,7 @@ public class QsTuner extends Fragment implements Callback {
         else if (spec.equals("screenoff")) return R.string.quick_settings_screen_off;
         else if (spec.equals("sync")) return R.string.quick_settings_sync_label;
         else if (spec.equals("timeout")) return R.string.quick_settings_timeout_label;
+        else if (spec.equals("brightness")) return R.string.quick_settings_brightness;
         return 0;
     }
 
@@ -455,6 +456,7 @@ public class QsTuner extends Fragment implements Callback {
             else if (mSpec.equals("screenoff")) return R.drawable.ic_qs_power;
             else if (mSpec.equals("sync")) return R.drawable.ic_qs_sync_on;
             else if (mSpec.equals("timeout")) return R.drawable.ic_qs_screen_timeout_vector;
+            else if (mSpec.equals("brightness")) return R.drawable.ic_qs_brightness_auto_on_alpha;
             return R.drawable.android;
         }
 
