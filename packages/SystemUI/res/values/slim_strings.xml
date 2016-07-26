@@ -56,4 +56,12 @@
     <!-- Battery level text while charging [CHAR LIMIT=2] -->
     <string name="battery_level_template_charging"><xliff:g id="level" example="45">%d</xliff:g>~</string>
 
+    <!-- Additonal QS tiles -->
+    <!-- USB tether QS tile -->
+    <string name="accessibility_quick_settings_usb_tether_off">USB tethering off</string>
+    <string name="accessibility_quick_settings_usb_tether_on">USB tethering on</string>
+    <string name="accessibility_quick_settings_usb_tether_changed_off">USB tethering turned off</string>
+    <string name="accessibility_quick_settings_usb_tether_changed_on">USB tethering turned on</string>
+    <string name="quick_settings_usb_tether_label">USB tethering</string>
+
 </resources>
