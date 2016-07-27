@@ -58,6 +58,7 @@ public class DndTile extends QSTile<QSTile.BooleanState> {
     private final AnimationIcon mDisableTotalSilence =
             new AnimationIcon(R.drawable.ic_dnd_total_silence_disable_animation);
 
+    Intent intent = new Intent(Intent.ACTION_MAIN);
     private final ZenModeController mController;
     private final DndDetailAdapter mDetailAdapter;
 
@@ -118,6 +119,13 @@ public class DndTile extends QSTile<QSTile.BooleanState> {
             mController.setZen(zen, null, TAG);
             showDetail(true);
         }
+    }
+
+    @Override
+    protected void handleLongClick() {
+        intent.setClassName("com.android.settings",
+            "com.android.settings.Settings$ZenModeSettingsActivity");
+        mHost.startActivityDismissingKeyguard(intent);
     }
 
     @Override
