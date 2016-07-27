@@ -56,6 +56,7 @@ public class KeyguardStatusBarView extends RelativeLayout
     private ImageView mMultiUserAvatar;
     private BatteryMeterView mBatteryView;
     private TextView mBatteryLevel;
+    private View mBatteryLevelSpacer;
 
     private BatteryController mBatteryController;
     private KeyguardUserSwitcher mKeyguardUserSwitcher;
@@ -67,6 +68,7 @@ public class KeyguardStatusBarView extends RelativeLayout
 
     private boolean mShowBatteryText;
     private boolean mShowBatteryTextCharging;
+    private boolean mShowBatteryTextSpacer;
     private boolean mBatteryIsCharging;
     private int mBatteryChargeLevel;
 
@@ -85,16 +87,19 @@ public class KeyguardStatusBarView extends RelativeLayout
                 //meterMode = BatteryMeterMode.BATTERY_METER_GONE;
                 mShowBatteryText = false;
                 mShowBatteryTextCharging = false;
+                mShowBatteryTextSpacer = false;
                 break;
 
             case 6:
                 //meterMode = BatteryMeterMode.BATTERY_METER_TEXT;
                 mShowBatteryText = true;
                 mShowBatteryTextCharging = true;
+                mShowBatteryTextSpacer = false;
                 break;
 
             default:
                 mShowBatteryTextCharging = false;
+                mShowBatteryTextSpacer = mShowBatteryText;
                 break;
         }
     }
@@ -107,6 +112,7 @@ public class KeyguardStatusBarView extends RelativeLayout
         mMultiUserAvatar = (ImageView) findViewById(R.id.multi_user_avatar);
         mBatteryView = (BatteryMeterView) findViewById(R.id.battery);
         mBatteryLevel = (TextView) findViewById(R.id.battery_level_text);
+        mBatteryLevelSpacer = findViewById(R.id.battery_batterytext_spacer);
         mCarrierLabel = (TextView) findViewById(R.id.keyguard_carrier_text);
         loadDimens();
         mFastOutSlowInInterpolator = AnimationUtils.loadInterpolator(getContext(),
@@ -159,6 +165,7 @@ public class KeyguardStatusBarView extends RelativeLayout
         loadShowBatteryTextSetting();
         updateBatteryLevelText();
         mBatteryLevel.setVisibility(mShowBatteryText ? View.VISIBLE : View.GONE);
+        mBatteryLevelSpacer.setVisibility(mShowBatteryTextSpacer ? View.VISIBLE : View.GONE);
     }
 
     private void updateSystemIconsLayoutParams() {
