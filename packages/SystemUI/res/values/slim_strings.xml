@@ -135,4 +135,7 @@
     <string name="quick_settings_compass_W">W</string>
     <string name="quick_settings_compass_NW">NW</string>
 
+    <!-- IME selector Tile -->
+    <string name="quick_settings_ime_label">IME</string>
+
 </resources>
