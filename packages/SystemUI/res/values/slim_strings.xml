@@ -90,4 +90,7 @@
     <string name="accessibility_quick_settings_sync_changed_off">Sync turned off</string>
     <string name="accessibility_quick_settings_sync_changed_on">Sync turned on</string>
 
+    <!-- Screen off QS tile -->
+    <string name="quick_settings_screen_off">Screen off</string>
+
 </resources>
