@@ -37,4 +37,20 @@
         android:layout_height="14.5dp"
         android:layout_width="9.5dp"
         android:layout_marginBottom="@dimen/battery_margin_bottom"/>
+
+    <View
+        android:id="@+id/battery_batterytext_spacer"
+        android:layout_width="@dimen/header_battery_margin_keyguard"
+        android:layout_height="4dp"
+        android:visibility="gone"
+        />
+
+    <TextView android:id="@+id/battery_level_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:textColor="#ffffff"
+        android:visibility="gone"
+        android:textSize="@dimen/battery_level_text_size" />
+
 </LinearLayout>
