@@ -56,4 +56,13 @@
     <!-- Battery level text while charging [CHAR LIMIT=2] -->
     <string name="battery_level_template_charging"><xliff:g id="level" example="45">%d</xliff:g>~</string>
 
+    <!-- QS Tiles Columns -->
+    <string name="qs_num_columns_entries_three">Three</string>
+    <string name="qs_num_columns_entries_four">Four</string>
+    <string name="qs_num_columns_entries_five">Five</string>
+    <string name="qs_main_tiles_title">Enlarge first row</string>
+    <string name="qs_main_tiles_summary">Two main tiles on the first row</string>
+    <string name="qs_num_columns_title">Number of tiles per row</string>
+    <string name="qs_num_columns_showing">%1$s tiles per row showing</string>
+
 </resources>

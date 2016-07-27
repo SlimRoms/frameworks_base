@@ -28,4 +28,7 @@
     <dimen name="recent_text_size">20dp</dimen>
     <dimen name="recent_thumbnail_bottom_padding">3dp</dimen>
 
+    <!-- Allow WiFi & Bluetooth tile details to scroll -->
+    <dimen name="qs_detail_item_height_twoline">72dp</dimen>
+
 </resources>
