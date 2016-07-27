@@ -288,6 +288,7 @@ public class QsTuner extends Fragment implements Callback {
         else if (spec.equals("usb_tether")) return R.string.quick_settings_usb_tether_label;
         else if (spec.equals("ambient_display")) return R.string.quick_settings_ambient_display_label;
         else if (spec.equals("screenshot")) return R.string.quick_settings_screenshot_label;
+        else if (spec.equals("nfc")) return R.string.quick_settings_nfc_label;
         else if (spec.equals("screenoff")) return R.string.quick_settings_screen_off;
         else if (spec.equals("sync")) return R.string.quick_settings_sync_label;
         else if (spec.equals("timeout")) return R.string.quick_settings_timeout_label;
@@ -318,6 +319,7 @@ public class QsTuner extends Fragment implements Callback {
         else if (spec.equals("usb_tether")) return R.drawable.ic_qs_usb_tether_off;
         else if (spec.equals("ambient_display")) return R.drawable.ic_qs_ambientdisplay_on;
         else if (spec.equals("screenshot")) return R.drawable.ic_qs_screenshot;
+        else if (spec.equals("nfc")) return R.drawable.ic_qs_nfc_on;
         else if (spec.equals("screenoff")) return R.drawable.ic_qs_power;
         else if (spec.equals("sync")) return R.drawable.ic_qs_sync_on;
         else if (spec.equals("timeout")) return R.drawable.ic_qs_screen_timeout_vector;
