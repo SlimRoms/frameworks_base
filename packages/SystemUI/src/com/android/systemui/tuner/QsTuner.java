@@ -257,6 +257,7 @@ public class QsTuner extends Fragment implements Callback {
         else if (spec.equals("compass")) return R.string.quick_settings_compass_label;
         else if (spec.equals("ime")) return R.string.quick_settings_ime_label;
         else if (spec.equals("volume")) return R.string.quick_settings_volume_panel_label;
+        else if (spec.equals("sound")) return R.string.quick_settings_sound_label;
         return 0;
     }
 
@@ -533,6 +534,7 @@ public class QsTuner extends Fragment implements Callback {
             else if (mSpec.equals("compass")) return R.drawable.ic_qs_compass_on;
             else if (mSpec.equals("ime")) return R.drawable.ic_qs_ime;
             else if (mSpec.equals("volume")) return R.drawable.ic_qs_volume_panel;
+            else if (mSpec.equals("sound")) return R.drawable.ic_qs_ringer_audible;
             return R.drawable.android;
         }
 
