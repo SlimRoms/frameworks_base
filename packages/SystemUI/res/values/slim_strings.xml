@@ -77,6 +77,9 @@
     <!-- Screenshot QS tile -->
     <string name="quick_settings_screenshot_label">Screenshot</string>
 
+    <!-- NFC QS tile -->
+    <string name="quick_settings_nfc_label">NFC</string>
+
     <!-- Sync QS tile -->
     <string name="quick_settings_sync_label">Sync</string>
     <string name="accessibility_quick_settings_sync_off">Sync off</string>
