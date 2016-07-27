@@ -255,6 +255,7 @@ public class QsTuner extends Fragment implements Callback {
         else if (spec.equals("reboot")) return R.string.quick_settings_reboot_label;
         else if (spec.equals("battery_saver")) return R.string.quick_settings_battery_saver;
         else if (spec.equals("compass")) return R.string.quick_settings_compass_label;
+        else if (spec.equals("ime")) return R.string.quick_settings_ime_label;
         return 0;
     }
 
@@ -529,6 +530,7 @@ public class QsTuner extends Fragment implements Callback {
             else if (mSpec.equals("reboot")) return R.drawable.ic_qs_reboot;
             else if (mSpec.equals("battery_saver")) return R.drawable.ic_qs_battery_saver_on;
             else if (mSpec.equals("compass")) return R.drawable.ic_qs_compass_on;
+            else if (mSpec.equals("ime")) return R.drawable.ic_qs_ime;
             return R.drawable.android;
         }
 
