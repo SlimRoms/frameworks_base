@@ -83,4 +83,7 @@
     <!-- Screenshot QS tile -->
     <string name="quick_settings_screenshot_label">Screenshot</string>
 
+    <!-- NFC QS tile -->
+    <string name="quick_settings_nfc_label">NFC</string>
+
 </resources>
