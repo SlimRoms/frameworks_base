@@ -27,6 +27,10 @@
     <dimen name="recent_header_width">120dp</dimen>
     <dimen name="recent_text_size">20dp</dimen>
     <dimen name="recent_thumbnail_bottom_padding">3dp</dimen>
+    
+    <!-- Advanced QS Location tile -->
+    <dimen name="detail_radio_group_padding_left">16dp</dimen>
+    <dimen name="detail_radio_group_padding">8dp</dimen>
 
     <!-- Allow WiFi & Bluetooth tile details to scroll -->
     <dimen name="qs_detail_item_height_twoline">72dp</dimen>
