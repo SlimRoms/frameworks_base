@@ -249,6 +249,7 @@ public class QsTuner extends Fragment implements Callback {
         else if (spec.equals("screenshot")) return R.string.quick_settings_screenshot_label;
         else if (spec.equals("screenoff")) return R.string.quick_settings_screen_off;
         else if (spec.equals("sync")) return R.string.quick_settings_sync_label;
+        else if (spec.equals("timeout")) return R.string.quick_settings_timeout_label;
         return 0;
     }
 
@@ -517,6 +518,7 @@ public class QsTuner extends Fragment implements Callback {
             else if (mSpec.equals("screenshot")) return R.drawable.ic_qs_screenshot;
             else if (mSpec.equals("screenoff")) return R.drawable.ic_qs_power;
             else if (mSpec.equals("sync")) return R.drawable.ic_qs_sync_on;
+            else if (mSpec.equals("timeout")) return R.drawable.ic_qs_screen_timeout_vector;
             return R.drawable.android;
         }
 
