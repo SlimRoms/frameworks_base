@@ -48,6 +48,8 @@ import com.android.systemui.statusbar.policy.BrightnessMirrorController;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.slim.provider.SlimSettings;
+
 /** View that represents the quick settings tile panel. **/
 public class QSPanel extends ViewGroup {
     private static final float TILE_ASPECT = 1.2f;
@@ -62,14 +64,15 @@ public class QSPanel extends ViewGroup {
     private final QSDetailClipper mClipper;
     private final H mHandler = new H();
 
+    protected int mTopColumns;
     private int mColumns;
     private int mNumberOfColumns;
     private int mCellWidth;
-    private int mCellHeight;
+    protected int mCellHeight;
     private int mLargeCellWidth;
-    private int mLargeCellHeight;
+    protected int mLargeCellHeight;
     private int mPanelPaddingBottom;
-    private int mDualTileUnderlap;
+    protected int mDualTileUnderlap;
     private int mBrightnessPaddingTop;
     private int mGridHeight;
     private boolean mExpanded;
@@ -79,7 +82,7 @@ public class QSPanel extends ViewGroup {
     private Record mDetailRecord;
     private Callback mCallback;
     private BrightnessController mBrightnessController;
-    private QSTileHost mHost;
+    protected QSTileHost mHost;
 
     private QSFooter mFooter;
     private boolean mGridContentVisible = true;
@@ -253,7 +256,11 @@ public class QSPanel extends ViewGroup {
     }
 
     public void refreshAllTiles() {
-        for (TileRecord r : mRecords) {
+        mTopColumns = SlimSettings.System.getIntForUser(getContext().getContentResolver(),
+                "num_top_rows", 2, UserHandle.USER_CURRENT);
+        for (int i = 0; i < mRecords.size(); i++) {
+            TileRecord r = mRecords.get(i);
+            r.tileView.setDual(i < mTopColumns);
             r.tile.refreshState();
         }
         mFooter.refreshState();
@@ -310,7 +317,7 @@ public class QSPanel extends ViewGroup {
         r.tileView.onStateChanged(state);
     }
 
-    private void addTile(final QSTile<?> tile) {
+    protected void addTile(final QSTile<?> tile) {
         final TileRecord r = new TileRecord();
         r.tile = tile;
         r.tileView = tile.createTileView(mContext);
@@ -494,18 +501,25 @@ public class QSPanel extends ViewGroup {
         mBrightnessView.measure(exactly(width), MeasureSpec.UNSPECIFIED);
         final int brightnessHeight = mBrightnessView.getMeasuredHeight() + mBrightnessPaddingTop;
         mFooter.getView().measure(exactly(width), MeasureSpec.UNSPECIFIED);
-        int r = -1;
+        mTopColumns = SlimSettings.System.getIntForUser(getContext().getContentResolver(),
+                "num_top_rows", 2, UserHandle.USER_CURRENT);
+        int r = (mTopColumns == 0) ? 1 : -1;
         int c = -1;
         int rows = 0;
-        boolean rowIsDual = false;
-        for (TileRecord record : mRecords) {
+        for (int i = 0; i < mRecords.size(); i++) {
+            TileRecord record = mRecords.get(i);
+            if (record.tileView.setDual(i < mTopColumns)) {
+                record.tileView.handleStateChanged(record.tile.getState());
+            }
             if (record.tileView.getVisibility() == GONE) continue;
+            if (record.row == -1 && record.col == -1) {
+                record.row = record.col = 0;
+                continue;
+            }
             // wrap to next column if we've reached the max # of columns
-            // also don't allow dual + single tiles on the same row
-            if (r == -1 || c == (mColumns - 1) || rowIsDual != record.tile.supportsDualTargets()) {
+            if (r == -1 || c == (mColumns - 1) || (r == 0 && c == mTopColumns - 1)) {
                 r++;
                 c = 0;
-                rowIsDual = record.tile.supportsDualTargets();
             } else {
                 c++;
             }
@@ -515,10 +529,14 @@ public class QSPanel extends ViewGroup {
         }
 
         View previousView = mBrightnessView;
-        for (TileRecord record : mRecords) {
+        for (int i = 0; i < mRecords.size(); i++) {
+            TileRecord record = mRecords.get(i);
+            if (record.tileView.setDual(i < mTopColumns)) {
+                record.tileView.handleStateChanged(record.tile.getState());
+            }
             if (record.tileView.getVisibility() == GONE) continue;
-            final int cw = (record.row == 0) ? mLargeCellWidth : mCellWidth;
-            final int ch = (record.row == 0) ? mLargeCellHeight : mCellHeight;
+            final int cw = ((i < mTopColumns) && record.row == 0) ? mLargeCellWidth : mCellWidth;
+            final int ch = ((i < mTopColumns) && record.row == 0) ? mLargeCellHeight : mCellHeight;
             record.tileView.measure(exactly(cw), exactly(ch));
             previousView = record.tileView.updateAccessibilityOrder(previousView);
         }
@@ -545,10 +563,13 @@ public class QSPanel extends ViewGroup {
                 mBrightnessView.getMeasuredWidth(),
                 mBrightnessPaddingTop + mBrightnessView.getMeasuredHeight());
         boolean isRtl = getLayoutDirection() == LAYOUT_DIRECTION_RTL;
-        for (TileRecord record : mRecords) {
+        mTopColumns = SlimSettings.System.getIntForUser(getContext().getContentResolver(),
+                "num_top_rows", 2, UserHandle.USER_CURRENT);
+        for (int i = 0; i < mRecords.size(); i++) {
+            TileRecord record = mRecords.get(i);
             if (record.tileView.getVisibility() == GONE) continue;
             final int cols = getColumnCount(record.row);
-            final int cw = (record.row == 0) ? mLargeCellWidth : mCellWidth;
+            final int cw = ((i < mTopColumns) && record.row == 0) ? mLargeCellWidth : mCellWidth;
             final int extra = (w - cw * cols) / (cols + 1);
             int left = record.col * cw + (record.col + 1) * extra;
             final int top = getRowTop(record.row);
@@ -571,7 +592,8 @@ public class QSPanel extends ViewGroup {
         }
     }
 
-    private int getRowTop(int row) {
+    protected int getRowTop(int row) {
+        row = (mTopColumns == 0) ? row - 1 : row;
         if (row <= 0) return mBrightnessView.getMeasuredHeight() + mBrightnessPaddingTop;
         return mBrightnessView.getMeasuredHeight() + mBrightnessPaddingTop
                 + mLargeCellHeight - mDualTileUnderlap + (row - 1) * mCellHeight;
