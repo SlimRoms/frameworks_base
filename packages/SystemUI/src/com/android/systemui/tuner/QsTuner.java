@@ -21,7 +21,10 @@ import android.app.Fragment;
 import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.PorterDuff.Mode;
 import android.os.Bundle;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.provider.Settings.Secure;
 import android.os.UserHandle;
 import android.text.TextUtils;
@@ -39,6 +42,7 @@ import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 
 import com.android.internal.logging.MetricsLogger;
@@ -117,6 +121,7 @@ public class QsTuner extends Fragment implements Callback {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         mScrollRoot = (ScrollView) inflater.inflate(R.layout.tuner_qs, container, false);
+        mScrollRoot.setBackgroundColor(0xFFFAFAFA);
 
         mSpacer = mScrollRoot.findViewById(R.id.spacer);
         setupSpacer();
@@ -190,7 +195,7 @@ public class QsTuner extends Fragment implements Callback {
     }
 
     private void setupAddTarget() {
-        QSTileView tileView = new QSTileView(getContext());
+        QSTileView tileView = new CustomTileView(getContext());
         QSTile.State state = new QSTile.State();
         state.visible = true;
         state.icon = ResourceIcon.get(R.drawable.ic_add_circle_qs);
@@ -471,7 +476,7 @@ public class QsTuner extends Fragment implements Callback {
 
         @Override
         public QSTileView createTileView(Context context) {
-            mView = new QSTileView(context);
+            mView = new CustomTileView(context);
             return mView;
         }
 
@@ -560,6 +565,47 @@ public class QsTuner extends Fragment implements Callback {
             ((CustomHost) mHost).getPanel().replace(this, sourceTile);
         }
 
+    }
+
+    private static class CustomTileView extends QSTileView {
+
+        private int mTextColor;
+        private int mIconColor;
+        private int mDividerColor;
+
+        protected CustomTileView(Context context) {
+            super(context);
+
+            mIconColor = context.getResources().getColor(R.color.qs_edit_tile_icon_color);
+            mTextColor = context.getResources().getColor(R.color.qs_edit_tile_text_color);
+            mDividerColor = context.getResources().getColor(R.color.qs_edit_divider_color);
+
+            setColors();
+        }
+
+        @Override
+        protected void recreateLabel() {
+            super.recreateLabel();
+            setColors();
+        }
+
+        private void setColors() {
+            if (mDualLabel != null) {
+                mDualLabel.setTextColor(mTextColor);
+            }
+            if (mLabel != null) {
+                mLabel.setTextColor(mTextColor);
+            }
+            if (mDivider != null) {
+                mDivider.setBackgroundColor(mDividerColor);
+            }
+        }
+
+        @Override
+        protected void setIcon(ImageView iv, QSTile.State state) {
+            super.setIcon(iv, state);
+            iv.setColorFilter(mIconColor, Mode.MULTIPLY);
+        }
     }
 
     private class DragHelper implements OnDragListener {
@@ -653,7 +699,8 @@ public class QsTuner extends Fragment implements Callback {
             }
 
             if (oldR != -1 && newR != -1) {
-                int newTopColumns = SlimSettings.System.getIntForUser(getContext().getContentResolver(),
+                int newTopColumns = SlimSettings.System.getIntForUser(
+                        getContext().getContentResolver(),
                         "num_top_rows", 2, UserHandle.USER_CURRENT);
 
                 if (newR == 0) {
