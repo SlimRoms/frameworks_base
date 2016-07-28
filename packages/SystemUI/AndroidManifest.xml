@@ -221,6 +221,27 @@
                     android:value="com.android.settings.category.system" />
         </activity>
 
+        <activity android:name=".tuner.TunerActivity$QsTunerActivity"
+            android:icon="@drawable/tuner"
+            android:theme="@android:style/Theme.Material.Settings"
+            android:label="@string/quick_settings"
+            android:process=":tuner"
+            android:exported="true"/>
+
+        <activity android:name=".tuner.TunerActivity$StatusBarIcons"
+            android:icon="@drawable/tuner"
+            android:theme="@android:style/Theme.Material.Settings"
+            android:label="@string/status_bar"
+            android:process=":tuner"
+            android:exported="true"/>
+
+        <activity android:name=".tuner.TunerActivity$DemoModeActivity"
+            android:icon="@drawable/tuner"
+            android:theme="@android:style/Theme.Material.Settings"
+            android:label="@string/demo_mode"
+            android:process=":tuner"
+            android:exported="true"/>
+
         <!-- Alternate Recents -->
         <activity android:name=".recents.RecentsActivity"
                   android:label="@string/accessibility_desc_recent_apps"
