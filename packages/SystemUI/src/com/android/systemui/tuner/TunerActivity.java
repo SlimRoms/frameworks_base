@@ -16,15 +16,70 @@
 package com.android.systemui.tuner;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 public class TunerActivity extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getFragmentManager().beginTransaction().replace(android.R.id.content, new TunerFragment())
+        getActionBar().setDisplayHomeAsUpEnabled(shouldDisplayHomeAsUp());
+        getFragmentManager().beginTransaction().replace(android.R.id.content, getFragment())
                 .commit();
     }
 
+    protected Fragment getFragment() {
+        return new TunerFragment();
+    }
+
+    protected boolean shouldDisplayHomeAsUp() {
+        return false;
+    }
+
+    @Override
+    public final boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                if (shouldDisplayHomeAsUp()) {
+                    finish();
+                    return true;
+                }
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public static final class QsTunerActivity extends TunerActivity {
+        @Override
+        protected Fragment getFragment() {
+            return new QsTuner();
+        }
+        @Override
+        protected boolean shouldDisplayHomeAsUp() {
+            return true;
+        }
+    }
+
+    public static final class StatusBarIcons extends TunerActivity {
+        @Override
+        protected Fragment getFragment() {
+            return new StatusBarIconFragment();
+        }
+        @Override
+        protected boolean shouldDisplayHomeAsUp() {
+            return true;
+        }
+    }
+
+    public static final class DemoModeActivity extends TunerActivity {
+        @Override
+        protected Fragment getFragment() {
+            return new DemoModeFragment();
+        }
+        @Override
+        protected boolean shouldDisplayHomeAsUp() {
+            return true;
+        }
+    }
 }
