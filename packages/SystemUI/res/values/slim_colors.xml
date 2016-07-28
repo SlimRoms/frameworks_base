@@ -34,4 +34,9 @@
     <!-- Used by selector -->
     <color name="card_pressed">#7e3c3c3c</color>
 
+    <!-- Quick Settings Tuner -->
+    <color name="qs_edit_tile_text_color">#ff000000</color>
+    <color name="qs_edit_tile_icon_color">#ff009688</color>
+    <color name="qs_edit_divider_color">#29000000</color>
+
 </resources>
