@@ -15,6 +15,8 @@ LOCAL_JAVA_LIBRARIES := telephony-common
 # Slim Framework
 LOCAL_JAVA_LIBRARIES += org.slim.framework
 
+LOCAL_FULL_LIBS_MANIFEST_FILES := frameworks/opt/slim/packages/SlimSystemUI/AndroidManifest.xml
+
 LOCAL_PACKAGE_NAME := SystemUI
 LOCAL_CERTIFICATE := platform
 LOCAL_PRIVILEGED_MODULE := true
@@ -24,6 +26,7 @@ LOCAL_PROGUARD_FLAG_FILES := proguard.flags
 LOCAL_RESOURCE_DIR := \
     frameworks/base/packages/Keyguard/res \
     $(LOCAL_PATH)/res \
+    frameworks/opt/slim/packages/SlimSystemUI/res \
     $(LOCAL_PATH)/../../../../frameworks/opt/cards/res
 
 LOCAL_AAPT_FLAGS := --auto-add-overlay --extra-packages com.android.keyguard

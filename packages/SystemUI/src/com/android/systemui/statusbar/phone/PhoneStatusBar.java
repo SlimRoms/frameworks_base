@@ -340,7 +340,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
     boolean mExpandedVisible;
 
-    private int mNavigationBarWindowState = WINDOW_STATE_SHOWING;
+    protected int mNavigationBarWindowState = WINDOW_STATE_SHOWING;
 
     // the tracker view
     int mTrackingPosition; // the position of the top of the tracking view.
@@ -425,7 +425,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private int mInteractingWindows;
     private boolean mAutohideSuspended;
     private int mStatusBarMode;
-    private int mNavigationBarMode;
+    protected int mNavigationBarMode;
 
     private ViewMediatorCallback mKeyguardViewMediatorCallback;
     private ScrimController mScrimController;
@@ -621,7 +621,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             = new HashMap<>();
     private HashSet<Entry> mHeadsUpEntriesToRemoveOnSwitch = new HashSet<>();
     private RankingMap mLatestRankingMap;
-    private boolean mNoAnimationOnNextBarModeChange;
+    protected boolean mNoAnimationOnNextBarModeChange;
 
     @Override
     public void start() {
@@ -2222,7 +2222,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         return (mDisabled1 & StatusBarManager.DISABLE_EXPAND) == 0 && !ONLY_CORE_APPS;
     }
 
-    void makeExpandedVisible(boolean force) {
+    protected void makeExpandedVisible(boolean force) {
         if (SPEW) Log.d(TAG, "Make expanded visible: expanded visible=" + mExpandedVisible);
         if (!force && (mExpandedVisible || !panelsEnabled())) {
             return;
@@ -2344,7 +2344,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
     }
 
-    void makeExpandedInvisible() {
+    protected void makeExpandedInvisible() {
         if (SPEW) Log.d(TAG, "makeExpandedInvisible: mExpandedVisible=" + mExpandedVisible
                 + " mExpandedVisible=" + mExpandedVisible);
 
@@ -2425,7 +2425,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         return mGestureRec;
     }
 
-    private void setNavigationIconHints(int hints) {
+    protected void setNavigationIconHints(int hints) {
         if (hints == mNavigationIconHints) return;
 
         mNavigationIconHints = hints;
@@ -2593,7 +2593,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 : MODE_OPAQUE;
     }
 
-    private void checkBarModes() {
+    protected void checkBarModes() {
         if (mDemoMode) return;
         checkBarMode(mStatusBarMode, mStatusBarWindowState, mStatusBarView.getBarTransitions(),
                 mNoAnimationOnNextBarModeChange);
@@ -2605,7 +2605,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mNoAnimationOnNextBarModeChange = false;
     }
 
-    private void checkBarMode(int mode, int windowState, BarTransitions transitions,
+    protected void checkBarMode(int mode, int windowState, BarTransitions transitions,
             boolean noAnimation) {
         final boolean powerSave = mBatteryController.isPowerSave();
         final boolean anim = !noAnimation && mDeviceInteractive
@@ -2616,7 +2616,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         transitions.transitionTo(mode, anim);
     }
 
-    private void finishBarAnimations() {
+    protected void finishBarAnimations() {
         mStatusBarView.getBarTransitions().finishAnimations();
         if (mNavigationBarView != null) {
             mNavigationBarView.getBarTransitions().finishAnimations();
@@ -3540,7 +3540,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     }
 
     private boolean mDemoModeAllowed;
-    private boolean mDemoMode;
+    protected boolean mDemoMode;
 
     @Override
     public void dispatchDemoCommand(String command, Bundle args) {

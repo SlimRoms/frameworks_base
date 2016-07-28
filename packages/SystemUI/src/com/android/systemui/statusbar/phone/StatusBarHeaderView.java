@@ -410,11 +410,6 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
                 mExpanded ? (mShowBatteryTextExpanded ? View.VISIBLE : View.GONE)
                           : (mShowBatteryText         ? View.VISIBLE : View.GONE));
         mBatteryLevelSpacer.setVisibility(mShowBatteryTextSpacer ? View.VISIBLE : View.GONE);
-        View tunerIcon = mSettingsContainer.findViewById(R.id.tuner_icon);
-        if (tunerIcon != null) {
-            tunerIcon.setVisibility(
-                TunerService.isTunerEnabled(mContext) ? View.VISIBLE : View.INVISIBLE);
-        }
     }
 
     private void updateSignalClusterDetachment() {
@@ -600,20 +595,6 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
     @Override
     public void onClick(View v) {
         if (v == mSettingsButton) {
-            if (mSettingsButton.isTunerClick()) {
-                if (TunerService.isTunerEnabled(mContext)) {
-                    TunerService.showResetRequest(mContext, new Runnable() {
-                        @Override
-                        public void run() {
-                            // Relaunch settings so that the tuner disappears.
-                            startSettingsActivity();
-                        }
-                    });
-                } else {
-                    Toast.makeText(getContext(), R.string.tuner_toast, Toast.LENGTH_LONG).show();
-                    TunerService.setTunerEnabled(mContext, true);
-                }
-            }
             startSettingsActivity();
         } else if (v == mSystemIconsSuperContainer) {
             startBatteryActivity();
