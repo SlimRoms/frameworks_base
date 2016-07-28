@@ -21,7 +21,10 @@ import android.app.Fragment;
 import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.PorterDuff.Mode;
 import android.os.Bundle;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.provider.Settings.Secure;
 import android.os.UserHandle;
 import android.text.TextUtils;
@@ -32,6 +35,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnDragListener;
@@ -39,6 +43,7 @@ import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 
 import com.android.internal.logging.MetricsLogger;
@@ -64,6 +69,11 @@ public class QsTuner extends Fragment implements Callback {
 
     private static final int MENU_RESET = Menu.FIRST;
 
+    private static final int MENU_QS_NUM_COLUMNS = Menu.FIRST + 1;
+    private static final int SUBMENU_COLUMNS_3 = Menu.FIRST + 2;
+    private static final int SUBMENU_COLUMNS_4 = Menu.FIRST + 3;
+    private static final int SUBMENU_COLUMNS_5 = Menu.FIRST + 4;
+
     private DraggableQsPanel mQsPanel;
     private CustomHost mTileHost;
 
@@ -87,6 +97,20 @@ public class QsTuner extends Fragment implements Callback {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        int numRows = SlimSettings.Secure.getInt(getActivity().getContentResolver(),
+                SlimSettings.Secure.QS_NUM_TILE_COLUMNS, 3);
+
+        SubMenu qsNumRows = menu.addSubMenu(0,
+                MENU_QS_NUM_COLUMNS, 0, R.string.qs_num_columns_title);
+
+        qsNumRows.add(1, SUBMENU_COLUMNS_3, 3, R.string.qs_num_columns_entries_three)
+                .setChecked(numRows == 3);
+        qsNumRows.add(1, SUBMENU_COLUMNS_4, 4, R.string.qs_num_columns_entries_four)
+                .setChecked(numRows == 4);
+        qsNumRows.add(1, SUBMENU_COLUMNS_5, 5, R.string.qs_num_columns_entries_five)
+                .setChecked(numRows == 5);
+        qsNumRows.setGroupCheckable(1, true, true);
+
         menu.add(0, MENU_RESET, 0, com.android.internal.R.string.reset);
     }
 
@@ -109,14 +133,27 @@ public class QsTuner extends Fragment implements Callback {
             case android.R.id.home:
                 getFragmentManager().popBackStack();
                 break;
+            case SUBMENU_COLUMNS_3:
+            case SUBMENU_COLUMNS_4:
+            case SUBMENU_COLUMNS_5:
+                item.setChecked(true);
+                updateNumColumns(item.getOrder());
+                break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void updateNumColumns(int cols) {
+        SlimSettings.Secure.putInt(getActivity().getContentResolver(),
+                SlimSettings.Secure.QS_NUM_TILE_COLUMNS, cols);
+        mQsPanel.updateNumColumns();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         mScrollRoot = (ScrollView) inflater.inflate(R.layout.tuner_qs, container, false);
+        mScrollRoot.setBackgroundColor(0xFFFAFAFA);
 
         mSpacer = mScrollRoot.findViewById(R.id.spacer);
         setupSpacer();
@@ -190,7 +227,7 @@ public class QsTuner extends Fragment implements Callback {
     }
 
     private void setupAddTarget() {
-        QSTileView tileView = new QSTileView(getContext());
+        QSTileView tileView = new CustomTileView(getContext());
         QSTile.State state = new QSTile.State();
         state.visible = true;
         state.icon = ResourceIcon.get(R.drawable.ic_add_circle_qs);
@@ -332,6 +369,8 @@ public class QsTuner extends Fragment implements Callback {
                     ActivityManager.getCurrentUser());
             SlimSettings.System.putIntForUser(getContext().getContentResolver(),
                     "num_top_rows", 2, UserHandle.USER_CURRENT);
+            SlimSettings.Secure.putIntForUser(getContext().getContentResolver(),
+                    SlimSettings.Secure.QS_NUM_TILE_COLUMNS, 3, UserHandle.USER_CURRENT);
             mPanel.mCallback.topRowChanged();
             mPanel.refreshAllTiles();
         }
@@ -470,7 +509,7 @@ public class QsTuner extends Fragment implements Callback {
 
         @Override
         public QSTileView createTileView(Context context) {
-            mView = new QSTileView(context);
+            mView = new CustomTileView(context);
             return mView;
         }
 
@@ -558,6 +597,47 @@ public class QsTuner extends Fragment implements Callback {
             ((CustomHost) mHost).getPanel().replace(this, sourceTile);
         }
 
+    }
+
+    private static class CustomTileView extends QSTileView {
+
+        private int mTextColor;
+        private int mIconColor;
+        private int mDividerColor;
+
+        protected CustomTileView(Context context) {
+            super(context);
+
+            mIconColor = context.getResources().getColor(R.color.qs_edit_tile_icon_color);
+            mTextColor = context.getResources().getColor(R.color.qs_edit_tile_text_color);
+            mDividerColor = context.getResources().getColor(R.color.qs_edit_divider_color);
+
+            setColors();
+        }
+
+        @Override
+        protected void recreateLabel() {
+            super.recreateLabel();
+            setColors();
+        }
+
+        private void setColors() {
+            if (mDualLabel != null) {
+                mDualLabel.setTextColor(mTextColor);
+            }
+            if (mLabel != null) {
+                mLabel.setTextColor(mTextColor);
+            }
+            if (mDivider != null) {
+                mDivider.setBackgroundColor(mDividerColor);
+            }
+        }
+
+        @Override
+        protected void setIcon(ImageView iv, QSTile.State state) {
+            super.setIcon(iv, state);
+            iv.setColorFilter(mIconColor, Mode.MULTIPLY);
+        }
     }
 
     private class DragHelper implements OnDragListener {
@@ -651,7 +731,8 @@ public class QsTuner extends Fragment implements Callback {
             }
 
             if (oldR != -1 && newR != -1) {
-                int newTopColumns = SlimSettings.System.getIntForUser(getContext().getContentResolver(),
+                int newTopColumns = SlimSettings.System.getIntForUser(
+                        getContext().getContentResolver(),
                         "num_top_rows", 2, UserHandle.USER_CURRENT);
 
                 if (newR == 0) {

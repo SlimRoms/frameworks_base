@@ -12,4 +12,5 @@
 
 -keep class com.android.systemui.statusbar.phone.PhoneStatusBar
 -keep class com.android.systemui.statusbar.tv.TvStatusBar
+-keep class com.android.systemui.tuner.*
 -keep class com.android.systemui.recents.*
