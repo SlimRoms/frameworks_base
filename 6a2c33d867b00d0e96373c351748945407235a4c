@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1acb0d3e_544da271",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/StatusBarIconController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-29T00:29:27Z",
+      "side": 1,
+      "message": "dead space",
+      "range": {
+        "startLine": 301,
+        "startChar": 48,
+        "endLine": 301,
+        "endChar": 49
+      },
+      "revId": "6a2c33d867b00d0e96373c351748945407235a4c",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
