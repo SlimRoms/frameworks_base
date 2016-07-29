@@ -1,0 +1,625 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1acb0d3e_31402856",
+        "filename": "core/res/res/anim/recent_screen_enter.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-29T00:27:26Z",
+      "side": 1,
+      "message": "2016",
+      "range": {
+        "startLine": 4,
+        "startChar": 3,
+        "endLine": 4,
+        "endChar": 40
+      },
+      "revId": "6338ae5ba0abd39830bc14a157a85e7bf7f767f0",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_d12444c8",
+        "filename": "core/res/res/anim/recent_screen_enter_left.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-29T00:27:26Z",
+      "side": 1,
+      "message": "2016",
+      "range": {
+        "startLine": 4,
+        "startChar": 3,
+        "endLine": 4,
+        "endChar": 40
+      },
+      "revId": "6338ae5ba0abd39830bc14a157a85e7bf7f767f0",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_f12140b5",
+        "filename": "core/res/res/anim/recent_screen_exit.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-29T00:27:26Z",
+      "side": 1,
+      "message": "2016",
+      "range": {
+        "startLine": 4,
+        "startChar": 3,
+        "endLine": 4,
+        "endChar": 40
+      },
+      "revId": "6338ae5ba0abd39830bc14a157a85e7bf7f767f0",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_912ebca4",
+        "filename": "core/res/res/anim/recent_screen_exit_left.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-29T00:27:26Z",
+      "side": 1,
+      "message": "2016",
+      "range": {
+        "startLine": 4,
+        "startChar": 3,
+        "endLine": 4,
+        "endChar": 40
+      },
+      "revId": "6338ae5ba0abd39830bc14a157a85e7bf7f767f0",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_b12bb893",
+        "filename": "core/res/res/anim/recent_screen_fade_out.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-29T00:27:26Z",
+      "side": 1,
+      "message": "2016",
+      "range": {
+        "startLine": 4,
+        "startChar": 3,
+        "endLine": 4,
+        "endChar": 40
+      },
+      "revId": "6338ae5ba0abd39830bc14a157a85e7bf7f767f0",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_51185484",
+        "filename": "core/res/res/values/slim_styles.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-29T00:27:26Z",
+      "side": 1,
+      "message": "2015-2016",
+      "range": {
+        "startLine": 3,
+        "startChar": 13,
+        "endLine": 3,
+        "endChar": 17
+      },
+      "revId": "6338ae5ba0abd39830bc14a157a85e7bf7f767f0",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_3117c853",
+        "filename": "packages/SystemUI/res/drawable/ic_empty_recent.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-29T00:27:26Z",
+      "side": 1,
+      "message": "SlimRoms Project",
+      "range": {
+        "startLine": 3,
+        "startChar": 23,
+        "endLine": 3,
+        "endChar": 31
+      },
+      "revId": "6338ae5ba0abd39830bc14a157a85e7bf7f767f0",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_711d5073",
+        "filename": "packages/SystemUI/res/drawable/ic_empty_recent.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-29T00:27:26Z",
+      "side": 1,
+      "message": "2015-2016",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 22
+      },
+      "revId": "6338ae5ba0abd39830bc14a157a85e7bf7f767f0",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_1112cc62",
+        "filename": "packages/SystemUI/res/drawable/ic_recent_favorite.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-29T00:27:26Z",
+      "side": 1,
+      "message": "2015-2016 SlimRoms Project",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 31
+      },
+      "revId": "6338ae5ba0abd39830bc14a157a85e7bf7f767f0",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_d10be429",
+        "filename": "packages/SystemUI/res/layout/recent_base_card.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-29T00:27:26Z",
+      "side": 1,
+      "message": "2016",
+      "range": {
+        "startLine": 4,
+        "startChar": 18,
+        "endLine": 4,
+        "endChar": 22
+      },
+      "revId": "6338ae5ba0abd39830bc14a157a85e7bf7f767f0",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_f108602f",
+        "filename": "packages/SystemUI/res/layout/recent_base_card_layout.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-29T00:27:26Z",
+      "side": 1,
+      "message": "2016",
+      "range": {
+        "startLine": 4,
+        "startChar": 18,
+        "endLine": 4,
+        "endChar": 22
+      },
+      "revId": "6338ae5ba0abd39830bc14a157a85e7bf7f767f0",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_91055c16",
+        "filename": "packages/SystemUI/res/layout/recent_base_card_thumbnail.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-29T00:27:26Z",
+      "side": 1,
+      "message": "2016",
+      "range": {
+        "startLine": 4,
+        "startChar": 18,
+        "endLine": 4,
+        "endChar": 22
+      },
+      "revId": "6338ae5ba0abd39830bc14a157a85e7bf7f767f0",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_b102d809",
+        "filename": "packages/SystemUI/res/layout/recent_inner_card_expand.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-29T00:27:26Z",
+      "side": 1,
+      "message": "2016",
+      "range": {
+        "startLine": 4,
+        "startChar": 18,
+        "endLine": 4,
+        "endChar": 22
+      },
+      "revId": "6338ae5ba0abd39830bc14a157a85e7bf7f767f0",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_54ffe201",
+        "filename": "packages/SystemUI/res/layout/slim_recent.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-29T00:27:26Z",
+      "side": 1,
+      "message": "2016",
+      "range": {
+        "startLine": 4,
+        "startChar": 18,
+        "endLine": 4,
+        "endChar": 22
+      },
+      "revId": "6338ae5ba0abd39830bc14a157a85e7bf7f767f0",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_74045e15",
+        "filename": "packages/SystemUI/res/values/slim_dimens.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-29T00:27:26Z",
+      "side": 1,
+      "message": "2015-2016",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 21
+      },
+      "revId": "6338ae5ba0abd39830bc14a157a85e7bf7f767f0",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_14095a2c",
+        "filename": "packages/SystemUI/res/values/slim_styles.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-29T00:27:26Z",
+      "side": 1,
+      "message": "2015-2016",
+      "range": {
+        "startLine": 3,
+        "startChar": 13,
+        "endLine": 3,
+        "endChar": 17
+      },
+      "revId": "6338ae5ba0abd39830bc14a157a85e7bf7f767f0",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_340ed635",
+        "filename": "packages/SystemUI/src/com/android/systemui/slimrecent/AppIconLoader.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-29T00:27:26Z",
+      "side": 1,
+      "message": "2016",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "6338ae5ba0abd39830bc14a157a85e7bf7f767f0",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_d412f257",
+        "filename": "packages/SystemUI/src/com/android/systemui/slimrecent/CacheController.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-29T00:27:26Z",
+      "side": 1,
+      "message": "2016",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "6338ae5ba0abd39830bc14a157a85e7bf7f767f0",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_f40fee2c",
+        "filename": "packages/SystemUI/src/com/android/systemui/slimrecent/ColorDrawableWithDimensions.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-29T00:27:26Z",
+      "side": 1,
+      "message": "2016",
+      "range": {
+        "startLine": 3,
+        "startChar": 22,
+        "endLine": 3,
+        "endChar": 26
+      },
+      "revId": "6338ae5ba0abd39830bc14a157a85e7bf7f767f0",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_941c6a6c",
+        "filename": "packages/SystemUI/src/com/android/systemui/slimrecent/RecentAppIcon.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-29T00:27:26Z",
+      "side": 1,
+      "message": "2016",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "6338ae5ba0abd39830bc14a157a85e7bf7f767f0",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_b419667b",
+        "filename": "packages/SystemUI/src/com/android/systemui/slimrecent/RecentCard.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-29T00:27:26Z",
+      "side": 1,
+      "message": "2016",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "6338ae5ba0abd39830bc14a157a85e7bf7f767f0",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_542602bc",
+        "filename": "packages/SystemUI/src/com/android/systemui/slimrecent/RecentController.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-29T00:27:26Z",
+      "side": 1,
+      "message": "2016",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "6338ae5ba0abd39830bc14a157a85e7bf7f767f0",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_742bfe82",
+        "filename": "packages/SystemUI/src/com/android/systemui/slimrecent/RecentExpandedCard.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-29T00:27:26Z",
+      "side": 1,
+      "message": "2016",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "6338ae5ba0abd39830bc14a157a85e7bf7f767f0",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_14207a9a",
+        "filename": "packages/SystemUI/src/com/android/systemui/slimrecent/RecentHeader.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-29T00:27:26Z",
+      "side": 1,
+      "message": "2016",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "6338ae5ba0abd39830bc14a157a85e7bf7f767f0",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_342576ab",
+        "filename": "packages/SystemUI/src/com/android/systemui/slimrecent/RecentImageView.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-29T00:27:26Z",
+      "side": 1,
+      "message": "2016",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "6338ae5ba0abd39830bc14a157a85e7bf7f767f0",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_d43992d9",
+        "filename": "packages/SystemUI/src/com/android/systemui/slimrecent/RecentPanelView.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-29T00:27:26Z",
+      "side": 1,
+      "message": "2016",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "6338ae5ba0abd39830bc14a157a85e7bf7f767f0",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_f4360ee7",
+        "filename": "packages/SystemUI/src/com/android/systemui/slimrecent/TaskDescription.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-07-29T00:27:26Z",
+      "side": 1,
+      "message": "2016",
+      "range": {
+        "startLine": 3,
+        "startChar": 22,
+        "endLine": 3,
+        "endChar": 26
+      },
+      "revId": "6338ae5ba0abd39830bc14a157a85e7bf7f767f0",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
