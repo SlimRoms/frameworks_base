@@ -4,6 +4,7 @@ include $(CLEAR_VARS)
 LOCAL_MODULE_TAGS := optional
 
 LOCAL_SRC_FILES := $(call all-java-files-under, src) \
+    $(call all-java-files-under, ../../../opt/slim/packages/SlimSystemUI/src) \
     src/com/android/systemui/EventLogTags.logtags
 
 LOCAL_STATIC_JAVA_LIBRARIES := Keyguard \
@@ -37,6 +38,6 @@ include frameworks/base/packages/SettingsLib/common.mk
 
 include $(BUILD_PACKAGE)
 
-ifeq ($(EXCLUDE_SYSTEMUI_TESTS),)
-    include $(call all-makefiles-under,$(LOCAL_PATH))
-endif
+#ifeq ($(EXCLUDE_SYSTEMUI_TESTS),)
+#    include $(call all-makefiles-under,$(LOCAL_PATH))
+#endif
