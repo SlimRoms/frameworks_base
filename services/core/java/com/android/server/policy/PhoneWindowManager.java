@@ -563,6 +563,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     boolean mWakeGestureEnabledSetting;
     MyWakeGestureListener mWakeGestureListener;
 
+    private HardwareKeyHandler mHardwareKeyHandler;
+
     // Default display does not rotate, apps that require non-default orientation will have to
     // have the orientation emulated.
     private boolean mForceDefaultOrientation = false;
@@ -1911,6 +1913,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         try {
             mOrientationListener.setCurrentRotation(windowManager.getDefaultDisplayRotation());
         } catch (RemoteException ex) { }
+
+        if (mContext.getResources().getInteger(
+                org.slim.framework.internal.R.integer.config_deviceHardwareKeys) > 0) {
+            mHardwareKeyHandler = new HardwareKeyHandler(mContext, mHandler);
+        }
+
         mSettingsObserver = new SettingsObserver(mHandler);
         mSettingsObserver.observe();
         mShortcutManager = new ShortcutManager(context);
@@ -3406,11 +3414,30 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         final int flags = event.getFlags();
         final boolean down = event.getAction() == KeyEvent.ACTION_DOWN;
         final boolean canceled = event.isCanceled();
+        final boolean longpress = (flags & KeyEvent.FLAG_LONG_PRESS) != 0;
+        final boolean virtualKey = event.getDeviceId() == KeyCharacterMap.VIRTUAL_KEYBOARD;
 
         if (DEBUG_INPUT) {
             Log.d(TAG, "interceptKeyTi keyCode=" + keyCode + " down=" + down + " repeatCount="
                     + repeatCount + " keyguardOn=" + keyguardOn + " mHomePressed=" + mHomePressed
                     + " canceled=" + canceled);
+        }
+
+        if (mHardwareKeyHandler != null && !keyguardOn && !virtualKey) {
+            if (mHardwareKeyHandler.handleKeyEvent(keyCode, repeatCount, down,
+                   canceled, longpress, keyguardOn)) {
+                return -1;
+            }
+        }
+
+        // If the boot mode is power off alarm, we should not dispatch the several physical keys
+        // in power off alarm UI to avoid pausing power off alarm UI.
+        boolean isAlarmBoot = SystemProperties.getBoolean("ro.alarm_boot", false);
+        if (isAlarmBoot && (keyCode == KeyEvent.KEYCODE_HOME
+                || keyCode == KeyEvent.KEYCODE_SEARCH
+                || keyCode == KeyEvent.KEYCODE_MENU
+                || keyCode == KeyEvent.KEYCODE_APP_SWITCH)) {
+            return -1;
         }
 
         // If we think we might have a volume down & power key chord on the way
@@ -6057,7 +6084,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
         boolean useHapticFeedback = down
                 && (policyFlags & WindowManagerPolicy.FLAG_VIRTUAL) != 0
-                && event.getRepeatCount() == 0;
+                && event.getRepeatCount() == 0
+                && (mHardwareKeyHandler != null && !mHardwareKeyHandler.isHwKeysDisabled());
 
         // Handle special keys.
         switch (keyCode) {
