@@ -14,6 +14,7 @@ LOCAL_JAVA_LIBRARIES := telephony-common
 
 # Slim Framework
 LOCAL_JAVA_LIBRARIES += org.slim.framework
+LOCAL_FULL_LIBS_MANIFEST_FILES := frameworks/opt/slim/packages/SlimSystemUI/AndroidManifest.xml
 
 LOCAL_PACKAGE_NAME := SystemUI
 LOCAL_CERTIFICATE := platform
