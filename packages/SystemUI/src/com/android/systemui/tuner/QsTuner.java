@@ -59,9 +59,11 @@ import com.android.systemui.statusbar.policy.SecurityController;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import org.slim.provider.SlimSettings;
+import org.slim.utils.QSUtil;
 
 public class QsTuner extends Fragment implements Callback {
 
@@ -209,7 +211,7 @@ public class QsTuner extends Fragment implements Callback {
     }
 
     private void setupDropTarget() {
-        QSTileView tileView = new QSTileView(getContext());
+        QSTileView tileView = new CustomTileView(getContext());
         QSTile.State state = new QSTile.State();
         state.visible = true;
         state.icon = ResourceIcon.get(R.drawable.ic_delete);
@@ -381,39 +383,29 @@ public class QsTuner extends Fragment implements Callback {
         }
 
         public void showAddDialog() {
-            List<String> tiles = mTileSpecs;
-            int numBroadcast = 0;
-            for (int i = 0; i < tiles.size(); i++) {
-                if (tiles.get(i).startsWith(IntentTile.PREFIX)) {
-                    numBroadcast++;
-                }
-            }
-            String[] defaults =
-                getContext().getString(R.string.quick_settings_tiles_default).split(",");
-            final String[] available = new String[defaults.length + 1
-                                                  - (tiles.size() - numBroadcast)];
-            final String[] availableTiles = new String[available.length];
-            int index = 0;
-            for (int i = 0; i < defaults.length; i++) {
-                if (tiles.contains(defaults[i])) {
-                    continue;
-                }
-                int resource = getLabelResource(defaults[i]);
+            final List<String> availableTiles = new ArrayList<>();
+            final ArrayList<String> available = new ArrayList<>();
+            List<String> currentTiles = mTileSpecs;
+            final Collection<String> tiles = QSUtil.getAvailableTiles(getContext());
+            tiles.removeAll(currentTiles);
+
+            final Iterator<String> i = tiles.iterator();
+            while(i.hasNext()) {
+                final String spec = i.next();
+                int resource = getLabelResource(spec);
                 if (resource != 0) {
-                    availableTiles[index] = defaults[i];
-                    available[index++] = getContext().getString(resource);
-                } else {
-                    availableTiles[index] = defaults[i];
-                    available[index++] = defaults[i];
+                    availableTiles.add(getContext().getString(resource));
+                    available.add(spec);
                 }
             }
-            available[index++] = getContext().getString(R.string.broadcast_tile);
+            availableTiles.add(getContext().getString(R.string.broadcast_tile));
             new AlertDialog.Builder(getContext())
                     .setTitle(R.string.add_tile)
-                    .setItems(available, new DialogInterface.OnClickListener() {
+                    .setItems(availableTiles.toArray(new CharSequence[0]),
+                            new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            if (which < available.length - 1) {
-                                add(availableTiles[which]);
+                            if (which < available.size()) {
+                                add(available.get(which));
                             } else {
                                 showBroadcastTileDialog();
                             }
