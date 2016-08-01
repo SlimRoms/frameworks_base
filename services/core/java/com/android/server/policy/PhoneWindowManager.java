@@ -159,6 +159,7 @@ import java.io.PrintWriter;
 import java.util.HashSet;
 import java.util.List;
 
+import org.slim.framework.internal.policy.HardwareKeyHandler;
 import org.slim.provider.SlimSettings;
 
 /**
@@ -448,6 +449,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
     boolean mWakeGestureEnabledSetting;
     MyWakeGestureListener mWakeGestureListener;
+
+    private HardwareKeyHandler mHardwareKeyHandler;
 
     // Default display does not rotate, apps that require non-default orientation will have to
     // have the orientation emulated.
@@ -1588,6 +1591,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         try {
             mOrientationListener.setCurrentRotation(windowManager.getRotation());
         } catch (RemoteException ex) { }
+
+        if (mContext.getResources().getInteger(
+                org.slim.framework.internal.R.integer.config_deviceHardwareKeys) > 0) {
+            mHardwareKeyHandler = new HardwareKeyHandler(mContext, mHandler);
+        }
+
         mSettingsObserver = new SettingsObserver(mHandler);
         mSettingsObserver.observe();
         mShortcutManager = new ShortcutManager(context);
@@ -3056,11 +3065,20 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         final int flags = event.getFlags();
         final boolean down = event.getAction() == KeyEvent.ACTION_DOWN;
         final boolean canceled = event.isCanceled();
+        final boolean longpress = (flags & KeyEvent.FLAG_LONG_PRESS) != 0;
+        final boolean virtualKey = event.getDeviceId() == KeyCharacterMap.VIRTUAL_KEYBOARD;
 
         if (DEBUG_INPUT) {
             Log.d(TAG, "interceptKeyTi keyCode=" + keyCode + " down=" + down + " repeatCount="
                     + repeatCount + " keyguardOn=" + keyguardOn + " mHomePressed=" + mHomePressed
                     + " canceled=" + canceled);
+        }
+
+        if (mHardwareKeyHandler != null && !keyguardOn && !virtualKey) {
+            if (mHardwareKeyHandler.handleKeyEvent(keyCode, repeatCount, down,
+                   canceled, longpress, keyguardOn)) {
+                return -1;
+            }
         }
 
         // If the boot mode is power off alarm, we should not dispatch the several physical keys
@@ -5598,7 +5616,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
         boolean useHapticFeedback = down
                 && (policyFlags & WindowManagerPolicy.FLAG_VIRTUAL) != 0
-                && event.getRepeatCount() == 0;
+                && event.getRepeatCount() == 0
+                && (mHardwareKeyHandler != null && !mHardwareKeyHandler.isHwKeysDisabled());
 
         // Handle special keys.
         switch (keyCode) {
