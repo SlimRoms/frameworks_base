@@ -212,7 +212,7 @@ public class QsTuner extends Fragment implements Callback {
     }
 
     private void setupDropTarget() {
-        QSTileView tileView = new QSTileView(getContext());
+        QSTileView tileView = new CustomTileView(getContext());
         QSTile.State state = new QSTile.State();
         state.visible = true;
         state.icon = ResourceIcon.get(R.drawable.ic_delete);
@@ -385,6 +385,7 @@ public class QsTuner extends Fragment implements Callback {
 
         public void showAddDialog() {
             final List<String> availableTiles = new ArrayList<>();
+            final ArrayList<String> available = new ArrayList<>();
             List<String> currentTiles = mTileSpecs;
             final Collection<String> tiles = QSUtil.getAvailableTiles(getContext());
             tiles.removeAll(currentTiles);
@@ -395,16 +396,17 @@ public class QsTuner extends Fragment implements Callback {
                 int resource = getLabelResource(spec);
                 if (resource != 0) {
                     availableTiles.add(getContext().getString(resource));
+                    available.add(spec);
                 }
             }
-            //available[index++] = getContext().getString(R.string.broadcast_tile);
+            availableTiles.add(getContext().getString(R.string.broadcast_tile));
             new AlertDialog.Builder(getContext())
                     .setTitle(R.string.add_tile)
-                    .setItems(((String[])availableTiles.toArray()),
+                    .setItems(availableTiles.toArray(new CharSequence[0]),
                             new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            if (which < availableTiles.size() - 1) {
-                                add(availableTiles.get(which));
+                            if (which < available.size()) {
+                                add(available.get(which));
                             } else {
                                 showBroadcastTileDialog();
                             }
