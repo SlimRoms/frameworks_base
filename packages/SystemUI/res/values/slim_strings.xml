@@ -16,9 +16,6 @@
     <!-- Content description of the superuser tile -->
     <string name="accessibility_su_active">Superuser session active</string>
 
-    <!-- Kill app toast -->
-    <string name="app_killed_message">App Killed</string>
-
     <!-- Dialog Cancel/OK -->
     <string name="cancel">Cancel</string>
     <string name="dlg_ok">Ok</string>
@@ -27,7 +24,6 @@
 
     <!-- Slim Shortcut Actions -->
     <string name="shortcut_picker">Slim Shortcuts</string>
-    <string name="shortcut_screenshot">Screenshot</string>
     <string name="shortcut_chamber">Chamber of Secrets</string>
     <string name="chamber_disabled">Chamber of secrets is closed</string>
     <string name="chamber_title">Input Settings string</string>

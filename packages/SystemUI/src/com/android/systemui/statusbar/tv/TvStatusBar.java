@@ -16,7 +16,6 @@
 
 package com.android.systemui.statusbar.tv;
 
-import android.content.Intent;
 import android.os.IBinder;
 import android.service.notification.NotificationListenerService.RankingMap;
 import android.service.notification.StatusBarNotification;
@@ -186,9 +185,5 @@ public class TvStatusBar extends BaseStatusBar {
 
     protected boolean isSnoozedPackage(StatusBarNotification sbn) {
         return false;
-    }
-
-    @Override // CommandQueue
-    public void showCustomIntentAfterKeyguard(Intent intent) {
     }
 }

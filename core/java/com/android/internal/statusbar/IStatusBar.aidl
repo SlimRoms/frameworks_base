@@ -16,7 +16,6 @@
 
 package com.android.internal.statusbar;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.service.notification.StatusBarNotification;
 
@@ -77,13 +76,5 @@ oneway interface IStatusBar
      * @param source the identifier for the gesture, see {@link StatusBarManager}
      */
     void onCameraLaunchGestureDetected(int source);
-
-    /**
-     * SlimActions additions
-     */
-    void showCustomIntentAfterKeyguard(inout Intent intent);
-    void toggleScreenshot();
-    void toggleLastApp();
-    void toggleKillApp();
 }
 
