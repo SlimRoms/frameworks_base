@@ -282,6 +282,10 @@ public class BatteryMeterView extends View implements DemoMode,
         mPowerSaveEnabled = mBatteryController.isPowerSave();
     }
 
+    public BatteryController getBatteryController() {
+        return mBatteryController;
+    }
+
     @Override
     public void onBatteryLevelChanged(int level, boolean pluggedIn, boolean charging) {
         // TODO: Use this callback instead of own broadcast receiver.
