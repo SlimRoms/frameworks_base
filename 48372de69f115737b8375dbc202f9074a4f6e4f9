@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1acb0d3e_20f3f00b",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/policy/LocationControllerImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-08-05T04:33:11Z",
+      "side": 1,
+      "message": "dead space",
+      "range": {
+        "startLine": 151,
+        "startChar": 79,
+        "endLine": 151,
+        "endChar": 82
+      },
+      "revId": "48372de69f115737b8375dbc202f9074a4f6e4f9",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
