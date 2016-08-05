@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1acb0d3e_80042416",
+        "filename": "packages/SystemUI/src/com/android/systemui/tuner/QsTuner.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-08-05T03:58:29Z",
+      "side": 1,
+      "message": "length",
+      "range": {
+        "startLine": 624,
+        "startChar": 16,
+        "endLine": 624,
+        "endChar": 104
+      },
+      "revId": "43eb491831cc7fcfaa0d00323fa963e8a4b25dbc",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
