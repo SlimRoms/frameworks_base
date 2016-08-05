@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1acb0d3e_20577004",
+        "filename": "packages/SystemUI/src/com/android/systemui/qs/tiles/ScreenOffTile.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-08-05T04:10:33Z",
+      "side": 1,
+      "message": "2014-2016",
+      "range": {
+        "startLine": 4,
+        "startChar": 13,
+        "endLine": 4,
+        "endChar": 17
+      },
+      "revId": "d4d8930278ce7ef46ac2fb5feb4aa04f3ab3bdf6",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_405cfc25",
+        "filename": "packages/SystemUI/src/com/android/systemui/qs/tiles/ScreenOffTile.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-08-05T04:10:33Z",
+      "side": 1,
+      "message": "length",
+      "range": {
+        "startLine": 87,
+        "startChar": 19,
+        "endLine": 87,
+        "endChar": 105
+      },
+      "revId": "d4d8930278ce7ef46ac2fb5feb4aa04f3ab3bdf6",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
