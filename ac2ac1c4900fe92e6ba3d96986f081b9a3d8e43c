@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1acb0d3e_65182a85",
+        "filename": "packages/SystemUI/res/values/slim_attrs.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-08-05T03:45:39Z",
+      "side": 1,
+      "message": "2012-2016",
+      "range": {
+        "startLine": 4,
+        "startChar": 19,
+        "endLine": 4,
+        "endChar": 28
+      },
+      "revId": "ac2ac1c4900fe92e6ba3d96986f081b9a3d8e43c",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_851d1676",
+        "filename": "packages/SystemUI/src/com/android/systemui/qs/QSDetailItemsList.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-08-05T03:45:39Z",
+      "side": 1,
+      "message": "length",
+      "range": {
+        "startLine": 131,
+        "startChar": 20,
+        "endLine": 131,
+        "endChar": 103
+      },
+      "revId": "ac2ac1c4900fe92e6ba3d96986f081b9a3d8e43c",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_25122263",
+        "filename": "packages/SystemUI/src/com/android/systemui/qs/tiles/CellularTile.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-08-05T03:45:39Z",
+      "side": 1,
+      "message": "length",
+      "range": {
+        "startLine": 44,
+        "startChar": 5,
+        "endLine": 44,
+        "endChar": 108
+      },
+      "revId": "ac2ac1c4900fe92e6ba3d96986f081b9a3d8e43c",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_45172e52",
+        "filename": "packages/SystemUI/src/com/android/systemui/qs/tiles/ColorInversionTile.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-08-05T03:45:39Z",
+      "side": 1,
+      "message": "length",
+      "range": {
+        "startLine": 32,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 108
+      },
+      "revId": "ac2ac1c4900fe92e6ba3d96986f081b9a3d8e43c",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_e50bba29",
+        "filename": "packages/SystemUI/src/com/android/systemui/qs/tiles/LocationTile.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-08-05T03:45:39Z",
+      "side": 1,
+      "message": "length",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 105
+      },
+      "revId": "ac2ac1c4900fe92e6ba3d96986f081b9a3d8e43c",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
