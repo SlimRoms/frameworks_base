@@ -3279,16 +3279,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             }
         });
 
-        // if the keyguard was showing while this change occurred we'll need to do some extra work
-        if (mState == StatusBarState.KEYGUARD) {
-            // this will make sure the keyguard is showing
-            showKeyguard();
-            // make sure to hide the notification icon area and system iconography
-            // to avoid overlap (CYNGNOS-2253)
-            mIconController.hideNotificationIconArea(false);
-            mIconController.hideSystemIconArea(false);
-        }
-
         // restart the keyguard so it picks up the newly created ScrimController
         startKeyguard();
 
@@ -3296,6 +3286,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         if (mState == StatusBarState.KEYGUARD) {
             // this will make sure the keyguard is showing
             showKeyguard();
+            // make sure to hide the notification icon area and system iconography
+            mIconController.hideNotificationIconArea(false);
+            mIconController.hideSystemIconArea(false);
         }
     }
 
