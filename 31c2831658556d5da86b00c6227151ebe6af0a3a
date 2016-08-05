@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1acb0d3e_c05eac12",
+        "filename": "packages/SystemUI/src/com/android/systemui/qs/tiles/MusicTile.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-08-05T04:18:30Z",
+      "side": 1,
+      "message": "2013-2016",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 21
+      },
+      "revId": "31c2831658556d5da86b00c6227151ebe6af0a3a",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
