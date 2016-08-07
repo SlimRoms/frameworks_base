@@ -39,6 +39,6 @@ include frameworks/base/packages/SettingsLib/common.mk
 
 include $(BUILD_PACKAGE)
 
-ifeq ($(EXCLUDE_SYSTEMUI_TESTS),)
-    include $(call all-makefiles-under,$(LOCAL_PATH))
-endif
+#ifeq ($(EXCLUDE_SYSTEMUI_TESTS),)
+#    include $(call all-makefiles-under,$(LOCAL_PATH))
+#endif
