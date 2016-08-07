@@ -237,7 +237,6 @@ public class KeyButtonView extends ImageView {
                 mDownTime = SystemClock.uptimeMillis();
                 mIsLongpressed = false;
                 setPressed(true);
-                performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 if (mClickAction.equals(ActionConstants.ACTION_RECENTS)) {
                     try {
                         mStatusBar.preloadRecentApps();
@@ -287,26 +286,34 @@ public class KeyButtonView extends ImageView {
                         mStatusBar.cancelPreloadRecentApps();
                     } catch (RemoteException e) {}
                 }
-                if (!mIsLongpressed) {
-                    if (hasDoubleTapAction()) {
-                        if (mDoubleTapConsumed) {
-                            mDoubleTapConsumed = false;
-                        } else {
-                            mDoubleTapPending = true;
-                            postDelayed(mDoubleTapTimeout,
-                                    ViewConfiguration.getDoubleTapTimeout() - 100);
-                        }
+                if (mDoubleTapAction != null) {
+                    if (mDoubleTapConsumed) {
+                        mDoubleTapConsumed = false;
+                    } else {
+                        mDoubleTapPending = true;
+                        postDelayed(mDoubleTapTimeout,
+                                ViewConfiguration.getDoubleTapTimeout() - 100);
                     }
+                }
+                if (!mIsLongpressed) {
                     if (mCode != 0) {
                         if (doIt) {
                             sendEvent(KeyEvent.ACTION_UP, 0);
                         } else {
                             sendEvent(KeyEvent.ACTION_UP, KeyEvent.FLAG_CANCELED);
                         }
+                    } else {
+                        // no key code, it is a custom click action
+                        if (doIt) {
+                            if (mClickAction != null
+                                && !Action.isActionKeyEvent(mClickAction)) {
+                                performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                            }
+                        }
                     }
-                    if (doIt && !hasDoubleTapAction()) {
+                    if (doIt) {
                         sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_CLICKED);
-                        performClick();
+                        //performClick();
                     }
                 }
                 removeCallbacks(mCheckLongPress);
@@ -314,11 +321,6 @@ public class KeyButtonView extends ImageView {
         }
 
         return true;
-    }
-
-    private boolean hasDoubleTapAction() {
-        return mDoubleTapAction != null &&
-            mDoubleTapAction != ActionConstants.ACTION_NULL;
     }
 
     public void playSoundEffect(int soundConstant) {
