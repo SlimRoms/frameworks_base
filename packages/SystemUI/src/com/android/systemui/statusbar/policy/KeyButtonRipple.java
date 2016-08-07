@@ -63,8 +63,6 @@ public class KeyButtonRipple extends Drawable {
     private boolean mSupportHardware;
     private final View mTargetView;
 
-    private int mRippleColor = 0xffffffff;
-
     private final HashSet<Animator> mRunningAnimations = new HashSet<>();
     private final ArrayList<Animator> mTmpArray = new ArrayList<>();
 
@@ -73,16 +71,12 @@ public class KeyButtonRipple extends Drawable {
         mTargetView = targetView;
     }
 
-    public void setColor(int color) {
-        mRippleColor = color;
-    }
-
     private Paint getRipplePaint() {
         if (mRipplePaint == null) {
             mRipplePaint = new Paint();
             mRipplePaint.setAntiAlias(true);
+            mRipplePaint.setColor(0xffffffff);
         }
-        mRipplePaint.setColor(mRippleColor);
         return mRipplePaint;
     }
 
@@ -229,7 +223,7 @@ public class KeyButtonRipple extends Drawable {
         mRunningAnimations.add(scaleAnimator);
     }
 
-    public void exitSoftware() {
+    private void exitSoftware() {
         ObjectAnimator alphaAnimator = ObjectAnimator.ofFloat(this, "glowAlpha", mGlowAlpha, 0f);
         alphaAnimator.setInterpolator(mAlphaExitInterpolator);
         alphaAnimator.setDuration(ANIMATION_DURATION_FADE);
