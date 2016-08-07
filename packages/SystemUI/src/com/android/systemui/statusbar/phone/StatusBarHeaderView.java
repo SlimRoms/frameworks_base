@@ -89,7 +89,6 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
     private TextView mEmergencyCallsOnly;
     private BatteryMeterView mBatteryView;
     private TextView mBatteryLevel;
-    private View mBatteryLevelSpacer;
     private TextView mAlarmStatus;
 
     private boolean mShowEmergencyCallsOnly;
@@ -136,7 +135,6 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
     private boolean mShowBatteryText;
     private boolean mShowBatteryTextExpanded;
     private boolean mShowBatteryTextCharging;
-    private boolean mShowBatteryTextSpacer;
     private boolean mBatteryIsCharging;
     private int mBatteryChargeLevel;
 
@@ -164,7 +162,6 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
                 mShowBatteryText = false;
                 mShowBatteryTextExpanded = true;
                 mShowBatteryTextCharging = true;
-                mShowBatteryTextSpacer = false;
                 break;
 
             case 6:
@@ -172,7 +169,6 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
                 mShowBatteryText = true;
                 mShowBatteryTextExpanded = true;
                 mShowBatteryTextCharging = true;
-                mShowBatteryTextSpacer = false;
                 break;
 
             default:
@@ -180,7 +176,6 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
                 // Only show when percent is not already shown inside icon
                 mShowBatteryTextExpanded = (batteryText != 1);
                 mShowBatteryTextCharging = false;
-                mShowBatteryTextSpacer = mShowBatteryText || mShowBatteryTextExpanded;
                 break;
         }
     }
@@ -210,7 +205,6 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         mEmergencyCallsOnly = (TextView) findViewById(R.id.header_emergency_calls_only);
         mBatteryView = (BatteryMeterView) findViewById(R.id.battery);
         mBatteryLevel = (TextView) findViewById(R.id.battery_level);
-        mBatteryLevelSpacer = findViewById(R.id.battery_batterytext_spacer);
         mAlarmStatus = (TextView) findViewById(R.id.alarm_status);
         mAlarmStatus.setOnClickListener(this);
         mSignalCluster = findViewById(R.id.signal_cluster);
@@ -409,7 +403,6 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         mBatteryLevel.setVisibility(
                 mExpanded ? (mShowBatteryTextExpanded ? View.VISIBLE : View.GONE)
                           : (mShowBatteryText         ? View.VISIBLE : View.GONE));
-        mBatteryLevelSpacer.setVisibility(mShowBatteryTextSpacer ? View.VISIBLE : View.GONE);
         View tunerIcon = mSettingsContainer.findViewById(R.id.tuner_icon);
         if (tunerIcon != null) {
             tunerIcon.setVisibility(
