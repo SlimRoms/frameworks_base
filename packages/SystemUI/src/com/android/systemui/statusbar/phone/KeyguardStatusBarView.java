@@ -17,8 +17,6 @@
 package com.android.systemui.statusbar.phone;
 
 import android.content.Context;
-import android.net.Uri;
-import android.os.Handler;
 import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -30,6 +28,7 @@ import android.view.animation.Interpolator;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import com.android.systemui.BatteryMeterView;
 import com.android.systemui.R;
 import com.android.systemui.statusbar.policy.BatteryController;
@@ -39,14 +38,13 @@ import com.android.systemui.statusbar.policy.UserSwitcherController;
 
 import java.text.NumberFormat;
 
-import org.slim.provider.SlimSettings;
-
 /**
  * The header group on Keyguard.
  */
 public class KeyguardStatusBarView extends RelativeLayout
         implements BatteryController.BatteryStateChangeCallback {
 
+    private boolean mBatteryCharging;
     private boolean mKeyguardUserSwitcherShowing;
     private boolean mBatteryListening;
 
@@ -54,7 +52,6 @@ public class KeyguardStatusBarView extends RelativeLayout
     private View mSystemIconsSuperContainer;
     private MultiUserSwitch mMultiUserSwitch;
     private ImageView mMultiUserAvatar;
-    private BatteryMeterView mBatteryView;
     private TextView mBatteryLevel;
 
     private BatteryController mBatteryController;
@@ -65,38 +62,8 @@ public class KeyguardStatusBarView extends RelativeLayout
 
     private UserInfoController mUserInfoController;
 
-    private boolean mShowBatteryText;
-    private boolean mShowBatteryTextCharging;
-    private boolean mBatteryIsCharging;
-    private int mBatteryChargeLevel;
-
     public KeyguardStatusBarView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        loadShowBatteryTextSetting();
-    }
-
-    private void loadShowBatteryTextSetting() {
-        mShowBatteryText = SlimSettings.Secure.getInt(getContext().getContentResolver(),
-                SlimSettings.Secure.STATUS_BAR_BATTERY_PERCENT, 0) == 2;
-        int batteryStyle = SlimSettings.Secure.getInt(getContext().getContentResolver(),
-                SlimSettings.Secure.STATUS_BAR_BATTERY_STYLE, 0);
-        switch (batteryStyle) {
-            case 4:
-                //meterMode = BatteryMeterMode.BATTERY_METER_GONE;
-                mShowBatteryText = false;
-                mShowBatteryTextCharging = false;
-                break;
-
-            case 6:
-                //meterMode = BatteryMeterMode.BATTERY_METER_TEXT;
-                mShowBatteryText = true;
-                mShowBatteryTextCharging = true;
-                break;
-
-            default:
-                mShowBatteryTextCharging = false;
-                break;
-        }
     }
 
     @Override
@@ -105,14 +72,12 @@ public class KeyguardStatusBarView extends RelativeLayout
         mSystemIconsSuperContainer = findViewById(R.id.system_icons_super_container);
         mMultiUserSwitch = (MultiUserSwitch) findViewById(R.id.multi_user_switch);
         mMultiUserAvatar = (ImageView) findViewById(R.id.multi_user_avatar);
-        mBatteryView = (BatteryMeterView) findViewById(R.id.battery);
-        mBatteryLevel = (TextView) findViewById(R.id.battery_level_text);
+        mBatteryLevel = (TextView) findViewById(R.id.battery_level);
         mCarrierLabel = (TextView) findViewById(R.id.keyguard_carrier_text);
         loadDimens();
         mFastOutSlowInInterpolator = AnimationUtils.loadInterpolator(getContext(),
                 android.R.interpolator.fast_out_slow_in);
         updateUserSwitcher();
-        updateVisibilities();
     }
 
     @Override
@@ -133,9 +98,6 @@ public class KeyguardStatusBarView extends RelativeLayout
         if (mUserInfoController != null) {
             mUserInfoController.removeListener(mUserInfoChangedListener);
         }
-        if (mBatteryController != null) {
-            mBatteryController.removeStateChangedCallback(this);
-        }
     }
 
     private void loadDimens() {
@@ -152,13 +114,11 @@ public class KeyguardStatusBarView extends RelativeLayout
         } else if (mMultiUserSwitch.getParent() == this && mKeyguardUserSwitcherShowing) {
             removeView(mMultiUserSwitch);
         }
-
+        boolean showBatteryLevel = getResources().getBoolean(R.bool.config_showBatteryPercentage);
+        mBatteryLevel.setVisibility(
+                mBatteryCharging || showBatteryLevel ? View.VISIBLE : View.GONE);
         boolean showCarrierText = getResources().getBoolean(R.bool.config_showOperatorInKeyguard);
         mCarrierLabel.setVisibility(showCarrierText ? View.VISIBLE : View.GONE);
-
-        loadShowBatteryTextSetting();
-        updateBatteryLevelText();
-        mBatteryLevel.setVisibility(mShowBatteryText ? View.VISIBLE : View.GONE);
     }
 
     private void updateSystemIconsLayoutParams() {
@@ -190,14 +150,9 @@ public class KeyguardStatusBarView extends RelativeLayout
         mMultiUserSwitch.setKeyguardMode(keyguardSwitcherAvailable);
     }
 
-    public void updateBatteryIconSettings() {
-        mBatteryView.updateBatteryIconSettings();
-        updateVisibilities();
-    };
-
     public void setBatteryController(BatteryController batteryController) {
         mBatteryController = batteryController;
-        mBatteryView.setBatteryController(batteryController);
+        ((BatteryMeterView) findViewById(R.id.battery)).setBatteryController(batteryController);
     }
 
     public void setUserSwitcherController(UserSwitcherController controller) {
@@ -217,26 +172,15 @@ public class KeyguardStatusBarView extends RelativeLayout
         userInfoController.addListener(mUserInfoChangedListener);
     }
 
-    private void updateBatteryLevelText() {
-        if (mBatteryIsCharging & mShowBatteryTextCharging) {
-            mBatteryLevel.setText(getResources().getString(
-                    R.string.battery_level_template_charging, mBatteryChargeLevel));
-        } else {
-            mBatteryLevel.setText(getResources().getString(
-                    R.string.battery_level_template, mBatteryChargeLevel));
-        }
-    }
-
-    public void updateBatteryLevel(int level, boolean charging) {
-        mBatteryIsCharging = charging;
-        mBatteryChargeLevel = level;
-        loadShowBatteryTextSetting();
-        updateBatteryLevelText();
-    }
-
     @Override
     public void onBatteryLevelChanged(int level, boolean pluggedIn, boolean charging) {
-        updateBatteryLevel(level, charging);
+        String percentage = NumberFormat.getPercentInstance().format((double) level / 100.0);
+        mBatteryLevel.setText(percentage);
+        boolean changed = mBatteryCharging != charging;
+        mBatteryCharging = charging;
+        if (changed) {
+            updateVisibilities();
+        }
     }
 
     @Override
@@ -319,5 +263,4 @@ public class KeyguardStatusBarView extends RelativeLayout
     public boolean hasOverlappingRendering() {
         return false;
     }
-
 }
