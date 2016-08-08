@@ -79,9 +79,9 @@ public class NavigationBarView extends LinearLayout {
     private Drawable mRecentLandIcon;
     private Drawable mHomeIcon, mHomeLandIcon;
 
-    private NavigationBarViewTaskSwitchHelper mTaskSwitchHelper;
+    NavigationBarViewTaskSwitchHelper mTaskSwitchHelper;
     private DeadZone mDeadZone;
-    private final NavigationBarTransitions mBarTransitions;
+    final NavigationBarTransitions mBarTransitions;
 
     // workaround for LayoutTransitions leaving the nav buttons in a weird state (bug 5549288)
     final static boolean WORKAROUND_INVALID_LAYOUT = true;
@@ -533,7 +533,7 @@ public class NavigationBarView extends LinearLayout {
      * In landscape, the LinearLayout is not auto mirrored since it is vertical. Therefore we
      * have to do it manually
      */
-    private void updateRTLOrder() {
+    protected void updateRTLOrder() {
         boolean isLayoutRtl = getResources().getConfiguration()
                 .getLayoutDirection() == LAYOUT_DIRECTION_RTL;
         if (mIsLayoutRtl != isLayoutRtl) {
