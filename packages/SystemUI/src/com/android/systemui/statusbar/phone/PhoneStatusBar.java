@@ -353,7 +353,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     ArrayList<Runnable> mPostCollapseRunnables = new ArrayList<>();
 
     // for disabling the status bar
-    int mDisabled1 = 0;
+    protected int mDisabled1 = 0;
     int mDisabled2 = 0;
 
     // tracking calls to View.setSystemUiVisibility()
@@ -1199,7 +1199,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
     }
 
-    private void prepareNavigationBarView() {
+    protected void prepareNavigationBarView() {
         mNavigationBarView.reorient();
 
         mNavigationBarView.getRecentsButton().setOnClickListener(mRecentsClickListener);
@@ -1214,7 +1214,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     }
 
     // For small-screen devices (read: phones) that lack hardware navigation buttons
-    private void addNavigationBar() {
+    protected void addNavigationBar() {
         if (DEBUG) Log.v(TAG, "addNavigationBar: about to add " + mNavigationBarView);
         if (mNavigationBarView == null) return;
 
@@ -1223,7 +1223,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mWindowManager.addView(mNavigationBarView, getNavigationBarLayoutParams());
     }
 
-    private void repositionNavigationBar() {
+    protected void repositionNavigationBar() {
         if (mNavigationBarView == null || !mNavigationBarView.isAttachedToWindow()) return;
 
         prepareNavigationBarView();
@@ -2681,7 +2681,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mHandler.postDelayed(mAutohide, AUTOHIDE_TIMEOUT_MS);
     }
 
-    private void checkUserAutohide(View v, MotionEvent event) {
+    protected void checkUserAutohide(View v, MotionEvent event) {
         if ((mSystemUiVisibility & STATUS_OR_NAV_TRANSIENT) != 0  // a transient bar is revealed
                 && event.getAction() == MotionEvent.ACTION_OUTSIDE // touch outside the source bar
                 && event.getX() == 0 && event.getY() == 0  // a touch outside both bars
