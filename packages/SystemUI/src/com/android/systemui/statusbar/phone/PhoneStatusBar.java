@@ -322,7 +322,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private View mCarrierText = null;
 
     // expanded notifications
-    NotificationPanelView mNotificationPanel; // the sliding/resizing panel within the notification window
+    protected NotificationPanelView mNotificationPanel; // the sliding/resizing panel within the notification window
     View mExpandedContents;
     TextView mNotificationPanelDebugText;
 
@@ -368,7 +368,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private int mBatteryChargeLevel;
 
     // for disabling the status bar
-    int mDisabled1 = 0;
+    protected int mDisabled1 = 0;
     int mDisabled2 = 0;
 
     // tracking calls to View.setSystemUiVisibility()
@@ -389,7 +389,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private int mNavigationIconHints = 0;
     private HandlerThread mHandlerThread;
 
-<<<<<<< HEAD
     class SettingsObserver extends ContentObserver {
         SettingsObserver(Handler handler) {
             super(handler);
@@ -403,39 +402,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(SlimSettings.Secure.getUriFor(
                     SlimSettings.Secure.STATUS_BAR_BATTERY_STYLE),
                     false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(SlimSettings.System.getUriFor(
-                    SlimSettings.System.NAVIGATION_BAR_BUTTON_TINT),
-                    false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(SlimSettings.System.getUriFor(
-                    SlimSettings.System.NAVIGATION_BAR_BUTTON_TINT_MODE),
-                    false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(SlimSettings.System.getUriFor(
-                    SlimSettings.System.NAVIGATION_BAR_GLOW_TINT),
-                    false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(SlimSettings.System.getUriFor(
-                    SlimSettings.System.NAVIGATION_BAR_SHOW),
-                    false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(SlimSettings.System.getUriFor(
-                    SlimSettings.System.NAVIGATION_BAR_CONFIG),
-                    false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(SlimSettings.System.getUriFor(
-                    SlimSettings.System.NAVIGATION_BAR_CAN_MOVE),
-                    false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(SlimSettings.System.getUriFor(
-                    SlimSettings.System.MENU_LOCATION),
-                    false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(SlimSettings.System.getUriFor(
-                    SlimSettings.System.MENU_VISIBILITY),
-                    false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(SlimSettings.System.getUriFor(
-                    SlimSettings.System.USE_SLIM_RECENTS), false, this,
-                    UserHandle.USER_ALL);
-            resolver.registerContentObserver(SlimSettings.System.getUriFor(
-                    SlimSettings.System.RECENT_CARD_BG_COLOR), false, this,
-                    UserHandle.USER_ALL);
-            resolver.registerContentObserver(SlimSettings.System.getUriFor(
-                    SlimSettings.System.RECENT_CARD_TEXT_COLOR), false, this,
-                    UserHandle.USER_ALL);
             resolver.registerContentObserver(SlimSettings.Secure.getUriFor(
                     SlimSettings.Secure.QS_NUM_TILE_COLUMNS), false, this,
                     UserHandle.USER_ALL);
@@ -451,28 +417,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                         mBatteryView.updateBatteryIconSettings();
                         mHeader.updateBatteryIconSettings();
                         mKeyguardStatusBar.updateBatteryIconSettings();
-            } else if (uri.equals(SlimSettings.System.getUriFor(
-                    SlimSettings.System.NAVIGATION_BAR_BUTTON_TINT))
-                || uri.equals(SlimSettings.System.getUriFor(
-                    SlimSettings.System.NAVIGATION_BAR_BUTTON_TINT_MODE))
-                || uri.equals(SlimSettings.System.getUriFor(
-                    SlimSettings.System.NAVIGATION_BAR_CONFIG))
-                || uri.equals(SlimSettings.System.getUriFor(
-                    SlimSettings.System.NAVIGATION_BAR_GLOW_TINT))
-                || uri.equals(SlimSettings.System.getUriFor(
-                    SlimSettings.System.MENU_LOCATION))
-                || uri.equals(SlimSettings.System.getUriFor(
-                    SlimSettings.System.MENU_VISIBILITY))) {
-                if (mNavigationBarView != null) {
-                    mNavigationBarView.recreateNavigationBar();
-                    prepareNavigationBarView();
-                }
-            } else if (uri.equals(SlimSettings.System.getUriFor(
-                    SlimSettings.System.NAVIGATION_BAR_CAN_MOVE))) {
-                prepareNavigationBarView();
-            } else if (uri.equals(SlimSettings.System.getUriFor(
-                    SlimSettings.System.NAVIGATION_BAR_SHOW))) {
-                updateNavigationBarVisibility();
             }
             update();
         }
@@ -523,8 +467,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
     }
 
-=======
->>>>>>> 49398cf... Revert "Base: (1/3) Slim NavBar (squashed commit)"
     // ensure quick settings is disabled until the current user makes it through the setup wizard
     private boolean mUserSetup = false;
     private ContentObserver mUserSetupObserver = new ContentObserver(new Handler()) {
@@ -1363,7 +1305,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
     }
 
-    private void prepareNavigationBarView() {
+    protected void prepareNavigationBarView() {
         mNavigationBarView.reorient();
 
         mNavigationBarView.getRecentsButton().setOnClickListener(mRecentsClickListener);
@@ -1378,7 +1320,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     }
 
     // For small-screen devices (read: phones) that lack hardware navigation buttons
-    private void addNavigationBar() {
+    protected void addNavigationBar() {
         if (DEBUG) Log.v(TAG, "addNavigationBar: about to add " + mNavigationBarView);
         if (mNavigationBarView == null) return;
 
@@ -1387,7 +1329,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mWindowManager.addView(mNavigationBarView, getNavigationBarLayoutParams());
     }
 
-    private void repositionNavigationBar() {
+    protected void repositionNavigationBar() {
         if (mNavigationBarView == null || !mNavigationBarView.isAttachedToWindow()) return;
 
         prepareNavigationBarView();
@@ -2845,7 +2787,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mHandler.postDelayed(mAutohide, AUTOHIDE_TIMEOUT_MS);
     }
 
-    private void checkUserAutohide(View v, MotionEvent event) {
+    protected void checkUserAutohide(View v, MotionEvent event) {
         if ((mSystemUiVisibility & STATUS_OR_NAV_TRANSIENT) != 0  // a transient bar is revealed
                 && event.getAction() == MotionEvent.ACTION_OUTSIDE // touch outside the source bar
                 && event.getX() == 0 && event.getY() == 0  // a touch outside both bars
