@@ -16,7 +16,7 @@
 -->
 
 <!-- Extends RelativeLayout -->
-<com.android.systemui.statusbar.phone.StatusBarHeaderView
+<com.android.systemui.statusbar.slim.SlimStatusBarHeaderView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:systemui="http://schemas.android.com/apk/res-auto"
     android:id="@+id/header"
@@ -93,6 +93,7 @@
             android:paddingEnd="@dimen/battery_level_padding_end"
             android:textColor="#ffffff"
             android:textSize="@dimen/battery_level_text_size"
+            android:visibility="gone"
             android:importantForAccessibility="noHideDescendants"/>
     </LinearLayout>
 
@@ -195,4 +196,4 @@
         android:padding="2dp"
         />
 
-</com.android.systemui.statusbar.phone.StatusBarHeaderView>
+</com.android.systemui.statusbar.slim.SlimStatusBarHeaderView>
