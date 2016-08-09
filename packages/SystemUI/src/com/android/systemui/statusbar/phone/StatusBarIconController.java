@@ -165,8 +165,8 @@ public class StatusBarIconController extends StatusBarIconList implements Tunabl
                 (int) (batteryWidth * iconScaleFactor), (int) (batteryHeight * iconScaleFactor));
         scaledLayoutParams.setMarginsRelative(0, 0, 0, marginBottom);
 
-        mBatteryMeterView.setLayoutParams(scaledLayoutParams);
-        mBatteryMeterViewKeyguard.setLayoutParams(scaledLayoutParams);
+        //mBatteryMeterView.setLayoutParams(scaledLayoutParams);
+        //mBatteryMeterViewKeyguard.setLayoutParams(scaledLayoutParams);
     }
 
     @Override
