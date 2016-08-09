@@ -32,7 +32,11 @@
         android:layout_marginStart="@dimen/signal_cluster_margin_start"/>
 
     <com.android.systemui.BatteryMeterView android:id="@+id/battery"
-        android:layout_height="match_parent"
-        android:layout_width="wrap_content"
-        />
+        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:visibility="gone"
+        android:layout_marginBottom="@dimen/battery_margin_bottom"/>
+
+    <include layout="@layout/slim_battery_container" />
+
 </LinearLayout>
