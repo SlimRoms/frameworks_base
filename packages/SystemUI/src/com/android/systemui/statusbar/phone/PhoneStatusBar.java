@@ -272,6 +272,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     // These are no longer handled by the policy, because we need custom strategies for them
     BluetoothControllerImpl mBluetoothController;
     SecurityControllerImpl mSecurityController;
+    protected BatteryController mBatteryController;
     LocationControllerImpl mLocationController;
     NetworkControllerImpl mNetworkController;
     HotspotControllerImpl mHotspotController;
