@@ -70,6 +70,26 @@ public interface StatusBarIconController {
             mIconHPadding = mContext.getResources().getDimensionPixelSize(
                     R.dimen.status_bar_icon_padding);
             mDarkIconDispatcher = Dependency.get(DarkIconDispatcher.class);
+
+        //mBatteryMeterView.setLayoutParams(scaledLayoutParams);
+        //mBatteryMeterViewKeyguard.setLayoutParams(scaledLayoutParams);
+    }
+
+    @Override
+    public void onTuningChanged(String key, String newValue) {
+        if (!ICON_BLACKLIST.equals(key)) {
+            return;
+        }
+        mIconBlacklist.clear();
+        mIconBlacklist.addAll(getIconBlacklist(newValue));
+        ArrayList<StatusBarIconView> views = new ArrayList<StatusBarIconView>();
+        // Get all the current views.
+        for (int i = 0; i < mStatusIcons.getChildCount(); i++) {
+            views.add((StatusBarIconView) mStatusIcons.getChildAt(i));
+        }
+        // Remove all the icons.
+        for (int i = views.size() - 1; i >= 0; i--) {
+            removeIcon(views.get(i).getSlot());
         }
 
         @Override
