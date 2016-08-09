@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1acb0d3e_b733a3f5",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-08-09T00:29:26Z",
+      "side": 0,
+      "message": "Correctly removed as it should be part of revert",
+      "range": {
+        "startLine": 287,
+        "startChar": 0,
+        "endLine": 288,
+        "endChar": 35
+      },
+      "revId": "11694dcb0660bf26c805321f2310483ad17c50a6",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_774d3b72",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-08-09T00:29:26Z",
+      "side": 0,
+      "message": "correct",
+      "range": {
+        "startLine": 336,
+        "startChar": 4,
+        "endLine": 336,
+        "endChar": 83
+      },
+      "revId": "11694dcb0660bf26c805321f2310483ad17c50a6",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
