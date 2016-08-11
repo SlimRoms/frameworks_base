@@ -131,6 +131,7 @@
 
     <style name="TextAppearance.QS.DetailItemPrimary">
         <item name="android:textSize">@dimen/qs_detail_item_primary_text_size</item>
+        <item name="android:textColor">@color/qs_subhead</item>
     </style>
 
     <style name="TextAppearance.QS.DetailItemSecondary">
