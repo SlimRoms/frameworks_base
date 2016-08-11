@@ -392,9 +392,12 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         @Override
         public void onChange(boolean selfChange, Uri uri) {
-        }
-
-        public void update() {
+            if (uri.equals(SlimSettings.Secure.getUriFor(
+                    SlimSettings.Secure.QS_NUM_TILE_COLUMNS))) {
+                if (mQSPanel != null) {
+                    mQSPanel.updateNumColumns();
+                }
+            }
         }
     }
 
@@ -422,10 +425,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             }
             if (mIconPolicy != null) {
                 mIconPolicy.setCurrentUserSetup(mUserSetup);
-            }
-
-            if (mQSPanel != null) {
-                mQSPanel.updateNumColumns();
             }
         }
     };
