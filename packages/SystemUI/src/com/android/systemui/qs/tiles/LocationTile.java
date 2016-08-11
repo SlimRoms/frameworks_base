@@ -192,6 +192,7 @@ public class LocationTile extends QSTile<QSTile.BooleanState> {
             LayoutInflater inflater = LayoutInflater.from(mContext);
             CheckedTextView label = (CheckedTextView) inflater.inflate(
                     android.R.layout.simple_list_item_single_choice, parent, false);
+            label.setTextAppearance(R.style.TextAppearance_QS_DetailItemPrimary);
             label.setText(getStateLabelRes(getItem(position)));
             return label;
         }
