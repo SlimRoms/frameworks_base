@@ -30,6 +30,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import com.android.internal.logging.MetricsLogger;
 import com.android.systemui.R;
 import com.android.systemui.qs.QSDetailItemsList;
@@ -257,23 +258,15 @@ public class ScreenTimeoutTile extends QSTile<ScreenTimeoutTile.TimeoutState> {
 
     private class RadioAdapter extends ArrayAdapter<String> {
 
-        public RadioAdapter(Context context, int resource, String[] objects) {
-            super(context, resource, objects);
-        }
-
-        public RadioAdapter(Context context, int resource,
-                            int textViewResourceId, String[] objects) {
-            super(context, resource, textViewResourceId, objects);
+        public RadioAdapter(Context context) {
+            super(context, android.R.layout.simple_list_item_single_choice, mEntries);
         }
 
         @Override
         public View getView(int position, View view, ViewGroup parent) {
-            view = super.getView(position, view, parent);
-
-            view.setMinimumHeight(mContext.getResources() .getDimensionPixelSize(
-                    R.dimen.qs_detail_item_height));
-
-            return view;
+            TextView label = QSDetailItemsList.getSingleChoiceView(mContext, view, parent);
+            label.setText(getItem(position));
+            return label;
         }
 
     }
@@ -308,8 +301,7 @@ public class ScreenTimeoutTile extends QSTile<ScreenTimeoutTile.TimeoutState> {
             listView.setOnItemClickListener(this);
             listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
             listView.setDivider(null);
-            RadioAdapter adapter = new RadioAdapter(context,
-                    android.R.layout.simple_list_item_single_choice, mEntries);
+            RadioAdapter adapter = new RadioAdapter(context);
             int indexOfSelection = 
                     Arrays.asList(mValues).indexOf(String.valueOf(getScreenTimeout()));
             mItems.setAdapter(adapter);
