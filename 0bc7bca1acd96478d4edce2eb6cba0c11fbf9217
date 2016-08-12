@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1acb0d3e_aaa9fa25",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-08-12T00:41:49Z",
+      "side": 1,
+      "message": "o-O",
+      "range": {
+        "startLine": 392,
+        "startChar": 0,
+        "endLine": 392,
+        "endChar": 12
+      },
+      "revId": "0bc7bca1acd96478d4edce2eb6cba0c11fbf9217",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_2a6d0a05",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-08-12T00:41:49Z",
+      "side": 1,
+      "message": "Should be removed here",
+      "range": {
+        "startLine": 406,
+        "startChar": 12,
+        "endLine": 420,
+        "endChar": 54
+      },
+      "revId": "0bc7bca1acd96478d4edce2eb6cba0c11fbf9217",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_4a72d6e6",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-08-12T00:41:49Z",
+      "side": 1,
+      "message": "remove here as well....",
+      "range": {
+        "startLine": 454,
+        "startChar": 12,
+        "endLine": 476,
+        "endChar": 13
+      },
+      "revId": "0bc7bca1acd96478d4edce2eb6cba0c11fbf9217",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_caa6c653",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBar.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-08-12T00:41:49Z",
+      "side": 1,
+      "message": "o-O",
+      "range": {
+        "startLine": 526,
+        "startChar": 0,
+        "endLine": 527,
+        "endChar": 69
+      },
+      "revId": "0bc7bca1acd96478d4edce2eb6cba0c11fbf9217",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
