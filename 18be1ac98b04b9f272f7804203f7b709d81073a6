@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1acb0d3e_4abbb672",
+        "filename": "packages/SystemUI/res/values/slim_dimens.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-08-12T00:34:17Z",
+      "side": 1,
+      "message": "might as well remove",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 4
+      },
+      "revId": "18be1ac98b04b9f272f7804203f7b709d81073a6",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
