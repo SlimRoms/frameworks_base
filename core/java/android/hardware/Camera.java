@@ -40,6 +40,7 @@ import android.util.Log;
 import android.text.TextUtils;
 import android.view.Surface;
 import android.view.SurfaceHolder;
+import android.os.SystemProperties;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -483,8 +484,21 @@ public class Camera {
             mEventHandler = null;
         }
 
-        return native_setup(new WeakReference<Camera>(this), cameraId, halVersion,
-                ActivityThread.currentOpPackageName());
+        String packageName = ActivityThread.currentOpPackageName();
+
+        //Force HAL1 if the package name falls in this bucket
+        String packageList = SystemProperties.get("camera.hal1.packagelist", "");
+        if (packageList.length() > 0) {
+            TextUtils.StringSplitter splitter = new TextUtils.SimpleStringSplitter(',');
+            splitter.setString(packageList);
+            for (String str : splitter) {
+                if (packageName.equals(str)) {
+                    halVersion = CAMERA_HAL_API_VERSION_1_0;
+                    break;
+                }
+            }
+        }
+        return native_setup(new WeakReference<Camera>(this), cameraId, halVersion, packageName);
     }
 
     private int cameraInitNormal(int cameraId) {
@@ -4451,7 +4465,7 @@ public class Camera {
         // Example string: "(10000,26623),(10000,30000)". Return null if the
         // passing string is null or the size is 0.
         private ArrayList<int[]> splitRange(String str) {
-            if (str == null || str.charAt(0) != '('
+            if (str == null || str.isEmpty() || str.charAt(0) != '('
                     || str.charAt(str.length() - 1) != ')') {
                 Log.e(TAG, "Invalid range list string=" + str);
                 return null;
@@ -4476,7 +4490,7 @@ public class Camera {
         // Example string: "(-10,-10,0,0,300),(0,0,10,10,700)". Return null if
         // the passing string is null or the size is 0 or (0,0,0,0,0).
         private ArrayList<Area> splitArea(String str) {
-            if (str == null || str.charAt(0) != '('
+            if (str == null || str.isEmpty() || str.charAt(0) != '('
                     || str.charAt(str.length() - 1) != ')') {
                 Log.e(TAG, "Invalid area string=" + str);
                 return null;
