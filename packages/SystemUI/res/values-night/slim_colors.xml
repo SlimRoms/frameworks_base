@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     Copyright (C) 2015-2016 The SlimRoms Project
+     Copyright (C) 2015-2016 SlimRoms Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -14,13 +14,9 @@
 -->
 <resources>
 
-    <!-- Navigation bar -->
-    <color name="navigationbar_button_default_color">#FFFFFFFF</color>
-
     <!-- Quick Settings Tuner -->
-    <color name="qs_edit_background_color">#fffafafa</color>
-    <color name="qs_edit_tile_text_color">#ff000000</color>
-    <color name="qs_edit_tile_icon_color">#ff009688</color>
-    <color name="qs_edit_divider_color">#29000000</color>
+    <color name="qs_edit_background_color">@color/system_secondary_color</color>
+    <color name="qs_edit_tile_text_color">@android:color/white</color>
+    <color name="qs_edit_divider_color">@color/qs_tile_divider</color>
 
 </resources>

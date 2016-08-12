@@ -24,6 +24,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckedTextView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
@@ -58,6 +59,18 @@ public class QSDetailItemsList extends LinearLayout {
         }
         LayoutInflater inflater = LayoutInflater.from(context);
         return (QSDetailItemsList) inflater.inflate(R.layout.qs_detail_items_list, parent, false);
+    }
+
+    public static TextView getSingleChoiceView(Context context,
+            View convertView, ViewGroup parent) {
+        if (convertView instanceof CheckedTextView) {
+                return (TextView) convertView;
+        }
+        LayoutInflater inflater = LayoutInflater.from(context);
+        CheckedTextView label = (CheckedTextView) inflater.inflate(
+                android.R.layout.simple_list_item_single_choice, parent, false);
+        label.setTextAppearance(R.style.TextAppearance_QS_DetailItemPrimary);
+        return label;
     }
 
     public void setAdapter(ListAdapter adapter) {

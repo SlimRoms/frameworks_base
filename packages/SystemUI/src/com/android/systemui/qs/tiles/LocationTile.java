@@ -26,7 +26,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.CheckedTextView;
+import android.widget.TextView;
 import android.widget.ListView;
 import com.android.internal.logging.MetricsLogger;
 import com.android.systemui.R;
@@ -189,10 +189,7 @@ public class LocationTile extends QSTile<QSTile.BooleanState> {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            LayoutInflater inflater = LayoutInflater.from(mContext);
-            CheckedTextView label = (CheckedTextView) inflater.inflate(
-                    android.R.layout.simple_list_item_single_choice, parent, false);
-            label.setTextAppearance(R.style.TextAppearance_QS_DetailItemPrimary);
+            TextView label = QSDetailItemsList.getSingleChoiceView(mContext, convertView, parent);
             label.setText(getStateLabelRes(getItem(position)));
             return label;
         }

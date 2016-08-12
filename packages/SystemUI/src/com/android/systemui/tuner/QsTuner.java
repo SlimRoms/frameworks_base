@@ -21,6 +21,7 @@ import android.app.Fragment;
 import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.graphics.PorterDuff.Mode;
 import android.os.Bundle;
 import android.os.UserHandle;
@@ -41,10 +42,12 @@ import android.view.View.OnClickListener;
 import android.view.View.OnDragListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.android.internal.logging.MetricsLogger;
 import com.android.systemui.R;
@@ -155,7 +158,6 @@ public class QsTuner extends Fragment implements Callback {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         mScrollRoot = (ScrollView) inflater.inflate(R.layout.tuner_qs, container, false);
-        mScrollRoot.setBackgroundColor(0xFFFAFAFA);
 
         mSpacer = mScrollRoot.findViewById(R.id.spacer);
         setupSpacer();
@@ -301,6 +303,36 @@ public class QsTuner extends Fragment implements Callback {
         return 0;
     }
 
+    private static int getIcon(String spec) {
+        if (spec.equals("wifi")) return R.drawable.ic_qs_wifi_full_3;
+        else if (spec.equals("bt")) return R.drawable.ic_qs_bluetooth_connected;
+        else if (spec.equals("inversion")) return R.drawable.ic_invert_colors_enable;
+        else if (spec.equals("cell")) return R.drawable.ic_qs_signal_full_3;
+        else if (spec.equals("airplane")) return R.drawable.ic_signal_airplane_enable;
+        else if (spec.equals("dnd")) return R.drawable.ic_qs_dnd_on;
+        else if (spec.equals("rotation")) return R.drawable.ic_portrait_from_auto_rotate;
+        else if (spec.equals("flashlight")) return R.drawable.ic_signal_flashlight_enable;
+        else if (spec.equals("location")) return R.drawable.ic_signal_location_enable;
+        else if (spec.equals("cast")) return R.drawable.ic_qs_cast_on;
+        else if (spec.equals("hotspot")) return R.drawable.ic_hotspot_enable;
+        else if (spec.equals("usb_tether")) return R.drawable.ic_qs_usb_tether_off;
+        else if (spec.equals("ambient_display")) return R.drawable.ic_qs_ambientdisplay_on;
+        else if (spec.equals("screenshot")) return R.drawable.ic_qs_screenshot;
+        else if (spec.equals("screenoff")) return R.drawable.ic_qs_power;
+        else if (spec.equals("sync")) return R.drawable.ic_qs_sync_on;
+        else if (spec.equals("timeout")) return R.drawable.ic_qs_screen_timeout_vector;
+        else if (spec.equals("brightness")) return R.drawable.ic_qs_brightness_auto_on_alpha;
+        else if (spec.equals("music")) return R.drawable.ic_qs_media_play;
+        else if (spec.equals("reboot")) return R.drawable.ic_qs_reboot;
+        else if (spec.equals("battery_saver")) return R.drawable.ic_qs_battery_saver_on;
+        else if (spec.equals("compass")) return R.drawable.ic_qs_compass_on;
+        else if (spec.equals("ime")) return R.drawable.ic_qs_ime;
+        else if (spec.equals("volume")) return R.drawable.ic_qs_volume_panel;
+        else if (spec.equals("sound")) return R.drawable.ic_qs_ringer_audible;
+        else if (spec.equals("caffeine")) return R.drawable.ic_qs_caffeine_on;
+        return R.drawable.android;
+    }
+
     private static class CustomHost extends QSTileHost {
 
         DraggableQsPanel mPanel;
@@ -401,7 +433,7 @@ public class QsTuner extends Fragment implements Callback {
             availableTiles.add(getContext().getString(R.string.broadcast_tile));
             new AlertDialog.Builder(getContext())
                     .setTitle(R.string.add_tile)
-                    .setItems(availableTiles.toArray(new CharSequence[0]),
+                    .setAdapter(new IconAdapter(getContext(), available),
                             new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             if (which < available.size()) {
@@ -410,7 +442,9 @@ public class QsTuner extends Fragment implements Callback {
                                 showBroadcastTileDialog();
                             }
                         }
-                    }).show();
+                    })
+                    .setNegativeButton(android.R.string.cancel, null)
+                    .show();
         }
 
         public void showBroadcastTileDialog() {
@@ -489,6 +523,48 @@ public class QsTuner extends Fragment implements Callback {
         }
     }
 
+    private static class IconAdapter extends BaseAdapter {
+        ArrayList<String> mTileSpecs = new ArrayList<>();
+        Context mContext;
+        int mIconColor;
+
+        IconAdapter(Context ctx, List<String> specs) {
+            mContext = ctx;
+            mTileSpecs.addAll(specs);
+            mIconColor = ctx.getResources().getColor(R.color.qs_edit_tile_icon_color);
+        }
+
+        @Override
+        public int getCount() {
+            return mTileSpecs.size();
+        }
+
+        @Override
+        public String getItem(int position) {
+            return mTileSpecs.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            if (convertView == null) {
+                convertView = View.inflate(mContext, R.layout.qs_add_item, null);
+            }
+            TextView txtView = (TextView) convertView.findViewById(R.id.title);
+            txtView.setText(
+                    mContext.getResources().getString(getLabelResource(mTileSpecs.get(position))));
+            ImageView imgView = (ImageView) convertView.findViewById(R.id.icon);
+            imgView.setImageDrawable(
+                    mContext.getResources().getDrawable(getIcon(mTileSpecs.get(position))));
+            imgView.setColorFilter(mIconColor, Mode.MULTIPLY);
+            return convertView;
+        }
+    }
+
     private static class DraggableTile extends QSTile<QSTile.State>
             implements DropListener {
         private String mSpec;
@@ -521,7 +597,7 @@ public class QsTuner extends Fragment implements Callback {
         @Override
         protected void handleUpdateState(QSTile.State state, Object arg) {
             state.visible = true;
-            state.icon = ResourceIcon.get(getIcon());
+            state.icon = ResourceIcon.get(getIcon(mSpec));
             state.label = getLabel();
         }
 
@@ -539,36 +615,6 @@ public class QsTuner extends Fragment implements Callback {
                 }
             }
             return mSpec;
-        }
-
-        private int getIcon() {
-            if (mSpec.equals("wifi")) return R.drawable.ic_qs_wifi_full_3;
-            else if (mSpec.equals("bt")) return R.drawable.ic_qs_bluetooth_connected;
-            else if (mSpec.equals("inversion")) return R.drawable.ic_invert_colors_enable;
-            else if (mSpec.equals("cell")) return R.drawable.ic_qs_signal_full_3;
-            else if (mSpec.equals("airplane")) return R.drawable.ic_signal_airplane_enable;
-            else if (mSpec.equals("dnd")) return R.drawable.ic_qs_dnd_on;
-            else if (mSpec.equals("rotation")) return R.drawable.ic_portrait_from_auto_rotate;
-            else if (mSpec.equals("flashlight")) return R.drawable.ic_signal_flashlight_enable;
-            else if (mSpec.equals("location")) return R.drawable.ic_signal_location_enable;
-            else if (mSpec.equals("cast")) return R.drawable.ic_qs_cast_on;
-            else if (mSpec.equals("hotspot")) return R.drawable.ic_hotspot_enable;
-            else if (mSpec.equals("usb_tether")) return R.drawable.ic_qs_usb_tether_off;
-            else if (mSpec.equals("ambient_display")) return R.drawable.ic_qs_ambientdisplay_on;
-            else if (mSpec.equals("screenshot")) return R.drawable.ic_qs_screenshot;
-            else if (mSpec.equals("screenoff")) return R.drawable.ic_qs_power;
-            else if (mSpec.equals("sync")) return R.drawable.ic_qs_sync_on;
-            else if (mSpec.equals("timeout")) return R.drawable.ic_qs_screen_timeout_vector;
-            else if (mSpec.equals("brightness")) return R.drawable.ic_qs_brightness_auto_on_alpha;
-            else if (mSpec.equals("music")) return R.drawable.ic_qs_media_play;
-            else if (mSpec.equals("reboot")) return R.drawable.ic_qs_reboot;
-            else if (mSpec.equals("battery_saver")) return R.drawable.ic_qs_battery_saver_on;
-            else if (mSpec.equals("compass")) return R.drawable.ic_qs_compass_on;
-            else if (mSpec.equals("ime")) return R.drawable.ic_qs_ime;
-            else if (mSpec.equals("volume")) return R.drawable.ic_qs_volume_panel;
-            else if (mSpec.equals("sound")) return R.drawable.ic_qs_ringer_audible;
-            else if (mSpec.equals("caffeine")) return R.drawable.ic_qs_caffeine_on;
-            return R.drawable.android;
         }
 
         @Override
