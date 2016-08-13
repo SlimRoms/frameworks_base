@@ -48,22 +48,7 @@
         android:orientation="horizontal"
         >
 
-        <com.android.systemui.statusbar.AlphaOptimizedFrameLayout
-            android:id="@+id/notification_icon_area"
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            >
-            <!-- The alpha of this area is both controlled from PhoneStatusBarTransitions and
-                 PhoneStatusBar (DISABLE_NOTIFICATION_ICONS), so we need two views here. -->
-            <com.android.keyguard.AlphaOptimizedLinearLayout
-                android:id="@+id/notification_icon_area_inner"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
-
-                <com.android.systemui.statusbar.policy.ClockLeft
+        <com.android.systemui.statusbar.policy.ClockLeft
                     android:id="@+id/left_clock"
                     android:textAppearance="@style/TextAppearance.StatusBar.Clock"
                     android:layout_width="wrap_content"
@@ -73,6 +58,22 @@
                     android:gravity="center"
                     android:visibility="gone"
                     />
+
+        <com.android.systemui.statusbar.AlphaOptimizedFrameLayout
+            android:id="@+id/notification_icon_area"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            >
+
+            <!-- The alpha of this area is both controlled from PhoneStatusBarTransitions and
+                 PhoneStatusBar (DISABLE_NOTIFICATION_ICONS), so we need two views here. -->
+            <com.android.keyguard.AlphaOptimizedLinearLayout
+                android:id="@+id/notification_icon_area_inner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
 
                 <com.android.keyguard.CarrierText
                     android:id="@+id/status_carrier_text"

@@ -275,11 +275,13 @@ public class StatusBarIconController implements Tunable {
     }
 
     public void hideNotificationIconArea(boolean animate) {
+        animateHide(mLeftClock, animate);
         animateHide(mNotificationIconArea, animate);
         animateHide(mCenterClockLayout, animate);
     }
 
     public void showNotificationIconArea(boolean animate) {
+        animateShow(mLeftClock, animate);
         animateShow(mNotificationIconArea, animate);
         animateShow(mCenterClockLayout, animate);
     }
