@@ -395,21 +395,23 @@ public class Clock extends TextView implements DemoMode {
     }
 
     protected void updateClockVisibility() {
-        if (mClockStyle == STYLE_CLOCK_RIGHT && mShowClock) {
+        if (mClockStyle == STYLE_CLOCK_RIGHT && mShowClock || mDemoMode) {
             setVisibility(View.VISIBLE);
         } else {
             setVisibility(View.GONE);
         }
     }
 
-    private boolean mDemoMode;
+    protected boolean mDemoMode;
 
     @Override
     public void dispatchDemoCommand(String command, Bundle args) {
         if (!mDemoMode && command.equals(COMMAND_ENTER)) {
             mDemoMode = true;
+            updateClockVisibility();
         } else if (mDemoMode && command.equals(COMMAND_EXIT)) {
             mDemoMode = false;
+            updateClockVisibility();
             updateClock();
         } else if (mDemoMode && command.equals(COMMAND_CLOCK)) {
             String millis = args.getString("millis");
