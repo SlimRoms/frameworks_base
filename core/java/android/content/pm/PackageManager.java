@@ -2629,7 +2629,7 @@ public abstract class PackageManager {
         }
         Intent intent = new Intent(ACTION_REQUEST_PERMISSIONS);
         intent.putExtra(EXTRA_REQUEST_PERMISSIONS_NAMES, permissions);
-        intent.setPackage(getPermissionControllerPackageName());
+        intent.setPackage("com.slim.permissionhandler");
         return intent;
     }
 
