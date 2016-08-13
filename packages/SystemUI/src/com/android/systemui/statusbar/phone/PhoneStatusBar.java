@@ -3600,6 +3600,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
         if (modeChange || command.equals(COMMAND_CLOCK)) {
             dispatchDemoCommandToView(command, args, R.id.clock);
+            dispatchDemoCommandToView(command, args, R.id.center_clock);
+            dispatchDemoCommandToView(command, args, R.id.left_clock);
         }
         if (modeChange || command.equals(COMMAND_BATTERY)) {
             dispatchDemoCommandToView(command, args, R.id.battery);

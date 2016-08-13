@@ -36,7 +36,7 @@ public class ClockLeft extends Clock {
     }
 
     protected void updateClockVisibility() {
-        if (mClockStyle == STYLE_CLOCK_LEFT && mShowClock) {
+        if (mClockStyle == STYLE_CLOCK_LEFT && mShowClock && !mDemoMode) {
             setVisibility(View.VISIBLE);
         } else {
             setVisibility(View.GONE);
