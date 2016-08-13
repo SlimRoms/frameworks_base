@@ -2890,6 +2890,15 @@ public final class ActivityManagerService extends ActivityManagerNative
             app.usingWrapper = startResult.usingWrapper;
             app.removed = false;
             synchronized (mPidsSelfLocked) {
+                ProcessRecord oldApp;
+                // If there is already an app occupying that pid that hasn't been cleaned up
+                if ((oldApp = mPidsSelfLocked.get(startResult.pid)) != null && !app.isolated) {
+                    // Clean up anything relating to this pid first
+                    Slog.w(TAG, "Reusing pid " + startResult.pid
+                            + " while app is still mapped to it");
+                    cleanUpApplicationRecordLocked(oldApp, false, false, -1,
+                            true /*replacingPid*/);
+                }
                 this.mPidsSelfLocked.put(startResult.pid, app);
                 Message msg = mHandler.obtainMessage(PROC_START_TIMEOUT_MSG);
                 msg.obj = app;
@@ -3679,7 +3688,8 @@ public final class ActivityManagerService extends ActivityManagerNative
      */
     private final void handleAppDiedLocked(ProcessRecord app,
             boolean restarting, boolean allowRestart) {
-        cleanUpApplicationRecordLocked(app, restarting, allowRestart, -1);
+        cleanUpApplicationRecordLocked(app, restarting, allowRestart, -1,
+                      false /*replacingPid*/);
         if (!restarting) {
             removeLruProcessLocked(app);
         }
@@ -12494,7 +12504,8 @@ public final class ActivityManagerService extends ActivityManagerNative
      * a process when running in single process mode.
      */
     private final void cleanUpApplicationRecordLocked(ProcessRecord app,
-            boolean restarting, boolean allowRestart, int index) {
+              boolean restarting, boolean allowRestart, int index, boolean replacingPid) {
+        Slog.d(TAG, "cleanUpApplicationRecordLocked -- " + app.pid);
         if (index >= 0) {
             removeLruProcessLocked(app);
         }
@@ -12618,8 +12629,10 @@ public final class ActivityManagerService extends ActivityManagerNative
         if (!app.persistent || app.isolated) {
             if (DEBUG_PROCESSES || DEBUG_CLEANUP) Slog.v(TAG,
                     "Removing non-persistent process during cleanup: " + app);
-            mProcessNames.remove(app.processName, app.uid);
-            mIsolatedProcesses.remove(app.uid);
+            if (!replacingPid) {
+                mProcessNames.remove(app.processName, app.uid);
+                mIsolatedProcesses.remove(app.uid);
+            }
             if (mHeavyWeightProcess == app) {
                 mHandler.sendMessage(mHandler.obtainMessage(CANCEL_HEAVY_NOTIFICATION_MSG,
                         mHeavyWeightProcess.userId, 0));
@@ -15917,7 +15930,7 @@ public final class ActivityManagerService extends ActivityManagerNative
                             // Ignore exceptions.
                         }
                     }
-                    cleanUpApplicationRecordLocked(app, false, true, -1);
+                    cleanUpApplicationRecordLocked(app, false, true, -1, false /*replacingPid*/);
                     mRemovedProcesses.remove(i);
                     
                     if (app.persistent) {
