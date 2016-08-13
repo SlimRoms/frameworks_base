@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1acb0d3e_ed015c3a",
+        "filename": "packages/SystemUI/res/layout/qs_add_item.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-08-13T00:32:04Z",
+      "side": 1,
+      "message": "licensing",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 72
+      },
+      "revId": "58266f002156940ce640c6e80b55f6067d6264a4",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
