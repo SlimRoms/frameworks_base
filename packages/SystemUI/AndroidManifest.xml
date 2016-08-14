@@ -143,6 +143,8 @@
     <uses-permission android:name="slim.permission.WRITE_SETTINGS"/>
     <uses-permission android:name="slim.permission.WRITE_SECURE_SETTINGS"/>
 
+    <!-- Kill foreground user application FC systenUI -->
+    <uses-permission android:name="android.permission.FORCE_STOP_PACKAGES" />
 
     <!-- Self permission for internal broadcasts. -->
     <permission android:name="com.android.systemui.permission.SELF"
