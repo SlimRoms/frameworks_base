@@ -19,4 +19,6 @@
     <!-- Doze: alternate schedule -->
     <string name="doze_pulse_schedule_alternate" translatable="false">1s</string>
 
+    <bool name="delay_flashlight_crash">false</bool>
+
 </resources>
