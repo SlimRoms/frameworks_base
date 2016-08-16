@@ -33,6 +33,9 @@ public class FlashlightTile extends QSTile<QSTile.BooleanState> implements
             = new AnimationIcon(R.drawable.ic_signal_flashlight_disable_animation);
     private final FlashlightController mFlashlightController;
 
+    private boolean mAvailable;
+    private boolean mWaiting;
+
     public FlashlightTile(Host host) {
         super(host);
         mFlashlightController = host.getFlashlightController();
@@ -70,7 +73,25 @@ public class FlashlightTile extends QSTile<QSTile.BooleanState> implements
     }
 
     @Override
-    protected void handleUpdateState(BooleanState state, Object arg) {
+    protected void handleUpdateState(final BooleanState state, final Object arg) {
+        if (mAvailable != mFlashlightController.isAvailable()) {
+            // hack to support camera hals crashing on flashlight turned off
+            if (mHost.getContext().getResources().getBoolean(R.bool.delay_flashlight_crash)) {
+                if (!mWaiting) {
+                    mWaiting = true;
+                    mHandler.postDelayed(new Runnable() {
+                        public void run() {
+                            mWaiting = false;
+                            mAvailable = mFlashlightController.isAvailable();
+                            handleUpdateState(state, arg);
+                        }
+                    }, 3000);
+                }
+                return;
+            } else {
+                mAvailable = mFlashlightController.isAvailable();
+            }
+        }
         state.visible = mFlashlightController.isAvailable();
         state.label = mHost.getContext().getString(R.string.quick_settings_flashlight_label);
         if (arg instanceof UserBoolean) {
