@@ -5153,7 +5153,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         boolean useHapticFeedback = down
                 && (policyFlags & WindowManagerPolicy.FLAG_VIRTUAL) != 0
                 && event.getRepeatCount() == 0
-                && (mHardwareKeyHandler != null && !mHardwareKeyHandler.isHwKeysDisabled());
+                && (mHardwareKeyHandler != null &&
+                        !mHardwareKeyHandler.shouldDisableHapticFeedback(keyCode));
 
         // Handle special keys.
         switch (keyCode) {
