@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1acb0d3e_8382e950",
+        "filename": "packages/SystemUI/res/values/slim_strings.xml",
+        "patchSetId": 14
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-08-16T19:35:46Z",
+      "side": 1,
+      "message": "Dupe",
+      "range": {
+        "startLine": 163,
+        "startChar": 4,
+        "endLine": 164,
+        "endChar": 56
+      },
+      "revId": "202fb8c8b121413764bb056bb574d77ef30edf1a",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
