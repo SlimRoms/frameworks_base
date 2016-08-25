@@ -38,6 +38,8 @@ import android.os.PowerManager;
 import android.os.SystemClock;
 import android.os.UserHandle;
 import android.os.Vibrator;
+import android.provider.Settings;
+import android.provider.Settings.Secure;
 import android.service.dreams.DreamService;
 import android.util.Log;
 import android.view.Display;
@@ -55,12 +57,14 @@ import org.slim.provider.SlimSettings;
 
 public class DozeService extends DreamService {
     private static final String TAG = "DozeService";
-    private static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG);
+//    private static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG);
+    private static final boolean DEBUG = true;
 
     private static final String ACTION_BASE = "com.android.systemui.doze";
     private static final String PULSE_ACTION = ACTION_BASE + ".pulse";
     private static final String NOTIFICATION_PULSE_ACTION = ACTION_BASE + ".notification_pulse";
     private static final String EXTRA_INSTANCE = "instance";
+    private static final int POCKET_DELTA_NS = 1000 * 1000 * 1000;
 
     /**
      * Earliest time we pulse due to a notification light after the service started.
@@ -79,8 +83,10 @@ public class DozeService extends DreamService {
     private final Handler mHandler = new Handler();
 
     private DozeHost mHost;
-    private SensorManager mSensors;
+    protected SensorManager mSensors;
     private TriggerSensor mSigMotionSensor;
+    private TriggerSensor mHandWaveSensor;
+    private TriggerSensor mPocketSensor;
     private TriggerSensor mPickupSensor;
     private PowerManager mPowerManager;
     private PowerManager.WakeLock mWakeLock;
@@ -105,6 +111,12 @@ public class DozeService extends DreamService {
 
     private PulseSchedule mSchedule = null;
 
+    protected boolean mDozeTriggerHandWave;
+    protected boolean mDozeTriggerPocket;
+    protected boolean isHandWave;
+    protected boolean isPocket;
+    private static final String DOZE_INTENT = "com.android.systemui.doze.pulse";
+
     public DozeService() {
         if (DEBUG) Log.d(mTag, "new DozeService()");
         setDebug(DEBUG);
@@ -119,6 +131,8 @@ public class DozeService extends DreamService {
         pw.print("  mHost: "); pw.println(mHost);
         pw.print("  mBroadcastReceiverRegistered: "); pw.println(mBroadcastReceiverRegistered);
         pw.print("  mSigMotionSensor: "); pw.println(mSigMotionSensor);
+        pw.print("  mHandWaveSensor: "); pw.println(mHandWaveSensor);
+        pw.print("  mPocketSensor: "); pw.println(mPocketSensor);
         pw.print("  mPickupSensor:"); pw.println(mPickupSensor);
         pw.print("  mDisplayStateSupported: "); pw.println(mDisplayStateSupported);
         pw.print("  mNotificationLightOn: "); pw.println(mNotificationLightOn);
@@ -146,9 +160,24 @@ public class DozeService extends DreamService {
         mSigMotionSensor = new TriggerSensor(Sensor.TYPE_SIGNIFICANT_MOTION,
                 mDozeParameters.getPulseOnSigMotion(), mDozeParameters.getVibrateOnSigMotion(),
                 DozeLog.PULSE_REASON_SENSOR_SIGMOTION);
+
+        mHandWaveSensor = new TriggerSensor(Sensor.TYPE_PROXIMITY,
+                mDozeParameters.getPulseOnHandWave(), false,
+                DozeLog.PULSE_REASON_SENSOR_HAND_WAVE);
+
+        mPocketSensor = new TriggerSensor(Sensor.TYPE_PROXIMITY,
+                mDozeParameters.getPulseOnPocket(), false,
+                DozeLog.PULSE_REASON_SENSOR_POCKET);
+
+        IntentFilter screenStateFilter = new IntentFilter();
+        screenStateFilter.addAction(Intent.ACTION_SCREEN_ON);
+        screenStateFilter.addAction(Intent.ACTION_SCREEN_OFF);
+        registerReceiver(mScreenStateReceiver, screenStateFilter);
+
         mPickupSensor = new TriggerSensor(Sensor.TYPE_PICK_UP_GESTURE,
                 mDozeParameters.getPulseOnPickup(), mDozeParameters.getVibrateOnPickup(),
                 DozeLog.PULSE_REASON_SENSOR_PICKUP);
+
         mPowerManager = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
         mWakeLock = mPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, TAG);
         mWakeLock.setReferenceCounted(true);
@@ -160,12 +189,13 @@ public class DozeService extends DreamService {
 
     @Override
     public void onAttachedToWindow() {
-        if (DEBUG) Log.d(mTag, "onAttachedToWindow");
+        if (DEBUG) Log.d(mTag, "onAttachedToWindow()");
         super.onAttachedToWindow();
     }
 
     @Override
     public void onDreamingStarted() {
+        if (DEBUG) Log.d(mTag, "onDreamingStarted()");
         super.onDreamingStarted();
 
         if (mHost == null) {
@@ -226,9 +256,11 @@ public class DozeService extends DreamService {
 
         // Tell the host that it's over.
         mHost.stopDozing();
+
     }
 
     private void requestPulse(final int reason) {
+        if (DEBUG) Log.d(TAG, "requestPulse(), reason=" + reason);
         if (mHost != null && mDreaming && !mPulsing) {
             // Let the host know we want to pulse.  Wait for it to be ready, then
             // turn the screen on.  When finished, turn the screen off again.
@@ -242,9 +274,18 @@ public class DozeService extends DreamService {
             }
             final long start = SystemClock.uptimeMillis();
             final boolean nonBlocking = reason == DozeLog.PULSE_REASON_SENSOR_PICKUP
-                    && mDozeParameters.getPickupPerformsProxCheck();
-            if (nonBlocking) {
+                        && mDozeParameters.getPickupPerformsProxCheck();
+                        if (DEBUG && nonBlocking) Log.d(TAG, "requestPulse(), nonBlocking");
+            isHandWave = reason == DozeLog.PULSE_REASON_SENSOR_HAND_WAVE
+                        && mDozeParameters.getPulseOnHandWave();
+                        if (DEBUG && isHandWave) Log.d(TAG, "requestPulse(), isHandWave");
+            isPocket = reason == DozeLog.PULSE_REASON_SENSOR_POCKET
+                        && mDozeParameters.getPulseOnPocket();
+                        if (DEBUG && isPocket) Log.d(TAG, "requestPulse(), isPocket");
+
+            if (nonBlocking || isHandWave || isPocket) {
                 // proximity check is only done to capture statistics, continue pulsing
+                if (DEBUG) Log.d(TAG, "requestPulse(), nonBlocking||isHandWave||isPocket, continuePulsing()");
                 continuePulsing(reason);
             }
             // perform a proximity check
@@ -254,18 +295,21 @@ public class DozeService extends DreamService {
                     final boolean isNear = result == RESULT_NEAR;
                     final long end = SystemClock.uptimeMillis();
                     DozeLog.traceProximityResult(mContext, isNear, end - start, reason);
+                    if (DEBUG) Log.d(TAG, "requestPulse(), ProximityCheck()");
                     if (nonBlocking) {
                         // we already continued
                         return;
                     }
                     // avoid pulsing in pockets
                     if (isNear) {
+                        if (DEBUG) Log.d(TAG, "requestPulse(), ProximityCheck(), isNear");
                         mPulsing = false;
                         mWakeLock.release();
                         return;
                     }
 
                     // not in-pocket, continue pulsing
+                    if (DEBUG) Log.d(TAG, "requestPulse(), ProximityCheck(), not in pocket, continuePulsing() reason=" + reason);
                     continuePulsing(reason);
                 }
             }.check();
@@ -274,6 +318,7 @@ public class DozeService extends DreamService {
 
     private void continuePulsing(int reason) {
         if (mHost.isPulsingBlocked()) {
+            if (DEBUG) Log.d(TAG, "continuePusling() mHost.isPulsingBlocked()=" + mHost.isPulsingBlocked());
             mPulsing = false;
             mWakeLock.release();
             return;
@@ -281,6 +326,7 @@ public class DozeService extends DreamService {
         mHost.pulseWhileDozing(new DozeHost.PulseCallback() {
             @Override
             public void onPulseStarted() {
+                if (DEBUG) Log.d(TAG, "continuePulsing() onPulseStarted()");
                 if (mPulsing && mDreaming) {
                     turnDisplayOn();
                 }
@@ -288,6 +334,7 @@ public class DozeService extends DreamService {
 
             @Override
             public void onPulseFinished() {
+                if (DEBUG) Log.d(TAG, "continuePulsing() onPulseFinished()");
                 if (mPulsing && mDreaming) {
                     mPulsing = false;
                     turnDisplayOff();
@@ -295,6 +342,7 @@ public class DozeService extends DreamService {
                 mWakeLock.release(); // needs to be unconditional to balance acquire
             }
         }, reason);
+        if (DEBUG) Log.d(TAG, "continuePulsing() mPulsing=" + mPulsing + " mDreaming=" + mDreaming);
     }
 
     private void turnDisplayOff() {
@@ -306,6 +354,17 @@ public class DozeService extends DreamService {
         if (DEBUG) Log.d(mTag, "Display on");
         setDozeScreenState(mDisplayStateSupported ? Display.STATE_DOZE : Display.STATE_ON);
     }
+
+    private BroadcastReceiver mScreenStateReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
+                turnDisplayOff();
+            } else if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
+                turnDisplayOn();
+            }
+        }
+    };
 
     private void finishToSavePower() {
         Log.w(mTag, "Exiting ambient mode due to low power battery saver");
@@ -324,6 +383,12 @@ public class DozeService extends DreamService {
         }
         if (mDozeTriggerSigmotion) {
             mSigMotionSensor.setListening(listen);
+        }        
+        if (mDozeTriggerHandWave) {
+            mHandWaveSensor.setListening(listen);
+        }
+        if (mDozeTriggerPocket) {
+            mPocketSensor.setListening(listen);
         }
         listenForBroadcasts(listen);
         if (mDozeTriggerNotification) {
@@ -504,6 +569,7 @@ public class DozeService extends DreamService {
         }
     };
 
+
     /**
      * Settingsobserver to take care of the user settings.
      */
@@ -519,6 +585,12 @@ public class DozeService extends DreamService {
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(SlimSettings.System.getUriFor(
                     SlimSettings.System.DOZE_TRIGGER_SIGMOTION),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(SlimSettings.System.getUriFor(
+                    SlimSettings.System.DOZE_TRIGGER_HAND_WAVE),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(SlimSettings.System.getUriFor(
+                    SlimSettings.System.DOZE_TRIGGER_POCKET),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(SlimSettings.System.getUriFor(
                     SlimSettings.System.DOZE_TRIGGER_NOTIFICATION),
@@ -548,6 +620,16 @@ public class DozeService extends DreamService {
                     SlimSettings.System.DOZE_TRIGGER_SIGMOTION,
                     mContext.getResources().getBoolean(
                     R.bool.doze_pulse_on_significant_motion) ? 1 : 0,
+                    UserHandle.USER_CURRENT) == 1);
+            mDozeTriggerHandWave = (SlimSettings.System.getIntForUser(resolver,
+                    SlimSettings.System.DOZE_TRIGGER_HAND_WAVE,
+                    mContext.getResources().getBoolean(
+                    R.bool.doze_pulse_on_hand_wave) ? 1 : 0,
+                    UserHandle.USER_CURRENT) == 1);
+            mDozeTriggerPocket = (SlimSettings.System.getIntForUser(resolver,
+                    SlimSettings.System.DOZE_TRIGGER_POCKET,
+                    mContext.getResources().getBoolean(
+                    R.bool.doze_pulse_on_pocket) ? 1 : 0,
                     UserHandle.USER_CURRENT) == 1);
             mDozeTriggerNotification = (SlimSettings.System.getIntForUser(resolver,
                     SlimSettings.System.DOZE_TRIGGER_NOTIFICATION, 1,
@@ -669,7 +751,10 @@ public class DozeService extends DreamService {
 
         private boolean mRegistered;
         private boolean mFinished;
+        private boolean mSawNear = false;
+        private long mInPocketTime = 0;
         private float mMaxRange;
+        private Sensor mSensor;
 
         abstract public void onProximityResult(int result);
 
@@ -699,9 +784,88 @@ public class DozeService extends DreamService {
                 if (DEBUG) Log.d(mTag, "Event: value=" + event.values[0] + " max=" + mMaxRange);
                 final boolean isNear = event.values[0] < mMaxRange;
                 finishWithResult(isNear ? RESULT_NEAR : RESULT_FAR);
+
+                if (mSawNear && !isNear) {
+                    if (shouldPulse(event.timestamp)) {
+                        launchDozePulse();
+                    }
+                } else {
+                    mInPocketTime = event.timestamp;
+                }
+                mSawNear = isNear;
             }
         }
 
+        private boolean shouldPulse(long timestamp) {
+            long delta = timestamp - mInPocketTime;
+
+            mDozeTriggerHandWave = SlimSettings.System.getInt(getContentResolver(),
+                SlimSettings.System.DOZE_TRIGGER_HAND_WAVE, 0) == 1;
+            if (DEBUG) Log.d(mTag, "shouldPulse() mDozeTriggerHandWave: " + mDozeTriggerHandWave);
+
+            mDozeTriggerPocket = SlimSettings.System.getInt(getContentResolver(),
+                SlimSettings.System.DOZE_TRIGGER_POCKET, 0) == 1;
+            if (DEBUG) Log.d(mTag, "shouldPulse() mDozeTriggerPocket: " + mDozeTriggerPocket);
+
+            if (mDozeTriggerHandWave && mDozeTriggerPocket) {
+                return true;
+            } else if (mDozeTriggerHandWave && !mDozeTriggerPocket) {
+                return delta < POCKET_DELTA_NS;
+            } else if (!mDozeTriggerHandWave && mDozeTriggerPocket) {
+                return delta >= POCKET_DELTA_NS;
+            }
+            return false;
+        }
+
+        public void enable() {
+            if (mDozeTriggerHandWave || mDozeTriggerPocket) {
+                mSensors.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
+            }
+        }
+
+        public void disable() {
+            mSensors.unregisterListener(this, mSensor);
+            // Unregister the screen state receiver
+            // mContext.unregisterReceiver(mScreenStateReceiver);
+        }
+
+        private void launchDozePulse() {
+            if (DEBUG) Log.d(mTag, "launchDozePulse() called");
+            if (isHandWave) {
+                if (DEBUG) Log.d(mTag, "launchDozePulse() isHandWave");
+                requestPulse(DozeLog.PULSE_REASON_SENSOR_HAND_WAVE);
+            } else if (isPocket) {
+                if (DEBUG) Log.d(mTag, "launchDozePulse() isPocket");
+                requestPulse(DozeLog.PULSE_REASON_SENSOR_POCKET);
+            }
+        }
+
+        private boolean isDozeEnabled() {
+            int value = Settings.Secure.getInt(mContext.getContentResolver(), Settings.Secure.DOZE_ENABLED, 1);
+            return value != 0;
+        }
+
+        private void onDisplayOn() {
+            if (DEBUG) Log.d(TAG, "Display on");
+            disable();
+            if (isDozeEnabled() && !mWakeLock.isHeld()) {
+                if (DEBUG) Log.d(TAG, "Acquiring wakelock");
+                mWakeLock.acquire();
+            }
+        }
+
+        private void onDisplayOff() {
+            if (DEBUG) Log.d(TAG, "Display off");
+            if (isDozeEnabled()) {
+                enable();
+        }
+
+        if (mWakeLock.isHeld()) {
+            if (DEBUG) Log.d(TAG, "Releasing wakelock");
+            mWakeLock.release();
+        }
+
+}
         @Override
         public void run() {
             if (DEBUG) Log.d(mTag, "No event received before timeout");
