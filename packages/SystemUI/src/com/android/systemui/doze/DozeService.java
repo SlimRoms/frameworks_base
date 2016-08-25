@@ -81,6 +81,8 @@ public class DozeService extends DreamService {
     private DozeHost mHost;
     private SensorManager mSensors;
     private TriggerSensor mSigMotionSensor;
+    private HandWaveSensor mHandWaveSensor;
+    private PocketSensor mPocketSensor;
     private TriggerSensor mPickupSensor;
     private PowerManager mPowerManager;
     private PowerManager.WakeLock mWakeLock;
@@ -100,6 +102,8 @@ public class DozeService extends DreamService {
 
     private boolean mDozeTriggerPickup;
     private boolean mDozeTriggerSigmotion;
+    private boolean mDozeTriggerHandWave;
+    private boolean mDozeTriggerPocket;
     private boolean mDozeTriggerNotification;
     private boolean mDozeSchedule;
 
@@ -119,6 +123,8 @@ public class DozeService extends DreamService {
         pw.print("  mHost: "); pw.println(mHost);
         pw.print("  mBroadcastReceiverRegistered: "); pw.println(mBroadcastReceiverRegistered);
         pw.print("  mSigMotionSensor: "); pw.println(mSigMotionSensor);
+        pw.print("  mHandWaveSensor: "); pw.println(mHandWaveSensor);
+        pw.print("  mPocketSensor: "); pw.println(mPocketSensor);
         pw.print("  mPickupSensor:"); pw.println(mPickupSensor);
         pw.print("  mDisplayStateSupported: "); pw.println(mDisplayStateSupported);
         pw.print("  mNotificationLightOn: "); pw.println(mNotificationLightOn);
@@ -146,6 +152,12 @@ public class DozeService extends DreamService {
         mSigMotionSensor = new TriggerSensor(Sensor.TYPE_SIGNIFICANT_MOTION,
                 mDozeParameters.getPulseOnSigMotion(), mDozeParameters.getVibrateOnSigMotion(),
                 DozeLog.PULSE_REASON_SENSOR_SIGMOTION);
+        mHandWaveSensor = new TriggerSensor(Sensor.TYPE_HAND_WAVE_GESTURE,
+                mDozeParameters.getPulseOnHandWave(), mDozeParameters.getVibrateOnHandWave(),
+                DozeLog.PULSE_REASON_HAND_WAVE_GESTURE);
+        mPocketSensor = new TriggerSensor(Sensor.TYPE_POCKET_GESTURE,
+                mDozeParameters.getPulseOnPocket(), mDozeParameters.getVibrateOnPocket(),
+                DozeLog.PULSE_REASON_POCKET_GESTURE);
         mPickupSensor = new TriggerSensor(Sensor.TYPE_PICK_UP_GESTURE,
                 mDozeParameters.getPulseOnPickup(), mDozeParameters.getVibrateOnPickup(),
                 DozeLog.PULSE_REASON_SENSOR_PICKUP);
@@ -241,8 +253,14 @@ public class DozeService extends DreamService {
                 return;
             }
             final long start = SystemClock.uptimeMillis();
-            final boolean nonBlocking = reason == DozeLog.PULSE_REASON_SENSOR_PICKUP
-                    && mDozeParameters.getPickupPerformsProxCheck();
+            final boolean nonBlocking = reason == (
+                (DozeLog.PULSE_REASON_SENSOR_PICKUP &&
+                        mDozeParameters.getPickupPerformsProxCheck()) ||
+                (DozeLog.PULSE_REASON_HAND_WAVE_GESTURE &&
+                        mDozeParameters.getHandWavePerformsProxCheck()) ||
+                (DozeLog.PULSE_REASON_POCKET_GESTURE &&
+                        mDozeParameters.getPickupPerformsProxCheck())
+            );
             if (nonBlocking) {
                 // proximity check is only done to capture statistics, continue pulsing
                 continuePulsing(reason);
@@ -324,6 +342,12 @@ public class DozeService extends DreamService {
         }
         if (mDozeTriggerSigmotion) {
             mSigMotionSensor.setListening(listen);
+        }
+        if (mDozeTriggerHandWave) {
+            mHandWaveSensor.setListening(listen);
+        }
+        if (mDozeTriggerPocket) {
+            mPocketSensor.setListening(listen);
         }
         listenForBroadcasts(listen);
         if (mDozeTriggerNotification) {
@@ -519,6 +543,10 @@ public class DozeService extends DreamService {
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(SlimSettings.System.getUriFor(
                     SlimSettings.System.DOZE_TRIGGER_SIGMOTION),
+            resolver.registerContentObserver(SlimSettings.System.getUriFor(
+                    SlimSettings.System.DOZE_TRIGGER_HAND_WAVE),
+            resolver.registerContentObserver(SlimSettings.System.getUriFor(
+                    SlimSettings.System.DOZE_TRIGGER_POCKET),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(SlimSettings.System.getUriFor(
                     SlimSettings.System.DOZE_TRIGGER_NOTIFICATION),
@@ -548,6 +576,16 @@ public class DozeService extends DreamService {
                     SlimSettings.System.DOZE_TRIGGER_SIGMOTION,
                     mContext.getResources().getBoolean(
                     R.bool.doze_pulse_on_significant_motion) ? 1 : 0,
+                    UserHandle.USER_CURRENT) == 1);
+            mDozeTriggerHandWave = (SlimSettings.System.getIntForUser(resolver,
+                    SlimSettings.System.DOZE_TRIGGER_HAND_WAVE,
+                    mContext.getResources().getBoolean(
+                    R.bool.doze_pulse_on_hand_wave) ? 1 : 0,
+                    UserHandle.USER_CURRENT) == 1);
+            mDozeTriggerPocket = (SlimSettings.System.getIntForUser(resolver,
+                    SlimSettings.System.DOZE_TRIGGER_POCKET,
+                    mContext.getResources().getBoolean(
+                    R.bool.doze_pulse_on_pocket) ? 1 : 0,
                     UserHandle.USER_CURRENT) == 1);
             mDozeTriggerNotification = (SlimSettings.System.getIntForUser(resolver,
                     SlimSettings.System.DOZE_TRIGGER_NOTIFICATION, 1,
