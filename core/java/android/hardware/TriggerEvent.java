@@ -42,7 +42,12 @@ public final class TriggerEvent {
      * <h4> {@link Sensor#TYPE_SIGNIFICANT_MOTION} </h4>
      * The value field is of length 1. value[0] = 1.0 when the sensor triggers.
      * 1.0 is the only allowed value.
-     */
+     * <h4> {@link Sensor#TYPE_HAND_WAVE} </h4>
+     * The value field is of length 1. value[0] = 1.0 when the sensor triggers.
+     * 1.0 is the only allowed value.
+     * <h4> {@link Sensor#TYPE_POCKET} </h4>
+     * The value field is of length 1. value[0] = 1.0 when the sensor triggers.
+     * 1.0 is the only allowed value.     */
     public final float[] values;
 
     /**
