@@ -54,6 +54,10 @@ public class DozeParameters {
         pw.print("    getPulseOutDuration(): "); pw.println(getPulseOutDuration());
         pw.print("    getPulseOnSigMotion(): "); pw.println(getPulseOnSigMotion());
         pw.print("    getVibrateOnSigMotion(): "); pw.println(getVibrateOnSigMotion());
+        pw.print("    getPulseOnHandWave(): "); pw.println(getPulseOnHandWave());
+        pw.print("    getPulseOnHandWave(): "); pw.println(getVibrateOnHandWave());
+        pw.print("    getPulseOnPocket(): "); pw.println(getPulseOnPocket());
+        pw.print("    getPulseOnPocket(): "); pw.println(getVibrateOnPocket());
         pw.print("    getPulseOnPickup(): "); pw.println(getPulseOnPickup());
         pw.print("    getVibrateOnPickup(): "); pw.println(getVibrateOnPickup());
         pw.print("    getProxCheckBeforePulse(): "); pw.println(getProxCheckBeforePulse());
@@ -92,6 +96,22 @@ public class DozeParameters {
 
     public boolean getVibrateOnSigMotion() {
         return SystemProperties.getBoolean("doze.vibrate.sigmotion", false);
+    }
+
+    public boolean getPulseOnHandWave() {
+        return getBoolean("doze.pulse.handwave", R.bool.doze_pulse_on_hand_wave);
+    }
+
+    public boolean getVibrateOnHandWave() {
+        return SystemProperties.getBoolean("doze.vibrate.handwave", false);
+    }
+
+    public boolean getPulseOnPocket() {
+        return getBoolean("doze.pulse.pocket", R.bool.doze_pulse_on_pocket);
+    }
+
+    public boolean getVibrateOnPocket() {
+        return SystemProperties.getBoolean("doze.vibrate.pocket", false);
     }
 
     public boolean getPulseOnPickup() {
