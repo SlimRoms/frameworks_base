@@ -41,6 +41,8 @@ public class DozeLog {
     public static final int PULSE_REASON_NOTIFICATION = 1;
     public static final int PULSE_REASON_SENSOR_SIGMOTION = 2;
     public static final int PULSE_REASON_SENSOR_PICKUP = 3;
+    public static final int PULSE_REASON_SENSOR_HAND_WAVE = 4;
+    public static final int PULSE_REASON_SENSOR_POCKET = 5;
 
     private static long[] sTimes;
     private static String[] sMessages;
@@ -165,6 +167,8 @@ public class DozeLog {
             case PULSE_REASON_NOTIFICATION: return "notification";
             case PULSE_REASON_SENSOR_SIGMOTION: return "sigmotion";
             case PULSE_REASON_SENSOR_PICKUP: return "pickup";
+            case PULSE_REASON_SENSOR_HAND_WAVE: return "hand wave";
+            case PULSE_REASON_SENSOR_POCKET: return "pocket";
             default: throw new IllegalArgumentException("bad reason: " + pulseReason);
         }
     }
