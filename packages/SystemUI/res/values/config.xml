@@ -233,6 +233,12 @@
     <!-- Doze: should the significant motion sensor be used as a pulse signal? -->
     <bool name="doze_pulse_on_significant_motion">false</bool>
 
+    <!-- Doze: should the hand wave sensor be used as a pulse signal? -->
+    <bool name="doze_pulse_on_hand_wave">false</bool>
+
+    <!-- Doze: should the pocket sensor be used as a pulse signal? -->
+    <bool name="doze_pulse_on_pocket">false</bool>
+
     <!-- Doze: should the pickup sensor be used as a pulse signal? -->
     <bool name="doze_pulse_on_pick_up">false</bool>
 
