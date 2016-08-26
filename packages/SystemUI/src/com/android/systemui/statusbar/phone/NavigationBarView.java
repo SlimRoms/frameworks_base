@@ -552,7 +552,7 @@ public class NavigationBarView extends LinearLayout {
         }
     }
 
-    private void adjustExtraKeyGravity(View navBar, boolean isLayoutRtl) {
+    protected void adjustExtraKeyGravity(View navBar, boolean isLayoutRtl) {
         View menu = navBar.findViewById(R.id.menu);
         View imeSwitcher = navBar.findViewById(R.id.ime_switcher);
         if (menu != null) {
