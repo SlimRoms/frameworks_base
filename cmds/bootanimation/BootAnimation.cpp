@@ -343,6 +343,7 @@ status_t BootAnimation::initTexture(FileMap* map, int* width, int* height)
     // Release it now as the texture is already loaded and the memory used for
     // the packed resource can be released.
     delete map;
+
     // ensure we can call getPixels(). No need to call unlock, since the
     // bitmap will go out of scope when we return from this method.
     bitmap.lockPixels();
@@ -381,8 +382,10 @@ status_t BootAnimation::initTexture(FileMap* map, int* width, int* height)
             break;
     }
     glTexParameteriv(GL_TEXTURE_2D, GL_TEXTURE_CROP_RECT_OES, crop);
+
     *width = w;
     *height = h;
+
     return NO_ERROR;
 }
 
@@ -1111,7 +1114,8 @@ bool BootAnimation::playAnimation(const Animation& animation)
 #ifdef MULTITHREAD_DECODE
                     initTexture(frameManager->next());
 #else
-                    initTexture(frame);
+                    int w, h;
+                    initTexture(frame.map, &w, &h);
 #endif
                 }
 
