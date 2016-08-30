@@ -1092,7 +1092,10 @@ public final class Configuration implements Parcelable, Comparable<Configuration
         }
         if (delta.assetSeq != 0 && assetSeq != delta.assetSeq) {
             changed |= ActivityInfo.CONFIG_ASSETS;
+<<<<<<< HEAD
             changed |= ActivityInfo.CONFIG_THEME_FONT;
+=======
+>>>>>>> 0077bb2... OMS-N: Officially announce the rebase completion to Android Nougat [14/14]
             assetSeq = delta.assetSeq;
         }
         if (delta.seq != 0) {
@@ -1211,7 +1214,10 @@ public final class Configuration implements Parcelable, Comparable<Configuration
         }
         if (delta.assetSeq != 0 && assetSeq != delta.assetSeq) {
             changed |= ActivityInfo.CONFIG_ASSETS;
+<<<<<<< HEAD
             changed |= ActivityInfo.CONFIG_THEME_FONT;
+=======
+>>>>>>> 0077bb2... OMS-N: Officially announce the rebase completion to Android Nougat [14/14]
         }
 
         return changed;
@@ -1232,8 +1238,12 @@ public final class Configuration implements Parcelable, Comparable<Configuration
     public static boolean needNewResources(@Config int configChanges,
             @Config int interestingChanges) {
         return (configChanges & (interestingChanges|ActivityInfo.CONFIG_FONT_SCALE|
+<<<<<<< HEAD
                     ActivityInfo.CONFIG_ASSETS|
                     ActivityInfo.CONFIG_THEME_FONT)) != 0;
+=======
+            ActivityInfo.CONFIG_ASSETS)) != 0;
+>>>>>>> 0077bb2... OMS-N: Officially announce the rebase completion to Android Nougat [14/14]
     }
 
     /**
