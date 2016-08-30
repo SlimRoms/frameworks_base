@@ -7043,7 +7043,6 @@ public class PackageManagerService extends IPackageManager.Stub {
                     synchronized (mPackages) {
                         // Just remove the loaded entries from package lists.
                         mPackages.remove(ps.name);
-                        removeFromOverlaysLP(ps.pkg);
                     }
 
                     logCriticalInfo(Log.WARN, "Package " + ps.name + " at " + scanFile
@@ -8085,10 +8084,6 @@ public class PackageManagerService extends IPackageManager.Stub {
 
         if ((policyFlags&PackageParser.PARSE_IS_PRIVILEGED) != 0) {
             pkg.applicationInfo.privateFlags |= ApplicationInfo.PRIVATE_FLAG_PRIVILEGED;
-        }
-
-        if ((policyFlags & PackageParser.PARSE_ENFORCE_CODE) != 0) {
-            enforceCodePolicy(pkg);
         }
 
         if (mCustomResolverComponentName != null &&
@@ -9818,8 +9813,6 @@ public class PackageManagerService extends IPackageManager.Stub {
         if (r != null) {
             if (DEBUG_REMOVE) Log.d(TAG, "  Libraries: " + r);
         }
-
-        removeFromOverlaysLP(pkg);
     }
 
     private static boolean hasPermission(PackageParser.Package pkgInfo, String perm) {
@@ -20626,46 +20619,6 @@ Slog.v(TAG, ":: stepped forward, applying functor at tag " + parser.getName());
                         }
                     }
                 }
-            }
-        }
-    }
-
-    private void removeFromOverlaysLP(PackageParser.Package pkg) {
-        if (pkg == null) {
-            return;
-        }
-        if (pkg.mOverlayTarget == null) {
-            // regular package
-            ArrayMap<String, PackageParser.Package> map = mOverlays.get(pkg.mOverlayTarget);
-            int N = map.size();
-            for (int i = 0; i < N; i++) {
-                PackageParser.Package opkg = map.valueAt(i);
-                mInstaller.removeIdmap(opkg.baseCodePath);
-            }
-            mOverlays.remove(pkg.packageName);
-        } else {
-            // overlay package
-            PackageParser.Package target = mPackages.get(pkg.mOverlayTarget);
-            if (target != null && target.applicationInfo.resourceDirs != null) {
-                killApplication(pkg.mOverlayTarget, target.applicationInfo.uid,
-                        "overlay package removed");
-                int N = target.applicationInfo.resourceDirs.length;
-                int i = 0;
-                for (; i < N; i++) {
-                    if (target.applicationInfo.resourceDirs[i].equals(pkg.applicationInfo.sourceDir)) {
-                        break;
-                    }
-                }
-                System.arraycopy(target.applicationInfo.resourceDirs, i + 1,
-                        target.applicationInfo.resourceDirs, i, N - 1 - i);
-                String[] tmp = Arrays.copyOfRange(target.applicationInfo.resourceDirs, 0, N - 1);
-                target.applicationInfo.resourceDirs = tmp;
-            }
-
-            mInstaller.removeIdmap(pkg.baseCodePath);
-
-            for (ArrayMap<String, PackageParser.Package> map : mOverlays.values()) {
-                map.remove(pkg.packageName);
             }
         }
     }
