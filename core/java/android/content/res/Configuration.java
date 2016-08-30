@@ -1093,7 +1093,10 @@ public final class Configuration implements Parcelable, Comparable<Configuration
         if (delta.assetSeq != 0 && assetSeq != delta.assetSeq) {
             changed |= ActivityInfo.CONFIG_ASSETS;
 <<<<<<< HEAD
+<<<<<<< HEAD
             changed |= ActivityInfo.CONFIG_THEME_FONT;
+=======
+>>>>>>> 0077bb2... OMS-N: Officially announce the rebase completion to Android Nougat [14/14]
 =======
 >>>>>>> 0077bb2... OMS-N: Officially announce the rebase completion to Android Nougat [14/14]
             assetSeq = delta.assetSeq;
@@ -1215,7 +1218,10 @@ public final class Configuration implements Parcelable, Comparable<Configuration
         if (delta.assetSeq != 0 && assetSeq != delta.assetSeq) {
             changed |= ActivityInfo.CONFIG_ASSETS;
 <<<<<<< HEAD
+<<<<<<< HEAD
             changed |= ActivityInfo.CONFIG_THEME_FONT;
+=======
+>>>>>>> 0077bb2... OMS-N: Officially announce the rebase completion to Android Nougat [14/14]
 =======
 >>>>>>> 0077bb2... OMS-N: Officially announce the rebase completion to Android Nougat [14/14]
         }
@@ -1239,8 +1245,12 @@ public final class Configuration implements Parcelable, Comparable<Configuration
             @Config int interestingChanges) {
         return (configChanges & (interestingChanges|ActivityInfo.CONFIG_FONT_SCALE|
 <<<<<<< HEAD
+<<<<<<< HEAD
                     ActivityInfo.CONFIG_ASSETS|
                     ActivityInfo.CONFIG_THEME_FONT)) != 0;
+=======
+            ActivityInfo.CONFIG_ASSETS)) != 0;
+>>>>>>> 0077bb2... OMS-N: Officially announce the rebase completion to Android Nougat [14/14]
 =======
             ActivityInfo.CONFIG_ASSETS)) != 0;
 >>>>>>> 0077bb2... OMS-N: Officially announce the rebase completion to Android Nougat [14/14]
