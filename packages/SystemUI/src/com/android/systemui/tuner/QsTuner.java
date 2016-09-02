@@ -102,19 +102,19 @@ public class QsTuner extends Fragment implements Callback {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        int numRows = SlimSettings.Secure.getInt(getActivity().getContentResolver(),
+        int numCols = SlimSettings.Secure.getInt(getActivity().getContentResolver(),
                 SlimSettings.Secure.QS_NUM_TILE_COLUMNS, 3);
 
-        SubMenu qsNumRows = menu.addSubMenu(0,
+        SubMenu qsNumCols = menu.addSubMenu(0,
                 MENU_QS_NUM_COLUMNS, 0, R.string.qs_num_columns_title);
 
-        qsNumRows.add(1, SUBMENU_COLUMNS_3, 3, R.string.qs_num_columns_entries_three)
-                .setChecked(numRows == 3);
-        qsNumRows.add(1, SUBMENU_COLUMNS_4, 4, R.string.qs_num_columns_entries_four)
-                .setChecked(numRows == 4);
-        qsNumRows.add(1, SUBMENU_COLUMNS_5, 5, R.string.qs_num_columns_entries_five)
-                .setChecked(numRows == 5);
-        qsNumRows.setGroupCheckable(1, true, true);
+        qsNumCols.add(1, SUBMENU_COLUMNS_3, 3, R.string.qs_num_columns_entries_three)
+                .setChecked(numCols == 3);
+        qsNumCols.add(1, SUBMENU_COLUMNS_4, 4, R.string.qs_num_columns_entries_four)
+                .setChecked(numCols == 4);
+        qsNumCols.add(1, SUBMENU_COLUMNS_5, 5, R.string.qs_num_columns_entries_five)
+                .setChecked(numCols == 5);
+        qsNumCols.setGroupCheckable(1, true, true);
 
         menu.add(0, MENU_RESET, 0, com.android.internal.R.string.reset);
     }
@@ -781,7 +781,9 @@ public class QsTuner extends Fragment implements Callback {
                     }
                 }
                 if (oldR == 0) {
-                    if (newTopColumns < 3) {
+                    int numCols = SlimSettings.Secure.getInt(getActivity().getContentResolver(),
+                            SlimSettings.Secure.QS_NUM_TILE_COLUMNS, 3);
+                    if (newTopColumns < numCols) {
                         newTopColumns++;
                     }
                 }
