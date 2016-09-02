@@ -4441,12 +4441,7 @@
     <!-- Accessibilty string added to a widget that has been suspended [CHAR LIMIT=20] -->
     <string name="suspended_widget_accessibility">Disabled <xliff:g id="label" example="Calendar">%1$s</xliff:g></string>
 
-    <string name="other_permissions">other permissions</string>
-    <string name="permission_remember_choice">Remember</string>
-    <string name="permission_title">Permission</string>
-    <string name="allow_button">Allow</string>
-    <string name="deny_button">Deny</string>
-
     <!-- Label used by Telephony code, assigned as the display name for conference calls [CHAR LIMIT=60] -->
     <string name="conference_call">Conference Call</string>
+
 </resources>
