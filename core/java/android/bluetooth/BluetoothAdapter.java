@@ -1307,7 +1307,7 @@ public final class BluetoothAdapter {
      * @return true if Multiple Advertisement feature is supported
      */
     public boolean isMultipleAdvertisementSupported() {
-        if (getState() != STATE_ON) return false;
+        if (!getLeAccess()) return false;
         try {
             mServiceLock.readLock().lock();
             if (mService != null) return mService.isMultiAdvertisementSupported();
@@ -1345,7 +1345,7 @@ public final class BluetoothAdapter {
      * @hide
      */
     public boolean isPeripheralModeSupported() {
-        if (getState() != STATE_ON) return false;
+        if (!getLeAccess()) return false;
         try {
             mServiceLock.readLock().lock();
             if (mService != null) return mService.isPeripheralModeSupported();
