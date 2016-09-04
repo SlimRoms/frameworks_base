@@ -108,7 +108,7 @@ public class LocationTile extends QSTile<QSTile.BooleanState> {
         // Work around for bug 15916487: don't show location tile on top of lock screen. After the
         // bug is fixed, this should be reverted to only hiding it on secure lock screens:
         // state.visible = !(mKeyguard.isSecure() && mKeyguard.isShowing());
-        state.visible = !mKeyguard.isShowing();
+        state.visible = !(mKeyguard.isSecure() && mKeyguard.isShowing());
         state.value = locationEnabled;
         state.label = mContext.getString(getStateLabelRes(currentState));
 
