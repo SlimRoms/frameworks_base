@@ -986,6 +986,15 @@ public abstract class BaseStatusBar extends SystemUI implements
                 }
 
                 ExpandableNotificationRow row = (ExpandableNotificationRow) v;
+                if (row.isUserExpanded()) {
+                    // if user expanded notification, collapse it. if user wants to see notification
+                    // guts, they can longpress again.
+                    row.resetUserExpansion();
+                    mStackScroller.onGroupExpansionChanged(row, false /* new expanded state */);
+                    Log.e(TAG, "Notification is user expanded. Collapsing before showing guts.");
+                    return false;
+                }
+
                 bindGuts(row);
 
                 // Assume we are a status_bar_notification_row
