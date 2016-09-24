@@ -18,7 +18,17 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- App ops requests -->
+  <string name="app_ops_access_camera">yr hawl dros y camera</string>
+  <string name="app_ops_access_location">gael mynediad at eich lleoliad</string>
+  <string name="app_ops_access_notifications">darllen eich hysbysiadau</string>
+  <string name="app_ops_activate_vpn">ysgogi VPN</string>
+  <string name="app_ops_delete_contacts">dileu eich cysylltiadau</string>
+  <string name="app_ops_delete_mms">dileu eich negeseuon MMS
+</string>
+  <string name="app_ops_su">cael hawliau Superuser</string>
   <!-- Privacy Guard -->
+  <string name="privacy_guard_notification_detail">Ni bydd <xliff:g id="app">%1$s </xliff:g> yn gallu cael gafael ar ddata personol</string>
+  <string name="privacy_guard_dialog_title">Gard preifatrwydd</string>
   <!-- Wifi Hotspot disabled due to subscription change -->
   <!-- WiFi turn off notification action text -->
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->

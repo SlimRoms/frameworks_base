@@ -18,15 +18,98 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- App ops requests -->
+  <string name="app_ops_access_camera">Accedir a la càmera</string>
+  <string name="app_ops_access_location">Accedir a la teva ubicació</string>
+  <string name="app_ops_access_notifications">Llegir notificacions</string>
+  <string name="app_ops_activate_vpn">Activar una VPN</string>
+  <string name="app_ops_auto_start">Executar en l\'arrencada</string>
+  <string name="app_ops_delete_call_log">Esborrar el registre de trucades</string>
+  <string name="app_ops_delete_contacts">Esborrar els contactes</string>
+  <string name="app_ops_delete_mms">Esborrar els missatges MMS</string>
+  <string name="app_ops_delete_sms">Esborrar els missatges SMS</string>
+  <string name="app_ops_draw_on_top">dibuixar en primer pla</string>
+  <string name="app_ops_get_usage_stats">Obtenir estadístiques d\'ús d\'aplicacions</string>
+  <string name="app_ops_keep_device_awake">Mantenir el dispositiu actiu</string>
+  <string name="app_ops_make_phone_call">Fer una trucada</string>
+  <string name="app_ops_modify_calendar">Actualitzar el calendari</string>
+  <string name="app_ops_modify_call_log">Actualitzar el registre de trucades</string>
+  <string name="app_ops_modify_clipboard">Modificar el portapapers</string>
+  <string name="app_ops_modify_contacts">Actualizar contactes</string>
+  <string name="app_ops_modify_settings">Actualitzar configuració del sistema</string>
+  <string name="app_ops_mute_unmute_microphone">Activar/desactivar el micròfon</string>
+  <string name="app_ops_play_audio">Reproduir l\'àudio</string>
+  <string name="app_ops_post_notification">Publicar una notificació</string>
+  <string name="app_ops_project_media">Control d\'accés als mitjans de comunicació</string>
+  <string name="app_ops_read_calendar">Llegir el calendari</string>
+  <string name="app_ops_read_call_log">Llegir el registre de trucades</string>
+  <string name="app_ops_read_clipboard">Llegir al portapapers</string>
+  <string name="app_ops_read_contacts">Llegir els contactes</string>
+  <string name="app_ops_read_mms">Llegir els missatges MMS</string>
+  <string name="app_ops_read_sms">Llegir els missatges SMS</string>
+  <string name="app_ops_receive_sms">Rebre un SMS</string>
+  <string name="app_ops_record_audio">Gravar àudio</string>
+  <string name="app_ops_send_mms">Enviar un MMS</string>
+  <string name="app_ops_send_sms">Enviar un SMS</string>
+  <string name="app_ops_start_at_bootup">Executar en l\'arrencada</string>
+  <string name="app_ops_toast_window">Controlar missatges emergents</string>
+  <string name="app_ops_toggle_bluetooth">Activar/desactivar Bluetooth</string>
+  <string name="app_ops_toggle_mobile_data">Activar/desactivar dades mòbils</string>
+  <string name="app_ops_toggle_nfc">Activar/desactivar NFC</string>
+  <string name="app_ops_toggle_wifi">Activar/desactivar WIFI</string>
+  <string name="app_ops_use_alarm_volume">Controlar el volum de la alarma</string>
+  <string name="app_ops_use_audio_focus">Controlar la font de so</string>
+  <string name="app_ops_use_bluetooth_volume">Controlar el volum de Bluetooth</string>
+  <string name="app_ops_use_master_volume">Controlar el volum general</string>
+  <string name="app_ops_use_media_buttons">Utilitza els botons multimèdia</string>
+  <string name="app_ops_use_media_volume">Controlar el volum multimèdia</string>
+  <string name="app_ops_use_notification_volume">Controlar el volum de notificació</string>
+  <string name="app_ops_use_ring_volume">Controlar el volum del to de trucada</string>
+  <string name="app_ops_use_vibrate">Utilitzar la resposta hàptica</string>
+  <string name="app_ops_use_voice_volume">Controlar el volum de trucades de veu</string>
+  <string name="app_ops_write_mms">Escriure un MMS</string>
+  <string name="app_ops_write_sms">Escriure un SMS</string>
+  <string name="app_ops_use_fingerprint">utilitzar les empremtes dactilars</string>
+  <string name="app_ops_add_voicemail">afegir un missatge de veu</string>
+  <string name="app_ops_read_phone_state">accés a l\'estat del telèfon</string>
+  <string name="app_ops_scan_wifi">Escanejar les xarxes WiFi</string>
+  <string name="app_ops_change_wallpaper">canviar el fons de pantalla</string>
+  <string name="app_ops_assist_structure">utilitzar estructura d\'assistència</string>
+  <string name="app_ops_assist_screenshot">fer una captura de pantalla</string>
+  <string name="app_ops_use_body_sensors">utilitza sensors corporals</string>
+  <string name="app_ops_read_cell_broadcasts">llegir missatges de difusió mòbil</string>
+  <string name="app_ops_mock_location">simular ubicació</string>
+  <string name="app_ops_read_external_storage">llegir l\'emmagatzematge extern</string>
+  <string name="app_ops_write_external_storage">escriure a l\'emmagatzematge extern</string>
+  <string name="app_ops_turn_on_screen">encendre la pantalla</string>
+  <string name="app_ops_get_accounts">obtenir comptes del dispositiu</string>
+  <string name="app_ops_wifi_change">canviar estat de la WiFi</string>
+  <string name="app_ops_su">Aconsegueix accés de superusuari</string>
   <!-- Privacy Guard -->
+  <string name="permlab_changePrivacyGuardState">Activar o desactivar la Protecció de Privacitat</string>
+  <string name="permdesc_changePrivacyGuardState">Permet determinar que aplicacions s\'executen amb Protecció de Privacitat. Quan una aplicació s\'executa sota la protecció de Privacitat, no tindrà accés a les dades personals com ara contactes, històric de trucades o missatges.</string>
+  <string name="privacy_guard_notification">Protecció de Privacitat activada</string>
+  <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> no tindrà accés a les dades personals</string>
+  <string name="privacy_guard_dialog_title">Protecció de dades</string>
+  <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s </xliff:g> t\'agradaria <xliff:g id="op">%2$s </xliff:g>.</string>
   <!-- Wifi Hotspot disabled due to subscription change -->
+  <string name="subscription_change_disabled_wifi_ap">Zona Wi-Fi desactivada per canvi de subscripció de SIM</string>
   <!-- WiFi turn off notification action text -->
+  <string name="notify_turn_wifi_off_title">Desactivar WiFi</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permlab_preventpower">anul·lar tecla d\'encesa</string>
+  <string name="permdesc_preventpower">Permet a una aplicació fer servir el botó d\'encesa.</string>
   <!-- Reboot menu -->
   <!-- Button to reboot the phone, within the Reboot Options dialog -->
+  <string name="reboot_reboot">Reiniciar</string>
   <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
+  <string name="reboot_recovery">Recovery</string>
   <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
+  <string name="reboot_bootloader">Bootloader</string>
   <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
+  <string name="reboot_download">Download</string>
   <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
+  <string name="reboot_progress">Reiniciant\u2026</string>
   <!-- Button to reboot the phone, within the Phone Options dialog -->
+  <string name="reboot_system" product="tablet">Reiniciar tablet</string>
+  <string name="reboot_system" product="default">Reiniciar telèfon</string>
 </resources>

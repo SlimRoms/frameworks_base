@@ -18,27 +18,122 @@
   <!-- Kill app toast -->
   <string name="app_killed_message">Application tuée</string>
   <!-- Dialog Cancel/OK -->
+  <string name="cancel">Annuler</string>
+  <string name="dlg_ok">Ok</string>
+  <string name="yes">Oui</string>
+  <string name="no">Non</string>
   <!-- Slim Shortcut Actions -->
+  <string name="shortcut_picker">Raccourcis Slim</string>
   <string name="shortcut_screenshot">Capture d\'écran</string>
+  <string name="shortcut_chamber">Chambre des Secrets</string>
+  <string name="chamber_disabled">La chambre des secrets est fermée</string>
+  <string name="chamber_title">Entrer une chaine de paramètres</string>
+  <string name="chamber_message">Entrez une chaine de paramètres qui soit une fonction Oui/Non (case à cocher) ou une liste de préférences. Par exemple: doze_enabled. Les différents paramètres possibles peuvent être trouvés dans le fichier Settings.java. ATTENTION: Ce processus peut être dangereux!</string>
+  <string name="chamber_slim_title">Paramètres de SlimOTA</string>
+  <string name="chamber_slim_message">Le paramètre est présent à la fois dans les paramètres Aosp ainsi que dans ceux de Slim. Est-ce un paramètre de Slim?</string>
+  <string name="chamber_invalid">Il s\'agit d\'une entrée non valide. Faites attention.</string>
+  <string name="chamber_invalid_setting">Essayez de changer manuellement l\'état de votre paramètre afin d\'être sûr qu\'il soit dans la base de données.</string>
+  <string name="chamber_checkbox">Changer</string>
+  <string name="chamber_chk_message">Ce paramètre utilise-t-il une case à cocher ?</string>
+  <string name="chamber_int">Valeurs d\'entrée</string>
+  <string name="chamber_int_message">Entrez les valeurs entre lesquelles vous voudriez voir le paramètre basculer. Séparez chaque valeur par une virgule. Les paramètres de couleur acceptent des valeurs hexadécimales comme #FF00aacc ou des valeurs de couleur basiques comme rouge, vert, et jaune.</string>
+  <string name="chamber_name_title">Nom du raccourci</string>
+  <string name="chamber_name_message">Donner un nom au raccourci à afficher avec l\'icône.</string>
+  <string name="chamber_name_toast">Utilisation du nom par défaut</string>
   <!-- Off/On/Toggle -->
-  <!-- Battery level for expanded quick settings [CHAR LIMIT=2] -->
-  <!-- Battery level text while charging [CHAR LIMIT=2] -->
+  <string name="off">Désactivé</string>
+  <string name="on">Allumé</string>
+  <string name="toggle">Basculer</string>
+  <string name="shortcut_toggle_title">Action à réaliser</string>
   <!-- QS Tiles Columns -->
+  <string name="qs_num_columns_entries_three">Trois</string>
+  <string name="qs_num_columns_entries_four">Quatre</string>
+  <string name="qs_num_columns_entries_five">Cinq</string>
+  <string name="qs_main_tiles_title">Agrandir la première ligne</string>
+  <string name="qs_main_tiles_summary">Deux tuiles principales sur la première ligne</string>
+  <string name="qs_num_columns_title">Nombre de tuiles par ligne</string>
+  <string name="qs_num_columns_showing">%1$s tuiles affichés par ligne</string>
   <!-- Additonal QS tiles -->
   <!-- USB tether QS tile -->
+  <string name="accessibility_quick_settings_usb_tether_off">Partage de connexion USB désactivé</string>
+  <string name="accessibility_quick_settings_usb_tether_on">Partage de connexion USB activé</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_off">Partage de connexion USB désactivé</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_on">Partage de connexion USB activé</string>
+  <string name="quick_settings_usb_tether_label">Partage de connexion USB</string>
   <!-- Ambient Display QS tile -->
+  <string name="accessibility_quick_settings_ambient_display_off">Adaptation de la luminosité désactivée</string>
+  <string name="accessibility_quick_settings_ambient_display_on">Adaptation de la luminosité activée</string>
+  <string name="accessibility_quick_settings_ambient_display_changed_off">Adaptation de la luminosité désactivée</string>
+  <string name="accessibility_quick_settings_ambient_display_changed_on">Adaptation de la luminosité activée</string>
+  <string name="quick_settings_ambient_display_label">Adaptation de la luminosité</string>
   <!-- Screenshot QS tile -->
+  <string name="quick_settings_screenshot_label">Capture d\'écran</string>
+  <!-- NFC QS tile -->
+  <string name="quick_settings_nfc_label">NFC</string>
   <!-- Sync QS tile -->
+  <string name="quick_settings_sync_label">Synchro.</string>
+  <string name="accessibility_quick_settings_sync_off">Synchro. désactivée</string>
+  <string name="accessibility_quick_settings_sync_on">Synchro. activée</string>
+  <string name="accessibility_quick_settings_sync_changed_off">Synchronisation désactivée</string>
+  <string name="accessibility_quick_settings_sync_changed_on">Synchronisation activée</string>
   <!-- Screen off QS tile -->
+  <string name="quick_settings_screen_off">Éteindre l\'écran</string>
   <!-- Screen timeout QS tile -->
+  <string name="quick_settings_timeout_label">Délai d\'expiration</string>
+  <string name="quick_settings_screen_timeout_detail_title">Délai avant mise en veille</string>
+  <string name="accessibility_quick_settings_screen_timeout">Délai avant mise en veille de l\'écran: <xliff:g id="timeout" example="30 seconds">%s</xliff:g>.</string>
+  <string name="accessibility_quick_settings_screen_timeout_changed">Délai avant mise en veille de l\'écran changé à <xliff:g id="timeout" example="30 seconds">%s</xliff:g>.</string>
   <!-- Brightness QS Tile -->
+  <string name="quick_settings_brightness">Luminosité</string>
   <!-- Music QS Tile -->
+  <string name="quick_settings_music_label">Musique</string>
+  <string name="quick_settings_music_play">Lecture</string>
+  <string name="quick_settings_music_pause">Pause</string>
   <!-- Reboot/Recovery QS Tile -->
+  <string name="quick_settings_reboot_label">Redémarrer</string>
+  <string name="quick_settings_reboot_recovery_label">Recovery</string>
   <!-- Battery Saver QS Tile -->
+  <string name="quick_settings_battery_saver">Économiseur de batterie</string>
+  <string name="accessibility_quick_settings_battery_saver_off">Économiseur de batterie désactivé.</string>
+  <string name="accessibility_quick_settings_battery_saver_on">Économiseur de batterie activé.</string>
+  <string name="accessibility_quick_settings_battery_saver_changed_off">Économiseur de batterie désactivé.</string>
+  <string name="accessibility_quick_settings_battery_saver_changed_on">Économiseur de batterie activé.</string>
   <!-- Compass QS Tile -->
+  <string name="quick_settings_compass_label">Boussole</string>
+  <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
+  <string name="quick_settings_compass_init">Initialisation\u2026</string>
+  <string name="accessibility_quick_settings_compass_off">Boussole désactivée.</string>
+  <string name="accessibility_quick_settings_compass_on">Boussole activée.</string>
+  <string name="accessibility_quick_settings_compass_changed_off">Boussole désactivée.</string>
+  <string name="accessibility_quick_settings_compass_changed_on">Boussole sactivée.</string>
+  <string name="quick_settings_compass_N">N</string>
+  <string name="quick_settings_compass_NE">NE</string>
+  <string name="quick_settings_compass_E">E</string>
+  <string name="quick_settings_compass_SE">SE</string>
+  <string name="quick_settings_compass_S">S</string>
+  <string name="quick_settings_compass_SW">SO</string>
+  <string name="quick_settings_compass_W">O</string>
+  <string name="quick_settings_compass_NW">NO</string>
   <!-- Caffeine QS Tile -->
+  <string name="quick_settings_caffeine_label">Caffeine</string>
+  <string name="accessibility_quick_settings_caffeine_off">Caffeine désactivé.</string>
+  <string name="accessibility_quick_settings_caffeine_on">Caffeine activé.</string>
   <!-- IME selector Tile -->
+  <string name="quick_settings_ime_label">Mode de saisie</string>
   <!-- Volume QS Tile -->
+  <string name="accessibility_quick_settings_volume_panel">Panneau de volume.</string>
+  <string name="quick_settings_volume_panel_label">Panneau de volume</string>
   <!-- Sound QS Tile -->
+  <string name="quick_settings_sound_label">Son</string>
+  <string name="quick_settings_sound_ring">Sonnerie</string>
+  <string name="quick_settings_sound_vibrate">Vibreur</string>
+  <string name="quick_settings_sound_silent">Muet</string>
   <!-- Advanced Location QS Tile -->
+  <string name="accessibility_quick_settings_location_battery_saving">Mode de localisation: économie de batterie.</string>
+  <string name="accessibility_quick_settings_location_gps_only">Mode de localisation: appareil uniquement.</string>
+  <string name="accessibility_quick_settings_location_high_accuracy">Mode de localisation: haute précision.</string>
+  <string name="quick_settings_location_detail_title">Mode de localisation</string>
+  <string name="quick_settings_location_battery_saving_label">Économie de batterie</string>
+  <string name="quick_settings_location_gps_only_label">Appareil uniquement</string>
+  <string name="quick_settings_location_high_accuracy_label">Haute précision</string>
 </resources>

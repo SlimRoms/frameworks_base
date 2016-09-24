@@ -18,15 +18,79 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- App ops requests -->
+  <string name="app_ops_access_camera">åtkomst till kameran</string>
+  <string name="app_ops_access_location">få tillgång till din plats</string>
+  <string name="app_ops_access_notifications">läsa dina notifieringar</string>
+  <string name="app_ops_activate_vpn">Aktivera en VPN</string>
+  <string name="app_ops_auto_start">starta vid uppstart</string>
+  <string name="app_ops_delete_call_log">ta bort samtalsloggen</string>
+  <string name="app_ops_delete_contacts">ta bort dina kontakter</string>
+  <string name="app_ops_delete_mms">ta bort dina MMS-meddelanden</string>
+  <string name="app_ops_delete_sms">ta bort dina MMS-meddelanden</string>
+  <string name="app_ops_draw_on_top">visa fönster överst</string>
+  <string name="app_ops_get_usage_stats">få en apps användarstatistik</string>
+  <string name="app_ops_keep_device_awake">hålla din enhet vaken</string>
+  <string name="app_ops_make_phone_call">ringa ett samtal</string>
+  <string name="app_ops_modify_calendar">uppdatera din kalender</string>
+  <string name="app_ops_modify_call_log">uppdatera samtalsloggen</string>
+  <string name="app_ops_modify_clipboard">ändra Urklipp</string>
+  <string name="app_ops_modify_contacts">uppdatera dina kontakter</string>
+  <string name="app_ops_modify_settings">uppdatera Systeminställningar</string>
+  <string name="app_ops_mute_unmute_microphone">Stäng av/slå på mikrofonen</string>
+  <string name="app_ops_play_audio">spela upp ljud</string>
+  <string name="app_ops_post_notification">Skicka en notifiering</string>
+  <string name="app_ops_project_media">projektmedia</string>
+  <string name="app_ops_read_calendar">Läsa din kalender</string>
+  <string name="app_ops_read_call_log">Läsa samtalsloggen</string>
+  <string name="app_ops_read_clipboard">Läsa Urklipp</string>
+  <string name="app_ops_read_contacts">Läsa dina kontakter</string>
+  <string name="app_ops_read_mms">Läsa din MMS-meddelanden</string>
+  <string name="app_ops_read_sms">läsa dina SMS</string>
+  <string name="app_ops_receive_sms">få ett SMS-meddelande</string>
+  <string name="app_ops_record_audio">spela in ljud</string>
+  <string name="app_ops_send_mms">Skicka ett MMS-meddelande</string>
+  <string name="app_ops_send_sms">Skicka ett SMS-meddelande</string>
+  <string name="app_ops_start_at_bootup">starta vid uppstart</string>
+  <string name="app_ops_toast_window">visa pop-up-meddelanden \"toast\"</string>
+  <string name="app_ops_toggle_bluetooth">Växla Bluetooth</string>
+  <string name="app_ops_toggle_mobile_data">Växla mobil data</string>
+  <string name="app_ops_toggle_nfc">Växla NFC</string>
+  <string name="app_ops_toggle_wifi">Växla WiFi</string>
+  <string name="app_ops_use_alarm_volume">Kontrollera larm-volym</string>
+  <string name="app_ops_use_audio_focus">styra ljudfokus</string>
+  <string name="app_ops_use_bluetooth_volume">kontrollera Bluetooth volymen</string>
+  <string name="app_ops_use_master_volume">kontrollera huvudvolymen</string>
+  <string name="app_ops_use_media_buttons">Använd mediaknapparna</string>
+  <string name="app_ops_use_media_volume">styr mediavolym</string>
+  <string name="app_ops_use_notification_volume">Kontrollera notifieringsvolym</string>
+  <string name="app_ops_use_ring_volume">styra volymen för ringsignalen</string>
+  <string name="app_ops_use_vibrate">Använd vibration</string>
+  <string name="app_ops_use_voice_volume">kontrollera röstsamtalsvolymen</string>
+  <string name="app_ops_write_mms">skriv ett MMS-meddelande</string>
+  <string name="app_ops_write_sms">skriv ett SMS-meddelande</string>
+  <string name="app_ops_su">få superuser-åtkomst</string>
   <!-- Privacy Guard -->
+  <string name="permlab_changePrivacyGuardState">Aktivera eller inaktivera Privacy Guard</string>
+  <string name="permdesc_changePrivacyGuardState">Tillåter att appen ändrar om en annan app körs med Privacy Guard. När en app körs med Privacy Guard, kommer det inte ha tillgång till personliga data som kontakter, samtalsloggar eller meddelanden.</string>
+  <string name="privacy_guard_notification">Privacy Guard aktiv</string>
+  <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s </xliff:g> kommer inte att kunna få tillgång till personlig data</string>
+  <string name="privacy_guard_dialog_title">Privacy Guard</string>
+  <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s </xliff:g> vill <xliff:g id="op">%2$s </xliff:g>.</string>
   <!-- Wifi Hotspot disabled due to subscription change -->
   <!-- WiFi turn off notification action text -->
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <!-- Reboot menu -->
   <!-- Button to reboot the phone, within the Reboot Options dialog -->
+  <string name="reboot_reboot">Starta om</string>
   <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
+  <string name="reboot_recovery">Recovery</string>
   <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
+  <string name="reboot_bootloader">Bootloader</string>
   <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
+  <string name="reboot_download">Hämta</string>
   <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
+  <string name="reboot_progress">Startar om!\u2026</string>
   <!-- Button to reboot the phone, within the Phone Options dialog -->
+  <string name="reboot_system" product="tablet">Starta om surfplattan</string>
+  <string name="reboot_system" product="default">Starta om telefonen</string>
 </resources>

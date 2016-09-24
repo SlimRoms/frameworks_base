@@ -18,7 +18,55 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- App ops requests -->
+  <string name="app_ops_access_camera">käyttää kameraa</string>
+  <string name="app_ops_access_location">käyttää sijaintiasi</string>
+  <string name="app_ops_access_notifications">lukea ilmoituksesi</string>
+  <string name="app_ops_activate_vpn">Aktivoi VPN</string>
+  <string name="app_ops_auto_start">käynnistä laitteen käynnistyessä</string>
+  <string name="app_ops_delete_call_log">Tyhjennä puheluloki</string>
+  <string name="app_ops_delete_contacts">Poista yhteystietoja</string>
+  <string name="app_ops_delete_mms">MMS-viestien poistaminen</string>
+  <string name="app_ops_delete_sms">SMS-viestien poistaminen</string>
+  <string name="app_ops_draw_on_top">Piirrä ikkuna päälle</string>
+  <string name="app_ops_get_usage_stats">Hanki ohjelman käyttötilasto</string>
+  <string name="app_ops_keep_device_awake">Pidä laite hereillä</string>
+  <string name="app_ops_make_phone_call">Soita puhelu</string>
+  <string name="app_ops_modify_calendar">päivittää kalenteria</string>
+  <string name="app_ops_modify_call_log">päivittää puhelulokia</string>
+  <string name="app_ops_modify_clipboard">muokkaa leikepöytää</string>
+  <string name="app_ops_modify_contacts">päivittää yhteystietojasi</string>
+  <string name="app_ops_modify_settings">Järjestelmäasetusten päivittäminen</string>
+  <string name="app_ops_mute_unmute_microphone">Mykistä/poista mykistys mikrofoni</string>
+  <string name="app_ops_play_audio">Toista ääni</string>
+  <string name="app_ops_post_notification">lähetä ilmoitus</string>
+  <string name="app_ops_project_media">projektimedia</string>
+  <string name="app_ops_read_calendar">Lue kalenteria</string>
+  <string name="app_ops_read_call_log">Lue puhelulokia</string>
+  <string name="app_ops_read_clipboard">Lue Leikepöytää</string>
+  <string name="app_ops_read_contacts">Lue yhteystiedot</string>
+  <string name="app_ops_read_mms">MMS-viestien lukeminen</string>
+  <string name="app_ops_read_sms">Lue SMS-viestit</string>
+  <string name="app_ops_receive_sms">vastaanota SMS-viesti</string>
+  <string name="app_ops_record_audio">Tallenna ääntä</string>
+  <string name="app_ops_send_mms">Lähetä multimediaviesti</string>
+  <string name="app_ops_send_sms">lähetä tekstiviesti</string>
+  <string name="app_ops_start_at_bootup">käynnistä laitteen käynnistyessä</string>
+  <string name="app_ops_toast_window">paahtoleipä sanomien näyttäminen</string>
+  <string name="app_ops_toggle_bluetooth">Käynnistä Bluetooth</string>
+  <string name="app_ops_toggle_mobile_data">mobiilidata käyttöön</string>
+  <string name="app_ops_toggle_nfc">Vaihda NFC</string>
+  <string name="app_ops_toggle_wifi">ota Wi-Fi käyttöön</string>
+  <string name="app_ops_use_alarm_volume">säädä hälytyksen äänenvoimakkuutta</string>
+  <string name="app_ops_use_audio_focus">säätää äänen kohdistusta</string>
+  <string name="app_ops_use_bluetooth_volume">hallitse Bluetoothin-laitteen äänenvoimakkuutta</string>
+  <string name="app_ops_use_master_volume">säädä yleistä äänenvoimakkuutta</string>
   <!-- Privacy Guard -->
+  <string name="permlab_changePrivacyGuardState">ota yksityisyyden suojaus käyttöön tai poista se käytöstä</string>
+  <string name="permdesc_changePrivacyGuardState">Sallii sovelluksen valita milloin muut sovellukset käyttävät Privacy Guardia. Kun sovellus käyttää Privacy Guardia, sillä ei ole pääsyä henkilökohtaisiin tietoihin kuten yhteystietoihin, puhelulokeihin tai viesteihin.</string>
+  <string name="privacy_guard_notification">Privacy Guard käytössä</string>
+  <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> ei pääse käsiksi henkilökohtaisiin tietoihin</string>
+  <string name="privacy_guard_dialog_title">Yksityisyyden suojaus</string>
+  <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s </xliff:g> haluaisi  <xliff:g id="op">%2$s </xliff:g>.</string>
   <!-- Wifi Hotspot disabled due to subscription change -->
   <!-- WiFi turn off notification action text -->
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->

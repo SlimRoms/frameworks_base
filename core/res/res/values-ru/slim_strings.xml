@@ -68,6 +68,21 @@
   <string name="app_ops_use_voice_volume">получить управление громкостью при разговоре</string>
   <string name="app_ops_write_mms">создать MMS-сообщение</string>
   <string name="app_ops_write_sms">создать SMS-сообщение</string>
+  <string name="app_ops_use_fingerprint">Использование отпечатка пальца</string>
+  <string name="app_ops_add_voicemail">Добавить голосовое сообщение</string>
+  <string name="app_ops_read_phone_state">Доступ к состоянию телефона</string>
+  <string name="app_ops_scan_wifi">Сканирование WiFi сетей</string>
+  <string name="app_ops_change_wallpaper">Изменить обои</string>
+  <string name="app_ops_assist_structure">Использовать структуру помощи</string>
+  <string name="app_ops_assist_screenshot">Сделать скриншот</string>
+  <string name="app_ops_use_body_sensors">Использование датчиков тела</string>
+  <string name="app_ops_read_cell_broadcasts">Чтение информации о сети</string>
+  <string name="app_ops_mock_location">Подделать ваше местоположение</string>
+  <string name="app_ops_read_external_storage">Чтение внешнего накопителя</string>
+  <string name="app_ops_write_external_storage">Запись на внешний накопитель</string>
+  <string name="app_ops_turn_on_screen">Включение экрана</string>
+  <string name="app_ops_get_accounts">Получить аккаунты устройства</string>
+  <string name="app_ops_wifi_change">Изменение статуса WiFi</string>
   <string name="app_ops_su">получить доступ суперпользователя</string>
   <!-- Privacy Guard -->
   <string name="permlab_changePrivacyGuardState">Включить/выключить защиту личных данных</string>
@@ -77,8 +92,12 @@
   <string name="privacy_guard_dialog_title">Менеджер защиты личных данных</string>
   <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s</xliff:g> требуется <xliff:g id="op">%2$s</xliff:g>.</string>
   <!-- Wifi Hotspot disabled due to subscription change -->
+  <string name="subscription_change_disabled_wifi_ap">Выключение Wi-Fi поиска из-за изменения подписки SIM</string>
   <!-- WiFi turn off notification action text -->
+  <string name="notify_turn_wifi_off_title">Выключить Wi-Fi</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permlab_preventpower">Переопределять кнопку питания</string>
+  <string name="permdesc_preventpower">Позволять приложению переопределять кнопку питания.</string>
   <!-- Reboot menu -->
   <!-- Button to reboot the phone, within the Reboot Options dialog -->
   <string name="reboot_reboot">Перезагрузить</string>
