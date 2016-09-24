@@ -18,15 +18,79 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- App ops requests -->
+  <string name="app_ops_access_camera">adgang til kameraet</string>
+  <string name="app_ops_access_location">adgang til din placering</string>
+  <string name="app_ops_access_notifications">Læs dine notifikationer</string>
+  <string name="app_ops_activate_vpn">Aktivere en VPN</string>
+  <string name="app_ops_auto_start">start ved opstart</string>
+  <string name="app_ops_delete_call_log">slet din opkaldsliste</string>
+  <string name="app_ops_delete_contacts">slet dine kontakter</string>
+  <string name="app_ops_delete_mms">slet dine MMS beskeder</string>
+  <string name="app_ops_delete_sms">slet dine SMS beskeder</string>
+  <string name="app_ops_draw_on_top">tegn vinduer øverst</string>
+  <string name="app_ops_get_usage_stats">få brugsstatistik for app</string>
+  <string name="app_ops_keep_device_awake">hold enheden vågen</string>
+  <string name="app_ops_make_phone_call">foretag et telefonopkald</string>
+  <string name="app_ops_modify_calendar">Opdater din kalender</string>
+  <string name="app_ops_modify_call_log">opdatere opkaldslisten</string>
+  <string name="app_ops_modify_clipboard">ændre udklipsholderen</string>
+  <string name="app_ops_modify_contacts">opdatere dine kontakter</string>
+  <string name="app_ops_modify_settings">opdatere systemindstillinger</string>
+  <string name="app_ops_mute_unmute_microphone">Slå mikrofon til/fra</string>
+  <string name="app_ops_play_audio">afspil lyd</string>
+  <string name="app_ops_post_notification">vise en meddelelse</string>
+  <string name="app_ops_project_media">projekt medie</string>
+  <string name="app_ops_read_calendar">læs din kalender</string>
+  <string name="app_ops_read_call_log">læs opkaldslisten</string>
+  <string name="app_ops_read_clipboard">læs udklipsholderen</string>
+  <string name="app_ops_read_contacts">læs dine kontakter</string>
+  <string name="app_ops_read_mms">læse din MMS-beskeder</string>
+  <string name="app_ops_read_sms">Læs dine SMS-beskeder</string>
+  <string name="app_ops_receive_sms">modtag en SMS-besked</string>
+  <string name="app_ops_record_audio">optag lyd</string>
+  <string name="app_ops_send_mms">Send en MMS-besked</string>
+  <string name="app_ops_send_sms">Send en SMS-besked</string>
+  <string name="app_ops_start_at_bootup">start ved opstart</string>
+  <string name="app_ops_toast_window">vis toast beskeder</string>
+  <string name="app_ops_toggle_bluetooth">tænde/slukke Bluetooth</string>
+  <string name="app_ops_toggle_mobile_data">tænde/slukke mobildata</string>
+  <string name="app_ops_toggle_nfc">NFC til/fra</string>
+  <string name="app_ops_toggle_wifi">tænde/slukke Wi-Fi</string>
+  <string name="app_ops_use_alarm_volume">kontrollere lydstyrken for alarmer</string>
+  <string name="app_ops_use_audio_focus">kontrollere lydfokus</string>
+  <string name="app_ops_use_bluetooth_volume">kontrollere lydstyrken for Bluetooth</string>
+  <string name="app_ops_use_master_volume">kontrollere systemlydstyrken</string>
+  <string name="app_ops_use_media_buttons">bruge medieknapperne</string>
+  <string name="app_ops_use_media_volume">kontrollere lydstyrken for medier</string>
+  <string name="app_ops_use_notification_volume">kontrollere lydstyrken for meddelelser</string>
+  <string name="app_ops_use_ring_volume">kontrollere lydstyrken for ringetonen</string>
+  <string name="app_ops_use_vibrate">brug haptisk feedback</string>
+  <string name="app_ops_use_voice_volume">styre lydstyrken for stemmeopkald</string>
+  <string name="app_ops_write_mms">skriv en MMS-besked</string>
+  <string name="app_ops_write_sms">skriv en SMS-besked</string>
+  <string name="app_ops_su">få superbruger adgang</string>
   <!-- Privacy Guard -->
+  <string name="permlab_changePrivacyGuardState">Aktiver eller deaktiver Privacy Guard</string>
+  <string name="permdesc_changePrivacyGuardState">Tillader app\'en at ændre, om en anden app kører med Privacy Guard. Når en app kører med Privacy Guard, vil den ikke have adgang til personlige data såsom kontakter, opkaldslister eller beskeder.</string>
+  <string name="privacy_guard_notification">Privacy Guard aktiveret</string>
+  <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> Vil ikke få adgang til dine personlige informationer</string>
+  <string name="privacy_guard_dialog_title">Privacy Guard</string>
+  <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s</xliff:g> ønsker at <xliff:g id="op">%2$s</xliff:g>.</string>
   <!-- Wifi Hotspot disabled due to subscription change -->
   <!-- WiFi turn off notification action text -->
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <!-- Reboot menu -->
   <!-- Button to reboot the phone, within the Reboot Options dialog -->
+  <string name="reboot_reboot">Genstart</string>
   <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
+  <string name="reboot_recovery">Recovery</string>
   <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
+  <string name="reboot_bootloader">Bootloader</string>
   <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
+  <string name="reboot_download">Hent</string>
   <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
+  <string name="reboot_progress">Genstarter\u2026</string>
   <!-- Button to reboot the phone, within the Phone Options dialog -->
+  <string name="reboot_system" product="tablet">Genstart tablet</string>
+  <string name="reboot_system" product="default">Genstart telefon</string>
 </resources>

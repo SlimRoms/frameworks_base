@@ -68,6 +68,21 @@
   <string name="app_ops_use_voice_volume">kontrolowanie głośności rozmów</string>
   <string name="app_ops_write_mms">pisanie MMS-ów</string>
   <string name="app_ops_write_sms">pisanie SMS-ów</string>
+  <string name="app_ops_use_fingerprint">używaj odcisku palca</string>
+  <string name="app_ops_add_voicemail">dodawanie poczty głosowej</string>
+  <string name="app_ops_read_phone_state">dostęp do stanu telefonu</string>
+  <string name="app_ops_scan_wifi">Skanuj sieci Wi-Fi</string>
+  <string name="app_ops_change_wallpaper">zmień tapetę</string>
+  <string name="app_ops_assist_structure">użyj wspomagania struktury</string>
+  <string name="app_ops_assist_screenshot">wykonaj zrzut ekranu</string>
+  <string name="app_ops_use_body_sensors">użyj czujników ciała</string>
+  <string name="app_ops_read_cell_broadcasts">odczyt transmisji komórkowych</string>
+  <string name="app_ops_mock_location">pozoruj swoją lokalizację</string>
+  <string name="app_ops_read_external_storage">odczyt pamięci zewnętrznej</string>
+  <string name="app_ops_write_external_storage">zapis do pamięci zewnętrznej</string>
+  <string name="app_ops_turn_on_screen">włącz ekran</string>
+  <string name="app_ops_get_accounts">pokaż konta na urządzeniu</string>
+  <string name="app_ops_wifi_change">zmień stan Wi-Fi</string>
   <string name="app_ops_su">Uzyskaj dostęp administratora</string>
   <!-- Privacy Guard -->
   <string name="permlab_changePrivacyGuardState">włącz lub wyłącz ochronę prywatności</string>
@@ -77,8 +92,12 @@
   <string name="privacy_guard_dialog_title">Ochrona prywatności</string>
   <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s</xliff:g> chciałby <xliff:g id="op">%2$s</xliff:g>.</string>
   <!-- Wifi Hotspot disabled due to subscription change -->
+  <string name="subscription_change_disabled_wifi_ap">Hotspot Wi-Fi wyłączony ze względu na zmianę subskrypcji karty SIM</string>
   <!-- WiFi turn off notification action text -->
+  <string name="notify_turn_wifi_off_title">Wyłącz Wi-Fi</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permlab_preventpower">zastąp klawisz zasilania</string>
+  <string name="permdesc_preventpower">Pozwala aplikacji przejąć kontrolę nad przyciskiem zasilania.</string>
   <!-- Reboot menu -->
   <!-- Button to reboot the phone, within the Reboot Options dialog -->
   <string name="reboot_reboot">Uruchom ponownie</string>

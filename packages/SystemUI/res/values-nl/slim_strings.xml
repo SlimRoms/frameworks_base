@@ -14,17 +14,50 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Content description of the superuser tile -->
+  <string name="accessibility_su_active">Superuser sessie actief</string>
   <!-- Kill app toast -->
+  <string name="app_killed_message">App gestopt</string>
   <!-- Dialog Cancel/OK -->
+  <string name="cancel">Annuleren</string>
+  <string name="dlg_ok">Ok</string>
+  <string name="yes">Ja</string>
+  <string name="no">Nee</string>
   <!-- Slim Shortcut Actions -->
+  <string name="shortcut_picker">Slim snelkoppelingen</string>
+  <string name="shortcut_screenshot">Schermafdruk</string>
+  <string name="shortcut_chamber">Geheime Kamer</string>
+  <string name="chamber_disabled">Geheime kamer is gesloten</string>
+  <string name="chamber_title">Invoerreeks instellingen</string>
+  <string name="chamber_message">Voer een tekenreeks in met instellingen die ofwel een aan en uit (checkbox) functie, of eventueel een lijst-voorkeur is. Bijvoorbeeld, doze_ingeschakeld of gelijksoortig. Instellingen kunnen worden gevonden in het Settings.java bestand. Waarschuwing: Dit proces is gevaarlijk!</string>
+  <string name="chamber_slim_title">Slim instelling</string>
+  <string name="chamber_slim_message">De instelling werd gevonden in zowel aosp en Slim instellingen.  Is dit een Slim instelling?</string>
+  <string name="chamber_invalid">Dit is een ongeldige invoer. Wees voorzichtig.</string>
+  <string name="chamber_invalid_setting">Toggle de instelling handmatig om ervoor te zorgen dat de instellingen database voor deze actie bestaat.</string>
+  <string name="chamber_checkbox">Schakelaar</string>
+  <string name="chamber_chk_message">Is deze instelling een schakelaarinstelling?</string>
+  <string name="chamber_int">Invoerwaarden</string>
+  <string name="chamber_int_message">Waarden invoeren tussen welke instellingen u zou willen schakelen. Scheid elke waarde met een komma. Kleurinstellingen accepteren hex-waarden zoals #FF00aacc of basiskleuren zoals rood, groen en geel.</string>
+  <string name="chamber_name_title">Naam voor snelkoppeling</string>
+  <string name="chamber_name_message">Geef de snelkoppeling een naam om weer te geven bij het icoon.</string>
+  <string name="chamber_name_toast">Standaardnaam gebruikt</string>
   <!-- Off/On/Toggle -->
-  <!-- Battery level for expanded quick settings [CHAR LIMIT=2] -->
-  <!-- Battery level text while charging [CHAR LIMIT=2] -->
+  <string name="off">Uit</string>
+  <string name="on">Aan</string>
+  <string name="toggle">Toggle</string>
+  <string name="shortcut_toggle_title">Uit te voeren actie</string>
   <!-- QS Tiles Columns -->
+  <string name="qs_num_columns_entries_three">Drie</string>
+  <string name="qs_num_columns_entries_four">Vier</string>
+  <string name="qs_num_columns_entries_five">Vijf</string>
+  <string name="qs_main_tiles_title">Vergroot de eerste rij</string>
+  <string name="qs_main_tiles_summary">Twee grote tegels op de eerste rij</string>
+  <string name="qs_num_columns_title">Aantal tegels per rij</string>
+  <string name="qs_num_columns_showing">%1$s tegels per rij weergegeven</string>
   <!-- Additonal QS tiles -->
   <!-- USB tether QS tile -->
   <!-- Ambient Display QS tile -->
   <!-- Screenshot QS tile -->
+  <!-- NFC QS tile -->
   <!-- Sync QS tile -->
   <!-- Screen off QS tile -->
   <!-- Screen timeout QS tile -->

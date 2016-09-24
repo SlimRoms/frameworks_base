@@ -14,28 +14,122 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Content description of the superuser tile -->
+  <string name="accessibility_su_active">루트 세션 활성화</string>
   <!-- Kill app toast -->
+  <string name="app_killed_message">애플리케이션 종료됨</string>
   <!-- Dialog Cancel/OK -->
+  <string name="cancel">취소</string>
+  <string name="dlg_ok">확인</string>
+  <string name="yes">확인</string>
+  <string name="no">취소</string>
   <!-- Slim Shortcut Actions -->
+  <string name="shortcut_picker">Slim 바로가기</string>
+  <string name="shortcut_screenshot">스크린샷</string>
+  <string name="shortcut_chamber">비밀의 방</string>
+  <string name="chamber_disabled">비밀의 방 닫힘</string>
+  <string name="chamber_slim_title">Slim 설정</string>
+  <string name="chamber_slim_message">aosp 와 Slim 설정 제공자 에게서 설정이 발견 되었습니다. Slim 설정 입니까?</string>
+  <string name="chamber_invalid">잘못된 값 입니다. 조심 하세요.</string>
+  <string name="chamber_checkbox">전환</string>
+  <string name="chamber_int">값 입력</string>
+  <string name="chamber_int_message">전환 하기 원하는 값을 입력 하세요. 각 값을 쉼표로 분리 합니다. 색상 설정은 #FF00aacc 와 같은 16 진수 값과 기본 색상 red, green, yellow 등을 허용 합니다.</string>
+  <string name="chamber_name_title">바로 가기 이름</string>
+  <string name="chamber_name_message">바로 가기 아이콘의 이름을 입력 하세요.</string>
+  <string name="chamber_name_toast">기본 이름 사용</string>
   <!-- Off/On/Toggle -->
-  <!-- Battery level for expanded quick settings [CHAR LIMIT=2] -->
-  <!-- Battery level text while charging [CHAR LIMIT=2] -->
+  <string name="off">끔</string>
+  <string name="on">켬</string>
+  <string name="toggle">활성/비활성</string>
+  <string name="shortcut_toggle_title">수행할 작업</string>
   <!-- QS Tiles Columns -->
+  <string name="qs_num_columns_entries_three">3</string>
+  <string name="qs_num_columns_entries_four">4</string>
+  <string name="qs_num_columns_entries_five">5</string>
+  <string name="qs_main_tiles_title">첫 번째 줄 확대</string>
+  <string name="qs_main_tiles_summary">첫 줄의 주요 타일 두개</string>
+  <string name="qs_num_columns_title">각 행의 블럭 수</string>
+  <string name="qs_num_columns_showing">%1$s 타일이 각 행당 표시됨</string>
   <!-- Additonal QS tiles -->
   <!-- USB tether QS tile -->
+  <string name="accessibility_quick_settings_usb_tether_off">USB 테더링 끄기</string>
+  <string name="accessibility_quick_settings_usb_tether_on">USB 테더링 켜기</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_off">USB 테더링 꺼짐</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_on">USB 테더링 켜짐</string>
+  <string name="quick_settings_usb_tether_label">USB 테더링</string>
   <!-- Ambient Display QS tile -->
+  <string name="accessibility_quick_settings_ambient_display_off">앰비언트 디스플레이 끄기</string>
+  <string name="accessibility_quick_settings_ambient_display_on">앰비언트 디스플레이 켜기</string>
+  <string name="accessibility_quick_settings_ambient_display_changed_off">앰비언트 디스플레이 꺼짐.</string>
+  <string name="accessibility_quick_settings_ambient_display_changed_on">앰비언트 디스플레이 켜짐.</string>
+  <string name="quick_settings_ambient_display_label">앰비언트 디스플레이</string>
   <!-- Screenshot QS tile -->
+  <string name="quick_settings_screenshot_label">스크린샷</string>
+  <!-- NFC QS tile -->
+  <string name="quick_settings_nfc_label">NFC</string>
   <!-- Sync QS tile -->
+  <string name="quick_settings_sync_label">동기화</string>
+  <string name="accessibility_quick_settings_sync_off">동기화 해제</string>
+  <string name="accessibility_quick_settings_sync_on">동기화 켜기</string>
+  <string name="accessibility_quick_settings_sync_changed_off">동기화 꺼짐</string>
+  <string name="accessibility_quick_settings_sync_changed_on">동기화 켜짐</string>
   <!-- Screen off QS tile -->
+  <string name="quick_settings_screen_off">화면 꺼짐</string>
   <!-- Screen timeout QS tile -->
+  <string name="quick_settings_timeout_label">유지 시간</string>
+  <string name="quick_settings_screen_timeout_detail_title">화면 자동 꺼짐</string>
+  <string name="accessibility_quick_settings_screen_timeout">화면 시간 제한:<xliff:g id="timeout" example="30 초">%s</xliff:g></string>
+  <string name="accessibility_quick_settings_screen_timeout_changed">화면 시간 제한이 <xliff:g id="timeout" example="30 초">%s</xliff:g> 로 변경됨.</string>
   <!-- Brightness QS Tile -->
+  <string name="quick_settings_brightness">밝기</string>
   <!-- Music QS Tile -->
+  <string name="quick_settings_music_label">음악</string>
+  <string name="quick_settings_music_play">재생</string>
+  <string name="quick_settings_music_pause">일시 정지</string>
   <!-- Reboot/Recovery QS Tile -->
+  <string name="quick_settings_reboot_label">재부팅</string>
+  <string name="quick_settings_reboot_recovery_label">복구 모드</string>
   <!-- Battery Saver QS Tile -->
+  <string name="quick_settings_battery_saver">배터리 절약 모드</string>
+  <string name="accessibility_quick_settings_battery_saver_off">배터리 절약 모드 해제</string>
+  <string name="accessibility_quick_settings_battery_saver_on">배터리 절약 모드 활성화</string>
+  <string name="accessibility_quick_settings_battery_saver_changed_off">배터리 세이버 꺼짐.</string>
+  <string name="accessibility_quick_settings_battery_saver_changed_on">배터리 세이버 켜짐.</string>
   <!-- Compass QS Tile -->
+  <string name="quick_settings_compass_label">나침반</string>
+  <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
+  <string name="quick_settings_compass_init">\u2026 초기화 중</string>
+  <string name="accessibility_quick_settings_compass_off">나침반 끄기</string>
+  <string name="accessibility_quick_settings_compass_on">나침반 켜기</string>
+  <string name="accessibility_quick_settings_compass_changed_off">나침반 꺼짐.</string>
+  <string name="accessibility_quick_settings_compass_changed_on">나침반 켜짐.</string>
+  <string name="quick_settings_compass_N">북</string>
+  <string name="quick_settings_compass_NE">북동</string>
+  <string name="quick_settings_compass_E">동</string>
+  <string name="quick_settings_compass_SE">남동</string>
+  <string name="quick_settings_compass_S">남</string>
+  <string name="quick_settings_compass_SW">남서</string>
+  <string name="quick_settings_compass_W">북</string>
+  <string name="quick_settings_compass_NW">북서</string>
   <!-- Caffeine QS Tile -->
+  <string name="quick_settings_caffeine_label">카페인</string>
+  <string name="accessibility_quick_settings_caffeine_off">카페인 꺼짐.</string>
+  <string name="accessibility_quick_settings_caffeine_on">카페인 켜짐.</string>
   <!-- IME selector Tile -->
+  <string name="quick_settings_ime_label">IME</string>
   <!-- Volume QS Tile -->
+  <string name="accessibility_quick_settings_volume_panel">볼륨 패널.</string>
+  <string name="quick_settings_volume_panel_label">볼륨 패널</string>
   <!-- Sound QS Tile -->
+  <string name="quick_settings_sound_label">소리</string>
+  <string name="quick_settings_sound_ring">벨소리</string>
+  <string name="quick_settings_sound_vibrate">진동</string>
+  <string name="quick_settings_sound_silent">음소거</string>
   <!-- Advanced Location QS Tile -->
+  <string name="accessibility_quick_settings_location_battery_saving">위치 확인: 배터리 절약 모드.</string>
+  <string name="accessibility_quick_settings_location_gps_only">위치 확인: 센서 전용 모드.</string>
+  <string name="accessibility_quick_settings_location_high_accuracy">위치 확인: 고감도 모드.</string>
+  <string name="quick_settings_location_detail_title">위치 모드</string>
+  <string name="quick_settings_location_battery_saving_label">배터리 절약</string>
+  <string name="quick_settings_location_gps_only_label">GPS만 사용</string>
+  <string name="quick_settings_location_high_accuracy_label">높은 정확도</string>
 </resources>
