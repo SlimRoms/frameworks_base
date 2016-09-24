@@ -18,15 +18,94 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- App ops requests -->
+  <string name="app_ops_access_camera">גישה למצלמה</string>
+  <string name="app_ops_access_location">גישה למיקום שלך</string>
+  <string name="app_ops_access_notifications">לקרוא את ההתראות שלך</string>
+  <string name="app_ops_activate_vpn">הפעל VPN</string>
+  <string name="app_ops_auto_start">הפעלה בהדלקה</string>
+  <string name="app_ops_delete_call_log">מחיקת יומן שיחות</string>
+  <string name="app_ops_delete_contacts">מחיקת אנשי קשר</string>
+  <string name="app_ops_delete_mms">מחיקת הודעות MMS</string>
+  <string name="app_ops_delete_sms">מחיקת הודעות SMS</string>
+  <string name="app_ops_draw_on_top">הצגת תוכן מעל יישומים אחרים</string>
+  <string name="app_ops_get_usage_stats">קבלת סטטיסטיקות שימוש באפליקציה</string>
+  <string name="app_ops_keep_device_awake">השארת המכשיר ער</string>
+  <string name="app_ops_make_phone_call">ביצוע שיחת טלפון</string>
+  <string name="app_ops_modify_calendar">עידכון לוח שנה</string>
+  <string name="app_ops_modify_call_log">עדכון יומן שיחות</string>
+  <string name="app_ops_modify_clipboard">שינוי תוכן לוח העתקה</string>
+  <string name="app_ops_modify_contacts">עדכון אנשי קשר</string>
+  <string name="app_ops_modify_settings">עדכון הגדרות מערכת</string>
+  <string name="app_ops_mute_unmute_microphone">השתקה/הפעלה של המיקרופון</string>
+  <string name="app_ops_play_audio">השמעת צליל</string>
+  <string name="app_ops_post_notification">פירסום התראה</string>
+  <string name="app_ops_project_media">הצגת מדיה</string>
+  <string name="app_ops_read_calendar">קריאת לוח השנה</string>
+  <string name="app_ops_read_call_log">קריאת יומן השיחות</string>
+  <string name="app_ops_read_clipboard">קריאת לוח ההעתקה</string>
+  <string name="app_ops_read_contacts">קריאת אנשי הקשר</string>
+  <string name="app_ops_read_mms">קריאת הודעות MMS</string>
+  <string name="app_ops_read_sms">קריאת הודעות SMS</string>
+  <string name="app_ops_receive_sms">קבלת הודעות SMS</string>
+  <string name="app_ops_record_audio">הקלטת קול</string>
+  <string name="app_ops_send_mms">שליחת הודעת MMS</string>
+  <string name="app_ops_send_sms">שליחת הודעת SMS</string>
+  <string name="app_ops_start_at_bootup">הפעלה בהדלקה</string>
+  <string name="app_ops_toast_window">הצגת הודעות קופצות</string>
+  <string name="app_ops_toggle_bluetooth">שינוי מצב Bluetooth</string>
+  <string name="app_ops_toggle_mobile_data">כבה/הדלק נתוני רשת</string>
+  <string name="app_ops_toggle_nfc">כבה/הדלק NFC</string>
+  <string name="app_ops_toggle_wifi">כבה/הדלק WiFi</string>
+  <string name="app_ops_use_alarm_volume">קביעת עוצמת התראות</string>
+  <string name="app_ops_use_audio_focus">קביעת מיקוד הקול</string>
+  <string name="app_ops_use_bluetooth_volume">קביעת עוצמת הקול ב-Bluetooth</string>
+  <string name="app_ops_use_master_volume">קביעת עוצמת קול ראשית</string>
+  <string name="app_ops_use_media_buttons">שימוש בכפתורי מדיה</string>
+  <string name="app_ops_use_media_volume">שליטה בעוצמת המדיה</string>
+  <string name="app_ops_use_notification_volume">שלייטה בעוצמת התראות</string>
+  <string name="app_ops_use_ring_volume">שליטה בעוצמת צלצול</string>
+  <string name="app_ops_use_vibrate">שימוש ברטט</string>
+  <string name="app_ops_use_voice_volume">שליטה בעוצמת הרול בשיחה</string>
+  <string name="app_ops_write_mms">כתיבת הודעת MMS</string>
+  <string name="app_ops_write_sms">כתיבת הודעת SMS</string>
+  <string name="app_ops_use_fingerprint">השתמש בטביעות אצבע</string>
+  <string name="app_ops_add_voicemail">הוסף מענה קולית</string>
+  <string name="app_ops_read_phone_state">גישה למצב המכשיר</string>
+  <string name="app_ops_scan_wifi">סרוק רשתות WiFi</string>
+  <string name="app_ops_change_wallpaper">החלף תמונת רקע</string>
+  <string name="app_ops_assist_screenshot">צלם צילום משך</string>
+  <string name="app_ops_use_body_sensors">להשתמש בחיישני גוף</string>
+  <string name="app_ops_read_cell_broadcasts">קרא שידורי רשת סלולר</string>
+  <string name="app_ops_read_external_storage">לקרוא מאחסון חיצוני</string>
+  <string name="app_ops_turn_on_screen">הדלק את המסך</string>
+  <string name="app_ops_get_accounts">קבל חשבונות במכשיר</string>
+  <string name="app_ops_wifi_change">‏שנה מצב WiFi</string>
+  <string name="app_ops_su">קבל גישת משתמש-על</string>
   <!-- Privacy Guard -->
+  <string name="permlab_changePrivacyGuardState">אפשר או בטל את שומר הפרטיות</string>
+  <string name="permdesc_changePrivacyGuardState">אפשר ליישום לקבוע האם יישום אחר פועל תחת שומר הפרטיות. כאשר יישום פועל תחת שומר הפרטיות, תימנע ממנו גישה למידע אישי כגון אנשי קשר, היסטוריות התקשרויות והודעות.</string>
+  <string name="privacy_guard_notification">שומר הפרטיות פעיל</string>
+  <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s </xliff:g> לא תהיה אפשרות לגשת לנתונים אישיים</string>
+  <string name="privacy_guard_dialog_title">שומר הפרטיות</string>
+  <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s</xliff:g> מבקש <xliff:g id="op">%2$s</xliff:g>.</string>
   <!-- Wifi Hotspot disabled due to subscription change -->
   <!-- WiFi turn off notification action text -->
+  <string name="notify_turn_wifi_off_title">כבה WiFi</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permlab_preventpower">לעקוף את כפטור הפעלה</string>
+  <string name="permdesc_preventpower">מאפשר לאפליקציה לעקוף את כפתור הכיבוי\הדלקה.</string>
   <!-- Reboot menu -->
   <!-- Button to reboot the phone, within the Reboot Options dialog -->
+  <string name="reboot_reboot">הפעל מחדש</string>
   <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
+  <string name="reboot_recovery">אתחול במצב Recovery</string>
   <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
+  <string name="reboot_bootloader">אתחול במצב Bootloader</string>
   <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
+  <string name="reboot_download">אתחול במצב Download</string>
   <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
+  <string name="reboot_progress">מפעיל מחדש\u2026</string>
   <!-- Button to reboot the phone, within the Phone Options dialog -->
+  <string name="reboot_system" product="tablet">הפעל טאבלט מחדש</string>
+  <string name="reboot_system" product="default">הפעל טלפון מחדש</string>
 </resources>

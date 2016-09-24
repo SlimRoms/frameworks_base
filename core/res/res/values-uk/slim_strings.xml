@@ -21,11 +21,14 @@
   <string name="app_ops_access_camera">доступ до камери</string>
   <string name="app_ops_access_location">доступ до місцезнаходження</string>
   <string name="app_ops_access_notifications">читати ваші сповіщення</string>
+  <string name="app_ops_activate_vpn">активувати VPN</string>
+  <string name="app_ops_auto_start">запуск при включені пристрою</string>
   <string name="app_ops_delete_call_log">видалити журнал викликів</string>
   <string name="app_ops_delete_contacts">видалити контакт</string>
   <string name="app_ops_delete_mms">видалити MMS-повідомлення</string>
   <string name="app_ops_delete_sms">видалити SMS-повідомлення</string>
   <string name="app_ops_draw_on_top">поверх других елементів</string>
+  <string name="app_ops_get_usage_stats">отримати статистику використання приладдя</string>
   <string name="app_ops_keep_device_awake">заборонити пристрою переходити в сплячий режим</string>
   <string name="app_ops_make_phone_call">робити телефонні дзвінки</string>
   <string name="app_ops_modify_calendar">змінювати дані календаря</string>
@@ -33,6 +36,7 @@
   <string name="app_ops_modify_clipboard">змінювати вміст буфера обміну</string>
   <string name="app_ops_modify_contacts">змінювати дані контактів</string>
   <string name="app_ops_modify_settings">змінювати системні налаштування</string>
+  <string name="app_ops_mute_unmute_microphone">вимк./увімк. мікрофон</string>
   <string name="app_ops_play_audio">відтворювати аудіо</string>
   <string name="app_ops_post_notification">виводити сповіщення</string>
   <string name="app_ops_project_media">керування медіа проектом</string>
@@ -64,14 +68,36 @@
   <string name="app_ops_use_voice_volume">отримати управління гучністю при розмові</string>
   <string name="app_ops_write_mms">створити MMS-повідомлення</string>
   <string name="app_ops_write_sms">створити SMS-повідомлення</string>
+  <string name="app_ops_use_fingerprint">Використовувати відбиток пальця</string>
+  <string name="app_ops_add_voicemail">додавати голосову пошту</string>
+  <string name="app_ops_read_phone_state">Надати доступ до стану телефону</string>
+  <string name="app_ops_scan_wifi">Сканування мереж WiFi</string>
+  <string name="app_ops_change_wallpaper">Змінити фоновий малюнок</string>
+  <string name="app_ops_assist_structure">Використовувати структуру допомоги</string>
+  <string name="app_ops_assist_screenshot">Зробити скріншот</string>
+  <string name="app_ops_use_body_sensors">Використовувати датчики тіла</string>
+  <string name="app_ops_read_cell_broadcasts">Читання інформації про мережу</string>
+  <string name="app_ops_mock_location">Підробити ваше місце розташування</string>
+  <string name="app_ops_read_external_storage">Читання зовнішнього накопичувача</string>
+  <string name="app_ops_write_external_storage">Запис зовнішнього накопичувача</string>
+  <string name="app_ops_turn_on_screen">Включити екран</string>
+  <string name="app_ops_get_accounts">Отримати акаунти пристрої</string>
+  <string name="app_ops_wifi_change">Зміна стану WiFI</string>
+  <string name="app_ops_su">отримати доступ суперкористувача</string>
   <!-- Privacy Guard -->
   <string name="permlab_changePrivacyGuardState">увімк. або вимк. Сторожа Приватності</string>
   <string name="permdesc_changePrivacyGuardState">Програма може вибрати, чи буде друга програма працювати в захищеному режимі. Коли програму запущено в захищеному режимі, вона не отримає доступ до персональних даних, таких як контакти, повідомлення чи журнал дзвінків.</string>
   <string name="privacy_guard_notification">Сторож Приватності активний</string>
   <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> буде заборонено доступ до персональних даних</string>
+  <string name="privacy_guard_dialog_title">Сторож Приватності</string>
+  <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s</xliff:g> намагається <xliff:g id="op">%2$s</xliff:g>.</string>
   <!-- Wifi Hotspot disabled due to subscription change -->
+  <string name="subscription_change_disabled_wifi_ap">Вимкнення Wi-Fi пошуку через зміну підписки SIM</string>
   <!-- WiFi turn off notification action text -->
+  <string name="notify_turn_wifi_off_title">Вимкнути Wi-Fi</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permlab_preventpower">Змінити функцію клавіши живлення</string>
+  <string name="permdesc_preventpower">Дозволити програмі змінити функцію кнопки живлення.</string>
   <!-- Reboot menu -->
   <!-- Button to reboot the phone, within the Reboot Options dialog -->
   <string name="reboot_reboot">Перезавантаження</string>

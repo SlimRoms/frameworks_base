@@ -18,7 +18,74 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- App ops requests -->
+  <string name="app_ops_access_camera">få tilgang til kameraet</string>
+  <string name="app_ops_access_location">få tilgang til posisjonen din</string>
+  <string name="app_ops_access_notifications">lese varslene dine</string>
+  <string name="app_ops_activate_vpn">aktivere en VPN</string>
+  <string name="app_ops_auto_start">starte ved oppstart</string>
+  <string name="app_ops_delete_call_log">slette samtaleloggen din</string>
+  <string name="app_ops_delete_contacts">slette kontaktene dine</string>
+  <string name="app_ops_delete_mms">slette MMSene dine</string>
+  <string name="app_ops_delete_sms">slette SMSene dine</string>
+  <string name="app_ops_draw_on_top">tegne vinduer på toppen</string>
+  <string name="app_ops_get_usage_stats">få appenes bruksdata</string>
+  <string name="app_ops_keep_device_awake">holde enheten din våken</string>
+  <string name="app_ops_make_phone_call">sette opp en samtale</string>
+  <string name="app_ops_modify_calendar">oppdatere kalenderen din</string>
+  <string name="app_ops_modify_call_log">oppdatere samtaleloggen din</string>
+  <string name="app_ops_modify_clipboard">endre utklippstavlen</string>
+  <string name="app_ops_modify_contacts">oppdatere kontaktene dine</string>
+  <string name="app_ops_modify_settings">oppdatere systeminnstillinger</string>
+  <string name="app_ops_mute_unmute_microphone">slå av/på demping av mikrofonen</string>
+  <string name="app_ops_play_audio">spille av lyd</string>
+  <string name="app_ops_post_notification">sende varsler</string>
+  <string name="app_ops_project_media">vise medier</string>
+  <string name="app_ops_read_calendar">lese kalenderen din</string>
+  <string name="app_ops_read_call_log">lese samtaleloggen</string>
+  <string name="app_ops_read_clipboard">lese utklippstavlen</string>
+  <string name="app_ops_read_contacts">lese kontaktene dine</string>
+  <string name="app_ops_read_mms">lese MMSene dine</string>
+  <string name="app_ops_read_sms">lese SMSene dine</string>
+  <string name="app_ops_receive_sms">motta en SMS</string>
+  <string name="app_ops_record_audio">spille inn lyd</string>
+  <string name="app_ops_send_mms">sende en MMS</string>
+  <string name="app_ops_send_sms">sende en SMS</string>
+  <string name="app_ops_start_at_bootup">starte når slått på</string>
+  <string name="app_ops_toast_window">vise flytevarsel</string>
+  <string name="app_ops_toggle_bluetooth">slå av/på Bluetooth</string>
+  <string name="app_ops_toggle_mobile_data">slå av/på mobildata</string>
+  <string name="app_ops_toggle_nfc">slå av/på NFC</string>
+  <string name="app_ops_toggle_wifi">slå av/på WiFi</string>
+  <string name="app_ops_use_alarm_volume">kontrollere alarmvolum</string>
+  <string name="app_ops_use_audio_focus">kontrollere lydfokus</string>
+  <string name="app_ops_use_bluetooth_volume">kontrollere Bluetooth volum</string>
+  <string name="app_ops_use_master_volume">kontrollere hovedvolum</string>
+  <string name="app_ops_use_media_buttons">bruke media knappene</string>
+  <string name="app_ops_use_media_volume">kontrollere mediavolum</string>
+  <string name="app_ops_use_notification_volume">kontrollere varslingsvolum</string>
+  <string name="app_ops_use_ring_volume">kontrollere ringetonevolum</string>
+  <string name="app_ops_use_vibrate">bruke haptisk tilbakemelding</string>
+  <string name="app_ops_use_voice_volume">kontrollere samtalevolum</string>
+  <string name="app_ops_write_mms">skrive en MMS</string>
+  <string name="app_ops_write_sms">skrive en SMS</string>
+  <string name="app_ops_use_fingerprint">bruke fingeravtrykk</string>
+  <string name="app_ops_add_voicemail">legge til en talepostkasse</string>
+  <string name="app_ops_read_phone_state">få tilgang til telefonens status</string>
+  <string name="app_ops_scan_wifi">Skanne WiFi Nettverk</string>
+  <string name="app_ops_change_wallpaper">bytte bakgrunnen</string>
+  <string name="app_ops_assist_structure">bruke hjelpe struktur</string>
+  <string name="app_ops_assist_screenshot">ta et skjermbilde</string>
+  <string name="app_ops_use_body_sensors">bruke kroppssensorer</string>
+  <string name="app_ops_read_cell_broadcasts">lese cellekringkastinger</string>
+  <string name="app_ops_mock_location">få tilgang til posisjonen din</string>
+  <string name="app_ops_read_external_storage">lese eksternt minne</string>
+  <string name="app_ops_write_external_storage">skrive til eksternt minne</string>
+  <string name="app_ops_turn_on_screen">slå skjermen på</string>
+  <string name="app_ops_get_accounts">få enhet kontoer</string>
+  <string name="app_ops_wifi_change">endre WiFi status</string>
+  <string name="app_ops_su">få Superuser tilgang</string>
   <!-- Privacy Guard -->
+  <string name="permlab_changePrivacyGuardState">slå av/på Personvernsvakt</string>
   <!-- Wifi Hotspot disabled due to subscription change -->
   <!-- WiFi turn off notification action text -->
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->

@@ -14,17 +14,44 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Content description of the superuser tile -->
+  <string name="accessibility_su_active">Aktyvi superuser sesiją</string>
   <!-- Kill app toast -->
+  <string name="app_killed_message">Programa priverstinai uždaryta</string>
   <!-- Dialog Cancel/OK -->
+  <string name="cancel">Atšaukti</string>
+  <string name="dlg_ok">Gerai</string>
+  <string name="yes">Taip</string>
+  <string name="no">Ne</string>
   <!-- Slim Shortcut Actions -->
+  <string name="shortcut_picker">Slim Nuorodos</string>
+  <string name="shortcut_screenshot">Ekranvaizdis</string>
+  <string name="shortcut_chamber">Paslapčių kambarys</string>
+  <string name="chamber_disabled">Paslapčių kambarys nedirba</string>
+  <string name="chamber_title">Įvesties Nustatymų eilutė</string>
+  <string name="chamber_message">Įveskite Nustatymų eilutę, kuri yra įjungta ar išjungta (žymimas langelis) funkciją arba galimai pirmenybių sąraše. Pavyzdžiui, doze_įgalinta arba panašiai. Nustatymai gali būti rasti Settings.java byloje. ĮSPĖJIMAS: Šis 
+procesas yra pavojingas!</string>
+  <string name="chamber_slim_title">Slim nustatymai</string>
+  <string name="chamber_slim_message">Nustatymai buvo rasti abiejuose aosp ir slim nustatymų tiekėjuose. Ar tai slim nustatymai? </string>
+  <string name="chamber_invalid">Tai bloga įvestis. Būkite atsargūs.</string>
+  <string name="chamber_invalid_setting">Pabandykite perjungti nustatymą rankiniu būdu, kad įsitikintumėte, jog nustatymų duomenų bazė šiam veiksmui egzistuoją.</string>
+  <string name="chamber_checkbox">Jungiklis</string>
+  <string name="chamber_chk_message">Ar šis nustatymas jungiklio nustatymas?</string>
+  <string name="chamber_int">Įveskite vertes</string>
+  <string name="chamber_int_message">Įveskite vertes kurias jūs norėtumėte, jog tarp nustatymų persijungtų. Atskirkite kiekvieną vertę kableliu. Spalvų nustatymai priima hex-vertes kaip #FF00aacc ar bazines vertes kaip raudoną, žalią ar geltoną.</string>
+  <string name="chamber_name_title">Santrumpos pavadinimas</string>
+  <string name="chamber_name_message">Skirti santrumpai pavadinimą, kurį rodis kartu su piktograma.</string>
+  <string name="chamber_name_toast">Naudojamas numatytas vardas</string>
   <!-- Off/On/Toggle -->
-  <!-- Battery level for expanded quick settings [CHAR LIMIT=2] -->
-  <!-- Battery level text while charging [CHAR LIMIT=2] -->
+  <string name="off">Išjungti</string>
+  <string name="on">Įjungti</string>
+  <string name="toggle">Įjungti/išjungti</string>
+  <string name="shortcut_toggle_title">Atlikti veiksmą</string>
   <!-- QS Tiles Columns -->
   <!-- Additonal QS tiles -->
   <!-- USB tether QS tile -->
   <!-- Ambient Display QS tile -->
   <!-- Screenshot QS tile -->
+  <!-- NFC QS tile -->
   <!-- Sync QS tile -->
   <!-- Screen off QS tile -->
   <!-- Screen timeout QS tile -->

@@ -18,12 +18,14 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- App ops requests -->
+  <string name="app_ops_access_camera">kameraya giriş</string>
   <!-- Privacy Guard -->
-  <string name="permlab_changePrivacyGuardState">povoliť alebo zakázať ochranu súkromia</string>
-  <string name="permdesc_changePrivacyGuardState">Umožňuje aplikácii určiť, či má byť iná aplikácia spustená s ochranou súkromia. Keď je aplikácia spustená s ochranou súkromia, nemá umožnený prístup k osobným údajom ako sú kontakty, denníky hovorov, alebo správy.</string>
-  <string name="privacy_guard_notification">Ochrana súkromia je aktívna</string>
-  <string name="privacy_guard_notification_detail">Aplikácii <xliff:g id="app">%1$s</xliff:g> nebude umožnený prístup k osobným údajom</string>
-  <string name="privacy_guard_dialog_title">Ochrana súkromia</string>
+  <string name="permlab_changePrivacyGuardState">Gizlilik Qorumasını aktivləşdir ya da söndür</string>
+  <string name="permdesc_changePrivacyGuardState">Tətbiqetməyə başqa bir tətbiqetmənin Gizlilik Qorumasını işlədib işlədə bilməyəcəyini dəyişmə icazəsi verər. Əgər tətbiqetmə Gizlilik Qoruması ilə işləyərsə şəxslər, zəng qeydləri və ya mesajlar kimi şəxsi məlumatlara daxil ola bilməyəcək.</string>
+  <string name="privacy_guard_notification">Gizlilik Qoruması aktivdir</string>
+  <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> məxfi məlumatlara daxil olmayacaq</string>
+  <string name="privacy_guard_dialog_title">Gizlilik Qoruması</string>
+  <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s</xliff:g> <xliff:g id="op">%2$s</xliff:g> icazəsindən istifadə etmək istəyir.</string>
   <!-- Wifi Hotspot disabled due to subscription change -->
   <!-- WiFi turn off notification action text -->
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->

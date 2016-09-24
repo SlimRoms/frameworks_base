@@ -18,27 +18,122 @@
   <!-- Kill app toast -->
   <string name="app_killed_message">Alkalmazás kilőve</string>
   <!-- Dialog Cancel/OK -->
+  <string name="cancel">Mégse</string>
+  <string name="dlg_ok">Ok</string>
+  <string name="yes">Igen</string>
+  <string name="no">Nem</string>
   <!-- Slim Shortcut Actions -->
+  <string name="shortcut_picker">Slim parancsikonok</string>
   <string name="shortcut_screenshot">Képernyőkép</string>
+  <string name="shortcut_chamber">Titkok Kamrája</string>
+  <string name="chamber_disabled">A Titkok Kamrája zárva van</string>
+  <string name="chamber_title">Beállítás-karakterek bevitele</string>
+  <string name="chamber_message">Írja be a Beállítások karaktereit amely ki- és bekapcsolja (jelölőnégyzet) a funkciót vagy esetleg listából választ. Például doze_enabled vagy hasonló. Beállítások a Settings.java fájlban találhatóak. FIGYELEM: Ez a folyamat veszélyes!</string>
+  <string name="chamber_slim_title">Slim beállítások</string>
+  <string name="chamber_slim_message">A beállítás megtalálható az AOSP és a Slim beállítások között is. Ez egy Slim beállítás?</string>
+  <string name="chamber_invalid">Érvénytelen bevitel. Légy óvatos.</string>
+  <string name="chamber_invalid_setting">Teszteld a beállítást annak érdekében, hogy az alapértelmezett adatbázis létezik ehhez a művelethez.</string>
+  <string name="chamber_checkbox">Váltás</string>
+  <string name="chamber_chk_message">Ez a beállítás egy kapcsoló beállítás?</string>
+  <string name="chamber_int">Bemeneti értékek</string>
+  <string name="chamber_int_message">Add meg az értékeket amik között a beállítást váltani szeretnéd. Minden értéket vesszővel válassz el. A színbeállítás elfogad Hex értékeket is, mint például #FF00aacc, vagy alap színértékeket, mint a piros, zöld és sárga.</string>
+  <string name="chamber_name_title">Parancsikon neve</string>
+  <string name="chamber_name_message">Adj nevet a parancsikonnak.</string>
+  <string name="chamber_name_toast">Alapértelmezett név használata</string>
   <!-- Off/On/Toggle -->
-  <!-- Battery level for expanded quick settings [CHAR LIMIT=2] -->
-  <!-- Battery level text while charging [CHAR LIMIT=2] -->
+  <string name="off">Ki</string>
+  <string name="on">Be</string>
+  <string name="toggle">Kapcsoló</string>
+  <string name="shortcut_toggle_title">Művelet végrehajtása</string>
   <!-- QS Tiles Columns -->
+  <string name="qs_num_columns_entries_three">Három</string>
+  <string name="qs_num_columns_entries_four">Négy</string>
+  <string name="qs_num_columns_entries_five">Öt</string>
+  <string name="qs_main_tiles_title">Első sor nagyítása</string>
+  <string name="qs_main_tiles_summary">Az első sorban csak két csempe</string>
+  <string name="qs_num_columns_title">Soronkénti csempék száma</string>
+  <string name="qs_num_columns_showing">%1$s csempe soronként</string>
   <!-- Additonal QS tiles -->
   <!-- USB tether QS tile -->
+  <string name="accessibility_quick_settings_usb_tether_off">USB internetmegosztás ki</string>
+  <string name="accessibility_quick_settings_usb_tether_on">USB internetmegosztás be</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_off">USB megosztás kikapcsolva</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_on">USB megosztás bekapcsolva</string>
+  <string name="quick_settings_usb_tether_label">USB internetmegosztás</string>
   <!-- Ambient Display QS tile -->
+  <string name="accessibility_quick_settings_ambient_display_off">Környezeti kijelző ki</string>
+  <string name="accessibility_quick_settings_ambient_display_on">Környezeti kijelző be</string>
+  <string name="accessibility_quick_settings_ambient_display_changed_off">Környezeti kijelző kikapcsolva</string>
+  <string name="accessibility_quick_settings_ambient_display_changed_on">Környezeti kijelző bekapcsolva</string>
+  <string name="quick_settings_ambient_display_label">Környezeti kijelző</string>
   <!-- Screenshot QS tile -->
+  <string name="quick_settings_screenshot_label">Képernyőkép</string>
+  <!-- NFC QS tile -->
+  <string name="quick_settings_nfc_label">NFC</string>
   <!-- Sync QS tile -->
+  <string name="quick_settings_sync_label">Szinkr.</string>
+  <string name="accessibility_quick_settings_sync_off">Szinkronizálás ki</string>
+  <string name="accessibility_quick_settings_sync_on">Szinkronizálás be</string>
+  <string name="accessibility_quick_settings_sync_changed_off">Szinkronizálás kikapcsolva</string>
+  <string name="accessibility_quick_settings_sync_changed_on">Szinkronizálás bekapcsolva</string>
   <!-- Screen off QS tile -->
+  <string name="quick_settings_screen_off">Képernyő ki</string>
   <!-- Screen timeout QS tile -->
+  <string name="quick_settings_timeout_label">Időkorlát</string>
+  <string name="quick_settings_screen_timeout_detail_title">Képernyő időkorlát</string>
+  <string name="accessibility_quick_settings_screen_timeout">Képernyő kikapcsolása: <xliff:g id="timeout" example="30 seconds">%s</xliff:g>.</string>
+  <string name="accessibility_quick_settings_screen_timeout_changed">Képernyő időkorlát módosítva: <xliff:g id="timeout" example="30 seconds">%s</xliff:g>.</string>
   <!-- Brightness QS Tile -->
+  <string name="quick_settings_brightness">Fényerő</string>
   <!-- Music QS Tile -->
+  <string name="quick_settings_music_label">Zene</string>
+  <string name="quick_settings_music_play">Lejátszás</string>
+  <string name="quick_settings_music_pause">Szünet</string>
   <!-- Reboot/Recovery QS Tile -->
+  <string name="quick_settings_reboot_label">Újraindítás</string>
+  <string name="quick_settings_reboot_recovery_label">Recovery</string>
   <!-- Battery Saver QS Tile -->
+  <string name="quick_settings_battery_saver">Energiatakarékos</string>
+  <string name="accessibility_quick_settings_battery_saver_off">Energiatakarékos üzemmód ki.</string>
+  <string name="accessibility_quick_settings_battery_saver_on">Energiatakarékos üzemmód be.</string>
+  <string name="accessibility_quick_settings_battery_saver_changed_off">Energiatakarékos üzemmód kikapcsolva.</string>
+  <string name="accessibility_quick_settings_battery_saver_changed_on">Energiatakarékos üzemmód bekapcsolva.</string>
   <!-- Compass QS Tile -->
+  <string name="quick_settings_compass_label">Iránytű</string>
+  <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
+  <string name="quick_settings_compass_init">Inicializálás\u2026</string>
+  <string name="accessibility_quick_settings_compass_off">Iránytű ki.</string>
+  <string name="accessibility_quick_settings_compass_on">Iránytű be.</string>
+  <string name="accessibility_quick_settings_compass_changed_off">Iránytű kikapcsolva.</string>
+  <string name="accessibility_quick_settings_compass_changed_on">Iránytű bekapcsolva.</string>
+  <string name="quick_settings_compass_N">É</string>
+  <string name="quick_settings_compass_NE">ÉK</string>
+  <string name="quick_settings_compass_E">K</string>
+  <string name="quick_settings_compass_SE">DK</string>
+  <string name="quick_settings_compass_S">D</string>
+  <string name="quick_settings_compass_SW">DNy</string>
+  <string name="quick_settings_compass_W">NY</string>
+  <string name="quick_settings_compass_NW">ÉNy</string>
   <!-- Caffeine QS Tile -->
+  <string name="quick_settings_caffeine_label">Caffeine</string>
+  <string name="accessibility_quick_settings_caffeine_off">Caffeine ki.</string>
+  <string name="accessibility_quick_settings_caffeine_on">Caffeine be.</string>
   <!-- IME selector Tile -->
+  <string name="quick_settings_ime_label">IME</string>
   <!-- Volume QS Tile -->
+  <string name="accessibility_quick_settings_volume_panel">Hangerő panel.</string>
+  <string name="quick_settings_volume_panel_label">Hangerő panel</string>
   <!-- Sound QS Tile -->
+  <string name="quick_settings_sound_label">Hang</string>
+  <string name="quick_settings_sound_ring">Csengés</string>
+  <string name="quick_settings_sound_vibrate">Rezeg</string>
+  <string name="quick_settings_sound_silent">Néma</string>
   <!-- Advanced Location QS Tile -->
+  <string name="accessibility_quick_settings_location_battery_saving">Helymeghatározás: akkumulátor kímélő mód.</string>
+  <string name="accessibility_quick_settings_location_gps_only">Helymeghatározás: csak GPS.</string>
+  <string name="accessibility_quick_settings_location_high_accuracy">Helymeghatározás: Nagy pontosságú.</string>
+  <string name="quick_settings_location_detail_title">Helymeghatározás módja</string>
+  <string name="quick_settings_location_battery_saving_label">Akkumulátor kímélő</string>
+  <string name="quick_settings_location_gps_only_label">Csak GPS</string>
+  <string name="quick_settings_location_high_accuracy_label">Nagy pontosságú</string>
 </resources>

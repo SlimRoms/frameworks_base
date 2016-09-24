@@ -18,15 +18,98 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- App ops requests -->
+  <string name="app_ops_access_camera">kameraya eriş</string>
+  <string name="app_ops_access_location">konuma erişim</string>
+  <string name="app_ops_access_notifications">bildirimlerinizi okuyun</string>
+  <string name="app_ops_activate_vpn">VPN etkinleştir</string>
+  <string name="app_ops_auto_start">açılışta başla</string>
+  <string name="app_ops_delete_call_log">arama kaydı silme</string>
+  <string name="app_ops_delete_contacts">Kişilerinizi silin</string>
+  <string name="app_ops_delete_mms">MMS mesajları silme</string>
+  <string name="app_ops_delete_sms">MMS mesajları silme</string>
+  <string name="app_ops_draw_on_top">pencereleri üstte göster</string>
+  <string name="app_ops_get_usage_stats">App kullanım istatistiklerini al</string>
+  <string name="app_ops_keep_device_awake">cihazı uyanık tut</string>
+  <string name="app_ops_make_phone_call">arama yap</string>
+  <string name="app_ops_modify_calendar">takvimi güncelle</string>
+  <string name="app_ops_modify_call_log">arama kaydını güncelle</string>
+  <string name="app_ops_modify_clipboard">panoyu değiştir</string>
+  <string name="app_ops_modify_contacts">kişileri güncelle</string>
+  <string name="app_ops_modify_settings">sistem ayarlarını güncelle</string>
+  <string name="app_ops_mute_unmute_microphone">Mikrofon sesini aç/kapa</string>
+  <string name="app_ops_play_audio">ses oynat</string>
+  <string name="app_ops_post_notification">bir bildirim gönder</string>
+  <string name="app_ops_project_media">Medyayı yansıt</string>
+  <string name="app_ops_read_calendar">takvimi oku</string>
+  <string name="app_ops_read_call_log">arama kaydını oku</string>
+  <string name="app_ops_read_clipboard">panoyu oku</string>
+  <string name="app_ops_read_contacts">kişileri oku</string>
+  <string name="app_ops_read_mms">MMS mesajları oku</string>
+  <string name="app_ops_read_sms">SMS mesajlarını oku</string>
+  <string name="app_ops_receive_sms">SMS mesajı al</string>
+  <string name="app_ops_record_audio">Ses kaydet</string>
+  <string name="app_ops_send_mms">MMS mesajı gönder</string>
+  <string name="app_ops_send_sms">SMS mesajı gönder</string>
+  <string name="app_ops_start_at_bootup">açılışta başla</string>
+  <string name="app_ops_toast_window">bildirim mesajları göster</string>
+  <string name="app_ops_toggle_bluetooth">Bluetooth\'u aç-kapat</string>
+  <string name="app_ops_toggle_mobile_data">mobil veriyi aç-kapat</string>
+  <string name="app_ops_toggle_nfc">NFC aç-kapa</string>
+  <string name="app_ops_toggle_wifi">WiFi aç-kapat</string>
+  <string name="app_ops_use_alarm_volume">alarm sesini kontrol et</string>
+  <string name="app_ops_use_audio_focus">ses odağını kontrol et</string>
+  <string name="app_ops_use_bluetooth_volume">Bluetooth sesini kontrol et</string>
+  <string name="app_ops_use_master_volume">ana ses düzeyini kontrol et</string>
+  <string name="app_ops_use_media_buttons">medya düğmeleri kullan</string>
+  <string name="app_ops_use_media_volume">medya sesini kontrol et</string>
+  <string name="app_ops_use_notification_volume">bildirim sesini kontrol et</string>
+  <string name="app_ops_use_ring_volume">zil sesini kontrol et</string>
+  <string name="app_ops_use_vibrate">dokunmatik geri bildirim kullan</string>
+  <string name="app_ops_use_voice_volume">arama ses seviyesini kontrol et</string>
+  <string name="app_ops_write_mms">MMS mesajı yaz</string>
+  <string name="app_ops_write_sms">SMS mesajı yaz</string>
+  <string name="app_ops_use_fingerprint">parmak izi kullanın</string>
+  <string name="app_ops_add_voicemail">sesli mesaj ekle</string>
+  <string name="app_ops_read_phone_state">telefon durumuna eriş</string>
+  <string name="app_ops_scan_wifi">Wi-Fi ağlarını tara</string>
+  <string name="app_ops_change_wallpaper">duvar kağıdını değiştir</string>
+  <string name="app_ops_assist_structure">destek yapısı kullan</string>
+  <string name="app_ops_assist_screenshot">ekran görüntüsü al</string>
+  <string name="app_ops_use_body_sensors">vücut sensörleri kullan</string>
+  <string name="app_ops_read_cell_broadcasts">hücre yayınları oku</string>
+  <string name="app_ops_mock_location">sahte konum bildir</string>
+  <string name="app_ops_read_external_storage">harici depolamayı oku</string>
+  <string name="app_ops_write_external_storage">harici depolamaya yaz</string>
+  <string name="app_ops_turn_on_screen">ekranı aç</string>
+  <string name="app_ops_get_accounts">cihaz hesaplarını al</string>
+  <string name="app_ops_wifi_change">Wi-Fi durumunu değiştir</string>
+  <string name="app_ops_su">Root erişim olsun</string>
   <!-- Privacy Guard -->
+  <string name="permlab_changePrivacyGuardState">Gizlilik Korumasını etkinleştir ya da devre dışı bırak</string>
+  <string name="permdesc_changePrivacyGuardState">Uygulamaya başka bir uygulamanın Gizlilik Korumasını kullanıp kullanamayacağını belirleme olanağı verir. Bir uygulama Gizlilik Koruması ile çalışırken, kişiler, arama kayıtları ya da mesajlar gibi kişisel verilere erişimi olmayacaktır.</string>
+  <string name="privacy_guard_notification">Gizlilik Koruması etkin</string>
+  <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> kişisel verilerinize erişemeyecek</string>
+  <string name="privacy_guard_dialog_title">Gizlilik Koruması</string>
+  <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s</xliff:g> <xliff:g id="op">%2$s</xliff:g> iznini kullanmak istiyor.</string>
   <!-- Wifi Hotspot disabled due to subscription change -->
+  <string name="subscription_change_disabled_wifi_ap">SIM abonelik değişikliği nedeniyle Wi-Fi internet paylaşımı devre dışı bırakıldı</string>
   <!-- WiFi turn off notification action text -->
+  <string name="notify_turn_wifi_off_title">Wi-Fi\'yi kapat</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permlab_preventpower">güç tuşu işlevini değiştir</string>
+  <string name="permdesc_preventpower">Uygulamanın güç tuşunun işlevini değiştirmesine izin verir.</string>
   <!-- Reboot menu -->
   <!-- Button to reboot the phone, within the Reboot Options dialog -->
+  <string name="reboot_reboot">Yeniden Başlat</string>
   <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
+  <string name="reboot_recovery">Kurtarma Modu (Recovery)</string>
   <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
+  <string name="reboot_bootloader">ÖnYükleyici (Bootloader)</string>
   <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
+  <string name="reboot_download">İndirme Modu (Download)</string>
   <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
+  <string name="reboot_progress">Yeniden başlatılıyor\u2026</string>
   <!-- Button to reboot the phone, within the Phone Options dialog -->
+  <string name="reboot_system" product="tablet">Tableti Yeniden Başlat</string>
+  <string name="reboot_system" product="default">Telefonu Yeniden Başlat</string>
 </resources>

@@ -18,15 +18,84 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- App ops requests -->
+  <string name="app_ops_access_camera">mengakses kamera</string>
+  <string name="app_ops_access_location">mengakses lokasi anda</string>
+  <string name="app_ops_access_notifications">membaca notifikasi anda</string>
+  <string name="app_ops_activate_vpn">Mengaktifkan VPN</string>
+  <string name="app_ops_auto_start">mulai pada saat dinyalakan</string>
+  <string name="app_ops_delete_call_log">hapus daftar panggilan anda</string>
+  <string name="app_ops_delete_contacts">hapus kontak anda</string>
+  <string name="app_ops_delete_mms">hapus pesan MMS anda</string>
+  <string name="app_ops_delete_sms">hapus pesan SMS anda</string>
+  <string name="app_ops_draw_on_top">menarik windows di atas</string>
+  <string name="app_ops_get_usage_stats">dapatkan statistik penggunaan aplikasi</string>
+  <string name="app_ops_keep_device_awake">menjaga perangkat anda tetap bangun</string>
+  <string name="app_ops_make_phone_call">membuat panggilan telepon</string>
+  <string name="app_ops_modify_calendar">memperbarui kalender anda</string>
+  <string name="app_ops_modify_call_log">memperbarui daftar panggilan</string>
+  <string name="app_ops_modify_clipboard">memodifikasi clipboard</string>
+  <string name="app_ops_modify_contacts">memperbarui kontak anda</string>
+  <string name="app_ops_modify_settings">memperbarui pengaturan sistem</string>
+  <string name="app_ops_mute_unmute_microphone">diam/mengaktifkan suara mikrofon</string>
+  <string name="app_ops_play_audio">putar audio</string>
+  <string name="app_ops_post_notification">mengirim pemberitahuan</string>
+  <string name="app_ops_project_media">proyek media</string>
+  <string name="app_ops_read_calendar">membaca kalender anda</string>
+  <string name="app_ops_read_call_log">membaca daftar panggilan</string>
+  <string name="app_ops_read_clipboard">membaca clipboard</string>
+  <string name="app_ops_read_contacts">membaca kontak anda</string>
+  <string name="app_ops_read_mms">membaca pesan MMS anda</string>
+  <string name="app_ops_read_sms">membaca pesan SMS anda</string>
+  <string name="app_ops_receive_sms">menerima pesan SMS</string>
+  <string name="app_ops_record_audio">merekam audio</string>
+  <string name="app_ops_send_mms">mengirim pesan MMS</string>
+  <string name="app_ops_send_sms">mengirim pesan SMS</string>
+  <string name="app_ops_start_at_bootup">mulai pada saat dinyalakan</string>
+  <string name="app_ops_toast_window">tampilkan pesan toast</string>
+  <string name="app_ops_toggle_bluetooth">beralih Bluetooth</string>
+  <string name="app_ops_toggle_mobile_data">beralih mobile data</string>
+  <string name="app_ops_toggle_nfc">beralih NFC</string>
+  <string name="app_ops_toggle_wifi">beralih WiFi</string>
+  <string name="app_ops_use_alarm_volume">mengatur volume alarm</string>
+  <string name="app_ops_use_audio_focus">mengatur fokus audio</string>
+  <string name="app_ops_use_bluetooth_volume">mengatur volume Bluetooth</string>
+  <string name="app_ops_use_master_volume">mengatur volume utama</string>
+  <string name="app_ops_use_media_buttons">gunakan tombol media</string>
+  <string name="app_ops_use_media_volume">kontrol volume media</string>
+  <string name="app_ops_use_notification_volume">kontrol volume pemberitahuan</string>
+  <string name="app_ops_use_ring_volume">kontrol volume nada dering</string>
+  <string name="app_ops_use_vibrate">gunakan umpan balik haptic</string>
+  <string name="app_ops_use_voice_volume">kontrol volume panggilan suara</string>
+  <string name="app_ops_write_mms">tulis pesan MMS</string>
+  <string name="app_ops_write_sms">tulis pesan SMS</string>
+  <string name="app_ops_use_fingerprint">menggunakan sidik jari</string>
+  <string name="app_ops_add_voicemail">tambahkan pesan suara</string>
+  <string name="app_ops_scan_wifi">Memindai jaringan WiFi</string>
+  <string name="app_ops_assist_screenshot">mengambil screenshot</string>
+  <string name="app_ops_su">mendapatkan akses Superuser</string>
   <!-- Privacy Guard -->
+  <string name="permlab_changePrivacyGuardState">Aktifkan atau nonaktifkan Perlindungan Privasi</string>
+  <string name="permdesc_changePrivacyGuardState">Mengizinkan aplikasi untuk mengubah saat aplikasi lain berjalan dengan Perlindungan Privasi. Ketika aplikasi berjalan dengan Perlindungan Privasi, aplikasi tidak akan memiliki akses ke data pribadi seperti kontak, daftar panggilan atau pesan.</string>
+  <string name="privacy_guard_notification">Perlindungan Privasi aktif</string>
+  <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> tidak akan dapat mengakses data pribadi</string>
+  <string name="privacy_guard_dialog_title">Perlindungan Privasi</string>
+  <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s</xliff:g> ingin <xliff:g id="op">%2$s</xliff:g>.</string>
   <!-- Wifi Hotspot disabled due to subscription change -->
   <!-- WiFi turn off notification action text -->
+  <string name="notify_turn_wifi_off_title">Nonaktifkan Wi-Fi</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <!-- Reboot menu -->
   <!-- Button to reboot the phone, within the Reboot Options dialog -->
+  <string name="reboot_reboot">Nyalakan Ulang</string>
   <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
+  <string name="reboot_recovery">Recovery</string>
   <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
+  <string name="reboot_bootloader">Bootloader</string>
   <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
+  <string name="reboot_download">Unduh</string>
   <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
+  <string name="reboot_progress">Menyalakan Ulang\u2026</string>
   <!-- Button to reboot the phone, within the Phone Options dialog -->
+  <string name="reboot_system" product="tablet">Nyalakan Ulang tablet</string>
+  <string name="reboot_system" product="default">Nyalakan Ulang ponsel</string>
 </resources>
