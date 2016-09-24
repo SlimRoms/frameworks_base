@@ -14,17 +14,43 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Content description of the superuser tile -->
+  <string name="accessibility_su_active">Root  oturumu etkin</string>
   <!-- Kill app toast -->
+  <string name="app_killed_message">Uygulama sonlandırıldı</string>
   <!-- Dialog Cancel/OK -->
+  <string name="cancel">İptal</string>
+  <string name="dlg_ok">Tamam</string>
+  <string name="yes">Evet</string>
+  <string name="no">Hayır</string>
   <!-- Slim Shortcut Actions -->
+  <string name="shortcut_picker">Slim Kısayolları</string>
+  <string name="shortcut_screenshot">Ekran Görüntüsü Al</string>
+  <string name="shortcut_chamber">Sırlar Odası</string>
+  <string name="chamber_disabled">Sırlar Odası kapalı</string>
+  <string name="chamber_title">Giriş ayarları dizesi</string>
+  <string name="chamber_message">Bir açık veya kapalı onay kutusu işlevi ya da belki bir tercih listesi olacak şekilde bir Ayarlar dizisi girin. Örnek olarak, doze_enabled ya da benzeri. Ayarlar, Settings.java doyası içinde bulunabilir. UYARI: Bu işlem tehlikelidir!</string>
+  <string name="chamber_slim_title">Slim Ayarları</string>
+  <string name="chamber_slim_message">Bu ayar hem aosp hem de slim ayarlar sağlayıcıların da bulundu.  Bu slim ayarı mı?</string>
+  <string name="chamber_invalid">Bu geçersiz bir giriş. Dikkat edin.</string>
+  <string name="chamber_invalid_setting">Bu eylem için ayarlar veritabanının varolduğundan emin olmak için ayarları manuel girmeyi deneyin.</string>
+  <string name="chamber_checkbox">Değiştir</string>
+  <string name="chamber_chk_message">Bu ayar bir değiştirme ayarı mı?</string>
+  <string name="chamber_int">Değerleri girin</string>
+  <string name="chamber_int_message">Ayarlar arasında geçiş yapmak istediğiniz değerleri girin. Her değeri bir virgül ile ayırın. Renk ayarları, #FF00aacc gibi hex değerlerini ya da kırmızı, yeşil, sarı gibi basit renk değerlerini kabul eder.</string>
+  <string name="chamber_name_title">Kısayol adı</string>
+  <string name="chamber_name_message">Simgeyle birlikte görüntülenmesi için kısayola bir isim verin.</string>
+  <string name="chamber_name_toast">Varsayılan adı kullanarak</string>
   <!-- Off/On/Toggle -->
-  <!-- Battery level for expanded quick settings [CHAR LIMIT=2] -->
-  <!-- Battery level text while charging [CHAR LIMIT=2] -->
+  <string name="off">Kapat</string>
+  <string name="on">Aç</string>
+  <string name="toggle">Değiştir</string>
+  <string name="shortcut_toggle_title">Yapılacak eylem</string>
   <!-- QS Tiles Columns -->
   <!-- Additonal QS tiles -->
   <!-- USB tether QS tile -->
   <!-- Ambient Display QS tile -->
   <!-- Screenshot QS tile -->
+  <!-- NFC QS tile -->
   <!-- Sync QS tile -->
   <!-- Screen off QS tile -->
   <!-- Screen timeout QS tile -->

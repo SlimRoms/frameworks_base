@@ -18,15 +18,53 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- App ops requests -->
+  <string name="app_ops_access_camera">достъп до камерата</string>
+  <string name="app_ops_access_location">достъп до вашето местоположение</string>
+  <string name="app_ops_access_notifications">прочетете вашите известия</string>
+  <string name="app_ops_activate_vpn">активиране на VPN</string>
+  <string name="app_ops_auto_start">стартиране на включване</string>
+  <string name="app_ops_delete_call_log">Изтриване на вашият списък с обаждания</string>
+  <string name="app_ops_delete_contacts">изтриване на контакти</string>
+  <string name="app_ops_delete_mms">Изтриване на MMS съобщения</string>
+  <string name="app_ops_delete_sms">Изтриване на SMS съобщения</string>
+  <string name="app_ops_get_usage_stats">Вземи статистика за използване на приложенията</string>
+  <string name="app_ops_keep_device_awake">Дръжте устройството будно</string>
+  <string name="app_ops_make_phone_call">телефонно обаждане</string>
+  <string name="app_ops_modify_calendar">актуализиране на вашия календар</string>
+  <string name="app_ops_modify_call_log">актуализация на списъка с обаждания</string>
+  <string name="app_ops_modify_clipboard">промяна на клипборда</string>
+  <string name="app_ops_modify_contacts">актуализиране на вашите контакти</string>
+  <string name="app_ops_modify_settings">актуализиране на системните настройки</string>
+  <string name="app_ops_mute_unmute_microphone">без/със звук на микрофона</string>
+  <string name="app_ops_play_audio">възпроизвеждане на аудио</string>
+  <string name="app_ops_read_mms">прочетете вашите MMS съобщения</string>
+  <string name="app_ops_read_sms">прочетете вашите SMS съобщения</string>
+  <string name="app_ops_receive_sms">Получаване SMS съобщения</string>
+  <string name="app_ops_record_audio">Аудиозапис</string>
+  <string name="app_ops_send_mms">Изпращане на MMS съобщение</string>
+  <string name="app_ops_start_at_bootup">стартиране при включване</string>
+  <string name="app_ops_use_ring_volume">контрол на силата на мелодията</string>
+  <string name="app_ops_use_voice_volume">контрол на силата на обаждането</string>
+  <string name="app_ops_write_mms">напишете MMS съобщение</string>
+  <string name="app_ops_write_sms">напишете SMS съобщение</string>
+  <string name="app_ops_su">Стани Суперюзер</string>
   <!-- Privacy Guard -->
+  <string name="permlab_changePrivacyGuardState">включване или изключване на Privacy Guard</string>
+  <string name="privacy_guard_notification">Privacy Guard е активиран</string>
+  <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s </xliff:g> няма да можете да получите достъп до лични данни</string>
+  <string name="privacy_guard_dialog_title">Privacy Guard</string>
+  <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s </xliff:g> бих искал да <xliff:g id="op">%2$s </xliff:g>.</string>
   <!-- Wifi Hotspot disabled due to subscription change -->
   <!-- WiFi turn off notification action text -->
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <!-- Reboot menu -->
   <!-- Button to reboot the phone, within the Reboot Options dialog -->
+  <string name="reboot_reboot">Рестартиране</string>
   <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
   <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
   <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
   <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
   <!-- Button to reboot the phone, within the Phone Options dialog -->
+  <string name="reboot_system" product="tablet">Рестартиране на таблета</string>
+  <string name="reboot_system" product="default">Рестартиране на телефона</string>
 </resources>

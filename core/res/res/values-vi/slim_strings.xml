@@ -18,15 +18,79 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- App ops requests -->
+  <string name="app_ops_access_camera">truy cập máy ảnh</string>
+  <string name="app_ops_access_location">truy cập vị trí của bạn</string>
+  <string name="app_ops_access_notifications">đọc thông báo của bạn</string>
+  <string name="app_ops_activate_vpn">kích hoạt Mạng riêng ảo</string>
+  <string name="app_ops_auto_start">bắt đầu lúc khởi động</string>
+  <string name="app_ops_delete_call_log">xóa nhật ký cuộc gọi của bạn</string>
+  <string name="app_ops_delete_contacts">xóa số liên lạc của bạn</string>
+  <string name="app_ops_delete_mms">xoá tin nhắn MMS của bạn</string>
+  <string name="app_ops_delete_sms">xoá tin nhắn SMS của bạn</string>
+  <string name="app_ops_draw_on_top">hiện cửa sổ trên cùng</string>
+  <string name="app_ops_get_usage_stats">lấy thống kê sử dụng ứng dụng</string>
+  <string name="app_ops_keep_device_awake">giữ màn hình sáng</string>
+  <string name="app_ops_make_phone_call">thực hiện cuộc gọi điện thoại</string>
+  <string name="app_ops_modify_calendar">cập nhật lịch của bạn</string>
+  <string name="app_ops_modify_call_log">cập nhật nhật kí cuộc gọi</string>
+  <string name="app_ops_modify_clipboard">thay đổi clipboard</string>
+  <string name="app_ops_modify_contacts">cập nhật danh bạ của bạn</string>
+  <string name="app_ops_modify_settings">cập nhật thiết lập hệ thống</string>
+  <string name="app_ops_mute_unmute_microphone">tắt/bật micro</string>
+  <string name="app_ops_play_audio">phát âm thanh</string>
+  <string name="app_ops_post_notification">gửi thông báo</string>
+  <string name="app_ops_project_media">chiếu đa phương tiện</string>
+  <string name="app_ops_read_calendar">đọc lịch của bạn</string>
+  <string name="app_ops_read_call_log">đọc nhật kí cuộc gọi</string>
+  <string name="app_ops_read_clipboard">đọc clipboard</string>
+  <string name="app_ops_read_contacts">đọc danh bạ của bạn</string>
+  <string name="app_ops_read_mms">đọc tin nhắn MMS của bạn</string>
+  <string name="app_ops_read_sms">đọc tin nhắn SMS của bạn</string>
+  <string name="app_ops_receive_sms">nhận tin nhắn SMS</string>
+  <string name="app_ops_record_audio">ghi lại âm thanh</string>
+  <string name="app_ops_send_mms">gửi tin nhắn MMS</string>
+  <string name="app_ops_send_sms">gửi tin nhắn SMS</string>
+  <string name="app_ops_start_at_bootup">bắt đầu lúc khởi động</string>
+  <string name="app_ops_toast_window">hiện thông báo nhanh</string>
+  <string name="app_ops_toggle_bluetooth">bật/tắt Bluetooth</string>
+  <string name="app_ops_toggle_mobile_data">bật/tắt dữ liệu di động</string>
+  <string name="app_ops_toggle_nfc">bật/tắt NFC</string>
+  <string name="app_ops_toggle_wifi">bật/tắt WiFi</string>
+  <string name="app_ops_use_alarm_volume">điều khiển âm lượng báo thức</string>
+  <string name="app_ops_use_audio_focus">điểu khiển tập trung âm thanh</string>
+  <string name="app_ops_use_bluetooth_volume">điều khiển âm lượng Bluetooth</string>
+  <string name="app_ops_use_master_volume">điều khiển âm lượng tổng thể</string>
+  <string name="app_ops_use_media_buttons">dùng nút phương tiện</string>
+  <string name="app_ops_use_media_volume">điều khiển âm lượng đa phương tiện</string>
+  <string name="app_ops_use_notification_volume">điều khiển âm lượng thông báo</string>
+  <string name="app_ops_use_ring_volume">điều khiển âm lượng nhạc chuông</string>
+  <string name="app_ops_use_vibrate">dùng phản hồi xúc giác</string>
+  <string name="app_ops_use_voice_volume">điều khiển âm lượng cuộc gọi thoại</string>
+  <string name="app_ops_write_mms">soạn tin nhắn MMS</string>
+  <string name="app_ops_write_sms">soạn tin nhắn SMS</string>
+  <string name="app_ops_su">truy cập quyền root</string>
   <!-- Privacy Guard -->
+  <string name="permlab_changePrivacyGuardState">bật hoặc tắt bảo vệ riêng tư</string>
+  <string name="permdesc_changePrivacyGuardState">Cho phép ứng dụng thay đổi ứng dụng khác chạy với Bảo vệ riêng tư. Khi một ứng dụng chạy với Bảo vệ riêng tư, nó sẽ không có quyền truy nhập dữ liệu cá nhân như: liên hệ, nhật ký cuộc gọi hoặc tin nhắn.</string>
+  <string name="privacy_guard_notification">Bảo vệ sự riêng tư đang hoạt động</string>
+  <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> sẽ không thể truy cập dữ liệu cá nhân</string>
+  <string name="privacy_guard_dialog_title">Bảo vệ sự riêng tư</string>
+  <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s</xliff:g> muốn <xliff:g id="op">%2$s</xliff:g>.</string>
   <!-- Wifi Hotspot disabled due to subscription change -->
   <!-- WiFi turn off notification action text -->
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <!-- Reboot menu -->
   <!-- Button to reboot the phone, within the Reboot Options dialog -->
+  <string name="reboot_reboot">Khởi động lại</string>
   <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
+  <string name="reboot_recovery">Về chế độ phục hồi</string>
   <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
+  <string name="reboot_bootloader">Bộ nạp khởi động</string>
   <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
+  <string name="reboot_download">Về chế độ download</string>
   <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
+  <string name="reboot_progress">Đang khởi động lại\u2026</string>
   <!-- Button to reboot the phone, within the Phone Options dialog -->
+  <string name="reboot_system" product="tablet">Khởi động lại máy tính bảng</string>
+  <string name="reboot_system" product="default">Khởi động lại điện thoại</string>
 </resources>

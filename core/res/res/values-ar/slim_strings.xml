@@ -18,13 +18,85 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- App ops requests -->
+  <string name="app_ops_access_camera">الوصول إلى الكاميرا</string>
+  <string name="app_ops_access_location">الوصول إلى موقعك</string>
+  <string name="app_ops_access_notifications">قراءة الإشعارات الخاصة بك</string>
+  <string name="app_ops_activate_vpn">تفعيل الشبكة الوهمية الخاصة</string>
+  <string name="app_ops_auto_start">البدء عند بدء التشغيل</string>
+  <string name="app_ops_delete_call_log">حذف سجل مكالماتك</string>
+  <string name="app_ops_delete_contacts">حذف جهات الاتصال الخاصة بي</string>
+  <string name="app_ops_delete_mms">حذف رسائل MMS الخاصة بك</string>
+  <string name="app_ops_delete_sms">حذف رسائل MMS الخاصة بك</string>
+  <string name="app_ops_draw_on_top">رسم نوافذ على الفوق</string>
+  <string name="app_ops_get_usage_stats">الحصول على إحصائيات استخدام التطبيق</string>
+  <string name="app_ops_keep_device_awake">إبقاء الجهاز مستيقظا</string>
+  <string name="app_ops_make_phone_call">إجراء إتصال هاتفي</string>
+  <string name="app_ops_modify_calendar">تحديث التقويم الخاص بك</string>
+  <string name="app_ops_modify_call_log">تحديث سجل المكالمات</string>
+  <string name="app_ops_modify_clipboard">تعديل الحافظة</string>
+  <string name="app_ops_modify_contacts">تحديث جهات الاتصال الخاصة بك</string>
+  <string name="app_ops_modify_settings">تحديث إعدادات النظام</string>
+  <string name="app_ops_mute_unmute_microphone">كتم/إلغاء كتم الميكروفون</string>
+  <string name="app_ops_play_audio">تشغيل الصوت</string>
+  <string name="app_ops_post_notification">آخر إشعار</string>
+  <string name="app_ops_project_media">وسائط المشروع</string>
+  <string name="app_ops_read_calendar">قراءة التقويم الخاص بك</string>
+  <string name="app_ops_read_call_log">قراءة سجل المكالمات</string>
+  <string name="app_ops_read_clipboard">قراءة الحافظة</string>
+  <string name="app_ops_read_contacts">قراءة جهات الاتصال الخاصة بك</string>
+  <string name="app_ops_read_mms">قراءة رسائل MMS الخاصة بك</string>
+  <string name="app_ops_read_sms">قراءة رسائل SMS الخاصة بك</string>
+  <string name="app_ops_receive_sms">تتلقى رسالة SMS</string>
+  <string name="app_ops_record_audio">تسجيل الصوت</string>
+  <string name="app_ops_send_mms">إرسال رسالة MMS</string>
+  <string name="app_ops_send_sms">إرسال رسالة SMS</string>
+  <string name="app_ops_start_at_bootup">البدء عند التشغيل</string>
+  <string name="app_ops_toast_window">عرض الرسائل الساخنة</string>
+  <string name="app_ops_toggle_bluetooth">تبديل البلوتوث</string>
+  <string name="app_ops_toggle_mobile_data">تبديل البيانات المتنقلة</string>
+  <string name="app_ops_toggle_nfc">تبديل NFC</string>
+  <string name="app_ops_toggle_wifi">تبديل WiFi</string>
+  <string name="app_ops_use_alarm_volume">التحكم في مستوى صوت الإنذار</string>
+  <string name="app_ops_use_audio_focus">التحكم في تركيز الصوت</string>
+  <string name="app_ops_use_bluetooth_volume">التحكم في مستوى الصوت البلوتوث</string>
+  <string name="app_ops_use_master_volume">التحكم في مستوى الصوت الرئيسي</string>
+  <string name="app_ops_use_media_buttons">استخدم أزرار الوسائط</string>
+  <string name="app_ops_use_media_volume">التحكم في حجم صوت الوسائط</string>
+  <string name="app_ops_use_notification_volume">التحكم في حجم صوت الإشعار</string>
+  <string name="app_ops_use_ring_volume">التحكم في حجم صوت النغمة</string>
+  <string name="app_ops_use_vibrate">إستخدام ملاحظات اللمس</string>
+  <string name="app_ops_use_voice_volume">التحكم في حجم صوت المكالمات الصوتية</string>
+  <string name="app_ops_write_mms">كتابة رسالة MMS</string>
+  <string name="app_ops_write_sms">كتابة رسالة SMS</string>
+  <string name="app_ops_use_fingerprint">استخدم البصمة</string>
+  <string name="app_ops_add_voicemail">إضافة بريد صوتي</string>
+  <string name="app_ops_read_phone_state">الوصول إلى حالة الهاتف</string>
+  <string name="app_ops_scan_wifi">بحث عن الشبكات اللاسلكية</string>
+  <string name="app_ops_change_wallpaper">تغيير خلفية الشاشة</string>
+  <string name="app_ops_assist_structure">استخدام مساعد البنية</string>
+  <string name="app_ops_assist_screenshot">أخذ لقطة للشاشة</string>
+  <string name="app_ops_use_body_sensors">استخدام أجهزة الاستشعار</string>
+  <string name="app_ops_read_cell_broadcasts">قراءة البث الخليوي</string>
+  <string name="app_ops_read_external_storage">قراءة وحدة التخزين الخارجية</string>
+  <string name="app_ops_write_external_storage">كتابة في وحدة التخزين الخارجية</string>
+  <string name="app_ops_turn_on_screen">تشغيل الشاشة</string>
+  <string name="app_ops_get_accounts">الحصول على حسابات الجهاز</string>
+  <string name="app_ops_wifi_change">تغيير وضع الوايفاي</string>
+  <string name="app_ops_su">الحصول على وصول الجذر</string>
   <!-- Privacy Guard -->
   <string name="permlab_changePrivacyGuardState">مكن أو عطل حارس الخصوصية</string>
+  <string name="permdesc_changePrivacyGuardState">يسمح للتطبيق أن يتحكم ما إذا كان تطبيق آخر يعمل مع \"حارس الخصوصية\". عندما يتم تشغيل التطبيق الاخر مع \"حارس الخصوصية\"، لن يستطيع الوصول إلى أي بيانات شخصية مثل جهات الاتصال، وسجلات المكالمات أو الرسائل.</string>
   <string name="privacy_guard_notification">حارس الخصوصية قاءم</string>
   <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> لن تتمكن من الأطلاع على معلوماتك الشخصية</string>
+  <string name="privacy_guard_dialog_title">حارس الخصوصية</string>
+  <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s</xliff:g> يود أن <xliff:g id="op">%2$s</xliff:g>.</string>
   <!-- Wifi Hotspot disabled due to subscription change -->
+  <string name="subscription_change_disabled_wifi_ap">تم تعطيل الوايفاي بسبب تغيير اشتراك سيم كارد</string>
   <!-- WiFi turn off notification action text -->
+  <string name="notify_turn_wifi_off_title">إيقاف تشغيل الوايفاي</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permlab_preventpower">تجاوز زر التشغيل</string>
+  <string name="permdesc_preventpower">السماح لتطبيق ما بأن يقوم بتجاوز زر التشغيل.</string>
   <!-- Reboot menu -->
   <!-- Button to reboot the phone, within the Reboot Options dialog -->
   <string name="reboot_reboot">آعد التشغيل</string>

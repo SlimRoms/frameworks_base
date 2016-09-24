@@ -18,15 +18,79 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- App ops requests -->
+  <string name="app_ops_access_camera">acces la camera</string>
+  <string name="app_ops_access_location">accesează locația</string>
+  <string name="app_ops_access_notifications">citește notificările tale</string>
+  <string name="app_ops_activate_vpn">activaţi un VPN</string>
+  <string name="app_ops_auto_start">începe la pornirea dispozitivului</string>
+  <string name="app_ops_delete_call_log">şterge lista de apeluri</string>
+  <string name="app_ops_delete_contacts">şterge lista de contacte</string>
+  <string name="app_ops_delete_mms">şterge mesajele MMS</string>
+  <string name="app_ops_delete_sms">şterge mesajele SMS</string>
+  <string name="app_ops_draw_on_top">lansează ferestre deasupra</string>
+  <string name="app_ops_get_usage_stats">obţine statistici de utilizare a aplicaţiei</string>
+  <string name="app_ops_keep_device_awake">ține dispozitivul deschis</string>
+  <string name="app_ops_make_phone_call">inițiază un apel telefonic</string>
+  <string name="app_ops_modify_calendar">actualizează calendarul dumneavoastră</string>
+  <string name="app_ops_modify_call_log">actualizează jurnalul de apeluri</string>
+  <string name="app_ops_modify_clipboard">modifică clipboard</string>
+  <string name="app_ops_modify_contacts">actualizează contactele dumneavoastră</string>
+  <string name="app_ops_modify_settings">actualizează setări de sistem</string>
+  <string name="app_ops_mute_unmute_microphone">activează/dezactivează microfonul</string>
+  <string name="app_ops_play_audio">Redare audio</string>
+  <string name="app_ops_post_notification">Postează o notificare</string>
+  <string name="app_ops_project_media">proiectează media</string>
+  <string name="app_ops_read_calendar">citește calendarul dumneavoastră</string>
+  <string name="app_ops_read_call_log">citește jurnalul de apeluri</string>
+  <string name="app_ops_read_clipboard">citește clipboard-ul</string>
+  <string name="app_ops_read_contacts">citește contactele dumneavoastră</string>
+  <string name="app_ops_read_mms">citește mesajele MMS</string>
+  <string name="app_ops_read_sms">citește mesajele SMS</string>
+  <string name="app_ops_receive_sms">primește un mesaj SMS</string>
+  <string name="app_ops_record_audio">înregistrare audio</string>
+  <string name="app_ops_send_mms">trimite un mesaj MMS</string>
+  <string name="app_ops_send_sms">trimite un mesaj SMS</string>
+  <string name="app_ops_start_at_bootup">începe la pornirea dispozitivului</string>
+  <string name="app_ops_toast_window">afişează mesajele temporare</string>
+  <string name="app_ops_toggle_bluetooth">comută Bluetooth</string>
+  <string name="app_ops_toggle_mobile_data">comută date mobile</string>
+  <string name="app_ops_toggle_nfc">comută NFC</string>
+  <string name="app_ops_toggle_wifi">comută WiFi</string>
+  <string name="app_ops_use_alarm_volume">controlează volumul alarmei</string>
+  <string name="app_ops_use_audio_focus">controlează focalizarea audio</string>
+  <string name="app_ops_use_bluetooth_volume">controlează volumul Bluetooth</string>
+  <string name="app_ops_use_master_volume">controlează volumul principal</string>
+  <string name="app_ops_use_media_buttons">folosește butoanele media</string>
+  <string name="app_ops_use_media_volume">controlează volumul media</string>
+  <string name="app_ops_use_notification_volume">controlează volumul la notificării</string>
+  <string name="app_ops_use_ring_volume">controlează volumul soneriei</string>
+  <string name="app_ops_use_vibrate">utilizaţi raspunsul tactil</string>
+  <string name="app_ops_use_voice_volume">controlează volumul apelului de voce</string>
+  <string name="app_ops_write_mms">scrieţi un mesaj MMS</string>
+  <string name="app_ops_write_sms">scrieţi un mesaj SMS</string>
+  <string name="app_ops_su">Obţineţi acces Superuser</string>
   <!-- Privacy Guard -->
+  <string name="permlab_changePrivacyGuardState">activați sau dezactivați gardianul de intimitate</string>
+  <string name="permdesc_changePrivacyGuardState">Permite aplicației să stabilească dacă o altă aplicație rulează cu gardianul de intimitate. Când o aplicație rulează cu gardianul de intimitate, nu va avea acces la date personale, cum ar fi contacte, jurnalul de apeluri sau mesaje.</string>
+  <string name="privacy_guard_notification">Protejarea datelor personale, activata</string>
+  <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> nu va putea accesa datele personale</string>
+  <string name="privacy_guard_dialog_title">Protecție personală</string>
+  <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s</xliff:g> dorește să <xliff:g id="op">%2$s</xliff:g>.</string>
   <!-- Wifi Hotspot disabled due to subscription change -->
   <!-- WiFi turn off notification action text -->
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <!-- Reboot menu -->
   <!-- Button to reboot the phone, within the Reboot Options dialog -->
+  <string name="reboot_reboot">Repornire</string>
   <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
+  <string name="reboot_recovery">Recuperare</string>
   <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
+  <string name="reboot_bootloader">Bootloader</string>
   <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
+  <string name="reboot_download"> Descărcare</string>
   <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
+  <string name="reboot_progress">Repornire\u2026</string>
   <!-- Button to reboot the phone, within the Phone Options dialog -->
+  <string name="reboot_system" product="tablet">Reporniți tableta</string>
+  <string name="reboot_system" product="default">Reporniți telefonul</string>
 </resources>

@@ -19,29 +19,122 @@
   <string name="app_killed_message">应用已终止</string>
   <!-- Dialog Cancel/OK -->
   <string name="cancel">取消</string>
+  <string name="dlg_ok">确认</string>
+  <string name="yes">是</string>
+  <string name="no">否</string>
   <!-- Slim Shortcut Actions -->
+  <string name="shortcut_picker">Slim 快捷方式</string>
   <string name="shortcut_screenshot">屏幕截图</string>
-  <string name="shortcut_chamber">隐藏的功能</string>
+  <string name="shortcut_chamber">隐藏功能</string>
   <string name="chamber_disabled">隐藏功能已关闭</string>
+  <string name="chamber_title">输入设置字符串</string>
+  <string name="chamber_message">输入是开启和关闭 (复选框) 的函数或可能列表偏好的设置字符串。例如，doze_enabled或者与其类似的。
+可以在 Settings.java file里找到设置。警告：这一过程是危险的！</string>
+  <string name="chamber_slim_title">Slim设置</string>
+  <string name="chamber_slim_message">在AOSP和Slim设置提供程序里发现了设置。这是Slim设置吗？</string>
+  <string name="chamber_invalid">请注意。这是一个无效的输入。</string>
+  <string name="chamber_invalid_setting">请尝试手动切换这个设置来确保这一行动在设置的数据库中存在。</string>
+  <string name="chamber_checkbox">切换</string>
+  <string name="chamber_chk_message">这一设置是切换设置吗？</string>
+  <string name="chamber_int">输入值</string>
+  <string name="chamber_int_message">输入您想要设置的值。每个值用逗号分隔。颜色设置接受十六进制值，例如：#FF00aacc或者基本颜色值，比如红色、绿色和黄色。</string>
+  <string name="chamber_name_title">快捷方式名称</string>
+  <string name="chamber_name_message">给该快捷方式一个名称以显示。</string>
+  <string name="chamber_name_toast">使用默认名称</string>
   <!-- Off/On/Toggle -->
-  <!-- Battery level for expanded quick settings [CHAR LIMIT=2] -->
-  <!-- Battery level text while charging [CHAR LIMIT=2] -->
+  <string name="off">关闭</string>
+  <string name="on">开启</string>
+  <string name="toggle">切换</string>
+  <string name="shortcut_toggle_title">要执行的操作</string>
   <!-- QS Tiles Columns -->
+  <string name="qs_num_columns_entries_three">三</string>
+  <string name="qs_num_columns_entries_four">四</string>
+  <string name="qs_num_columns_entries_five">五</string>
+  <string name="qs_main_tiles_title">扩大第一行</string>
+  <string name="qs_main_tiles_summary">第一行的两个主要瓷块</string>
+  <string name="qs_num_columns_title">每行瓷块数</string>
+  <string name="qs_num_columns_showing">每行显示%1$s个瓷块</string>
   <!-- Additonal QS tiles -->
   <!-- USB tether QS tile -->
+  <string name="accessibility_quick_settings_usb_tether_off">USB 网络共享关闭</string>
+  <string name="accessibility_quick_settings_usb_tether_on">USB 网络共享开启</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_off">USB 网络共享已关闭</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_on">USB 网络共享已开启</string>
+  <string name="quick_settings_usb_tether_label">USB 网络共享</string>
   <!-- Ambient Display QS tile -->
+  <string name="accessibility_quick_settings_ambient_display_off">主动显示关闭</string>
+  <string name="accessibility_quick_settings_ambient_display_on">主动显示开启</string>
+  <string name="accessibility_quick_settings_ambient_display_changed_off">主动显示已关闭</string>
+  <string name="accessibility_quick_settings_ambient_display_changed_on">主动显示已开启</string>
+  <string name="quick_settings_ambient_display_label">主动显示</string>
   <!-- Screenshot QS tile -->
+  <string name="quick_settings_screenshot_label">屏幕截图</string>
+  <!-- NFC QS tile -->
+  <string name="quick_settings_nfc_label">NFC</string>
   <!-- Sync QS tile -->
+  <string name="quick_settings_sync_label">同步</string>
+  <string name="accessibility_quick_settings_sync_off">同步关闭</string>
+  <string name="accessibility_quick_settings_sync_on">同步开启</string>
+  <string name="accessibility_quick_settings_sync_changed_off">同步已关闭</string>
+  <string name="accessibility_quick_settings_sync_changed_on">同步已开启</string>
   <!-- Screen off QS tile -->
+  <string name="quick_settings_screen_off">屏幕关闭</string>
   <!-- Screen timeout QS tile -->
+  <string name="quick_settings_timeout_label">超时</string>
+  <string name="quick_settings_screen_timeout_detail_title">屏幕超时</string>
+  <string name="accessibility_quick_settings_screen_timeout">屏幕超时: <xliff:g id="timeout" example="30 seconds">%s</xliff:g>.</string>
+  <string name="accessibility_quick_settings_screen_timeout_changed">屏幕超时更改为 <xliff:g id="timeout" example="30 seconds">%s</xliff:g>.</string>
   <!-- Brightness QS Tile -->
+  <string name="quick_settings_brightness">亮度</string>
   <!-- Music QS Tile -->
+  <string name="quick_settings_music_label">音乐</string>
+  <string name="quick_settings_music_play">播放</string>
+  <string name="quick_settings_music_pause">暂停</string>
   <!-- Reboot/Recovery QS Tile -->
+  <string name="quick_settings_reboot_label">重新启动</string>
+  <string name="quick_settings_reboot_recovery_label">恢复模式</string>
   <!-- Battery Saver QS Tile -->
+  <string name="quick_settings_battery_saver">省电模式</string>
+  <string name="accessibility_quick_settings_battery_saver_off">省电模式关闭</string>
+  <string name="accessibility_quick_settings_battery_saver_on">省电模式开启</string>
+  <string name="accessibility_quick_settings_battery_saver_changed_off">省电模式已关闭</string>
+  <string name="accessibility_quick_settings_battery_saver_changed_on">省电模式已开启</string>
   <!-- Compass QS Tile -->
+  <string name="quick_settings_compass_label">指南针</string>
+  <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f </xliff:g> \u00b0 <xliff:g id="direction">%2$s </xliff:g></string>
+  <string name="quick_settings_compass_init">正在初始化\u2026</string>
+  <string name="accessibility_quick_settings_compass_off">指南针关闭</string>
+  <string name="accessibility_quick_settings_compass_on">指南针开启</string>
+  <string name="accessibility_quick_settings_compass_changed_off">指南针已关闭</string>
+  <string name="accessibility_quick_settings_compass_changed_on">指南针已打开</string>
+  <string name="quick_settings_compass_N">北</string>
+  <string name="quick_settings_compass_NE">东北</string>
+  <string name="quick_settings_compass_E">正东</string>
+  <string name="quick_settings_compass_SE">东南</string>
+  <string name="quick_settings_compass_S">正南</string>
+  <string name="quick_settings_compass_SW">西南</string>
+  <string name="quick_settings_compass_W">正西</string>
+  <string name="quick_settings_compass_NW">西北</string>
   <!-- Caffeine QS Tile -->
+  <string name="quick_settings_caffeine_label">咖啡因</string>
+  <string name="accessibility_quick_settings_caffeine_off">咖啡因关闭</string>
+  <string name="accessibility_quick_settings_caffeine_on">咖啡因开启</string>
   <!-- IME selector Tile -->
+  <string name="quick_settings_ime_label">输入法选择器</string>
   <!-- Volume QS Tile -->
+  <string name="accessibility_quick_settings_volume_panel">声音面板</string>
+  <string name="quick_settings_volume_panel_label">声音面板</string>
   <!-- Sound QS Tile -->
+  <string name="quick_settings_sound_label">声音</string>
+  <string name="quick_settings_sound_ring">响铃</string>
+  <string name="quick_settings_sound_vibrate">震动</string>
+  <string name="quick_settings_sound_silent">静音</string>
   <!-- Advanced Location QS Tile -->
+  <string name="accessibility_quick_settings_location_battery_saving">位置报告：节电模式</string>
+  <string name="accessibility_quick_settings_location_gps_only">位置报告：仅限设备</string>
+  <string name="accessibility_quick_settings_location_high_accuracy">位置报告：高精准度</string>
+  <string name="quick_settings_location_detail_title">位置信息模式</string>
+  <string name="quick_settings_location_battery_saving_label">省电</string>
+  <string name="quick_settings_location_gps_only_label">仅限设备</string>
+  <string name="quick_settings_location_high_accuracy_label">高精准度</string>
 </resources>

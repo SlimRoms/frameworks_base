@@ -18,15 +18,79 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- App ops requests -->
+  <string name="app_ops_access_camera">приступ камери</string>
+  <string name="app_ops_access_location">приступ твојој локацији</string>
+  <string name="app_ops_access_notifications">прочитај твоја обавештења</string>
+  <string name="app_ops_activate_vpn">Активирајте VPN</string>
+  <string name="app_ops_auto_start">покрени при укључивању</string>
+  <string name="app_ops_delete_call_log">брисање евиденције позива</string>
+  <string name="app_ops_delete_contacts">брисање контаката</string>
+  <string name="app_ops_delete_mms">брисање MMS порука</string>
+  <string name="app_ops_delete_sms">Brisanje SMS poruke</string>
+  <string name="app_ops_draw_on_top">нацртај windows на врху</string>
+  <string name="app_ops_get_usage_stats">добијање статистике о коришћењу апликације</string>
+  <string name="app_ops_keep_device_awake">држи уређај будним</string>
+  <string name="app_ops_make_phone_call">обави телефонски позив</string>
+  <string name="app_ops_modify_calendar">ажурирај твој календар</string>
+  <string name="app_ops_modify_call_log">ажурирај евиденцију позива</string>
+  <string name="app_ops_modify_clipboard">модификуј привремену меморију</string>
+  <string name="app_ops_modify_contacts">ажурирај твоје контакте</string>
+  <string name="app_ops_modify_settings">ажурирај подешавања система</string>
+  <string name="app_ops_mute_unmute_microphone">укључи/ускључи микрофон</string>
+  <string name="app_ops_play_audio">пусти аудио</string>
+  <string name="app_ops_post_notification">постави обавештење</string>
+  <string name="app_ops_project_media">пројект медија</string>
+  <string name="app_ops_read_calendar">прочитај твој календар</string>
+  <string name="app_ops_read_call_log">прочитај евиденцију позива</string>
+  <string name="app_ops_read_clipboard">прочитај привремену меморију</string>
+  <string name="app_ops_read_contacts">прочитај твоје контакте</string>
+  <string name="app_ops_read_mms">прочитај твоје MMS поруке</string>
+  <string name="app_ops_read_sms">прочитај твоје SMS поруке</string>
+  <string name="app_ops_receive_sms">прими SMS поруку</string>
+  <string name="app_ops_record_audio">сними аудио</string>
+  <string name="app_ops_send_mms">пошаљи MMS поруку</string>
+  <string name="app_ops_send_sms">пошаљи SMS поруку</string>
+  <string name="app_ops_start_at_bootup">покрени при укључивању</string>
+  <string name="app_ops_toast_window">прикажи поруку на екрану</string>
+  <string name="app_ops_toggle_bluetooth">прекидач Bluetooth</string>
+  <string name="app_ops_toggle_mobile_data">прекидач за мобилне податке</string>
+  <string name="app_ops_toggle_nfc">прекидач NFC</string>
+  <string name="app_ops_toggle_wifi">прекидач WiFi</string>
+  <string name="app_ops_use_alarm_volume">контрола јачине аларма</string>
+  <string name="app_ops_use_audio_focus">контрола аудио фокуса</string>
+  <string name="app_ops_use_bluetooth_volume">контрола Bluetooth јачине</string>
+  <string name="app_ops_use_master_volume">контрола главне јачине</string>
+  <string name="app_ops_use_media_buttons">користи дугмиће за медије</string>
+  <string name="app_ops_use_media_volume">контрола јачине за медије</string>
+  <string name="app_ops_use_notification_volume">контрола јачине обавештења</string>
+  <string name="app_ops_use_ring_volume">контрола јачине звона</string>
+  <string name="app_ops_use_vibrate">користи повратне информације</string>
+  <string name="app_ops_use_voice_volume">контрола јачине гласовног позива</string>
+  <string name="app_ops_write_mms">напиши MMS поруку</string>
+  <string name="app_ops_write_sms">напиши SMS поруку</string>
+  <string name="app_ops_su">добити Superuser приступ</string>
   <!-- Privacy Guard -->
+  <string name="permlab_changePrivacyGuardState">омогући или онемогући заштиту приватности</string>
+  <string name="permdesc_changePrivacyGuardState">Дозвољава апликацији да промени да ли се друга апликација покреће са заштитом приватности. Када је апликација покренута са заштитом приватности, она неће имати приступ личним подацима, као што су контакти, евиденција позива или поруке.</string>
+  <string name="privacy_guard_notification">Заштита приватности је активна</string>
+  <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> неће бити у могућности да приступи личним подацима</string>
+  <string name="privacy_guard_dialog_title">Заштита приватности</string>
+  <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s</xliff:g> жели да <xliff:g id="op">%2$s</xliff:g>.</string>
   <!-- Wifi Hotspot disabled due to subscription change -->
   <!-- WiFi turn off notification action text -->
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <!-- Reboot menu -->
   <!-- Button to reboot the phone, within the Reboot Options dialog -->
+  <string name="reboot_reboot">Покрени поново</string>
   <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
+  <string name="reboot_recovery">Опоравак</string>
   <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
+  <string name="reboot_bootloader">Bootloader</string>
   <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
+  <string name="reboot_download">Преузми</string>
   <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
+  <string name="reboot_progress">Поново покретање\u2026</string>
   <!-- Button to reboot the phone, within the Phone Options dialog -->
+  <string name="reboot_system" product="tablet">Поново покрени таблет</string>
+  <string name="reboot_system" product="default">Поново покрени телефон</string>
 </resources>

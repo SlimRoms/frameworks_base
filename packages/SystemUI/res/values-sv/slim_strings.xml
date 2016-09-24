@@ -14,17 +14,19 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Content description of the superuser tile -->
+  <string name="accessibility_su_active">Superusersession aktiv</string>
   <!-- Kill app toast -->
+  <string name="app_killed_message">App tvångsavslutad</string>
   <!-- Dialog Cancel/OK -->
   <!-- Slim Shortcut Actions -->
+  <string name="shortcut_screenshot">Skärmdump</string>
   <!-- Off/On/Toggle -->
-  <!-- Battery level for expanded quick settings [CHAR LIMIT=2] -->
-  <!-- Battery level text while charging [CHAR LIMIT=2] -->
   <!-- QS Tiles Columns -->
   <!-- Additonal QS tiles -->
   <!-- USB tether QS tile -->
   <!-- Ambient Display QS tile -->
   <!-- Screenshot QS tile -->
+  <!-- NFC QS tile -->
   <!-- Sync QS tile -->
   <!-- Screen off QS tile -->
   <!-- Screen timeout QS tile -->

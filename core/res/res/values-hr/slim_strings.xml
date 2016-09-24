@@ -21,11 +21,14 @@
   <string name="app_ops_access_camera">upravljati kamerom</string>
   <string name="app_ops_access_location">pristupiti Vašem položaju</string>
   <string name="app_ops_access_notifications">čitati Vaše poruke</string>
+  <string name="app_ops_activate_vpn">aktivirati VPN</string>
+  <string name="app_ops_auto_start">pokrenuti se prilikom paljenja uređaja</string>
   <string name="app_ops_delete_call_log">izbrisati popis poziva</string>
   <string name="app_ops_delete_contacts">izbrisati kontakt</string>
   <string name="app_ops_delete_mms">izbrisati MMS poruku</string>
   <string name="app_ops_delete_sms">izbrisati SMS poruku</string>
   <string name="app_ops_draw_on_top">izvući na vrh</string>
+  <string name="app_ops_get_usage_stats">pristup statistikama upotrebe aplikacija</string>
   <string name="app_ops_keep_device_awake">održati uređaj budnim</string>
   <string name="app_ops_make_phone_call">uspostaviti telefonski poziv</string>
   <string name="app_ops_modify_calendar">ažurirati Vaš kalendar</string>
@@ -33,6 +36,7 @@
   <string name="app_ops_modify_clipboard">izmijeniti međuspremnik</string>
   <string name="app_ops_modify_contacts">ažurirati kontakte</string>
   <string name="app_ops_modify_settings">ažurirati postavke sustava</string>
+  <string name="app_ops_mute_unmute_microphone">isključiti/uključiti mikrofon</string>
   <string name="app_ops_play_audio">reproducirati zvuk</string>
   <string name="app_ops_post_notification">poslati obavijest</string>
   <string name="app_ops_project_media">upravljanje s medijskim datotekama</string>
@@ -64,11 +68,14 @@
   <string name="app_ops_use_voice_volume">kontrolirati glasnoću poziva</string>
   <string name="app_ops_write_mms">napisati MMS poruku</string>
   <string name="app_ops_write_sms">napisati SMS poruku</string>
+  <string name="app_ops_su">zatražiti Superuser pristup</string>
   <!-- Privacy Guard -->
   <string name="permlab_changePrivacyGuardState">Uključi ili isključi Nadzor Privatnosti</string>
   <string name="permdesc_changePrivacyGuardState">Dopušta aplikaciji određivanje hoće li druga aplikacija biti pokrenuta pod Nadzorom Privatnosti. Kada ja aplikacija pod Nadzorom Privatnosti, neće imati pristup osobnim podacima kao što su kontakti, zapisi poziva ili poruke.</string>
   <string name="privacy_guard_notification">Nadzor Privatnosti aktiviran</string>
   <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> neće moći pristupiti osobnim podacima</string>
+  <string name="privacy_guard_dialog_title">Nadzor Privatnosti</string>
+  <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s</xliff:g> aplikacija bi htjela <xliff:g id="op">%2$s</xliff:g>.</string>
   <!-- Wifi Hotspot disabled due to subscription change -->
   <!-- WiFi turn off notification action text -->
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->

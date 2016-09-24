@@ -18,27 +18,122 @@
   <!-- Kill app toast -->
   <string name="app_killed_message">Aplikacja wyłączona</string>
   <!-- Dialog Cancel/OK -->
+  <string name="cancel">Anuluj</string>
+  <string name="dlg_ok">Ok</string>
+  <string name="yes">Tak</string>
+  <string name="no">Nie</string>
   <!-- Slim Shortcut Actions -->
+  <string name="shortcut_picker">Skróty slim</string>
   <string name="shortcut_screenshot">Zrzut ekranu</string>
+  <string name="shortcut_chamber">Komnata tajemnic</string>
+  <string name="chamber_disabled">Komnata tajemnic jest zamknięta</string>
+  <string name="chamber_title">Wpisz ciąg z ustawień</string>
+  <string name="chamber_message">Wpisz ciąg znaków ustawienia, który jest przełącznikiem włącz/wyłącz lub listą wyboru. Na przykład, quiet_hours_ringer lub podobne. Ustawienia znajdziesz w pliku Settings.java. UWAGA: Ten proces jest niebezpieczny!</string>
+  <string name="chamber_slim_title">Ustawienia Slim</string>
+  <string name="chamber_slim_message">Ustawienie znaleziono w źródłach ustawień Slim oraz AOSP. Czy to jest ustawienie Slim?</string>
+  <string name="chamber_invalid">Wprowadzono niepoprawne dane. Bądź ostrożny.</string>
+  <string name="chamber_invalid_setting">Spróbuj ręcznie przełączyć to ustawienie aby upewnić się, że to działania istnieje w bazie danych ustawień.</string>
+  <string name="chamber_checkbox">Przełącznik</string>
+  <string name="chamber_chk_message">Czy to ustawienie jest przełącznikiem?</string>
+  <string name="chamber_int">Wprowadź wartości</string>
+  <string name="chamber_int_message">Wprowadź wartości, między którymi chcesz się przełączać. Oddziel każdą wartość przecinkiem. Ustawienia koloru przyjmują wartości hex takie jak #FF00aacc lub podstawowe nazwy kolorów jak red, green and yellow.</string>
+  <string name="chamber_name_title">Nazwa skrótu</string>
+  <string name="chamber_name_message">Nadaj skrótowi nazwę, która będzie wyświetlona wraz z ikoną.</string>
+  <string name="chamber_name_toast">Użyj domyślnej nazwy</string>
   <!-- Off/On/Toggle -->
-  <!-- Battery level for expanded quick settings [CHAR LIMIT=2] -->
-  <!-- Battery level text while charging [CHAR LIMIT=2] -->
+  <string name="off">Wył</string>
+  <string name="on">Wł</string>
+  <string name="toggle">Przełącz</string>
+  <string name="shortcut_toggle_title">Akcja do wykonania</string>
   <!-- QS Tiles Columns -->
+  <string name="qs_num_columns_entries_three">Trzy</string>
+  <string name="qs_num_columns_entries_four">Cztery</string>
+  <string name="qs_num_columns_entries_five">Pięć</string>
+  <string name="qs_main_tiles_title">Powiększ pierwszy rząd</string>
+  <string name="qs_main_tiles_summary">Dwie główne ikony w pierwszym rzędzie</string>
+  <string name="qs_num_columns_title">Liczba płytek na rząd</string>
+  <string name="qs_num_columns_showing">%1$s płytek na rząd jest pokazywana</string>
   <!-- Additonal QS tiles -->
   <!-- USB tether QS tile -->
+  <string name="accessibility_quick_settings_usb_tether_off">Tethering USB wyłączony</string>
+  <string name="accessibility_quick_settings_usb_tether_on">Tethering USB włączony</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_off">Tethering USB wyłączony</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_on">Tethering USB włączony</string>
+  <string name="quick_settings_usb_tether_label">Tethering USB</string>
   <!-- Ambient Display QS tile -->
+  <string name="accessibility_quick_settings_ambient_display_off">Sprytny ekran wył</string>
+  <string name="accessibility_quick_settings_ambient_display_on">Sprytny ekran wł</string>
+  <string name="accessibility_quick_settings_ambient_display_changed_off">Sprytny ekran wył</string>
+  <string name="accessibility_quick_settings_ambient_display_changed_on">Sprytny ekran wł</string>
+  <string name="quick_settings_ambient_display_label">Sprytny ekran</string>
   <!-- Screenshot QS tile -->
+  <string name="quick_settings_screenshot_label">Zrzut ekranu</string>
+  <!-- NFC QS tile -->
+  <string name="quick_settings_nfc_label">NFC</string>
   <!-- Sync QS tile -->
+  <string name="quick_settings_sync_label">Synchronizacja</string>
+  <string name="accessibility_quick_settings_sync_off">Synchronizacja wył</string>
+  <string name="accessibility_quick_settings_sync_on">Synchronizacja wł</string>
+  <string name="accessibility_quick_settings_sync_changed_off">Synchronizacja wył</string>
+  <string name="accessibility_quick_settings_sync_changed_on">Synchronizacja wł</string>
   <!-- Screen off QS tile -->
+  <string name="quick_settings_screen_off">Wyłącz ekran</string>
   <!-- Screen timeout QS tile -->
+  <string name="quick_settings_timeout_label">Limit czasu</string>
+  <string name="quick_settings_screen_timeout_detail_title">Czas wygaszania ekranu</string>
+  <string name="accessibility_quick_settings_screen_timeout">Czasu wygaszenia ekranu: <xliff:g id="timeout" example="30 seconds">%s </xliff:g>.</string>
+  <string name="accessibility_quick_settings_screen_timeout_changed">Czas wygaszania ekranu zmieniono na <xliff:g id="timeout" example="30 seconds">%s </xliff:g>.</string>
   <!-- Brightness QS Tile -->
+  <string name="quick_settings_brightness">Jasność</string>
   <!-- Music QS Tile -->
+  <string name="quick_settings_music_label">Muzyka</string>
+  <string name="quick_settings_music_play">Odtwarzaj</string>
+  <string name="quick_settings_music_pause">Pauza</string>
   <!-- Reboot/Recovery QS Tile -->
+  <string name="quick_settings_reboot_label">Uruchom ponownie</string>
+  <string name="quick_settings_reboot_recovery_label">Uruchom w trybie Recovery</string>
   <!-- Battery Saver QS Tile -->
+  <string name="quick_settings_battery_saver">Oszczędzanie baterii</string>
+  <string name="accessibility_quick_settings_battery_saver_off">Oszczędzanie baterii wył.</string>
+  <string name="accessibility_quick_settings_battery_saver_on">Oszczędzanie baterii wł.</string>
+  <string name="accessibility_quick_settings_battery_saver_changed_off">Oszczędzanie baterii wył.</string>
+  <string name="accessibility_quick_settings_battery_saver_changed_on">Oszczędzanie baterii wł.</string>
   <!-- Compass QS Tile -->
+  <string name="quick_settings_compass_label">Kompas</string>
+  <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
+  <string name="quick_settings_compass_init">Rozpoczynanie\u2026</string>
+  <string name="accessibility_quick_settings_compass_off">Kompas wył.</string>
+  <string name="accessibility_quick_settings_compass_on">Kompas wł.</string>
+  <string name="accessibility_quick_settings_compass_changed_off">Kompas wył.</string>
+  <string name="accessibility_quick_settings_compass_changed_on">Kompas wł.</string>
+  <string name="quick_settings_compass_N">Pn</string>
+  <string name="quick_settings_compass_NE">Pn.-Wsch.</string>
+  <string name="quick_settings_compass_E">Wsch.</string>
+  <string name="quick_settings_compass_SE">Pd-Wsch.</string>
+  <string name="quick_settings_compass_S">Płd.</string>
+  <string name="quick_settings_compass_SW">Pd-Zach.</string>
+  <string name="quick_settings_compass_W">Zach.</string>
+  <string name="quick_settings_compass_NW">Pn.-Zach.</string>
   <!-- Caffeine QS Tile -->
+  <string name="quick_settings_caffeine_label">Timer</string>
+  <string name="accessibility_quick_settings_caffeine_off">Timer wył.</string>
+  <string name="accessibility_quick_settings_caffeine_on">Timer wł.</string>
   <!-- IME selector Tile -->
+  <string name="quick_settings_ime_label">IME</string>
   <!-- Volume QS Tile -->
+  <string name="accessibility_quick_settings_volume_panel">Panel głośności.</string>
+  <string name="quick_settings_volume_panel_label">Panel głośności</string>
   <!-- Sound QS Tile -->
+  <string name="quick_settings_sound_label">Dźwięk</string>
+  <string name="quick_settings_sound_ring">Dzwonek</string>
+  <string name="quick_settings_sound_vibrate">Wibruj</string>
+  <string name="quick_settings_sound_silent">Cichy</string>
   <!-- Advanced Location QS Tile -->
+  <string name="accessibility_quick_settings_location_battery_saving">Raportowanie lokalizacji: tryb oszczędzania baterii.</string>
+  <string name="accessibility_quick_settings_location_gps_only">Raportowanie lokalizacji: tylko urządzenie.</string>
+  <string name="accessibility_quick_settings_location_high_accuracy">Raportowanie lokalizacji: wysoka dokładność.</string>
+  <string name="quick_settings_location_detail_title">Tryb lokalizacji</string>
+  <string name="quick_settings_location_battery_saving_label">Oszczędzanie baterii</string>
+  <string name="quick_settings_location_gps_only_label">Tylko urządzenie</string>
+  <string name="quick_settings_location_high_accuracy_label">Wysoka dokładność</string>
 </resources>
