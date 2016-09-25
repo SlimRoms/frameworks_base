@@ -64,6 +64,13 @@ endif
 # Slim Framework
 include frameworks/slim/packages/SlimSystemUI/SlimSystemUI.mk
 
+LOCAL_JAVA_LIBRARIES += org.slim.framework
+LOCAL_STATIC_JAVA_LIBRARIES += android-opt-cards
+LOCAL_AAPT_FLAGS += --extra-packages com.android.cards
+LOCAL_FULL_LIBS_MANIFEST_FILES := frameworks/slim/packages/SlimSystemUI/AndroidManifest.xml
+LOCAL_SRC_FILES += $(call all-java-files-under, ../../../slim/packages/SlimSystemUI/src)
+LOCAL_RESOURCE_DIR += frameworks/opt/cards/res frameworks/slim/packages/SlimSystemUI/res
+
 include frameworks/base/packages/SettingsLib/common.mk
 
 LOCAL_AAPT_FLAGS := --extra-packages com.android.keyguard
