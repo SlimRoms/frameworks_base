@@ -32,6 +32,8 @@ services := \
     usb \
     voiceinteraction
 
+LOCAL_JAVA_LIBRARIES := org.slim.framework
+
 # The convention is to name each service module 'services.$(module_name)'
 LOCAL_STATIC_JAVA_LIBRARIES := $(addprefix services.,$(services))
 
