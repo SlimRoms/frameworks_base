@@ -65,6 +65,9 @@ include frameworks/base/packages/SettingsLib/common.mk
 
 LOCAL_AAPT_FLAGS := --extra-packages com.android.keyguard
 
+# Slim Framework
+include frameworks/slim/packages/SlimSystemUI/SlimSystemUI.mk
+
 include $(BUILD_PACKAGE)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
