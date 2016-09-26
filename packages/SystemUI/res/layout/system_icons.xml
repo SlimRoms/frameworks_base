@@ -33,8 +33,8 @@
 
     <!-- battery must be padded below to match assets -->
     <com.android.systemui.BatteryMeterView android:id="@+id/battery"
-        android:layout_height="@dimen/status_bar_battery_icon_height"
-        android:layout_width="@dimen/status_bar_battery_icon_width"
+        android:layout_height="0dp"
+        android:layout_width="0dp"
         android:visibility="gone"
         android:layout_marginBottom="@dimen/battery_margin_bottom"/>
 
