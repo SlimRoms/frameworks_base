@@ -18,7 +18,7 @@
     <!-- Primary & accent colors -->
     <eat-comment />
 
-    <color name="material_grey_900">#ff21272b</color>
+    <color name="material_grey_900">#ff212121</color>
     <color name="material_grey_850">#ff21272b</color>
     <color name="material_grey_800">#ff263238</color>
     <color name="material_grey_600">#ff546e7a</color>
