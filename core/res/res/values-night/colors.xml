@@ -17,6 +17,9 @@
 <resources>
     <color name="background_floating_material_dark">@color/material_grey_850</color>
 
+    <!-- Notification action/overflow divider -->
+    <drawable name="notification_template_divider">#29FFFFFF</drawable>
+
     <!-- Notification action text/button -->
     <color name="notification_action_color_filter">#9F9F9F</color>
     <color name="secondary_text_material_light">#A2A2A2</color>
