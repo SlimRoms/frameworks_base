@@ -86,16 +86,17 @@ public class ViewInvertHelper {
 
     private void updateInvertPaint(float intensity) {
         float components = 1 - 2 * intensity;
+        if (!Resources.getSystem().getBoolean(
+                com.android.internal.R.bool.config_invert_colors_on_doze)) {
+            components = Math.abs(components);
+        }
         final float[] invert = {
                 components, 0f,         0f,         0f, 255f * intensity,
                 0f,         components, 0f,         0f, 255f * intensity,
                 0f,         0f,         components, 0f, 255f * intensity,
                 0f,         0f,         0f,         1f, 0f
         };
-        if (Resources.getSystem().getBoolean(
-                com.android.internal.R.bool.config_invert_colors_on_doze)) {
-            mMatrix.set(invert);
-        }
+        mMatrix.set(invert);
         mGrayscaleMatrix.setSaturation(1 - intensity);
         mMatrix.preConcat(mGrayscaleMatrix);
         mDarkPaint.setColorFilter(new ColorMatrixColorFilter(mMatrix));
