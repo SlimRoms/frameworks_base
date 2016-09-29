@@ -112,6 +112,7 @@ public class TileUtils {
     public static final String META_DATA_PREFERENCE_SUMMARY = "com.android.settings.summary";
 
     private static final String SETTING_PKG = "com.android.settings";
+    private static final String SLIM_SETTING_PKG = "com.slim.settings";
 
     public static List<DashboardCategory> getCategories(Context context,
             HashMap<Pair<String, String>, Tile> cache) {
@@ -172,7 +173,9 @@ public class TileUtils {
             }
             category.title = resolved.activityInfo.loadLabel(pm);
             category.priority = SETTING_PKG.equals(
-                    resolved.activityInfo.applicationInfo.packageName) ? resolved.priority : 0;
+                    resolved.activityInfo.applicationInfo.packageName) ? resolved.priority :
+                    (SLIM_SETTING_PKG.equals(resolver.activityInfo.applicationInfo.packageName) ?
+                            resolved.priority : 0);
             if (DEBUG) Log.d(LOG_TAG, "Adding category " + category.title);
         }
 
