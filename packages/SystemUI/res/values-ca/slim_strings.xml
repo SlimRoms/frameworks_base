@@ -14,17 +14,35 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Content description of the superuser tile -->
+  <string name="accessibility_su_active">Sessió de superusuari activa</string>
   <!-- Kill app toast -->
+  <string name="app_killed_message">Procés tancat</string>
   <!-- Dialog Cancel/OK -->
+  <string name="cancel">Cancel·lar</string>
+  <string name="dlg_ok">D\'acord</string>
+  <string name="yes">Si</string>
+  <string name="no">No</string>
   <!-- Slim Shortcut Actions -->
+  <string name="shortcut_picker">Accesos directos Slim</string>
+  <string name="shortcut_screenshot">Captura de pantalla</string>
+  <string name="shortcut_chamber">Cambra dels Secrets</string>
+  <string name="chamber_disabled">La cambra dels secrets està tancada</string>
+  <string name="chamber_title">Introdueix els paràmetres de configuració</string>
+  <string name="chamber_message">Introdueix un paràmetre de configuració equivalent a una funció \"on\" o \"off\" (checkbox) o una llista de preferences. Per exemple quiet_hours_ringer o similar. Els parámetres de configuració es poden trobar a l\'arxiu Setting.java. ALERTA: Aquest procés és molt perillós!</string>
+  <string name="chamber_slim_title">Configuració Slim</string>
+  <string name="chamber_slim_message">L\'ajust es troba en aosp i slim. És aquesta un ajust slim?</string>
+  <string name="chamber_name_toast">S\'utilitzarà el nom per defecte</string>
   <!-- Off/On/Toggle -->
-  <!-- Battery level for expanded quick settings [CHAR LIMIT=2] -->
-  <!-- Battery level text while charging [CHAR LIMIT=2] -->
+  <string name="off">Desactivat</string>
+  <string name="on">Activat</string>
+  <string name="toggle">Interruptor</string>
+  <string name="shortcut_toggle_title">Acció a realitzar</string>
   <!-- QS Tiles Columns -->
   <!-- Additonal QS tiles -->
   <!-- USB tether QS tile -->
   <!-- Ambient Display QS tile -->
   <!-- Screenshot QS tile -->
+  <!-- NFC QS tile -->
   <!-- Sync QS tile -->
   <!-- Screen off QS tile -->
   <!-- Screen timeout QS tile -->

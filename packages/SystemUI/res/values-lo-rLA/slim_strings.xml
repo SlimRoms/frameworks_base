@@ -14,28 +14,13 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Content description of the superuser tile -->
-  <string name="accessibility_su_active">משתמש על פעיל</string>
+  <string name="accessibility_su_active">ການໃຊ້ງານ Superuser ເຮັດວຽກຢູ່</string>
   <!-- Kill app toast -->
-  <string name="app_killed_message">היישום נסגר</string>
+  <string name="app_killed_message">ປິດແອັບ</string>
   <!-- Dialog Cancel/OK -->
-  <string name="cancel">ביטול</string>
-  <string name="dlg_ok">אישור</string>
-  <string name="yes">כן</string>
-  <string name="no">לא</string>
   <!-- Slim Shortcut Actions -->
-  <string name="shortcut_picker">קיצורי Slim</string>
-  <string name="shortcut_screenshot">צילום מסך</string>
-  <string name="shortcut_chamber">חדר הסודות</string>
-  <string name="chamber_disabled">חדר הסודות סגור</string>
-  <string name="chamber_slim_title">הגדרות Slim</string>
-  <string name="chamber_slim_message">ההגדרה המצאת גם בספק aosp וגם בספק slim. האם זו הגדרת slim?</string>
-  <string name="chamber_invalid">זהו קלט לא חוקי. היזהר.</string>
-  <string name="chamber_name_title">שם קיצור דרך</string>
-  <string name="chamber_name_message">תן שם לקיצור הדרך שיוצג עם האייקון.</string>
-  <string name="chamber_name_toast">משתמש בשם ברירת המחדל</string>
+  <string name="shortcut_screenshot">ຖ່າຍຮູບໜ້າຈໍ</string>
   <!-- Off/On/Toggle -->
-  <string name="off">כבוי</string>
-  <string name="shortcut_toggle_title">פעולה לבצע</string>
   <!-- QS Tiles Columns -->
   <!-- Additonal QS tiles -->
   <!-- USB tether QS tile -->

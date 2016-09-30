@@ -68,6 +68,21 @@
   <string name="app_ops_use_voice_volume">έλεγχο της έντασης φωνητικής κλήσης</string>
   <string name="app_ops_write_mms">εγγραφή ενός μηνύματος MMS</string>
   <string name="app_ops_write_sms">εγγραφή ενός μηνύματος SMS</string>
+  <string name="app_ops_use_fingerprint">χρήση δακτυλικού αποτυπώματος</string>
+  <string name="app_ops_add_voicemail">προσθήκη φωνητικού μηνύματος</string>
+  <string name="app_ops_read_phone_state">κατάσταση τηλεφώνου</string>
+  <string name="app_ops_scan_wifi">Σάρωση για δίκτυα Wi-Fi</string>
+  <string name="app_ops_change_wallpaper">αλλαγή της ταπετσαρίας</string>
+  <string name="app_ops_assist_structure">χρησιμοποιήστε το βοηθό δομής</string>
+  <string name="app_ops_assist_screenshot">στιγμιότυπο οθόνης</string>
+  <string name="app_ops_use_body_sensors">χρήση αισθητήρων σώματος</string>
+  <string name="app_ops_read_cell_broadcasts">μεταδόσεις κελιού</string>
+  <string name="app_ops_mock_location">κοροϊδέψτε την τοποθεσία σας</string>
+  <string name="app_ops_read_external_storage">ανάγνωση της εξωτερικής συσκευής αποθήκευσης</string>
+  <string name="app_ops_write_external_storage">εγγραφή στην εξωτερική συσκευή αποθήκευσης</string>
+  <string name="app_ops_turn_on_screen">ενεργοποίηση της οθόνης</string>
+  <string name="app_ops_get_accounts">λήψη λογαριασμών συσκευής</string>
+  <string name="app_ops_wifi_change">αλλαγή της κατάστασης του WiFi</string>
   <string name="app_ops_su">Αποκτήστε πρόσβαση υπερχρήστη</string>
   <!-- Privacy Guard -->
   <string name="permlab_changePrivacyGuardState">Ενεργοποίηση ή απενεργοποίηση της προστασίας απορρήτου</string>
@@ -77,8 +92,12 @@
   <string name="privacy_guard_dialog_title">Προστασία Απορρήτου</string>
   <string name="privacy_guard_dialog_summary">Το <xliff:g id="app">%1$s</xliff:g> ζητά να: <xliff:g id="op">%2$s</xliff:g>.</string>
   <!-- Wifi Hotspot disabled due to subscription change -->
+  <string name="subscription_change_disabled_wifi_ap">Το Wi-Fi hotspot απενεργοποιήθηκε λόγω αλλαγής συνδρομής SIM</string>
   <!-- WiFi turn off notification action text -->
+  <string name="notify_turn_wifi_off_title">Απενεργοποίηση Wi-Fi</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permlab_preventpower">παράκαμψη κουμπιού ενεργοποίησης</string>
+  <string name="permdesc_preventpower">Επιτρέπει σε μια εφαρμογή να παρακάμψει το κουμπί ενεργοποίησης.</string>
   <!-- Reboot menu -->
   <!-- Button to reboot the phone, within the Reboot Options dialog -->
   <string name="reboot_reboot">Επανεκκίνηση</string>

@@ -18,15 +18,98 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- App ops requests -->
+  <string name="app_ops_access_camera">pasiekti fotoaparatą</string>
+  <string name="app_ops_access_location">pasiekti jūsų vietą</string>
+  <string name="app_ops_access_notifications">skaityti jūsų pranešimus</string>
+  <string name="app_ops_activate_vpn">suaktyvinti VPN</string>
+  <string name="app_ops_auto_start">paleisti įsijungiant</string>
+  <string name="app_ops_delete_call_log">Ištrinti jūsų skambučių žurnalą</string>
+  <string name="app_ops_delete_contacts">Ištrinti jūsų kontaktus</string>
+  <string name="app_ops_delete_mms">Ištrinti jūsų MMS pranešimus</string>
+  <string name="app_ops_delete_sms">Ištrinti jūsų SMS pranešimus</string>
+  <string name="app_ops_draw_on_top">piešti langus viršuje</string>
+  <string name="app_ops_get_usage_stats">gauti programos naudojimo statistiką</string>
+  <string name="app_ops_keep_device_awake">laikyti jūsų įrenginį pabudusį</string>
+  <string name="app_ops_make_phone_call">paskambinti</string>
+  <string name="app_ops_modify_calendar">atnaujinti jūsų kalendorių</string>
+  <string name="app_ops_modify_call_log">atnaujinti skambučių registra</string>
+  <string name="app_ops_modify_clipboard">modifikuoti iškarpinę</string>
+  <string name="app_ops_modify_contacts">atnaujinti jūsų kontkatus</string>
+  <string name="app_ops_modify_settings">atnaujinti sistemos nustatymus</string>
+  <string name="app_ops_mute_unmute_microphone">nutildyti/atšaukti mikrofono nutildymą</string>
+  <string name="app_ops_play_audio">paleisti garsą</string>
+  <string name="app_ops_post_notification">paskelbti pranešimą</string>
+  <string name="app_ops_project_media">projektas media</string>
+  <string name="app_ops_read_calendar">skaityti savo kalendorių</string>
+  <string name="app_ops_read_call_log">skaityti skambučių registrą</string>
+  <string name="app_ops_read_clipboard">skaityti iškarpinę</string>
+  <string name="app_ops_read_contacts">skaityti jūsų kontaktus</string>
+  <string name="app_ops_read_mms">skaityti jūsų MMS pranešimus</string>
+  <string name="app_ops_read_sms">skaityti jūsų SMS pranešimus</string>
+  <string name="app_ops_receive_sms">gauti SMS pranešimą</string>
+  <string name="app_ops_record_audio">įrašyti garso įrašą</string>
+  <string name="app_ops_send_mms">siųsti MMS pranešimą</string>
+  <string name="app_ops_send_sms">siųsti SMS pranešimą</string>
+  <string name="app_ops_start_at_bootup">paleisti įsijungiant</string>
+  <string name="app_ops_toast_window">rodyti informacinius pranešimus</string>
+  <string name="app_ops_toggle_bluetooth">įjungti „Bluetooth“</string>
+  <string name="app_ops_toggle_mobile_data">įjungti mobiliuosius duomenis</string>
+  <string name="app_ops_toggle_nfc">Įjungti / išjungti NFC</string>
+  <string name="app_ops_toggle_wifi">įjungti / išjungti „Wi-Fi“</string>
+  <string name="app_ops_use_alarm_volume">valdyti žadintuvo garsumą</string>
+  <string name="app_ops_use_audio_focus">valdyti garso sutelktį</string>
+  <string name="app_ops_use_bluetooth_volume">valdyti „Bluetooth“ garsumą</string>
+  <string name="app_ops_use_master_volume">valdyti pagrindinį garsumą</string>
+  <string name="app_ops_use_media_buttons">naudoti medijos mygtukus</string>
+  <string name="app_ops_use_media_volume">valdyti medijos garsumą</string>
+  <string name="app_ops_use_notification_volume">valdyti pranešimo garsumą</string>
+  <string name="app_ops_use_ring_volume">valdyti skambėjimo garsumą</string>
+  <string name="app_ops_use_vibrate">naudoti liečiamuosius atsiliepimus</string>
+  <string name="app_ops_use_voice_volume">valdyti balso skambučio garsumą</string>
+  <string name="app_ops_write_mms">rašyti MMS pranešimą</string>
+  <string name="app_ops_write_sms">rašyti SMS pranešimą</string>
+  <string name="app_ops_use_fingerprint">naudoti piršto atspaudą</string>
+  <string name="app_ops_add_voicemail">pridėti balso paštą</string>
+  <string name="app_ops_read_phone_state">telefono būsenos prieigą</string>
+  <string name="app_ops_scan_wifi">Skenuoti Wifi tinklus</string>
+  <string name="app_ops_change_wallpaper">keisti darbalaukio foną</string>
+  <string name="app_ops_assist_structure">naudoti pagalbinę struktūrą</string>
+  <string name="app_ops_assist_screenshot">užfiksuoti ekranvaizdį</string>
+  <string name="app_ops_use_body_sensors">naudoti kūno jutiklius</string>
+  <string name="app_ops_read_cell_broadcasts">skaityti teletekstą</string>
+  <string name="app_ops_mock_location">apgauti jūsų vietą</string>
+  <string name="app_ops_read_external_storage">skaitytį išorinėje atmintyje</string>
+  <string name="app_ops_write_external_storage">įrašyti išorinėje atmintyje</string>
+  <string name="app_ops_turn_on_screen">įjungti ekraną</string>
+  <string name="app_ops_get_accounts">gauti prietaiso paskyras</string>
+  <string name="app_ops_wifi_change">keisti WiFI būklę</string>
+  <string name="app_ops_su">gauti „Superuser“ prieiga</string>
   <!-- Privacy Guard -->
+  <string name="permlab_changePrivacyGuardState">Įjungti arba išjungti privatumo saugą</string>
+  <string name="permdesc_changePrivacyGuardState">Leisti programai keisti, kai kita programa veikia su privatumo apsauga. Kai programa veikia su privatumo apsauga ji neturės prieigos prie asmeninių duomenų, pavyzdžiui, kontaktų, skambučių žurnalų ar pranešimų.</string>
+  <string name="privacy_guard_notification">Privatumo apsauga aktyvi</string>
+  <string name="privacy_guard_notification_detail"><xliff:g id="app">„%1$s“</xliff:g> negalės naudotis asmeniniais duomenimis</string>
+  <string name="privacy_guard_dialog_title">Privatumo apsauga</string>
+  <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s</xliff:g> norėtu <xliff:g id="op">%2$s</xliff:g>.</string>
   <!-- Wifi Hotspot disabled due to subscription change -->
+  <string name="subscription_change_disabled_wifi_ap">Išjungti Wi-fi aktyviają sritį dėl SIM prenumeratos pasikeitimų</string>
   <!-- WiFi turn off notification action text -->
+  <string name="notify_turn_wifi_off_title">Išjunkite „Wi-Fi“</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permlab_preventpower">nepaisyti įjungimo klavišo</string>
+  <string name="permdesc_preventpower">Leisti programoms nepaisyti įjungimo klavišo.</string>
   <!-- Reboot menu -->
   <!-- Button to reboot the phone, within the Reboot Options dialog -->
+  <string name="reboot_reboot">Paleisti iš naujo</string>
   <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
+  <string name="reboot_recovery">Atkūrimo režimas</string>
   <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
+  <string name="reboot_bootloader">„Bootloader“</string>
   <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
+  <string name="reboot_download">Atsisiųsti</string>
   <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
+  <string name="reboot_progress">Perkraunama\u2026</string>
   <!-- Button to reboot the phone, within the Phone Options dialog -->
+  <string name="reboot_system" product="tablet">Perkrauti</string>
+  <string name="reboot_system" product="default">Perkrauti</string>
 </resources>

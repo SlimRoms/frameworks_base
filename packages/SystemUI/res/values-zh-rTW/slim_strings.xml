@@ -14,17 +14,41 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Content description of the superuser tile -->
+  <string name="accessibility_su_active">超級使用者啟用中</string>
   <!-- Kill app toast -->
+  <string name="app_killed_message">應用程式已終止</string>
   <!-- Dialog Cancel/OK -->
+  <string name="cancel">取消</string>
+  <string name="dlg_ok">確定</string>
+  <string name="yes">是</string>
+  <string name="no">否</string>
   <!-- Slim Shortcut Actions -->
+  <string name="shortcut_picker">Slim的快速設定</string>
+  <string name="shortcut_screenshot">螢幕截圖</string>
+  <string name="chamber_title">輸入設定字串</string>
+  <string name="chamber_message">輸入一個設置字串，它是開啟和關閉 (核取方塊)的函數或是清單選項。例如，doze_enabled之類。設置可以在 Settings.java 檔中找到。警告： 這個動作是危險的 ！</string>
+  <string name="chamber_slim_title">Slim 設定</string>
+  <string name="chamber_slim_message">這個設定出現在AOSP和Slim的設置程式中。 這是一個Slim的設置嗎？</string>
+  <string name="chamber_invalid">這是一個不正確輸入。請小心輸入。</string>
+  <string name="chamber_invalid_setting">嘗試切換手動設定以確保這動作被保存在設定資料庫中。</string>
+  <string name="chamber_checkbox">切換</string>
+  <string name="chamber_chk_message">這是一個切換狀態的設定嗎？</string>
+  <string name="chamber_int">輸入值</string>
+  <string name="chamber_int_message">輸入您想要切換的設定值。每個值用逗號分隔。顏色設定接受十六進位值，例如 #FF00aacc 或基本顏色值，比如紅色 (red) 、綠色 (green) 和黃色 (yellow) 。</string>
+  <string name="chamber_name_title">捷徑名稱</string>
+  <string name="chamber_name_message">設定這個捷徑的名稱。</string>
+  <string name="chamber_name_toast">使用預設名稱</string>
   <!-- Off/On/Toggle -->
-  <!-- Battery level for expanded quick settings [CHAR LIMIT=2] -->
-  <!-- Battery level text while charging [CHAR LIMIT=2] -->
+  <string name="off">關閉</string>
+  <string name="on">啟用</string>
+  <string name="toggle">切換</string>
+  <string name="shortcut_toggle_title">要執行的動作:</string>
   <!-- QS Tiles Columns -->
   <!-- Additonal QS tiles -->
   <!-- USB tether QS tile -->
   <!-- Ambient Display QS tile -->
   <!-- Screenshot QS tile -->
+  <!-- NFC QS tile -->
   <!-- Sync QS tile -->
   <!-- Screen off QS tile -->
   <!-- Screen timeout QS tile -->

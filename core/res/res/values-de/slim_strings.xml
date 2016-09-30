@@ -73,12 +73,15 @@
   <string name="app_ops_read_phone_state">Auf den Telefonstatus zugreifen</string>
   <string name="app_ops_scan_wifi">WLAN-Netzwerke scannen</string>
   <string name="app_ops_change_wallpaper">Hintergrundbild ändern</string>
+  <string name="app_ops_assist_structure">Benutze Assist-Struktur</string>
   <string name="app_ops_assist_screenshot">Bildschirmfoto aufnehmen</string>
   <string name="app_ops_use_body_sensors">Körper-Sensoren verwenden</string>
+  <string name="app_ops_read_cell_broadcasts">Cell Broadcast-Nachrichten lesen</string>
   <string name="app_ops_mock_location">Ihren Standort abrufen</string>
   <string name="app_ops_read_external_storage">Externen Speicher lesen</string>
   <string name="app_ops_write_external_storage">Externen Speicher beschreiben</string>
   <string name="app_ops_turn_on_screen">Bildschirm einschalten</string>
+  <string name="app_ops_get_accounts">Gerät-Konten erhalten</string>
   <string name="app_ops_wifi_change">WLAN-Status ändern</string>
   <string name="app_ops_su">Superuser-Zugriff erhalten</string>
   <!-- Privacy Guard -->
@@ -89,6 +92,7 @@
   <string name="privacy_guard_dialog_title">Datenschutz</string>
   <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s </xliff:g> möchte <xliff:g id="op">%2$s </xliff:g>.</string>
   <!-- Wifi Hotspot disabled due to subscription change -->
+  <string name="subscription_change_disabled_wifi_ap">WLAN-Hotspot wegen Veränderung in SIM-Abonnement deaktiviert</string>
   <!-- WiFi turn off notification action text -->
   <string name="notify_turn_wifi_off_title">WLAN ausschalten</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
