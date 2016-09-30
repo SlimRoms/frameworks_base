@@ -38,6 +38,7 @@ public class ViewInvertHelper {
     private final ColorMatrix mMatrix = new ColorMatrix();
     private final ColorMatrix mGrayscaleMatrix = new ColorMatrix();
     private final long mFadeDuration;
+    private boolean mShouldInvert;
 
     public ViewInvertHelper(View target, long fadeDuration) {
         mTarget = target;
@@ -72,6 +73,8 @@ public class ViewInvertHelper {
     }
 
     public void update(boolean invert) {
+        mShouldInvert = Resources.getSystem().getBoolean(
+                com.android.internal.R.bool.config_invert_colors_on_doze);
         if (invert) {
             updateInvertPaint(1f);
             mTarget.setLayerType(View.LAYER_TYPE_HARDWARE, mDarkPaint);
@@ -92,12 +95,10 @@ public class ViewInvertHelper {
                 0f,         0f,         components, 0f, 255f * intensity,
                 0f,         0f,         0f,         1f, 0f
         };
-        if (Resources.getSystem().getBoolean(
-                com.android.internal.R.bool.config_invert_colors_on_doze)) {
-            mMatrix.set(invert);
-        }
+        mMatrix.set(invert);
         mGrayscaleMatrix.setSaturation(1 - intensity);
         mMatrix.preConcat(mGrayscaleMatrix);
-        mDarkPaint.setColorFilter(new ColorMatrixColorFilter(mMatrix));
+        mDarkPaint.setColorFilter(new ColorMatrixColorFilter(
+                mShouldInvert ? mMatrix : mGrayscaleMatrix));
     }
 }
