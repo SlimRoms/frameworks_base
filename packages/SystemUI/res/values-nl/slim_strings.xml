@@ -55,20 +55,85 @@
   <string name="qs_num_columns_showing">%1$s tegels per rij weergegeven</string>
   <!-- Additonal QS tiles -->
   <!-- USB tether QS tile -->
+  <string name="accessibility_quick_settings_usb_tether_off">Usb tethering uit</string>
+  <string name="accessibility_quick_settings_usb_tether_on">Usb tethering aan</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_off">USB tethering is uitgeschakeld</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_on">USB tethering is ingeschakeld</string>
+  <string name="quick_settings_usb_tether_label">Usb tethering</string>
   <!-- Ambient Display QS tile -->
+  <string name="accessibility_quick_settings_ambient_display_off">Ambient Display uit</string>
+  <string name="accessibility_quick_settings_ambient_display_on">Ambient Display aan</string>
+  <string name="accessibility_quick_settings_ambient_display_changed_off">Ambient Display is uitgeschakeld</string>
+  <string name="accessibility_quick_settings_ambient_display_changed_on">Ambient Display is ingeschakeld</string>
+  <string name="quick_settings_ambient_display_label">Ambient Display</string>
   <!-- Screenshot QS tile -->
+  <string name="quick_settings_screenshot_label">Schermafbeelding</string>
   <!-- NFC QS tile -->
+  <string name="quick_settings_nfc_label">NFC</string>
   <!-- Sync QS tile -->
+  <string name="quick_settings_sync_label">Sync</string>
+  <string name="accessibility_quick_settings_sync_off">Sync uit</string>
+  <string name="accessibility_quick_settings_sync_on">Sync aan</string>
+  <string name="accessibility_quick_settings_sync_changed_off">Sync is uitgeschakeld</string>
+  <string name="accessibility_quick_settings_sync_changed_on">Sync is ingeschakeld</string>
   <!-- Screen off QS tile -->
+  <string name="quick_settings_screen_off">Scherm uit</string>
   <!-- Screen timeout QS tile -->
+  <string name="quick_settings_timeout_label">Time-out</string>
+  <string name="quick_settings_screen_timeout_detail_title">Scherm timeout</string>
+  <string name="accessibility_quick_settings_screen_timeout">Scherm time-out: <xliff:g id="timeout" example="30 seconds">%s</xliff:g>.</string>
+  <string name="accessibility_quick_settings_screen_timeout_changed">Scherm time-out gewijzigd naar <xliff:g id="timeout" example="30 seconds">%s</xliff:g>.</string>
   <!-- Brightness QS Tile -->
+  <string name="quick_settings_brightness">Helderheid</string>
   <!-- Music QS Tile -->
+  <string name="quick_settings_music_label">Muziek</string>
+  <string name="quick_settings_music_play">Afspelen</string>
+  <string name="quick_settings_music_pause">Pauseren</string>
   <!-- Reboot/Recovery QS Tile -->
+  <string name="quick_settings_reboot_label">Opnieuw opstarten</string>
+  <string name="quick_settings_reboot_recovery_label">Herstelmodus</string>
   <!-- Battery Saver QS Tile -->
+  <string name="quick_settings_battery_saver">Batterijbesparing</string>
+  <string name="accessibility_quick_settings_battery_saver_off">Batterijbesparing uit.</string>
+  <string name="accessibility_quick_settings_battery_saver_on">Batterijbesparing aan.</string>
+  <string name="accessibility_quick_settings_battery_saver_changed_off">Batterijbesparing uitgeschakeld.</string>
+  <string name="accessibility_quick_settings_battery_saver_changed_on">Batterijbesparing ingeschakeld.</string>
   <!-- Compass QS Tile -->
+  <string name="quick_settings_compass_label">Kompas</string>
+  <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f </xliff:g> \u00b0 <xliff:g id="direction">%2$s </xliff:g></string>
+  <string name="quick_settings_compass_init">Initializing\u2026</string>
+  <string name="accessibility_quick_settings_compass_off">Kompas uit.</string>
+  <string name="accessibility_quick_settings_compass_on">Kompas aan.</string>
+  <string name="accessibility_quick_settings_compass_changed_off">Kompas uitgeschakeld.</string>
+  <string name="accessibility_quick_settings_compass_changed_on">Kompas ingeschakeld.</string>
+  <string name="quick_settings_compass_N">N</string>
+  <string name="quick_settings_compass_NE">NO</string>
+  <string name="quick_settings_compass_E">O</string>
+  <string name="quick_settings_compass_SE">ZO</string>
+  <string name="quick_settings_compass_S">Z</string>
+  <string name="quick_settings_compass_SW">ZW</string>
+  <string name="quick_settings_compass_W">W</string>
+  <string name="quick_settings_compass_NW">NW</string>
   <!-- Caffeine QS Tile -->
+  <string name="quick_settings_caffeine_label">Cafeïne</string>
+  <string name="accessibility_quick_settings_caffeine_off">Cafeïne uit.</string>
+  <string name="accessibility_quick_settings_caffeine_on">Cafeïne aan.</string>
   <!-- IME selector Tile -->
+  <string name="quick_settings_ime_label">IME</string>
   <!-- Volume QS Tile -->
+  <string name="accessibility_quick_settings_volume_panel">Volume paneel.</string>
+  <string name="quick_settings_volume_panel_label">Volume paneel</string>
   <!-- Sound QS Tile -->
+  <string name="quick_settings_sound_label">Geluid</string>
+  <string name="quick_settings_sound_ring">Rinkelen</string>
+  <string name="quick_settings_sound_vibrate">Trillen</string>
+  <string name="quick_settings_sound_silent">Stil</string>
   <!-- Advanced Location QS Tile -->
+  <string name="accessibility_quick_settings_location_battery_saving">Locatiebepaling: batterij besparingsmodus.</string>
+  <string name="accessibility_quick_settings_location_gps_only">Locatiemelding: Alleen sensoren.</string>
+  <string name="accessibility_quick_settings_location_high_accuracy">Locatiemelding: Grote nauwkeurigheid.</string>
+  <string name="quick_settings_location_detail_title">Locatiemodus</string>
+  <string name="quick_settings_location_battery_saving_label">Batterijbesparing</string>
+  <string name="quick_settings_location_gps_only_label">Alleen apparaat</string>
+  <string name="quick_settings_location_high_accuracy_label">Grote nauwkeurigheid</string>
 </resources>
