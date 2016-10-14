@@ -340,6 +340,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private long mKeyguardFadingAwayDelay;
     private long mKeyguardFadingAwayDuration;
 
+    private SettingsButton mSettingsButton;
+
     int mKeyguardMaxNotificationCount;
 
     boolean mExpandedVisible;
@@ -949,6 +951,21 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         signalClusterKeyguard.setNetworkController(mNetworkController);
         signalClusterQs.setSecurityController(mSecurityController);
         signalClusterQs.setNetworkController(mNetworkController);
+
+        mSettingsButton = (SettingsButton) mHeader.findViewById(R.id.settings_button);
+        mSettingsButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.setClassName("com.android.settings",
+                        "com.android.settings.Settings$NotificationStationActivity");
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                animateCollapsePanels();
+                mContext.startActivityAsUser(intent, new UserHandle(UserHandle.USER_CURRENT));
+                return true;
+            }
+        });
+
         final boolean isAPhone = mNetworkController.hasVoiceCallingFeature();
         if (isAPhone) {
             mNetworkController.addEmergencyListener(mHeader);
