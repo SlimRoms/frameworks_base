@@ -27,6 +27,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
+import android.os.UserHandle;
 import android.util.AttributeSet;
 import android.util.MathUtils;
 import android.util.TypedValue;
@@ -151,6 +152,7 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         mSettingsButton = (SettingsButton) findViewById(R.id.settings_button);
         mSettingsContainer = findViewById(R.id.settings_button_container);
         mSettingsButton.setOnClickListener(this);
+        mSettingsButton.setOnLongClickListener(mSettingsButtonLongListener);
         mQsDetailHeader = findViewById(R.id.qs_detail_header);
         mQsDetailHeader.setAlpha(0);
         mQsDetailHeaderTitle = (TextView) mQsDetailHeader.findViewById(android.R.id.title);
@@ -847,4 +849,17 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
                     .start();
         }
     };
+
+    private View.OnLongClickListener mSettingsButtonLongListener = new View.OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View v) {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.setClassName("com.android.settings",
+                    "com.android.settings.Settings$NotificationStationActivity");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            mContext.startActivityAsUser(intent, new UserHandle(UserHandle.USER_CURRENT));
+            return true;
+        }
+    };
+
 }
