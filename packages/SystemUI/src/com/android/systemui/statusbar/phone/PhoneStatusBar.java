@@ -326,7 +326,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private QSTileHost mQSTileHost;
 
     // top bar
-    StatusBarHeaderView mHeader;
+    protected StatusBarHeaderView mHeader;
     KeyguardStatusBarView mKeyguardStatusBar;
     View mKeyguardStatusView;
     KeyguardBottomAreaView mKeyguardBottomArea;
