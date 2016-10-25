@@ -2793,6 +2793,9 @@
     <bool name="config_proximityCheckOnWake">false</bool>
     <integer name="config_proximityCheckTimeout">250</integer>
 
+    <!-- Whether notify fingerprint client of successful cancelled authentication -->
+    <bool name="config_notifyClientOnFingerprintCancelSuccess">false</bool>
+
      <!-- Specifies whether the permissions needed by a legacy app should be
          reviewed before any of its components can run. A legacy app is one
          with targetSdkVersion < 23, i.e apps using the old permission model.
