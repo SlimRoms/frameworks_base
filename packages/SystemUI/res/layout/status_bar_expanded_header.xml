@@ -32,7 +32,7 @@
     android:focusable="true"
     >
 
-    <com.android.systemui.statusbar.phone.MultiUserSwitch android:id="@+id/multi_user_switch"
+    <com.android.systemui.statusbar.slim.SlimMultiUserSwitch android:id="@+id/multi_user_switch"
         android:layout_width="@dimen/multi_user_switch_width_collapsed"
         android:layout_height="@dimen/status_bar_header_height"
         android:layout_alignParentEnd="true"
@@ -42,7 +42,7 @@
             android:layout_height="@dimen/multi_user_avatar_expanded_size"
             android:layout_gravity="center"
             android:scaleType="centerInside"/>
-    </com.android.systemui.statusbar.phone.MultiUserSwitch>
+    </com.android.systemui.statusbar.slim.SlimMultiUserSwitch>
 
     <com.android.systemui.statusbar.AlphaOptimizedFrameLayout
         android:id="@+id/settings_button_container"
