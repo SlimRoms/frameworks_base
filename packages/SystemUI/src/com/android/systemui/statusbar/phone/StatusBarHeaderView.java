@@ -111,7 +111,7 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
     private float mClockCollapsedScaleFactor;
     private float mAvatarCollapsedScaleFactor;
 
-    private ActivityStarter mActivityStarter;
+    protected ActivityStarter mActivityStarter;
     private BatteryController mBatteryController;
     private NextAlarmController mNextAlarmController;
     private QSPanel mQSPanel;
