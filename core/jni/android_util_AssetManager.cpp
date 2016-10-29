@@ -129,6 +129,7 @@ jint copyValue(JNIEnv* env, jobject outValue, const ResTable* table,
     return block;
 }
 
+<<<<<<< HEAD
 // This is called by zygote (running as user root) as part of preloadResources.
 static void verifySystemIdmaps(const char* overlay_dir)
 {
@@ -208,6 +209,8 @@ static void verifySystemIdmaps(const char* overlay_dir)
     }
 }
 
+=======
+>>>>>>> de08e5d... OMS-N: integrate OverlayManagerService into framework [6/14]
 // ----------------------------------------------------------------------------
 
 // this guy is exported to other jni routines
@@ -1039,6 +1042,27 @@ static jobject android_content_AssetManager_getAssignedPackageIdentifiers(JNIEnv
                            name.size()));
     }
     return sparseArray;
+}
+
+static jint android_content_AssetManager_nextCookie(JNIEnv* env, jobject clazz, jint cookie)
+{
+    AssetManager* am = assetManagerForJavaObject(env, clazz);
+    if (am == NULL) {
+        return -1;
+    }
+    return am->nextAssetPath(static_cast<int32_t>(cookie));
+}
+
+static jint android_content_AssetManager_nextOverlayCookie(JNIEnv* env, jobject clazz,
+        jstring targetPath, jint cookie)
+{
+    AssetManager* am = assetManagerForJavaObject(env, clazz);
+    if (am == NULL) {
+        return -1;
+    }
+    ScopedUtfChars scoped(env, targetPath);
+    String8 path8(scoped.c_str());
+    return am->nextAssetPath(static_cast<int32_t>(cookie), &path8);
 }
 
 static jint android_content_AssetManager_cookieToIndex(JNIEnv* env, jobject clazz, jint cookie)
@@ -2102,6 +2126,7 @@ static jintArray android_content_AssetManager_getStyleAttributes(JNIEnv* env, jo
 
 static void android_content_AssetManager_init(JNIEnv* env, jobject clazz, jboolean isSystem)
 {
+<<<<<<< HEAD
     if (isSystem) {
         // Load frameworks-res.apk's overlay through regionalization environment
         if (Environment::isSupported()) {
@@ -2118,6 +2143,8 @@ static void android_content_AssetManager_init(JNIEnv* env, jobject clazz, jboole
 
         verifySystemIdmaps(AssetManager::OVERLAY_DIR);
     }
+=======
+>>>>>>> de08e5d... OMS-N: integrate OverlayManagerService into framework [6/14]
     AssetManager* am = new AssetManager();
     if (am == NULL) {
         jniThrowException(env, "java/lang/OutOfMemoryError", "");
@@ -2233,6 +2260,10 @@ static const JNINativeMethod gAssetManagerMethods[] = {
         (void*) android_content_AssetManager_getCookieName },
     { "getAssignedPackageIdentifiers","()Landroid/util/SparseArray;",
         (void*) android_content_AssetManager_getAssignedPackageIdentifiers },
+    { "nextCookie","(I)I",
+        (void*) android_content_AssetManager_nextCookie },
+    { "nextOverlayCookie","(Ljava/lang/String;I)I",
+        (void*) android_content_AssetManager_nextOverlayCookie },
     { "cookieToIndex","(I)I",
         (void*) android_content_AssetManager_cookieToIndex },
 

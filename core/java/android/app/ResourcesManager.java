@@ -109,6 +109,17 @@ public class ResourcesManager {
     private final ArrayMap<Pair<Integer, DisplayAdjustments>, WeakReference<Display>> mDisplays =
             new ArrayMap<>();
 
+    /**
+     * A mapping of asset paths and overlay paths targeting those paths.
+     *
+     * Example of an app with one overlay package loaded:
+     *
+     *     mAssetPaths["/system/framework/framework-res.apk"] = ["/system/framework/framework-res.apk"]
+     *     mAssetPaths["/data/app/SomeApp/base.apk"] = \
+     *             ["/data/app/foo/base.apk", "/data/app/SomeOverlay/base.apk"]
+     */
+    private final ArrayMap<String, String[]> mAssetPaths = new ArrayMap<>(2);
+
     public static ResourcesManager getInstance() {
         synchronized (ResourcesManager.class) {
             if (sResourcesManager == null) {
@@ -263,12 +274,6 @@ public class ResourcesManager {
             }
         }
 
-        if (key.mOverlayDirs != null) {
-            for (final String idmapPath : key.mOverlayDirs) {
-                assets.addOverlayPath(idmapPath);
-            }
-        }
-
         if (key.mLibDirs != null) {
             for (final String libDir : key.mLibDirs) {
                 if (libDir.endsWith(".apk")) {
@@ -375,6 +380,22 @@ public class ResourcesManager {
     }
 
     /**
+     * Make a Resources object load the current set of enabled overlay packages.
+     */
+    private void updateAllAssets(Resources resources) {
+        try {
+            Trace.traceBegin(Trace.TRACE_TAG_RESOURCES, "ResourcesManager#updateAllAssets");
+            int N = mAssetPaths.size();
+            for (int i = 0; i < N; i++) {
+                String[] assetPaths = mAssetPaths.valueAt(i);
+                resources.updateAssets(assetPaths);
+            }
+        } finally {
+            Trace.traceEnd(Trace.TRACE_TAG_RESOURCES);
+        }
+    }
+
+    /**
      * Gets an existing Resources object tied to this Activity, or creates one if it doesn't exist
      * or the class loader is different.
      */
@@ -405,6 +426,7 @@ public class ResourcesManager {
             Slog.d(TAG, "- creating new ref=" + resources);
             Slog.d(TAG, "- setting ref=" + resources + " with impl=" + impl);
         }
+        updateAllAssets(resources);
         return resources;
     }
 
@@ -432,6 +454,7 @@ public class ResourcesManager {
         // Create a new Resources reference and use the existing ResourcesImpl object.
         Resources resources = new Resources(classLoader);
         resources.setImpl(impl);
+        updateAllAssets(resources);
         mResourceReferences.add(new WeakReference<>(resources));
         if (DEBUG) {
             Slog.d(TAG, "- creating new ref=" + resources);
@@ -449,7 +472,6 @@ public class ResourcesManager {
      * @param activityToken Represents an Activity.
      * @param resDir The base resource path. Can be null (only framework resources will be loaded).
      * @param splitResDirs An array of split resource paths. Can be null.
-     * @param overlayDirs An array of overlay paths. Can be null.
      * @param libDirs An array of resource library paths. Can be null.
      * @param displayId The ID of the display for which to create the resources.
      * @param overrideConfig The configuration to apply on top of the base configuration. Can be
@@ -463,7 +485,6 @@ public class ResourcesManager {
     public @NonNull Resources createBaseActivityResources(@NonNull IBinder activityToken,
             @Nullable String resDir,
             @Nullable String[] splitResDirs,
-            @Nullable String[] overlayDirs,
             @Nullable String[] libDirs,
             int displayId,
             @Nullable Configuration overrideConfig,
@@ -475,7 +496,6 @@ public class ResourcesManager {
             final ResourcesKey key = new ResourcesKey(
                     resDir,
                     splitResDirs,
-                    overlayDirs,
                     libDirs,
                     displayId,
                     overrideConfig != null ? new Configuration(overrideConfig) : null, // Copy
@@ -610,7 +630,6 @@ public class ResourcesManager {
      * @param activityToken Represents an Activity. If null, global resources are assumed.
      * @param resDir The base resource path. Can be null (only framework resources will be loaded).
      * @param splitResDirs An array of split resource paths. Can be null.
-     * @param overlayDirs An array of overlay paths. Can be null.
      * @param libDirs An array of resource library paths. Can be null.
      * @param displayId The ID of the display for which to create the resources.
      * @param overrideConfig The configuration to apply on top of the base configuration. Can be
@@ -625,7 +644,6 @@ public class ResourcesManager {
     public @NonNull Resources getResources(@Nullable IBinder activityToken,
             @Nullable String resDir,
             @Nullable String[] splitResDirs,
-            @Nullable String[] overlayDirs,
             @Nullable String[] libDirs,
             int displayId,
             @Nullable Configuration overrideConfig,
@@ -636,7 +654,6 @@ public class ResourcesManager {
             final ResourcesKey key = new ResourcesKey(
                     resDir,
                     splitResDirs,
-                    overlayDirs,
                     libDirs,
                     displayId,
                     overrideConfig != null ? new Configuration(overrideConfig) : null, // Copy
@@ -733,8 +750,7 @@ public class ResourcesManager {
 
                     // Create the new ResourcesKey with the rebased override config.
                     final ResourcesKey newKey = new ResourcesKey(oldKey.mResDir,
-                            oldKey.mSplitResDirs,
-                            oldKey.mOverlayDirs, oldKey.mLibDirs, oldKey.mDisplayId,
+                            oldKey.mSplitResDirs, oldKey.mLibDirs, oldKey.mDisplayId,
                             rebasedOverrideConfig, oldKey.mCompatInfo);
 
                     if (DEBUG) {
@@ -869,7 +885,6 @@ public class ResourcesManager {
                         updatedResourceKeys.put(impl, new ResourcesKey(
                                 key.mResDir,
                                 key.mSplitResDirs,
-                                key.mOverlayDirs,
                                 newLibAssets,
                                 key.mDisplayId,
                                 key.mOverrideConfiguration,
@@ -908,6 +923,32 @@ public class ResourcesManager {
                     }
                 }
             }
+        }
+    }
+
+    final void applyAssetsChangedLocked(String[] assetPaths) {
+        if (assetPaths.length == 0) {
+            throw new IllegalArgumentException(
+                    "at least the path to the target apk must be specified");
+        }
+        try {
+            Trace.traceBegin(Trace.TRACE_TAG_RESOURCES,
+                    "ResourcesManager#applyAssetsChangedLocked");
+            mAssetPaths.put(assetPaths[0], assetPaths);
+
+            ApplicationPackageManager.configurationChanged();
+            Resources.updateSystemAssets(assetPaths);
+
+            final int refCount = mResourceReferences.size();
+            for (int i = 0; i < refCount; i++) {
+                WeakReference<Resources> weakResourceRef = mResourceReferences.get(i);
+                Resources resources = weakResourceRef != null ? weakResourceRef.get() : null;
+                if (resources != null) {
+                    resources.updateAssets(assetPaths);
+                }
+            }
+        } finally {
+            Trace.traceEnd(Trace.TRACE_TAG_RESOURCES);
         }
     }
 }

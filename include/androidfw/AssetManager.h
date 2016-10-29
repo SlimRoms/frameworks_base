@@ -122,7 +122,7 @@ public:
      * Each next cookie will be returned there-after, until -1 indicating
      * the end has been reached.
      */
-    int32_t nextAssetPath(const int32_t cookie) const;
+    int32_t nextAssetPath(const int32_t cookie, const String8* targetPath = NULL) const;
 
     /*
      * Return an asset path in the manager.  'which' must be between 0 and
@@ -247,12 +247,11 @@ private:
     {
         asset_path() :
             path(""), type(kFileTypeRegular), targetPath(""), idmap(""),
-            isSystemOverlay(false), isSystemAsset(false), cookie(-1) {}
+            isSystemAsset(false), cookie(-1) {}
         String8 path;
         FileType type;
         String8 targetPath;
         String8 idmap;
-        bool isSystemOverlay;
         bool isSystemAsset;
         int32_t cookie;
     };
@@ -298,9 +297,6 @@ private:
 
     Asset* openIdmapLocked(const struct asset_path& ap) const;
 
-    void addSystemOverlays(const char* pathOverlaysList, const String8& targetPackagePath,
-            ResTable* sharedRes) const;
-
     class SharedZip : public RefBase {
     public:
         static sp<SharedZip> get(const String8& path, bool createIfNotPresent = true);
@@ -315,9 +311,6 @@ private:
         
         bool isUpToDate();
 
-        void addOverlay(const asset_path& ap);
-        bool getOverlay(size_t idx, asset_path* out) const;
-        
     protected:
         ~SharedZip();
 
@@ -331,8 +324,6 @@ private:
 
         Asset* mResourceTableAsset;
         ResTable* mResourceTable;
-
-        Vector<asset_path> mOverlays;
 
         static Mutex gLock;
         static DefaultKeyedVector<String8, wp<SharedZip> > gOpen;
@@ -366,9 +357,6 @@ private:
         static String8 getPathName(const char* path);
 
         bool isUpToDate();
-
-        void addOverlay(const String8& path, const asset_path& overlay);
-        bool getOverlay(const String8& path, size_t idx, asset_path* out) const;
         
     private:
         void closeZip(int idx);
@@ -406,7 +394,7 @@ private:
             }
 
             ssize_t add(const asset_path& ap, int32_t *cookie);
-            int32_t nextCookie(const int32_t cookie) const;
+            int32_t nextCookie(const int32_t cookie, const String8* targetPath) const;
             ssize_t cookieToIndex(const int32_t cookie) const;
 
         private:
