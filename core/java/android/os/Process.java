@@ -508,12 +508,11 @@ public class Process {
                                   String abi,
                                   String instructionSet,
                                   String appDataDir,
-                                  boolean refreshTheme,
                                   String[] zygoteArgs) {
         try {
             return startViaZygote(processClass, niceName, uid, gid, gids,
                     debugFlags, mountExternal, targetSdkVersion, seInfo,
-                    abi, instructionSet, appDataDir, refreshTheme, zygoteArgs);
+                    abi, instructionSet, appDataDir, zygoteArgs);
         } catch (ZygoteStartFailedEx ex) {
             Log.e(LOG_TAG,
                     "Starting VM process through Zygote failed");
@@ -641,7 +640,6 @@ public class Process {
                                   String abi,
                                   String instructionSet,
                                   String appDataDir,
-                                  boolean refreshTheme,
                                   String[] extraArgs)
                                   throws ZygoteStartFailedEx {
         synchronized(Process.class) {
@@ -682,9 +680,6 @@ public class Process {
                 argsForZygote.add("--mount-external-read");
             } else if (mountExternal == Zygote.MOUNT_EXTERNAL_WRITE) {
                 argsForZygote.add("--mount-external-write");
-            }
-            if (refreshTheme) {
-                argsForZygote.add("--refresh_theme");
             }
             argsForZygote.add("--target-sdk-version=" + targetSdkVersion);
 

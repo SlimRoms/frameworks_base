@@ -21,9 +21,6 @@ import android.util.Xml;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -91,41 +88,18 @@ public class FontListParser {
     }
 
     /* Parse fallback list (no names) */
-    public static Config parse(File configFilename, String fontDir)
-            throws XmlPullParserException, IOException {
-        FileInputStream in = null;
-        in = new FileInputStream(configFilename);
-        return FontListParser.parse(in, fontDir);
-    }
-
-    /* Parse fallback list (no names) */
-    public static Config parse(InputStream in, String fontDir)
-            throws XmlPullParserException, IOException {
-        BufferedInputStream bis = null;
+    public static Config parse(InputStream in) throws XmlPullParserException, IOException {
         try {
-            // wrap input stream in a BufferedInputStream, if it's not already, for mark support
-            if (!(in instanceof BufferedInputStream)) {
-                bis = new BufferedInputStream(in);
-            } else {
-                bis = (BufferedInputStream) in;
-            }
-            // mark the beginning so we can reset to this position after checking format
-            bis.mark(in.available());
-            return parseNormalFormat(bis, fontDir);
-        } finally {
-            if (bis != null) bis.close();
-        }
-    }
-
-    public static Config parseNormalFormat(InputStream in, String dirName)
-            throws XmlPullParserException, IOException {
             XmlPullParser parser = Xml.newPullParser();
             parser.setInput(in, null);
             parser.nextTag();
-            return readFamilies(parser, dirName);
+            return readFamilies(parser);
+        } finally {
+            in.close();
+        }
     }
 
-    private static Config readFamilies(XmlPullParser parser, String dirPath)
+    private static Config readFamilies(XmlPullParser parser)
             throws XmlPullParserException, IOException {
         Config config = new Config();
         parser.require(XmlPullParser.START_TAG, null, "familyset");
@@ -133,7 +107,7 @@ public class FontListParser {
             if (parser.getEventType() != XmlPullParser.START_TAG) continue;
             String tag = parser.getName();
             if (tag.equals("family")) {
-                config.families.add(readFamily(parser, dirPath));
+                config.families.add(readFamily(parser));
             } else if (tag.equals("alias")) {
                 config.aliases.add(readAlias(parser));
             } else {
@@ -143,7 +117,7 @@ public class FontListParser {
         return config;
     }
 
-    private static Family readFamily(XmlPullParser parser, String dirPath)
+    private static Family readFamily(XmlPullParser parser)
             throws XmlPullParserException, IOException {
         String name = parser.getAttributeValue(null, "name");
         String lang = parser.getAttributeValue(null, "lang");
@@ -153,6 +127,7 @@ public class FontListParser {
             if (parser.getEventType() != XmlPullParser.START_TAG) continue;
             String tag = parser.getName();
             if (tag.equals("font")) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                 fonts.add(readFont(parser, dirPath));
@@ -172,6 +147,9 @@ public class FontListParser {
 >>>>>>> 1e8532b... N-Extras: Add dynamic theme fonts support (Squash)
 =======
 >>>>>>> 1e8532b... N-Extras: Add dynamic theme fonts support (Squash)
+=======
+                fonts.add(readFont(parser));
+>>>>>>> parent of 1e8532b... N-Extras: Add dynamic theme fonts support (Squash)
             } else {
                 skip(parser);
             }

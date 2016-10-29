@@ -1096,6 +1096,7 @@ public final class Configuration implements Parcelable, Comparable<Configuration
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             changed |= ActivityInfo.CONFIG_THEME_FONT;
 =======
 >>>>>>> 0077bb2... OMS-N: Officially announce the rebase completion to Android Nougat [14/14]
@@ -1107,6 +1108,8 @@ public final class Configuration implements Parcelable, Comparable<Configuration
 =======
             changed |= ActivityInfo.CONFIG_THEME_FONT;
 >>>>>>> 1e8532b... N-Extras: Add dynamic theme fonts support (Squash)
+=======
+>>>>>>> parent of 1e8532b... N-Extras: Add dynamic theme fonts support (Squash)
             assetSeq = delta.assetSeq;
         }
         if (delta.seq != 0) {
@@ -1229,6 +1232,7 @@ public final class Configuration implements Parcelable, Comparable<Configuration
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             changed |= ActivityInfo.CONFIG_THEME_FONT;
 =======
 >>>>>>> 0077bb2... OMS-N: Officially announce the rebase completion to Android Nougat [14/14]
@@ -1240,6 +1244,8 @@ public final class Configuration implements Parcelable, Comparable<Configuration
 =======
             changed |= ActivityInfo.CONFIG_THEME_FONT;
 >>>>>>> 1e8532b... N-Extras: Add dynamic theme fonts support (Squash)
+=======
+>>>>>>> parent of 1e8532b... N-Extras: Add dynamic theme fonts support (Squash)
         }
 
         return changed;
@@ -1264,6 +1270,7 @@ public final class Configuration implements Parcelable, Comparable<Configuration
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     ActivityInfo.CONFIG_ASSETS|
                     ActivityInfo.CONFIG_THEME_FONT)) != 0;
 =======
@@ -1280,6 +1287,9 @@ public final class Configuration implements Parcelable, Comparable<Configuration
                     ActivityInfo.CONFIG_ASSETS|
                     ActivityInfo.CONFIG_THEME_FONT)) != 0;
 >>>>>>> 1e8532b... N-Extras: Add dynamic theme fonts support (Squash)
+=======
+            ActivityInfo.CONFIG_ASSETS)) != 0;
+>>>>>>> parent of 1e8532b... N-Extras: Add dynamic theme fonts support (Squash)
     }
 
     /**
