@@ -27,7 +27,6 @@
 #include <sys/stat.h>
 
 #include <private/android_filesystem_config.h> // for AID_SYSTEM
-#include <private/regionalization/Environment.h>
 
 #include "androidfw/Asset.h"
 #include "androidfw/AssetManager.h"
@@ -127,85 +126,6 @@ jint copyValue(JNIEnv* env, jobject outValue, const ResTable* table,
         env->SetIntField(outValue, gTypedValueOffsets.mDensity, config->density);
     }
     return block;
-}
-
-// This is called by zygote (running as user root) as part of preloadResources.
-static void verifySystemIdmaps(const char* overlay_dir)
-{
-    pid_t pid;
-    char system_id[10];
-
-    snprintf(system_id, sizeof(system_id), "%d", AID_SYSTEM);
-
-    switch (pid = fork()) {
-        case -1:
-            ALOGE("failed to fork for idmap: %s", strerror(errno));
-            break;
-        case 0: // child
-            {
-                struct __user_cap_header_struct capheader;
-                struct __user_cap_data_struct capdata;
-
-                memset(&capheader, 0, sizeof(capheader));
-                memset(&capdata, 0, sizeof(capdata));
-
-                capheader.version = _LINUX_CAPABILITY_VERSION;
-                capheader.pid = 0;
-
-                if (capget(&capheader, &capdata) != 0) {
-                    ALOGE("capget: %s\n", strerror(errno));
-                    exit(1);
-                }
-
-                capdata.effective = capdata.permitted;
-                if (capset(&capheader, &capdata) != 0) {
-                    ALOGE("capset: %s\n", strerror(errno));
-                    exit(1);
-                }
-
-                if (setgid(AID_SYSTEM) != 0) {
-                    ALOGE("setgid: %s\n", strerror(errno));
-                    exit(1);
-                }
-
-                if (setuid(AID_SYSTEM) != 0) {
-                    ALOGE("setuid: %s\n", strerror(errno));
-                    exit(1);
-                }
-
-                // Generic idmap parameters
-                const char* argv[7];
-                int argc = 0;
-                struct stat st;
-
-                memset(argv, NULL, sizeof(argv));
-                argv[argc++] = AssetManager::IDMAP_BIN;
-                argv[argc++] = "--scan";
-                argv[argc++] = AssetManager::TARGET_PACKAGE_NAME;
-                argv[argc++] = AssetManager::TARGET_APK_PATH;
-                argv[argc++] = AssetManager::IDMAP_DIR;
-
-                // Directories to scan for overlays
-                // /vendor/overlay
-
-               if (stat(overlay_dir, &st) == 0) {
-                   argv[argc++] = overlay_dir;
-                }
-
-                // Finally, invoke idmap (if any overlay directory exists)
-                if (argc > 5) {
-                    execv(AssetManager::IDMAP_BIN, (char* const*)argv);
-                    ALOGE("failed to execl for idmap: %s", strerror(errno));
-                    exit(1); // should never get here
-                } else {
-                    exit(0);
-                }
-            }
-            break;
-        default: // parent
-            waitpid(pid, NULL, 0);
-            break;
-    }
 }
 
 // ----------------------------------------------------------------------------
@@ -569,6 +489,16 @@ static jint android_content_AssetManager_addOverlayPath(JNIEnv* env, jobject cla
     bool res = am->addOverlayPath(String8(idmapPath8.c_str()), &cookie);
 
     return (res) ? (jint)cookie : 0;
+}
+
+static jboolean android_content_AssetManager_removeAsset(JNIEnv* env, jobject clazz,
+                                                         jint cookie)
+{
+    AssetManager* am = assetManagerForJavaObject(env, clazz);
+    if (am == NULL) {
+        return 0;
+    }
+    return am->removeAsset(static_cast<int32_t>(cookie));
 }
 
 static jboolean android_content_AssetManager_isUpToDate(JNIEnv* env, jobject clazz)
@@ -1029,6 +959,41 @@ static jobject android_content_AssetManager_getAssignedPackageIdentifiers(JNIEnv
                            name.size()));
     }
     return sparseArray;
+}
+
+static jint android_content_AssetManager_nextCookie(JNIEnv* env, jobject clazz, jint cookie)
+{
+    AssetManager* am = assetManagerForJavaObject(env, clazz);
+    if (am == NULL) {
+        return -1;
+    }
+    return am->nextAssetPath(static_cast<int32_t>(cookie));
+}
+
+static jint android_content_AssetManager_nextOverlayCookie(JNIEnv* env, jobject clazz,
+        jstring targetPath, jint cookie)
+{
+    AssetManager* am = assetManagerForJavaObject(env, clazz);
+    if (am == NULL) {
+        return -1;
+    }
+    ScopedUtfChars scoped(env, targetPath);
+    String8 path8(scoped.c_str());
+    return am->nextAssetPath(static_cast<int32_t>(cookie), &path8);
+}
+
+static jint android_content_AssetManager_cookieToIndex(JNIEnv* env, jobject clazz, jint cookie)
+{
+    AssetManager* am = assetManagerForJavaObject(env, clazz);
+    if (am == NULL) {
+        return -1;
+    }
+    const ResTable& res = am->getResources();
+    ssize_t index = res.cookieToHeaderIndex(static_cast<int32_t>(cookie));
+    if (index < 0) {
+        jniThrowException(env, "java/lang/IllegalArgumentException", "Unknown cookie");
+    }
+    return index;
 }
 
 static jlong android_content_AssetManager_newTheme(JNIEnv* env, jobject clazz)
@@ -2078,22 +2043,6 @@ static jintArray android_content_AssetManager_getStyleAttributes(JNIEnv* env, jo
 
 static void android_content_AssetManager_init(JNIEnv* env, jobject clazz, jboolean isSystem)
 {
-    if (isSystem) {
-        // Load frameworks-res.apk's overlay through regionalization environment
-        if (Environment::isSupported()) {
-            Environment* environment = new Environment();
-            if (environment != NULL) {
-                const char* overlay_dir = environment->getOverlayDir();
-                if (overlay_dir != NULL && strcmp(overlay_dir, "") != 0) {
-                    ALOGD("Regionalization - getOverlayDir:%s", overlay_dir);
-                    verifySystemIdmaps(overlay_dir);
-                }
-                delete environment;
-            }
-        }
-
-        verifySystemIdmaps(AssetManager::OVERLAY_DIR);
-    }
     AssetManager* am = new AssetManager();
     if (am == NULL) {
         jniThrowException(env, "java/lang/OutOfMemoryError", "");
@@ -2173,6 +2122,8 @@ static const JNINativeMethod gAssetManagerMethods[] = {
         (void*) android_content_AssetManager_addAssetPath },
     { "addOverlayPathNative",   "(Ljava/lang/String;)I",
         (void*) android_content_AssetManager_addOverlayPath },
+    { "removeAssetNative",   "(I)Z",
+        (void*) android_content_AssetManager_removeAsset },
     { "isUpToDate",     "()Z",
         (void*) android_content_AssetManager_isUpToDate },
 
@@ -2207,6 +2158,12 @@ static const JNINativeMethod gAssetManagerMethods[] = {
         (void*) android_content_AssetManager_getCookieName },
     { "getAssignedPackageIdentifiers","()Landroid/util/SparseArray;",
         (void*) android_content_AssetManager_getAssignedPackageIdentifiers },
+    { "nextCookie","(I)I",
+        (void*) android_content_AssetManager_nextCookie },
+    { "nextOverlayCookie","(Ljava/lang/String;I)I",
+        (void*) android_content_AssetManager_nextOverlayCookie },
+    { "cookieToIndex","(I)I",
+        (void*) android_content_AssetManager_cookieToIndex },
 
     // Themes.
     { "newTheme", "()J",

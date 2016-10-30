@@ -1567,7 +1567,7 @@ class ResTable
 {
 public:
     ResTable();
-    ResTable(const void* data, size_t size, const int32_t cookie,
+    ResTable(const void* data, size_t size, const int32_t cookie=-1,
              bool copyData=false);
     ~ResTable();
 
@@ -1580,7 +1580,9 @@ public:
             bool appAsLib=false, bool isSystemAsset=false);
 
     status_t add(ResTable* src, bool isSystemAsset=false);
-    status_t addEmpty(const int32_t cookie);
+    status_t addEmpty(const int32_t cookie=-1);
+
+    status_t remove(const int32_t cookie);
 
     status_t getError() const;
 
@@ -1845,6 +1847,9 @@ public:
 
     const DynamicRefTable* getDynamicRefTableForCookie(int32_t cookie) const;
 
+    // Return the index in mHeader corresponding to the asset with cookie 'cookie'
+    ssize_t cookieToHeaderIndex(int32_t cookie) const;
+
     // Return the configurations (ResTable_config) that we know about
     void getConfigurations(Vector<ResTable_config>* configs, bool ignoreMipmap=false,
             bool ignoreAndroidPackage=false, bool includeSystemConfigs=true) const;
@@ -1927,6 +1932,8 @@ private:
     template <typename Func>
     void forEachConfiguration(bool ignoreMipmap, bool ignoreAndroidPackage,
                               bool includeSystemConfigs, const Func& f) const;
+
+    void verifyInvariants() const;
 
     mutable Mutex               mLock;
 

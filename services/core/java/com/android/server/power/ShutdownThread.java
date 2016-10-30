@@ -55,6 +55,7 @@ import android.os.storage.IMountShutdownObserver;
 import android.system.ErrnoException;
 import android.system.Os;
 
+import com.android.internal.util.ThemeUtils;
 import com.android.internal.telephony.ITelephony;
 import com.android.server.pm.PackageManagerService;
 import com.android.server.power.PowerManagerService;
@@ -160,7 +161,7 @@ public final class ShutdownThread extends Thread {
         mReboot = false;
         mRebootSafeMode = false;
         mReason = reason;
-        shutdownInner(context, confirm);
+        shutdownInner(getUiContext(context), confirm);
     }
 
     static void shutdownInner(final Context context, boolean confirm) {
@@ -203,6 +204,8 @@ public final class ShutdownThread extends Thread {
 
         if (confirm) {
             final CloseDialogReceiver closer = new CloseDialogReceiver(context);
+            final Context mUiContext = getUiContext(context);
+
             if (sConfirmDialog != null) {
                 sConfirmDialog.dismiss();
                 sConfirmDialog = null;
@@ -266,6 +269,21 @@ public final class ShutdownThread extends Thread {
                         .setNegativeButton(com.android.internal.R.string.no, null)
                         .create();
             }
+<<<<<<< HEAD
+=======
+            sConfirmDialog = new AlertDialog.Builder(mUiContext)
+                    .setTitle(mRebootSafeMode
+                            ? com.android.internal.R.string.reboot_safemode_title
+                            : com.android.internal.R.string.power_off)
+                    .setMessage(resourceId)
+                    .setPositiveButton(com.android.internal.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            beginShutdownSequence(context);
+                        }
+                    })
+                    .setNegativeButton(com.android.internal.R.string.no, null)
+                    .create();
+>>>>>>> b95a785... OMS-N: Themes should be dynamically theming the power menu
             closer.dialog = sConfirmDialog;
             sConfirmDialog.setOnDismissListener(closer);
             sConfirmDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
@@ -315,7 +333,7 @@ public final class ShutdownThread extends Thread {
         mRebootSafeMode = false;
         mRebootHasProgressBar = false;
         mReason = reason;
-        shutdownInner(context, confirm);
+        shutdownInner(getUiContext(context), confirm);
     }
 
     private static String getShutdownMusicFilePath() {
@@ -900,6 +918,7 @@ public final class ShutdownThread extends Thread {
         }
     }
 
+<<<<<<< HEAD
     private static boolean checkAnimationFileExist() {
         if (new File(OEM_BOOTANIMATION_FILE).exists()
                 || new File(SYSTEM_BOOTANIMATION_FILE).exists()
@@ -951,4 +970,12 @@ public final class ShutdownThread extends Thread {
             }
         }
     };
+=======
+    private static Context getUiContext(Context context) {
+        Context mUiContext = null;
+        mUiContext = ThemeUtils.createUiContext(context);
+        mUiContext.setTheme(android.R.style.Theme_DeviceDefault_Light_DarkActionBar);
+        return mUiContext != null ? mUiContext : context;
+    }
+>>>>>>> b95a785... OMS-N: Themes should be dynamically theming the power menu
 }
