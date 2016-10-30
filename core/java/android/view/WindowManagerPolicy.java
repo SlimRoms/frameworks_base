@@ -136,6 +136,12 @@ public interface WindowManagerPolicy {
             throws RemoteException;
 
     /**
+     * @return true if windows with FLAG_DISMISS_KEYGUARD should be allowed to show even if
+     *         the keyguard is locked.
+     */
+    boolean canShowDismissingWindowWhileLockedLw();
+
+    /**
      * Interface to the Window Manager state associated with a particular
      * window.  You can hold on to an instance of this interface from the call
      * to prepareAddWindow() until removeWindow().
@@ -416,6 +422,8 @@ public interface WindowManagerPolicy {
          * screen with other application windows.
          */
         public boolean isInMultiWindowMode();
+
+        public int getRotationAnimationHint();
     }
 
     /**
@@ -476,8 +484,8 @@ public interface WindowManagerPolicy {
         public void switchInputMethod(boolean forwardDirection);
 
         public void shutdown(boolean confirm);
+        public void reboot(boolean confirm);
         public void rebootSafeMode(boolean confirm);
-        public void reboot();
 
         /**
          * Return the window manager lock needed to correctly call "Lw" methods.
@@ -1411,4 +1419,6 @@ public interface WindowManagerPolicy {
      * Called when the configuration has changed, and it's safe to load new values from resources.
      */
     public void onConfigurationChanged();
+
+    public boolean shouldRotateSeamlessly(int oldRotation, int newRotation);
 }

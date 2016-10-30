@@ -16,8 +16,12 @@
 
 package com.android.systemui.statusbar.phone;
 
+import static android.view.accessibility.AccessibilityNodeInfo.ACTION_CLICK;
+import static android.view.accessibility.AccessibilityNodeInfo.AccessibilityAction;
+
 import android.app.ActivityManager;
 import android.app.ActivityManagerNative;
+import android.app.ActivityOptions;
 import android.app.admin.DevicePolicyManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -45,6 +49,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -64,9 +69,6 @@ import com.android.systemui.statusbar.KeyguardIndicationController;
 import com.android.systemui.statusbar.policy.AccessibilityController;
 import com.android.systemui.statusbar.policy.FlashlightController;
 import com.android.systemui.statusbar.policy.PreviewInflater;
-
-import static android.view.accessibility.AccessibilityNodeInfo.ACTION_CLICK;
-import static android.view.accessibility.AccessibilityNodeInfo.AccessibilityAction;
 
 /**
  * Implementation for the bottom area of the Keyguard, including camera/phone affordance and status
@@ -407,7 +409,7 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
     public void bindCameraPrewarmService() {
         Intent intent = getCameraIntent();
         ActivityInfo targetInfo = PreviewInflater.getTargetActivityInfo(mContext, intent,
-                KeyguardUpdateMonitor.getCurrentUser());
+                KeyguardUpdateMonitor.getCurrentUser(), true /* onlyDirectBootAware */);
         if (targetInfo != null && targetInfo.metaData != null) {
             String clazz = targetInfo.metaData.getString(
                     MediaStore.META_DATA_STILL_IMAGE_CAMERA_PREWARM_SERVICE);
@@ -454,12 +456,24 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
                 @Override
                 public void run() {
                     int result = ActivityManager.START_CANCELED;
+
+                    // Normally an activity will set it's requested rotation
+                    // animation on its window. However when launching an activity
+                    // causes the orientation to change this is too late. In these cases
+                    // the default animation is used. This doesn't look good for
+                    // the camera (as it rotates the camera contents out of sync
+                    // with physical reality). So, we ask the WindowManager to
+                    // force the crossfade animation if an orientation change
+                    // happens to occur during the launch.
+                    ActivityOptions o = ActivityOptions.makeBasic();
+                    o.setRotationAnimationHint(
+                            WindowManager.LayoutParams.ROTATION_ANIMATION_SEAMLESS);
                     try {
                         result = ActivityManagerNative.getDefault().startActivityAsUser(
                                 null, getContext().getBasePackageName(),
                                 intent,
                                 intent.resolveTypeIfNeeded(getContext().getContentResolver()),
-                                null, null, 0, Intent.FLAG_ACTIVITY_NEW_TASK, null, null,
+                                null, null, 0, Intent.FLAG_ACTIVITY_NEW_TASK, null, o.toBundle(),
                                 UserHandle.CURRENT.getIdentifier());
                     } catch (RemoteException e) {
                         Log.w(TAG, "Unable to start camera activity", e);
@@ -582,10 +596,16 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
     }
 
     private void inflateCameraPreview() {
+        View previewBefore = mCameraPreview;
+        boolean visibleBefore = false;
+        if (previewBefore != null) {
+            mPreviewContainer.removeView(previewBefore);
+            visibleBefore = previewBefore.getVisibility() == View.VISIBLE;
+        }
         mCameraPreview = mPreviewInflater.inflatePreview(getCameraIntent());
         if (mCameraPreview != null) {
             mPreviewContainer.addView(mCameraPreview);
-            mCameraPreview.setVisibility(View.INVISIBLE);
+            mCameraPreview.setVisibility(visibleBefore ? View.VISIBLE : View.INVISIBLE);
         }
     }
 
@@ -711,5 +731,10 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
                 mEmergencyButton.updateEmergencyCallButton();
             }
         }
+    }
+
+    public void onKeyguardShowingChanged() {
+        updateLeftAffordance();
+        inflateCameraPreview();
     }
 }

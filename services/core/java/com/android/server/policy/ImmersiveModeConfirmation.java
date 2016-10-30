@@ -30,6 +30,7 @@ import android.os.Message;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.UserHandle;
+import android.os.UserManager;
 import android.provider.Settings;
 import android.service.vr.IVrManager;
 import android.service.vr.IVrStateCallbacks;
@@ -133,7 +134,7 @@ public class ImmersiveModeConfirmation {
     }
 
     public void immersiveModeChangedLw(String pkg, boolean isImmersiveMode,
-            boolean userSetupComplete) {
+            boolean userSetupComplete, boolean navBarEmpty) {
         mHandler.removeMessages(H.SHOW);
         if (isImmersiveMode) {
             final boolean disabled = PolicyControl.disableImmersiveConfirmation(pkg);
@@ -142,7 +143,9 @@ public class ImmersiveModeConfirmation {
             if (!disabled
                     && (DEBUG_SHOW_EVERY_TIME || !mConfirmed)
                     && userSetupComplete
-                    && !mVrModeEnabled) {
+                    && !mVrModeEnabled
+                    && !navBarEmpty
+                    && !UserManager.isDeviceInDemoMode(mContext)) {
                 mHandler.sendEmptyMessageDelayed(H.SHOW, mShowDelayMs);
             }
         } else {
@@ -150,12 +153,13 @@ public class ImmersiveModeConfirmation {
         }
     }
 
-    public boolean onPowerKeyDown(boolean isScreenOn, long time, boolean inImmersiveMode) {
+    public boolean onPowerKeyDown(boolean isScreenOn, long time, boolean inImmersiveMode,
+            boolean navBarEmpty) {
         if (!isScreenOn && (time - mPanicTime < mPanicThresholdMs)) {
             // turning the screen back on within the panic threshold
             return mClingWindow == null;
         }
-        if (isScreenOn && inImmersiveMode) {
+        if (isScreenOn && inImmersiveMode && !navBarEmpty) {
             // turning the screen off, remember if we were in immersive mode
             mPanicTime = time;
         } else {

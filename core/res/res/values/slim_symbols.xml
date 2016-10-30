@@ -19,7 +19,7 @@
 <resources>
 
     <!-- Config Power Menu -->
-    <java-symbol type="string" name="global_action_reboot" />
+    <java-symbol type="string" name="global_action_restart" />
     <java-symbol type="array" name="shutdown_reboot_actions" />
     <java-symbol type="array" name="shutdown_reboot_options" />
     <java-symbol type="string" name="reboot_system" />

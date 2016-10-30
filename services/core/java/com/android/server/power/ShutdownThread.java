@@ -156,7 +156,7 @@ public final class ShutdownThread extends Thread {
         String[] defaultActions = context.getResources().getStringArray(
                 com.android.internal.R.array.config_globalActionsList);
         for (int i = 0; i < defaultActions.length; i++) {
-            if (defaultActions[i].equals("reboot")) {
+            if (defaultActions[i].equals("restart")) {
                 showRebootOption = true;
                 break;
             }
@@ -636,7 +636,8 @@ public final class ShutdownThread extends Thread {
                 }
 
                 try {
-                    bluetoothOff = bluetooth == null || !bluetooth.isEnabled();
+                    bluetoothOff = bluetooth == null ||
+                            bluetooth.getState() == BluetoothAdapter.STATE_OFF;
                     if (!bluetoothOff) {
                         Log.w(TAG, "Disabling Bluetooth...");
                         bluetooth.disable(false);  // disable but don't persist new state
@@ -670,7 +671,7 @@ public final class ShutdownThread extends Thread {
 
                     if (!bluetoothOff) {
                         try {
-                            bluetoothOff = !bluetooth.isEnabled();
+                            bluetoothOff = bluetooth.getState() == BluetoothAdapter.STATE_OFF;
                         } catch (RemoteException ex) {
                             Log.e(TAG, "RemoteException during bluetooth shutdown", ex);
                             bluetoothOff = true;
