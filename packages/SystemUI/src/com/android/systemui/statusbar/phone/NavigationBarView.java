@@ -63,7 +63,6 @@ public class NavigationBarView extends LinearLayout {
     View mCurrentView = null;
     View[] mRotatedViews = new View[4];
 
-    int mBarSize;
     boolean mVertical;
     boolean mScreenOn;
 
@@ -184,7 +183,6 @@ public class NavigationBarView extends LinearLayout {
         mDisplay = ((WindowManager) context.getSystemService(
                 Context.WINDOW_SERVICE)).getDefaultDisplay();
 
-        mBarSize = context.getResources().getDimensionPixelSize(R.dimen.navigation_bar_size);
         mVertical = false;
         mShowMenu = false;
         mGestureHelper = new NavigationBarGestureHelper(context);
