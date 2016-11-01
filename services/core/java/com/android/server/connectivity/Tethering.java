@@ -266,8 +266,6 @@ public class Tethering extends BaseNetworkObserver implements IControlsTethering
         // Never called directly: only called from interfaceLinkStateChanged.
         // See NetlinkHandler.cpp:71.
         if (VDBG) Log.d(TAG, "interfaceStatusChanged " + iface + ", " + up);
-        WifiManager mWifiManager =
-           (WifiManager) mContext.getSystemService(Context.WIFI_SERVICE);
         synchronized (mPublicSync) {
             int interfaceType = ifaceNameToType(iface);
             if (interfaceType == ConnectivityManager.TETHERING_INVALID) {
