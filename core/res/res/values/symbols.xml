@@ -2814,4 +2814,5 @@
   <java-symbol type="drawable" name="lockscreen_notselected" />
   <java-symbol type="drawable" name="lockscreen_selected" />
   <java-symbol type="bool" name="config_volte_preferred" />
+  <java-symbol type="bool" name="operator_custom_sim_icon" />
 </resources>
