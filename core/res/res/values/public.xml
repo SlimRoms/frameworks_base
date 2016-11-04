@@ -2715,7 +2715,23 @@
     <public type="attr" name="hash" id="0x01010526" />
     <public type="attr" name="networkSecurityConfig" id="0x01010527" />
 
+    <public type="style" name="Theme.Material.DayNight" />
+    <public type="style" name="Theme.Material.DayNight.DarkActionBar" />
+    <public type="style" name="Theme.Material.DayNight.Dialog" />
+    <public type="style" name="Theme.Material.DayNight.Dialog.Alert" />
+    <public type="style" name="Theme.Material.DayNight.Dialog.MinWidth" />
+    <public type="style" name="Theme.Material.DayNight.Dialog.NoActionBar" />
+    <public type="style" name="Theme.Material.DayNight.Dialog.NoActionBar.MinWidth" />
+    <public type="style" name="Theme.Material.DayNight.Dialog.Presentation" />
+    <public type="style" name="Theme.Material.DayNight.DialogWhenLarge" />
+    <public type="style" name="Theme.Material.DayNight.DialogWhenLarge.NoActionBar" />
+    <public type="style" name="Theme.Material.DayNight.NoActionBar" />
+    <public type="style" name="Theme.Material.DayNight.NoActionBar.Fullscreen" />
+    <public type="style" name="Theme.Material.DayNight.NoActionBar.Overscan" />
+    <public type="style" name="Theme.Material.DayNight.NoActionBar.TranslucentDecor" />
+    <public type="style" name="Theme.Material.DayNight.Panel" />
     <public type="style" name="Theme.Material.Light.DialogWhenLarge.DarkActionBar" id="0x010302d8" />
+    <public type="style" name="Theme.Material.DayNight.DialogWhenLarge.DarkActionBar" />
     <public type="style" name="Widget.Material.SeekBar.Discrete" id="0x010302d9" />
     <public type="style" name="Widget.Material.CompoundButton.Switch" id="0x010302da" />
     <public type="style" name="Widget.Material.Light.CompoundButton.Switch" id="0x010302db" />
