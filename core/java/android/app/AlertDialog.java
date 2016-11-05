@@ -114,6 +114,13 @@ public class AlertDialog extends Dialog implements DialogInterface {
      */
     @Deprecated
     public static final int THEME_DEVICE_DEFAULT_LIGHT = 5;
+    
+    /**
+     * DayNight theme for alert dialog
+     * and make it theme power menus and other dialogs
+     *
+     */
+    public static final int THEME_MATERIAL_DAYNIGHT = 6;
 
     /**
      * No layout hint.
@@ -214,6 +221,8 @@ public class AlertDialog extends Dialog implements DialogInterface {
         } else if (themeResId == THEME_DEVICE_DEFAULT_DARK) {
             return R.style.Theme_DeviceDefault_Dialog_Alert;
         } else if (themeResId == THEME_DEVICE_DEFAULT_LIGHT) {
+          return R.style.Theme_DeviceDefault_Light_Dialog_Alert;
+        } else if (themeResId == THEME_MATERIAL_DAYNIGHT) {
             return R.style.Theme_DeviceDefault_Light_Dialog_Alert;
         } else if (themeResId >= 0x01000000) {   // start of real resource IDs.
             return themeResId;
