@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<!-- Ambient Display -->
+<bool name="config_invert_colors_on_doze">false</bool>
+</resources>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2015 TeamTwisted
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+          http://www.apache.org/licenses/LICENSE-2.0
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<!-- DayNight theme  -->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <color name="background_floating_material_dark">@color/material_grey_800</color>
+
+    <!-- Notification action text/button -->
+    <color name="secondary_text_material_light">#A2A2A2</color>
+
+    <!-- Notification action text -->
+    <color name="primary_text_default_material_dark">#FFFFFF</color>
+    <color name="secondary_text_default_material_dark">#FFFFFF</color>
+    <!-- Notification action button -->
+    <color name="notification_action_color_filter">#9F9F9F</color>
+
+    <!-- System - Accents -->
+ 	<color name="accent_material_light">#f1d744</color>
+ 	<color name="accent_material_dark">#f1d744</color>
+ 
+ 	<!-- StatusBar Expanded - User Icons -->
+ 	<color name="user_icon_1">#f1d744</color>
+ 	<color name="user_icon_2">#f1d744</color>
+ 	<color name="user_icon_3">#f1d744</color>
+ 	<color name="user_icon_4">#f1d744</color>
+ 	<color name="user_icon_5">#f1d744</color>
+ 	<color name="user_icon_6">#f1d744</color>
+ 	<color name="user_icon_7">#f1d744</color>
+ 	<color name="user_icon_8">#f1d744</color>
+ 	<color name="user_icon_default_gray">#f1d744</color>
+ 	<color name="user_icon_default_white">#f1d744</color>
+
+</resources>

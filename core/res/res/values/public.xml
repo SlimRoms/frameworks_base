@@ -6,16 +6,13 @@
      ***************************************************************
      IMPORTANT NOTE FOR ANYONE MODIFYING THIS FILE
      READ THIS BEFORE YOU MAKE ANY CHANGES
-
      This file defines the binary compatibility for resources.  As such,
      you must be very careful when making changes here, or you will
      completely break backwards compatibility with old applications.
-
      To avoid breaking compatibility, all new resources must be placed
      at the end of the list of resources of the same type.  Placing a resource
      in the middle of type will cause all following resources to be
      assigned new resource numbers, breaking compatibility.
-
      ***************************************************************
      *************************************************************** -->
 <resources>
@@ -2715,23 +2712,7 @@
     <public type="attr" name="hash" id="0x01010526" />
     <public type="attr" name="networkSecurityConfig" id="0x01010527" />
 
-    <public type="style" name="Theme.Material.DayNight" />
-    <public type="style" name="Theme.Material.DayNight.DarkActionBar" />
-    <public type="style" name="Theme.Material.DayNight.Dialog" />
-    <public type="style" name="Theme.Material.DayNight.Dialog.Alert" />
-    <public type="style" name="Theme.Material.DayNight.Dialog.MinWidth" />
-    <public type="style" name="Theme.Material.DayNight.Dialog.NoActionBar" />
-    <public type="style" name="Theme.Material.DayNight.Dialog.NoActionBar.MinWidth" />
-    <public type="style" name="Theme.Material.DayNight.Dialog.Presentation" />
-    <public type="style" name="Theme.Material.DayNight.DialogWhenLarge" />
-    <public type="style" name="Theme.Material.DayNight.DialogWhenLarge.NoActionBar" />
-    <public type="style" name="Theme.Material.DayNight.NoActionBar" />
-    <public type="style" name="Theme.Material.DayNight.NoActionBar.Fullscreen" />
-    <public type="style" name="Theme.Material.DayNight.NoActionBar.Overscan" />
-    <public type="style" name="Theme.Material.DayNight.NoActionBar.TranslucentDecor" />
-    <public type="style" name="Theme.Material.DayNight.Panel" />
     <public type="style" name="Theme.Material.Light.DialogWhenLarge.DarkActionBar" id="0x010302d8" />
-    <public type="style" name="Theme.Material.DayNight.DialogWhenLarge.DarkActionBar" />
     <public type="style" name="Widget.Material.SeekBar.Discrete" id="0x010302d9" />
     <public type="style" name="Widget.Material.CompoundButton.Switch" id="0x010302da" />
     <public type="style" name="Widget.Material.Light.CompoundButton.Switch" id="0x010302db" />
@@ -2757,5 +2738,22 @@
     <public type="attr" name="contextDescription" id="0x0101052e" />
     <public type="attr" name="showMetadataInPreview" id="0x0101052f" />
     <public type="attr" name="colorSecondary" id="0x01010530" />
+
+  <public type="style" name="Theme.Material.DayNight" />
+  <public type="style" name="Theme.Material.DayNight.DarkActionBar" />
+  <public type="style" name="Theme.Material.DayNight.Dialog" />
+  <public type="style" name="Theme.Material.DayNight.Dialog.Alert" />
+  <public type="style" name="Theme.Material.DayNight.Dialog.MinWidth" />
+  <public type="style" name="Theme.Material.DayNight.Dialog.NoActionBar" />
+  <public type="style" name="Theme.Material.DayNight.Dialog.NoActionBar.MinWidth" />
+  <public type="style" name="Theme.Material.DayNight.Dialog.Presentation" />
+  <public type="style" name="Theme.Material.DayNight.DialogWhenLarge" />
+  <public type="style" name="Theme.Material.DayNight.DialogWhenLarge.NoActionBar" />
+  <public type="style" name="Theme.Material.DayNight.NoActionBar" />
+  <public type="style" name="Theme.Material.DayNight.NoActionBar.Fullscreen" />
+  <public type="style" name="Theme.Material.DayNight.NoActionBar.Overscan" />
+  <public type="style" name="Theme.Material.DayNight.NoActionBar.TranslucentDecor" />
+  <public type="style" name="Theme.Material.DayNight.Panel" />
+  <public type="style" name="Theme.Material.DayNight.DialogWhenLarge.DarkActionBar" />
 
 </resources>
