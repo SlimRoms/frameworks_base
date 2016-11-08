@@ -57,6 +57,8 @@ static const char* kPathWhitelist[] = {
   "/system/framework/org.slim.framework-res.apk,
   "/dev/urandom",
   "/dev/ion",
+  "/dev/rpmsg-omx0",
+  "/dev/rpmsg-omx1",
   "@netlink@"
 };
 
