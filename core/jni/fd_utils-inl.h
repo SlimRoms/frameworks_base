@@ -53,6 +53,7 @@ static const char* kPathWhitelist[] = {
   "/system/etc/event-log-tags",
   "/sys/kernel/debug/tracing/trace_marker",
   "/system/framework/framework-res.apk",
+  "/system/framework/org.slim.framework-res.apk",
   "/dev/urandom",
   "/dev/ion",
   "/dev/dri/renderD129", // Fixes b/31172436
