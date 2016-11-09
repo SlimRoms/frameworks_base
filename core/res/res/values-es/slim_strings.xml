@@ -73,13 +73,13 @@
   <string name="app_ops_read_phone_state">acceder al estado del teléfono</string>
   <string name="app_ops_scan_wifi">Escanear redes Wi-Fi</string>
   <string name="app_ops_change_wallpaper">cambiar el fondo de pantalla</string>
-  <string name="app_ops_assist_structure">utilizar estructura de asistencia</string>
+  <string name="app_ops_assist_structure">Utilizar estructura de asistencia</string>
   <string name="app_ops_assist_screenshot">capturar pantalla</string>
-  <string name="app_ops_use_body_sensors">utilizar sensores de presencia</string>
+  <string name="app_ops_use_body_sensors">Utilizar sensores de presencia</string>
   <string name="app_ops_read_cell_broadcasts">leer mensajes de difusión de la red</string>
   <string name="app_ops_mock_location">simular ubicación</string>
   <string name="app_ops_read_external_storage">leer memoria externa</string>
-  <string name="app_ops_write_external_storage">escribir en memoria externa</string>
+  <string name="app_ops_write_external_storage">Escribir en memoria externa</string>
   <string name="app_ops_turn_on_screen">encender la pantalla</string>
   <string name="app_ops_get_accounts">obtener cuentas de dispositivo</string>
   <string name="app_ops_wifi_change">cambiar el estado de Wifi</string>
@@ -96,8 +96,8 @@
   <!-- WiFi turn off notification action text -->
   <string name="notify_turn_wifi_off_title">Desactivar Wi-Fi</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permlab_preventpower">sobreescribir botón de encendido</string>
-  <string name="permdesc_preventpower">Permite a una aplicación usar el botón de encendido.</string>
+  <string name="permlab_preventpower">Desautorizar botón de encendido</string>
+  <string name="permdesc_preventpower">Permite a una aplicación desautorizar el botón de encendido.</string>
   <!-- Reboot menu -->
   <!-- Button to reboot the phone, within the Reboot Options dialog -->
   <string name="reboot_reboot">Reiniciar</string>
