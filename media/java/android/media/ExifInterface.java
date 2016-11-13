@@ -981,7 +981,7 @@ public class ExifInterface {
     private static final HashMap[] sExifTagMapsForReading = new HashMap[EXIF_TAGS.length];
     // Mappings from tag name to tag number and each item represents one IFD tag group.
     private static final HashMap[] sExifTagMapsForWriting = new HashMap[EXIF_TAGS.length];
-    private static final HashSet<String> sTagSetForCompatibility = new HashSet<>(Arrays.asList(
+    private static final HashSet<String> sTagSetForCompatibility = new HashSet<String>(Arrays.asList(
             TAG_APERTURE, TAG_DIGITAL_ZOOM_RATIO, TAG_EXPOSURE_TIME, TAG_SUBJECT_DISTANCE,
             TAG_GPS_TIMESTAMP));
 
@@ -1581,9 +1581,12 @@ public class ExifInterface {
                 return (float) -result;
             }
             return (float) result;
-        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+        } catch (NumberFormatException e) {
             // Not valid
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(e.getMessage());
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Not valid
+            throw new IllegalArgumentException(e.getMessage());
         }
     }
 
@@ -2254,14 +2257,14 @@ public class ExifInterface {
                     second = dataFormat.second;
                 }
                 if (first == -1 && second == -1) {
-                    return new Pair<>(IFD_FORMAT_STRING, -1);
+                    return new Pair<Integer, Integer>(IFD_FORMAT_STRING, -1);
                 }
                 if (first == -1) {
-                    dataFormat = new Pair<>(second, -1);
+                    dataFormat = new Pair<Integer, Integer>(second, -1);
                     continue;
                 }
                 if (second == -1) {
-                    dataFormat = new Pair<>(first, -1);
+                    dataFormat = new Pair<Integer, Integer>(first, -1);
                     continue;
                 }
             }
@@ -2275,37 +2278,37 @@ public class ExifInterface {
                     long numerator = Long.parseLong(rationalNumber[0]);
                     long denominator = Long.parseLong(rationalNumber[1]);
                     if (numerator < 0L || denominator < 0L) {
-                        return new Pair<>(IFD_FORMAT_SRATIONAL, - 1);
+                        return new Pair<Integer, Integer>(IFD_FORMAT_SRATIONAL, - 1);
                     }
                     if (numerator > Integer.MAX_VALUE || denominator > Integer.MAX_VALUE) {
-                        return new Pair<>(IFD_FORMAT_URATIONAL, -1);
+                        return new Pair<Integer, Integer>(IFD_FORMAT_URATIONAL, -1);
                     }
-                    return new Pair<>(IFD_FORMAT_SRATIONAL, IFD_FORMAT_URATIONAL);
+                    return new Pair<Integer, Integer>(IFD_FORMAT_SRATIONAL, IFD_FORMAT_URATIONAL);
                 } catch (NumberFormatException e)  {
                     // Ignored
                 }
             }
-            return new Pair<>(IFD_FORMAT_STRING, -1);
+            return new Pair<Integer, Integer>(IFD_FORMAT_STRING, -1);
         }
         try {
             Long longValue = Long.parseLong(entryValue);
             if (longValue >= 0 && longValue <= 65535) {
-                return new Pair<>(IFD_FORMAT_USHORT, IFD_FORMAT_ULONG);
+                return new Pair<Integer, Integer>(IFD_FORMAT_USHORT, IFD_FORMAT_ULONG);
             }
             if (longValue < 0) {
-                return new Pair<>(IFD_FORMAT_SLONG, -1);
+                return new Pair<Integer, Integer>(IFD_FORMAT_SLONG, -1);
             }
-            return new Pair<>(IFD_FORMAT_ULONG, -1);
+            return new Pair<Integer, Integer>(IFD_FORMAT_ULONG, -1);
         } catch (NumberFormatException e) {
             // Ignored
         }
         try {
             Double.parseDouble(entryValue);
-            return new Pair<>(IFD_FORMAT_DOUBLE, -1);
+            return new Pair<Integer, Integer>(IFD_FORMAT_DOUBLE, -1);
         } catch (NumberFormatException e) {
             // Ignored
         }
-        return new Pair<>(IFD_FORMAT_STRING, -1);
+        return new Pair<Integer, Integer>(IFD_FORMAT_STRING, -1);
     }
 
     // An input stream to parse EXIF data area, which can be written in either little or big endian
