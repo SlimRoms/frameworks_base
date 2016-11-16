@@ -23,6 +23,7 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningAppProcessInfo;
 import android.app.ActivityManagerNative;
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -31,9 +32,11 @@ import android.app.admin.DevicePolicyManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
@@ -83,6 +86,7 @@ import android.view.WindowManagerGlobal;
 import android.view.accessibility.AccessibilityManager;
 import android.view.animation.AnimationUtils;
 import android.widget.DateTimeView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RemoteViews;
 import android.widget.TextView;
@@ -929,6 +933,8 @@ public abstract class BaseStatusBar extends SystemUI implements
         final View settingsButton = guts.findViewById(R.id.notification_inspect_item);
         final View appSettingsButton
                 = guts.findViewById(R.id.notification_inspect_app_provided_settings);
+        final View killButton
+                = guts.findViewById(R.id.notification_inspect_kill);
         if (appUid >= 0) {
             final int appUidF = appUid;
             settingsButton.setOnClickListener(new View.OnClickListener() {
@@ -964,11 +970,48 @@ public abstract class BaseStatusBar extends SystemUI implements
             } else {
                 appSettingsButton.setVisibility(View.GONE);
             }
+
+            if (isThisASystemPackage(pkg, pmUser)) {
+                killButton.setVisibility(View.GONE);
+            } else {
+                killButton.setVisibility(View.VISIBLE);
+                killButton.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        AlertDialog.Builder killDialog = new AlertDialog.Builder(mContext);
+                        killDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+                        killDialog.setTitle(mContext.getText(R.string.force_stop_dlg_title))
+                                .setMessage(mContext.getText(R.string.force_stop_dlg_text))
+                                .setPositiveButton(R.string.dlg_ok, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // kill pkg
+                                        ActivityManager actMan = (ActivityManager) mContext.getSystemService(
+                                                Context.ACTIVITY_SERVICE);
+                                        actMan.forceStopPackage(pkg);
+                                    }
+                                })
+                                .setNegativeButton(R.string.dlg_cancel, null);
+                        killDialog.show();
+                    }
+                });
+            }
         } else {
             settingsButton.setVisibility(View.GONE);
             appSettingsButton.setVisibility(View.GONE);
+            killButton.setVisibility(View.GONE);
         }
 
+    }
+
+    private boolean isThisASystemPackage(String packageName, PackageManager pm) {
+        try {
+            PackageInfo packageInfo = pm.getPackageInfo(packageName,
+                    PackageManager.GET_SIGNATURES);
+            PackageInfo sys = pm.getPackageInfo("android", PackageManager.GET_SIGNATURES);
+            return (packageInfo != null && packageInfo.signatures != null &&
+                    sys.signatures[0].equals(packageInfo.signatures[0]));
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
     }
 
     protected SwipeHelper.LongPressListener getNotificationLongClicker() {
