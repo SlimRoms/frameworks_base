@@ -902,7 +902,7 @@ public abstract class BaseStatusBar extends SystemUI implements
         }, false /* afterKeyguardGone */);
     }
 
-    private void bindGuts(ExpandableNotificationRow row) {
+    protected void bindGuts(ExpandableNotificationRow row) {
         row.inflateGuts();
         final StatusBarNotification sbn = row.getStatusBarNotification();
         PackageManager pmUser = getPackageManagerForUser(
