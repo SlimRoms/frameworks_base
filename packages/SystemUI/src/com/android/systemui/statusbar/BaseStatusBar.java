@@ -857,7 +857,7 @@ public abstract class BaseStatusBar extends SystemUI implements
     }
 
     // The gear button in the guts that links to the app's own notification settings
-    private void startAppOwnNotificationSettingsActivity(Intent intent,
+    protected void startAppOwnNotificationSettingsActivity(Intent intent,
             final int notificationId, final String notificationTag, final int appUid) {
         intent.putExtra("notification_id", notificationId);
         intent.putExtra("notification_tag", notificationTag);
@@ -865,7 +865,7 @@ public abstract class BaseStatusBar extends SystemUI implements
     }
 
     // The (i) button in the guts that links to the system notification settings for that app
-    private void startAppNotificationSettingsActivity(String packageName, final int appUid) {
+    protected void startAppNotificationSettingsActivity(String packageName, final int appUid) {
         final Intent intent = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
         intent.putExtra(Settings.EXTRA_APP_PACKAGE, packageName);
         intent.putExtra(Settings.EXTRA_APP_UID, appUid);
@@ -899,7 +899,7 @@ public abstract class BaseStatusBar extends SystemUI implements
         }, false /* afterKeyguardGone */);
     }
 
-    private void bindGuts(ExpandableNotificationRow row) {
+    protected void bindGuts(ExpandableNotificationRow row) {
         row.inflateGuts();
         final StatusBarNotification sbn = row.getStatusBarNotification();
         PackageManager pmUser = getPackageManagerForUser(
