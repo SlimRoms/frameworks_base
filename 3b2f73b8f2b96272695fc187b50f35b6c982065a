@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7aade967_eccabf6d",
+        "filename": "services/core/java/com/android/server/power/PowerManagerService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 788,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-11-26T21:23:52Z",
+      "side": 1,
+      "message": "needs to be 8 spaces more than the original line",
+      "revId": "3b2f73b8f2b96272695fc187b50f35b6c982065a",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7aade967_8cc78b64",
+        "filename": "services/core/java/com/android/server/power/PowerManagerService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3656,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-11-26T21:23:52Z",
+      "side": 1,
+      "message": "Never mind, can be reverted to original. It\u0027s just to big",
+      "range": {
+        "startLine": 3655,
+        "startChar": 27,
+        "endLine": 3656,
+        "endChar": 100
+      },
+      "revId": "3b2f73b8f2b96272695fc187b50f35b6c982065a",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
