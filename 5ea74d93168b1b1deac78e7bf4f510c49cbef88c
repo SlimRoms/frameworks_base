@@ -1,0 +1,349 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7aade967_acffe7a9",
+        "filename": "services/core/java/com/android/server/display/DisplayPowerController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-11-26T20:42:25Z",
+      "side": 1,
+      "message": "Should be spaces not tabs",
+      "range": {
+        "startLine": 592,
+        "startChar": 0,
+        "endLine": 592,
+        "endChar": 2
+      },
+      "revId": "5ea74d93168b1b1deac78e7bf4f510c49cbef88c",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7aade967_4c2c334b",
+        "filename": "services/core/java/com/android/server/policy/PhoneWindowManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 5773,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-11-26T20:42:25Z",
+      "side": 1,
+      "message": "newline",
+      "range": {
+        "startLine": 5773,
+        "startChar": 75,
+        "endLine": 5773,
+        "endChar": 103
+      },
+      "revId": "5ea74d93168b1b1deac78e7bf4f510c49cbef88c",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7aade967_6c31efa1",
+        "filename": "services/core/java/com/android/server/policy/PhoneWindowManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 6490,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-11-26T20:42:25Z",
+      "side": 1,
+      "message": "spaces not tab",
+      "range": {
+        "startLine": 6490,
+        "startChar": 0,
+        "endLine": 6490,
+        "endChar": 1
+      },
+      "revId": "5ea74d93168b1b1deac78e7bf4f510c49cbef88c",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7aade967_0c263b69",
+        "filename": "services/core/java/com/android/server/policy/PhoneWindowManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 6494,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-11-26T20:42:25Z",
+      "side": 1,
+      "message": "spaces not tab",
+      "range": {
+        "startLine": 6494,
+        "startChar": 0,
+        "endLine": 6494,
+        "endChar": 1
+      },
+      "revId": "5ea74d93168b1b1deac78e7bf4f510c49cbef88c",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7aade967_2c2bf731",
+        "filename": "services/core/java/com/android/server/policy/PhoneWindowManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 6514,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-11-26T20:42:25Z",
+      "side": 1,
+      "message": "spaces not tab",
+      "range": {
+        "startLine": 6514,
+        "startChar": 0,
+        "endLine": 6514,
+        "endChar": 1
+      },
+      "revId": "5ea74d93168b1b1deac78e7bf4f510c49cbef88c",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7aade967_cc1fc308",
+        "filename": "services/core/java/com/android/server/power/PowerManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-11-26T20:42:25Z",
+      "side": 1,
+      "message": "spaces not tab",
+      "range": {
+        "startLine": 647,
+        "startChar": 0,
+        "endLine": 647,
+        "endChar": 5
+      },
+      "revId": "5ea74d93168b1b1deac78e7bf4f510c49cbef88c",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7aade967_8c19cb24",
+        "filename": "services/core/java/com/android/server/power/PowerManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 782,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-11-26T20:42:25Z",
+      "side": 1,
+      "message": "spaces not tab",
+      "range": {
+        "startLine": 782,
+        "startChar": 0,
+        "endLine": 782,
+        "endChar": 1
+      },
+      "revId": "5ea74d93168b1b1deac78e7bf4f510c49cbef88c",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7aade967_ec1cff15",
+        "filename": "services/core/java/com/android/server/power/PowerManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 787,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-11-26T20:42:25Z",
+      "side": 1,
+      "message": "newline",
+      "range": {
+        "startLine": 787,
+        "startChar": 40,
+        "endLine": 787,
+        "endChar": 104
+      },
+      "revId": "5ea74d93168b1b1deac78e7bf4f510c49cbef88c",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7aade967_ac1607f0",
+        "filename": "services/core/java/com/android/server/power/PowerManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 818,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-11-26T20:42:25Z",
+      "side": 1,
+      "message": "spaces not tab",
+      "range": {
+        "startLine": 818,
+        "startChar": 0,
+        "endLine": 818,
+        "endChar": 1
+      },
+      "revId": "5ea74d93168b1b1deac78e7bf4f510c49cbef88c",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7aade967_4cd3d338",
+        "filename": "services/core/java/com/android/server/power/PowerManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3210,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-11-26T20:42:25Z",
+      "side": 1,
+      "message": "spaces not tabs",
+      "range": {
+        "startLine": 3210,
+        "startChar": 0,
+        "endLine": 3210,
+        "endChar": 3
+      },
+      "revId": "5ea74d93168b1b1deac78e7bf4f510c49cbef88c",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7aade967_6cd80f54",
+        "filename": "services/core/java/com/android/server/power/PowerManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3417,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-11-26T20:42:25Z",
+      "side": 1,
+      "message": "spaces not tab",
+      "range": {
+        "startLine": 3417,
+        "startChar": 0,
+        "endLine": 3417,
+        "endChar": 1
+      },
+      "revId": "5ea74d93168b1b1deac78e7bf4f510c49cbef88c",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7aade967_0cdddb42",
+        "filename": "services/core/java/com/android/server/power/PowerManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3595,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-11-26T20:42:25Z",
+      "side": 1,
+      "message": "spaces not tab",
+      "range": {
+        "startLine": 3595,
+        "startChar": 0,
+        "endLine": 3595,
+        "endChar": 5
+      },
+      "revId": "5ea74d93168b1b1deac78e7bf4f510c49cbef88c",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7aade967_2ce21704",
+        "filename": "services/core/java/com/android/server/power/PowerManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3603,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-11-26T20:42:25Z",
+      "side": 1,
+      "message": "spaces not tab",
+      "range": {
+        "startLine": 3603,
+        "startChar": 0,
+        "endLine": 3603,
+        "endChar": 5
+      },
+      "revId": "5ea74d93168b1b1deac78e7bf4f510c49cbef88c",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7aade967_cce6e316",
+        "filename": "services/core/java/com/android/server/power/PowerManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3654,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-11-26T20:42:25Z",
+      "side": 1,
+      "message": "newline",
+      "range": {
+        "startLine": 3654,
+        "startChar": 40,
+        "endLine": 3654,
+        "endChar": 109
+      },
+      "revId": "5ea74d93168b1b1deac78e7bf4f510c49cbef88c",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7aade967_ece39f03",
+        "filename": "services/core/java/com/android/server/power/PowerManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3683,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2016-11-26T20:42:25Z",
+      "side": 1,
+      "message": "spaces not tab",
+      "range": {
+        "startLine": 3683,
+        "startChar": 0,
+        "endLine": 3683,
+        "endChar": 1
+      },
+      "revId": "5ea74d93168b1b1deac78e7bf4f510c49cbef88c",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
