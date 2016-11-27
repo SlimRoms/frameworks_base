@@ -26,8 +26,7 @@ LOCAL_SHARED_LIBRARIES := \
     libGLESv1_CM \
     libgui \
     libOpenSLES \
-    libtinyalsa \
-    libregionalization
+    libtinyalsa
 
 ifeq ($(TARGET_BOOTANIMATION_MULTITHREAD_DECODE),true)
     LOCAL_CFLAGS += -DMULTITHREAD_DECODE
