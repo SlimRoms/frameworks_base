@@ -1340,7 +1340,8 @@ public class DeviceIdleController extends SystemService
 
         synchronized (this) {
             mLightEnabled = mDeepEnabled = getContext().getResources().getBoolean(
-                    com.android.internal.R.bool.config_enableAutoPowerModes);
+                    com.android.internal.R.bool.config_enableAutoPowerModes) &&
+                    PackageManagerUtils.isAppInstalled(getContext(), "com.google.android.gms");
             SystemConfig sysConfig = SystemConfig.getInstance();
             ArraySet<String> allowPowerExceptIdle = sysConfig.getAllowInPowerSaveExceptIdle();
             for (int i=0; i<allowPowerExceptIdle.size(); i++) {
