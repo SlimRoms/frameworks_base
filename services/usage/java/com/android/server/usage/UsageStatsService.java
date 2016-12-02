@@ -84,7 +84,7 @@ import com.android.internal.util.IndentingPrintWriter;
 import com.android.server.LocalServices;
 import com.android.server.SystemService;
 
-import slim.utils.PackageManagerUtils;
+import org.slim.utils.PackageManagerUtils;
 
 import java.io.File;
 import java.io.FileDescriptor;
@@ -210,7 +210,8 @@ public class UsageStatsService extends SystemService implements
                 null, mHandler);
 
         mAppIdleEnabled = getContext().getResources().getBoolean(
-                com.android.internal.R.bool.config_enableAutoPowerModes);
+                com.android.internal.R.bool.config_enableAutoPowerModes) &&
+                PackageManagerUtils.isAppInstalled(getContext(), "com.google.android.gms");
         if (mAppIdleEnabled) {
             IntentFilter deviceStates = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
             deviceStates.addAction(BatteryManager.ACTION_DISCHARGING);
