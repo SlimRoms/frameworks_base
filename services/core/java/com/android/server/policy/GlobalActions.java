@@ -402,7 +402,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
         @Override
         public void onPress() {
-            mWindowManagerFuncs.reboot(false /* confirm */);
+            mWindowManagerFuncs.reboot(true /* confirm */);
         }
     }
 
