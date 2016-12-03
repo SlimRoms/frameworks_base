@@ -180,23 +180,24 @@ public final class ShutdownThread extends Thread {
 
         Log.d(TAG, "Notifying thread to start shutdown longPressBehavior=" + longPressBehavior);
 
-        if (confirm) {
+        // Determine if primary user is logged in
+        boolean isPrimary = UserHandle.getCallingUserId() == UserHandle.USER_OWNER;
+
+        // See if the advanced reboot menu is enabled
+        // (only if primary user) and check the keyguard state
+        int advancedReboot = isPrimary ? getAdvancedReboot(context) : 0;
+
+        KeyguardManager km = (KeyguardManager) context.getSystemService(
+                Context.KEYGUARD_SERVICE);
+        boolean locked = km.inKeyguardRestrictedInputMode() && km.isKeyguardSecure();
+
+        if (confirm || ((advancedReboot == 1 && !locked) || advancedReboot == 2)) {
             final CloseDialogReceiver closer = new CloseDialogReceiver(context);
             if (sConfirmDialog != null) {
                 sConfirmDialog.dismiss();
                 sConfirmDialog = null;
             }
             if (mReboot && !mRebootSafeMode) {
-                // Determine if primary user is logged in
-                boolean isPrimary = UserHandle.getCallingUserId() == UserHandle.USER_OWNER;
-
-                // See if the advanced reboot menu is enabled
-                // (only if primary user) and check the keyguard state
-                int advancedReboot = isPrimary ? getAdvancedReboot(context) : 0;
-                KeyguardManager km = (KeyguardManager) context.getSystemService(
-                        Context.KEYGUARD_SERVICE);
-                boolean locked = km.inKeyguardRestrictedInputMode() && km.isKeyguardSecure();
-
                 if ((advancedReboot == 1 && !locked) || advancedReboot == 2) {
                     // Include options in power menu for rebooting into recovery or bootloader
                     sConfirmDialog = new AlertDialog.Builder(context)
