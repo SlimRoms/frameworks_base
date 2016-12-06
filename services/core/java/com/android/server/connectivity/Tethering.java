@@ -33,6 +33,7 @@ import android.content.res.Resources;
 import android.hardware.usb.UsbManager;
 import android.net.ConnectivityManager;
 import android.net.ConnectivityManager.NetworkCallback;
+import android.net.INetworkPolicyManager;
 import android.net.INetworkStatsService;
 import android.net.LinkProperties;
 import android.net.Network;
@@ -49,6 +50,7 @@ import android.os.INetworkManagementService;
 import android.os.Looper;
 import android.os.Message;
 import android.os.Parcel;
+import android.os.RemoteException;
 import android.os.ResultReceiver;
 import android.os.SystemProperties;
 import android.os.UserHandle;
@@ -124,6 +126,7 @@ public class Tethering extends BaseNetworkObserver implements IControlsTethering
 
     private final INetworkManagementService mNMService;
     private final INetworkStatsService mStatsService;
+    private final INetworkPolicyManager mPolicyManager;
     private final Looper mLooper;
 
     private static class TetherState {
@@ -178,10 +181,11 @@ public class Tethering extends BaseNetworkObserver implements IControlsTethering
     private boolean mWifiTetherRequested;
 
     public Tethering(Context context, INetworkManagementService nmService,
-            INetworkStatsService statsService) {
+            INetworkStatsService statsService, INetworkPolicyManager policyManager) {
         mContext = context;
         mNMService = nmService;
         mStatsService = statsService;
+        mPolicyManager = policyManager;
 
         mPublicSync = new Object();
 
@@ -408,11 +412,13 @@ public class Tethering extends BaseNetworkObserver implements IControlsTethering
         // Check carrier config for entitlement checks
         final CarrierConfigManager configManager = (CarrierConfigManager) mContext
              .getSystemService(Context.CARRIER_CONFIG_SERVICE);
-        boolean isEntitlementCheckRequired = configManager.getConfig().getBoolean(
-             CarrierConfigManager.KEY_REQUIRE_ENTITLEMENT_CHECKS_BOOL);
-
-        if (!isEntitlementCheckRequired) {
-            return false;
+        if (configManager != null && configManager.getConfig() != null) {
+            // we do have a CarrierConfigManager and it has a config.
+            boolean isEntitlementCheckRequired = configManager.getConfig().getBoolean(
+                    CarrierConfigManager.KEY_REQUIRE_ENTITLEMENT_CHECKS_BOOL);
+            if (!isEntitlementCheckRequired) {
+                return false;
+            }
         }
         return (provisionApp.length == 2);
     }
@@ -629,12 +635,9 @@ public class Tethering extends BaseNetworkObserver implements IControlsTethering
     }
 
     public void untetherAll() {
-        synchronized (mPublicSync) {
-            if (DBG) Log.d(TAG, "Untethering " + mTetherStates.keySet());
-            for (int i = 0; i < mTetherStates.size(); i++) {
-                untether(mTetherStates.keyAt(i));
-            }
-        }
+        stopTethering(ConnectivityManager.TETHERING_WIFI);
+        stopTethering(ConnectivityManager.TETHERING_USB);
+        stopTethering(ConnectivityManager.TETHERING_BLUETOOTH);
     }
 
     public int getLastTetherError(String iface) {
@@ -1920,6 +1923,15 @@ public class Tethering extends BaseNetworkObserver implements IControlsTethering
         if (DBG) {
             Log.d(TAG, "iface " + iface + " notified that it was in state " + state +
                     " with error " + error);
+        }
+
+        try {
+            // Notify that we're tethering (or not) this interface.
+            // This is how data saver for instance knows if the user explicitly
+            // turned on tethering (thus keeping us from being in data saver mode).
+            mPolicyManager.onTetheringChanged(iface, state == IControlsTethering.STATE_TETHERED);
+        } catch (RemoteException e) {
+            // Not really very much we can do here.
         }
 
         switch (state) {
