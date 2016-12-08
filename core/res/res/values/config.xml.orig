@@ -2802,16 +2802,22 @@
     <!-- Whether notify fingerprint client of successful cancelled authentication -->
     <bool name="config_notifyClientOnFingerprintCancelSuccess">false</bool>
 
+<<<<<<< HEAD
      <!-- Specifies whether the permissions needed by a legacy app should be
          reviewed before any of its components can run. A legacy app is one
          with targetSdkVersion < 23, i.e apps using the old permission model.
          If review is not required, permissions are reviewed before the app
          is installed. -->
     <bool name="config_permissionReviewRequired">false</bool>
+=======
+    <!-- If enabled, capacitive keys will only light up when pressed.
+         Otherwise, the buttons will light up whenever the user interacts with the device -->
+    <bool name="config_buttonLightOnKeypressOnly">false</bool>
 
     <!-- The duration (in milliseconds) for the outgoing sms authorization request to timeout.-->
     <integer name="config_sms_authorization_timeout_ms">0</integer>
 
     <!-- Enable sms authorization framework-->
     <bool name="config_sms_authorization_enabled">false</bool>
+>>>>>>> 0bea0a1... SEEMP: Adding auth framework for outgoing SMS messages.
 </resources>
