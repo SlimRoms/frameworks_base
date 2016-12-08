@@ -2808,4 +2808,10 @@
          If review is not required, permissions are reviewed before the app
          is installed. -->
     <bool name="config_permissionReviewRequired">false</bool>
+
+    <!-- The duration (in milliseconds) for the outgoing sms authorization request to timeout.-->
+    <integer name="config_sms_authorization_timeout_ms">0</integer>
+
+    <!-- Enable sms authorization framework-->
+    <bool name="config_sms_authorization_enabled">false</bool>
 </resources>
