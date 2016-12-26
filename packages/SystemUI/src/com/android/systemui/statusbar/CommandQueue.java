@@ -78,6 +78,9 @@ public class CommandQueue extends IStatusBar.Stub {
     private static final int MSG_DISMISS_KEYBOARD_SHORTCUTS    = 32 << MSG_SHIFT;
     private static final int MSG_HANDLE_SYSNAV_KEY             = 33 << MSG_SHIFT;
 
+    // Slim Additions
+    private static final int MSG_TOGGLE_KILL_APP               = 34 << MSG_SHIFT;
+
     public static final int FLAG_EXCLUDE_NONE = 0;
     public static final int FLAG_EXCLUDE_SEARCH_PANEL = 1 << 0;
     public static final int FLAG_EXCLUDE_RECENTS_PANEL = 1 << 1;
@@ -133,6 +136,7 @@ public class CommandQueue extends IStatusBar.Stub {
         void clickTile(ComponentName tile);
 
         void handleSystemNavigationKey(int arg1);
+        void toggleKillApp();
     }
 
     public CommandQueue(Callbacks callbacks) {
@@ -399,6 +403,13 @@ public class CommandQueue extends IStatusBar.Stub {
         }
     }
 
+    public void toggleKillApp() {
+        synchronized (mLock) {
+            mHandler.removeMessages(MSG_TOGGLE_KILL_APP);
+            mHandler.obtainMessage(MSG_TOGGLE_KILL_APP, 0, 0, null).sendToTarget();
+        }
+    }
+
     private final class H extends Handler {
         public void handleMessage(Message msg) {
             final int what = msg.what & MSG_MASK;
@@ -516,6 +527,9 @@ public class CommandQueue extends IStatusBar.Stub {
                     break;
                 case MSG_HANDLE_SYSNAV_KEY:
                     mCallbacks.handleSystemNavigationKey(msg.arg1);
+                    break;
+                case MSG_TOGGLE_KILL_APP:
+                    mCallbacks.toggleKillApp();
                     break;
             }
         }

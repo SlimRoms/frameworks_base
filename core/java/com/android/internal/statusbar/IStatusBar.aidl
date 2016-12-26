@@ -17,6 +17,7 @@
 package com.android.internal.statusbar;
 
 import android.content.ComponentName;
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.service.notification.StatusBarNotification;
@@ -103,6 +104,11 @@ oneway interface IStatusBar
      * @param source the identifier for the gesture, see {@link StatusBarManager}
      */
     void onCameraLaunchGestureDetected(int source);
+
+    /**
+     * SlimActions additions
+     */
+    void toggleKillApp();
 
     /**
      * Shows the TV's picture-in-picture menu if an activity is in picture-in-picture mode.

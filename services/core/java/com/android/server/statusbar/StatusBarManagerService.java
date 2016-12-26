@@ -19,6 +19,7 @@ package com.android.server.statusbar;
 import android.app.StatusBarManager;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Rect;
 import android.os.Binder;
@@ -664,6 +665,15 @@ public class StatusBarManagerService extends IStatusBarService.Stub {
             return;
         }
         enforceStatusBar();
+    }
+
+    @Override
+    public void toggleKillApp() {
+        if (mBar != null) {
+            try {
+                mBar.toggleKillApp();
+            } catch (RemoteException ex) {}
+        }
     }
 
     private void enforceStatusBar() {
