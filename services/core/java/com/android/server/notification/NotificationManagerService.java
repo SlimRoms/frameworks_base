@@ -30,6 +30,7 @@ import android.app.AppOpsManager;
 import android.app.IActivityManager;
 import android.app.INotificationManager;
 import android.app.ITransientNotification;
+import android.app.KeyguardManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.NotificationManager.Policy;
@@ -235,6 +236,9 @@ public class NotificationManagerService extends SystemService {
     private boolean mScreenOn = true;
     private boolean mInCall = false;
     private boolean mNotificationPulseEnabled;
+
+    // for checking lockscreen status
+    private KeyguardManager mKeyguardManager;
 
     // used as a mutex for access to all active notifications & listeners
     final ArrayList<NotificationRecord> mNotificationList =
@@ -609,10 +613,18 @@ public class NotificationManagerService extends SystemService {
                 } finally {
                     Binder.restoreCallingIdentity(identity);
                 }
-
-                // light
-                mLights.clear();
-                updateLightsLocked();
+				
+				
+                // lights
+                // clear only if lockscreen is not active
+                if (mLights.size() > 0) {
+                    final String owner = mLights.get(mLights.size() - 1);
+                    NotificationRecord ledNotification = mNotificationsByKey.get(owner);
+                    if (mKeyguardManager != null && !mKeyguardManager.isKeyguardLocked()) {
+                        mLights.clear();
+                        updateLightsLocked();
+                    }
+                }
             }
         }
 
@@ -861,6 +873,8 @@ public class NotificationManagerService extends SystemService {
         mAppOps = (AppOpsManager) getContext().getSystemService(Context.APP_OPS_SERVICE);
         mVibrator = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
         mAppUsageStats = LocalServices.getService(UsageStatsManagerInternal.class);
+        mKeyguardManager =
+                (KeyguardManager) getContext().getSystemService(Context.KEYGUARD_SERVICE);
 
         mHandler = new WorkerHandler();
         mRankingThread.start();
