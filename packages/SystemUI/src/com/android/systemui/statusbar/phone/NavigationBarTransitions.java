@@ -32,7 +32,7 @@ public final class NavigationBarTransitions extends BarTransitions {
     private final NavigationBarView mView;
     private final IStatusBarService mBarService;
 
-    private boolean mLightsOut;
+    protected boolean mLightsOut;
 
     public NavigationBarTransitions(NavigationBarView view) {
         super(view, R.drawable.nav_background);
