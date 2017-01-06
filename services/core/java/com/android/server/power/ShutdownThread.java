@@ -59,6 +59,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+import slim.provider.SlimSettings;
+
 public final class ShutdownThread extends Thread {
     // constants
     private static final String TAG = "ShutdownThread";
