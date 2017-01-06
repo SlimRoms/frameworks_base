@@ -63,8 +63,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-import org.slim.provider.SlimSettings;
-import org.slim.utils.BuildInfo;
+import slim.provider.SlimSettings;
 
 public final class ShutdownThread extends Thread {
     // constants
