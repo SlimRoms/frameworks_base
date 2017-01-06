@@ -84,6 +84,8 @@ import com.android.internal.util.IndentingPrintWriter;
 import com.android.server.LocalServices;
 import com.android.server.SystemService;
 
+import slim.utils.PackageManagerUtils;
+
 import java.io.File;
 import java.io.FileDescriptor;
 import java.io.IOException;
