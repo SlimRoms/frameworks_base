@@ -249,6 +249,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import org.slim.framework.internal.policy.HardwareKeyHandler;
+import slim.provider.SlimSettings;
+
 /**
  * WindowManagerPolicy implementation for the Android phone UI.  This
  * introduces a new method suffix, Lp, for an internal lock of the
