@@ -759,7 +759,6 @@ Asset* AssetManager::openIdmapLocked(const struct asset_path& ap) const
     return ass;
 }
 
-            delete oidmap;
 const ResTable& AssetManager::getResources(bool required) const
 {
     const ResTable* rt = getResTable(required);
