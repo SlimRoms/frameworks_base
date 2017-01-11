@@ -174,7 +174,7 @@ public class NotificationGuts extends LinearLayout implements TunerService.Tunab
         }
     }
 
-    void bindImportance(final PackageManager pm, final StatusBarNotification sbn,
+    protected void bindImportance(final PackageManager pm, final StatusBarNotification sbn,
             final Set<String> nonBlockablePkgs, final int importance) {
         mINotificationManager = INotificationManager.Stub.asInterface(
                 ServiceManager.getService(Context.NOTIFICATION_SERVICE));
