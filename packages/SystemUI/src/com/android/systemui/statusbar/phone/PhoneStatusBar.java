@@ -360,7 +360,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private QSPanel mQSPanel;
 
     // top bar
-    BaseStatusBarHeader mHeader;
+    protected BaseStatusBarHeader mHeader;
     protected KeyguardStatusBarView mKeyguardStatusBar;
     View mKeyguardStatusView;
     KeyguardBottomAreaView mKeyguardBottomArea;
