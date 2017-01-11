@@ -15,7 +15,7 @@
     limitations under the License.
 -->
 
-<com.android.systemui.statusbar.NotificationGuts
+<com.android.systemui.statusbar.SlimNotificationGuts
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -195,4 +195,4 @@
             android:layout_marginEnd="8dp"
             android:focusable="true"/>
     </LinearLayout>
-</com.android.systemui.statusbar.NotificationGuts>
+</com.android.systemui.statusbar.SlimNotificationGuts>
