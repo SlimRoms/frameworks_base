@@ -1069,14 +1069,15 @@ public abstract class BaseStatusBar extends SystemUI implements
         }, false /* afterKeyguardGone */);
     }
 
-    private void bindGuts(final ExpandableNotificationRow row) {
+    protected void bindGuts(final ExpandableNotificationRow row) {
         row.inflateGuts();
         final StatusBarNotification sbn = row.getStatusBarNotification();
-        PackageManager pmUser = getPackageManagerForUser(mContext, sbn.getUser().getIdentifier());
+        protected PackageManager pmUser = getPackageManagerForUser(mContext,
+                sbn.getUser().getIdentifier());
         row.setTag(sbn.getPackageName());
-        final NotificationGuts guts = row.getGuts();
+        protected final NotificationGuts guts = row.getGuts();
         guts.setClosedListener(this);
-        final String pkg = sbn.getPackageName();
+        protected final String pkg = sbn.getPackageName();
         String appname = pkg;
         Drawable pkgicon = null;
         int appUid = -1;
@@ -1097,7 +1098,7 @@ public abstract class BaseStatusBar extends SystemUI implements
         ((ImageView) guts.findViewById(R.id.app_icon)).setImageDrawable(pkgicon);
         ((TextView) guts.findViewById(R.id.pkgname)).setText(appname);
 
-        final TextView settingsButton = (TextView) guts.findViewById(R.id.more_settings);
+        protected final TextView settingsButton = (TextView) guts.findViewById(R.id.more_settings);
         if (appUid >= 0) {
             final int appUidF = appUid;
             settingsButton.setOnClickListener(new View.OnClickListener() {
