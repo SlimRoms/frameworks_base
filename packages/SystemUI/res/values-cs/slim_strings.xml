@@ -18,26 +18,122 @@
   <!-- Kill app toast -->
   <string name="app_killed_message">Aplikace ukončena</string>
   <!-- Dialog Cancel/OK -->
+  <string name="cancel">Zrušit</string>
+  <string name="dlg_ok">Ok</string>
+  <string name="yes">Ano</string>
+  <string name="no">Ne</string>
   <!-- Slim Shortcut Actions -->
+  <string name="shortcut_picker">Slim zkratky</string>
   <string name="shortcut_screenshot">Snímek obrazovky</string>
+  <string name="shortcut_chamber">Tajemná komnata</string>
+  <string name="chamber_disabled">Tajemná komnata je zavřena</string>
+  <string name="chamber_title">Vložte název nastavení</string>
+  <string name="chamber_message">Zadejte název nastavení, které je buď přepinatelné pomocí zatržítka nebo se jedná o seznam předvoleb. Například doze_enabled a podobně. Seznam nastavení lze nalézt v souboru Settings.java. VAROVÁNÍ: Tento proces je nebezpečný!</string>
+  <string name="chamber_slim_title">Slim nastavení</string>
+  <string name="chamber_slim_message">Nastavení byla nalezena v AOSP a Slim. Je to Slim nastavení?</string>
+  <string name="chamber_invalid">Jedná se o neplatný vstup. Buďte opatrní.</string>
+  <string name="chamber_invalid_setting">Zkuste přepnout nastavení ručně, abyste se ujistili, že toto nastavení skutečně v databázi existuje.</string>
+  <string name="chamber_checkbox">Přepínač</string>
+  <string name="chamber_chk_message">Je to nastavení přepínačů?</string>
+  <string name="chamber_int">Vstupní hodnoty</string>
+  <string name="chamber_int_message">Zadejte hodnoty, mezi kterými byste chtěli v nastavení přepínat. Oddělte jednotlivé hodnoty čárkou. Barvy nastavujte jen v Hex-hodnotách, jako je #FF00aacc nebo v základních barevných hodnotách, jako je červená, zelená a žlutá.</string>
+  <string name="chamber_name_title">Název zástupce</string>
+  <string name="chamber_name_message">Název zástupce se zobrazí pod jeho ikonou.</string>
+  <string name="chamber_name_toast">Použití výchozí název</string>
   <!-- Off/On/Toggle -->
+  <string name="off">Vypnuto</string>
+  <string name="on">Zapnuto</string>
+  <string name="toggle">Přepínač</string>
+  <string name="shortcut_toggle_title">Provést akci</string>
   <!-- QS Tiles Columns -->
+  <string name="qs_num_columns_entries_three">Tři</string>
+  <string name="qs_num_columns_entries_four">Čtyři</string>
+  <string name="qs_num_columns_entries_five">Pět</string>
+  <string name="qs_main_tiles_title">Zvětšit první řádek</string>
+  <string name="qs_main_tiles_summary">Dvě hlavní dlaždice na prvním řádku</string>
+  <string name="qs_num_columns_title">Počet dlaždic na řádek</string>
+  <string name="qs_num_columns_showing">%1$s dlaždice na řádek zobrazení</string>
   <!-- Additonal QS tiles -->
   <!-- USB tether QS tile -->
+  <string name="accessibility_quick_settings_usb_tether_off">USB Tethering je vypnutý</string>
+  <string name="accessibility_quick_settings_usb_tether_on">USB Tethering je zapnutý</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_off">USB Tethering je vypnutý</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_on">USB Tethering je zapnutý</string>
+  <string name="quick_settings_usb_tether_label">USB tethering</string>
   <!-- Ambient Display QS tile -->
+  <string name="accessibility_quick_settings_ambient_display_off">Ambientní displej vypnutý</string>
+  <string name="accessibility_quick_settings_ambient_display_on">Ambientní displej zapnutý</string>
+  <string name="accessibility_quick_settings_ambient_display_changed_off">Ambientní displej je vypnutý</string>
+  <string name="accessibility_quick_settings_ambient_display_changed_on">Ambientní displej je zapnutý</string>
+  <string name="quick_settings_ambient_display_label">Ambientní displej</string>
   <!-- Screenshot QS tile -->
+  <string name="quick_settings_screenshot_label">Snímek obrazovky</string>
   <!-- NFC QS tile -->
+  <string name="quick_settings_nfc_label">NFC</string>
   <!-- Sync QS tile -->
+  <string name="quick_settings_sync_label">Synchronizace</string>
+  <string name="accessibility_quick_settings_sync_off">Synchronizace vypnuta</string>
+  <string name="accessibility_quick_settings_sync_on">Synchronizace zapnuta</string>
+  <string name="accessibility_quick_settings_sync_changed_off">Synchronizace vypnuta</string>
+  <string name="accessibility_quick_settings_sync_changed_on">Synchronizace zapnuta</string>
   <!-- Screen off QS tile -->
+  <string name="quick_settings_screen_off">Vypnout obrazovku</string>
   <!-- Screen timeout QS tile -->
+  <string name="quick_settings_timeout_label">Časový limit</string>
+  <string name="quick_settings_screen_timeout_detail_title">Časový limit obrazovky</string>
+  <string name="accessibility_quick_settings_screen_timeout">Časový limit obrazovky: <xliff:g id="timeout" example="30 seconds">%s </xliff:g>.</string>
+  <string name="accessibility_quick_settings_screen_timeout_changed">Časový limit obrazovky: <xliff:g id="timeout" example="30 seconds">%s </xliff:g>.</string>
   <!-- Brightness QS Tile -->
+  <string name="quick_settings_brightness">Jas</string>
   <!-- Music QS Tile -->
+  <string name="quick_settings_music_label">Hudba</string>
+  <string name="quick_settings_music_play">Přehrát</string>
+  <string name="quick_settings_music_pause">Pozastavit</string>
   <!-- Reboot/Recovery QS Tile -->
+  <string name="quick_settings_reboot_label">Restartovat</string>
+  <string name="quick_settings_reboot_recovery_label">Recovery</string>
   <!-- Battery Saver QS Tile -->
+  <string name="quick_settings_battery_saver">Spořič baterie</string>
+  <string name="accessibility_quick_settings_battery_saver_off">Spořič baterie vypnutý.</string>
+  <string name="accessibility_quick_settings_battery_saver_on">Spořič baterie zapnutý.</string>
+  <string name="accessibility_quick_settings_battery_saver_changed_off">Spořič baterie vypnutý.</string>
+  <string name="accessibility_quick_settings_battery_saver_changed_on">Spořič baterie zapnutý.</string>
   <!-- Compass QS Tile -->
+  <string name="quick_settings_compass_label">Kompas</string>
+  <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
+  <string name="quick_settings_compass_init">Spouštění\u2026</string>
+  <string name="accessibility_quick_settings_compass_off">Kompas vypnutý.</string>
+  <string name="accessibility_quick_settings_compass_on">Kompas zapnutý.</string>
+  <string name="accessibility_quick_settings_compass_changed_off">Kompas vypnutý.</string>
+  <string name="accessibility_quick_settings_compass_changed_on">Kompas zapnutý.</string>
+  <string name="quick_settings_compass_N">S</string>
+  <string name="quick_settings_compass_NE">SV</string>
+  <string name="quick_settings_compass_E">V</string>
+  <string name="quick_settings_compass_SE">JV</string>
+  <string name="quick_settings_compass_S">J</string>
+  <string name="quick_settings_compass_SW">JZ</string>
+  <string name="quick_settings_compass_W">Z</string>
+  <string name="quick_settings_compass_NW">SZ</string>
   <!-- Caffeine QS Tile -->
+  <string name="quick_settings_caffeine_label">Caffeine</string>
+  <string name="accessibility_quick_settings_caffeine_off">Caffeine vypnuto.</string>
+  <string name="accessibility_quick_settings_caffeine_on">Caffeine zapnuto.</string>
   <!-- IME selector Tile -->
+  <string name="quick_settings_ime_label">IME</string>
   <!-- Volume QS Tile -->
+  <string name="accessibility_quick_settings_volume_panel">Panel hlasitosti.</string>
+  <string name="quick_settings_volume_panel_label">Panel hlasitosti</string>
   <!-- Sound QS Tile -->
+  <string name="quick_settings_sound_label">Zvuk</string>
+  <string name="quick_settings_sound_ring">Vyzvánění</string>
+  <string name="quick_settings_sound_vibrate">Vibrace</string>
+  <string name="quick_settings_sound_silent">Tichý</string>
   <!-- Advanced Location QS Tile -->
+  <string name="accessibility_quick_settings_location_battery_saving">Hlášení polohy: úspora baterie.</string>
+  <string name="accessibility_quick_settings_location_gps_only">Hlášení polohy: pouze GPS.</string>
+  <string name="accessibility_quick_settings_location_high_accuracy">Hlášení polohy: vysoká přesnost.</string>
+  <string name="quick_settings_location_detail_title">Režim určování polohy</string>
+  <string name="quick_settings_location_battery_saving_label">Úspora baterie</string>
+  <string name="quick_settings_location_gps_only_label">Pouze zařízení</string>
+  <string name="quick_settings_location_high_accuracy_label">Vysoká přesnost</string>
 </resources>

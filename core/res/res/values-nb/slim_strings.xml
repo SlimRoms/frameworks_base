@@ -86,14 +86,30 @@
   <string name="app_ops_su">få Superuser tilgang</string>
   <!-- Privacy Guard -->
   <string name="permlab_changePrivacyGuardState">slå av/på Personvernsvakt</string>
+  <string name="permdesc_changePrivacyGuardState">Lar appen endre om en annen app kjører med personlighetsvern. Når en app kjører med personlighetsvern vil den ikke ha tilgang til personlig data som kontakter, samtalelogg eller meldinger.</string>
+  <string name="privacy_guard_notification">Personvernvakt aktiv</string>
+  <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> vil ikke få tilgang til personlige data</string>
+  <string name="privacy_guard_dialog_title">Personvernvakt</string>
+  <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s</xliff:g> vil gjerne <xliff:g id="op">%2$s</xliff:g>.</string>
   <!-- Wifi Hotspot disabled due to subscription change -->
+  <string name="subscription_change_disabled_wifi_ap">Deaktiverte Wi-Fi hotspot på grunn av endring på SIM abonnement</string>
   <!-- WiFi turn off notification action text -->
+  <string name="notify_turn_wifi_off_title">Deaktivere Wi-Fi</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permlab_preventpower">overstyre strømknappen</string>
+  <string name="permdesc_preventpower">Gir en app tilgang til å overstyre strømknappen.</string>
   <!-- Reboot menu -->
   <!-- Button to reboot the phone, within the Reboot Options dialog -->
+  <string name="reboot_reboot">Start på nytt</string>
   <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
+  <string name="reboot_recovery">Gjenoppretting</string>
   <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
+  <string name="reboot_bootloader">Bootloader</string>
   <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
+  <string name="reboot_download">Nedlastingmodus</string>
   <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
+  <string name="reboot_progress">Starter på nytt\u2026</string>
   <!-- Button to reboot the phone, within the Phone Options dialog -->
+  <string name="reboot_system" product="tablet">Start nettbrett på nytt</string>
+  <string name="reboot_system" product="default">Start telefon på nytt</string>
 </resources>

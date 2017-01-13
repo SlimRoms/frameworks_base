@@ -14,7 +14,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Content description of the superuser tile -->
-  <string name="accessibility_su_active">Root  oturumu etkin</string>
+  <string name="accessibility_su_active">Root oturumu etkin</string>
   <!-- Kill app toast -->
   <string name="app_killed_message">Uygulama sonlandırıldı</string>
   <!-- Dialog Cancel/OK -->
@@ -46,22 +46,93 @@
   <string name="toggle">Değiştir</string>
   <string name="shortcut_toggle_title">Yapılacak eylem</string>
   <!-- QS Tiles Columns -->
+  <string name="qs_num_columns_entries_three">Üç</string>
+  <string name="qs_num_columns_entries_four">Dört</string>
+  <string name="qs_num_columns_entries_five">Beş</string>
+  <string name="qs_main_tiles_title">İlk satırı büyüt</string>
+  <string name="qs_main_tiles_summary">İlk satırda iki ana karo</string>
+  <string name="qs_num_columns_title">Satır başına kare sayısı</string>
+  <string name="qs_num_columns_showing">Satır başına gösterilen %1$s kare</string>
   <!-- Additonal QS tiles -->
   <!-- USB tether QS tile -->
+  <string name="accessibility_quick_settings_usb_tether_off">USB internet paylaşımı kapalı</string>
+  <string name="accessibility_quick_settings_usb_tether_on">USB internet paylaşımı açık</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_off">USB internet paylaşımı kapatıldı</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_on">USB internet paylaşımı açıldı</string>
+  <string name="quick_settings_usb_tether_label">USB internet paylaşımı</string>
   <!-- Ambient Display QS tile -->
+  <string name="accessibility_quick_settings_ambient_display_off">Ambient Display devre dışı</string>
+  <string name="accessibility_quick_settings_ambient_display_on">Ambient Display açık</string>
+  <string name="accessibility_quick_settings_ambient_display_changed_off">Ambient Display kapatıldı</string>
+  <string name="accessibility_quick_settings_ambient_display_changed_on">Ambient Display açıldı</string>
+  <string name="quick_settings_ambient_display_label">Ambient display</string>
   <!-- Screenshot QS tile -->
+  <string name="quick_settings_screenshot_label">Ekran görüntüsü</string>
   <!-- NFC QS tile -->
+  <string name="quick_settings_nfc_label">NFC (Yakın Alan İletişimi)</string>
   <!-- Sync QS tile -->
+  <string name="quick_settings_sync_label">Sekronizasyon</string>
+  <string name="accessibility_quick_settings_sync_off">Senkronizasyon kapalı</string>
+  <string name="accessibility_quick_settings_sync_on">Senkronizasyon açık</string>
+  <string name="accessibility_quick_settings_sync_changed_off">Senkronizasyon kapatıldı</string>
+  <string name="accessibility_quick_settings_sync_changed_on">Senkronizasyon açıldı</string>
   <!-- Screen off QS tile -->
+  <string name="quick_settings_screen_off">Ekran kapalı</string>
   <!-- Screen timeout QS tile -->
+  <string name="quick_settings_timeout_label">Zaman aşımı</string>
+  <string name="quick_settings_screen_timeout_detail_title">Ekran zaman aşımı</string>
+  <string name="accessibility_quick_settings_screen_timeout">Ekran zaman aşımı: <xliff:g id="timeout" example="30 seconds">%s </xliff:g>.</string>
+  <string name="accessibility_quick_settings_screen_timeout_changed">Ekran zaman aşımı <xliff:g id="timeout" example="30 seconds">%s </xliff:g> olarak değiştirildi.</string>
   <!-- Brightness QS Tile -->
+  <string name="quick_settings_brightness">Parlaklık</string>
   <!-- Music QS Tile -->
+  <string name="quick_settings_music_label">Müzik</string>
+  <string name="quick_settings_music_play">Oynat</string>
+  <string name="quick_settings_music_pause">Duraklat</string>
   <!-- Reboot/Recovery QS Tile -->
+  <string name="quick_settings_reboot_label">Yeniden Başlat</string>
+  <string name="quick_settings_reboot_recovery_label">Kurtarma modu (Recovery)</string>
   <!-- Battery Saver QS Tile -->
+  <string name="quick_settings_battery_saver">Pil tasarrufu</string>
+  <string name="accessibility_quick_settings_battery_saver_off">Pil tasarrufu kapalı.</string>
+  <string name="accessibility_quick_settings_battery_saver_on">Pil tasarrufu açık.</string>
+  <string name="accessibility_quick_settings_battery_saver_changed_off">Pil tasarrufu kapatıldı.</string>
+  <string name="accessibility_quick_settings_battery_saver_changed_on">Pil tasarrufu açıldı.</string>
   <!-- Compass QS Tile -->
+  <string name="quick_settings_compass_label">Pusula</string>
+  <string name="quick_settings_compass_init">Başlatılıyor\u2026</string>
+  <string name="accessibility_quick_settings_compass_off">Pusula kapalı.</string>
+  <string name="accessibility_quick_settings_compass_on">Pusula açık.</string>
+  <string name="accessibility_quick_settings_compass_changed_off">Pusula kapatıldı.</string>
+  <string name="accessibility_quick_settings_compass_changed_on">Pusula açıldı.</string>
+  <string name="quick_settings_compass_N">K</string>
+  <string name="quick_settings_compass_NE">KD</string>
+  <string name="quick_settings_compass_E">D</string>
+  <string name="quick_settings_compass_SE">GD</string>
+  <string name="quick_settings_compass_S">G</string>
+  <string name="quick_settings_compass_SW">GB</string>
+  <string name="quick_settings_compass_W">B</string>
+  <string name="quick_settings_compass_NW">KB</string>
   <!-- Caffeine QS Tile -->
+  <string name="quick_settings_caffeine_label">Kafein</string>
+  <string name="accessibility_quick_settings_caffeine_off">Kafein kapalı.</string>
+  <string name="accessibility_quick_settings_caffeine_on">Kafein açık.</string>
   <!-- IME selector Tile -->
+  <string name="quick_settings_ime_label">Klavye Değiştirici</string>
   <!-- Volume QS Tile -->
+  <string name="accessibility_quick_settings_volume_panel">Ses paneli.</string>
+  <string name="quick_settings_volume_panel_label">Ses paneli</string>
   <!-- Sound QS Tile -->
+  <string name="quick_settings_sound_label">Ses</string>
+  <string name="quick_settings_sound_ring">Zil sesi</string>
+  <string name="quick_settings_sound_vibrate">Titreşim</string>
+  <string name="quick_settings_sound_silent">Sessiz</string>
   <!-- Advanced Location QS Tile -->
+  <string name="accessibility_quick_settings_location_battery_saving">Konum bildirimi: pil tasarruf modu.</string>
+  <string name="accessibility_quick_settings_location_gps_only">Konum bildirimi: sadece sensörler modu.</string>
+  <string name="accessibility_quick_settings_location_high_accuracy">Konum bildirimi: yüksek hassasiyet modu.</string>
+  <string name="quick_settings_location_detail_title">Konum modu</string>
+  <string name="quick_settings_location_battery_saving_label">Pil tasarrufu</string>
+  <string name="quick_settings_location_gps_only_label">Sadece cihaz</string>
+  <string name="quick_settings_location_high_accuracy_label">Yüksek doğruluk</string>
 </resources>
