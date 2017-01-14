@@ -20,6 +20,7 @@ package com.android.internal.os;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
+import android.os.SystemProperties;
 
 import com.android.internal.util.XmlUtils;
 
@@ -372,6 +373,10 @@ public class PowerProfile {
      * @return the average current in milliAmps.
      */
     public double getAveragePowerOrDefault(String type, double defaultValue) {
+        final int defaultCapacity = SystemProperties.getInt("ro.battery.capacity", 0);
+        if (defaultCapacity != 0 && type.equals(POWER_BATTERY_CAPACITY)) {
+            return (double) defaultCapacity;
+        }
         if (sPowerMap.containsKey(type)) {
             Object data = sPowerMap.get(type);
             if (data instanceof Double[]) {
