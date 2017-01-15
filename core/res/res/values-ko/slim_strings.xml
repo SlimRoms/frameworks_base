@@ -19,19 +19,19 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Reboot menu -->
   <!-- Button to reboot the phone, within the Reboot Options dialog -->
-  <string name="reboot_reboot">Riavvio</string>
+  <string name="reboot_reboot">재부팅</string>
   <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
-  <string name="reboot_recovery">Recovery</string>
+  <string name="reboot_recovery">복구 모드</string>
   <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
-  <string name="reboot_bootloader">Bootloader</string>
+  <string name="reboot_bootloader">부트로더</string>
   <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
-  <string name="reboot_download">Download</string>
+  <string name="reboot_download">다운로드 모드</string>
   <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
-  <string name="reboot_progress">Riavvio in corso\u2026</string>
+  <string name="reboot_progress">다시 시작하는 중\u2026</string>
   <!-- Button to reboot the phone, within the Phone Options dialog -->
-  <string name="reboot_system" product="tablet">Riavvia il tablet</string>
-  <string name="reboot_system" product="default">Riavvia il telefono</string>
-  <string name="permlab_preventpower">Riassegna il tasto di accensione</string>
+  <string name="reboot_system" product="tablet">태블릿 다시 시작</string>
+  <string name="reboot_system" product="default">휴대전화 다시 시작</string>
+  <string name="permlab_preventpower">전원키 덮어 쓰기</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permdesc_preventpower">Consenti all\'app di cambiare il comportamento del pulsante di spegnimento.</string>
+  <string name="permdesc_preventpower">앱이 전원 키의 작동을 방지하도록 허용합니다.</string>
 </resources>

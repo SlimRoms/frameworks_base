@@ -19,19 +19,17 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Reboot menu -->
   <!-- Button to reboot the phone, within the Reboot Options dialog -->
-  <string name="reboot_reboot">Riavvio</string>
+  <string name="reboot_reboot">Khởi động lại</string>
   <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
-  <string name="reboot_recovery">Recovery</string>
+  <string name="reboot_recovery">Về chế độ phục hồi</string>
   <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
-  <string name="reboot_bootloader">Bootloader</string>
+  <string name="reboot_bootloader">Bộ nạp khởi động</string>
   <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
-  <string name="reboot_download">Download</string>
+  <string name="reboot_download">Về chế độ download</string>
   <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
-  <string name="reboot_progress">Riavvio in corso\u2026</string>
+  <string name="reboot_progress">Đang khởi động lại\u2026</string>
   <!-- Button to reboot the phone, within the Phone Options dialog -->
-  <string name="reboot_system" product="tablet">Riavvia il tablet</string>
-  <string name="reboot_system" product="default">Riavvia il telefono</string>
-  <string name="permlab_preventpower">Riassegna il tasto di accensione</string>
+  <string name="reboot_system" product="tablet">Khởi động lại máy tính bảng</string>
+  <string name="reboot_system" product="default">Khởi động lại điện thoại</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permdesc_preventpower">Consenti all\'app di cambiare il comportamento del pulsante di spegnimento.</string>
 </resources>
