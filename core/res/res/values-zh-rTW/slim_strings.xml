@@ -19,19 +19,19 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Reboot menu -->
   <!-- Button to reboot the phone, within the Reboot Options dialog -->
-  <string name="reboot_reboot">Riavvio</string>
+  <string name="reboot_reboot">重新啟動</string>
   <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
   <string name="reboot_recovery">Recovery</string>
   <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
-  <string name="reboot_bootloader">Bootloader</string>
+  <string name="reboot_bootloader">開機導引程式</string>
   <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
-  <string name="reboot_download">Download</string>
+  <string name="reboot_download">進入下載目錄</string>
   <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
-  <string name="reboot_progress">Riavvio in corso\u2026</string>
+  <string name="reboot_progress">正在重新啟動\u2026</string>
   <!-- Button to reboot the phone, within the Phone Options dialog -->
-  <string name="reboot_system" product="tablet">Riavvia il tablet</string>
-  <string name="reboot_system" product="default">Riavvia il telefono</string>
-  <string name="permlab_preventpower">Riassegna il tasto di accensione</string>
+  <string name="reboot_system" product="tablet">重新啟動平板電腦</string>
+  <string name="reboot_system" product="default">重新啟動手機</string>
+  <string name="permlab_preventpower">覆寫電源鍵</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permdesc_preventpower">Consenti all\'app di cambiare il comportamento del pulsante di spegnimento.</string>
+  <string name="permdesc_preventpower">允許應用程式覆蓋電源鍵</string>
 </resources>
