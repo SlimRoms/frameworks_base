@@ -93,7 +93,7 @@ public class WorkSource implements Parcelable {
 
     /** @hide */
     public String getName(int index) {
-        return mNames != null ? mNames[index] : null;
+        return mNames != null && nNames.length > index ? mNames[index] : null;
     }
 
     /**
