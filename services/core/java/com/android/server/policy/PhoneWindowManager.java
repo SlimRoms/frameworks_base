@@ -6034,7 +6034,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
             case KeyEvent.KEYCODE_WAKEUP: {
                 result &= ~ACTION_PASS_TO_USER;
-                isWakeKey = true;
+                isWakeKey = false;
+                if (!down) {
+                    mHardwareKeyHandler.handleWakeKey();
+                }
                 break;
             }
 
