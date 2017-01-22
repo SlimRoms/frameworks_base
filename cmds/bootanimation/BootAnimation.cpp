@@ -392,12 +392,12 @@ status_t BootAnimation::readyToRun() {
     // Preload the bootanimation zip on memory, so we don't stutter
     // when showing the animation
     FILE* fd;
-    if (encryptedAnimation && access(getAnimationFileName(IMG_ENC), R_OK) == 0)
-        fd = fopen(getAnimationFileName(IMG_ENC), "r");
-    else if (access(getAnimationFileName(IMG_OEM), R_OK) == 0)
-        fd = fopen(getAnimationFileName(IMG_OEM), "r");
-    else if (access(getAnimationFileName(IMG_SYS), R_OK) == 0)
-        fd = fopen(getAnimationFileName(IMG_SYS), "r");
+    if (encryptedAnimation && access(SYSTEM_ENCRYPTED_BOOTANIMATION_FILE, R_OK) == 0)
+        fd = fopen(SYSTEM_ENCRYPTED_BOOTANIMATION_FILE, "r");
+    else if (access(OEM_BOOTANIMATION_FILE, R_OK) == 0)
+        fd = fopen(OEM_BOOTANIMATION_FILE, "r");
+    else if (access(SYSTEM_BOOTANIMATION_FILE, R_OK) == 0)
+        fd = fopen(SYSTEM_BOOTANIMATION_FILE, "r");
     else
         return NO_ERROR;
 
