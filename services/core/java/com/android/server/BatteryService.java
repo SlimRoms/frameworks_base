@@ -50,6 +50,7 @@ import android.os.UEventObserver;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.util.EventLog;
+import android.util.Log;
 import android.util.Slog;
 
 import java.io.File;
@@ -182,7 +183,8 @@ public final class BatteryService extends SystemService {
 
         mContext = context;
         mHandler = new Handler(true /*async*/);
-        mLed = new Led(context, getLocalService(LightsManager.class));
+        Log.d("TEST", "BatteryService");
+       // mLed = new Led(context, getLocalService(LightsManager.class));
         mBatteryStats = BatteryStatsService.getService();
 
         /*
@@ -603,7 +605,7 @@ public final class BatteryService extends SystemService {
             }
 
             // Update the battery LED
-            mLed.updateLightsLocked();
+            //mLed.updateLightsLocked();
 
             // This needs to be done after sendIntent() so that we get the lastest battery stats.
             if (logOutlier && dischargeDuration != 0) {
@@ -965,6 +967,7 @@ public final class BatteryService extends SystemService {
          * Synchronize on BatteryService.
          */
         public void updateLightsLocked() {
+            Log.d("TEST", "updateLightsLocked");
             final int level = mBatteryProps.batteryLevel;
             final int status = mBatteryProps.batteryStatus;
             if (level < mLowBatteryWarningLevel) {
