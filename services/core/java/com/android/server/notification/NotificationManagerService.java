@@ -671,7 +671,7 @@ public class NotificationManagerService extends SystemService {
     private void clearLightsLocked() {
         // light
         mLights.clear();
-        updateLightsLocked();
+        //updateLightsLocked();
     }
 
     private final BroadcastReceiver mPackageIntentReceiver = new BroadcastReceiver() {
@@ -2953,13 +2953,13 @@ public class NotificationManagerService extends SystemService {
                 && ((record.getSuppressedVisualEffects()
                 & NotificationListenerService.SUPPRESSED_EFFECT_SCREEN_OFF) == 0)) {
             mLights.add(key);
-            updateLightsLocked();
+            //updateLightsLocked();
             if (mUseAttentionLight) {
                 mAttentionLight.pulse();
             }
             blink = true;
         } else if (wasShowLights) {
-            updateLightsLocked();
+            //updateLightsLocked();
         }
         if (buzz || beep || blink) {
             if (((record.getSuppressedVisualEffects()
@@ -3428,7 +3428,7 @@ public class NotificationManagerService extends SystemService {
                         cancelNotificationLocked(r, sendDelete, reason);
                         cancelGroupChildrenLocked(r, callingUid, callingPid, listenerName,
                                 REASON_GROUP_SUMMARY_CANCELED, sendDelete);
-                        updateLightsLocked();
+                        //updateLightsLocked();
                     }
                 }
             }
@@ -3510,7 +3510,7 @@ public class NotificationManagerService extends SystemService {
                 }
             }
             if (canceledNotifications != null) {
-                updateLightsLocked();
+               // updateLightsLocked();
             }
             return canceledNotifications != null;
         }
@@ -3552,7 +3552,7 @@ public class NotificationManagerService extends SystemService {
             cancelGroupChildrenLocked(canceledNotifications.get(i), callingUid, callingPid,
                     listenerName, REASON_GROUP_SUMMARY_CANCELED, false /* sendDelete */);
         }
-        updateLightsLocked();
+        //updateLightsLocked();
     }
 
     // Warning: The caller is responsible for invoking updateLightsLocked().
@@ -3656,7 +3656,7 @@ public class NotificationManagerService extends SystemService {
 
     private void updateNotificationPulse() {
         synchronized (mNotificationList) {
-            updateLightsLocked();
+            //updateLightsLocked();
         }
     }
 
