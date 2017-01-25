@@ -22,6 +22,7 @@ import android.support.v14.preference.PreferenceFragment;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceScreen;
 import android.util.Log;
+import android.view.MenuItem;
 
 import com.android.settingslib.drawer.SettingsDrawerActivity;
 import com.android.systemui.R;
@@ -55,6 +56,17 @@ public class TunerActivity extends SettingsDrawerActivity implements
     public void onBackPressed() {
         if (!getFragmentManager().popBackStackImmediate()) {
             super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home
+                && getIntent().getStringExtra(TAG_TUNER) != null) {
+            onBackPressed();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
     }
 
@@ -101,6 +113,7 @@ public class TunerActivity extends SettingsDrawerActivity implements
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferenceScreen((PreferenceScreen) ((PreferenceFragment) getTargetFragment())
                     .getPreferenceScreen().findPreference(rootKey));
+            getActivity().getActionBar().setTitle(getPreferenceScreen().getTitle());
         }
     }
 
