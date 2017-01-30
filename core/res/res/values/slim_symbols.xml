@@ -25,4 +25,7 @@
     <java-symbol type="string" name="reboot_system" />
     <java-symbol type="string" name="reboot_progress" />
 
+    <!-- Vendor warning -->
+    <java-symbol type="string" name="system_error_vendorprint" />
+
 </resources>
