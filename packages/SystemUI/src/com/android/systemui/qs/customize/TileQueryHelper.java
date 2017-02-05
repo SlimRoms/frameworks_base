@@ -73,7 +73,9 @@ public class TileQueryHelper {
     }
 
     private void addStockTiles(Handler mainHandler, Handler bgHandler) {
-        String possible = mContext.getString(R.string.quick_settings_tiles_stock);
+        String possible = mContext.getString(R.string.quick_settings_tiles_stock) + ","
+                + mContext.getString(R.string.quick_settings_tiles_slim);
+
         String[] possibleTiles = possible.split(",");
         for (int i = 0; i < possibleTiles.length; i++) {
             final String spec = possibleTiles[i];
