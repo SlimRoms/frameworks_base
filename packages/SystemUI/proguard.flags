@@ -15,6 +15,7 @@
 -keep class com.android.systemui.statusbar.slim.SlimStatusBar
 -keep class com.android.systemui.statusbar.tv.TvStatusBar
 -keep class com.android.systemui.SystemUIFactory
+-keep class com.android.systemui.SlimSystemUIFactory
 
 -keepclassmembers class ** {
     public void onBusEvent(**);
