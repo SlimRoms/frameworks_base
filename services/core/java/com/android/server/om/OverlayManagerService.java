@@ -665,7 +665,7 @@ public final class OverlayManagerService extends SystemService {
                     final int userId) {
                 final Intent intent = new Intent(action, Uri.fromParts("package",
                             String.format("%s/%s", targetPackageName, packageName), null));
-                intent.setFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT);
+                //intent.setFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT);
                 if (DEBUG) {
                     Slog.d(TAG, String.format("send broadcast %s", intent));
                 }

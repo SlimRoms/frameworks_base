@@ -723,6 +723,22 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         mScreenPinningRequest = new ScreenPinningRequest(mContext);
         mFalsingManager = FalsingManager.getInstance(mContext);
+
+        IntentFilter filter = new IntentFilter("slim.action.INSTALL_FINISHED");
+        mContext.registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                for (int i = 0; i < mStackScroller.getChildCount(); i++) {
+                    View v = mStackScroller.getChildAt(i);
+                    if (v instanceof ActivatableNotificationView) {
+                        ActivatableNotificationView anv = (ActivatableNotificationView) v;
+                        anv.updateNotificationView();
+                    }
+                }
+                onDensityOrFontScaleChanged();
+                mStackScroller.updateBackgroundColor();
+            }
+        }, filter);
     }
 
     protected void createIconController() {

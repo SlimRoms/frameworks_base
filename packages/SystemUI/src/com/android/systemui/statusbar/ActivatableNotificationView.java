@@ -90,9 +90,9 @@ public abstract class ActivatableNotificationView extends ExpandableOutlineView 
             = new PathInterpolator(0.6f, 0, 0.5f, 1);
     private static final Interpolator ACTIVATE_INVERSE_ALPHA_INTERPOLATOR
             = new PathInterpolator(0, 0, 0.5f, 1);
-    private final int mTintedRippleColor;
-    private final int mLowPriorityRippleColor;
-    protected final int mNormalRippleColor;
+    private int mTintedRippleColor;
+    private int mLowPriorityRippleColor;
+    protected int mNormalRippleColor;
 
     private boolean mDimmed;
     private boolean mDark;
@@ -128,9 +128,9 @@ public abstract class ActivatableNotificationView extends ExpandableOutlineView 
     private float mAppearAnimationFraction = -1.0f;
     private float mAppearAnimationTranslation;
     private boolean mShowingLegacyBackground;
-    private final int mLegacyColor;
-    private final int mNormalColor;
-    private final int mLowPriorityColor;
+    private int mLegacyColor;
+    private int mNormalColor;
+    private int mLowPriorityColor;
     private boolean mIsBelowSpeedBump;
     private FalsingManager mFalsingManager;
     private boolean mTrackTouch;
@@ -199,6 +199,26 @@ public abstract class ActivatableNotificationView extends ExpandableOutlineView 
         updateBackground();
         updateBackgroundTint();
         updateOutlineAlpha();
+    }
+
+    public void updateNotificationView() {
+        mLegacyColor = getContext().getColor(R.color.notification_legacy_background_color);
+        mNormalColor = getContext().getColor(R.color.notification_material_background_color);
+        mLowPriorityColor = getContext().getColor(
+                R.color.notification_material_background_low_priority_color);
+        mTintedRippleColor = getContext().getColor(
+                R.color.notification_ripple_tinted_color);
+        mLowPriorityRippleColor = getContext().getColor(
+                R.color.notification_ripple_color_low_priority);
+        mNormalRippleColor = getContext().getColor(
+                R.color.notification_ripple_untinted_color);
+        mBackgroundNormal.setCustomBackground(R.drawable.notification_material_bg);
+        mBackgroundDimmed.setCustomBackground(R.drawable.notification_material_bg_dim);
+        updateBackground();
+        updateBackgroundTint();
+        updateOutlineAlpha();
+        postInvalidate();
+        requestLayout();
     }
 
     private final Runnable mTapTimeoutRunnable = new Runnable() {

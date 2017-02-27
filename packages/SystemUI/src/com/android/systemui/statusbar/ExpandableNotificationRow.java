@@ -632,6 +632,7 @@ public class ExpandableNotificationRow extends ActivatableNotificationView {
 
     public void reInflateViews() {
         initDimens();
+        //updateColors(mContext);
         if (mIsSummaryWithChildren) {
             if (mChildrenContainer != null) {
                 mChildrenContainer.reInflateViews(mExpandClickListener, mEntry.notification);

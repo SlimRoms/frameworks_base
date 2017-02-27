@@ -15,11 +15,15 @@
 package com.android.systemui;
 
 import android.annotation.Nullable;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.LocaleList;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -50,6 +54,15 @@ public class AutoReinflateContainer extends FrameLayout {
         }
         mLayout = a.getResourceId(R.styleable.AutoReinflateContainer_android_layout, 0);
         inflateLayout();
+
+        IntentFilter filter = new IntentFilter("slim.action.INSTALL_FINISHED");
+        context.registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Log.d("TEST", "action=" + intent.getAction());
+                inflateLayout();
+            }
+        }, filter);
     }
 
     @Override

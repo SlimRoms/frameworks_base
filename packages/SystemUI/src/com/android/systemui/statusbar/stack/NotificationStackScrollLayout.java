@@ -390,6 +390,13 @@ public class NotificationStackScrollLayout extends ViewGroup
         mFalsingManager = FalsingManager.getInstance(context);
     }
 
+    public void updateBackgroundColor() {
+        android.util.Log.d("TEST", "updateBackgroundColor");
+        mBgColor = mContext.getColor(R.color.notification_shade_background_color);
+        invalidate();
+        requestLayout();
+    }
+
     @Override
     public void onGearTouched(ExpandableNotificationRow row, int x, int y) {
         if (mLongPressListener != null) {
