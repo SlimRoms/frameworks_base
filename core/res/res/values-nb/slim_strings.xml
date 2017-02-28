@@ -34,4 +34,5 @@
   <string name="permlab_preventpower">overstyre strømknappen</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_preventpower">Gir en app tilgang til å overstyre strømknappen.</string>
+  <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
 </resources>

@@ -19,10 +19,20 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Reboot menu -->
   <!-- Button to reboot the phone, within the Reboot Options dialog -->
+  <string name="reboot_reboot">Käynnistä uudelleen</string>
   <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
+  <string name="reboot_recovery">Palautustila</string>
   <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
+  <string name="reboot_bootloader">Bootloader-tila</string>
   <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
+  <string name="reboot_download">Lataa</string>
   <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
+  <string name="reboot_progress">Käynnistetään uudelleen\u2026</string>
   <!-- Button to reboot the phone, within the Phone Options dialog -->
+  <string name="reboot_system" product="tablet">Käynnistä uudelleen</string>
+  <string name="reboot_system" product="default">Käynnistä uudelleen</string>
+  <string name="permlab_preventpower">ohita virtanäppäin</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permdesc_preventpower">Sallii sovelluksen ohittaa virtapainikkeen käytön.</string>
+  <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
 </resources>

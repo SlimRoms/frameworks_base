@@ -28,4 +28,5 @@
   <string name="reboot_system" product="tablet">Рестартиране на таблета</string>
   <string name="reboot_system" product="default">Рестартиране на телефона</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
 </resources>

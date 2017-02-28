@@ -34,4 +34,5 @@
   <string name="permlab_preventpower">Funktion der Power-Taste ändern</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_preventpower">Ermöglicht einer App, der Ein/Aus-Taste eine andere Funktion zuzuweisen.</string>
+  <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
 </resources>

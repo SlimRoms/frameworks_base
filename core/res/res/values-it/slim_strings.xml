@@ -31,7 +31,8 @@
   <!-- Button to reboot the phone, within the Phone Options dialog -->
   <string name="reboot_system" product="tablet">Riavvia il tablet</string>
   <string name="reboot_system" product="default">Riavvia il telefono</string>
-  <string name="permlab_preventpower">Riassegna il tasto di accensione</string>
+  <string name="permlab_preventpower">riassegna il tasto di accensione</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_preventpower">Consenti all\'app di cambiare il comportamento del pulsante di spegnimento.</string>
+  <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
 </resources>

@@ -34,4 +34,5 @@
   <string name="permlab_preventpower">anul·lar tecla d\'encesa</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_preventpower">Permet a una aplicació fer servir el botó d\'encesa.</string>
+  <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
 </resources>

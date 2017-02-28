@@ -32,4 +32,5 @@
   <string name="reboot_system" product="tablet">Starta om surfplattan</string>
   <string name="reboot_system" product="default">Starta om telefonen</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
 </resources>

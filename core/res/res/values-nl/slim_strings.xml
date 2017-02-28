@@ -34,4 +34,5 @@
   <string name="permlab_preventpower">overschrijf aan/uit-knop</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_preventpower">Staat een app toe de aan-/uitknop over te nemen.</string>
+  <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
 </resources>

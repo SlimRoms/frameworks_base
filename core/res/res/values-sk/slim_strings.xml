@@ -34,4 +34,6 @@
   <string name="permlab_preventpower">zmeniť funkciu tlačidla Napájanie</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_preventpower">Umožní aplikácii zmeniť správanie tlačidla Napájanie.</string>
+  <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
+  <string name="system_error_vendorprint">Bol zistený nesprávny vendor image. Požadovaný vendor image pre túto ROM je <xliff:g id="string">%s</xliff:g>. Pre odstránenie tejto správu prosím napáľte správny vendor image a uistite sa, že váš systém pracuje správne.</string>
 </resources>

@@ -34,4 +34,5 @@
   <string name="permlab_preventpower">outrepasser le bouton d\'alimentation</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_preventpower">Autoriser une application à outrepasser le bouton d\'alimentation.</string>
+  <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
 </resources>

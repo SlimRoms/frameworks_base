@@ -34,4 +34,6 @@
   <string name="permlab_preventpower">güç tuşu işlevini değiştir</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_preventpower">Uygulamanın güç tuşunun işlevini değiştirmesine izin verir.</string>
+  <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
+  <string name="system_error_vendorprint">Yanlış tedarikçi görüntüsü tespit edildi. Bu ROM için gereken tedarikçi görüntüsü <xliff:g id="string">%s </xliff:g>. Bu iletiyi kaldırmak ve sisteminizin güvenilir şekilde çalışmasını sağlamak için lütfen eşleşen tedarikçi resmini flashlayın.</string>
 </resources>

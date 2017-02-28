@@ -34,4 +34,5 @@
   <string name="permlab_preventpower">nepaisyti įjungimo klavišo</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_preventpower">Leisti programoms nepaisyti įjungimo klavišo.</string>
+  <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
 </resources>

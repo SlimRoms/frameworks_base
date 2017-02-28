@@ -34,4 +34,5 @@
   <string name="permlab_preventpower">substituir o botão de ligar</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_preventpower">Permite que uma aplicação use o botão de ligar.</string>
+  <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
 </resources>
