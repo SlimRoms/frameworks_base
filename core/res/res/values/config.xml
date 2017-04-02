@@ -2912,4 +2912,10 @@
 
     <!-- An array of packages that need to be treated as type service in battery settings -->
     <string-array translatable="false" name="config_batteryPackageTypeService"/>
+
+    <!-- Default value for proximity check on screen wake
+         NOTE ! - Enable for devices that have a fast response proximity sensor (ideally < 300ms)
+    -->
+    <bool name="config_proximityCheckOnWake">false</bool>
+    <integer name="config_proximityCheckTimeout">250</integer>
 </resources>
