@@ -67,4 +67,8 @@ interface IPowerManager
     void setAttentionLight(boolean on, int color);
     // update the uids being synchronized by network socket request manager
     void updateBlockedUids(int uid, boolean isBlocked);
+
+    // sets the delay after which to check the proximity to decide whether
+    // to wake the device
+    void wakeUpWithProximityCheck(long time, String reason, String opPackageName);
 }

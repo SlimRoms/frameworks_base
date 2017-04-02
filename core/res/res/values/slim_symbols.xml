@@ -28,4 +28,10 @@
     <!-- Vendor warning -->
     <java-symbol type="string" name="system_error_vendorprint" />
 
+    <!-- Proximity check on screen on -->
+    <java-symbol type="bool" name="config_proximityCheckOnWake" />
+
+    <!-- Proximity check timeout on screen on -->
+    <java-symbol type="integer" name="config_proximityCheckTimeout" />
+
 </resources>
