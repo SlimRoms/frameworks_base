@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1aa4ed85_972eb4a4",
+        "filename": "services/core/java/com/android/server/BluetoothManagerService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1854,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-04-17T23:49:04Z",
+      "side": 1,
+      "message": "} else if (newState \u003d\u003d BluetoothAdapter.STATE_BLE_TURNING_ON ||\n                newState \u003d\u003d BluetoothAdapter.STATE_BLE_TURNING_OFF ) {\n            sendBleStateChanged(prevState, newState);\n            isStandardBroadcast \u003d false;\n\n        } else if (newState \u003d\u003d BluetoothAdapter.STATE_TURNING_ON ||\n                newState \u003d\u003d BluetoothAdapter.STATE_TURNING_OFF) {\n            sendBleStateChanged(prevState, newState);\n        }\n\n        if (isStandardBroadcast) {\n            if (prevState \u003d\u003d BluetoothAdapter.STATE_BLE_ON) {\n                // Show prevState of BLE_ON as OFF to standard users\n                prevState \u003d BluetoothAdapter.STATE_OFF;\n             }",
+      "range": {
+        "startLine": 1843,
+        "startChar": 0,
+        "endLine": 1854,
+        "endChar": 13
+      },
+      "revId": "280e904a559a27cb005f31d07a1fd7a5f15d10c8",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
