@@ -1119,7 +1119,7 @@ public class InputMethodService extends AbstractInputMethodService {
                 && (mInputEditorInfo.imeOptions & EditorInfo.IME_FLAG_NO_FULLSCREEN) != 0) {
             return false;
         }
-        return true;
+        return false;
     }
 
     /**
