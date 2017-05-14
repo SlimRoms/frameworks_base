@@ -35,4 +35,5 @@
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_preventpower">允许应用程序覆写电源键</string>
   <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
+  <string name="system_error_vendorprint">检测到错误的制造商镜像。此ROM需要的制造商镜像为 <xliff:g id="string">%s</xliff:g> 。请刷入匹配的制造商镜像以移除此消息及确保你的系统正常工作。</string>
 </resources>

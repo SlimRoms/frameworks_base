@@ -35,4 +35,5 @@
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_preventpower">Permite a una aplicación desautorizar el botón de encendido.</string>
   <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
+  <string name="system_error_vendorprint">Imagen de proveedor incorrecta detectada. La imagen del proveedor necesaria para esta ROM es <xliff:g id="string">%s</xliff:g>. Por favor, flashea la imagen de proveedor correspondiente para eliminar este mensaje y asegurar que su sistema trabajará confiablemente.</string>
 </resources>

@@ -35,4 +35,5 @@
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_preventpower">Consenti all\'app di cambiare il comportamento del pulsante di spegnimento.</string>
   <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
+  <string name="system_error_vendorprint">Immagine di fornitore è sbagliata. L\'immagine di fornitore richiesta per questa ROM è <xliff:g id="string">%s </xliff:g>. Si prega di flashare l\'immagine corrispondente il fornitore per rimuovere questo messaggio e garantire che il sistema funzionerà in modo affidabile.</string>
 </resources>

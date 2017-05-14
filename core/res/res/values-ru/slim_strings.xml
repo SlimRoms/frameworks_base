@@ -35,4 +35,5 @@
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_preventpower">Позволять приложению переопределять кнопку питания.</string>
   <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
+  <string name="system_error_vendorprint">Обнаружен несовместимый образ ПО производителя. Рекомендуемый образ для этой прошивки — <xliff:g id="string">%s</xliff:g>. Пожалуйста, установите обновлённую прошивку раздела vendor, чтобы скрыть это уведомление, и вы убедитесь что ваша система будет работать надежно.</string>
 </resources>

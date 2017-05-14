@@ -31,8 +31,9 @@
   <!-- Button to reboot the phone, within the Phone Options dialog -->
   <string name="reboot_system" product="tablet">Redémarrer la tablette</string>
   <string name="reboot_system" product="default">Redémarrer le téléphone</string>
-  <string name="permlab_preventpower">outrepasser le bouton d\'alimentation</string>
+  <string name="permlab_preventpower">remplacer le bouton d\'alimentation</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permdesc_preventpower">Autoriser une application à outrepasser le bouton d\'alimentation.</string>
+  <string name="permdesc_preventpower">Permet à une application de remplacer la fonction du bouton d\'alimentation.</string>
   <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
+  <string name="system_error_vendorprint">Erreur du fichier vendor.img détectée. le fichier requis pour cette ROM est <xliff:g id="string">%s</xliff:g>. Veuillez flasher le fichier correspondant à votre appareil pour supprimer ce message et assurer un fonctionnement stable du système.</string>
 </resources>

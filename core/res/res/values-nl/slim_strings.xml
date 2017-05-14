@@ -31,8 +31,9 @@
   <!-- Button to reboot the phone, within the Phone Options dialog -->
   <string name="reboot_system" product="tablet">Herstart tablet</string>
   <string name="reboot_system" product="default">Herstart telefoon</string>
-  <string name="permlab_preventpower">overschrijf aan/uit-knop</string>
+  <string name="permlab_preventpower">overname powerknop</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_preventpower">Staat een app toe de aan-/uitknop over te nemen.</string>
   <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
+  <string name="system_error_vendorprint">Verkeerde vendor-image gedetecteerd. De benodigde vendor-image voor deze ROM is <xliff:g id="string">%s</xliff:g>. Installeer de juiste vendor-image om deze melding te verwijderen en om ervoor te zorgen dat je systeem goed werkt.</string>
 </resources>

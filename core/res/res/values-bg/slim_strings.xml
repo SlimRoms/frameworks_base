@@ -21,12 +21,19 @@
   <!-- Button to reboot the phone, within the Reboot Options dialog -->
   <string name="reboot_reboot">Рестартиране</string>
   <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
+  <string name="reboot_recovery">Режим на Възстановяване</string>
   <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
+  <string name="reboot_bootloader">Буутлоудър</string>
   <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
+  <string name="reboot_download">Режим на изтегляне</string>
   <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
+  <string name="reboot_progress">Рестартиране\u2026</string>
   <!-- Button to reboot the phone, within the Phone Options dialog -->
   <string name="reboot_system" product="tablet">Рестартиране на таблета</string>
   <string name="reboot_system" product="default">Рестартиране на телефона</string>
+  <string name="permlab_preventpower">замени клавиш за рестартиране</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permdesc_preventpower">Позволява на приложението да замени клавиша за рестартиране.</string>
   <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
+  <string name="system_error_vendorprint">Открит е грешен имидж за този хардуер. Правилният имидж за този ROM е <xliff:g id="string">%s </xliff:g>. Моля инсталирайте съответния имидж за този хардуер, за да премахнете това съобщение и за да се гарантира, че вашата система ще работи надеждно.</string>
 </resources>

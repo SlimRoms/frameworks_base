@@ -31,7 +31,7 @@
   <!-- Button to reboot the phone, within the Phone Options dialog -->
   <string name="reboot_system" product="tablet">Επανεκκίνηση tablet</string>
   <string name="reboot_system" product="default">Επανεκκίνηση τηλεφώνου</string>
-  <string name="permlab_preventpower">παράκαμψη πλήκτρου ενεργοποίησης</string>
+  <string name="permlab_preventpower">παράκαμψη κουμπιού ενεργοποίησης</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_preventpower">Επιτρέπει σε μια εφαρμογή να παρακάμψει το πλήκτρο ενεργοποίησης.</string>
   <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->

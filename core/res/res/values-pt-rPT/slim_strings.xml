@@ -35,4 +35,5 @@
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_preventpower">Permite que uma aplicação use o botão de ligar.</string>
   <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
+  <string name="system_error_vendorprint">Detectada imagem errada do fabricante.  A imagem correta para esta ROM é <xliff:g id="string">%s</xliff:g>. Por favor, flashe a imagem correcta para deixar de ver esta mensagem e certificar-se que o seu sistema funciona correctamente.</string>
 </resources>
