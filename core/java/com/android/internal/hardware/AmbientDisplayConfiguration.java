@@ -58,6 +58,16 @@ public class AmbientDisplayConfiguration {
         return mContext.getResources().getBoolean(R.bool.config_dozePulsePickup)
                 && ambientDisplayAvailable();
     }
+
+    public boolean pulseOnTiltEnabled(int user) {
+        return boolSetting(Settings.Secure.DOZE_PULSE_ON_TILT, user)
+                && pulseOnTiltAvailable();
+    }
+
+    public boolean pulseOnTiltAvailable() {
+        return mContext.getResources().getBoolean(R.bool.config_dozePulseTilt)
+                && ambientDisplayAvailable();
+    }
     
     public boolean pulseOnDoubleTapEnabled(int user) {
         return boolSetting(Settings.Secure.DOZE_PULSE_ON_DOUBLE_TAP, user)

@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2014 The Android Open Source Project
+ * Copyright (c) 2015 The CyanogenMod Project (TiltSensor)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -79,6 +80,7 @@ public class DozeService extends DreamService {
     private SensorManager mSensorManager;
     private TriggerSensor[] mSensors;
     private TriggerSensor mPickupSensor;
+    private TiltSensor mTiltSensor;
     private TriggerSensor mSigMotionSensor;
 //    private TriggerSensor mDoubleTapSensor;
     private PowerManager mPowerManager;
@@ -96,6 +98,7 @@ public class DozeService extends DreamService {
 
     private boolean mDozeEnabled;
     private boolean mDozeTriggerPickup;
+    private boolean mDozeTriggerTilt;
     private boolean mDozeTriggerSigmotion;
     private boolean mDozeTriggerNotification;
 //    private boolean mDozeTriggerDoubleTap;
@@ -160,6 +163,8 @@ public class DozeService extends DreamService {
                         mDozeParameters.getVibrateOnPickup(),
                         DozeLog.PULSE_REASON_SENSOR_DOUBLE_TAP)
         };
+        mTiltSensor = new TiltSensor(this, DozeLog.PULSE_REASON_SENSOR_TILT,
+                mConfig.pulseOnTiltAvailable());
         mPowerManager = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
         mWakeLock = mPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, TAG);
         mWakeLock.setReferenceCounted(true);
@@ -338,6 +343,11 @@ public class DozeService extends DreamService {
             }
             s.setListening(listen);
         }
+        if (mDozeTriggerTilt) {
+            mTiltSensor.enable();
+        } else {
+            mTiltSensor.disable();
+        }
         listenForBroadcasts(listen);
         if (mDozeTriggerNotification) {
             listenForNotifications(listen);
@@ -352,6 +362,9 @@ public class DozeService extends DreamService {
                 Settings.Secure.DOZE_ENABLED, 1) == 1);
         mDozeTriggerPickup = (SlimSettings.System.getIntForUser(resolver,
                 SlimSettings.System.DOZE_TRIGGER_PICKUP, 1,
+                UserHandle.USER_CURRENT) == 1);
+        mDozeTriggerTilt = (SlimSettings.System.getIntForUser(resolver,
+                SlimSettings.System.DOZE_TRIGGER_TILT, 1,
                 UserHandle.USER_CURRENT) == 1);
         mDozeTriggerSigmotion = (SlimSettings.System.getIntForUser(resolver,
                 SlimSettings.System.DOZE_TRIGGER_SIGMOTION, 1,
@@ -497,6 +510,66 @@ public class DozeService extends DreamService {
             }
         }
         return null;
+    }
+
+    private class TiltSensor implements SensorEventListener {
+
+        private static final boolean DEBUG = false;
+
+        private static final int SENSOR_WAKELOCK_DURATION = 200;
+        private static final int BATCH_LATENCY_IN_MS = 100;
+        private static final int MIN_PULSE_INTERVAL_MS = 2500;
+
+        private SensorManager mSensorManager;
+        private Sensor mSensor;
+        private Context mContext;
+        private int mPulseReason;
+        private boolean mConfigured;
+
+        private long mEntryTimestamp;
+
+        public TiltSensor(Context context, int pulseReason, boolean configured) {
+            mContext = context;
+            mSensorManager = (SensorManager) mContext.getSystemService(Context.SENSOR_SERVICE);
+            mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_TILT_DETECTOR);
+            mPulseReason = pulseReason;
+            mConfigured = configured;
+        }
+
+        @Override
+        public void onSensorChanged(SensorEvent event) {
+            if (DEBUG) Log.d(TAG, "Got sensor event: " + event.values[0]);
+
+            long delta = SystemClock.elapsedRealtime() - mEntryTimestamp;
+            if (delta < MIN_PULSE_INTERVAL_MS) {
+                return;
+            } else {
+                mEntryTimestamp = SystemClock.elapsedRealtime();
+            }
+
+            if (event.values[0] == 1) {
+                requestPulse(mPulseReason);
+            }
+        }
+
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+            /* Empty */
+        }
+
+        protected void enable() {
+            if (!mConfigured) return;
+            if (DEBUG) Log.d(TAG, "Enabling");
+            mSensorManager.registerListener(this, mSensor,
+                    SensorManager.SENSOR_DELAY_NORMAL, BATCH_LATENCY_IN_MS * 1000);
+            mEntryTimestamp = SystemClock.elapsedRealtime();
+        }
+
+        protected void disable() {
+            if (!mConfigured) return;
+            if (DEBUG) Log.d(TAG, "Disabling");
+            mSensorManager.unregisterListener(this, mSensor);
+        }
     }
 
     private class TriggerSensor extends TriggerEventListener {
