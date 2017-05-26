@@ -6026,6 +6026,12 @@ public final class Settings {
         public static final String DOZE_PULSE_ON_PICK_UP = "doze_pulse_on_pick_up";
 
         /**
+         * Whether the device should pulse on tilt gesture.
+         * @hide
+         */
+        public static final String DOZE_PULSE_ON_TILT = "doze_pulse_on_tilt";
+
+        /**
          * Whether the device should pulse on double tap gesture.
          * @hide
          */
