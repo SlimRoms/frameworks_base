@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2014 The Android Open Source Project
- * Copyright (c) 2015 The CyanogenMod Project (TiltSensor)
+ * Copyright (c) 2015 The CyanogenMod Project (TiltSensor / ProxySensor)
+ * Copyright (C) 2017 The LineageOS Project (ProxySensor)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -83,6 +84,7 @@ public class DozeService extends DreamService {
     private TiltSensor mTiltSensor;
     private TriggerSensor mSigMotionSensor;
 //    private TriggerSensor mDoubleTapSensor;
+    private ProximitySensor mProximitySensor;
     private PowerManager mPowerManager;
     private PowerManager.WakeLock mWakeLock;
     private UiModeManager mUiModeManager;
@@ -102,6 +104,8 @@ public class DozeService extends DreamService {
     private boolean mDozeTriggerSigmotion;
     private boolean mDozeTriggerNotification;
 //    private boolean mDozeTriggerDoubleTap;
+    private boolean mDozeTriggerHandWave;
+    private boolean mDozeTriggerPocket;
 
     public DozeService() {
         if (DEBUG) Log.d(mTag, "new DozeService()");
@@ -165,6 +169,8 @@ public class DozeService extends DreamService {
         };
         mTiltSensor = new TiltSensor(this, DozeLog.PULSE_REASON_SENSOR_TILT,
                 mConfig.pulseOnTiltAvailable());
+        mProximitySensor = new ProximitySensor(this, DozeLog.PULSE_REASON_SENSOR_PROXIMITY,
+                mConfig.pulseOnProximityAvailable());
         mPowerManager = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
         mWakeLock = mPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, TAG);
         mWakeLock.setReferenceCounted(true);
@@ -348,6 +354,11 @@ public class DozeService extends DreamService {
         } else {
             mTiltSensor.disable();
         }
+        if (mDozeTriggerHandWave || mDozeTriggerPocket) {
+            mProximitySensor.enable();
+        } else {
+            mProximitySensor.disable();
+        }
         listenForBroadcasts(listen);
         if (mDozeTriggerNotification) {
             listenForNotifications(listen);
@@ -375,6 +386,12 @@ public class DozeService extends DreamService {
 //        mDozeTriggerDoubleTap = (SlimSettings.System.getIntForUser(resolver,
 //                SlimSettings.System.DOZE_TRIGGER_DOUBLETAP, 1,
 //                UserHandle.USER_CURRENT) == 1);
+        mDozeTriggerHandWave = (SlimSettings.System.getIntForUser(resolver,
+                SlimSettings.System.DOZE_TRIGGER_HAND_WAVE, 1,
+                UserHandle.USER_CURRENT) == 1);
+        mDozeTriggerPocket = (SlimSettings.System.getIntForUser(resolver,
+                SlimSettings.System.DOZE_TRIGGER_POCKET, 1,
+                UserHandle.USER_CURRENT) == 1);
     }
 
     private void reregisterAllSensors() {
@@ -563,6 +580,78 @@ public class DozeService extends DreamService {
             mSensorManager.registerListener(this, mSensor,
                     SensorManager.SENSOR_DELAY_NORMAL, BATCH_LATENCY_IN_MS * 1000);
             mEntryTimestamp = SystemClock.elapsedRealtime();
+        }
+
+        protected void disable() {
+            if (!mConfigured) return;
+            if (DEBUG) Log.d(TAG, "Disabling");
+            mSensorManager.unregisterListener(this, mSensor);
+        }
+    }
+
+    public class ProximitySensor implements SensorEventListener {
+
+        private static final boolean DEBUG = false;
+
+        private static final float NS2S = 1.0f / 1000000000.0f;
+
+        // Maximum time for the hand to cover the sensor: 750ms
+        private static final float HANDWAVE_MAX_DELTA_S = 0.75f;
+
+        // Minimum time until the device is considered to have been in the pocket: 5s
+        private static final float POCKET_MIN_DELTA_S = 5.0f;
+
+        private SensorManager mSensorManager;
+        private Sensor mSensor;
+        private Context mContext;
+        private int mPulseReason;
+        private boolean mConfigured;
+
+        private boolean mSawNear = false;
+        private float mInPocketTime = 0.0f;
+
+        public ProximitySensor(Context context, int pulseReason, boolean configured) {
+            mContext = context;
+            mSensorManager = (SensorManager)
+                    mContext.getSystemService(Context.SENSOR_SERVICE);
+            mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+            mPulseReason = pulseReason;
+            mConfigured = configured;
+        }
+
+        @Override
+        public void onSensorChanged(SensorEvent event) {
+            boolean isNear = event.values[0] < mSensor.getMaximumRange();
+            if (!mSawNear && isNear) {
+                mInPocketTime = event.timestamp;
+                mSawNear = true;
+            } else if (mSawNear && !isNear) {
+                if (shouldPulse(event.timestamp)) {
+                    requestPulse(mPulseReason);
+                }
+                mSawNear = false;
+                mInPocketTime = 0.0f;
+            }
+        }
+
+        private boolean shouldPulse(float timestamp) {
+            float delta = (timestamp - mInPocketTime) * NS2S;
+
+            return (mDozeTriggerHandWave && (delta < HANDWAVE_MAX_DELTA_S))
+                    || (mDozeTriggerPocket && (delta > POCKET_MIN_DELTA_S));
+
+        }
+
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+            /* Empty */
+        }
+
+        protected void enable() {
+            if (!mConfigured) return;
+            if (DEBUG) Log.d(TAG, "Enabling");
+            mSensorManager.registerListener(this, mSensor,
+                    SensorManager.SENSOR_DELAY_NORMAL);
         }
 
         protected void disable() {

@@ -1781,6 +1781,9 @@
     <!-- Doze: should the tilt sensor be used as a pulse signal. -->
     <bool name="config_dozePulseTilt">false</bool>
 
+    <!-- Doze: should the proximity sensor (handwave / pocket mode) be used as a pulse signal. -->
+    <bool name="config_dozePulseProximity">false</bool>
+
     <!-- Type of the double tap sensor. Empty if double tap is not supported. -->
     <string name="config_dozeDoubleTapSensorType" translatable="false"></string>
 

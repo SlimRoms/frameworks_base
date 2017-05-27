@@ -63,9 +63,19 @@ public class AmbientDisplayConfiguration {
         return boolSetting(Settings.Secure.DOZE_PULSE_ON_TILT, user)
                 && pulseOnTiltAvailable();
     }
-
+    
     public boolean pulseOnTiltAvailable() {
         return mContext.getResources().getBoolean(R.bool.config_dozePulseTilt)
+                && ambientDisplayAvailable();
+    }
+
+    public boolean pulseOnProximityEnabled(int user) {
+        return boolSetting(Settings.Secure.DOZE_PULSE_ON_PROXIMITY, user)
+                && pulseOnProximityAvailable();
+    }
+
+    public boolean pulseOnProximityAvailable() {
+        return mContext.getResources().getBoolean(R.bool.config_dozePulseProximity)
                 && ambientDisplayAvailable();
     }
     
