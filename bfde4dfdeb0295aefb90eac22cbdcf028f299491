@@ -22,6 +22,30 @@
       "revId": "bfde4dfdeb0295aefb90eac22cbdcf028f299491",
       "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3253e394_a1c22be2",
+        "filename": "core/java/com/android/internal/hardware/AmbientDisplayConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000017
+      },
+      "writtenOn": "2017-05-28T07:19:52Z",
+      "side": 1,
+      "message": "\u003e dead space\n\nKinda silly since the AOSP version has a boat load of these... :p  I know about future update compatibility, ofc.\nAs much as my OCD is on 11, I\u0027ll leave the AOSP ones...",
+      "parentUuid": "154aec2c_b93b9493",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 4
+      },
+      "revId": "bfde4dfdeb0295aefb90eac22cbdcf028f299491",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
     }
   ]
 }
