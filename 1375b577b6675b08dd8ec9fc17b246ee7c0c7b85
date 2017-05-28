@@ -22,6 +22,30 @@
       "revId": "1375b577b6675b08dd8ec9fc17b246ee7c0c7b85",
       "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3d476013_e05119b3",
+        "filename": "core/java/com/android/internal/hardware/AmbientDisplayConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000017
+      },
+      "writtenOn": "2017-05-28T07:24:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "665148aa_3b56a448",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 4
+      },
+      "revId": "1375b577b6675b08dd8ec9fc17b246ee7c0c7b85",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
     }
   ]
 }
