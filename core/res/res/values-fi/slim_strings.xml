@@ -35,4 +35,5 @@
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_preventpower">Sallii sovelluksen ohittaa virtapainikkeen käytön.</string>
   <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
+  <string name="system_error_vendorprint">Väärä laitekuva (eng. vendor image) havaittu. Vaadittu laitekuva tälle käyttöjärjestelmälle on <xliff:g id="string">%s</xliff:g>. Asentaisitko yhteensopivan laitekuvan jolloin tämä ilmoitus poistuu ja samalla järjestelmän vakaa toimivuus varmistuu.</string>
 </resources>
