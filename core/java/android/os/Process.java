@@ -84,6 +84,12 @@ public class Process {
      * @hide
      */
     public static final int SHELL_UID = 2000;
+    
+    /**
+     * Defines the UID/GID for theme apps
+     * @hide
+     */
+    public static final int THEME_UID = 3000;
 
     /**
      * Defines the UID/GID for the log group.
