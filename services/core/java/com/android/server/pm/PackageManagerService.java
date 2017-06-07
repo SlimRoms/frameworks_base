@@ -2107,6 +2107,8 @@ public class PackageManagerService extends IPackageManager.Stub {
                 ApplicationInfo.FLAG_SYSTEM, ApplicationInfo.PRIVATE_FLAG_PRIVILEGED);
         mSettings.addSharedUserLPw("android.uid.shell", SHELL_UID,
                 ApplicationInfo.FLAG_SYSTEM, ApplicationInfo.PRIVATE_FLAG_PRIVILEGED);
+        mSettings.addSharedUserLPw("slim.uid.theme", Process.THEME_UID,
+                ApplicationInfo.FLAG_SYSTEM, ApplicationInfo.PRIVATE_FLAG_PRIVILEGED);
 
         File setFile = new File(AlarmManager.POWER_OFF_ALARM_SET_FILE);
         File handleFile = new File(AlarmManager.POWER_OFF_ALARM_HANDLE_FILE);
