@@ -349,18 +349,18 @@ public class DozeService extends DreamService {
             }
             s.setListening(listen);
         }
-        if (mDozeTriggerTilt) {
+        if (mDozeTriggerTilt && listen) {
             mTiltSensor.enable();
         } else {
             mTiltSensor.disable();
         }
-        if (mDozeTriggerHandWave || mDozeTriggerPocket) {
+        if ((mDozeTriggerHandWave || mDozeTriggerPocket) && listen) {
             mProximitySensor.enable();
         } else {
             mProximitySensor.disable();
         }
         listenForBroadcasts(listen);
-        if (mDozeTriggerNotification) {
+        if (mDozeTriggerNotification && listen) {
             listenForNotifications(listen);
         }
     }
