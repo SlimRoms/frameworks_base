@@ -35,4 +35,5 @@
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_preventpower">Permite que um aplicativo substitua a ação do botão de ligar/desligar.</string>
   <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
+  <string name="system_error_vendorprint">Foi detectada uma imagem ROM errada para este fabricante. A imagem correta para esta ROM é <xliff:g id="string">%s</xliff:g>. Por favor, faça um flash da imagem correta para remover esta mensagem e certifique-se de que o seu sistema está funcionando corretamente.</string>
 </resources>
