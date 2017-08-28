@@ -22,4 +22,14 @@
     <!-- Whether to allow process with media UID to access CameraServiceProxy -->
     <java-symbol type="bool" name="config_allowMediaUidForCameraServiceProxy" />
 
+    <!-- Power menu reboot -->
+    <java-symbol name="reboot_to_bootloader_title" type="string" />
+    <java-symbol name="reboot_to_bootloader_message" type="string" />
+    <java-symbol name="reboot_to_recovery_title" type="string" />
+    <java-symbol name="reboot_to_recovery_message" type="string" />
+    <java-symbol name="reboot_system_title" type="string" />
+    <java-symbol name="reboot_system_message" type="string" />
+    <java-symbol type="array" name="config_rebootActionsList" />
+    <java-symbol type="array" name="values_globalActionsList" />
+
 </resources>
