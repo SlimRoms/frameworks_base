@@ -31,8 +31,9 @@
   <!-- Button to reboot the phone, within the Phone Options dialog -->
   <string name="reboot_system" product="tablet">Uruchom ponownie tablet</string>
   <string name="reboot_system" product="default">Uruchom ponownie telefon</string>
-  <string name="permlab_preventpower">zastąp klawisz zasilania</string>
+  <string name="permlab_preventpower">zastąp przycisk zasilania</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permdesc_preventpower">Pozwala aplikacji przejąć kontrolę nad przyciskiem zasilania.</string>
+  <string name="permdesc_preventpower">Pozwala aplikacji na zastępowanie przycisku zasilania.</string>
   <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
+  <string name="system_error_vendorprint">Wykryto niekompatybilny obraz vendor. Wymagany obraz vendor dla tego romu to <xliff:g id="string">%s</xliff:g>. Proszę zainstalować pasujący obraz vendor, w celu usunięcia tego komunikatu oraz poprawnego działania Twojego systemu.</string>
 </resources>

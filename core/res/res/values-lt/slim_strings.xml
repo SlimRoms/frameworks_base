@@ -23,16 +23,17 @@
   <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
   <string name="reboot_recovery">Atkūrimo režimas</string>
   <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
-  <string name="reboot_bootloader">„Bootloader“</string>
+  <string name="reboot_bootloader">„Bootloader režimas“</string>
   <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
-  <string name="reboot_download">Atsisiųsti</string>
+  <string name="reboot_download">Atsisiuntimo režimas</string>
   <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
   <string name="reboot_progress">Perkraunama\u2026</string>
   <!-- Button to reboot the phone, within the Phone Options dialog -->
-  <string name="reboot_system" product="tablet">Perkrauti</string>
-  <string name="reboot_system" product="default">Perkrauti</string>
+  <string name="reboot_system" product="tablet">Perkrauti planšetę</string>
+  <string name="reboot_system" product="default">Perkrauti telefoną</string>
   <string name="permlab_preventpower">nepaisyti įjungimo klavišo</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_preventpower">Leisti programoms nepaisyti įjungimo klavišo.</string>
   <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
+  <string name="system_error_vendorprint">Aptikta, neteisingas tiekėjo nuotrauka. Reikalinga tiekėjo nuotrauka šiam ROM, yra <xliff:g id="string">%s </xliff:g>. Prašome paleisti atitikimą tiekėjo nuotrauką, jei norite pašalinti šį pranešimą ir užtikrinti, kad jūsų sistema dirbtų patikimai.</string>
 </resources>

@@ -21,11 +21,11 @@
   <!-- Button to reboot the phone, within the Reboot Options dialog -->
   <string name="reboot_reboot">重新啟動</string>
   <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
-  <string name="reboot_recovery">Recovery</string>
+  <string name="reboot_recovery">回復模式</string>
   <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
-  <string name="reboot_bootloader">開機導引程式</string>
+  <string name="reboot_bootloader">開機載入器</string>
   <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
-  <string name="reboot_download">進入下載目錄</string>
+  <string name="reboot_download">下載模式</string>
   <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
   <string name="reboot_progress">正在重新啟動\u2026</string>
   <!-- Button to reboot the phone, within the Phone Options dialog -->
@@ -33,7 +33,7 @@
   <string name="reboot_system" product="default">重新啟動手機</string>
   <string name="permlab_preventpower">覆寫電源鍵</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permdesc_preventpower">允許應用程式覆蓋電源鍵</string>
+  <string name="permdesc_preventpower">允許應用程式覆寫電源鍵的功能。</string>
   <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
   <string name="system_error_vendorprint">檢測到錯誤的供應者映像檔案。此 ROM 的所需供應者映像檔案為<xliff:g id="string">%s</xliff:g>。 請刷入符合的供應者映像檔案以刪除此訊息，並確保您的系統將可繼續工作。</string>
 </resources>

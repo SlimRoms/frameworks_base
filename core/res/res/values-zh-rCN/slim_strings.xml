@@ -29,7 +29,7 @@
   <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
   <string name="reboot_progress">正在重启\u2026</string>
   <!-- Button to reboot the phone, within the Phone Options dialog -->
-  <string name="reboot_system" product="tablet">重启面板</string>
+  <string name="reboot_system" product="tablet">重启平板电脑</string>
   <string name="reboot_system" product="default">重启手机</string>
   <string name="permlab_preventpower">覆写电源键</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->

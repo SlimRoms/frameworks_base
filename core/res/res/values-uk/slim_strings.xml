@@ -35,4 +35,5 @@
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_preventpower">Дозволити програмі змінити функцію кнопки живлення.</string>
   <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
+  <string name="system_error_vendorprint">Виявлено неправильний образ постачальника. Для цієї прошивки потрібен образ постачальника <xliff:g id="string">%s</xliff:g>. Будь-ласка, прошийте відповідний образ щоб видалити це повідомлення та переконайтесь, що все працює надійно.</string>
 </resources>
