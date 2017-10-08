@@ -86,7 +86,7 @@ import com.android.internal.util.FastXmlSerializer;
 import com.android.internal.util.XmlUtils;
 import com.android.server.am.BatteryStatsService;
 
-import org.slim.utils.PackageManagerUtils;
+import slim.utils.PackageManagerUtils;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
