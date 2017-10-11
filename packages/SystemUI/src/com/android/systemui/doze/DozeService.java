@@ -57,6 +57,11 @@ public class DozeService extends DreamService implements DozeMachine.Service {
         super.onDreamingStarted();
         mDozeMachine.requestState(DozeMachine.State.INITIALIZED);
         startDozing();
+        updateDozeSettings();
+        setListening(mDozeEnabled);
+        if (mDozeTriggerNotification) {
+            listenForNotifications(listen);
+        }
     }
 
     @Override
@@ -65,10 +70,37 @@ public class DozeService extends DreamService implements DozeMachine.Service {
         mDozeMachine.requestState(DozeMachine.State.FINISH);
     }
 
+    private void updateDozeSettings() {
+        ContentResolver resolver = mContext.getContentResolver();
+
+        // Get preferences
+        mDozeEnabled = (Settings.Secure.getInt(resolver,
+                Settings.Secure.DOZE_ENABLED, 1) == 1);
+        mDozeTriggerPickup = (SlimSettings.System.getIntForUser(resolver,
+                SlimSettings.System.DOZE_TRIGGER_PICKUP, 1,
+                UserHandle.USER_CURRENT) == 1);
+        mDozeTriggerSigmotion = (SlimSettings.System.getIntForUser(resolver,
+                SlimSettings.System.DOZE_TRIGGER_SIGMOTION, 1,
+                UserHandle.USER_CURRENT) == 1);
+        mDozeTriggerNotification = (SlimSettings.System.getIntForUser(resolver,
+                SlimSettings.System.DOZE_TRIGGER_NOTIFICATION, 1,
+                UserHandle.USER_CURRENT) == 1);
+//        mDozeTriggerDoubleTap = (SlimSettings.System.getIntForUser(resolver,
+//                SlimSettings.System.DOZE_TRIGGER_DOUBLETAP, 1,
+//                UserHandle.USER_CURRENT) == 1);
+    }
     @Override
     protected void dumpOnHandler(FileDescriptor fd, PrintWriter pw, String[] args) {
         if (mDozeMachine != null) {
             mDozeMachine.dump(pw);
+        }
+    }
+
+    private void listenForNotifications(boolean listen) {
+        if (listen) {
+            mHost.addCallback(mHostCallback);
+        } else {
+            mHost.removeCallback(mHostCallback);
         }
     }
 
