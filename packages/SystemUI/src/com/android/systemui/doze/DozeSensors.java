@@ -37,12 +37,15 @@ import android.util.Log;
 import com.android.internal.hardware.AmbientDisplayConfiguration;
 import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.nano.MetricsProto;
+import com.android.systemui.R;
 import com.android.systemui.statusbar.phone.DozeParameters;
 import com.android.systemui.util.wakelock.WakeLock;
 
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.function.Consumer;
+
+import slim.provider.SlimSettings;
 
 public class DozeSensors {
 
@@ -55,6 +58,7 @@ public class DozeSensors {
     private final TriggerSensor[] mSensors;
     private final ContentResolver mResolver;
     private final TriggerSensor mPickupSensor;
+    private final TriggerSensor mSigMotionSensor;
     private final DozeParameters mDozeParameters;
     private final AmbientDisplayConfiguration mConfig;
     private final WakeLock mWakeLock;
@@ -64,6 +68,10 @@ public class DozeSensors {
     private final Handler mHandler = new Handler();
     private final ProxSensor mProxSensor;
 
+    private boolean mDozeEnabled;
+    private boolean mDozeTriggerPickup;
+    private boolean mDozeTriggerSigmotion;
+    private boolean mDozeTriggerNotification;
 
     public DozeSensors(Context context, SensorManager sensorManager, DozeParameters dozeParameters,
             AmbientDisplayConfiguration config, WakeLock wakeLock, Callback callback,
@@ -77,7 +85,7 @@ public class DozeSensors {
         mResolver = mContext.getContentResolver();
 
         mSensors = new TriggerSensor[] {
-                new TriggerSensor(
+                mSigMotionSensor = new TriggerSensor(
                         mSensorManager.getDefaultSensor(Sensor.TYPE_SIGNIFICANT_MOTION),
                         null /* setting */,
                         dozeParameters.getPulseOnSigMotion(),
@@ -113,6 +121,11 @@ public class DozeSensors {
 
     public void setListening(boolean listen) {
         for (TriggerSensor s : mSensors) {
+            if ((s == mPickupSensor && !mDozeTriggerPickup) ||
+                (s == mSigMotionSensor && !mDozeTriggerSigmotion)    ) {
+                s.setListening(false);
+                continue;
+            }
             s.setListening(listen);
             if (listen) {
                 s.registerSettingsObserver(mSettingsObserver);
