@@ -23,6 +23,7 @@
     <java-symbol type="array" name="shutdown_reboot_actions" />
     <java-symbol type="array" name="shutdown_reboot_options" />
     <java-symbol type="string" name="reboot_system" />
+    <java-symbol type="string" name="reboot_title" />
     <java-symbol type="string" name="reboot_progress" />
 
     <!-- Proximity check on screen on -->
