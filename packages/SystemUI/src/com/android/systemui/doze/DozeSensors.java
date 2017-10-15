@@ -291,6 +291,11 @@ public class DozeSensors {
                 mRegistered = false;
                 mCallback.onSensorPulse(mPulseReason, sensorPerformsProxCheck);
                 updateListener();  // reregister, this sensor only fires once
+                updateDozeSettings();
+                setListening(mDozeEnabled);
+                if (mDozeTriggerNotification) {
+                    listenForNotifications(listen);
+                }
             }));
         }
 
@@ -314,6 +319,27 @@ public class DozeSensors {
             }
             return sb.append(']').toString();
         }
+
+    }
+
+    private void updateDozeSettings() {
+        ContentResolver resolver = mContext.getContentResolver();
+
+        // Get preferences
+        mDozeEnabled = (Settings.Secure.getInt(resolver,
+                Settings.Secure.DOZE_ENABLED, 1) == 1);
+        mDozeTriggerPickup = (SlimSettings.System.getIntForUser(resolver,
+                SlimSettings.System.DOZE_TRIGGER_PICKUP, 1,
+                UserHandle.USER_CURRENT) == 1);
+        mDozeTriggerSigmotion = (SlimSettings.System.getIntForUser(resolver,
+                SlimSettings.System.DOZE_TRIGGER_SIGMOTION, 1,
+                UserHandle.USER_CURRENT) == 1);
+        mDozeTriggerNotification = (SlimSettings.System.getIntForUser(resolver,
+                SlimSettings.System.DOZE_TRIGGER_NOTIFICATION, 1,
+                UserHandle.USER_CURRENT) == 1);
+//        mDozeTriggerDoubleTap = (SlimSettings.System.getIntForUser(resolver,
+//                SlimSettings.System.DOZE_TRIGGER_DOUBLETAP, 1,
+//                UserHandle.USER_CURRENT) == 1);
     }
 
     public interface Callback {

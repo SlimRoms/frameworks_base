@@ -73,23 +73,6 @@ public interface StatusBarIconController {
 
         //mBatteryMeterView.setLayoutParams(scaledLayoutParams);
         //mBatteryMeterViewKeyguard.setLayoutParams(scaledLayoutParams);
-    }
-
-    @Override
-    public void onTuningChanged(String key, String newValue) {
-        if (!ICON_BLACKLIST.equals(key)) {
-            return;
-        }
-        mIconBlacklist.clear();
-        mIconBlacklist.addAll(getIconBlacklist(newValue));
-        ArrayList<StatusBarIconView> views = new ArrayList<StatusBarIconView>();
-        // Get all the current views.
-        for (int i = 0; i < mStatusIcons.getChildCount(); i++) {
-            views.add((StatusBarIconView) mStatusIcons.getChildAt(i));
-        }
-        // Remove all the icons.
-        for (int i = views.size() - 1; i >= 0; i--) {
-            removeIcon(views.get(i).getSlot());
         }
 
         @Override
@@ -201,6 +184,24 @@ public interface StatusBarIconController {
         public void onSetIcon(int viewIndex, StatusBarIcon icon) {
             StatusBarIconView view = (StatusBarIconView) mGroup.getChildAt(viewIndex);
             view.set(icon);
+        }
+    }
+
+    @Override
+    public void onTuningChanged(String key, String newValue) {
+        if (!ICON_BLACKLIST.equals(key)) {
+            return;
+        }
+        mIconBlacklist.clear();
+        mIconBlacklist.addAll(getIconBlacklist(newValue));
+        ArrayList<StatusBarIconView> views = new ArrayList<StatusBarIconView>();
+        // Get all the current views.
+        for (int i = 0; i < mStatusIcons.getChildCount(); i++) {
+            views.add((StatusBarIconView) mStatusIcons.getChildAt(i));
+        }
+        // Remove all the icons.
+        for (int i = views.size() - 1; i >= 0; i--) {
+            removeIcon(views.get(i).getSlot());
         }
     }
 }

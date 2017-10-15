@@ -379,16 +379,6 @@ public class NotificationPanelView extends PanelView implements
         mNotificationStackScroller.setIsFullWidth(isFullWidth);
     }
 
-    @Override
-    public void onAttachedToWindow() {
-        mSettingsObserver.observe();
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-        mSettingsObserver.unobserve();
-    }
-
     private void startQsSizeChangeAnimation(int oldHeight, final int newHeight) {
         if (mQsSizeChangeAnimator != null) {
             oldHeight = (int) mQsSizeChangeAnimator.getAnimatedValue();
@@ -809,7 +799,7 @@ public class NotificationPanelView extends PanelView implements
                 && !(mDozeWakeupDoubleTap
                      && mStatusBarState == StatusBarState.KEYGUARD
                      && mStatusBar.isDozing())) {
-            mAfforanceHelper.onTouchEvent(event);
+            handled |= mAffordanceHelper.onTouchEvent(event);
         }
         if (mOnlyAffordanceInThisMotion) {
             return true;
