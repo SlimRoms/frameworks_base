@@ -331,7 +331,7 @@ public class DozeScrimController {
             if (DEBUG) Log.d(TAG, "Pulse out, mDozing=" + mDozing);
             if (!mDozing) return;
             startScrimAnimation(true /* inFront */, mDozeParameters.getAlwaysOn() ? 0 : 1,
-                    mDozeParameters.getPulseOutDuration();
+                    mDozeParameters.getPulseOutDuration());
             startScrimAnimation(true /* inFront */, 1f, mCustomFadeOutDelay,
                     Interpolators.ALPHA_IN, mPulseOutFinished);
         }
