@@ -71,60 +71,8 @@ public interface StatusBarIconController {
                     R.dimen.status_bar_icon_padding);
             mDarkIconDispatcher = Dependency.get(DarkIconDispatcher.class);
 
-        //mBatteryMeterView.setLayoutParams(scaledLayoutParams);
-        //mBatteryMeterViewKeyguard.setLayoutParams(scaledLayoutParams);
-    }
-
-    @Override
-    public void onTuningChanged(String key, String newValue) {
-        if (!ICON_BLACKLIST.equals(key)) {
-            return;
-        }
-        mIconBlacklist.clear();
-        mIconBlacklist.addAll(getIconBlacklist(newValue));
-        ArrayList<StatusBarIconView> views = new ArrayList<StatusBarIconView>();
-        // Get all the current views.
-        for (int i = 0; i < mStatusIcons.getChildCount(); i++) {
-            views.add((StatusBarIconView) mStatusIcons.getChildAt(i));
-        }
-        // Remove all the icons.
-        for (int i = views.size() - 1; i >= 0; i--) {
-            removeIcon(views.get(i).getSlot());
-        }
-
-        @Override
-        protected void onIconAdded(int index, String slot, boolean blocked,
-                StatusBarIcon icon) {
-            StatusBarIconView v = addIcon(index, slot, blocked, icon);
-            mDarkIconDispatcher.addDarkReceiver(v);
-        }
-
-        @Override
-        protected LayoutParams onCreateLayoutParams() {
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT, mIconSize);
-            lp.setMargins(mIconHPadding, 0, mIconHPadding, 0);
-            return lp;
-        }
-
-        @Override
-        protected void destroy() {
-            for (int i = 0; i < mGroup.getChildCount(); i++) {
-                mDarkIconDispatcher.removeDarkReceiver((ImageView) mGroup.getChildAt(i));
-            }
-            mGroup.removeAllViews();
-        }
-
-        @Override
-        protected void onRemoveIcon(int viewIndex) {
-            mDarkIconDispatcher.removeDarkReceiver((ImageView) mGroup.getChildAt(viewIndex));
-            super.onRemoveIcon(viewIndex);
-        }
-
-        @Override
-        public void onSetIcon(int viewIndex, StatusBarIcon icon) {
-            super.onSetIcon(viewIndex, icon);
-            mDarkIconDispatcher.applyDark((ImageView) mGroup.getChildAt(viewIndex));
+            //mBatteryMeterView.setLayoutParams(scaledLayoutParams);
+            //mBatteryMeterViewKeyguard.setLayoutParams(scaledLayoutParams);
         }
     }
 

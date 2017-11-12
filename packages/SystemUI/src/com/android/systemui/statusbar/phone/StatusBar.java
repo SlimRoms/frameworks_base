@@ -468,7 +468,7 @@ public class StatusBar extends SystemUI implements DemoMode,
     int mDisabled2 = 0;
 
     // tracking calls to View.setSystemUiVisibility()
-    int mSystemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE;
+    protected int mSystemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE;
     private final Rect mLastFullscreenStackBounds = new Rect();
     private final Rect mLastDockedStackBounds = new Rect();
     private final Rect mTmpRect = new Rect();

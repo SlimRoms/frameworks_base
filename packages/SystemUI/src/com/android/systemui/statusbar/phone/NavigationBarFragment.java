@@ -672,6 +672,7 @@ public class NavigationBarFragment extends Fragment implements Callbacks {
     };
 
     public static View create(Context context, FragmentListener listener) {
+        android.util.Log.d("TEST", "Navbarfragment - create");
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams(
                 LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.TYPE_NAVIGATION_BAR,
@@ -696,7 +697,7 @@ public class NavigationBarFragment extends Fragment implements Callbacks {
         if (DEBUG) Log.v(TAG, "addNavigationBar: about to add " + navigationBarView);
         if (navigationBarView == null) return null;
 
-        context.getSystemService(WindowManager.class).addView(navigationBarView, lp);
+        //context.getSystemService(WindowManager.class).addView(navigationBarView, lp);
         FragmentHostManager fragmentHost = FragmentHostManager.get(navigationBarView);
         NavigationBarFragment fragment = new NavigationBarFragment();
         fragmentHost.getFragmentManager().beginTransaction()
