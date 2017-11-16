@@ -422,6 +422,9 @@
     <!-- Boolean indicating whether 802.11r Fast BSS Transition is enabled on this platform -->
     <bool translatable="false" name="config_wifi_fast_bss_transition_enabled">false</bool>
 
+    <!-- Boolean indicating whether 802.11r Fast BSS Transition is enabled on this platform -->
+    <bool translatable="false" name="config_wifi_fast_bss_transition_enabled">false</bool>
+
     <!-- Device type information conforming to Annex B format in WiFi Direct specification.
          The default represents a dual-mode smartphone -->
     <string translatable="false" name="config_wifi_p2p_device_type">10-0050F204-5</string>
@@ -2802,7 +2805,7 @@
     <!-- Whether notify fingerprint client of successful cancelled authentication -->
     <bool name="config_notifyClientOnFingerprintCancelSuccess">false</bool>
 
-     <!-- Specifies whether the permissions needed by a legacy app should be
+    <!-- Specifies whether the permissions needed by a legacy app should be
          reviewed before any of its components can run. A legacy app is one
          with targetSdkVersion < 23, i.e apps using the old permission model.
          If review is not required, permissions are reviewed before the app
