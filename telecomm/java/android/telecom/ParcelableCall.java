@@ -141,7 +141,9 @@ public final class ParcelableCall implements Parcelable {
     }
 
     /** Bitmask of properties of the call. */
-    public int getProperties() { return mProperties; }
+    public int getProperties() {
+        return mProperties;
+    }
 
     /** The time that the call object was created */
     public long getCreateTimeMillis() {
