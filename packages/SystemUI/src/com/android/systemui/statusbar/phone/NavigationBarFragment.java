@@ -697,7 +697,7 @@ public class NavigationBarFragment extends Fragment implements Callbacks {
         if (DEBUG) Log.v(TAG, "addNavigationBar: about to add " + navigationBarView);
         if (navigationBarView == null) return null;
 
-        //context.getSystemService(WindowManager.class).addView(navigationBarView, lp);
+        context.getSystemService(WindowManager.class).addView(navigationBarView, lp);
         FragmentHostManager fragmentHost = FragmentHostManager.get(navigationBarView);
         NavigationBarFragment fragment = new NavigationBarFragment();
         fragmentHost.getFragmentManager().beginTransaction()
