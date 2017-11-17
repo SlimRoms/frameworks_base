@@ -81,13 +81,6 @@ public class TunerFragment extends PreferenceFragment {
                 if (preference != null) getPreferenceScreen().removePreference(preference);
             }
         }
-
-        if (Settings.Secure.getInt(getContext().getContentResolver(), SETTING_SEEN_TUNER_WARNING,
-                0) == 0) {
-            if (getFragmentManager().findFragmentByTag(WARNING_TAG) == null) {
-                new TunerWarningFragment().show(getFragmentManager(), WARNING_TAG);
-            }
-        }
     }
 
     private boolean alwaysOnAvailable() {
@@ -107,11 +100,6 @@ public class TunerFragment extends PreferenceFragment {
         super.onPause();
 
         MetricsLogger.visibility(getContext(), MetricsEvent.TUNER, false);
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        menu.add(Menu.NONE, MENU_REMOVE, Menu.NONE, R.string.remove_from_settings);
     }
 
     @Override
