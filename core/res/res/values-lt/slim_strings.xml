@@ -35,5 +35,5 @@
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_preventpower">Leisti programoms nepaisyti įjungimo klavišo.</string>
   <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
-  <string name="system_error_vendorprint">Aptikta, neteisingas tiekėjo nuotrauka. Reikalinga tiekėjo nuotrauka šiam ROM, yra <xliff:g id="string">%s </xliff:g>. Prašome paleisti atitikimą tiekėjo nuotrauką, jei norite pašalinti šį pranešimą ir užtikrinti, kad jūsų sistema dirbtų patikimai.</string>
+  <string name="system_error_vendorprint">Aptikta neteisinga gamintojo programinės įrangos kopija. Reikalinga gamintojo kopija šiam ROM yra <xliff:g id="string">%s </xliff:g>. Prašome įdiegti atitikimą gamintojo programinės įrangos kopija, jog pašalintumėte šį pranešimą ir užtikrintumėte, kad jūsų sistema dirbtų patikimai.</string>
 </resources>
