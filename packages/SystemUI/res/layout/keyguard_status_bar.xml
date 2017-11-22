@@ -16,7 +16,7 @@
   -->
 
 <!-- Extends RelativeLayout -->
-<com.android.systemui.statusbar.slim.SlimKeyguardStatusBarView
+<com.android.systemui.statusbar.phone.KeyguardStatusBarView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:systemui="http://schemas.android.com/apk/res/com.android.systemui"
     android:id="@+id/keyguard_header"
@@ -66,4 +66,4 @@
         android:textColor="#ffffff"
         android:singleLine="true" />
 
-</com.android.systemui.statusbar.slim.SlimKeyguardStatusBarView>
+</com.android.systemui.statusbar.phone.KeyguardStatusBarView>
