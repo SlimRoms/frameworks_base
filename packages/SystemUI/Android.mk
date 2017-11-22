@@ -61,12 +61,12 @@ ifneq ($(INCREMENTAL_BUILDS),)
     LOCAL_JACK_FLAGS := --multi-dex native
 endif
 
-# Slim Framework
-include frameworks/slim/packages/SlimSystemUI/SlimSystemUI.mk
-
 include frameworks/base/packages/SettingsLib/common.mk
 
 LOCAL_AAPT_FLAGS := --extra-packages com.android.keyguard
+
+# Slim Framework
+include frameworks/slim/packages/SlimSystemUI/SlimSystemUI.mk
 
 include $(BUILD_PACKAGE)
 
