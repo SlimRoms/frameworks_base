@@ -95,7 +95,7 @@ public class NavigationBarView extends FrameLayout implements PluginListener<Nav
 
     private GestureHelper mGestureHelper;
     private DeadZone mDeadZone;
-    private final NavigationBarTransitions mBarTransitions;
+    protected final NavigationBarTransitions mBarTransitions;
 
     // workaround for LayoutTransitions leaving the nav buttons in a weird state (bug 5549288)
     final static boolean WORKAROUND_INVALID_LAYOUT = true;
