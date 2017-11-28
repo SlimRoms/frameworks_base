@@ -37,6 +37,8 @@ public class TunerActivity extends SettingsDrawerActivity implements
 
     private static final String TAG_TUNER = "tuner";
 
+    private boolean mHomeKills;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Dependency.initDependencies(this);
@@ -50,10 +52,20 @@ public class TunerActivity extends SettingsDrawerActivity implements
             getFragmentManager().beginTransaction().replace(R.id.content_frame,
                     fragment, TAG_TUNER).commit();
 
+            if (getComponentName().getClassName().endsWith("LockscreenSettings")) {
+                getActionBar().setDisplayHomeAsUpEnabled(true);
+                startPreferenceFragment(new LockscreenFragment(), "Lockscreen");
+                mHomeKills = true;
+            }
+
             String extra = getIntent().getStringExtra(TAG_TUNER);
             if (extra != null) {
                 getActionBar().setDisplayHomeAsUpEnabled(true);
-                startPreferenceScreen(fragment, extra, false);
+                if (extra.equals("lockscreen")) {
+                    startPreferenceFragment(new LockscreenFragment(), "Lockscreen");
+                } else {
+                    startPreferenceScreen(fragment, extra, false);
+                }
             }
         }
     }
@@ -68,7 +80,11 @@ public class TunerActivity extends SettingsDrawerActivity implements
     @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
+            if (mHomeKills) {
+                finish();
+            } else {
+                onBackPressed();
+            }
             return true;
         }
         return super.onMenuItemSelected(featureId, item);
@@ -93,16 +109,20 @@ public class TunerActivity extends SettingsDrawerActivity implements
             final Bundle b = new Bundle(1);
             b.putString(PreferenceFragment.ARG_PREFERENCE_ROOT, pref.getKey());
             fragment.setArguments(b);
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            setTitle(pref.getTitle());
-            transaction.replace(R.id.content_frame, fragment);
-            transaction.addToBackStack("PreferenceFragment");
-            transaction.commit();
+            startPreferenceFragment(fragment, pref.getTitle());
             return true;
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             Log.d("TunerActivity", "Problem launching fragment", e);
             return false;
         }
+    }
+
+    private void startPreferenceFragment(Fragment fragment, CharSequence title) {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        setTitle(title);
+        transaction.replace(R.id.content_frame, fragment);
+        transaction.addToBackStack("PreferenceFragment");
+        transaction.commit();
     }
 
     @Override

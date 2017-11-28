@@ -252,7 +252,6 @@
                 android:exported="true" />
 
         <activity android:name=".tuner.TunerActivity"
-                  android:icon="@drawable/tuner"
                   android:theme="@style/TunerSettings"
                   android:label="@string/system_ui_tuner"
                   android:process=":tuner"
@@ -262,6 +261,23 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+        <activity-alias android:name=".tuner.LockscreenSettings"
+                        android:targetActivity=".tuner.TunerActivity"
+                        android:label="@string/lockscreen_shortcuts"
+                        android:process=":tuner">
+
+            <intent-filter>
+                <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
+            </intent-filter>
+
+            <meta-data android:name="com.android.settings.category"
+                       android:value="com.android.settings.category.ia.lockscreen_settings" />
+
+            <meta-data android:name="com.android.settings.summary"
+                       android:value="@string/lockscreen_shortcuts_summary" />
+
+        </activity-alias>
 
         <activity-alias android:name=".tuner.TunerSettingLink"
                         android:targetActivity=".tuner.TunerActivity"
