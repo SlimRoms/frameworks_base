@@ -53,6 +53,11 @@ void RenderState::onGLContextCreated() {
     mScissor = new Scissor();
     mStencil = new Stencil();
 
+    // Deferred because creation needs GL context for texture limits
+    if (!mLayerPool) {
+        mLayerPool = new OffscreenBufferPool();
+    }
+
     // This is delayed because the first access of Caches makes GL calls
     if (!mCaches) {
         mCaches = &Caches::createInstance(*this);
@@ -67,7 +72,7 @@ static void layerLostGlContext(Layer* layer) {
 }
 
 void RenderState::onGLContextDestroyed() {
-    mLayerPool.clear();
+    mLayerPool->clear();
 
     // TODO: reset all cached state in state objects
     std::for_each(mActiveLayers.begin(), mActiveLayers.end(), layerLostGlContext);
@@ -100,7 +105,7 @@ static void layerDestroyedVkContext(Layer* layer) {
 }
 
 void RenderState::onVkContextDestroyed() {
-    mLayerPool.clear();
+    mLayerPool->clear();
     std::for_each(mActiveLayers.begin(), mActiveLayers.end(), layerDestroyedVkContext);
     GpuMemoryTracker::onGpuContextDestroyed();
 }
@@ -116,10 +121,10 @@ void RenderState::flush(Caches::FlushMode mode) {
         case Caches::FlushMode::Moderate:
             // fall through
         case Caches::FlushMode::Layers:
-            mLayerPool.clear();
+            if (mLayerPool) mLayerPool->clear();
             break;
     }
-    mCaches->flush(mode);
+    if (mCaches) mCaches->flush(mode);
 }
 
 void RenderState::onBitmapDestroyed(uint32_t pixelRefId) {
@@ -257,7 +262,8 @@ void RenderState::postDecStrong(VirtualLightRefBase* object) {
 // Render
 ///////////////////////////////////////////////////////////////////////////////
 
-void RenderState::render(const Glop& glop, const Matrix4& orthoMatrix) {
+void RenderState::render(const Glop& glop, const Matrix4& orthoMatrix,
+        bool overrideDisableBlending) {
     const Glop::Mesh& mesh = glop.mesh;
     const Glop::Mesh::Vertices& vertices = mesh.vertices;
     const Glop::Mesh::Indices& indices = mesh.indices;
@@ -296,14 +302,20 @@ void RenderState::render(const Glop& glop, const Matrix4& orthoMatrix) {
         // TODO: avoid query, and cache values (or RRCS ptr) in program
         const RoundRectClipState* state = glop.roundRectClipState;
         const Rect& innerRect = state->innerRect;
-        glUniform4f(fill.program->getUniform("roundRectInnerRectLTRB"),
-                innerRect.left, innerRect.top,
-                innerRect.right, innerRect.bottom);
-        glUniformMatrix4fv(fill.program->getUniform("roundRectInvTransform"),
-                1, GL_FALSE, &state->matrix.data[0]);
 
         // add half pixel to round out integer rect space to cover pixel centers
         float roundedOutRadius = state->radius + 0.5f;
+
+        // Divide by the radius to simplify the calculations in the fragment shader
+        // roundRectPos is also passed from vertex shader relative to top/left & radius
+        glUniform4f(fill.program->getUniform("roundRectInnerRectLTWH"),
+                innerRect.left / roundedOutRadius, innerRect.top / roundedOutRadius,
+                (innerRect.right - innerRect.left) / roundedOutRadius,
+                (innerRect.bottom - innerRect.top) / roundedOutRadius);
+
+        glUniformMatrix4fv(fill.program->getUniform("roundRectInvTransform"),
+                1, GL_FALSE, &state->matrix.data[0]);
+
         glUniform1f(fill.program->getUniform("roundRectRadius"),
                 roundedOutRadius);
     }
@@ -406,7 +418,11 @@ void RenderState::render(const Glop& glop, const Matrix4& orthoMatrix) {
     // ------------------------------------
     // ---------- GL state setup ----------
     // ------------------------------------
-    blend().setFactors(glop.blend.src, glop.blend.dst);
+    if (CC_UNLIKELY(overrideDisableBlending)) {
+        blend().setFactors(GL_ZERO, GL_ZERO);
+    } else {
+        blend().setFactors(glop.blend.src, glop.blend.dst);
+    }
 
     GL_CHECKPOINT(MODERATE);
 
@@ -420,18 +436,28 @@ void RenderState::render(const Glop& glop, const Matrix4& orthoMatrix) {
         const GLbyte* vertexData = static_cast<const GLbyte*>(vertices.position);
         while (elementsCount > 0) {
             GLsizei drawCount = std::min(elementsCount, (GLsizei) kMaxNumberOfQuads * 6);
+            GLsizei vertexCount = (drawCount / 6) * 4;
             meshState().bindPositionVertexPointer(vertexData, vertices.stride);
             if (vertices.attribFlags & VertexAttribFlags::TextureCoord) {
                 meshState().bindTexCoordsVertexPointer(
                         vertexData + kMeshTextureOffset, vertices.stride);
             }
 
-            glDrawElements(mesh.primitiveMode, drawCount, GL_UNSIGNED_SHORT, nullptr);
+            if (mCaches->extensions().getMajorGlVersion() >= 3) {
+                glDrawRangeElements(mesh.primitiveMode, 0, vertexCount-1, drawCount, GL_UNSIGNED_SHORT, nullptr);
+            } else {
+                glDrawElements(mesh.primitiveMode, drawCount, GL_UNSIGNED_SHORT, nullptr);
+            }
             elementsCount -= drawCount;
-            vertexData += (drawCount / 6) * 4 * vertices.stride;
+            vertexData += vertexCount * vertices.stride;
         }
     } else if (indices.bufferObject || indices.indices) {
-        glDrawElements(mesh.primitiveMode, mesh.elementCount, GL_UNSIGNED_SHORT, indices.indices);
+        if (mCaches->extensions().getMajorGlVersion() >= 3) {
+            // use glDrawRangeElements to reduce CPU overhead (otherwise the driver has to determine the min/max index values)
+            glDrawRangeElements(mesh.primitiveMode, 0, mesh.vertexCount-1, mesh.elementCount, GL_UNSIGNED_SHORT, indices.indices);
+        } else {
+            glDrawElements(mesh.primitiveMode, mesh.elementCount, GL_UNSIGNED_SHORT, indices.indices);
+        }
     } else {
         glDrawArrays(mesh.primitiveMode, 0, mesh.elementCount);
     }
