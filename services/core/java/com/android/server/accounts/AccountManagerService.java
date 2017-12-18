@@ -4724,7 +4724,7 @@ public class AccountManagerService
          * into launching arbitrary intents on the device via by tricking to click authenticator
          * supplied entries in the system Settings app.
          */
-        protected void checkKeyIntent(
+        protected boolean checkKeyIntent(
                 int authUid,
                 Intent intent) throws SecurityException {
             intent.setFlags(intent.getFlags() & ~(Intent.FLAG_GRANT_READ_URI_PERMISSION

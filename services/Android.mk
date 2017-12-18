@@ -45,7 +45,7 @@ LOCAL_STATIC_JAVA_LIBRARIES := $(addprefix services.,$(services)) \
     android.hidl.base-V1.0-java-static \
     android.hardware.biometrics.fingerprint-V2.1-java-static
 
-LOCAL_JAVA_LIBRARIES := \
+LOCAL_JAVA_LIBRARIES += \
     android.hidl.manager-V1.0-java
 
 ifeq ($(EMMA_INSTRUMENT_FRAMEWORK),true)

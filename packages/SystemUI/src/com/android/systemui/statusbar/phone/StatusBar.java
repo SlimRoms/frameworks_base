@@ -4042,15 +4042,12 @@ public class StatusBar extends SystemUI implements DemoMode,
         }
     }
 
-<<<<<<< HEAD
     public void onKeyguardOccludedChanged(boolean keyguardOccluded) {
         if (mNavigationBar != null) {
-            mNavigationBar.onKeyguardOccludedChanged(keyguardOccluded);
+            //mNavigationBar.onKeyguardOccludedChanged(keyguardOccluded);
         }
     }
 
-=======
->>>>>>> android-8.1.0_r1
     // State logging
 
     private void logStateToEventlog() {

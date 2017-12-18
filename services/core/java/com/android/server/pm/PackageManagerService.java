@@ -4306,8 +4306,6 @@ public class PackageManagerService extends IPackageManager.Stub
             }
             return permissionInfo;
         }
-
-        return protectionLevel;
     }
 
     private int adjustPermissionProtectionFlagsLPr(int protectionLevel,
@@ -7592,23 +7590,6 @@ public class PackageManagerService extends IPackageManager.Stub
                     if (DEBUG_INSTALL) {
                         Slog.v(TAG, "No installer - not adding it to the ResolveInfo list");
                     }
-<<<<<<< HEAD
-                    final ResolveInfo installerInfo = new ResolveInfo(mInstantAppInstallerInfo);
-                    installerInfo.auxiliaryInfo = new AuxiliaryResolveInfo(
-                            info.activityInfo.packageName, info.activityInfo.splitName,
-                            info.activityInfo.applicationInfo.versionCode, null /*failureIntent*/);
-                    // make sure this resolver is the default
-                    installerInfo.isDefault = true;
-                    installerInfo.match = IntentFilter.MATCH_CATEGORY_SCHEME_SPECIFIC_PART
-                            | IntentFilter.MATCH_ADJUSTMENT_NORMAL;
-                    // add a non-generic filter
-                    installerInfo.filter = new IntentFilter();
-                    // load resources from the correct package
-                    installerInfo.resolvePackageName = info.getComponentInfo().packageName;
-                    resolveInfos.set(i, installerInfo);
-                    continue;
-                }
-=======
                     resolveInfos.remove(i);
                     continue;
                 }
@@ -7643,7 +7624,6 @@ public class PackageManagerService extends IPackageManager.Stub
                 installerInfo.isDefault = info.isDefault;
                 resolveInfos.set(i, installerInfo);
                 continue;
->>>>>>> android-8.1.0_r1
             }
             // caller is a full app, don't need to apply any other filtering
             if (ephemeralPkgName == null) {
