@@ -31,6 +31,9 @@
   <!-- Button to reboot the phone, within the Phone Options dialog -->
   <string name="reboot_system" product="tablet">Mulai ulang tablet</string>
   <string name="reboot_system" product="default">Mulai ulang ponsel</string>
+  <string name="permlab_preventpower">menekan tombol daya</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permdesc_preventpower">Memungkinkan aplikasi untuk mengunci tombol daya.</string>
   <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
+  <string name="system_error_vendorprint">Citra vendor salah terdeteksi. Gambar vendor yang dibutuhkan untuk ROM ini adalah <xliff:g id="string">%s</xliff:g>. Silahkan flash gambar vendor yang cocok untuk menghapus pesan ini dan memastikan sistem Anda akan bekerja dengan andal.</string>
 </resources>
