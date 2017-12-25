@@ -35,4 +35,5 @@
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_preventpower">Ermöglicht einer App, der Ein/Aus-Taste eine andere Funktion zuzuweisen.</string>
   <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
+  <string name="system_error_vendorprint">Falches Abbild für Anbieter (Vendor Image) erkannt. Das erforderliche Abbild für diese ROM ist <xliff:g id="string">%s</xliff:g>. Bitte das passende Abbild einspielen um diese Mitteilung zu entfernen und sicherzustellen, dass Ihr System zuverlässig arbeitet.</string>
 </resources>
