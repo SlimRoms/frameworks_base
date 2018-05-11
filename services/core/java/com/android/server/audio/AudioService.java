@@ -178,6 +178,9 @@ public class AudioService extends IAudioService.Stub
     /** How long to delay after a volume down event before unmuting a stream */
     private static final int UNMUTE_STREAM_DELAY = 350;
 
+    /** Is changing ringer mode allowed */
+    private boolean mSliderVolumeLock = false;
+
     /**
      * Only used in the result from {@link #checkForRingerModeChange(int, int, int)}
      */
@@ -2288,7 +2291,7 @@ public class AudioService extends IAudioService.Stub
     }
 
     private void setRingerMode(int ringerMode, String caller, boolean external) {
-        if (mUseFixedVolume || mIsSingleVolume) {
+        if (mUseFixedVolume || mSliderVolumeLock || mIsSingleVolume) {
             return;
         }
         if (caller == null || caller.length() == 0) {
@@ -7111,4 +7114,9 @@ public class AudioService extends IAudioService.Stub
     private HashMap<IBinder, AudioPolicyProxy> mAudioPolicies =
             new HashMap<IBinder, AudioPolicyProxy>();
     private int mAudioPolicyCounter = 0; // always accessed synchronized on mAudioPolicies
+
+    /** @hide */
+    public void setVolumeLock(boolean lock) {
+        mSliderVolumeLock = lock;
+    }
 }

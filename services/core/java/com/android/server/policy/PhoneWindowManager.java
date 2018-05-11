@@ -233,7 +233,6 @@ import android.view.inputmethod.InputMethodManagerInternal;
 import com.android.internal.R;
 import com.android.internal.annotations.GuardedBy;
 import com.android.internal.logging.MetricsLogger;
-import com.android.internal.os.DeviceKeyHandler;
 import com.android.internal.policy.IKeyguardDismissCallback;
 import com.android.internal.policy.IKeyguardService;
 import com.android.internal.policy.IShortcutService;
@@ -258,7 +257,7 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.lang.reflect.Constructor;
 
-import org.slim.framework.internal.policy.HardwareKeyHandler;
+import org.slim.framework.internal.policy.SlimKeyHandler;
 import slim.provider.SlimSettings;
 
 import dalvik.system.PathClassLoader;
@@ -407,7 +406,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     /** Amount of time (in milliseconds) a toast window can be shown. */
     public static final int TOAST_WINDOW_TIMEOUT = 3500; // 3.5 seconds
 
-    private DeviceKeyHandler mDeviceKeyHandler;
 
     /**
      * Lock protecting internal state.  Must not call out into window
@@ -549,8 +547,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
     boolean mWakeGestureEnabledSetting;
     MyWakeGestureListener mWakeGestureListener;
-
-    private HardwareKeyHandler mHardwareKeyHandler;
 
     // Default display does not rotate, apps that require non-default orientation will have to
     // have the orientation emulated.
@@ -1943,11 +1939,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             mOrientationListener.setCurrentRotation(windowManager.getDefaultDisplayRotation());
         } catch (RemoteException ex) { }
 
-        if (mContext.getResources().getInteger(
-                org.slim.framework.internal.R.integer.config_deviceHardwareKeys) > 0) {
-            mHardwareKeyHandler = new HardwareKeyHandler(mContext, mHandler);
-        }
-
         mSettingsObserver = new SettingsObserver(mHandler);
         mSettingsObserver.observe();
         mShortcutManager = new ShortcutManager(context);
@@ -2188,28 +2179,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                         mWindowManagerFuncs.notifyKeyguardTrustedChanged();
                     }
                 });
-
-        String deviceKeyHandlerLib = mContext.getResources().getString(
-                com.android.internal.R.string.config_deviceKeyHandlerLib);
-
-        String deviceKeyHandlerClass = mContext.getResources().getString(
-                com.android.internal.R.string.config_deviceKeyHandlerClass);
-
-        if (!deviceKeyHandlerLib.isEmpty() && !deviceKeyHandlerClass.isEmpty()) {
-            PathClassLoader loader =  new PathClassLoader(deviceKeyHandlerLib,
-                    getClass().getClassLoader());
-            try {
-                Class<?> klass = loader.loadClass(deviceKeyHandlerClass);
-                Constructor<?> constructor = klass.getConstructor(Context.class);
-                mDeviceKeyHandler = (DeviceKeyHandler) constructor.newInstance(
-                        mContext);
-                if(DEBUG) Slog.d(TAG, "Device key handler loaded");
-            } catch (Exception e) {
-                Slog.w(TAG, "Could not instantiate device key handler "
-                        + deviceKeyHandlerClass + " from class "
-                        + deviceKeyHandlerLib, e);
-            }
-        }
     }
 
     /**
@@ -3447,13 +3416,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     + " canceled=" + canceled);
         }
 
-        if (mHardwareKeyHandler != null && !keyguardOn && !virtualKey) {
-            if (mHardwareKeyHandler.handleKeyEvent(keyCode, repeatCount, down,
-                   canceled, longpress, keyguardOn)) {
-                return -1;
-            }
-        }
-
         // If the boot mode is power off alarm, we should not dispatch the several physical keys
         // in power off alarm UI to avoid pausing power off alarm UI.
         boolean isAlarmBoot = SystemProperties.getBoolean("ro.alarm_boot", false);
@@ -3943,18 +3905,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     mShortcutKeyServices.delete(shortcutCode);
                 }
                 return -1;
-            }
-        }
-
-        // Specific device key handling
-        if (mDeviceKeyHandler != null) {
-            try {
-                // The device only should consume known keys.
-                if (mDeviceKeyHandler.handleKeyEvent(event)) {
-                    return -1;
-                }
-            } catch (Exception e) {
-                Slog.w(TAG, "Could not dispatch event to device key handler", e);
             }
         }
 
@@ -6136,19 +6086,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
         boolean useHapticFeedback = down
                 && (policyFlags & WindowManagerPolicy.FLAG_VIRTUAL) != 0
-                && event.getRepeatCount() == 0
-                && (mHardwareKeyHandler != null && !mHardwareKeyHandler.isHwKeysDisabled());
+                && event.getRepeatCount() == 0;
 
-        // Specific device key handling
-        if (mDeviceKeyHandler != null) {
-            try {
-                // The device only should consume known keys.
-                if (mDeviceKeyHandler.handleKeyEvent(event)) {
-                    return 0;
-                }
-            } catch (Exception e) {
-                Slog.w(TAG, "Could not dispatch event to device key handler", e);
-            }
+        final boolean longpress = (event.getFlags() & KeyEvent.FLAG_LONG_PRESS) != 0;
+        if (LocalServices.getService(SlimKeyHandler.class)
+                .handleKeyEvent(event, longpress, keyguardOn())) {
+            return 0;
         }
 
         // Handle special keys.
