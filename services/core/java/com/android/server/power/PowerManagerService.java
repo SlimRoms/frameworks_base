@@ -101,8 +101,6 @@ import com.android.server.power.batterysaver.BatterySaverController;
 import com.android.server.power.batterysaver.BatterySaverStateMachine;
 import com.android.server.power.batterysaver.BatterySavingStats;
 
-import slim.providers.SlimSettings;
-
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.lang.annotation.Retention;
@@ -850,13 +848,6 @@ public final class PowerManagerService extends SystemService
                 Settings.Global.DEVICE_DEMO_MODE),
                 false, mSettingsObserver, UserHandle.USER_SYSTEM);
 
-        resolver.registerContentObserver(SlimSettings.Secure.getUriFor(
-                SlimSettings.Secure.BUTTON_BRIGHTNESS),
-                false, mSettingsObserver, UserHandle.USER_ALL);
-        resolver.registerContentObserver(SlimSettings.Secure.getUriFor(
-                SlimSettings.Secure.BUTTON_BACKLIGHT_TIMEOUT),
-                false, mSettingsObserver, UserHandle.USER_ALL);
-
         IVrManager vrManager = (IVrManager) getBinderService(Context.VR_SERVICE);
         if (vrManager != null) {
             try {
@@ -973,12 +964,8 @@ public final class PowerManagerService extends SystemService
                 Settings.System.SCREEN_BRIGHTNESS_MODE,
                 Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL, UserHandle.USER_CURRENT);
 
-        mButtonTimeout = SlimSettings.Secure.getIntForUser(resolver,
-                SlimSettings.Secure.BUTTON_BACKLIGHT_TIMEOUT,
-                DEFAULT_BUTTON_ON_DURATION, UserHandle.USER_CURRENT);
-        mButtonBrightness = SlimSettings.Secure.getIntForUser(resolver,
-                SlimSettings.Secure.BUTTON_BRIGHTNESS, mButtonBrightnessSettingDefault,
-                UserHandle.USER_CURRENT);
+        mButtonTimeout = DEFAULT_BUTTON_ON_DURATION;
+        mButtonBrightness = 128;
 
         mDirty |= DIRTY_SETTINGS;
     }
