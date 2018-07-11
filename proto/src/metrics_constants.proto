@@ -4006,6 +4006,19 @@ message MetricsEvent {
     // OS: O
     FIELD_NOTIFICATION_GROUP_SUMMARY = 947;
 
+    // An app attempted to forge a different component name in the AssisStructure that would be
+    // passed to the autofill service.
+    // OS: O (security patch)
+    // Package: Real package of the app being autofilled
+    // Tag FIELD_AUTOFILL_SERVICE: Package of the autofill service that processed the request
+    // TAG FIELD_AUTOFILL_FORGED_COMPONENT_NAME: Component name being forged
+    AUTOFILL_FORGED_COMPONENT_ATTEMPT = 948;
+
+    // FIELD - The component that an app tried tro forged.
+    // Type: string
+    // OS: O (security patch)
+    FIELD_AUTOFILL_FORGED_COMPONENT_NAME = 949;
+
     // ---- End O Constants, all O constants go above this line ----
 
     // OPEN: Settings > System > Languages & input > Advanced > Lift to open camera
@@ -4532,7 +4545,8 @@ message MetricsEvent {
     // OS: O MR
     AUTOFILL_SERVICE_DISABLED_SELF = 1135;
 
-    // Counter showing how long it took (in ms) to show the autofill UI after a field was focused
+    // Reports how long it took to show the autofill UI after a field was focused
+    // Tag FIELD_AUTOFILL_DURATION: Duration in ms
     // Tag FIELD_AUTOFILL_SERVICE: Package of service that processed the request
     // Package: Package of the autofill service
     // OS: O MR
@@ -4567,7 +4581,39 @@ message MetricsEvent {
     // OS: O MR
     COLOR_MODE_SETTINGS = 1143;
 
+    // Enclosing category for group of APP_TRANSITION_FOO events,
+    // logged when we cancel an app transition.
+    APP_TRANSITION_CANCELLED = 1144;
+
+    // Tag of a field representing a duration on autofill-related metrics.
+    FIELD_AUTOFILL_DURATION = 1145;
+
     // ---- End O-MR1 Constants, all O-MR1 constants go above this line ----
+
+    // ACTION: Stop an app and turn on background check
+    // CATEGORY: SETTINGS
+    // OS: P
+    ACTION_APP_STOP_AND_BACKGROUND_CHECK = 1233;
+
+    // FIELD: The action type for each anomaly
+    // CATEGORY: SETTINGS
+    // OS: P
+    FIELD_ANOMALY_ACTION_TYPE = 1234;
+
+    // OPEN: Settings -> Battery -> Wakelock anomaly
+    // CATEGORY: SETTINGS
+    // OS: P
+    ANOMALY_TYPE_WAKELOCK = 1235;
+
+    // OPEN: Settings -> Battery -> Wakeup alarm anomaly
+    // CATEGORY: SETTINGS
+    // OS: P
+    ANOMALY_TYPE_WAKEUP_ALARM = 1236;
+
+    // OPEN: Settings -> Battery -> Unoptimized bt anomaly
+    // CATEGORY: SETTINGS
+    // OS: P
+    ANOMALY_TYPE_UNOPTIMIZED_BT = 1237;
 
     // Add new aosp constants above this line.
     // END OF AOSP CONSTANTS
