@@ -26,6 +26,7 @@
     android:gravity="center_vertical | right"
     android:clipChildren="false"
 >
+
     <LinearLayout
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
@@ -36,6 +37,12 @@
         android:layout_marginBottom="@dimen/global_actions_grid_container_bottom_margin"
     >
         <!-- Global actions is right-aligned to be physically near power button -->
+    <ScrollView
+        android:layout_width="@dimen/global_actions_panel_width"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:layout_gravity="top|right">
+
         <LinearLayout
             android:id="@android:id/list"
             android:layout_width="wrap_content"
@@ -49,6 +56,7 @@
             android:paddingTop="@dimen/global_actions_grid_vertical_padding"
             android:paddingBottom="@dimen/global_actions_grid_vertical_padding"
         />
+    </ScrollView>
 
         <!-- For separated items-->
         <LinearLayout
