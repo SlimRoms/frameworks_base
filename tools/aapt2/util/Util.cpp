@@ -169,7 +169,7 @@ static int IsAndroidNameImpl(const StringPiece& str) {
 }
 
 bool IsAndroidPackageName(const StringPiece& str) {
-  return IsAndroidNameImpl(str) > 1 || str == "android";
+  return IsAndroidNameImpl(str) > 1 || str == "android" || str == "slim";
 }
 
 bool IsAndroidSplitName(const StringPiece& str) {

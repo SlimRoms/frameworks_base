@@ -230,6 +230,8 @@ import com.android.server.wm.DisplayRotation;
 import com.android.server.wm.WindowManagerInternal;
 import com.android.server.wm.WindowManagerInternal.AppTransitionListener;
 
+import org.slim.framework.internal.policy.HardwareKeyHandler;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -484,6 +486,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
     boolean mWakeGestureEnabledSetting;
     MyWakeGestureListener mWakeGestureListener;
+
+    private HardwareKeyHandler mHardwareKeyHandler;
 
     int mLidKeyboardAccessibility;
     int mLidNavigationAccessibility;
@@ -1804,6 +1808,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
         mHandler = new PolicyHandler();
         mWakeGestureListener = new MyWakeGestureListener(mContext, mHandler);
+
+        if (mContext.getResources().getInteger(
+                org.slim.framework.internal.R.integer.config_deviceHardwareKeys) > 0) {
+            mHardwareKeyHandler = new HardwareKeyHandler(mContext, mHandler);
+        }
+
         mSettingsObserver = new SettingsObserver(mHandler);
         mSettingsObserver.observe();
         mShortcutManager = new ShortcutManager(context);
@@ -2658,10 +2668,19 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         final boolean down = event.getAction() == KeyEvent.ACTION_DOWN;
         final boolean canceled = event.isCanceled();
         final int displayId = event.getDisplayId();
+        final boolean longpress = (flags & KeyEvent.FLAG_LONG_PRESS) != 0;
+        final boolean virtualKey = event.getDeviceId() == KeyCharacterMap.VIRTUAL_KEYBOARD;
 
         if (DEBUG_INPUT) {
             Log.d(TAG, "interceptKeyTi keyCode=" + keyCode + " down=" + down + " repeatCount="
                     + repeatCount + " keyguardOn=" + keyguardOn + " canceled=" + canceled);
+        }
+
+        if (mHardwareKeyHandler != null && !keyguardOn && !virtualKey) {
+            if (mHardwareKeyHandler.handleKeyEvent(keyCode, repeatCount, down,
+                   canceled, longpress, keyguardOn)) {
+                return -1;
+            }
         }
 
         // If we think we might have a volume down & power key chord on the way
@@ -3790,7 +3809,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         boolean useHapticFeedback = down
                 && (policyFlags & WindowManagerPolicy.FLAG_VIRTUAL) != 0
                 && (!isNavBarVirtKey || mNavBarVirtualKeyHapticFeedbackEnabled)
-                && event.getRepeatCount() == 0;
+                && event.getRepeatCount() == 0
+                && (mHardwareKeyHandler != null && !mHardwareKeyHandler.isHwKeysDisabled());
 
         // Specific device key handling
         if (dispatchKeyToKeyHandlers(event)) {
