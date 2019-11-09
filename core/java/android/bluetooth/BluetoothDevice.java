@@ -648,7 +648,11 @@ public final class BluetoothDevice implements Parcelable {
             return null;
         }
         try {
-            return sService.getRemoteName(this);
+            String name = sService.getRemoteName(this);
+            if (name != null) {
+                return name.replaceAll("[\\t\\n\\r]+", " ");
+            }
+            return null;
         } catch (RemoteException e) {Log.e(TAG, "", e);}
         return null;
     }
@@ -1023,7 +1027,7 @@ public final class BluetoothDevice implements Parcelable {
 
     /**
      * Confirm passkey for {@link #PAIRING_VARIANT_PASSKEY_CONFIRMATION} pairing.
-     * <p>Requires {@link android.Manifest.permission#BLUETOOTH_ADMIN}.
+     * <p>Requires {@link android.Manifest.permission#BLUETOOTH_PRIVILEGED}.
      *
      * @return true confirmation has been sent out
      *         false for error

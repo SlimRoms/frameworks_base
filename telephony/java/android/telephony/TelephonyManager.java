@@ -673,7 +673,13 @@ public class TelephonyManager {
     public static final int NETWORK_TYPE_GSM = 16;
     /** Current network is TD_SCDMA {@hide} */
     public static final int NETWORK_TYPE_TD_SCDMA = 17;
+    /** Current network is IWLAN {@hide} */
+    public static final int NETWORK_TYPE_IWLAN = 18;
 
+    /** Current network is DC-HSPAP
+    * @hide
+    */
+    public static final int NETWORK_TYPE_DCHSPAP = 30;
 
     /**
      * @return the NETWORK_TYPE_xxxx for current data connection.
@@ -704,7 +710,7 @@ public class TelephonyManager {
      * @see #NETWORK_TYPE_EHRPD
      * @see #NETWORK_TYPE_HSPAP
      * @see #NETWORK_TYPE_TD_SCDMA
-     *
+     * @see #NETWORK_TYPE_DCHSPAP
      * @hide
      */
     public int getDataNetworkType() {
@@ -793,8 +799,10 @@ public class TelephonyManager {
             case NETWORK_TYPE_EHRPD:
             case NETWORK_TYPE_HSPAP:
             case NETWORK_TYPE_TD_SCDMA:
+            case NETWORK_TYPE_DCHSPAP:
                 return NETWORK_CLASS_3_G;
             case NETWORK_TYPE_LTE:
+            case NETWORK_TYPE_IWLAN:
                 return NETWORK_CLASS_4_G;
             default:
                 return NETWORK_CLASS_UNKNOWN;
@@ -848,7 +856,11 @@ public class TelephonyManager {
             case NETWORK_TYPE_GSM:
                 return "GSM";
             case NETWORK_TYPE_TD_SCDMA:
-                return "TD_SCDMA";
+                return "TD-SCDMA";
+            case NETWORK_TYPE_IWLAN:
+                return "IWLAN";
+            case NETWORK_TYPE_DCHSPAP:
+                return "DC-HSPA+";
             default:
                 return "UNKNOWN";
         }
@@ -875,6 +887,10 @@ public class TelephonyManager {
     public static final int SIM_STATE_NETWORK_LOCKED = 4;
     /** SIM card state: Ready */
     public static final int SIM_STATE_READY = 5;
+    /** SIM card state: SIM Card Error, Sim Card is present but faulty
+     *@hide
+     */
+    public static final int SIM_STATE_CARD_IO_ERROR = 6;
 
     /**
      * @return true if a ICC card is present
@@ -901,6 +917,7 @@ public class TelephonyManager {
      * @see #SIM_STATE_PUK_REQUIRED
      * @see #SIM_STATE_NETWORK_LOCKED
      * @see #SIM_STATE_READY
+     * @see #SIM_STATE_CARD_IO_ERROR
      */
     public int getSimState() {
         String prop = SystemProperties.get(TelephonyProperties.PROPERTY_SIM_STATE);
@@ -918,6 +935,9 @@ public class TelephonyManager {
         }
         else if ("READY".equals(prop)) {
             return SIM_STATE_READY;
+        }
+        else if ("CARD_IO_ERROR".equals(prop)) {
+            return SIM_STATE_CARD_IO_ERROR;
         }
         else {
             return SIM_STATE_UNKNOWN;

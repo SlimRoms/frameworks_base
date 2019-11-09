@@ -1534,6 +1534,13 @@ public class PackageManagerService extends IPackageManager.Stub {
             // can downgrade to reader
             mSettings.writeLPr();
 
+            if (SELinuxMMAC.shouldRestorecon()) {
+                Slog.i(TAG, "Relabeling of /data/data and /data/user issued.");
+                if (mInstaller.restoreconData()) {
+                    SELinuxMMAC.setRestoreconDone();
+                }
+            }
+
             EventLog.writeEvent(EventLogTags.BOOT_PROGRESS_PMS_READY,
                     SystemClock.uptimeMillis());
 
@@ -4102,7 +4109,7 @@ public class PackageManagerService extends IPackageManager.Stub {
         for (int user : users) {
             if (user != 0) {
                 res = mInstaller.createUserData(packageName,
-                        UserHandle.getUid(user, uid), user);
+                        UserHandle.getUid(user, uid), user, seinfo);
                 if (res < 0) {
                     return res;
                 }

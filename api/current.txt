@@ -1268,6 +1268,8 @@ package android {
     field public static final int tertiary_text_dark = 17170448; // 0x1060010
     field public static final int tertiary_text_light = 17170449; // 0x1060011
     field public static final int transparent = 17170445; // 0x106000d
+    field public static final int trds_background = 17170460; // 0x106001c
+    field public static final int trds_text = 17170461; // 0x106001d
     field public static final int white = 17170443; // 0x106000b
     field public static final int widget_edittext_dark = 17170442; // 0x106000a
   }
@@ -1494,10 +1496,12 @@ package android {
     field public static final int keyboardView = 16908326; // 0x1020026
     field public static final int list = 16908298; // 0x102000a
     field public static final int message = 16908299; // 0x102000b
+    field public static final int monitor_box = 16908334; // 0x102002e
     field public static final int paste = 16908322; // 0x1020022
     field public static final int primary = 16908300; // 0x102000c
     field public static final int progress = 16908301; // 0x102000d
     field public static final int secondaryProgress = 16908303; // 0x102000f
+    field public static final int seek_bar = 16908335; // 0x102002f
     field public static final int selectAll = 16908319; // 0x102001f
     field public static final int selectTextMode = 16908333; // 0x102002d
     field public static final int selectedIcon = 16908302; // 0x102000e
@@ -1513,8 +1517,6 @@ package android {
     field public static final int title = 16908310; // 0x1020016
     field public static final int toggle = 16908311; // 0x1020017
     field public static final int widget_frame = 16908312; // 0x1020018
-    field public static final int monitor_box = 16908334; // 0x0102002e
-    field public static final int seek_bar = 16908335; // 0x0102002f
   }
 
   public static final class R.integer {
@@ -1566,9 +1568,9 @@ package android {
     field public static final int simple_selectable_list_item = 17367061; // 0x1090015
     field public static final int simple_spinner_dropdown_item = 17367049; // 0x1090009
     field public static final int simple_spinner_item = 17367048; // 0x1090008
+    field public static final int slider_preference = 17367064; // 0x1090018
     field public static final int test_list_item = 17367052; // 0x109000c
     field public static final int two_line_list_item = 17367053; // 0x109000d
-    field public static final int slider_preference = 17367064; // 0x01090018
   }
 
   public static final class R.menu {
@@ -1600,6 +1602,7 @@ package android {
     field public static final int cut = 17039363; // 0x1040003
     field public static final int defaultMsisdnAlphaTag = 17039365; // 0x1040005
     field public static final int defaultVoiceMailAlphaTag = 17039364; // 0x1040004
+    field public static final int default_string = 17039384; // 0x1040018
     field public static final int dialog_alert_title = 17039380; // 0x1040014
     field public static final int emptyPhoneNumber = 17039366; // 0x1040006
     field public static final int httpErrorBadUrl = 17039367; // 0x1040007
@@ -1614,7 +1617,6 @@ package android {
     field public static final int unknownName = 17039374; // 0x104000e
     field public static final int untitled = 17039375; // 0x104000f
     field public static final int yes = 17039379; // 0x1040013
-    field public static final int default_string = 17039384; // 0x01040018
   }
 
   public static final class R.style {
@@ -10542,7 +10544,6 @@ package android.hardware {
     method public int getJpegQuality();
     method public int getJpegThumbnailQuality();
     method public android.hardware.Camera.Size getJpegThumbnailSize();
-    method public java.lang.String getPowerMode();
     method public int getMaxExposureCompensation();
     method public int getMaxNumDetectedFaces();
     method public int getMaxNumFocusAreas();
@@ -10552,6 +10553,7 @@ package android.hardware {
     method public int getMinExposureCompensation();
     method public int getPictureFormat();
     method public android.hardware.Camera.Size getPictureSize();
+    method public java.lang.String getPowerMode();
     method public android.hardware.Camera.Size getPreferredPreviewSizeForVideo();
     method public int getPreviewFormat();
     method public void getPreviewFpsRange(int[]);
@@ -11999,6 +12001,7 @@ package android.media {
     field public static final int ORIENTATION_UNDEFINED = 0; // 0x0
     field public static final java.lang.String TAG_APERTURE = "FNumber";
     field public static final java.lang.String TAG_DATETIME = "DateTime";
+    field public static final java.lang.String TAG_DATETIME_DIGITIZED = "DateTimeDigitized";
     field public static final java.lang.String TAG_EXPOSURE_TIME = "ExposureTime";
     field public static final java.lang.String TAG_FLASH = "Flash";
     field public static final java.lang.String TAG_FOCAL_LENGTH = "FocalLength";
@@ -12017,6 +12020,9 @@ package android.media {
     field public static final java.lang.String TAG_MAKE = "Make";
     field public static final java.lang.String TAG_MODEL = "Model";
     field public static final java.lang.String TAG_ORIENTATION = "Orientation";
+    field public static final java.lang.String TAG_SUBSEC_TIME = "SubSecTime";
+    field public static final java.lang.String TAG_SUBSEC_TIME_DIG = "SubSecTimeDigitized";
+    field public static final java.lang.String TAG_SUBSEC_TIME_ORIG = "SubSecTimeOriginal";
     field public static final java.lang.String TAG_WHITE_BALANCE = "WhiteBalance";
     field public static final int WHITEBALANCE_AUTO = 0; // 0x0
     field public static final int WHITEBALANCE_MANUAL = 1; // 0x1
@@ -17448,6 +17454,7 @@ package android.os {
     field public static final java.lang.String RELEASE;
     field public static final deprecated java.lang.String SDK;
     field public static final int SDK_INT;
+    field public static final java.lang.String SECURITY_PATCH;
   }
 
   public static class Build.VERSION_CODES {
@@ -17591,7 +17598,7 @@ package android.os {
 
   public abstract class CountDownTimer {
     ctor public CountDownTimer(long, long);
-    method public final void cancel();
+    method public final synchronized void cancel();
     method public abstract void onFinish();
     method public abstract void onTick(long);
     method public final synchronized android.os.CountDownTimer start();
@@ -18770,6 +18777,23 @@ package android.preference {
     method public void setRingtoneType(int);
     method public void setShowDefault(boolean);
     method public void setShowSilent(boolean);
+  }
+
+  public class SlimSeekBarPreference extends android.preference.Preference implements android.widget.SeekBar.OnSeekBarChangeListener {
+    ctor public SlimSeekBarPreference(android.content.Context, android.util.AttributeSet);
+    method public void disablePercentageValue(boolean);
+    method public void disableText(boolean);
+    method public void isMilliseconds(boolean);
+    method public void minimumValue(int);
+    method public void multiplyValue(int);
+    method public void onProgressChanged(android.widget.SeekBar, int, boolean);
+    method public void onStartTrackingTouch(android.widget.SeekBar);
+    method public void onStopTrackingTouch(android.widget.SeekBar);
+    method public void setDefault(int);
+    method public void setInitValue(int);
+    method public void setInterval(int);
+    field public int interval;
+    field public static int maximum;
   }
 
   public class SwitchPreference extends android.preference.TwoStatePreference {
@@ -21251,12 +21275,14 @@ package android.provider {
     field public static final android.net.Uri DEFAULT_NOTIFICATION_URI;
     field public static final android.net.Uri DEFAULT_RINGTONE_URI;
     field public static final deprecated java.lang.String DEVICE_PROVISIONED = "device_provisioned";
+    field public static final java.lang.String DIALKEY_PADDING = "dialkey_padding";
     field public static final deprecated java.lang.String DIM_SCREEN = "dim_screen";
     field public static final java.lang.String DTMF_TONE_WHEN_DIALING = "dtmf_tone";
     field public static final java.lang.String END_BUTTON_BEHAVIOR = "end_button_behavior";
     field public static final java.lang.String FONT_SCALE = "font_scale";
     field public static final java.lang.String HAPTIC_FEEDBACK_ENABLED = "haptic_feedback_enabled";
     field public static final deprecated java.lang.String HTTP_PROXY = "http_proxy";
+    field public static final java.lang.String INCALL_GLOWPAD_TRANSPARENCY = "incall_glowpad_transparency";
     field public static final deprecated java.lang.String INSTALL_NON_MARKET_APPS = "install_non_market_apps";
     field public static final deprecated java.lang.String LOCATION_PROVIDERS_ALLOWED = "location_providers_allowed";
     field public static final deprecated java.lang.String LOCK_PATTERN_ENABLED = "lock_pattern_autolock";
@@ -21801,7 +21827,7 @@ package android.renderscript {
   }
 
   public class BaseObj {
-    method public synchronized void destroy();
+    method public void destroy();
     method public java.lang.String getName();
     method public void setName(java.lang.String);
   }
@@ -32737,6 +32763,7 @@ package android.widget {
     method public boolean isFlipping();
     method public void setAutoStart(boolean);
     method public void setFlipInterval(int);
+    method public void setSelfMaintained(boolean);
     method public void startFlipping();
     method public void stopFlipping();
   }
